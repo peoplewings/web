@@ -1,0 +1,54 @@
+<legend>Account settings</legend>
+<form id="settings-form" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputName">Name</label>
+    <div class="controls">
+      <input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
+	  <input type="text" name="lastName" placeholder="Last" class="input-small required">
+	</div>
+  </div>
+  <div class="control-group">
+	  <p>Current email: <strong>foo@foo.com</strong></p>
+    <label class="control-label" for="inputEmail">Your new email address</label>
+    <div class="controls">
+      <input type="email" id="inputEmail" name="email" placeholder="Email" class="input-large">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="repeatEmail">Retype your new email address</label>
+    <div class="controls">
+      <input type="email" id="repeatEmail" name="email" placeholder="Email" class="input-large">
+    </div>
+  </div>
+  <div class="control-group">
+	  <p>Change your password</p>
+    <label class="control-label" for="inputNewPassword">Your new password</label>
+    <div class="controls">
+      <input type="password" id="inputNewPasword" name="newPassword" class="input-large">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputRepeatPassword">Your new password</label>
+    <div class="controls">
+      <input type="password" id="inputRepeatPasword" name="repeatPassword" class="input-large">
+    </div>
+  </div>
+	<div class="control-group">
+		<label class="control-label">Delete entire account</label>
+	    <div class="controls">
+	        <input type="checkbox" name="deleteAccount"> I want to delete my account and all services and info associated with it
+		</div>
+	</div>
+	<div class="control-group">
+		<p>To save this settings, please enter your PEOPLEWINGS password</p>
+    	<label class="control-label" for="inputPassword">Current password</label>
+	    <div class="controls">
+		  <input type="password" id="inputPasword" name="password" class="input-large">
+		</div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Submit</button>
+    </div>
+  </div>
+</form>

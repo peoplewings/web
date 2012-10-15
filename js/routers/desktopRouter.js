@@ -1,41 +1,69 @@
-define(["jquery","backbone","models/UserModel", "views/UserView","collections/UsersCollection"], function($, Backbone, UserModel, UserView, UsersCollection){
+define([
+	"jquery",
+	"backbone",
+	"utils",
+	"api",
+	//landing page views (AnonymousUser)
+	"views/home/header",
+    "views/home/main",
+    "views/home/register",
+    "views/home/activate",
+    "views/home/login",
+    "views/home/password",
+	//app views (LoggedUser)
+    "views/app/home",
+    "views/app/logout",
+    "views/app/settings",
+], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, settingsView){
 
     var Router = Backbone.Router.extend({
-
-        initialize: function(){
-        
-            // Tells Backbone to start watching for hashchange events
-            Backbone.history.start();
-
-        },
-
         // All of your Backbone Routes (add more)
         routes: {
-
-            // When there is no hash bang on the url, the home method is called
-            "": "home"
-
+        // When there is no hash bang on the url, the home method is called
+			"login": "login",
+	  		"register": "register",
+	  		"activate/:id": "activate",
+		  	"forgot": "forgotPassword",
+			"forgot/:id": "forgotPassword",
+		//Logged User patterns
+			 "logout": "logout",
+			 "settings":"settings",
+		//Default action
+			"*actions": "defaultAction",
         },
 
-        home: function() {
-
-            // Creates a new Model instance and sets default values
-            var user = new UserModel().set({ "firstname": "Greg", "lastname": "Franko", "email": "example@gmail.com", "phone": "703-243-7371" }),
-
-                // Creates a new Collection instance (Adds the previous Model instance to the Collection)
-                users = new UsersCollection([user]),
-
-                // Instantiating the mainView instance
-                mainView = new UserView({
-
-                    // Declares the View's collection instance property
-                    collection: users
-
-                });
-
-            // Renders all of the User Model's to the page
-            mainView.render();
-
+        register: function(){
+			registerView.render();
+		},
+		login: function(){
+			loginView.render();
+		},
+		logout: function(){
+			logoutView.logout()
+		},
+		settings: function(){
+			settingsView.render()
+		},
+		activate: function(id){
+			activateView.render(id)
+		},
+		forgotPassword: function(id){
+		  	passwordView.render(id)
+    	},
+		defaultAction: function(actions){
+			console.log('desktopRouter: defaultAction')
+			if (api.userIsLoggedIn()){
+				appHomeView.render()
+		  	} else{
+				headerView.render();
+				$('header').html(headerView.el)
+				homeView.render();
+			}
+    	},
+		initialize: function(){
+			console.log('desktopRouter: initialize')
+            // Tells Backbone to start watching for hashchange events
+            Backbone.history.start();
         }
     });
 
