@@ -27,8 +27,8 @@ define([
 
 	var UserProfileModel = Backbone.Model.extend({
 		
-		//urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
-		urlRoot: 'templates/me/',
+		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
+		//urlRoot: 'templates/me/',
         // Model Constructor
         initialize: function() {
 
@@ -36,7 +36,7 @@ define([
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
 			//Data before tampering it and returning to cB
-			//console.log(resp.data) 
+			console.log(resp.data) 
 			resp.data.id = "me"
 			resp.data.interestedInM = false
 			resp.data.interestedInF = false
