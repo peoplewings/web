@@ -63,8 +63,7 @@ define([
 		profile: function(){
 			if (!this.profileView){
 				this.profileView = new ProfileView()
-			}
-			//this.profileView.render()
+			} else this.profileView.render()
 		},
 		//Common hashs
 		defaultAction: function(actions){

@@ -52,11 +52,11 @@ define([
 			success: function(){ 
 				//console.log(sc.model.attributes)
 				sc.render()
-				if (sc.model.get("languages").length === 0){
+				/*if (sc.model.get("languages").length === 0){
 					var tpl = _.template(languageTpl, {index: 1})
 					$('#languages-list').prepend(tpl)
 					sc.languagesCount = 1
-				}else sc.setLanguages(sc.model.get("languages"))
+				}else sc.setLanguages(sc.model.get("languages"))*/
 			},
 			error: function() { console.log(arguments); }	 	
 	  })
@@ -65,6 +65,13 @@ define([
       $(this.el).html(profileTpl);
 	  $('#basic-info').html(basicInfoTpl)
 	  $('#about-me').html(aboutMeTpl)
+	
+	  if (this.model.get("languages").length === 0){
+		var tpl = _.template(languageTpl, {index: 1})
+		$('#languages-list').prepend(tpl)
+		this.languagesCount = 1
+	  }else this.setLanguages(this.model.get("languages"))
+				
 	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	  
     },
@@ -112,7 +119,7 @@ define([
 			sc.model.bindings["level_" + s] = '[name=level-' + s +']'
 		})
 		this.languagesCount += size
-		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		//this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	},
 	addLanguage: function(e){
 		e.preventDefault(e);
