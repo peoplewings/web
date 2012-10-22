@@ -11,6 +11,8 @@ require.config({
       "underscore": "lib/libs/lodash",
       "backbone": "lib/libs/backbone",
       "backbone.validateAll": "lib/plugins/Backbone.validateAll",
+      "backbone.ModelBinder": "lib/libs/Backbone.ModelBinder",
+      "backbone.Singleton": "lib/libs/Backbone.Singleton",
 	  "templates": "../templates",
 	  "api": "lib/custom/api-lib",
 	  "utils": "lib/custom/utils-lib",
@@ -33,7 +35,11 @@ require.config({
 
       // Backbone.validateAll depends on Backbone.
       "backbone.validateAll": ["backbone"],
-
+	
+	 // Backbone.ModelBinder depends on Backbone.
+      "backbone.ModelBinder": ["backbone"],
+	// Backbone.Singleton depends on Backbone
+ 	  "backbone.Singleton": ["backbone"],
 	/*
 	  "jquery.spinner": {
             deps: ['jquery', 'spinner'],
@@ -45,7 +51,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr','jquery','backbone','routers/desktopRouter','bootstrap','backbone.validateAll', 'api', 'utils'], function(Modernizr, $, Backbone, Desktop) {
+require(['modernizr','jquery','backbone','routers/desktopRouter','bootstrap','backbone.validateAll', 'backbone.ModelBinder', 'api', 'utils', "backbone.Singleton"], function(Modernizr, $, Backbone, Desktop) {
 
     // Instantiates a new Router
     this.router = new Desktop();

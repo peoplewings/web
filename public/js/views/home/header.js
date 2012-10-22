@@ -5,9 +5,9 @@ define([
 ], function($, Backbone, headerTpl){
 	
   var landingHeader = Backbone.View.extend({
-    //el: "header",
     render: function(){
-      $(this.el).html(headerTpl);
+      $('header').html(headerTpl);
+	  //$('header').html(appHeader.el)
     },
 	destroy: function(){
   		this.remove();

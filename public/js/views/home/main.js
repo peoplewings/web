@@ -2,7 +2,7 @@ define([
   'jquery',
   'backbone',
   'text!templates/home/main.html',
-  'text!templates/home/accomodation.html'
+  'text!templates/home/accomodation.html',
 ], function($, Backbone, mainHomeTpl, accomodationTpl){
 
   var mainHomeView = Backbone.View.extend({

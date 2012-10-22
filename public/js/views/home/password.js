@@ -25,7 +25,7 @@ define([
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
 		
-		handlersV.submitForm(e, 'forgot', data, responseView, 
+		handlersV.submitForm(e, '/forgot', data, responseView, 
 			{ 
 				legend: "Check your inbox for the reset link",
 				msg: "We've sent you an e-mail that will allow you to reset your password quickly and easily",

@@ -14,35 +14,38 @@ define([
     "views/app/home",
     "views/app/logout",
     "views/app/settings",
-], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, settingsView){
+    "views/app/header",
+    "views/app/profile",
+    "models/User",
+], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, settingsView, appHeaderView, ProfileView, UserModel){
 
     var Router = Backbone.Router.extend({
         // All of your Backbone Routes (add more)
         routes: {
         // When there is no hash bang on the url, the home method is called
+			"register": "register",
 			"login": "login",
-	  		"register": "register",
 	  		"activate/:id": "activate",
 		  	"forgot": "forgotPassword",
 			"forgot/:id": "forgotPassword",
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
+			 "profile":"profile",
+			 "foo":"foo",
 		//Default action
 			"*actions": "defaultAction",
         },
-
+		//Anonymous User hashs
+		foo: function(){
+			console.log("I'm foo function")
+		},
         register: function(){
 			registerView.render();
 		},
 		login: function(){
+			console.log('loginAction')
 			loginView.render();
-		},
-		logout: function(){
-			logoutView.logout()
-		},
-		settings: function(){
-			settingsView.render()
 		},
 		activate: function(id){
 			activateView.render(id)
@@ -50,20 +53,79 @@ define([
 		forgotPassword: function(id){
 		  	passwordView.render(id)
     	},
+		//Logged User hashs
+		logout: function(){
+			logoutView.logout()
+		},
+		settings: function(){
+			settingsView.render()
+		},
+		profile: function(){
+			if (!this.profileView){
+				this.profileView = new ProfileView()
+			}
+			//this.profileView.render()
+		},
+		//Common hashs
 		defaultAction: function(actions){
 			console.log('desktopRouter: defaultAction')
-			if (api.userIsLoggedIn()){
+			if (!api.userIsLoggedIn()) {
+				console.log('not logged')
+				homeView.render();
+			}else {
+				console.log('logged')
 				appHomeView.render()
+			}
+			/*if (api.userIsLoggedIn()){
+				var user = new UserModel({id:"me"})
+				//console.log()
+				if (user.firstName === undefined){
+				user.fetch({
+						headers: { "X-Auth-Token": api.getAuthToken() }, 
+						success: function(){ 
+							appHeaderView.render()
+							appHomeView.render()
+						},
+						error: function() { console.log(arguments); }
+				 	});
+				}else {
+					appHomeView.render({model:user})
+				}
 		  	} else{
 				headerView.render();
-				$('header').html(headerView.el)
 				homeView.render();
-			}
+			}*/
     	},
 		initialize: function(){
 			console.log('desktopRouter: initialize')
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
+			if (api.userIsLoggedIn()){
+				var user = new UserModel({id:"me"})
+				//console.log()
+				if (user.firstName === undefined){
+				user.fetch({
+						headers: { "X-Auth-Token": api.getAuthToken() }, 
+						success: function(){ 
+							appHeaderView.render()
+							//appHomeView.render()
+						},
+						error: function() { console.log(arguments); }
+				 	});
+				}else {
+					appHomeView.render({model:user})
+				}
+		  	} else{
+				headerView.render();
+				//homeView.render();
+			}
+			/*if (!api.userIsLoggedIn()) {
+				console.log('not logged')
+				headerView.render();
+			}else {
+				console.log('logged')
+				appHeaderView.render()
+			}*/
         }
     });
 

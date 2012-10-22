@@ -9,7 +9,7 @@ define([
   var submitForm = function(evt, resource, formData, view, viewData){
 	var spinner = new Spinner(utils.getSpinOpts());
 	//POST form data
-	api.post('/' +  resource + '/', formData, successHandler(view, viewData, spinner))
+	api.post(resource, formData, successHandler(view, viewData, spinner))
 	//start spinner
 	spinner.spin(document.getElementById('main'));
 	//remove form if it exists

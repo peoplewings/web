@@ -22,7 +22,7 @@ define([
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
 		//console.log(data)
-		handlersV.submitForm(e, 'newuser', data, responseView, 
+		handlersV.submitForm(e, '/newuser', data, responseView, 
 			{ 
 				legend: "Confirm your e-mail address",
 				msg: "A confirmation email has been sent to <b><%- email %></b>. Click on the confirmation link in the email to activate your account",

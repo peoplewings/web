@@ -20,7 +20,8 @@ var API = function(){
 		  contentType: "application/json",
     	  success: successCb,
 	      failure: failCb | errorCb,
-		  headers: headers
+		  headers: headers,
+  		  //withCredentials: true
 		})
 	}
 	function requestGET(resource, method, parameters, successCb, failCb){
@@ -36,10 +37,44 @@ var API = function(){
 		  dataType: "json",
     	  success: successCb,
 	      failure: failCb | errorCb,
+		  headers: headers,
+		  //withCredentials: true
+		})
+	}
+	function requestPUT(resource, values, successCb, failCb){
+		
+		var headers = {}
+		
+		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken() }
+		
+		$.ajax({
+		  url: baseUrl + resource,
+		  type: 'put',
+		  crossDomain: true,
+		  data: JSON.stringify(values),
+		  contentType: "application/json",
+    	  success: successCb,
+	      failure: failCb | errorCb,
 		  headers: headers
 		})
 	}
-	
+	function requestDELETE(resource, values, successCb, failCb){
+		
+		var headers = {}
+		
+		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken() }
+		console.log(values)
+		$.ajax({
+		  url: baseUrl + resource,
+		  type: 'delete',
+		  crossDomain: true,
+		  data: JSON.stringify(values),
+		  contentType: "application/json",
+    	  success: successCb,
+	      failure: failCb | errorCb,
+		  headers: headers
+		})
+	}
 	function loadAuthToken() {
 		//console.log("localStorage: " + localStorage.getItem("Peoplewings-Auth-Token"))
 		//console.log("sessionStorage: " + sessionStorage.getItem("Peoplewings-Auth-Token"))
@@ -53,6 +88,12 @@ var API = function(){
 		post: function(resource, values, success, error){
 			requestPOST(resource, values, success, error)
 		},
+		put: function(resource, values, success, error){
+			requestPUT(resource, values, success, error)
+		},
+		delete: function(resource, values, success, error){
+			requestDELETE(resource, values, success, error)
+		},
 		saveAuthToken: function(authToken, persist) {
 			if (persist) localStorage.setItem("Peoplewings-Auth-Token", authToken)
 			else sessionStorage.setItem("Peoplewings-Auth-Token", authToken)
@@ -63,7 +104,11 @@ var API = function(){
         },
         userIsLoggedIn: function() {
             return loadAuthToken() != null
-        }
+        },
+		getAuthToken: function() {
+			if (loadAuthToken() != null) return loadAuthToken()
+			else return "AnonymousUser"
+		}
 	}
 	
 }();

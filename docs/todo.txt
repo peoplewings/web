@@ -1,2 +1,17 @@
+Sergi's TODO:
+
+/* CRITICAL */
+
+
+/*HIGH*/
+
 1. Integrate jQuery plugins correctly: spinner, jQuery validate
-2. Refactor to RequireJS 2.0 ...
+2. Think on views system like in profile.js
+
+
+
+/*LOW*/
+
+Refactor api.js to reuse request methods
+Refactor App login chain
+Remember me --> localStorage saving 

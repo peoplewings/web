@@ -3,8 +3,9 @@ define([
   "backbone",
   "api",
   "views/home/header",
+  "views/app/header",
   "views/home/main",
-], function($, Backbone, api, headerView, homeView){
+], function($, Backbone, api, headerView, appHeaderView, homeView){
 	
   var logoutView = Backbone.View.extend({
 	logout: function(){
@@ -16,11 +17,11 @@ define([
 				if (response.code === 200) {
 					//if server says OK we clear the authToken from session or local storage
 					api.clearAuthToken()
+					//Destroy old views
+					appHeaderView.destroy()
 					//render the home View
 					headerView.render();
-					$('header').html(headerView.el)
-					homeView.render();
-					
+					homeView.render();					
 				}
 			}else {
 					for ( error in response.error){

@@ -1,14 +1,25 @@
 define([
   "jquery",
   "backbone",
-  'text!templates/app/header.html'
-], function($, Backbone, headerTpl){
+  'text!templates/app/header.html',
+  "models/User",
+], function($, Backbone, headerTpl,  UserModel){
 	
   var appHeader = Backbone.View.extend({
-    render: function(firstName, lastName){
-	var tpl = _.template( headerTpl, { firstName: firstName, lastName: lastName });
-      $(this.el).html(tpl);
-    }
+	
+	initialize: function(){
+		this.model = new UserModel({id:"me"})
+	},
+	render: function(){
+	  console.log('appheaderRender')
+	  var tpl = _.template( headerTpl, { firstName: this.model.get('firstName'), lastName: this.model.get('lastName') });
+      $('header').html(tpl);
+
+    },
+	destroy: function(){
+  		this.remove();
+  		this.unbind();
+	}
   });
 
   return new appHeader;
