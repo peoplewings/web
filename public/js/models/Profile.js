@@ -36,7 +36,7 @@ define([
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
 			//Data before tampering it and returning to cB
-			console.log(resp.data) 
+			//console.log(resp.data) 
 			resp.data.id = "me"
 			resp.data.interestedInM = false
 			resp.data.interestedInF = false
@@ -60,7 +60,7 @@ define([
 			})
 			$.each(resp.data.education, function(i, field){
 				s = i + 1 + ""
-				resp.data["institution_" + s] = field.name
+				resp.data["institution_" + s] = field.institution
 				resp.data["degree_" + s] = field.degree
 			})
 			return resp.data

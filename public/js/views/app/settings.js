@@ -30,7 +30,7 @@ define([
 	},
     render: function(){
       $(this.el).html(settingsTpl);
-	  console.log(this.model.attributes)
+	  //console.log(this.model.attributes)
 	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
     },
 	close: function(){ 

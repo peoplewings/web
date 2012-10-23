@@ -9,8 +9,9 @@ define([
   'text!templates/app/likes-form.html',
   'text!templates/lib/language-field.html',
   'text!templates/lib/education-field.html',
+  'text!templates/lib/alert.html',
   'models/Profile',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, languageTpl, educationTpl, UserProfile){
+], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, languageTpl, educationTpl, alertTpl, UserProfile){
 
 
   var profileView = Backbone.View.extend({
@@ -63,10 +64,13 @@ define([
 	},
     render: function(){
 	  console.log('Profile render')
+	  console.log(this.model.attributes)
       $(this.el).html(profileTpl);
 	  $('#basic-info').html(basicInfoTpl)
 	  $('#about-me').html(aboutMeTpl)
 	  $('#likes-info').html(likesTpl)
+      
+      //this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	  //Takes care of languages, intializes bindings, etc
 	  this.initLanguages()
 	  this.initEducations()
@@ -90,7 +94,7 @@ define([
 			languages: []
 		}
 		for (var i = 1; i < this.languagesCount + 1; i++){
-			values.languages.push({language: data['language-' + i], level: data['level-' + i]})
+			values.languages.push({name: data['language-' + i], level: data['level-' + i]})
 		}
 		//Parsing interestedIn
 		if (data.interestedInM && data.interestedInF){
@@ -98,6 +102,13 @@ define([
 		}else if (!data.interestedInM && !data.interestedInF){
 			values.interestedIn = "N"
 		} else values.interestedIn = data.interestedInM || data.interestedInF
+		
+		api.put('/profiles/me/', values, function(response){
+			console.log(response)
+			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: "Success!", message: response.msg})
+			$('#main').prepend(tpl)
+		})
+		
 		console.log(values)
 	},
 	initLanguages: function(){
