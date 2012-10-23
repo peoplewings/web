@@ -13,11 +13,11 @@ define([
 	//app views (LoggedUser)
     "views/app/home",
     "views/app/logout",
-    "views/app/settings",
+    //"views/app/settings",
     "views/app/header",
     "views/app/profile",
     "models/User",
-], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, settingsView, appHeaderView, ProfileView, UserModel){
+], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, /*settingsView,*/ appHeaderView, ProfileView, UserModel){
 
     var Router = Backbone.Router.extend({
         // All of your Backbone Routes (add more)
@@ -58,7 +58,9 @@ define([
 			logoutView.logout()
 		},
 		settings: function(){
-			settingsView.render()
+			require(["views/app/settings"], function(settingsView){
+				settingsView.render()
+			})
 		},
 		profile: function(){
 			if (!this.profileView){
@@ -75,25 +77,6 @@ define([
 				console.log('logged')
 				appHomeView.render()
 			}
-			/*if (api.userIsLoggedIn()){
-				var user = new UserModel({id:"me"})
-				//console.log()
-				if (user.firstName === undefined){
-				user.fetch({
-						headers: { "X-Auth-Token": api.getAuthToken() }, 
-						success: function(){ 
-							appHeaderView.render()
-							appHomeView.render()
-						},
-						error: function() { console.log(arguments); }
-				 	});
-				}else {
-					appHomeView.render({model:user})
-				}
-		  	} else{
-				headerView.render();
-				homeView.render();
-			}*/
     	},
 		initialize: function(){
 			console.log('desktopRouter: initialize')
@@ -118,13 +101,6 @@ define([
 				headerView.render();
 				//homeView.render();
 			}
-			/*if (!api.userIsLoggedIn()) {
-				console.log('not logged')
-				headerView.render();
-			}else {
-				console.log('logged')
-				appHeaderView.render()
-			}*/
         }
     });
 

@@ -55,8 +55,13 @@ define([
 			var s
 			$.each(resp.data.languages, function(i, field){
 				s = i + 1 + ""
-				resp.data["language_" + s] = field.language
+				resp.data["language_" + s] = field.name
 				resp.data["level_" + s] = field.level
+			})
+			$.each(resp.data.education, function(i, field){
+				s = i + 1 + ""
+				resp.data["institution_" + s] = field.name
+				resp.data["degree_" + s] = field.degree
 			})
 			return resp.data
 		},

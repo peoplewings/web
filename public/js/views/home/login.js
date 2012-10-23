@@ -7,8 +7,9 @@ define([
   'views/app/header',
   'views/app/home',
   'text!templates/home/login.html',
+  'text!templates/lib/alert.html',
   'models/User',
-], function($, Backbone, utils, api, appHeader, appLoggedHeader, homeLoggedView, loginTpl, UserModel){
+], function($, Backbone, utils, api, appHeader, appLoggedHeader, homeLoggedView, loginTpl, alertTpl, UserModel){
 
   var spinner = new Spinner(utils.getSpinOpts());
 
@@ -23,11 +24,11 @@ define([
 	submitLogin: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm()
-		api.post('/auth/', data, this.loginSuccess(data.remember))
+		api.post('/auth/', data, this.loginSuccess(data.remember, this))
 		spinner.spin(document.getElementById('main'));
 		$('#' + e.target.id).remove()
 	},
-	loginSuccess: function(loggedIn){
+	loginSuccess: function(loggedIn, scope){
 		return function(response){
 			spinner.stop()
 			if (response.status===true) {
@@ -46,9 +47,9 @@ define([
 					})
 				}
 			}else {
-					for ( error in response.error){
-						console.error("Server said: " + error + " : " + response.error[error])
-					}
+				scope.render()
+				var tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: "Error: ", message: response.msg})
+				$('#main').prepend(tpl)
 			}
 		}	
 	}

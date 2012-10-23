@@ -5,8 +5,9 @@ define([
   'api',
   'views/app/home',
   'text!templates/app/settings.html',
+  'text!templates/lib/alert.html',
   "models/User",
-], function($, Backbone, utils, api, homeView, settingsTpl, UserModel){
+], function($, Backbone, utils, api, homeView, settingsTpl, alertTpl, UserModel){
 
 
   var settingsView = Backbone.View.extend({
@@ -41,7 +42,6 @@ define([
 	submitSettings: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm('settings-form')
-		console.log(data)
 		//{"current_password":"asdf", "resource":{"email":"asdf", "password":"qwert", "lastName":"lol"}}
 		//POST credentials
 		//api.post('/auth/', data, this.success(data.remember))
@@ -55,11 +55,14 @@ define([
 		if (data.newEmail) values.email = data.newEmail
 		if (data.newPassword) values.password = data.newPassword
 				
-		console.log({ resource: values, currentPassword: data.password })
+		//console.log({ resource: values, currentPassword: data.password })
 		api.put('/accounts/me', { resource: values, currentPassword: data.password }, function(response){ 
-			console.log(response.msg)
-			console.log(response.errors) 
-			//Refrescar vista!
+			$('.alert').remove()
+			var tpl
+			if (response.status === true) {
+				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: "Success!", message: response.msg})
+			}else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: "Error: ", message: response.msg})
+			$('#main').prepend(tpl)
 		})
 	},
 	success: function(loggedIn){
@@ -87,7 +90,6 @@ define([
 			else console.log(resp.msg)
 		}
 		api.delete('/accounts/me', data, goodbye)
-		
 	}
   });
 
