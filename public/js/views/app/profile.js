@@ -43,8 +43,8 @@ define([
 			company: '[name=company]',
 			
 			//personalPhilosophy: ""
-			//politicalOpinion: ""
-			//religion: ""
+			politicalOpinion: '[name=politicalOpinion]',
+			religion: '[name=religion]'
 		}
       this._modelBinder = new Backbone.ModelBinder();
 	  var sc = this
@@ -69,9 +69,10 @@ define([
 	  $('#basic-info').html(basicInfoTpl)
 	  $('#about-me').html(aboutMeTpl)
 	  $('#likes-info').html(likesTpl)
-      
+      console.log(this.model.bindings)
       //this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	  //Takes care of languages, intializes bindings, etc
+	  this.clearBindings()
 	  this.initLanguages()
 	  this.initEducations()
 	  
@@ -201,6 +202,13 @@ define([
 		delete this.model.bindings["degree_" + id]
 		this.educationsCount--
 	},
+	clearBindings: function(){
+		for (binding in this.model.bindings){
+			if (binding.indexOf('_') != -1){
+				delete this.model.bindings[binding]
+			} 
+		}
+	}
 	
   });
 
