@@ -13,6 +13,7 @@ require.config({
       "backbone.validateAll": "lib/plugins/Backbone.validateAll",
       "backbone.ModelBinder": "lib/libs/Backbone.ModelBinder",
       "backbone.Singleton": "lib/libs/Backbone.Singleton",
+      "jquery.Validate": "lib/plugins/jquery.validate",
 	  "templates": "../templates",
 	  "api": "lib/custom/api-lib",
 	  "utils": "lib/custom/utils-lib",
@@ -40,6 +41,8 @@ require.config({
       "backbone.ModelBinder": ["backbone"],
 	// Backbone.Singleton depends on Backbone
  	  "backbone.Singleton": ["backbone"],
+	// jQuery Validation plugin
+ 	  "jquery.Validate": ["jquery"],
 	/*
 	  "jquery.spinner": {
             deps: ['jquery', 'spinner'],
