@@ -1320,6 +1320,8 @@
 
     // Default JSON-request options.
     var params = {type: type, dataType: 'json'};
+    // Extending Backbone sync to provide Authorization on each AJAX call
+	params.headers = { "X-Auth-Token": API.getAuthToken() }; 
 
     // Ensure that we have a URL.
     if (!options.url) {
@@ -1354,7 +1356,6 @@
     if (params.type !== 'GET' && !Backbone.emulateJSON) {
       params.processData = false;
     }
-
     // Make the request, allowing the user to override any Ajax options.
     return $.ajax(_.extend(params, options));
   };
