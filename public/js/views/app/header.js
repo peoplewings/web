@@ -11,7 +11,7 @@ define([
 		this.model = new UserModel({id:"me"})
 	},
 	render: function(){
-	  console.log('appheaderRender')
+	  //console.log('appheaderRender')
 	  var tpl = _.template( headerTpl, { firstName: this.model.get('firstName'), lastName: this.model.get('lastName') });
       $('header').html(tpl);
 

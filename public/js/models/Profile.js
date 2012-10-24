@@ -28,30 +28,22 @@ define([
 	var UserProfileModel = Backbone.Model.extend({
 		
 		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
-		//urlRoot: 'templates/me/',
-        // Model Constructor
         initialize: function() {
+			//this.languages
 
         },
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
 			//Data before tampering it and returning to cB
-			//console.log(resp.data) 
-			resp.data.id = "me"
-			resp.data.interestedInM = false
-			resp.data.interestedInF = false
-			switch (resp.data.interestedIn){ 
-				case "M": 
-				resp.data.interestedInM = true
-				break
-				case "F": 
-				resp.data.interestedInF = true
-				break
-				case "B": 
-				resp.data.interestedInM = true
-				resp.data.interestedInF = true
-				break
-			}
+			console.log(resp.data)
+			
+			resp.data["interestedInM"] = false
+			resp.data["interestedInF"] = false
+			$.each(resp.data.interestedIn, function(i, field){
+				if (field.gender === 'Male') resp.data["interestedInM"] = true
+				if (field.gender === 'Female') resp.data["interestedInF"] = true
+			})
+
 			var s
 			$.each(resp.data.languages, function(i, field){
 				s = i + 1 + ""
@@ -63,9 +55,23 @@ define([
 				resp.data["institution_" + s] = field.institution
 				resp.data["degree_" + s] = field.degree
 			})
+			/*$.each(resp.data.interestedIn, function(i, field){
+				s = i + 1 + ""
+				resp.data["institution_" + s] = field.institution
+				resp.data["degree_" + s] = field.degree
+			})*/
 			return resp.data
 		},
-
+		save: function(attributes, options){
+			if (this.get("interestedInM") === true && this.get("interestedInF") === true){ 
+				this.set("interestedIn", [{gender: "Male"}, {gender: "Female"}])
+			} else if (this.get("interestedInM") === true){
+				this.set("interestedIn", [{gender: "Male"}])
+			} else if (this.get("interestedInF") === true){
+				this.set("interestedIn", [{gender: "Female"}])
+			} else this.set("interestedIn", [])
+			Backbone.Model.prototype.save.call(this, attributes, options);
+		}
         // Default values for all of the User Model attributes
         /*defaults: {
             firstName: "",

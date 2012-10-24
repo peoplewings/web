@@ -44,7 +44,6 @@ define([
 			registerView.render();
 		},
 		login: function(){
-			console.log('loginAction')
 			loginView.render();
 		},
 		activate: function(id){

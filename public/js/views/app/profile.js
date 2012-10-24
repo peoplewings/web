@@ -7,11 +7,12 @@ define([
   'text!templates/app/basic-form.html',
   'text!templates/app/about-form.html',
   'text!templates/app/likes-form.html',
+  'text!templates/app/contact-form.html',
   'text!templates/lib/language-field.html',
   'text!templates/lib/education-field.html',
   'text!templates/lib/alert.html',
   'models/Profile',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, languageTpl, educationTpl, alertTpl, UserProfile){
+], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, alertTpl, UserProfile){
 
 
   var profileView = Backbone.View.extend({
@@ -28,6 +29,7 @@ define([
 	initialize: function(options){
 		this.model = new UserProfile({id:"me"})
 		this.model.bindings = {
+			//Basic info 
 			gender: '[name=gender]',
 			civilState: '[name=civilState]',
 			showBirthday: '[name=showBirthday]',
@@ -36,44 +38,57 @@ define([
 			birthYear: '[name=birthYear]',
 			interestedInM: '[name=interestedInM]',
 			interestedInF: '[name=interestedInF]',
-			
+			//InterestedIn, Languages, CurrentCity, HomeTown
+			//About me
 			allAboutYou: '[name=allAboutYou]',
 			mainMission: '[name=mainMission]',
 			occupation: '[name=occupation]',
 			company: '[name=company]',
-			
-			//personalPhilosophy: ""
+			personalPhilosophy: '[name=personalPhilosophy]',
 			politicalOpinion: '[name=politicalOpinion]',
-			religion: '[name=religion]'
+			religion: '[name=religion]',
+			//Educations
+			// Likes
+			movies: '[name=movies]',
+			sports: '[name=sports]',
+			otherPages: '[name=otherPages]',
+			enjoyPeople: '[name=enjoyPeople]',
+			sharing: '[name=sharing]',
+			quotes: '[name=quotes]',
+			incredible: '[name=incredible]',
+			pwOpinion: '[name=pwOpinion]',
+			inspiredBy: '[name=inspiredBy]',
+			// Contact
+			emails: '[name=emails]',
+			phone: '[name=phone]',
+			//SocialNetWorks, instantMessages
 		}
       this._modelBinder = new Backbone.ModelBinder();
 	  var sc = this
-	  this.model.fetch({
-			headers: { "X-Auth-Token": api.getAuthToken() }, 
-			success: function(){ 
-				//console.log(sc.model.attributes)
+	  this.model.fetch({ 
+			success: function(model){
+				console.log(model)
+				sc.languagesCount = model.get("languages").length
+				sc.educationsCount = model.get("education").length
+				console.log("Edus length: " + sc.educationsCount + " langs length: " + sc.languagesCount)
 				sc.render()
-				/*if (sc.model.get("languages").length === 0){
-					var tpl = _.template(languageTpl, {index: 1})
-					$('#languages-list').prepend(tpl)
-					sc.languagesCount = 1
-				}else sc.setLanguages(sc.model.get("languages"))*/
 			},
 			error: function() { console.log(arguments); }	 	
 	  })
 	},
     render: function(){
-	  console.log('Profile render')
+	  //console.log('Profile render')
 	  console.log(this.model.attributes)
       $(this.el).html(profileTpl);
 	  $('#basic-info').html(basicInfoTpl)
 	  $('#about-me').html(aboutMeTpl)
 	  $('#likes-info').html(likesTpl)
-      console.log(this.model.bindings)
-      //this._modelBinder.bind(this.model, this.el, this.model.bindings)
-	  //Takes care of languages, intializes bindings, etc
+	  $('#contact-info').html(contactTpl)
+	  //Clears bindings for languages and educations
 	  this.clearBindings()
+	  //Takes care of languages, intializes bindings, etc
 	  this.initLanguages()
+	  //Takes care of educations, intializes bindings, etc
 	  this.initEducations()
 	  
     },
@@ -83,8 +98,7 @@ define([
 	submitBasic: function(e){
 		e.preventDefault(e);
 		//console.log('Submit profile ' + e.target.id)
-		var data = utils.serializeForm(e.target.id)
-		console.log(data)
+		/*var data = utils.serializeForm(e.target.id)
 		var values = {
 			birthDay: data.birthDay,
 			birthMonth: data.birthMonth,
@@ -94,6 +108,7 @@ define([
 			civilState: data.civilState,
 			languages: []
 		}
+		console.log(this.languagesCount)
 		for (var i = 1; i < this.languagesCount + 1; i++){
 			values.languages.push({name: data['language-' + i], level: data['level-' + i]})
 		}
@@ -103,14 +118,17 @@ define([
 		}else if (!data.interestedInM && !data.interestedInF){
 			values.interestedIn = "N"
 		} else values.interestedIn = data.interestedInM || data.interestedInF
-		
-		api.put('/profiles/me/', values, function(response){
+		var sc = this*/
+		console.log(this.model.attributes)
+		this.model.save()
+		/*api.put('/profiles/me/', values, function(response){
 			console.log(response)
 			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: "Success!", message: response.msg})
 			$('#main').prepend(tpl)
-		})
+			//sc.model.save(values)
+		})*/
 		
-		console.log(values)
+		//console.log(values)
 	},
 	initLanguages: function(){
 	  if (this.model.get("languages").length === 0){
@@ -127,7 +145,7 @@ define([
 		var size = languages.length
 		for (var i = 1; i < size + 1; i++){
 			var tpl = _.template(languageTpl, {index: i})
-			$('#languages-list').prepend(tpl)
+			$('#languages-list').append(tpl)
 		}
 		var s
 		var sc = this
@@ -140,6 +158,7 @@ define([
 		//this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	},
 	addLanguage: function(e){
+		if (this.languagesCount == 4) return false
 		e.preventDefault(e);
 		var langs = $('div[id^=select-lang-]').length + 1
 		var tpl = _.template(languageTpl, {index: langs})
@@ -150,7 +169,7 @@ define([
 		return false;
 	},
 	deleteLanguage: function(e){
-		if (this.languagesCount == 1) return
+		if (this.languagesCount == 1) return false
 		var id = e.target.id.split("-", 3)
 		id = id[id.length-1]
 		$("#select-lang-" + id).remove()
@@ -193,7 +212,7 @@ define([
 		return false;
 	},
 	deleteEducation: function(e){
-		if (this.educationsCount == 1) return
+		if (this.educationsCount == 1) return false
 		var id = e.target.id.split("-", 3)
 		id = id[id.length-1]
 		console.log(id)
