@@ -23,11 +23,8 @@ define([
 	submitRegister: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
-		console.log(data)
-		//require(["jquery.Validate"], function(jValidatior){
-			//$('#' + e.target.id).validate()
-			//console.log(v)
-		//})
+		//console.log(data)
+
 		
 		handlersV.submitForm(e, '/newuser', data, responseView, 
 			{ 

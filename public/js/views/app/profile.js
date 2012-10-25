@@ -36,8 +36,8 @@ define([
 			birthDay: '[name=birthDay]',
 			birthMonth: '[name=birthMonth]',
 			birthYear: '[name=birthYear]',
-			interestedInM: '[name=interestedInM]',
-			interestedInF: '[name=interestedInF]',
+			Male: '[name=interestedInM]',
+			Female: '[name=interestedInF]',
 			//InterestedIn, Languages, CurrentCity, HomeTown
 			//About me
 			allAboutYou: '[name=allAboutYou]',

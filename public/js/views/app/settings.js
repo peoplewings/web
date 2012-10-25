@@ -30,6 +30,23 @@ define([
 	},
     render: function(){
       $(this.el).html(settingsTpl);
+	  $('#settings-form').validate({
+			rules: {
+				newPassword: {
+		            minlength: 6
+		        },
+		        repeatNewPassword: {
+		            minlength: 6,
+		            equalTo: "#pass"
+		        },
+				//newEmail: { equalTo: '#inputRepeatNewEmail'},
+				newEmail: { email: true},
+				repeatNewEmail: {email: true, equalTo: '#inputNewEmail'},
+				//newPassword: {required: true},
+				//repeatNewPassword: { required: true, equalTo: '#newPassword'},
+
+			}
+		})
 	  //console.log(this.model.attributes)
 	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
     },
@@ -42,44 +59,29 @@ define([
 	submitSettings: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm('settings-form')
+		/*if ($('#settings-form').validate()) console.log('Valid')
+		else console.log('Invalid')*/
 		//{"current_password":"asdf", "resource":{"email":"asdf", "password":"qwert", "lastName":"lol"}}
 		//POST credentials
 		//api.post('/auth/', data, this.success(data.remember))
 		//Start loader
 		//spinner.spin(document.getElementById('main'));
 		//$('#' + e.target.id).remove()
-		var values = {
-			firstName: data.firstName, 
-			lastName: data.lastName
-		}
+		console.log(data)
+		var values = { firstName: data.firstName, lastName: data.lastName }
 		if (data.newEmail) values.email = data.newEmail
 		if (data.newPassword) values.password = data.newPassword
 				
-		//console.log({ resource: values, currentPassword: data.password })
+		var sc = this
 		api.put('/accounts/me', { resource: values, currentPassword: data.password }, function(response){ 
 			$('.alert').remove()
 			var tpl
 			if (response.status === true) {
-				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: "Success!", message: response.msg})
-			}else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: "Error: ", message: response.msg})
+				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
+			}else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg + ": ", message: 'Please try again later'})
+			sc.render()
 			$('#main').prepend(tpl)
 		})
-	},
-	success: function(loggedIn){
-		return function(response){
-			//spinner.stop()
-			if (response.status===true) {
-				if (response.code === 200) {
-					console.log(response)
-				}
-			}else {
-					for ( error in response.error){
-						console.error("Server said: " + error + " : " + response.error[error])
-					
-					}
-			
-			}
-		}	
 	},
 	deleteAccount: function(){
 		console.log('deleteAccount')

@@ -2,11 +2,11 @@
     <div class="span8">
 <legend>Account settings</legend>
 <form id="settings-form" class="form-horizontal">
-  <div class="control-group">
+ <div class="control-group">
     <label class="control-label" for="inputName">Name</label>
     <div class="controls">
       <input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
-	  <input type="text" name="lastName" placeholder="Last" class="input-small required">
+	  <input type="text" id="lastName" name="lastName" placeholder="Last" class="input-small required">
 	</div>
   </div>
   <div class="control-group">
@@ -32,13 +32,13 @@
   <div class="control-group">
     <label class="control-label" for="inputNewPassword">Your new password</label>
     <div class="controls">
-      <input type="password" id="inputNewPasword" placeholder="New password" name="newPassword" class="input-large">
+      <input type="password" id="pass" placeholder="New password" name="newPassword" class="input-large">
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputRepeatNewPassword">Your new password</label>
     <div class="controls">
-      <input type="password" id="inputRepeatNewPasword" placeholder="New password" name="repeatNewPassword" class="input-large">
+      <input type="password" id="pass2" placeholder="New password" name="repeatNewPassword" class="input-large">
     </div>
   </div>
 <legend></legend>
@@ -46,7 +46,7 @@
 		<p><b>To save this settings, please enter your PEOPLEWINGS password</b></p>
     	<label class="control-label" for="inputPassword">Current password</label>
 	    <div class="controls">
-		  <input type="password" id="inputPasword" name="password" class="input-large">
+		  <input type="password" id="inputPasword" name="password" placeholder="Current password" class="input-large required">
 		</div>
   </div>
   <div class="form-actions">
