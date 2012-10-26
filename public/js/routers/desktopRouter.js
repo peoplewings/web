@@ -1,23 +1,17 @@
 define([
 	"jquery",
 	"backbone",
-	"utils",
 	"api",
 	//landing page views (AnonymousUser)
 	"views/home/header",
     "views/home/main",
-    //"views/home/register",
     "views/home/activate",
-    //"views/home/login",
     "views/home/password",
 	//app views (LoggedUser)
     "views/app/home",
-    //"views/app/logout",
-    //"views/app/settings",
     "views/app/header",
-    //"views/app/profile",
     "models/User",
-], function($, Backbone, utils, api, headerView, homeView, activateView, passwordView, appHomeView, /*logoutView, settingsView,*/ appHeaderView, /*ProfileView,*/ UserModel){
+], function($, Backbone, api, headerView, homeView, activateView, passwordView, appHomeView, appHeaderView, UserModel){
 
     var Router = Backbone.Router.extend({
         // All of your Backbone Routes (add more)
@@ -98,13 +92,11 @@ define([
             Backbone.history.start();
 			if (api.userIsLoggedIn()){
 				var user = new UserModel({id:"me"})
-				//console.log()
 				if (user.firstName === undefined){
 				user.fetch({
 						headers: { "X-Auth-Token": api.getAuthToken() }, 
 						success: function(){ 
 							appHeaderView.render()
-							//appHomeView.render()
 						},
 						error: function() { console.log(arguments); }
 				 	});
@@ -113,7 +105,6 @@ define([
 				}
 		  	} else{
 				headerView.render();
-				//homeView.render();
 			}
         }
     });
