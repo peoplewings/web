@@ -6,18 +6,18 @@ define([
 	//landing page views (AnonymousUser)
 	"views/home/header",
     "views/home/main",
-    "views/home/register",
+    //"views/home/register",
     "views/home/activate",
-    "views/home/login",
+    //"views/home/login",
     "views/home/password",
 	//app views (LoggedUser)
     "views/app/home",
-    "views/app/logout",
+    //"views/app/logout",
     //"views/app/settings",
     "views/app/header",
-    "views/app/profile",
+    //"views/app/profile",
     "models/User",
-], function($, Backbone, utils, api, headerView, homeView, registerView, activateView, loginView, passwordView, appHomeView, logoutView, /*settingsView,*/ appHeaderView, ProfileView, UserModel){
+], function($, Backbone, utils, api, headerView, homeView, activateView, passwordView, appHomeView, /*logoutView, settingsView,*/ appHeaderView, /*ProfileView,*/ UserModel){
 
     var Router = Backbone.Router.extend({
         // All of your Backbone Routes (add more)
@@ -41,10 +41,14 @@ define([
 			console.log("I'm foo function")
 		},
         register: function(){
-			registerView.render();
+			require(["views/home/register"], function(registerView){
+				registerView.render();
+			})
 		},
 		login: function(){
-			loginView.render();
+			require(["views/home/login"], function(loginView){
+				loginView.render();
+			})
 		},
 		activate: function(id){
 			activateView.render(id)
@@ -54,7 +58,9 @@ define([
     	},
 		//Logged User hashs
 		logout: function(){
-			logoutView.logout()
+			require(["views/app/logout"], function(logoutView){
+				logoutView.logout()
+			})
 		},
 		settings: function(){
 			require(["views/app/settings"], function(settingsView){
@@ -62,8 +68,11 @@ define([
 			})
 		},
 		profile: function(){
+			var scope = this
 			if (!this.profileView){
-				this.profileView = new ProfileView()
+				require(["views/app/profile"], function(profileView){
+					scope.profileView = new profileView()
+				})
 			} else this.profileView.render()
 		},
 		//Common hashs

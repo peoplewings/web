@@ -131,7 +131,7 @@ define([
 		//console.log(values)
 	},
 	initLanguages: function(){
-	  if (this.model.get("languages").length === 0){
+	  if (this.languagesCount === 0){
 	    var tpl = _.template(languageTpl, {index: 1})
 		$('#languages-list').prepend(tpl)
 		this.languagesCount = 1
@@ -158,7 +158,8 @@ define([
 		//this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	},
 	addLanguage: function(e){
-		if (this.languagesCount == 4) return false
+		//console.log(this.languagesCount)
+		//if (this.languagesCount == 4) return false
 		e.preventDefault(e);
 		var langs = $('div[id^=select-lang-]').length + 1
 		var tpl = _.template(languageTpl, {index: langs})

@@ -14,7 +14,10 @@ define([
     el: "#main",
 	events:{
 		"submit form#settings-form": "submitSettings",
-		"click a[href='#myModal']": function(){ $('#myModal').modal({show:false}) },
+		"click a[href='#myModal']": function(){ 
+										$('.alert').remove()
+										$('#myModal').modal({show:false}) 
+									},
 		"click button#delete-account-btn": "deleteAccount",
 	},
 	initialize: function(options){
@@ -30,6 +33,8 @@ define([
 	},
     render: function(){
       $(this.el).html(settingsTpl);
+	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	  
 	  $('#settings-form').validate({
 			rules: {
 				newPassword: {
@@ -39,16 +44,17 @@ define([
 		            minlength: 6,
 		            equalTo: "#pass"
 		        },
-				//newEmail: { equalTo: '#inputRepeatNewEmail'},
 				newEmail: { email: true},
 				repeatNewEmail: {email: true, equalTo: '#inputNewEmail'},
-				//newPassword: {required: true},
-				//repeatNewPassword: { required: true, equalTo: '#newPassword'},
-
 			}
 		})
-	  //console.log(this.model.attributes)
-	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		$('#delete-account-form').validate({
+			rules: {
+				current: {
+		            required: true,
+		        }
+			}
+		})
     },
 	close: function(){ 
 		this._modelBinder.unbind()
@@ -59,16 +65,8 @@ define([
 	submitSettings: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm('settings-form')
-		/*if ($('#settings-form').validate()) console.log('Valid')
-		else console.log('Invalid')*/
-		//{"current_password":"asdf", "resource":{"email":"asdf", "password":"qwert", "lastName":"lol"}}
-		//POST credentials
-		//api.post('/auth/', data, this.success(data.remember))
-		//Start loader
-		//spinner.spin(document.getElementById('main'));
-		//$('#' + e.target.id).remove()
-		console.log(data)
 		var values = { firstName: data.firstName, lastName: data.lastName }
+		
 		if (data.newEmail) values.email = data.newEmail
 		if (data.newPassword) values.password = data.newPassword
 				
@@ -84,14 +82,22 @@ define([
 		})
 	},
 	deleteAccount: function(){
-		console.log('deleteAccount')
 		var data = utils.serializeForm('delete-account-form')
-		console.log(data)
 		var goodbye = function(resp){
-			if (resp.status === true) console.log('goodbye')
-			else console.log(resp.msg)
+			if (resp.status === true) {
+				$('#myModal').modal('hide')
+				require(["views/app/logout"], function(logoutView){
+					logoutView.goodbye()
+				})
+			}
+			else{
+				$('.alert').remove()
+				var tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: resp.msg + ": ", message: 'Please retype your password'})
+				$('#myModal > .modal-body').prepend(tpl)
+				//console.log(resp.msg)
+			} 
 		}
-		api.delete('/accounts/me', data, goodbye)
+		if ($('#delete-account-form').valid()) api.delete('/accounts/me', data, goodbye)
 	}
   });
 

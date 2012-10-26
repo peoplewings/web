@@ -40,10 +40,8 @@ define([
 				resp.data["Male"] = false
 				resp.data["Female"] = false
 				$.each(resp.data.interestedIn, function(i, field){
-					var foo = field.gender
-					resp.data[foo]= true
-					//if (field.gender === 'Male') resp.data["interestedInM"] = true
-					//if (field.gender === 'Female') resp.data["interestedInF"] = true
+					var gender = field.gender
+					resp.data[gender] = true
 				})
 				var s
 				$.each(resp.data.languages, function(i, field){

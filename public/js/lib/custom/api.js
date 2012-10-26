@@ -63,7 +63,7 @@ var API = function(){
 		var headers = {}
 		
 		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken() }
-		console.log(values)
+		//console.log(values)
 		$.ajax({
 		  url: baseUrl + resource,
 		  type: 'delete',

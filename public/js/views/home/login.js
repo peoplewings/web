@@ -23,6 +23,7 @@ define([
     },
 	submitLogin: function(e){
 		e.preventDefault(e);
+		$('.alert').remove()
 		var data = utils.serializeForm()
 		api.post('/auth/', data, this.loginSuccess(data.remember, this))
 		spinner.spin(document.getElementById('main'));

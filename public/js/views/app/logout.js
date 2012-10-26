@@ -9,19 +9,14 @@ define([
 	
   var logoutView = Backbone.View.extend({
 	logout: function(){
-		api.post('/noauth/', {}, this.logoutSuccess("foo"))
+		api.post('/noauth/', {}, this.logoutSuccess(this))
 	},
-	logoutSuccess: function(foo){
+	logoutSuccess: function(scope){
 		return function(response){
 			if (response.status===true) {
 				if (response.code === 200) {
-					//if server says OK we clear the authToken from session or local storage
-					api.clearAuthToken()
-					//Destroy old views
-					appHeaderView.destroy()
-					//render the home View
-					headerView.render();
-					homeView.render();					
+					console.log('Trying to destroy...')
+					scope.goodbye()
 				}
 			}else {
 					for ( error in response.error){
@@ -29,6 +24,15 @@ define([
 					}		
 			}
 		}
+	},
+	goodbye: function(){
+		//if server says OK we clear the authToken from session or local storage
+		api.clearAuthToken()
+		//Destroy old views
+		appHeaderView.destroy()
+		//render the home View
+		headerView.render();
+		homeView.render();	
 	}
   });
 

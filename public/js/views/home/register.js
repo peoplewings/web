@@ -6,8 +6,7 @@ define([
   'views/lib/handlers',
   'views/lib/response',
   'text!templates/home/register.html',
-  'jquery.Validate',
-], function($, Backbone, api, utils, handlersV, responseView, registerTpl, jValidator){
+], function($, Backbone, api, utils, handlersV, responseView, registerTpl){
 	
   var registerView = Backbone.View.extend({
     el: "#main",
