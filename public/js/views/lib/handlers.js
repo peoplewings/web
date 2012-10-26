@@ -19,7 +19,8 @@ define([
   var successHandler = function(view, viewData, spin){
 	return function(response, textStatus){
 		spin.stop()
-		if (response.status===true) {
+		console.dir(response)
+		if (response.status === true) {
 			view.render(viewData, response.data )
 			$("#main").html(view.el)
 		}

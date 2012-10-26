@@ -30,9 +30,10 @@ define([
 		$('#' + e.target.id).remove()
 	},
 	loginSuccess: function(loggedIn, scope){
+		console.log('loginSuccess')
 		return function(response){
 			spinner.stop()
-			if (response.status===true) {
+			if (response.status === true) {
 				if (response.code === 200) {
 					if ( loggedIn === "on" ) api.saveAuthToken(response.data.xAuthToken, true)
 					else api.saveAuthToken(response.data.xAuthToken, false)

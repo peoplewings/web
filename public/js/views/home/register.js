@@ -22,8 +22,6 @@ define([
 	submitRegister: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
-		//console.log(data)
-
 		
 		handlersV.submitForm(e, '/newuser', data, responseView, 
 			{ 

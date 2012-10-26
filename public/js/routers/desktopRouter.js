@@ -39,6 +39,12 @@ define([
 		//Anonymous User hashs
 		foo: function(){
 			console.log("I'm foo function")
+			/*api.post('/forgot/', { email: "foo@foo.com"}, function(response){
+				console.log(response)
+			})
+			api.get('/profiles/', {}, function(response){
+				console.log(response)
+			})*/
 		},
         register: function(){
 			require(["views/home/register"], function(registerView){
