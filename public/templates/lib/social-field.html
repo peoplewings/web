@@ -1,0 +1,12 @@
+<div id="<%- itemId%>-<%- index%>">
+	<select name="socialNetwork-<%- index%>" id="socialNetwork-<%- index%>">
+		<option value="" selected="selected">Select Network</option>
+		<option value="Facebook">Facebook</option>
+		<option value="Twitter">Twitter</option>
+		<option value="LinkedIn">LinkedIn</option>
+	</select>
+<span class="help-inline"></span>
+<input type="text" <%= extraAttribute %> name="snUsername-<%- index%>" id="snUsername-<%- index%>" class="input-xlarge">
+<button type="button" class="close" id="delete-social-<%- index%>">×</button>
+<span class="help-block"></span>
+</div>

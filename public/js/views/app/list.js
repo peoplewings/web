@@ -14,6 +14,7 @@ define([
 		this.storeSize = options.items.length + 1 | 1
 		this.keys = options.keys
 		this.itemId = options.itemId
+		this.extraCls = options.extraCls
 		//console.log("List definition:", this.itemId, this.keys, this.storeSize)
 	},
 	render: function(opts){
@@ -27,7 +28,7 @@ define([
 		this.setInitial()
     },
     setInitial: function(){
-		$(this.el).append(_.template(this.tpl, {index: this.storeSize, itemId: this.itemId, extraCls: "foo"}))
+		$(this.el).append(_.template(this.tpl, {index: this.storeSize, itemId: this.itemId, extraCls: this.extraCls}))
 		this.model.bindings["x_" + this.keys[0] + "_" + this.storeSize] = "[name=" + this.keys[0] + "-" + this.storeSize + "]"
 		this.model.bindings["x_" + this.keys[1] + "_" + this.storeSize] = "[name=" + this.keys[1] + "-" + this.storeSize + "]"
 	},
@@ -44,7 +45,7 @@ define([
 	addItem: function(keys){
 		this.storeSize++
 		var last = this.storeSize
-		$(this.el).append(_.template(this.tpl, {index: last, itemId: this.itemId, extraCls: "foo"}))
+		$(this.el).append(_.template(this.tpl, {index: last, itemId: this.itemId, extraCls: this.extraCls}))
 		this.model.bindings["x_" + this.keys[0] + "_" + last] = "[name=" + this.keys[0] + "-" + last + "]"
 		this.model.bindings["x_" + this.keys[1] + "_" + last] = "[name=" + this.keys[1] + "-" + last + "]"
 	},
