@@ -16,6 +16,7 @@ require.config({
 	  "templates": "../templates",
 	  "api": "lib/custom/api-lib",
 	  "utils": "lib/custom/utils-lib",
+	  "typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 	  //"spinner": "lib/libs/spin",
 	  //"jquery.spinner": "lib/plugins/spin.plugin",
 	  
@@ -27,6 +28,8 @@ require.config({
 
       // Twitter Bootstrap jQuery plugins
       "bootstrap": ["jquery"],
+
+	  "typeahead": ["bootstrap"],
 
       "backbone": {
           "deps": ["underscore", "jquery"],
@@ -52,7 +55,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr','jquery','backbone','routers/desktopRouter', 'bootstrap', 'backbone.ModelBinder', 'jquery.Validate',], function(Modernizr, $, Backbone, Desktop) {
+require(['modernizr','jquery','backbone','routers/desktopRouter', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate',], function(Modernizr, $, Backbone, Desktop) {
 
     // Instantiates a new Router
     this.router = new Desktop();

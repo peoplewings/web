@@ -50,7 +50,7 @@ define([
 		})
 		$('#delete-account-form').validate({
 			rules: {
-				current: {
+				currentPassword: {
 		            required: true,
 		        }
 			}

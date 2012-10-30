@@ -33,7 +33,6 @@ define([
 			this.on("change", function(headerView){
 				return function(model){
                 headerView.render()
-				//var name = model.get("firstName"); // 'Sergio'
                 console.log("Changed my name to " + name );
 				}
             });
@@ -42,17 +41,6 @@ define([
 		parse: function(resp, xhr){
 			return resp.data
 		},
-		/*fetch: function(options){
-			options.headers = { "X-Auth-Token": api.getAuthToken() },
-			Backbone.Model.prototype.fetch.call(this);
-		},*/
-
-        // Default values for all of the User Model attributes
-        /*defaults: {
-            firstName: "",
-            lastName: "",
-            email: "",
-        },*/
 	});
 
 	UserModel = makeStoreable(UserModel);

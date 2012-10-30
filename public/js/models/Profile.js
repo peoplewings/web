@@ -2,8 +2,7 @@ define([
 	"jquery", 
 	"backbone",
 	"api",
-	"views/app/profile",
-], function($, Backbone, api, profileView) {
+], function($, Backbone, api) {
 
 	//Implementing a Factory Class (singleton)  
 	//Source from http://stackoverflow.com/questions/11145159/implement-javascript-instance-store-by-returning-existing-instance-from-construc
@@ -28,17 +27,17 @@ define([
 	var UserProfileModel = Backbone.Model.extend({
 		
 		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
+		
         initialize: function() {
-			//this.languages
-
         },
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
-			//Data before tampering it and returning to cB
-			console.log(resp.data)
+			//Hydratation of data recived
+			//hydratates interestedIn, languages, education arrays, [TODO: locations. socialNetworks, instantMessages]
 			if (resp.data){
 				resp.data["Male"] = false
 				resp.data["Female"] = false
+				
 				$.each(resp.data.interestedIn, function(i, field){
 					var gender = field.gender
 					resp.data[gender] = true
@@ -46,45 +45,61 @@ define([
 				var s
 				$.each(resp.data.languages, function(i, field){
 					s = i + 1 + ""
-					resp.data["language_" + s] = field.name
-					resp.data["level_" + s] = field.level
+					resp.data["x_language_" + s] = field.name
+					resp.data["x_level_" + s] = field.level
 				})
 				$.each(resp.data.education, function(i, field){
 					s = i + 1 + ""
-					resp.data["institution_" + s] = field.institution
-					resp.data["degree_" + s] = field.degree
+					resp.data["x_institution_" + s] = field.institution
+					resp.data["x_degree_" + s] = field.degree
 				})
 			}
-			/*$.each(resp.data.interestedIn, function(i, field){
-				s = i + 1 + ""
-				resp.data["institution_" + s] = field.institution
-				resp.data["degree_" + s] = field.degree
-			})*/
+			
 			return resp.data
 		},
 		save: function(attributes, options){
-			if (this.get("interestedInM") === true && this.get("interestedInF") === true){ 
-				
-				this.set("interestedIn", [{gender: "Male"}, {gender: "Female"}])
-				
-			} else if (this.get("interestedInM") === true){
-				
-				this.set("interestedIn", [{gender: "Male"}])
-				
-			} else if (this.get("interestedInF") === true){
-				
-				this.set("interestedIn", [{gender: "Female"}])
-				
-			} else this.set("interestedIn", [])
+			//Dehydratation of data to send it to server
+			// Collects the interestedIn values to its array
+			var gender = []
+			if (this.get("Male") === true) gender.push({gender: "Male"})
+			if (this.get("Female") === true) gender.push({gender: "Female"})
+			this.set("interestedIn", gender)
 			
-			Backbone.Model.prototype.save.call(this, attributes, options);
+			var langs = []
+			var edus = [] 
+			var id = []
+			// Collects languages and educations values to its respective arrays [TODO: locations, socailnetworks, instantmessages]
+			for (attr in this.attributes){
+				if (attr.indexOf("x_language_") == 0){
+					id = attr.split("_", 3)
+					id = id[2]
+					langs.push({ name: this.get("x_language_" + id), level: this.get("x_level_" + id)})
+				}
+				if (attr.indexOf("x_institution_") == 0){
+					id = attr.split("_", 3)
+					id = id[2]
+					edus.push({ institution: this.get("x_institution_" + id), degree: this.get("x_degree_" + id)})
+				}
+			}
+			this.set("languages", langs)
+			this.set("education", edus)
+			
+			
+			var copy = this.clone()
+			copy.cleanXAttrs()
+			//Save a copy of UserProfile clean of X-Attributes
+			var profileId = this.get("id")
+			api.put('/profiles/' + profileId, copy.attributes, this.success)
+			
+		},
+		success: function(){
+			console.log("You have to give feedback to the user!!", arguments)
+		},
+		cleanXAttrs: function(){
+			for (attr in this.attributes){
+				if (attr.indexOf("x_") == 0) this.unset(attr)
+			}
 		}
-        // Default values for all of the User Model attributes
-        /*defaults: {
-            firstName: "",
-            lastName: "",
-            email: "",
-        },*/
 	});
 
 	UserProfileModel = makeStoreable(UserProfileModel);
