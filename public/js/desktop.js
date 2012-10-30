@@ -19,8 +19,7 @@ require.config({
 	  "typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 	  //"spinner": "lib/libs/spin",
 	  //"jquery.spinner": "lib/plugins/spin.plugin",
-	  
-
+	  "async": "lib/plugins/async"
   },
 
   // Sets the configuration for your third party scripts that are not AMD compatible
@@ -28,35 +27,29 @@ require.config({
 
       // Twitter Bootstrap jQuery plugins
       "bootstrap": ["jquery"],
-
 	  "typeahead": ["bootstrap"],
-
       "backbone": {
           "deps": ["underscore", "jquery"],
           "exports": "Backbone"  //attaches "Backbone" to the window object
       },
-
       // Backbone.validateAll depends on Backbone.
       "backbone.validateAll": ["backbone"],
-	
-	 // Backbone.ModelBinder depends on Backbone.
+	  // Backbone.ModelBinder depends on Backbone.
       "backbone.ModelBinder": ["backbone"],
-
-	// jQuery Validation plugin
+	  // jQuery Validation plugin
  	  "jquery.Validate": ["jquery"],
-	/*
+	  /*
 	  "jquery.spinner": {
             deps: ['jquery', 'spinner'],
         },
-	*/
+	   */
 	
   } // end Shim Configuration
   
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr','jquery','backbone','routers/desktopRouter', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate',], function(Modernizr, $, Backbone, Desktop) {
-
+require(['modernizr','jquery','backbone','routers/desktopRouter', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate', 'async'], function(Modernizr, $, Backbone, Desktop) {
     // Instantiates a new Router
     this.router = new Desktop();
 });
