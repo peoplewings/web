@@ -134,7 +134,7 @@ define([
 		this.model.bindings["x_level_1"] = '[name=level-1]'
 		this.languagesCount = 1
 	  }else this.setLanguages(this.model.get("languages"))
-				
+		
 	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
 	  
 	},
@@ -182,7 +182,7 @@ define([
 	},
 	clearBindings: function(){
 		for (binding in this.model.bindings){
-			if (binding.indexOf('x_language') == 0 || binding.indexOf('x_level') == 0){
+			if (binding.indexOf('x_') == 0){
 				delete this.model.bindings[binding]
 			} 
 		}

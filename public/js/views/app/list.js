@@ -4,7 +4,6 @@ define([
   "models/Profile",
 ], function($, Backbone, UserProfile){
 
-
   var list = Backbone.View.extend({
 	initialize: function(options){
 		this.model = new UserProfile({id:"me"})
@@ -26,7 +25,6 @@ define([
 			this.bind()
 		}
 		this.setInitial()
-
     },
     setInitial: function(){
 		$(this.el).append(_.template(this.tpl, {index: this.storeSize, itemId: this.itemId, extraCls: "foo"}))
