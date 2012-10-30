@@ -29,6 +29,7 @@ define([
 		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
 		
         initialize: function() {
+			
         },
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
@@ -53,6 +54,30 @@ define([
 					resp.data["x_institution_" + s] = field.institution
 					resp.data["x_degree_" + s] = field.degree
 				})
+				$.each(resp.data.socialNetworks, function(i, field){
+					s = i + 1 + ""
+					resp.data["x_socialNetwork_" + s] = field.socialNetwork
+					resp.data["x_snUsername_" + s] = field.snUsername
+				})
+				$.each(resp.data.instantMessages, function(i, field){
+					s = i + 1 + ""
+					resp.data["x_instantMessage_" + s] = field.instantMessage
+					resp.data["x_imUsername_" + s] = field.imUsername
+				})
+				$.each(resp.data.otherLocations, function(i, field){
+					s = i + 1 + ""
+					resp.data["x_name_" + s] = field.name + ", " + field.country
+				})
+				if (!$.isEmptyObject(resp.data['current'])){
+					resp.data['x_current'] = resp.data['current'].name + ", " + resp.data['current'].country
+				}else{
+					resp.data['x_current'] = ""
+				}
+				if (!$.isEmptyObject(resp.data['hometown'])){
+					resp.data['x_hometown'] = resp.data['hometown'].name + ", " + resp.data['hometown'].country
+				} else {
+					resp.data['x_hometown'] = ""
+				}
 			}
 			
 			return resp.data
@@ -67,22 +92,38 @@ define([
 			
 			var langs = []
 			var edus = [] 
+			var socials = []
+			var instant = []
 			var id = []
 			// Collects languages and educations values to its respective arrays [TODO: locations, socailnetworks, instantmessages]
 			for (attr in this.attributes){
 				if (attr.indexOf("x_language_") == 0){
 					id = attr.split("_", 3)
 					id = id[2]
-					langs.push({ name: this.get("x_language_" + id), level: this.get("x_level_" + id)})
+					if (this.get("x_language_" + id) !== undefined){
+						langs.push({ name: this.get("x_language_" + id), level: this.get("x_level_" + id)})
+					}
 				}
 				if (attr.indexOf("x_institution_") == 0){
 					id = attr.split("_", 3)
 					id = id[2]
 					edus.push({ institution: this.get("x_institution_" + id), degree: this.get("x_degree_" + id)})
 				}
+				if (attr.indexOf("x_socialNetwork_") == 0){
+					id = attr.split("_", 3)
+					id = id[2]
+					socials.push({ socialNetwork: this.get("x_socialNetwork_" + id), snUsername: this.get("x_snUsername_" + id)})
+				}
+				if (attr.indexOf("x_instantMessage_") == 0){
+					id = attr.split("_", 3)
+					id = id[2]
+					instant.push({ instantMessage: this.get("x_instantMessage_" + id), imUsername: this.get("x_imUsername_" + id)})
+				}
 			}
 			this.set("languages", langs)
 			this.set("education", edus)
+			this.set("socialNetworks", socials)
+			this.set("instantMessages", instant)
 			
 			
 			var copy = this.clone()

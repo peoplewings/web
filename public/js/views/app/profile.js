@@ -10,10 +10,13 @@ define([
   'text!templates/app/contact-form.html',
   'text!templates/lib/language-field.html',
   'text!templates/lib/education-field.html',
+  'text!templates/lib/social-field.html',
+  'text!templates/lib/instant-field.html',
+  'text!templates/lib/location-field.html',
   'text!templates/lib/alert.html',
   'models/Profile',
   'views/app/list',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, alertTpl, UserProfile, List){
+], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List){
   var profileView = Backbone.View.extend({
     el: "#main",
 	events:{
@@ -21,6 +24,10 @@ define([
 		"click button[id^=delete-lang]": "deleteLanguage",
 		"click a#add-education-btn": "addEducation",
 		"click button[id^=delete-edu]": "deleteEducation",
+		"click a#add-social-btn": "addSocial",
+		"click button[id^=delete-social]": "deleteSocial",
+		"click a#add-im-btn": "addIM",
+		"click button[id^=delete-im]": "deleteIM",
 		"submit form#basic-info-form": "submitProfile",
 		"submit form#about-me-form": "submitProfile",
 		"submit form#likes-form": "submitProfile",
@@ -38,7 +45,7 @@ define([
 			birthYear: '[name=birthYear]',
 			Male: '[name=interestedInM]',
 			Female: '[name=interestedInF]',
-			//InterestedIn, Languages, CurrentCity, HomeTown
+			//CurrentCity, HomeTown, Other locations
 			//About me
 			allAboutYou: '[name=allAboutYou]',
 			mainMission: '[name=mainMission]',
@@ -47,7 +54,6 @@ define([
 			personalPhilosophy: '[name=personalPhilosophy]',
 			politicalOpinion: '[name=politicalOpinion]',
 			religion: '[name=religion]',
-			//Educations
 			// Likes
 			movies: '[name=movies]',
 			sports: '[name=sports]',
@@ -61,7 +67,6 @@ define([
 			// Contact
 			emails: '[name=emails]',
 			phone: '[name=phone]',
-			//SocialNetWorks, instantMessages
 		}
       this._modelBinder = new Backbone.ModelBinder();
 	  var sc = this
@@ -87,6 +92,12 @@ define([
 	  this.initLanguages()
 	  //Takes care of educations, intializes bindings, etc
 	  this.initEducations()
+	  //Takes care of social networks
+	  this.initSocials()
+	  //Takes care of instant Messages
+	  this.initIM()
+	  //Map
+	  this.initCanvas()
 	  
 	  $('.foo').typeahead({
                                         ajax: {
@@ -123,7 +134,7 @@ define([
 	submitProfile: function(e){
 		e.preventDefault(e);
 		console.log('Submit profile ' + e.target.id)
-		console.log(this.model.attributes)
+		console.log(this.model.attributes, this.model.bindings)
 		this.model.save()
 	},
 	initLanguages: function(){
@@ -193,7 +204,8 @@ define([
 			tpl: educationTpl, 
 			keys: ["institution", "degree"],
 			items: this.model.get("education"),
-			itemId: 'select-study'
+			itemId: 'select-study',
+			extraCls: 'foo'
 		})
 		this.educationList.render()
 		this._modelBinder.bind(this.model, this.el, this.model.bindings)
@@ -209,6 +221,157 @@ define([
 		this.educationList.deleteItem(e.target.id)
 		return false
 	},
+	initSocials: function(){
+		this.socialList = new List({
+			el: "#socialNetwork-list", 
+			tpl: socialTpl, 
+			keys: ["socialNetwork", "snUsername"],
+			items: this.model.get("socialNetworks"),
+			itemId: 'select-social',
+			extraCls: ''
+		})
+		this.socialList.render()
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	},
+	addSocial: function(e){
+		e.preventDefault(e);
+		this.socialList.addItem();
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		return false
+	},
+	deleteSocial: function(e){
+		this.socialList.deleteItem(e.target.id)
+		return false
+	},
+	initIM: function(){
+		this.imList = new List({
+			el: "#instantMessage-list", 
+			tpl: instantTpl, 
+			keys: ["instantMessage", "imUsername"],
+			items: this.model.get("instantMessages"),
+			itemId: 'select-im',
+			extraCls: ''
+		})
+		this.imList.render()
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	},
+	addIM: function(e){
+		e.preventDefault(e);
+		this.im.addItem();
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		return false
+	},
+	deleteIM: function(e){
+		this.imList.deleteItem(e.target.id)
+		return false
+	},
+	initCanvas: function(){
+		this.bindCities()
+		this.initOtherLocations()
+		console.log('init Canvas')
+		require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places'], 
+		function(){
+			
+	        var options = {
+	        	types: ['(cities)'], 
+	        };
+        
+	        var home = document.getElementById("hometown");
+	        var auto_home = new google.maps.places.Autocomplete(home, options);
+	        var current = document.getElementById("currentCity");
+	        var auto_current = new google.maps.places.Autocomplete(current, options);
+			var id_last = $("[name^=name-]:last").attr("id")
+	        var other = document.getElementById(id_last);
+	        var auto_other = new google.maps.places.Autocomplete(other, options);
+
+
+	        var mapcanvas = $( document.createElement('div') );
+	        var latlng = new google.maps.LatLng(0,0);
+        
+	        $.markers = []   
+        
+	        mapcanvas.attr({ id: 'mapcanvas', style: 'height:300px;margin-left:160px;'}).addClass('span6');
+        
+	        $('#otherLocations-group').append(mapcanvas)
+        
+	        var myOptions = { zoom: 1, center: latlng, mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP }
+        
+	        var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+	 		$("#hometown").keypress(function(event) {
+                        if ( event.which == 13 ) {
+                                event.preventDefault();
+                                }
+                })
+             $("#currentCity").keypress(function(event) {
+                             if ( event.which == 13 ) {
+                             event.preventDefault();
+                             }
+             })
+             $("#" + id_last).keypress(function(event) {
+                             if ( event.which == 13 ) {
+                             event.preventDefault();
+                             }
+             })
+			google.maps.event.addListener(auto_home, 'place_changed',       function() {
+   				var place = auto_home.getPlace();
+				var cc = getCityAndCountry(place.address_components)
+				map.setCenter(place.geometry.location);
+				if (!$.homeMarker){
+					$.homeMarker = new google.maps.Marker({
+						map: map,
+						position: place.geometry.location,
+					});
+				} else $.homeMarker.setPosition(place.geometry.location)                        
+             });
+                        
+             google.maps.event.addListener(auto_current, 'place_changed',    function() {
+             	var place = auto_current.getPlace();
+	            var cc = getCityAndCountry(place.address_components)
+				map.setCenter(place.geometry.location);
+	            if (!$.currentMarker){
+	                    $.currentMarker = new google.maps.Marker({
+	            			map: map,
+	            			position: place.geometry.location,
+	            		});
+	            } else $.currentMarker.setPosition(place.geometry.location)                     
+              });
+				
+			  function getCityAndCountry(address_components){
+                        console.dir(address_components)
+                        var data = { id: address_components.id }
+                        var l = address_components.length
+                        for (var i = 0; i < l; i++){
+                                if (address_components[i].types[0] === 'locality') {
+                                        //console.log("City: " + address_components[i].long_name + ", " + address_components[i].short_name )
+                                        data.city = address_components[i].long_name
+                                }
+                                else if (address_components[i].types[0] === 'country') {
+                                        //console.log("Country: " + address_components[i].long_name + ", " + address_components[i].short_name )
+                                        data.country = address_components[i].long_name
+                                }
+                        }
+                        return data
+                }
+		})      
+	},
+	bindCities: function(){
+		this.model.bindings['x_current'] = '[name=current]'
+		this.model.bindings['x_hometown'] = '[name=hometown]'
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	},
+	initOtherLocations: function(){
+		this.locationList = new List({
+			el: "#otherLocations-list", 
+			tpl: locationTpl, 
+			keys: ["name"],
+			items: this.model.get("otherLocations"),
+			itemId: 'select-location',
+			extraCls: ''
+		})
+		this.locationList.render()
+		console.log(this.model.attributes, this.model.bindings)
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	}
   });
 
   return profileView;
