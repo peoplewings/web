@@ -28,34 +28,45 @@ define([
 		this.setInitial()
     },
     setInitial: function(){
+		var sc = this
 		$(this.el).append(_.template(this.tpl, {index: this.storeSize, itemId: this.itemId, extraCls: this.extraCls}))
-		this.model.bindings["x_" + this.keys[0] + "_" + this.storeSize] = "[name=" + this.keys[0] + "-" + this.storeSize + "]"
-		this.model.bindings["x_" + this.keys[1] + "_" + this.storeSize] = "[name=" + this.keys[1] + "-" + this.storeSize + "]"
+		$.each(this.keys, function(key, element){
+			sc.model.bindings["x_" + element + "_" + sc.storeSize] = "[name=" + element + "-" + sc.storeSize + "]"
+		})
 	},
 	bind: function(){
 		var sc = this
 		var s
 		$.each(this.store, function(key, field){
 			s = key + 1 + ""
-			$.each(field, function(key, element){
-				sc.model.bindings["x_" + key + "_" + s] = '[name=' + key + '-' + s +']'
+			$.each(sc.keys, function(key, element){
+				sc.model.bindings["x_" + element + "_" + s] = '[name=' + element + '-' + s +']'
 			})
 		})
 	},
 	addItem: function(keys){
 		this.storeSize++
 		var last = this.storeSize
+		var sc = this
 		$(this.el).append(_.template(this.tpl, {index: last, itemId: this.itemId, extraCls: this.extraCls}))
-		this.model.bindings["x_" + this.keys[0] + "_" + last] = "[name=" + this.keys[0] + "-" + last + "]"
-		this.model.bindings["x_" + this.keys[1] + "_" + last] = "[name=" + this.keys[1] + "-" + last + "]"
+		$.each(this.keys, function(key, element){
+			sc.model.bindings["x_" + element + "_" + last] = "[name=" + element + "-" + last + "]"
+		})
+		//this.model.bindings["x_" + this.keys[0] + "_" + last] = "[name=" + this.keys[0] + "-" + last + "]"
+		//this.model.bindings["x_" + this.keys[1] + "_" + last] = "[name=" + this.keys[1] + "-" + last + "]"
 	},
 	deleteItem: function(nodeId){
 		var id = nodeId.split("-", 3)
+		var sc = this
 		id = id[id.length-1]
-		delete this.model.bindings["x_" + this.keys[0] + "_" + id]
-		delete this.model.bindings["x_" + this.keys[1] + "_" + id]
-		this.model.unset("x_" + this.keys[0] + "_" + id)
-		this.model.unset("x_" + this.keys[1] + "_" + id)
+		$.each(this.keys, function(key, element){
+			delete sc.model.bindings["x_" + element + "_" + id]
+			sc.model.unset("x_" + element + "_" + id)
+		})
+		//delete this.model.bindings["x_" + this.keys[0] + "_" + id]
+		//delete this.model.bindings["x_" + this.keys[1] + "_" + id]
+		//this.model.unset("x_" + this.keys[0] + "_" + id)
+		//this.model.unset("x_" + this.keys[1] + "_" + id)
 		$("#" + this.itemId + "-" + id).remove()
 	},
 	destroy: function(){
