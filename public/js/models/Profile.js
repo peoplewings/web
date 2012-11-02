@@ -69,12 +69,16 @@ define([
 					resp.data["x_name_" + s] = field.name + ", " + field.country
 				})
 				if (!$.isEmptyObject(resp.data['current'])){
-					resp.data['x_current'] = resp.data['current'].name + ", " + resp.data['current'].country
+					resp.data['x_current'] = resp.data['current'].name + ", " + resp.data['current'].region + ", " + resp.data['current'].country
+					//resp.data['x_current_lat'] = resp.data['current'].lat
+					//resp.data['x_current_lon'] = resp.data['current'].lon
 				}else{
 					resp.data['x_current'] = ""
 				}
 				if (!$.isEmptyObject(resp.data['hometown'])){
-					resp.data['x_hometown'] = resp.data['hometown'].name + ", " + resp.data['hometown'].country
+					resp.data['x_hometown'] = resp.data['hometown'].name + ", " + resp.data['hometown'].region + ", " + resp.data['hometown'].country
+					//resp.data['x_hometown_lat'] = resp.data['hometown'].lat
+					//resp.data['x_hometown_lon'] = resp.data['hometown'].lon
 				} else {
 					resp.data['x_hometown'] = ""
 				}

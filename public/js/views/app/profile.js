@@ -19,6 +19,8 @@ define([
 ], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List){
   var profileView = Backbone.View.extend({
     el: "#main",
+	markers: [],
+	autoCompleteOptions: { types: ['(cities)'] },
 	events:{
 		"click a#add-language-btn": "addLanguage",
 		"click button[id^=delete-lang]": "deleteLanguage",
@@ -28,6 +30,8 @@ define([
 		"click button[id^=delete-social]": "deleteSocial",
 		"click a#add-im-btn": "addIM",
 		"click button[id^=delete-im]": "deleteIM",
+		"click a#add-location-btn": "addLocation",
+		"click button[id^=delete-location]": "deleteLocation",
 		"submit form#basic-info-form": "submitProfile",
 		"submit form#about-me-form": "submitProfile",
 		"submit form#likes-form": "submitProfile",
@@ -72,7 +76,7 @@ define([
 	  var sc = this
 	  this.model.fetch({ 
 			success: function(model){
-				console.log("Fetch model:", model)
+				console.log("Fetch model:", model, model.bindings)
 				sc.render()
 			},
 			error: function() { console.log(arguments) }	 	
@@ -266,95 +270,41 @@ define([
 		return false
 	},
 	initCanvas: function(){
+		var sc = this
 		this.bindCities()
 		this.initOtherLocations()
-		console.log('init Canvas')
-		require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places'], 
+		require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en'], 
 		function(){
 			
-	        var options = {
-	        	types: ['(cities)'], 
-	        };
-        
-	        var home = document.getElementById("hometown");
-	        var auto_home = new google.maps.places.Autocomplete(home, options);
-	        var current = document.getElementById("currentCity");
-	        var auto_current = new google.maps.places.Autocomplete(current, options);
-			var id_last = $("[name^=name-]:last").attr("id")
-	        var other = document.getElementById(id_last);
-	        var auto_other = new google.maps.places.Autocomplete(other, options);
-
-
-	        var mapcanvas = $( document.createElement('div') );
+	        var mapcanvas = $(document.createElement('div'));
 	        var latlng = new google.maps.LatLng(0,0);
-        
-	        $.markers = []   
-        
-	        mapcanvas.attr({ id: 'mapcanvas', style: 'height:300px;margin-left:160px;'}).addClass('span6');
-        
+	        
+			mapcanvas.attr({ id: 'mapcanvas', style: 'height:300px;margin-left:160px;'}).addClass('span6');
 	        $('#otherLocations-group').append(mapcanvas)
         
 	        var myOptions = { zoom: 1, center: latlng, mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP }
+	        sc.map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+	 		//console.log("Map created:", sc.map)
+			
+			var options = { types: ['(cities)'] };
         
-	        var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-	 		$("#hometown").keypress(function(event) {
-                        if ( event.which == 13 ) {
-                                event.preventDefault();
-                                }
-                })
-             $("#currentCity").keypress(function(event) {
-                             if ( event.which == 13 ) {
-                             event.preventDefault();
-                             }
-             })
-             $("#" + id_last).keypress(function(event) {
-                             if ( event.which == 13 ) {
-                             event.preventDefault();
-                             }
-             })
-			google.maps.event.addListener(auto_home, 'place_changed',       function() {
-   				var place = auto_home.getPlace();
-				var cc = getCityAndCountry(place.address_components)
-				map.setCenter(place.geometry.location);
-				if (!$.homeMarker){
-					$.homeMarker = new google.maps.Marker({
-						map: map,
-						position: place.geometry.location,
-					});
-				} else $.homeMarker.setPosition(place.geometry.location)                        
-             });
-                        
-             google.maps.event.addListener(auto_current, 'place_changed',    function() {
-             	var place = auto_current.getPlace();
-	            var cc = getCityAndCountry(place.address_components)
-				map.setCenter(place.geometry.location);
-	            if (!$.currentMarker){
-	                    $.currentMarker = new google.maps.Marker({
-	            			map: map,
-	            			position: place.geometry.location,
-	            		});
-	            } else $.currentMarker.setPosition(place.geometry.location)                     
-              });
+	        var autoHome = new google.maps.places.Autocomplete(document.getElementById("hometown"), sc.autoCompleteOptions);
+	        var autoCurrent = new google.maps.places.Autocomplete(document.getElementById("currentCity"), sc.autoCompleteOptions);
+			
+			var id_last = $("[name^=name-]:last").attr("id")
+	        var autoOther = new google.maps.places.Autocomplete(document.getElementById(id_last), sc.autoCompleteOptions);
+	
+			google.maps.event.addListener(autoHome, 'place_changed', sc.setAutocomplete(autoHome, "hometown", sc.map));   
+            google.maps.event.addListener(autoCurrent, 'place_changed', sc.setAutocomplete(autoCurrent, "current", sc.map));
+			google.maps.event.addListener(autoOther, 'place_changed', sc.setAutocomplete(autoOther, "name_" + id_last.split("-", 2)[1], sc.map));
+			$("#hometown").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
+			$("#currentCity").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
+			$("#" + id_last).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 				
-			  function getCityAndCountry(address_components){
-                        console.dir(address_components)
-                        var data = { id: address_components.id }
-                        var l = address_components.length
-                        for (var i = 0; i < l; i++){
-                                if (address_components[i].types[0] === 'locality') {
-                                        //console.log("City: " + address_components[i].long_name + ", " + address_components[i].short_name )
-                                        data.city = address_components[i].long_name
-                                }
-                                else if (address_components[i].types[0] === 'country') {
-                                        //console.log("Country: " + address_components[i].long_name + ", " + address_components[i].short_name )
-                                        data.country = address_components[i].long_name
-                                }
-                        }
-                        return data
-                }
 		})      
 	},
 	bindCities: function(){
+		//Bind lat lon also
 		this.model.bindings['x_current'] = '[name=current]'
 		this.model.bindings['x_hometown'] = '[name=hometown]'
 		this._modelBinder.bind(this.model, this.el, this.model.bindings)
@@ -369,8 +319,81 @@ define([
 			extraCls: ''
 		})
 		this.locationList.render()
-		console.log(this.model.attributes, this.model.bindings)
 		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+	},
+	addLocation: function(e){
+		e.preventDefault(e);
+		this.locationList.addItem();
+
+		var sc = this
+ 		//console.log("Map on Add:", sc.map)
+		var id_last = $("[name^=name-]:last").attr("id")
+		var autoOther = new google.maps.places.Autocomplete(document.getElementById(id_last), sc.autoCompleteOptions);
+		google.maps.event.addListener(autoOther, 'place_changed', sc.setAutocomplete(autoOther, "name_" + id_last.split("-", 2)[1], this.map));
+		$("#" + id_last).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
+
+		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		return false
+	},
+	deleteLocation: function(e){
+		var sc = this
+		var id = e.target.id.split("-", 3)[2]
+		console.log("DeleteLocation:", id, this.model.get("x_name_" + id).split(",", 1)[0])
+		var locs = this.model.get("otherLocations")
+		locs = _(locs).reject(function(el) { return el.name === sc.model.get("x_name_" + id).split(",", 1)[0] });
+		this.model.set("otherLocations", locs)
+		this.locationList.deleteItem(e.target.id)
+		return false
+	},
+	removeOtherLocation: function(){
+		
+	},
+	setAutocomplete: function(auto, field){
+		var sc = this
+		console.log(field)
+		return function(){
+   			var place = auto.getPlace();
+			if (place.geometry){
+				var cc = sc.getCityAndCountry(place.address_components)
+				sc.map.setCenter(place.geometry.location);
+				var	marker = new google.maps.Marker({
+						map: sc.map,
+						position: place.geometry.location,
+				});
+				sc.markers.push(marker)
+				if (field.indexOf("name_") == 0){
+					console.log("Updating otherLocs:", field)
+					var locs = sc.model.get("otherLocations")
+					locs.push({ country: cc.country, region: cc.region, name: cc.city, lat: place.geometry.location.lat(), lon: place.geometry.location.lng()})
+					sc.model.set("otherLocations", locs)
+				} else sc.model.set(field, { country: cc.country, region: cc.region, name: cc.city, lat: place.geometry.location.lat(), lon: place.geometry.location.lng()})                     
+				sc.model.set("x_" + field, cc.city + ", " + cc.region + ", " + cc.country)
+				
+			}
+		}
+	},
+	clearMapMarkers: function(){
+		for (var i = 0; i < this.markers.length; i++ ) {
+    		this.markers[i].setMap(null);
+  		}
+	},
+	getCityAndCountry: function(address_components){
+		var data = {}
+		var component
+		for (obj in address_components){
+			component = address_components[obj]
+			for ( type in component.types){
+				switch(component.types[type]){
+					case "locality": data.city = component.long_name
+									 break;
+					case "country": data.country = component.long_name
+									 break;
+					case "administrative_area_level_1": data.region = component.long_name
+									 					break;
+				}
+			}
+		  }
+		return data
 	}
   });
 
