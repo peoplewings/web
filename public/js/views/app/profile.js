@@ -16,7 +16,8 @@ define([
   'text!templates/lib/alert.html',
   'models/Profile',
   'views/app/list',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List){
+  'views/app/avatar',
+], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List, avatarView){
   var profileView = Backbone.View.extend({
     el: "#main",
 	markers: [],
@@ -89,7 +90,7 @@ define([
 	  $('#about-me').html(aboutMeTpl)
 	  $('#likes-info').html(likesTpl)
 	  $('#contact-info').html(contactTpl)
-	
+	  avatarView.render('http://peoplewings-backend.herokuapp.com' + this.model.get("avatar"))
 	  //Clears bindings for languages and educations
 	  this.clearBindings()
 	  //Takes care of languages, intializes bindings, etc
@@ -300,8 +301,10 @@ define([
 			$("#hometown").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 			$("#currentCity").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 			$("#" + id_last).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
-				
-		})      
+			
+			sc.setInitialMarkers(sc)
+  		    
+		})
 	},
 	bindCities: function(){
 		//Bind lat lon also
@@ -345,8 +348,31 @@ define([
 		this.locationList.deleteItem(e.target.id)
 		return false
 	},
-	removeOtherLocation: function(){
-		
+	setInitialMarkers: function(sc){
+		var	marker, city
+		var locs = sc.model.get("otherLocations")
+		for ( loc in locs) {
+			city = locs[loc]
+			marker = new google.maps.Marker({
+					map: sc.map,
+					position: new google.maps.LatLng(city.lat, city.lon),
+					title: city.name + ", " + city.country
+			})
+		}
+		city = sc.model.get("current")
+		marker = new google.maps.Marker({
+					map: sc.map,
+					position: new google.maps.LatLng(city.lat, city.lon),
+					title: city.name + ", " + city.country,
+					icon: 'img/yellow-marker.png'
+		})
+		city = sc.model.get("hometown")
+		marker = new google.maps.Marker({
+					map: sc.map,
+					position: new google.maps.LatLng(city.lat, city.lon),
+					title: city.name + ", " + city.country,
+					icon: 'img/blue-marker.png'
+		})
 	},
 	setAutocomplete: function(auto, field){
 		var sc = this
@@ -367,8 +393,7 @@ define([
 					locs.push({ country: cc.country, region: cc.region, name: cc.city, lat: place.geometry.location.lat(), lon: place.geometry.location.lng()})
 					sc.model.set("otherLocations", locs)
 				} else sc.model.set(field, { country: cc.country, region: cc.region, name: cc.city, lat: place.geometry.location.lat(), lon: place.geometry.location.lng()})                     
-				sc.model.set("x_" + field, cc.city + ", " + cc.region + ", " + cc.country)
-				
+				sc.model.set("x_" + field, cc.city + ", " + cc.region + ", " + cc.country)	
 			}
 		}
 	},
