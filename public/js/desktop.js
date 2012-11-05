@@ -19,7 +19,8 @@ require.config({
 	  "typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 	  //"spinner": "lib/libs/spin",
 	  //"jquery.spinner": "lib/plugins/spin.plugin",
-	  "async": "lib/plugins/async"
+	  "async": "lib/plugins/async",
+	  "jquery.Jcrop": "lib/plugins/jquery.Jcrop"
   },
 
   // Sets the configuration for your third party scripts that are not AMD compatible
@@ -38,6 +39,7 @@ require.config({
       "backbone.ModelBinder": ["backbone"],
 	  // jQuery Validation plugin
  	  "jquery.Validate": ["jquery"],
+ 	  "jquery.Jcrop": ["jquery"],
 	  /*
 	  "jquery.spinner": {
             deps: ['jquery', 'spinner'],
