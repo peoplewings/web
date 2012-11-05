@@ -20,7 +20,7 @@ define([
 ], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List, avatarView){
   var profileView = Backbone.View.extend({
     el: "#main",
-	markers: [],
+	markers: {},
 	autoCompleteOptions: { types: ['(cities)'] },
 	events:{
 		"click a#add-language-btn": "addLanguage",
@@ -298,6 +298,7 @@ define([
 			google.maps.event.addListener(autoHome, 'place_changed', sc.setAutocomplete(autoHome, "hometown", sc.map));   
             google.maps.event.addListener(autoCurrent, 'place_changed', sc.setAutocomplete(autoCurrent, "current", sc.map));
 			google.maps.event.addListener(autoOther, 'place_changed', sc.setAutocomplete(autoOther, "name_" + id_last.split("-", 2)[1], sc.map));
+			
 			$("#hometown").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 			$("#currentCity").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 			$("#" + id_last).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
@@ -327,15 +328,14 @@ define([
 	addLocation: function(e){
 		e.preventDefault(e);
 		this.locationList.addItem();
-
 		var sc = this
- 		//console.log("Map on Add:", sc.map)
 		var id_last = $("[name^=name-]:last").attr("id")
 		var autoOther = new google.maps.places.Autocomplete(document.getElementById(id_last), sc.autoCompleteOptions);
 		google.maps.event.addListener(autoOther, 'place_changed', sc.setAutocomplete(autoOther, "name_" + id_last.split("-", 2)[1], this.map));
 		$("#" + id_last).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
-
 		this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		this.clearMapMarkers()
+		this.setInitialMarkers(this)
 		return false
 	},
 	deleteLocation: function(e){
@@ -346,10 +346,40 @@ define([
 		locs = _(locs).reject(function(el) { return el.name === sc.model.get("x_name_" + id).split(",", 1)[0] });
 		this.model.set("otherLocations", locs)
 		this.locationList.deleteItem(e.target.id)
+		this.clearMapMarkers()
+		this.setInitialMarkers(this)
 		return false
 	},
 	setInitialMarkers: function(sc){
 		var	marker, city
+		city = this.model.get("current")
+		marker = new google.maps.Marker({
+					map: sc.map,
+					position: new google.maps.LatLng(city.lat, city.lon),
+					title: city.name + ", " + city.country,
+					icon: 'img/yellow-marker.png'
+		})
+		this.markers["current"] = marker
+		city = this.model.get("hometown")
+		marker = new google.maps.Marker({
+					map: sc.map,
+					position: new google.maps.LatLng(city.lat, city.lon),
+					title: city.name + ", " + city.country,
+					icon: 'img/blue-marker.png'
+		})
+		this.markers["hometown"] = marker
+		/*for (attr in this.model.attributes){
+				if (attr.indexOf("x_name") == 0){
+					city = this.model.get(attr)
+					console.log("City:", city)
+					marker = new google.maps.Marker({
+							map: sc.map,
+							position: new google.maps.LatLng(city.lat, city.lon),
+							title: city.name + ", " + city.country
+					})
+					this.markers[attr] = marker
+				}
+		}*/
 		var locs = sc.model.get("otherLocations")
 		for ( loc in locs) {
 			city = locs[loc]
@@ -358,37 +388,30 @@ define([
 					position: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country
 			})
+			loc = parseInt(loc) + 1
+			this.markers["name_" + loc] = marker
 		}
-		city = sc.model.get("current")
-		marker = new google.maps.Marker({
-					map: sc.map,
-					position: new google.maps.LatLng(city.lat, city.lon),
-					title: city.name + ", " + city.country,
-					icon: 'img/yellow-marker.png'
-		})
-		city = sc.model.get("hometown")
-		marker = new google.maps.Marker({
-					map: sc.map,
-					position: new google.maps.LatLng(city.lat, city.lon),
-					title: city.name + ", " + city.country,
-					icon: 'img/blue-marker.png'
-		})
+
+	
 	},
 	setAutocomplete: function(auto, field){
 		var sc = this
-		console.log(field)
 		return function(){
    			var place = auto.getPlace();
 			if (place.geometry){
 				var cc = sc.getCityAndCountry(place.address_components)
 				sc.map.setCenter(place.geometry.location);
-				var	marker = new google.maps.Marker({
+				if (!sc.markers[field]){
+					sc.markers[field] = new google.maps.Marker({
 						map: sc.map,
 						position: place.geometry.location,
-				});
-				sc.markers.push(marker)
+						title: cc.city + ", " + cc.country
+					});
+				} else {
+					sc.markers[field].setPosition(place.geometry.location)
+					sc.markers[field].setTitle(cc.city + ", " + cc.country)
+				}
 				if (field.indexOf("name_") == 0){
-					console.log("Updating otherLocs:", field)
 					var locs = sc.model.get("otherLocations")
 					locs.push({ country: cc.country, region: cc.region, name: cc.city, lat: place.geometry.location.lat(), lon: place.geometry.location.lng()})
 					sc.model.set("otherLocations", locs)
@@ -398,9 +421,9 @@ define([
 		}
 	},
 	clearMapMarkers: function(){
-		for (var i = 0; i < this.markers.length; i++ ) {
-    		this.markers[i].setMap(null);
-  		}
+		for (marker in this.markers){
+			this.markers[marker].setMap(null)
+		}
 	},
 	getCityAndCountry: function(address_components){
 		var data = {}
