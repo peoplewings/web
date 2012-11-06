@@ -86,7 +86,7 @@ define([
 			
 			return resp.data
 		},
-		save: function(attributes, options){
+		save: function(successCb){
 			//Dehydratation of data to send it to server
 			// Collects the interestedIn values to its array
 			var gender = []
@@ -134,7 +134,7 @@ define([
 			copy.cleanXAttrs()
 			//Save a copy of UserProfile clean of X-Attributes
 			var profileId = this.get("id")
-			api.put('/profiles/' + profileId, copy.attributes, this.success)
+			api.put('/profiles/' + profileId, copy.attributes, successCb)
 			
 		},
 		success: function(){
