@@ -245,7 +245,7 @@ define([
 			items: this.model.get("education"),
 			itemId: 'select-study',
 			extraCls: 'autocompleteStudy'
-		}).render()
+		})
 		this.socialList = new List({
 			el: "#socialNetwork-list", 
 			tpl: socialTpl, 
@@ -253,7 +253,7 @@ define([
 			items: this.model.get("socialNetworks"),
 			itemId: 'select-social',
 			extraCls: ''
-		}).render()
+		})
 		this.imList = new List({
 			el: "#instantMessage-list", 
 			tpl: instantTpl, 
@@ -261,7 +261,7 @@ define([
 			items: this.model.get("instantMessages"),
 			itemId: 'select-im',
 			extraCls: ''
-		}).render()
+		})
 		this.locationList = new List({
 			el: "#otherLocations-list", 
 			tpl: locationTpl, 
@@ -269,7 +269,11 @@ define([
 			items: this.model.get("otherLocations"),
 			itemId: 'select-location',
 			extraCls: ''
-		}).render()
+		})
+		this.educationList.render()
+		this.socialList.render()
+		this.imList.render()
+		this.locationList.render()
 		
 		this.model.bindings['x_current'] = '[name=current]'
 		this.model.bindings['x_hometown'] = '[name=hometown]'

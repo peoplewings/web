@@ -18,21 +18,6 @@ define([
 	submitSearch: function(e){
 		e.preventDefault()
 		console.log('Submit Search: #' + e.target.id)
-		//require(["jquery.Validate"], function(foo){
-		/*var val = $('#' + e.target.id).validate({
-				rules: {
-					inputWings: "required",
-					language: "required",
-				},
-				highlight: function(label) {
-		    		$(label).closest('.control-group').addClass('error');
-		    	},
-			})
-		console.log(val)*/
-			
-		//})
-		
-		
 	}
   });
   return new mainHomeView;

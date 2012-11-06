@@ -5,13 +5,10 @@ define([
 	//landing page views (AnonymousUser)
 	"views/home/header",
     "views/home/main",
-    "views/home/activate",
-    "views/home/password",
 	//app views (LoggedUser)
     "views/app/home",
-    "views/app/header",
     "models/User",
-], function($, Backbone, api, headerView, homeView, activateView, passwordView, appHomeView, appHeaderView, UserModel){
+], function($, Backbone, api, headerView, homeView, appHomeView, UserModel){
 
     var Router = Backbone.Router.extend({
         // All of your Backbone Routes (add more)
@@ -33,28 +30,34 @@ define([
 		//Anonymous User hashs
 		foo: function(){
 			console.log("I'm foo function")
-			/*api.post('/forgot/', { email: "foo@foo.com"}, function(response){
-				console.log(response)
-			})
-			api.get('/profiles/', {}, function(response){
-				console.log(response)
-			})*/
 		},
         register: function(){
-			require(["views/home/register"], function(registerView){
-				registerView.render();
-			})
+			if (api.userIsLoggedIn()){
+				this.defaultAction()
+			} else {
+				require(["views/home/register"], function(registerView){
+					registerView.render();
+				})
+			}
 		},
 		login: function(){
-			require(["views/home/login"], function(loginView){
-				loginView.render();
-			})
+			if (api.userIsLoggedIn()){
+				this.defaultAction()
+			} else {
+				require(["views/home/login"], function(loginView){
+					loginView.render();
+				})
+			}
 		},
 		activate: function(id){
-			activateView.render(id)
+			require(["views/home/activate"], function(logoutView){
+				activateView.render(id)
+			})
 		},
 		forgotPassword: function(id){
-		  	passwordView.render(id)
+			require(["views/home/password"], function(passwordView){
+				passwordView.render(id)
+			})
     	},
 		//Logged User hashs
 		logout: function(){
@@ -63,9 +66,12 @@ define([
 			})
 		},
 		settings: function(){
-			require(["views/app/settings"], function(settingsView){
-				settingsView.render()
-			})
+			if (api.userIsLoggedIn()){
+				require(["views/app/settings"], function(settingsView){
+					settingsView.render()
+				})
+			} else this.login()
+			
 		},
 		profile: function(){
 			var scope = this
@@ -93,17 +99,17 @@ define([
 			if (api.userIsLoggedIn()){
 				var user = new UserModel({id:"me"})
 				if (user.firstName === undefined){
-				user.fetch({
+					user.fetch({
 						headers: { "X-Auth-Token": api.getAuthToken() }, 
-						success: function(){ 
-							appHeaderView.render()
+						success: function(){
+							require(["views/app/header"], function(header){ header.render() })
 						},
 						error: function() { console.log(arguments); }
 				 	});
 				}else {
 					appHomeView.render({model:user})
 				}
-		  	} else{
+		  	}else{
 				headerView.render();
 			}
         }

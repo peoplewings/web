@@ -4,12 +4,10 @@ define([
   'utils',
   'api',
   'views/home/header',
-  'views/app/header',
-  'views/app/home',
   'text!templates/home/login.html',
   'text!templates/lib/alert.html',
   'models/User',
-], function($, Backbone, utils, api, appHeader, appLoggedHeader, homeLoggedView, loginTpl, alertTpl, UserModel){
+], function($, Backbone, utils, api, homeHeader, loginTpl, alertTpl, UserModel){
 
   var spinner = new Spinner(utils.getSpinOpts());
 
@@ -42,9 +40,11 @@ define([
 						if (response.status === true){
 							response.data.id = "me"
 							var user = new UserModel(response.data)
-							appHeader.destroy()
-							homeLoggedView.render()
-							appLoggedHeader.render()
+							homeHeader.destroy()
+							require(['views/app/header', 'views/app/home'], function(appLoggedHeader, homeLoggedView){
+								homeLoggedView.render()
+								appLoggedHeader.render()
+							})
 						}
 					})
 				}

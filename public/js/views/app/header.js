@@ -3,7 +3,7 @@ define([
   "backbone",
   'text!templates/app/header.html',
   "models/User",
-], function($, Backbone, headerTpl,  UserModel){
+], function($, Backbone, headerTpl, UserModel){
 	
   var appHeader = Backbone.View.extend({
 	
