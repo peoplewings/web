@@ -1,6 +1,7 @@
 var API = function(){
 	
-	var baseUrl = 'http://peoplewings-backend.herokuapp.com/api/v1'
+	var serverUrl = 'http://peoplewings-backend.herokuapp.com'
+	var baseUrl = serverUrl + '/api/v1'
 	
 	function errorCb(error){
 			console.log(error)
@@ -111,6 +112,9 @@ var API = function(){
 		getAuthToken: function() {
 			if (loadAuthToken() != null) return loadAuthToken()
 			else return "AnonymousUser"
+		},
+		getServerUrl: function(){
+			return serverUrl
 		}
 	}
 	
