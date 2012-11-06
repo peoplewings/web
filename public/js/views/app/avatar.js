@@ -9,7 +9,6 @@ define([
 	initialize: function(){
 	},
 	render: function(url){
-	  console.log('avatarRender')
 	  var tpl = _.template( avatarTpl, { avatarUrl: url });
       $('#main > .row').append(tpl);
 

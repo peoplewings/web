@@ -15,7 +15,6 @@ define([
 		this.keys = options.keys
 		this.itemId = options.itemId
 		this.extraCls = options.extraCls
-		//console.log("List definition:", this.itemId, this.keys, this.storeSize)
 	},
 	render: function(opts){
 		var sc = this
@@ -52,8 +51,6 @@ define([
 		$.each(this.keys, function(key, element){
 			sc.model.bindings["x_" + element + "_" + last] = "[name=" + element + "-" + last + "]"
 		})
-		//this.model.bindings["x_" + this.keys[0] + "_" + last] = "[name=" + this.keys[0] + "-" + last + "]"
-		//this.model.bindings["x_" + this.keys[1] + "_" + last] = "[name=" + this.keys[1] + "-" + last + "]"
 	},
 	deleteItem: function(nodeId){
 		var id = nodeId.split("-", 3)
@@ -63,10 +60,6 @@ define([
 			delete sc.model.bindings["x_" + element + "_" + id]
 			sc.model.unset("x_" + element + "_" + id)
 		})
-		//delete this.model.bindings["x_" + this.keys[0] + "_" + id]
-		//delete this.model.bindings["x_" + this.keys[1] + "_" + id]
-		//this.model.unset("x_" + this.keys[0] + "_" + id)
-		//this.model.unset("x_" + this.keys[1] + "_" + id)
 		$("#" + this.itemId + "-" + id).remove()
 	},
 	destroy: function(){
