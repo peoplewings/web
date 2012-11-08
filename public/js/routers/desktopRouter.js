@@ -50,7 +50,7 @@ define([
 			}
 		},
 		activate: function(id){
-			require(["views/home/activate"], function(logoutView){
+			require(["views/home/activate"], function(activateView){
 				activateView.render(id)
 			})
 		},
