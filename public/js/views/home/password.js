@@ -35,7 +35,7 @@ define([
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
 
-		handlersV.submitForm(e, 'forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword}, responseView, 
+		handlersV.submitForm(e, '/forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword}, responseView, 
 			{ 
 				legend: "Password changed",
 				msg: "You can now log in with your new password",
