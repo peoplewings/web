@@ -20,6 +20,12 @@ define([
     render: function(token){
 		var tpl = (token) ? _.template( passTpl, {token: token} ) : _.template( mailTpl );
 		$(this.el).html( tpl );
+		if (!token) $('#forgot-form').validate()
+		else $('#password-form').validate({ rules: { 
+														newPassword: { minlength: 6 },
+		    											newPassword2: { minlength: 6, equalTo: "#inputPassword" }
+													}
+												})
     },
 	submitForgot: function(e){
 		e.preventDefault(e);
