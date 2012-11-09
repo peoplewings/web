@@ -77,8 +77,15 @@ define([
 			if (response.status === true) {
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 			}else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg + ": ", message: 'Please try again later'})
-			sc.render()
+			$('#settings-form')[0].reset()
+
+			for (val in values) sc.model.set(val, values[val])
+			
+			$('#firstName').val(sc.model.get("firstName"))
+			$('#lastName').val(sc.model.get("lastName"))
+			
 			$('#main').prepend(tpl)
+			
 		})
 	},
 	deleteAccount: function(){
