@@ -78,7 +78,9 @@ define([
 	  var sc = this
 	  this.model.fetch({ 
 			success: function(model){
-				console.log("Fetch model:", model.attributes, model.bindings)
+				console.log("Fetch model:")
+				console.dir(model.attributes)
+				console.dir(model.bindings)
 				sc.languagesCount = model.get("languages").length
 				sc.render()
 			},
@@ -101,74 +103,7 @@ define([
 	  this.initLists()
 	  //Canvas assumes a location list exists
 	  this.initCanvas()
-	  //Inits the upload avatar form
-	  this.initAvatarForm()
     },
-	initAvatarForm: function(){
-		$('a.thumbnail').click(function(e){
-			e.preventDefault();
-	        $('#upload').trigger('click');  
-	    });
-		var sc = this
-		if (window.File && window.FileReader && window.FileList && window.Blob) {
-			function handleFileSelect(evt) {
-	            var files = evt.target.files; // FileList object
-	             console.dir(files)
-				if (files.length > 0) sc.uploadFile(files[0])
-	        }
-			document.getElementById('upload').addEventListener('change', handleFileSelect, false);
-	    } else {
-	            alert('The File APIs are not fully supported in this browser.');
-		}	
-	},
-	uploadFile: function(file){
-		var fd = new FormData();
-	    fd.append("image", file);
-		fd.append("owner", "3");
-		console.log(fd)
-		
-		$.ajax({
-		    url: "http://192.168.1.36:5000/cropper/",
-		    data: fd,
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    crossDomain: true,
-		    type: 'POST',
-		    success: function(data){
-		        alert(data);
-		    }
-		});
-
-		//var xhr = new XMLHttpRequest();
-	    
-	    //xhr.addEventListener("load", this.uploadComplete, false);
-	    //xhr.addEventListener("error", this.failCb, false);
-	    //xhr.open("POST", "http://192.168.1.36:5000/cropper/");
-	    //xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-	    //    $('.progress').show()
-	    //xhr.send(fd);
-		//$('#crop-modal').modal('show')
-		
-		//require(["jquery.Jcrop"], 
-		//function(){
-		// $('#cropbox').Jcrop()
-		//})
-		/*
-	    var xhr = new XMLHttpRequest();
-	    xhr.upload.addEventListener("progress", uploadProgress, false);
-	    xhr.addEventListener("load", uploadComplete, false);
-	    xhr.addEventListener("error", uploadFailed, false);
-	    xhr.addEventListener("abort", uploadCanceled, false);
-	    xhr.open("POST", "/cropper/");
-	        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-	        $('.progress').show()
-	    xhr.send(fd);	
-		*/
-	},
-	uploadComplete: function(){
-		console.log("Complete!!!")
-	},
 	close: function(){ 
 		this._modelBinder.unbind()
 	},
