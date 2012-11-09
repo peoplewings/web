@@ -5,11 +5,8 @@ define([
 ], function($, Backbone, Tpl, form){
 
   var responseView = Backbone.View.extend({
-    render: function(data, extraData){
-		//console.log(data)
-		//console.log(extraData)
+    render: function(data){
         var template = _.template( Tpl, data );
-		if (extraData) template = _.template( template, extraData );
 		$(this.el).html( template );
     }
   });

@@ -9,23 +9,30 @@ define([
   var submitForm = function(evt, resource, formData, view, viewData){
 	var spinner = new Spinner(utils.getSpinOpts());
 	//POST form data
-	api.post(resource, formData, successHandler(view, viewData, spinner))
+	api.post(resource, formData, successHandler(view, viewData, spinner, evt.target.id))
 	//start spinner
 	spinner.spin(document.getElementById('main'));
-	//remove form if it exists
-	if (evt) $('#' + evt.target.id).remove()
   };
 
-  var successHandler = function(view, viewData, spin){
+  var successHandler = function(view, viewData, spin, formId){
 	return function(response, textStatus){
 		spin.stop()
-		console.dir(response)
 		if (response.status === true) {
-			view.render(viewData, response.data )
+			$('#' + formId).remove()
+			viewData.extraData = "Code: " + response.code + " - " + response.msg
+			view.render(viewData)
 			$("#main").html(view.el)
 		}
 		else {
-			console.log(response.error)
+			console.log(response)
+			for ( err in response.error.errors){
+				console.log(err)
+				$.each(response.error.errors[err], function(index, field){
+					console.log(field)
+				})
+				
+			}
+			
 			/*
 				TODO: implement behaviour for different errors
 				for ( error in response.error){
