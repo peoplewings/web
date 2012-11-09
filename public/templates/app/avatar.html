@@ -23,21 +23,25 @@
   <div class="modal-body" style="max-height: 500px">
     <p>Crop the image you uploaded for your avatar</p>
    
-        <center style="margin: 10px 0">
-        <img id="cropbox" style="margin: 0 30px" src="" alt="">
+        <center>
+        <img id="cropbox" src="" alt="">
+<div class="progress progress-striped" style="margin-top:10px;display:none;">
+                                        <div class="bar" style="width: 0%;"></div>
+                                </div>
         </center>
-<form id="coords" class="coords" onsubmit="return false;" style="display: block">
+<form id="crop-avatar-form" class="coords" onsubmit="return false;" style="display: block">
 
       <div>
-      <label>X1 <input type="text" size="4" id="id_x" name="x1"></label>
-      <label>Y1 <input type="text" size="4" id="id_y" name="y1"></label>
+      <label>X1 <input type="text" size="4" id="id_x" name="x"></label>
+      <label>Y1 <input type="text" size="4" id="id_y" name="y"></label>
       <label>W <input type="text" size="4" id="id_w" name="w"></label>
       <label>H <input type="text" size="4" id="id_h" name="h"></label>
       </div>
-    </form>
-  </div>
+</form>
+</div>
   <div class="modal-footer">
     <button id="cancel-crop" class="btn" data-dismiss="modal" aria-hidden="true">Dismiss</button>
-    <button id="submit-avatar" class="btn btn-primary">Crop it</button>
+    <button type="submit" id="submit-avatar" class="btn btn-primary">Crop it</button>
   </div>
+
 </div>
