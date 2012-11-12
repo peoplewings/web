@@ -6,10 +6,10 @@ define([
 ], function($, Backbone, api, utils){
 	
 
-  var submitForm = function(evt, resource, formData, view, viewData){
+  var submitForm = function(formId, resource, formData, view, viewData){
 	var spinner = new Spinner(utils.getSpinOpts());
 	//POST form data
-	api.post(resource, formData, successHandler(view, viewData, spinner, evt.target.id))
+	api.post(resource, formData, successHandler(view, viewData, spinner, formId))
 	//start spinner
 	spinner.spin(document.getElementById('main'));
   };

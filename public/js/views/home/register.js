@@ -22,11 +22,11 @@ define([
 	submitRegister: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
-		
-		handlersV.submitForm(e, '/newuser', data, responseView, 
+		handlersV.submitForm(e.target.id, '/newuser', data, responseView, 
 			{ 
 				legend: "Confirm your e-mail address",
 				msg: "A confirmation email has been sent to <b><%- email %></b>. Click on the confirmation link in the email to activate your account",
+				//email: "foo@foo.com"
 		})
 	}
 
