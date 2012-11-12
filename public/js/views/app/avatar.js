@@ -4,7 +4,8 @@ define([
   "api",
   "utils",
   'text!templates/app/avatar.html',
-], function($, Backbone, api, utils, avatarTpl){
+  'models/Profile'
+], function($, Backbone, api, utils, avatarTpl, ProfileModel){
 	
   var avatarView = Backbone.View.extend({
 	originalAvatarId: "",
@@ -37,8 +38,9 @@ define([
 	},
 	uploadFile: function(file){
 		var fd = new FormData();
+		var profile = new ProfileModel({id:"me"})
 	    fd.append("image", file);
-		fd.append("owner", "3");
+		fd.append("owner", profile.get("pid"));
 		$(".progress").show()
 		var sc = this
 		$.ajax({
@@ -109,7 +111,7 @@ define([
 	},
 	submitAvatar: function(){
         var scale = 1;
-		var vs = $('#coords').serialize()
+		/*var vs = $('#coords').serialize()
 		var values = {
 			x: $('#id_x').val()*scale,
 			y: $('#id_y').val()*scale,
@@ -117,13 +119,12 @@ define([
 			h: $('#id_h').val()*scale,
 			original: this.originalAvatarId
 		}
-		vs = vs+"&original="+this.originalAvatarId
+		vs = vs+"&original="+this.originalAvatarId*/
 
-		vs = utils.serializeForm("crop-avatar-form")
-				console.log(vs)
-		//api.post("http://192.168.1.36:5000/cropper/" + this.originalAvatarId + "/", fd, this.avatarUploaded)
-		$.ajax({
-		  url: "http://peoplewings-backend.herokuapp.com/api/v1/cropper/" + this.originalAvatarId + "/",
+		var vs = utils.serializeForm("crop-avatar-form")
+		api.post("/cropped/" + this.originalAvatarId, vs, this.avatarUploaded)
+		/*$.ajax({
+		  url: "http://peoplewings-backend.herokuapp.com/api/v1/cropped/" + this.originalAvatarId + "/",
 		  //url: "http://192.168.1.36:5000/cropper/" + this.originalAvatarId + "/",
 		  type: 'post',
 		  data: vs,
@@ -134,7 +135,7 @@ define([
 		  crossDomain: true,
 		  //contentType: "application/json",
     	  success: this.avatarUploaded
-		})
+		})*/
 	},
 	avatarUploaded: function(response){
 		console.log(response)
