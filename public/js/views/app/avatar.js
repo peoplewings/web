@@ -60,15 +60,14 @@ define([
 					$('.progress > .bar').attr( { "style": "width:" + percentComplete.toString() + "%" });
 			      }
 			    }, false);
-				//Download progress
+				/*Download progress
 			    xhr.addEventListener("progress", function(evt){
 			      if (evt.lengthComputable) {
 					var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-					console.log(percentComputable)
 					var inv = 100 - percentComplete
 	   				$('.progress > .bar').attr( { "style": "width:" + inv.toString() + "%" });
 			      }
-			    }, false);
+			    }, false);*/
 			    return xhr;
 			},
 		    success: this.uploadComplete(this)
@@ -76,51 +75,43 @@ define([
 	},
 	uploadComplete: function(scope){
 		return function(response){
-			console.log("Complete!!!", response)
-		
+			//console.log("Complete!!!", response)
 			function showCoords(c){
-	             $('#id_x').val(Math.floor(c.x))
-		         $('#id_y').val(Math.floor(c.y))
-		         $('#id_w').val(Math.floor(c.w))
-		         $('#id_h').val(Math.floor(c.h))
+	        	var scale_x = scope.originalW / $("#cropbox").width()
+            	var scale_y = scope.originalH / $("#cropbox").height()
+				$('#id_x').val(Math.floor(c.x*scale_x))
+	        	$('#id_y').val(Math.floor(c.y*scale_y))
+	        	$('#id_w').val(Math.floor(c.w*scale_x))
+	        	$('#id_h').val(Math.floor(c.h*scale_y))
 	        }
-	        function clearCoords(){
-	          $('#coords input').val('')
-	        }
+	        function clearCoords(){ $('#coords input').val('') }
 
 			$(".progress").hide()
 		
 	        if (response.success){
 				var data = response.data
 				scope.originalAvatarId = data.id
-	         	$('#crop-modal .modal-body img').attr("src", data.image)
-	         	//console.log("WxH: " + data.width + "x" + data.height)
+				scope.originalH = data.height
+				scope.originalW = data.width
+	         	
+				$('#crop-modal .modal-body img').attr({ src: data.image })
+				
 				require(["jquery.Jcrop"], function(){
 					$('#crop-modal').modal('show')
 			   		$('#cropbox').Jcrop({
 		                onChange:   showCoords,
 		                onSelect:   showCoords,
 		                onRelease:  clearCoords,
-		                aspectRatio: 8 / 10,
-		                setSelect:   [ 50, 50, 296, 334],
-		                minSize: [123, 142],
+		                aspectRatio: 1,
+		                setSelect:   [ 50, 50, 296, 296],
+		                minSize: [246, 246],
+		                //maxSize: [246, 284],
 	             	});
-			 })
+			 	})
 			}
 		}
 	},
 	submitAvatar: function(){
-        var scale = 1;
-		/*var vs = $('#coords').serialize()
-		var values = {
-			x: $('#id_x').val()*scale,
-			y: $('#id_y').val()*scale,
-			w: $('#id_w').val()*scale,
-			h: $('#id_h').val()*scale,
-			original: this.originalAvatarId
-		}
-		vs = vs+"&original="+this.originalAvatarId*/
-
 		var vs = utils.serializeForm("crop-avatar-form")
 		api.post("/cropped/" + this.originalAvatarId, vs, this.avatarUploaded)
 		/*$.ajax({
@@ -138,13 +129,10 @@ define([
 		})*/
 	},
 	avatarUploaded: function(response){
-		console.log(response)
 		if (response.status === true){
-			$('#avatar').attr("src", response.data.image.url)
-	    	$('#avatar').width(246)
-	    	$('#avatar').height(284)
+			$('#avatar').attr("src", response.data.url)
 			$('#crop-modal').modal('hide')
-		}
+		} else alert("Error", response.msg)
 	}
   });
 
