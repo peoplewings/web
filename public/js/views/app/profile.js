@@ -23,6 +23,7 @@ define([
     el: "#main",
 	markers: {},
 	languagesCount: 0,
+	languages: [],
 	autoCompleteOptions: { types: ['(cities)'] },
 	events:{
 		"click a#add-language-btn": "addLanguage",
@@ -103,6 +104,7 @@ define([
 	  this.initLists()
 	  //Canvas assumes a location list exists
 	  this.initCanvas()
+	  
     },
 	close: function(){ 
 		this._modelBinder.unbind()
@@ -123,20 +125,24 @@ define([
 		$('#main').prepend(tpl)
 	},
 	initLanguages: function(){
-	  if (this.languagesCount === 0){
-	    var tpl = _.template(languageTpl, {index: 1})
-		$('#languages-list').prepend(tpl)
-		this.model.bindings["x_language_1"] = '[name=language-1]'
-		this.model.bindings["x_level_1"] = '[name=level-1]'
-		this.languagesCount = 1
-	  }else this.setLanguages(this.model.get("languages"))
-		
-	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
+		var sc = this
+		api.get("/languages", {}, function(response){
+			sc.languages = response.data
+			if (sc.languagesCount === 0){
+			    var tpl = _.template(languageTpl, {index: 1, languages: sc.languages})
+				$('#languages-list').prepend(tpl)
+				sc.model.bindings["x_language_1"] = '[name=language-1]'
+				sc.model.bindings["x_level_1"] = '[name=level-1]'
+				sc.languagesCount = 1
+     		}else sc.setLanguages(sc.model.get("languages"))
+			  sc._modelBinder.bind(sc.model, sc.el, sc.model.bindings)
+		})
+	  
 	},
 	setLanguages: function(languages){
 		var size = languages.length
 		for (var i = 1; i < size + 1; i++){
-			var tpl = _.template(languageTpl, {index: i})
+			var tpl = _.template(languageTpl, {index: i, languages: this.languages, extraAttribute: 'disabled="true"'})
 			$('#languages-list').append(tpl)
 		}
 		var s
@@ -147,13 +153,14 @@ define([
 			sc.model.bindings["x_level_" + s] = '[name=level-' + s +']'
 		})
 		this.languagesCount += size
+		this.collectLanguages()
 	},
 	addLanguage: function(e){
 		e.preventDefault(e);
 		var langs = $('div[id^=select-lang-]').length + 1
 		this.model.set("x_language_" + langs)
 		this.model.set("x_level_" + langs)
-		var tpl = _.template(languageTpl, {index: langs})
+		var tpl = _.template(languageTpl, {index: langs, languages: this.languages, extraAttribute: ""})
 		this.model.bindings["x_language_" + langs] = '[name=language-' + langs +']'
 		this.model.bindings["x_level_" + langs] = '[name=level-' + langs +']'
 		$('div[id^=select-lang-]:last').after(tpl)
@@ -171,6 +178,12 @@ define([
 		this.model.unset("x_language_" + id)
 		this.model.unset("x_level_" + id)
 		this.languagesCount--
+	},
+	collectLanguages: function(){
+		var sc = this
+		$.each($(sc.model.bindings)[0], function(index, item){
+			if (index.indexOf("x_language") === 0) sc.languages = _.without(sc.languages, sc.model.get(index))
+		})
 	},
 	initLists: function(){
 		this.educationList = new List({
