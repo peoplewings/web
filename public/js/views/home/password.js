@@ -31,7 +31,7 @@ define([
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
 		
-		handlersV.submitForm(e, '/forgot', data, responseView, 
+		handlersV.submitForm(e.target.id, '/forgot', data, responseView, 
 			{ 
 				legend: "Check your inbox for the reset link",
 				msg: "We've sent you an e-mail that will allow you to reset your password quickly and easily",
@@ -41,7 +41,7 @@ define([
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
 
-		handlersV.submitForm(e, '/forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword}, responseView, 
+		handlersV.submitForm(e.target.id, '/forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword}, responseView, 
 			{ 
 				legend: "Password changed",
 				msg: "You can now log in with your new password",
