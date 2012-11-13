@@ -3,7 +3,8 @@ define([
   'backbone',
   'api',
   'utils',
-], function($, Backbone, api, utils){
+  'text!templates/lib/alert.html',
+], function($, Backbone, api, utils, alertTpl){
 	
 
   var submitForm = function(formId, resource, formData, view, viewData){
@@ -24,14 +25,18 @@ define([
 			$("#main").html(view.el)
 		}
 		else {
-			console.log(response)
+			if (response.code === 400){
+				var tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: "Error: ", message: response.msg})
+				$('#main').prepend(tpl)
+			}
+			/*console.log(response)
 			for ( err in response.error.errors){
 				console.log(err)
 				$.each(response.error.errors[err], function(index, field){
 					console.log(field)
 				})
 				
-			}
+			}*/
 			
 			/*
 				TODO: implement behaviour for different errors
