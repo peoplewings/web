@@ -1,13 +1,12 @@
 <div id="select-lang-<%- index%>">
-<select name="language-<%- index%>" id="language-field-<%- index%>">
-	<option value="" selected="selected">Select language</option>
-	<option value="english">English</option>
-	<option value="spanish">Spanish</option>
-	<option value="german">German</option>
-	<option value="french">French</option>
+<select style="text-transform: capitalize" name="language-<%- index%>" id="language_field_<%- index%>" <%= extraAttribute%>>
+	<option value="" selected="selected">Select Language</option>
+	<% _.each(languages, function(lang) { %> 
+    <option value="<%= lang %>"><%= lang %></option>
+<% }); %>
 </select>
-<select name="level-<%- index%>" id="level-field-<%- index%>">
-	<option value="" selected="selected">Select level</option>
+<select name="level-<%- index%>" id="level-field-<%- index%>" <%= extraAttribute%>>
+	<option value="" selected="selected">Select Level</option>
 	<option value="expert">Expert</option>
 	<option value="intermediate">Intermediate</option>
 	<option value="beginner">Beginner</option>
