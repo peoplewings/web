@@ -33,10 +33,14 @@
     <label class="control-label" for="inputAge">People</label>
     <div class="controls">
 	<select name="startAge" class="input-small">
-			<option value="1">18</option>
+			<% _.each(ages, function(age) { %> 
+    			<option value="<%= age %>"><%= age %></option>
+			<% }); %>
 	</select>
 	 <select name="endAge" class="input-small">
-			<option value="1">90</option>
+			<% _.each(ages.reverse(), function(age) { %> 
+    			<option value="<%= age %>"><%= age %></option>
+<% }); %>
 		</select>
 	</div>
   </div>
@@ -45,9 +49,9 @@
     <div class="controls">
 	 <select name="language">
 			<option value="all">All</option>
-			<option value="english">English</option>
-			<option value="french">French</option>
-			<option value="spanish">Spanish</option>
+			<% _.each(languages, function(lang) { %> 
+    			<option value="<%= lang %>"><%= lang %></option>
+<% }); %>
 		</select>
 	</div>
   </div>
@@ -67,10 +71,10 @@
     <label class="control-label" for="inputHost"></label>
     <div class="controls">
 	<label class="radio">
-		<input type="radio" name="optionRadios" id="optionsRadios1" value="Host" checked> Host
+		<input type="radio" name="type" id="optionsRadios1" value="Host" checked> Host
 	</label>
 	<label class="radio">
-		<input type="radio" name="optionRadios" id="optionsRadios2" value="Appliant"> Appliant
+		<input type="radio" name="type" id="optionsRadios2" value="Appliant"> Appliant
 	</label>
 	</div>
   </div>
