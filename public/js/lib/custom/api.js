@@ -35,6 +35,7 @@ var API = function(){
 		$.ajax({
 		  url: baseUrl + resource,
 		  type: method,
+		  data: parameters,
 		  crossDomain: true,
 		  dataType: "json",
     	  success: successCb,
