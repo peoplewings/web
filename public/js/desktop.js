@@ -20,7 +20,8 @@ require.config({
 	  //"spinner": "lib/libs/spin",
 	  //"jquery.spinner": "lib/plugins/spin.plugin",
 	  "async": "lib/plugins/async",
-	  "jquery.Jcrop": "lib/plugins/jquery.Jcrop"
+	  "jquery.Jcrop": "lib/plugins/jquery.Jcrop",
+	  "jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min"
   },
 
   // Sets the configuration for your third party scripts that are not AMD compatible
