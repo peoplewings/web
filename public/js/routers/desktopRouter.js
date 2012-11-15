@@ -24,14 +24,10 @@ define([
 			 "settings":"settings",
 			 "profile":"profile",
 			 "wings": "wings",
-			 "foo":"foo",
 		//Default action
 			"*actions": "defaultAction",
         },
 		//Anonymous User hashs
-		foo: function(){
-			console.log("I'm foo function")
-		},
         register: function(){
 			if (api.userIsLoggedIn()){
 				this.defaultAction()
