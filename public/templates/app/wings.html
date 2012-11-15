@@ -5,6 +5,7 @@
 				<label class="control-label" for="textarea"><label for="generalStatus">General status</label></label>
 					<div class="controls">
 						<select name="generalStatus" id="generalStatus">
+							<option value="">--------</option>
 							<option value="W" selected="selected">By Wing</option>
 							<option value="Y">Yes</option>
 							<option value="N">No</option>
@@ -20,10 +21,15 @@
 		<div id="my-wings" class="control-group">
 			<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
 			<div class="controls" style="display: inline">
-				<select name="wingsList" id="wings-list">
-   					<option value="">-----------</option>
+				<select name="wingsList" id="wings-list" class="span4">
+   					<% if (wings.length > 0){ %>
+    					<option value="">Select wing</option>
+					<% } %>
+					<% if (wings.length === 0){ %>
+    					<option value="">No created wings</option>
+					<% } %>
 					<% _.each(wings, function(wing) { %> 
-    					<option value="<%= wing.name %>"><%= wing.name %></option>
+    					<option value="<%= wing.uri %>"><%= wing.name %> (Accomodation)</option>
 				<% }); %>
 				</select>
 				<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>

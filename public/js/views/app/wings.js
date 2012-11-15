@@ -16,7 +16,8 @@ define([
 	wings: [],
 	events: {
 		"click #add-wing-btn": "addWing",
-		"change #generalStatus": "changeStatus"
+		"change #generalStatus": "changeStatus",
+		"change #wings-list": "changeWing"
 	},
 	initialize: function(){
 		this.model = new UserProfile({id:"me"})
@@ -58,6 +59,12 @@ define([
 			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 			$('#main').prepend(tpl)
 		})
+	},
+	changeWing: function(e){
+		if (e.target.value){
+			//api.get("")
+			console.log(e.target.value)
+		} 
 	}
   });
 

@@ -27,6 +27,8 @@ define([
 		$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 		//Set autocomplete on city field
 		this.cityAutocomplete()
+		//Set validations
+		$('#accomodation-form').validate()
 		
     },
 	submitWing: function(evt){
