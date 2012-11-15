@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="span8">
+		<form id="wings-form" class="form-horizontal">
+      		<div class="control-group">
+				<label class="control-label" for="textarea"><label for="generalStatus">General status</label></label>
+					<div class="controls">
+						<select name="generalStatus" id="generalStatus">
+							<option value="W" selected="selected">By Wing</option>
+							<option value="Y">Yes</option>
+							<option value="N">No</option>
+							<option value="M">Maybe</option>
+							<option value="T">Travelling</option>
+							<option value="C">Cofee or drink</option>
+						</select>
+						<span class="help-block"></span>
+						<span class="help-inline"></span>
+					</div>
+		       </div>
+		</form>
+		<div id="my-wings" class="control-group">
+			<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
+			<div class="controls" style="display: inline">
+				<select name="generalStatus" id="generalStatus">
+   					<option value="">-----------</option>
+					<% _.each(wings, function(wing) { %> 
+    					<option value="<%= wing %>"><%= wing.name %></option>
+				<% }); %>
+				</select>
+				<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>
+				<span class="help-block"></span>
+				<span class="help-inline"></span>
+			</div>
+        </div>
+    </div>
+</div>

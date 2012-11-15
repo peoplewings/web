@@ -23,6 +23,7 @@ define([
 			 "logout": "logout",
 			 "settings":"settings",
 			 "profile":"profile",
+			 "wings": "wings",
 			 "foo":"foo",
 		//Default action
 			"*actions": "defaultAction",
@@ -80,6 +81,11 @@ define([
 					scope.profileView = new profileView()
 				})
 			} else this.profileView.render()
+		},
+		wings: function(){
+			require(["views/app/wings"], function(wingsView){
+				wingsView.render()
+			})
 		},
 		//Common hashs
 		defaultAction: function(actions){
