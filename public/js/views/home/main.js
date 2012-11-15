@@ -14,7 +14,7 @@ define([
 	ages: [],
 	languages: [],
 	events: {
-		"submit form#accomodation-form": "submitSearch",
+		"submit form#accomodation-search-form": "submitSearch",
 	},
 	initialize: function(){
 		this.setAges()
