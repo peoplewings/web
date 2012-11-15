@@ -7,8 +7,7 @@ define([
   'text!templates/app/accomodation-form.html',
   'text!templates/lib/alert.html',
   'models/Profile',
-  'views/app/wing',
-], function($, Backbone, api, utils, wingsTpl, wingFormTpl, alertTpl, UserProfile, wingView){
+], function($, Backbone, api, utils, wingsTpl, wingFormTpl, alertTpl, UserProfile){
 	
   var spinner = new Spinner(utils.getSpinOpts());
 	
@@ -21,26 +20,35 @@ define([
 	},
 	initialize: function(){
 		this.model = new UserProfile({id:"me"})
-		this.model.bindings = {
-			pwStatus: "[name=generalStatus]"
+		this.bindings = {
+			pwState: "[name=generalStatus]"
 		}
 		this._modelBinder = new Backbone.ModelBinder();
+		if (!this.model.get("pwState")) this.model.fetch()
 		this.getUserWings()
 		
 	},
 	render: function(url){
 	  var tpl = _.template(wingsTpl, {wings: this.wings});
       $(this.el).html(tpl);
+	  this._modelBinder.bind(this.model, this.el, this.bindings)
     },
 	getUserWings: function(){
 		var sc = this
 		api.get("/profiles/me/accomodations", {}, function(response){
 			console.log(response)
 			sc.wings = response.data
+			sc.render()
 		})
 	},
 	addWing: function(evt){
-		wingView.render()
+		var scope = this
+		if (!this.accomodationView){
+				require(["views/app/wing"], function(accomodationView){
+					scope.accomodationView = accomodationView
+					scope.accomodationView.render()
+				})
+		} else this.accomodationView.render()
 		return false
 	},
 	changeStatus: function(e){

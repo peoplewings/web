@@ -20,10 +20,10 @@
 		<div id="my-wings" class="control-group">
 			<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
 			<div class="controls" style="display: inline">
-				<select name="generalStatus" id="generalStatus">
+				<select name="wingsList" id="wings-list">
    					<option value="">-----------</option>
 					<% _.each(wings, function(wing) { %> 
-    					<option value="<%= wing %>"><%= wing.name %></option>
+    					<option value="<%= wing.name %>"><%= wing.name %></option>
 				<% }); %>
 				</select>
 				<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>

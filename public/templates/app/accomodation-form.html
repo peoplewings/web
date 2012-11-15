@@ -16,15 +16,15 @@
 	</div>
   </div>
   <div class="control-group">
-	    <label class="control-label" for="inputWheelchair">Are you sharing one time?</label>
+	    <label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 	    <div class="controls">
 			<label class="checkbox inline">
-			  <input type="checkbox" name="wheelchair" id="inputWheelchair" value="">
+			  <input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="">
 			</label>
 			<span class="help-inline"></span>
 		</div>
   </div>
-  <div class="control-group">
+  <div id="sharing-dates"class="control-group inline" style="display: none">
     <label class="control-label" for="inputDate"></label>
     <div class="controls">
       <input type="text" name="startDate" placeholder="Start date" class="input-small">
@@ -63,10 +63,10 @@
     <label class="control-label" for="inputGender">Preferred gender</label>
     <div class="controls">
 	<label class="checkbox inline">
-	  <input type="checkbox" name="male" id="inlineCheckbox1" value="Male"> Male
+	  <input type="checkbox" name="preferredMale" id="inlineCheckbox1" value="True"> Male
 	</label>
 	<label class="checkbox inline">
-	  <input type="checkbox" name="female" id="inlineCheckbox2" value="Female"> Female
+	  <input type="checkbox" name="preferredFemale" id="inlineCheckbox2" value="True"> Female
 	</label>
 		<span class="help-inline"></span>
 	</div>
@@ -170,7 +170,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputAddress">Street address</label></label>
 		<div class="controls">
-			<input type="text" name="address" id="inputAddress">
+			<input type="text" name="address" id="inputAddress" class="required">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -178,7 +178,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputNumber">Number</label></label>
 		<div class="controls">
-			<input type="number" name="number" id="inputNumber" class="input-mini">
+			<input type="number" name="number" id="inputNumber" class="input-mini required">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -194,7 +194,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputCity">City</label></label>
 		<div class="controls">
-			<input type="text" name="city" id="inputCity">
+			<input type="text" name="city" id="inputCity" class="required">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -202,7 +202,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputCode">ZIP / Postal Code</label></label>
 		<div class="controls">
-			<input type="text" name="postalCode" id="inputPostalCode">
+			<input type="text" name="postalCode" id="inputPostalCode" class="required">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
