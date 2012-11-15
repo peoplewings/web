@@ -126,7 +126,7 @@ define([
 	},
 	initLanguages: function(){
 		var sc = this
-		api.get("/languages", {}, function(response){
+		api.get(api.getApiVersion() + "/languages", {}, function(response){
 			sc.languages = response.data
 			if (sc.languagesCount === 0){
 			    var tpl = _.template(languageTpl, {index: 1, languages: sc.languages})

@@ -1,7 +1,7 @@
 var API = function(){
 	
-	var serverUrl = 'http://peoplewings-backend.herokuapp.com'
-	var baseUrl = serverUrl + '/api/v1'
+	var baseUrl = 'http://peoplewings-backend.herokuapp.com'
+	var apiVersion = '/api/v1'
 	
 	function errorCb(error){
 			console.log(error)
@@ -115,7 +115,10 @@ var API = function(){
 			else return "AnonymousUser"
 		},
 		getServerUrl: function(){
-			return serverUrl
+			return baseUrl
+		},
+		getApiVersion: function(){
+			return apiVersion
 		}
 	}
 	

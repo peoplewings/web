@@ -36,7 +36,7 @@ define([
     },
 	getUserWings: function(){
 		var sc = this
-		api.get("/profiles/me/accomodations", {}, function(response){
+		api.get(api.getApiVersion() + "/profiles/me/accomodations", {}, function(response){
 			console.log(response)
 			sc.wings = response.data
 			sc.render()
@@ -54,7 +54,7 @@ define([
 	},
 	changeStatus: function(e){
 		spinner.spin(document.getElementById('main'));
-		api.put("/profiles/me", {pwState: e.target.value}, function(response){
+		api.put(api.getApiVersion() + "/profiles/me", {pwState: e.target.value}, function(response){
 			spinner.stop()
 			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 			$('#main').prepend(tpl)

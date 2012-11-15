@@ -46,7 +46,7 @@ define([
 		//console.log(data)
 		for (attr in data) if (data[attr] === "") delete data[attr]
 		alert("You are not sending fields!")
-		api.get("/profiles", {}, this.renderResults)
+		api.get(api.getApiVersion() + "/profiles", {}, this.renderResults)
 		
 	},
 	renderResults: function(results){

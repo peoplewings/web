@@ -7,7 +7,6 @@ define([
   var landingHeader = Backbone.View.extend({
     render: function(){
       $('header').html(headerTpl);
-	  //$('header').html(appHeader.el)
     },
 	destroy: function(){
   		this.remove();

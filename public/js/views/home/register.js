@@ -22,7 +22,7 @@ define([
 	submitRegister: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm(e.target.id)
-		handlersV.submitForm(e.target.id, '/newuser', data, responseView, 
+		handlersV.submitForm(e.target.id, api.getApiVersion() + '/newuser', data, responseView, 
 			{ 
 				legend: "Confirm your e-mail address",
 				msg: "A confirmation email has been sent to ",

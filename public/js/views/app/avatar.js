@@ -112,21 +112,9 @@ define([
 		}
 	},
 	submitAvatar: function(){
+		//50% of times it breaks : Acces-Control-Origin....
 		var vs = utils.serializeForm("crop-avatar-form")
-		api.post("/cropped/" + this.originalAvatarId, vs, this.avatarUploaded)
-		/*$.ajax({
-		  url: "http://peoplewings-backend.herokuapp.com/api/v1/cropped/" + this.originalAvatarId + "/",
-		  //url: "http://192.168.1.36:5000/cropper/" + this.originalAvatarId + "/",
-		  type: 'post',
-		  data: vs,
-		  //data: JSON.stringify(values),
-		  cache: false,
-		  //contentType: false,
-		  processData: false,
-		  crossDomain: true,
-		  //contentType: "application/json",
-    	  success: this.avatarUploaded
-		})*/
+		api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, vs, this.avatarUploaded)
 	},
 	avatarUploaded: function(response){
 		if (response.status === true){

@@ -36,7 +36,7 @@ define([
 		var data = utils.serializeForm(evt.target.id)
 		data.city = this.cityObject
 		console.log(data)
-		api.post("/profiles/me/accomodations/", data, function(response){
+		api.post(api.getApiVersion() + "/profiles/me/accomodations/", data, function(response){
 			var tpl
 			if (response.status === true){
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})

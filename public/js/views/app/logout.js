@@ -9,7 +9,7 @@ define([
 	
   var logoutView = Backbone.View.extend({
 	logout: function(){
-		api.post('/noauth/', {}, this.logoutSuccess(this))
+		api.post(api.getApiVersion() + '/noauth/', {}, this.logoutSuccess(this))
 	},
 	logoutSuccess: function(scope){
 		return function(response){

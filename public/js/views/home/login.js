@@ -23,7 +23,7 @@ define([
 		e.preventDefault(e);
 		$('.alert').remove()
 		var data = utils.serializeForm()
-		api.post('/auth/', data, this.loginSuccess(data.remember, this))
+		api.post(api.getApiVersion() + '/auth/', data, this.loginSuccess(data.remember, this))
 		spinner.spin(document.getElementById('main'));
 		$('#' + e.target.id).remove()
 	},
@@ -36,7 +36,7 @@ define([
 					if ( loggedIn === "on" ) api.saveAuthToken(response.data.xAuthToken, true)
 					else api.saveAuthToken(response.data.xAuthToken, false)
 					//Get User Account details
-					api.get('/accounts/me', {}, function(response){
+					api.get(api.getApiVersion() + '/accounts/me', {}, function(response){
 						if (response.status === true){
 							response.data.id = "me"
 							var user = new UserModel(response.data)

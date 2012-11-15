@@ -1,9 +1,8 @@
 define([
 	"jquery", 
 	"backbone",
-	"api",
     "views/app/header",
-], function($, Backbone, api, headerView) {
+], function($, Backbone, headerView) {
 
 	//Implementing a Factory Class (singleton)  
 	//Source from http://stackoverflow.com/questions/11145159/implement-javascript-instance-store-by-returning-existing-instance-from-construc
