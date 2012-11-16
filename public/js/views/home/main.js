@@ -12,32 +12,34 @@ define([
   var mainHomeView = Backbone.View.extend({
     el: "#main",
 	ages: [],
-	languages: [],
 	events: {
 		"submit form#accomodation-search-form": "submitSearch",
 	},
 	initialize: function(){
 		this.setAges()
-		this.setLanguages()
 	},
     render: function(){
+	  var sc = this
       $(this.el).html(mainHomeTpl);
-	  var tpl = _.template(accomodationTpl, {ages: this.ages, languages: this.languages})
-      $("#accomodation").html(tpl)
-	  $("input[name=endDate]").datepicker({
-		beforeShow: function (textbox, instance) {
-            instance.dpDiv.css({
-                    marginTop: (textbox.offsetHeight*2) + 'px',
-                    marginLeft: textbox.offsetWidth + 'px'
-            });
-        }});
-	  $("input[name=startDate]").datepicker({
-		beforeShow: function (textbox, instance) {
-            instance.dpDiv.css({
-                    marginTop: (textbox.offsetHeight*2) + 'px',
-                    marginLeft: textbox.offsetWidth + 'px'
-            });
-        }});
+	  var tpl
+	  this.setLanguages(function(response){
+			tpl = _.template(accomodationTpl, {ages: sc.ages, languages: response.data})
+			$("#accomodation").html(tpl)
+			  $("input[name=endDate]").datepicker({
+				beforeShow: function (textbox, instance) {
+		            instance.dpDiv.css({
+		                    marginTop: (textbox.offsetHeight*2) + 'px',
+		                    marginLeft: textbox.offsetWidth + 'px'
+		            });
+		        }});
+			  $("input[name=startDate]").datepicker({
+				beforeShow: function (textbox, instance) {
+		            instance.dpDiv.css({
+		                    marginTop: (textbox.offsetHeight*2) + 'px',
+		                    marginLeft: textbox.offsetWidth + 'px'
+		            });
+		        }});
+	  })
     },
 	submitSearch: function(e){
 		e.preventDefault()
@@ -60,13 +62,8 @@ define([
 	setAges: function(){
 		for (var i = 18; i < 100; i++) this.ages[i-18] = (99 - i) + 18
 	},
-	setLanguages: function(){
-		var sc = this
-		//this.languages = ["spanish", "english", "french", "german"]
-		api.get(api.getApiVersion() + "/languages", {}, function(response){
-			sc.languages = response.data
-			sc.render()
-		})
+	setLanguages: function(callback){
+		api.get(api.getApiVersion() + "/languages", {}, callback)
 	}
   });
   return new mainHomeView;
