@@ -58,14 +58,15 @@ define([
 		})
 	},
 	setAges: function(){
-		for (var i = 18; i < 100; i++) this.ages[i-18] = i
+		for (var i = 18; i < 100; i++) this.ages[i-18] = (99 - i) + 18
 	},
 	setLanguages: function(){
 		var sc = this
-		this.languages = ["spanish", "english", "french", "german"]
-		/*api.get("/languages", {}, function(response){
+		//this.languages = ["spanish", "english", "french", "german"]
+		api.get(api.getApiVersion() + "/languages", {}, function(response){
 			sc.languages = response.data
-		})*/
+			sc.render()
+		})
 	}
   });
   return new mainHomeView;
