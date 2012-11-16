@@ -1,6 +1,7 @@
 define([
 	"jquery", 
 	"backbone",
+	"api",
     "views/app/header",
 ], function($, Backbone, headerView) {
 
