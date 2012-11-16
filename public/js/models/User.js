@@ -26,7 +26,7 @@ define([
 
 	var UserModel = Backbone.Model.extend({
 		
-		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/accounts/',
+		urlRoot: api.getServerUrl() + api.getApiVersion() + '/accounts/',
         // Model Constructor
         initialize: function() {
 			this.on("change", function(headerView){
