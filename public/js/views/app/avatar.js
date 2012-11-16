@@ -44,7 +44,7 @@ define([
 		$(".progress").show()
 		var sc = this
 		$.ajax({
-		    url: "http://peoplewings-backend.herokuapp.com/cropper/",
+		    url: api.getServerUrl() + "/cropper/",
 			//url: "http://192.168.1.36:5000/cropper/",
 		    data: fd,
 		    cache: false,
