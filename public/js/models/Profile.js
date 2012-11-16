@@ -26,7 +26,7 @@ define([
 
 	var UserProfileModel = Backbone.Model.extend({
 		
-		urlRoot: 'http://peoplewings-backend.herokuapp.com/api/v1/profiles/',
+		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/',
 		
         initialize: function() {
 			
