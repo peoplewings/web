@@ -62,8 +62,11 @@ define([
 	},
 	changeWing: function(e){
 		if (e.target.value){
-			//api.get("")
 			console.log(e.target.value)
+			api.get(e.target.value, {}, function(){
+				console.log(arguments[0])
+			})
+
 		} 
 	}
   });
