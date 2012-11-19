@@ -33,12 +33,12 @@
     <label class="control-label" for="inputAge">People</label>
     <div class="controls">
 	<select name="startAge" class="input-small">
-			<% _.each(ages, function(age) { %> 
+			<% _.each(ages.reverse(), function(age) { %> 
     			<option value="<%= age %>"><%= age %></option>
 			<% }); %>
 	</select>
 	 <select name="endAge" class="input-small">
-			<% _.each(ages.reverse(), function(age) { %> 
+			<% _.each(ages, function(age) { %> 
     			<option value="<%= age %>"><%= age %></option>
 <% }); %>
 		</select>
@@ -83,3 +83,4 @@
 		<button type="submit" class="btn btn-primary" style="margin-left: 160px">Submit</button>
 	</div>
 </form>
+<legend></legend>

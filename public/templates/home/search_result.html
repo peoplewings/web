@@ -1,16 +1,28 @@
-<div class="row well">
-	<div class="span3">
-		<a href="" class="thumbnail" style="width:246px; height: 246px">
-			<img id="avatar" src="https://peoplewings-test-media.s3.amazonaws.com/blank_avatar.jpg" alt="avatar" width="246" height="246">
+	<div class="span2">
+		<a href="" class="thumbnail" style="width: 108px; heigth: 108px">
+			<img id="avatar" src="<%= result.avatar%>" alt="avatar" style="width: 108px; heigth: 108px">
 		</a>
 	</div>
-	<div class="span4">
+	<div class="span3">
 		<p><%= result.firstName%> 	<%= result.lastName%>, <%= result.age%></p>
-		<p>Live in: <%= result.current%></p>
-		<p>Last in: <%= result.current%></p>
-		<p>Friends: <%= result.numFriends.city%> / References: <%= result.numReferences%> / Response rate: <%= result.tasaRespuestas%> %</p>
-		<p>About <%= allAboutYou%></p>
-		<p>Languages: <%= result.languages%></p>
+		<p>Live in: <%= currentCity %>,  <%= currentCountry %></p>
+		<p>Last in: <%= result.lastLogin %></p>
+		<p>Friends: <%= result.numFriends%> / References: <%= result.numReferences%> / Response rate: <%= result.tasaRespuestas%> %</p>
+		<p>About <%= result.allAboutYou%></p>
+		<p>Languages: 
+			<% _.each(languages, function(lang) { %> 
+				</br>
+    			<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
+<% }); %>
+			</p>
 	</div>
+	<div class="span2">
+		<div class="btn-group">
+		  <button class="btn">Chat</button>
+		  <button class="btn">Request</button>
+		  <button class="btn">Invite</button>
+		</div>
+	</div>
+		
+<legend></legend>
 
-</div>

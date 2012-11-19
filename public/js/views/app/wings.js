@@ -27,7 +27,6 @@ define([
 		this._modelBinder = new Backbone.ModelBinder();
 		if (!this.model.get("pwState")) this.model.fetch()
 		this.getUserWings()
-		
 	},
 	render: function(url){
 	  var tpl = _.template(wingsTpl, {wings: this.wings});
@@ -37,7 +36,6 @@ define([
 	getUserWings: function(){
 		var sc = this
 		api.get(api.getApiVersion() + "/profiles/me/accomodations", {}, function(response){
-			console.log(response)
 			sc.wings = response.data
 			sc.render()
 		})
@@ -47,9 +45,9 @@ define([
 		if (!this.accomodationView){
 				require(["views/app/wing"], function(accomodationView){
 					scope.accomodationView = accomodationView
-					scope.accomodationView.render()
+					scope.accomodationView.render({parentView: scope})
 				})
-		} else this.accomodationView.render()
+		} else this.accomodationView.render({parentView: scope})
 		return false
 	},
 	changeStatus: function(e){
@@ -61,12 +59,16 @@ define([
 		})
 	},
 	changeWing: function(e){
+		var scope = this
 		if (e.target.value){
 			console.log(e.target.value)
-			api.get(e.target.value, {}, function(){
-				console.log(arguments[0])
-			})
-
+			var id = e.target.value.split("accomodations/", 2)[1]
+			if (!scope.accomodationView){
+						require(["views/app/wing"], function(accomodationView){
+							scope.accomodationView = accomodationView
+							scope.accomodationView.render({wingId: id, parentView: scope})
+						})
+			} else scope.accomodationView.render({parentView: scope})
 		} 
 	}
   });

@@ -1,4 +1,7 @@
 <form id="accomodation-form" class="form-horizontal well">
+	<% if (update === true) { %> 
+		<button type="button" class="close" id="delete-wing-btn">×</button>
+	<% } %>
  <div class="control-group">
     <label class="control-label" for="inputName">Wing name</label>
     <div class="controls">
@@ -8,7 +11,7 @@
   <div class="control-group">
     <label class="control-label" for="inputStatus">Wing status</label>
     <div class="controls">
-      <select name="status" id="wingStatus">
+      <select name="status" id="wingtatus">
 			<option value="Y" selected="selected">Yes</option>
 			<option value="N">No</option>
 			<option value="M">Maybe</option>
@@ -19,16 +22,16 @@
 	    <label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 	    <div class="controls">
 			<label class="checkbox inline">
-			  <input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="">
+			  <input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
 			</label>
 			<span class="help-inline"></span>
 		</div>
   </div>
-  <div id="sharing-dates"class="control-group inline" style="display: none">
+  <div id="sharing-dates"class="control-group inline" style="display:none">
     <label class="control-label" for="inputDate"></label>
     <div class="controls">
-      <input type="text" name="startDate" placeholder="Start date" class="input-small">
-	  <input type="text" name="endDate" placeholder="End date" class="input-small" style="margin-left:5pt">
+      <input type="text" name="dateStart" placeholder="Start date" class="input-small">
+	  <input type="text" name="dateEnd" placeholder="End date" class="input-small" style="margin-left:5pt">
 	</div>
   </div>
   <div class="control-group">
@@ -209,7 +212,12 @@
 	</div>
 
   <div class="form-actions">
-			<button type="submit" class="btn btn-primary">Save</button>
+	<% if (update === true) { %> 
+		<button id="update-wing-btn" class="btn btn-primary">Update</button>
+	<% } %>
+	<% if (update === false) { %> 
+		<button type="submit" class="btn btn-primary">Save</button>
+	<% } %>
   </div>
   </div>
 </form>

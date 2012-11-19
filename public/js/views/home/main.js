@@ -43,19 +43,18 @@ define([
     },
 	submitSearch: function(e){
 		e.preventDefault()
-		//console.log('Submit Search: #' + e.target.id)
 		var data = utils.serializeForm(e.target.id)
-		//console.log(data)
 		for (attr in data) if (data[attr] === "") delete data[attr]
-		alert("You are not sending fields!")
-		api.get(api.getApiVersion() + "/profiles", {}, this.renderResults)
+		data.page = 1
+		console.log(data)
+		api.get(api.getApiVersion() + "/profiles", data, this.renderResults)
 		
 	},
 	renderResults: function(results){
 		console.log(results)
 		var tpl
-		$.each(results.data, function(index, item){
-			tpl = _.template(resultTpl, {result: item})
+		$.each(results.data.profiles, function(index, item){
+			tpl = _.template(resultTpl, {result: item, currentCity: item.current.name, currentCountry: item.current.country, languages: item.languages})
 			$("div.tab-content").append(tpl)
 		})
 	},
