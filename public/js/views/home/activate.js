@@ -2,9 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'api',
   'views/lib/handlers',
   'views/lib/response',
-], function($, _, Backbone, handlersV, responseView){
+], function($, _, Backbone, api, handlersV, responseView){
 
   var activateView = Backbone.View.extend({
     render: function(token){
