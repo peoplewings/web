@@ -12,33 +12,23 @@ define([
   var mainHomeView = Backbone.View.extend({
     el: "#main",
 	ages: [],
+	agesR: [],
 	events: {
 		"submit form#accomodation-search-form": "submitSearch",
+		"click button.fake-btn": "alertLog"
 	},
 	initialize: function(){
 		this.setAges()
 	},
     render: function(){
 	  var sc = this
-      $(this.el).html(mainHomeTpl);
 	  var tpl
+      $(this.el).html(mainHomeTpl);
 	  this.setLanguages(function(response){
-			tpl = _.template(accomodationTpl, {ages: sc.ages, languages: response.data})
+			tpl = _.template(accomodationTpl, {ages: sc.ages, agesR: sc.agesR, languages: response.data})
 			$("#accomodation").html(tpl)
-			  $("input[name=endDate]").datepicker({
-				beforeShow: function (textbox, instance) {
-		            instance.dpDiv.css({
-		                    marginTop: (textbox.offsetHeight*2) + 'px',
-		                    marginLeft: textbox.offsetWidth + 'px'
-		            });
-		        }});
-			  $("input[name=startDate]").datepicker({
-				beforeShow: function (textbox, instance) {
-		            instance.dpDiv.css({
-		                    marginTop: (textbox.offsetHeight*2) + 'px',
-		                    marginLeft: textbox.offsetWidth + 'px'
-		            });
-		        }});
+			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 	  })
     },
 	submitSearch: function(e){
@@ -52,17 +42,25 @@ define([
 	},
 	renderResults: function(results){
 		console.log(results)
-		var tpl
+		$(".pagination").show()
+		var tpl, style
+		if (!api.userIsLoggedIn()) style = 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"'
 		$.each(results.data.profiles, function(index, item){
-			tpl = _.template(resultTpl, {result: item, currentCity: item.current.name, currentCountry: item.current.country, languages: item.languages})
-			$("div.tab-content").append(tpl)
+			tpl = _.template(resultTpl, {extraAttribute: style, result: item, currentCity: item.current.name, currentCountry: item.current.country, languages: item.languages})
+			$(".pagination:last").before(tpl)
 		})
 	},
 	setAges: function(){
-		for (var i = 18; i < 100; i++) this.ages[i-18] = (99 - i) + 18
+		for (var i = 18; i < 100; i++){
+			this.agesR[i-18] = (99 - i) + 18
+			this.ages[i-18] = i
+		}
 	},
 	setLanguages: function(callback){
 		api.get(api.getApiVersion() + "/languages", {}, callback)
+	},
+	alertLog: function(){
+		alert("You need to be logged in to use this function")
 	}
   });
   return new mainHomeView;

@@ -1,28 +1,42 @@
+<div class="search-result">	
 	<div class="span2">
-		<a href="" class="thumbnail" style="width: 108px; heigth: 108px">
-			<img id="avatar" src="<%= result.avatar%>" alt="avatar" style="width: 108px; heigth: 108px">
+		<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
+			<img id="avatar" src="<%= result.avatar%>" alt="avatar" style="width: 108px; height: 108px">
 		</a>
 	</div>
 	<div class="span3">
-		<p><%= result.firstName%> 	<%= result.lastName%>, <%= result.age%></p>
-		<p>Live in: <%= currentCity %>,  <%= currentCountry %></p>
+		<p id="user-name-label">
+			<span <%= extraAttribute%>><%= result.firstName%> 	<%= result.lastName%> </span>, <%= result.age%>
+			<% if (result.verified === true) { %> 
+				<span class="label label-success">Verified</span>
+			<% } %>
+			<% if (result.verified === false) { %> 
+				<span class="label label-important">Not verified</span>
+			<% } %>
+		</p>
+		<% if (currentCity != undefined) { %> 
+			<p>Live in: <%= currentCity %>,  <%= currentCountry %></p>			
+		<% } %>
 		<p>Last in: <%= result.lastLogin %></p>
 		<p>Friends: <%= result.numFriends%> / References: <%= result.numReferences%> / Response rate: <%= result.tasaRespuestas%> %</p>
-		<p>About <%= result.allAboutYou%></p>
-		<p>Languages: 
-			<% _.each(languages, function(lang) { %> 
-				</br>
-    			<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
-<% }); %>
+		<% if (currentCity != undefined) { %> 
+			<p>About <%= result.allAboutYou%></p>
+		<% } %>		
+		<% if (languages.length > 0) { %> 
+			<p>Languages: 
+				<% _.each(languages, function(lang) { %> 
+					</br>
+    				<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
+					<% }); %>
 			</p>
+		<% } %>
 	</div>
 	<div class="span2">
 		<div class="btn-group">
-		  <button class="btn">Chat</button>
-		  <button class="btn">Request</button>
-		  <button class="btn">Invite</button>
+		  <button class="btn fake-btn">Chat</button>
+		  <button class="btn fake-btn">Request</button>
+		  <button class="btn fake-btn">Invite</button>
 		</div>
 	</div>
-		
 <legend></legend>
-
+</div>
