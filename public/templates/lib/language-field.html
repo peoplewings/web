@@ -1,5 +1,5 @@
 <div id="select-lang-<%- index%>">
-<select style="text-transform: capitalize" name="language-<%- index%>" id="language_field_<%- index%>" <%= extraAttribute%>>
+<select name="language-<%- index%>" id="language_field_<%- index%>" <%= extraAttribute%>>
 	<option value="" selected="selected">Select Language</option>
 	<% _.each(languages, function(lang) { %> 
     <option value="<%= lang %>"><%= lang %></option>

@@ -46,7 +46,7 @@ define([
 				var s
 				$.each(resp.data.languages, function(i, field){
 					s = i + 1 + ""
-					resp.data["x_language_" + s] = field.name
+					resp.data["x_language_" + s] = field.name[0].toUpperCase() + field.name.slice(1)
 					resp.data["x_level_" + s] = field.level
 				})
 				$.each(resp.data.education, function(i, field){
