@@ -3,6 +3,7 @@ var API = function(){
 	var baseUrl = 'http://peoplewings-backend.herokuapp.com'
 	var apiVersion = '/api/v1'
 	
+	
 	function errorCb(error){
 			console.log(error)
 	}
