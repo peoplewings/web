@@ -6,7 +6,8 @@ define([
   'text!templates/app/wings.html',
   'text!templates/lib/alert.html',
   'models/Profile',
-], function($, Backbone, api, utils, wingsTpl, alertTpl, UserProfile){
+  'models/Wing',
+], function($, Backbone, api, utils, wingsTpl, alertTpl, UserProfile, WingModel){
 	
   var spinner = new Spinner(utils.getSpinOpts());
 	
@@ -16,14 +17,13 @@ define([
 	events: {
 		"click #add-wing-btn": "createWing",
 		"change #generalStatus": "changeStatus",
-		"change #wings-list": "changeWing",
+		"change #wings-list": "updateWing",
 	},
 	initialize: function(){
 		this.model = new UserProfile({id:"me"})
-		this.bindings = {
-			pwState: "[name=generalStatus]"
-		}
+		this.bindings = { pwState: "[name=generalStatus]" }
 		this._modelBinder = new Backbone.ModelBinder();
+		//When no user model has been retrieved first
 		if (!this.model.get("pwState")) this.model.fetch()
 		this.getUserWings()
 	},
@@ -35,7 +35,9 @@ define([
 	getUserWings: function(){
 		var sc = this
 		api.get(api.getApiVersion() + "/profiles/me/accomodations", {}, function(response){
-			sc.wings = response.data
+			$.each(response.data, function(index, wing){
+				sc.wings.push({name: wing.name, uri: wing.uri})
+			})
 			sc.render()
 		})
 	},
@@ -43,24 +45,33 @@ define([
 		this.wings.push(wing)
 		this.render()
 	},
+	updateWingToList: function(item){
+		var updated = _.find(this.wings, function(wing){ return wing.uri == item.uri })
+		updated.name = item.name
+		this.render()
+	},
+	deleteWingFromList: function(id){
+		//Should be an id, but I need id's from server before!!??
+		this.wings = _.reject(this.wings, function(wing){ return wing.uri == id })
+		this.render()
+		
+	},
 	createWing: function(){
+		//Refactor with changeWing!!
 		var scope = this
-		require(["views/app/wing"], function(wingView){
-			scope.wingView = new wingView({papa: scope})
-			scope.wingView.render({target: "#my-wings", update: false })
-			/*setTimeout(function(){ 
-				alert("Close!")
-				scope.wingView.close() 
-			}, 2000)
-			setTimeout(function(){ 
-				alert("Render")
-				scope.wingView.render({target: "#my-wings", update: false}) 
-			}, 5000)
-			setTimeout(function(){ 
-				alert("Close2!")
-				scope.wingView.close() 
-			}, 7000)*/
-		})
+		if (!this.wingView){
+			require(["views/app/wing"], function(wingView){
+				scope.wingView = new wingView({papa: scope})
+				scope.wingView.render({target: "#my-wings", update: false })
+			})
+		}else {
+				this.wingView.close()
+				require(["views/app/wing"], function(wingView){
+					scope.wingView = new wingView({papa: scope})
+					scope.wingView.render({target: "#my-wings", update: false })
+				})
+				
+		}
 	},
 	changeStatus: function(e){
 		spinner.spin(document.getElementById('main'));
@@ -70,27 +81,25 @@ define([
 			$('#main').prepend(tpl)
 		})
 	},
-	changeWing: function(e){
+	updateWing: function(e){
+		//Refactor with createWing
 		var scope = this
+		console.log(e.target.value)
 		if (e.target.value){
-			console.log(e.target.value)
 			var id = e.target.value.split("accomodations/", 2)[1]
-			require(["views/app/wing"], function(wingView){
-				scope.wingView = new wingView({papa: scope})
-				scope.wingView.render({target: "#my-wings", update: true, id: id })
-			/*setTimeout(function(){ 
-				alert("Close!")
-				scope.wingView.close() 
-			}, 2000)
-			setTimeout(function(){ 
-				alert("Render")
-				scope.wingView.render({target: "#my-wings", update: false}) 
-			}, 5000)
-			setTimeout(function(){ 
-				alert("Close2!")
-				scope.wingView.close() 
-			}, 7000)*/
-			})
+			if (!this.wingView){
+				require(["views/app/wing"], function(wingView){
+					scope.wingView = new wingView({papa: scope})
+					scope.wingView.render({target: "#my-wings", update: true, id: id })
+				})
+			} else {
+				this.wingView.close()
+				require(["views/app/wing"], function(wingView){
+					scope.wingView = new wingView({papa: scope})
+					scope.wingView.render({target: "#my-wings", update: true, id: id })
+				})
+				
+			} 
 		} 
 	}
   });
