@@ -4,10 +4,9 @@ define([
   "api",
   "utils",
   'text!templates/app/wings.html',
-  'text!templates/app/accomodation-form.html',
   'text!templates/lib/alert.html',
   'models/Profile',
-], function($, Backbone, api, utils, wingsTpl, wingFormTpl, alertTpl, UserProfile){
+], function($, Backbone, api, utils, wingsTpl, alertTpl, UserProfile){
 	
   var spinner = new Spinner(utils.getSpinOpts());
 	
@@ -15,9 +14,9 @@ define([
 	el: "#main",
 	wings: [],
 	events: {
-		"click #add-wing-btn": "addWing",
+		"click #add-wing-btn": "createWing",
 		"change #generalStatus": "changeStatus",
-		"change #wings-list": "changeWing"
+		"change #wings-list": "changeWing",
 	},
 	initialize: function(){
 		this.model = new UserProfile({id:"me"})
@@ -40,15 +39,28 @@ define([
 			sc.render()
 		})
 	},
-	addWing: function(evt){
+	addWingToList: function(wing){
+		this.wings.push(wing)
+		this.render()
+	},
+	createWing: function(){
 		var scope = this
-		if (!this.accomodationView){
-				require(["views/app/wing"], function(accomodationView){
-					scope.accomodationView = accomodationView
-					scope.accomodationView.render({parentView: scope})
-				})
-		} else this.accomodationView.render({parentView: scope})
-		return false
+		require(["views/app/wing"], function(wingView){
+			scope.wingView = new wingView({papa: scope})
+			scope.wingView.render({target: "#my-wings", update: false })
+			/*setTimeout(function(){ 
+				alert("Close!")
+				scope.wingView.close() 
+			}, 2000)
+			setTimeout(function(){ 
+				alert("Render")
+				scope.wingView.render({target: "#my-wings", update: false}) 
+			}, 5000)
+			setTimeout(function(){ 
+				alert("Close2!")
+				scope.wingView.close() 
+			}, 7000)*/
+		})
 	},
 	changeStatus: function(e){
 		spinner.spin(document.getElementById('main'));
@@ -63,12 +75,22 @@ define([
 		if (e.target.value){
 			console.log(e.target.value)
 			var id = e.target.value.split("accomodations/", 2)[1]
-			if (!scope.accomodationView){
-						require(["views/app/wing"], function(accomodationView){
-							scope.accomodationView = accomodationView
-							scope.accomodationView.render({wingId: id, parentView: scope})
-						})
-			} else scope.accomodationView.render({parentView: scope})
+			require(["views/app/wing"], function(wingView){
+				scope.wingView = new wingView({papa: scope})
+				scope.wingView.render({target: "#my-wings", update: true, id: id })
+			/*setTimeout(function(){ 
+				alert("Close!")
+				scope.wingView.close() 
+			}, 2000)
+			setTimeout(function(){ 
+				alert("Render")
+				scope.wingView.render({target: "#my-wings", update: false}) 
+			}, 5000)
+			setTimeout(function(){ 
+				alert("Close2!")
+				scope.wingView.close() 
+			}, 7000)*/
+			})
 		} 
 	}
   });
