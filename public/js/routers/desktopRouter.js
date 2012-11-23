@@ -79,9 +79,12 @@ define([
 			} else this.profileView.render()
 		},
 		wings: function(){
-			require(["views/app/wings"], function(wingsView){
-				wingsView.render()
-			})
+			var scope = this
+			if (!this.wingsView){
+				require(["views/app/wings"], function(wingsView){
+						wingsView.render()
+					})
+			} else this.wingsView.render() 
 		},
 		//Common hashs
 		defaultAction: function(actions){
