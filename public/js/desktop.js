@@ -40,6 +40,7 @@ require.config({
 	  // jQuery Validation plugin
  	  "jquery.Validate": ["jquery"],
  	  "jquery.Jcrop": ["jquery"],
+ 	  "jquery.Datepicker": ["jquery"],
 	  /*
 	  "jquery.spinner": {
             deps: ['jquery', 'spinner'],
