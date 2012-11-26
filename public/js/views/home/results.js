@@ -3,9 +3,9 @@ define([
   'backbone',
   'utils',
   'api',
-  'text!templates/home/accomodation.html',
   'text!templates/home/search_result.html',
-], function($, Backbone, utils, api, accomodationTpl, resultTpl){
+  'text!templates/home/pagination.html',
+], function($, Backbone, utils, api, resultTpl, pageTpl){
 
   var resultsView = Backbone.View.extend({
     el: "#main",
@@ -19,9 +19,15 @@ define([
 	},
     render: function(results){
 		console.log(results)
-		//$(".pagination").show()
+		$(".pagination").show()
+		this.renderPagination(results.profiles.length, results.count)
 		this.renderItems(results.profiles)
     },
+	renderPagination: function(pageCount, totalCount){
+		var tpl = _.template(pageTpl, {startResult: "1", endResult: pageCount, totalCount: totalCount })
+		$('div.tab-content').after(tpl)
+		$('div.tab-content').after(tpl)
+	},
 	renderItems: function(items){
 		var tpl
 		var scope = this
@@ -33,9 +39,8 @@ define([
 					currentCountry: item.current.country, 
 					languages: item.languages
 				})
-			$(".pagination:last").before(tpl)
+			$(".pager:last").before(tpl)
 			})
-
 	},
 	alertLog: function(){
 		alert("You need to be logged in to use this function")
