@@ -20,14 +20,12 @@ define([
 	},
     render: function(){
 	  var sc = this
-	  var tpl
+	  var tpl = _.template(accomodationTpl, {ages: sc.ages, agesR: sc.agesR })
       $(this.el).html(mainHomeTpl);
-	  this.setLanguages(function(response){
-			tpl = _.template(accomodationTpl, {ages: sc.ages, agesR: sc.agesR, languages: response.data})
-			$("#accomodation").html(tpl)
-			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-	  })
+	  $("#accomodation").html(tpl)
+	  $("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+	  $("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+	  
     },
 	submitSearch: function(e){
 		e.preventDefault()
@@ -59,10 +57,7 @@ define([
 			this.agesR[i-18] = (99 - i) + 18
 			this.ages[i-18] = i
 		}
-	},
-	setLanguages: function(callback){
-		api.get(api.getApiVersion() + "/languages", {}, callback)
-	},
+	}
   });
   return new mainHomeView;
 });
