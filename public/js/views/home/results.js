@@ -13,20 +13,33 @@ define([
 		"click a.previousPage": "previousPage"
 	},
 	initialize: function(options){
-		console.log("logged", options.logged)
 		this.targetEl = options.target
-		this.blurrStyle = (options.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : ""
+		this.logged = options.logged
+		this.query = options.query
+		this.blurrStyle = (this.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : ""
 	},
     render: function(results){
 		var tpl = _.template(resultsTpl, { blurrStyle: this.blurrStyle, results: results.profiles, startResult: "1", endResult: results.profiles.length, totalCount: results.count })
 		$(this.el).html(tpl);
 		$(this.targetEl).after(this.$el)
     },
-	nextPage: function(){
-		console.log("next")
+	nextPage: function(evt){
+		console.log("next", this.query.page)
+		var scope = this
+		this.query.page++
+		api.get(api.getApiVersion() + "/profiles", this.query, function(results){
+			scope.render(results.data)
+		})
+		return false
 	},
 	previousPage: function(){
-		console.log("previous")
+		console.log("previous", this.query.page)
+		var scope = this
+		this.query.page--
+		api.get(api.getApiVersion() + "/profiles", this.query, function(results){
+			scope.render(results.data)
+		})
+		return false
 	},
 	close: function(){
 		this.remove()

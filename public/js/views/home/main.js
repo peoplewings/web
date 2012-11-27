@@ -47,14 +47,13 @@ define([
 		var scope = this
 		if (!this.resultView){
 			require(["views/home/results"], function(resultView){
-					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main"})
+					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main", query: data})
 			})
 		}
 		else {
 			this.resultView.close()
 		}
 		api.get(api.getApiVersion() + "/profiles", data, function(results){
-			
 			scope.resultView.render(results.data)
 		})
 	},
