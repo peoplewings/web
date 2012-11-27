@@ -47,7 +47,7 @@ define([
 		var scope = this
 		if (!this.resultView){
 			require(["views/home/results"], function(resultView){
-					scope.resultView = new resultView(api.userIsLoggedIn())
+					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main"})
 					scope.resultView.render(results.data)
 			})
 		}

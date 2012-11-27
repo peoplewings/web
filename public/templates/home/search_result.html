@@ -1,3 +1,4 @@
+<% _.each(results, function(result) { %> 
 <div class="search-result">	
 	<div class="span2">
 		<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
@@ -14,17 +15,17 @@
 				<span class="label label-important">Not verified</span>
 			<% } %>
 		</p>
-		<% if (currentCity != undefined) { %> 
-			<p>Live in: <%= currentCity %>,  <%= currentCountry %></p>			
+		<% if (result.current.name != undefined) { %> 
+			<p><b>Live in:</b> <%= result.current.name %>,  <%= result.current.country %></p>			
 		<% } %>
-		<p>Last in: <%= result.lastLogin %></p>
-		<p>Friends: <%= result.numFriends%> / References: <%= result.numReferences%> / Response rate: <%= result.tasaRespuestas%> %</p>
-		<% if (currentCity != undefined) { %> 
-			<p>About <%= result.allAboutYou%></p>
+		<p><b>Last in:</b> <%= result.lastLogin %></p>
+		<p><b>Friends:</b> <%= result.numFriends%> / <b>References:</b> <%= result.numReferences%> / <b>Response rate: </b><%= result.tasaRespuestas%> %</p>
+		<% if (result.allAboutYou != "") { %> 
+			<p><b>About</b> <%= result.allAboutYou%></p>
 		<% } %>		
-		<% if (languages.length > 0) { %> 
-			<p>Languages: 
-				<% _.each(languages, function(lang) { %> 
+		<% if (result.languages.length > 0) { %> 
+			<p><b>Languages: </b>
+				<% _.each(result.languages, function(lang) { %> 
 					</br>
     				<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
 					<% }); %>
@@ -40,3 +41,4 @@
 	</div>
 <legend></legend>
 </div>
+<% }); %>
