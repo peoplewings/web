@@ -40,17 +40,23 @@ define([
 			delete data['gender2']
 		}
 		data.page = 1
-		api.get(api.getApiVersion() + "/profiles", data, this.renderResults)
+		this.renderResults(data)
 		
 	},
-	renderResults: function(results){
+	renderResults: function(data){
 		var scope = this
 		if (!this.resultView){
 			require(["views/home/results"], function(resultView){
 					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main"})
-					scope.resultView.render(results.data)
 			})
 		}
+		else {
+			this.resultView.close()
+		}
+		api.get(api.getApiVersion() + "/profiles", data, function(results){
+			
+			scope.resultView.render(results.data)
+		})
 	},
 	setAges: function(){
 		for (var i = 18; i < 100; i++){
