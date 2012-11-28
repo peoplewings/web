@@ -5,17 +5,29 @@ define([
   "utils",
   "views/home/main",
   "views/app/header",
-  "views/app/feedback",
-], function($, Backbone, api, utils, mainView, appHeader, feedView){
-	
+], function($, Backbone, api, utils, mainView, appHeader){
+
   var homeView = Backbone.View.extend({
 	initialize: function(){
-		console.log("Im here")
+		this.eventBinds()
+	},
+	eventBinds: function(){
+		$("#feedback-btn-submit").live("click", this.showFeedback(this))
 	},
     render: function(){
 		mainView.render()
-		feedView.render()
-    }
+		$("#feedback-btn").show()
+    },
+	showFeedback: function(scope){
+		return function(evt){
+			evt.preventDefault()
+			if (!scope.feedbackView){
+				require(["views/app/feedback"], function(feedView){
+						feedView.render()
+				})
+			} else scope.feedbackView.render()
+		}
+	}
   });
 
   return new homeView;

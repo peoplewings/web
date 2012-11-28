@@ -5,8 +5,7 @@ define([
   "views/home/header",
   "views/app/header",
   "views/home/main",
-  "views/app/feedback",
-], function($, Backbone, api, headerView, appHeaderView, homeView, feedView){
+], function($, Backbone, api, headerView, appHeaderView, homeView){
 	
   var logoutView = Backbone.View.extend({
 	logout: function(){
@@ -31,7 +30,7 @@ define([
 		api.clearAuthToken()
 		//Destroy old views
 		appHeaderView.destroy()
-		feedView.close()
+		$("#feedback-btn").hide()
 		//render the home View
 		headerView.render();
 		homeView.render();	

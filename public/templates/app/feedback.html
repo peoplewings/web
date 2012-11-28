@@ -1,0 +1,25 @@
+<form id="feedback-form" class="form-horizontal">
+      <div class="control-group">
+	    <label class="control-label" for="inputHost">Typology</label>
+	    <div class="controls inline">
+			<label class="radio">
+				<input type="radio" name="ftype" id="optionsType" value="Positive" checked> Cool
+			</label>
+			<label class="radio">
+				<input type="radio" name="ftype" id="optionsRadios2" value="Negative"> Sucks
+			</label>
+		</div>
+	  </div>
+	  <div class="control-group">
+			<label class="control-label" for="textarea"><label for="inputOccupation">
+					<a href="" class="thumbnail pull-right" style="width: 48px; height: 48px">
+						<img id="avatar" src="<%= avatar%>" alt="avatar" style="width: 48px; height: 48px">
+					</a>
+			</label></label>
+			<div class="controls">
+				<textarea rows="3" maxsize="500" name="text" placeholder="Write a message..."></textarea>
+				<span class="help-block"></span>
+				<span class="help-inline"></span>
+			</div>
+	  </div>
+</form>
