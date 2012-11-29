@@ -47,15 +47,21 @@ define([
 		var scope = this
 		if (!this.resultView){
 			require(["views/home/results"], function(resultView){
-					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main", query: data})
+					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main > div.row:last", query: data})
+					api.get(api.getApiVersion() + "/profiles", data, function(results){
+						scope.resultView.render(results.data)
+					})
 			})
 		}
 		else {
 			this.resultView.close()
+			require(["views/home/results"], function(resultView){
+					scope.resultView = new resultView({logged: api.userIsLoggedIn(), target: "#main > div.row:last", query: data})
+					api.get(api.getApiVersion() + "/profiles", data, function(results){
+						scope.resultView.render(results.data)
+					})
+			})
 		}
-		api.get(api.getApiVersion() + "/profiles", data, function(results){
-			scope.resultView.render(results.data)
-		})
 	},
 	setAges: function(){
 		for (var i = 18; i < 100; i++){

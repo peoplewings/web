@@ -7,6 +7,7 @@ define([
 ], function($, Backbone, utils, api, resultsTpl){
 
   var resultsView = Backbone.View.extend({
+	//el: "#search-results",
 	events: {
 		"click button.fake-btn": "alertLog",
 		"click a.nextPage": "nextPage",
@@ -20,7 +21,7 @@ define([
 	},
     render: function(results){
 		var tpl = _.template(resultsTpl, { blurrStyle: this.blurrStyle, results: results.profiles, startResult: "1", endResult: results.profiles.length, totalCount: results.count })
-		$(this.el).html(tpl);
+		this.$el.html(tpl);
 		$(this.targetEl).after(this.$el)
     },
 	nextPage: function(evt){
