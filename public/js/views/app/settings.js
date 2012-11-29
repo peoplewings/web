@@ -21,7 +21,7 @@ define([
 		"click button#delete-account-btn": "deleteAccount",
 	},
 	initialize: function(options){
-		this.model = new UserModel({id:"me"})
+		this.model = new UserModel({id:api.getUserId()})
 		this.model.bindings = {
 			firstName: '[name=firstName]',
             lastName: '[name=lastName]',

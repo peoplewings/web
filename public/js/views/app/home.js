@@ -4,8 +4,7 @@ define([
   "api",
   "utils",
   "views/home/main",
-  "views/app/header",
-], function($, Backbone, api, utils, mainView, appHeader){
+], function($, Backbone, api, utils, mainView){
 
   var homeView = Backbone.View.extend({
 	initialize: function(){

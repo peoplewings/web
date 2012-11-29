@@ -2,8 +2,8 @@ define([
 	"jquery", 
 	"backbone",
 	"api",
-    "views/app/header",
-], function($, Backbone, api, headerView) {
+    //"views/app/header",
+], function($, Backbone, api/*, headerView*/) {
 
 	//Implementing a Factory Class (singleton)  
 	//Source from http://stackoverflow.com/questions/11145159/implement-javascript-instance-store-by-returning-existing-instance-from-construc
@@ -30,12 +30,12 @@ define([
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/accounts/',
         // Model Constructor
         initialize: function() {
-			this.on("change", function(headerView){
+			/*this.on("change", function(headerView){
 				return function(model){
                 headerView.render()
                 console.log("Changed my name to " + name );
 				}
-            });
+            });*/
         },
 		// To set the JSON root of the model
 		parse: function(resp, xhr){

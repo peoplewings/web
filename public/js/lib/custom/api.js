@@ -3,7 +3,6 @@ var API = function(){
 	var baseUrl = 'http://peoplewings-backend.herokuapp.com'
 	var apiVersion = '/api/v1'
 	
-	
 	function errorCb(error){
 			console.log(error)
 	}
@@ -13,7 +12,6 @@ var API = function(){
 		var headers = {}
 		
 		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken() }
-		
 		$.ajax({
 		  url: baseUrl + resource,
 		  type: 'post',
@@ -31,7 +29,7 @@ var API = function(){
 		
 		var headers = {}
 		
-		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken() }
+		if (loadAuthToken()) headers = { "X-Auth-Token": loadAuthToken()}
 		
 		$.ajax({
 		  url: baseUrl + resource,
@@ -81,7 +79,10 @@ var API = function(){
 		  headers: headers
 		})
 	}
-	function loadAuthToken() {
+	function loadAuthToken(){
+		if (loadSettings() != null) return $.parseJSON(loadSettings()).auth
+	}
+	function loadSettings() {
 		//console.log("localStorage: " + localStorage.getItem("Peoplewings-Auth-Token"))
 		//console.log("sessionStorage: " + sessionStorage.getItem("Peoplewings-Auth-Token"))
         return localStorage.getItem("Peoplewings-Auth-Token") || sessionStorage.getItem("Peoplewings-Auth-Token")
@@ -112,7 +113,7 @@ var API = function(){
             return loadAuthToken() != null
         },
 		getAuthToken: function() {
-			if (loadAuthToken() != null) return loadAuthToken()
+			if (loadSettings() != null) return $.parseJSON(loadSettings()).auth
 			else return "AnonymousUser"
 		},
 		getServerUrl: function(){
@@ -120,7 +121,13 @@ var API = function(){
 		},
 		getApiVersion: function(){
 			return apiVersion
-		}
+		},
+		getUserId: function(){
+			if (loadSettings() != null) return $.parseJSON(loadSettings()).uid
+		},
+		getProfileId: function(){
+			if (loadSettings() != null) return $.parseJSON(loadSettings()).pid
+		},
 	}
 	
 }();
