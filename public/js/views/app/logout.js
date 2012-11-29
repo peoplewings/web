@@ -33,7 +33,8 @@ define([
 		$("#feedback-btn").hide()
 		//render the home View
 		headerView.render();
-		homeView.render();	
+		homeView.render();
+		location.hash = "/" 
 	}
   });
 

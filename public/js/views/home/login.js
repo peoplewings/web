@@ -42,7 +42,6 @@ define([
 							var user = new UserModel(response.data)
 							homeHeader.destroy()
 							require(['views/app/header', 'views/app/home'], function(appLoggedHeader, homeLoggedView){
-								console.log("IIIII")
 								homeLoggedView.render()
 								appLoggedHeader.render()
 							})

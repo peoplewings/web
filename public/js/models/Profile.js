@@ -27,7 +27,6 @@ define([
 	var UserProfileModel = Backbone.Model.extend({
 		
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/',
-		idAttribute: "pid",
         initialize: function() {
 			
         },

@@ -42,7 +42,7 @@ define([
 		"submit form#contact-form": "submitProfile",
 	},
 	initialize: function(options){
-		this.model = new UserProfile({id:"me"})
+		this.model = new UserProfile({id: api.getProfileId()})
 		this.model.bindings = {
 			//Basic info 
 			gender: '[name=gender]',
