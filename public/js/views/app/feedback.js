@@ -9,6 +9,9 @@ define([
 ], function($, Backbone, api, utils, modalTpl, contentTpl, UserProfile){
 
   var feedbackView = Backbone.View.extend({
+	events: {
+		"click button#generic-modal-btn": "saveFeedback"
+	},
 	initialize: function(){
 		this.model = new UserProfile({id:"me"})
 		this.model.fetch()
@@ -19,10 +22,11 @@ define([
 		var tpl = _.template(modalTpl, { modalHeader: "New suggestion", acceptBtn: "Send"})
 		$("body section:last").append(tpl)
 		$(this.el + " div.modal-body").html(content)
-		$(this.el).modal('show') 
+		$(this.el).modal('show')
+		//$("#generic-modal-btn").live("click", this.saveFeedback())
     },
-	close: function(){
-
+	saveFeedback: function(evt){
+		console.log("SAVE")
 	}
   });
 
