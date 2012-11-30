@@ -10,7 +10,6 @@ define([
 	
 	initialize: function(){
 		this.model = new UserModel({id: api.getUserId()})
-		console.log(this.model.attributes)
 	},
 	render: function(){
 	  var tpl = _.template( headerTpl, { firstName: this.model.get('firstName'), lastName: this.model.get('lastName'), avatar: this.model.get('avatar') });

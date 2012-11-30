@@ -117,13 +117,11 @@ define([
 			data.dateStart += " 00:00:00"
 			data.dateEnd += " 00:00:00"
 		}
-		api.post(api.getApiVersion() + "/profiles/me/accomodations/", data, function(response){
+		api.post(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/", data, function(response){
 			var tpl
 			if (response.status === true){
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-				console.log(data)
-				data.uri = api.getApiVersion() + "/profiles/" + 
-				scope.papa.addWingToList({name: data.name, uri: api.getApiVersion() + "/profiles/me/accomodations/"})
+				scope.papa.addWingToList({name: data.name, uri: response.data.uri})
 			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
 			$(tpl).prependTo('#main').delay(800).slideUp(300)
 		})
@@ -142,13 +140,13 @@ define([
 			delete data.dateStart
 			delete data.dateEnd
 		}
-		api.put(api.getApiVersion() + "/profiles/me/accomodations/" + id, data, function(response){
+		api.put(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id, data, function(response){
 			var tpl
 			if (response.status === true){
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 				scope.close()
 				$("body").scrollTop()
-				scope.papa.updateWingToList({name: data.name, uri: api.getApiVersion() + "/profiles/3/accomodations/" + id})
+				scope.papa.updateWingToList({name: data.name, uri: api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id})
 			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
 			$(tpl).prependTo('#main').delay(800).fadeOut(300)
 		})
@@ -156,7 +154,7 @@ define([
 	deleteWing: function(evt){
 		var scope = this
 		var id = this.model.get("id")
-		var uri = api.getApiVersion() + "/profiles/me/accomodations/" + id
+		var uri = api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id
 		if (confirm("Are you sure you want to delete this wing?")){
 			api.delete(uri, {}, function(response){
 				var tpl
@@ -164,7 +162,7 @@ define([
 					tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 					scope.close()
 					$("body").scrollTop()
-					scope.papa.deleteWingFromList(api.getApiVersion() + "/profiles/3/accomodations/" + id)
+					scope.papa.deleteWingFromList(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id)
 				} else{
 					tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
 				}
