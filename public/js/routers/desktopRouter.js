@@ -79,9 +79,12 @@ define([
 			} else this.profileView.render()
 		},
 		wings: function(){
-			require(["views/app/wings"], function(wingsView){
-				wingsView.render()
-			})
+			var scope = this
+			if (!this.wingsView){
+				require(["views/app/wings"], function(wingsView){
+						wingsView.render()
+					})
+			} else this.wingsView.render() 
 		},
 		//Common hashs
 		defaultAction: function(actions){
@@ -98,9 +101,10 @@ define([
 			console.log('desktopRouter: initialize')
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
+
 			if (api.userIsLoggedIn()){
-				var user = new UserModel({id:"me"})
-				if (user.firstName === undefined){
+				var user = new UserModel({id: api.getUserId()})
+				if (user.firstName === undefined) {
 					user.fetch({
 						headers: { "X-Auth-Token": api.getAuthToken() }, 
 						success: function(){
@@ -108,12 +112,8 @@ define([
 						},
 						error: function() { console.log(arguments); }
 				 	});
-				}else {
-					appHomeView.render({model:user})
-				}
-		  	}else{
-				headerView.render();
-			}
+				} else appHomeView.render({model:user})
+			} else headerView.render();
         }
     });
 

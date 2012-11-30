@@ -1,12 +1,13 @@
 define([
   "jquery",
   "backbone",
+  "api",
   "models/Profile",
-], function($, Backbone, UserProfile){
+], function($, Backbone, api, UserProfile){
 
   var list = Backbone.View.extend({
 	initialize: function(options){
-		this.model = new UserProfile({id:"me"})
+		this.model = new UserProfile({id: api.getProfileId()})
 		this.el = options.el
 		this.store = options.items
 		this.tpl = options.tpl

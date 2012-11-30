@@ -3,18 +3,18 @@ define([
   "backbone",
   "api",
   "utils",
+  'models/Wing',
   'text!templates/app/accomodation-form.html',
   'text!templates/lib/alert.html',
-  'models/Wing',
-], function($, Backbone, api, utils, wingTpl, alertTpl, WingModel){
+], function($, Backbone, api, utils, WingModel, wingTpl, alertTpl){
 	
-  var wingView = Backbone.View.extend({
-	el: "#wings-form",
-	wingId: undefined,
+  var View = Backbone.View.extend({
+	wings: [],
 	events: {
 		"submit form#accomodation-form": "submitWing",
 		"click #update-wing-btn": "updateWing",
 		"click #delete-wing-btn": "deleteWing",
+		"click #cancel-wing-btn": "close",
 		"click input#inputSharingOnce": function(evt){
 			if (evt.target.checked) $("div#sharing-dates").show()
 			else {
@@ -24,38 +24,35 @@ define([
 			}
 		}
 	},
-	initialize: function(){
-		
+	initialize: function(options){
+		this.papa = options.papa
 	},
 	render: function(options){
-		if (options){
-			var wingId = options.wingId
-			var scope = this
-			scope.parentView = options.parentView
-			if (wingId){
-				this.model = new WingModel({id: wingId})
-				this.model.fetch({success: function(model){
+		if (options.target === undefined || options.update === undefined) alert( "Bad options" + options.toString())
+		var tpl, sc
+		sc = this
+		if (options.id){
+			this.model = new WingModel({id: options.id})
+			this.model.fetch({success: function(model){
 					console.log(model.attributes)
-					scope.renderForm({update:true})
-					scope.cityObject = model.get("city")
-					scope.bindModel()
-
-				}})
-				this.wingId = wingId
-			}
-			else this.renderForm({update:false})
+					sc.cityObject = model.get("city")
+					tpl = _.template(wingTpl, {update: options.update})
+					$(sc.el).html(tpl)
+					sc.$el.appendTo(options.target)
+					sc.bindModel()
+					sc.initWing()
+			}})
+		}else{
+			tpl = _.template(wingTpl, {update: options.update});
+      		$(this.el).html(tpl);
+	  		this.$el.appendTo(options.target)
+			this.initWing()
 		}
+	  
     },
-	renderForm: function(type){
-		var tpl = _.template(wingTpl, type)
-		$(this.el).html(tpl)
-		//Set date pickers
-		$("input[name=dateStart]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-		$("input[name=dateEnd]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-		//Set autocomplete on city field
-		this.cityAutocomplete()
-		//Set validations
-		$('#accomodation-form').validate()
+	close: function(){
+		this.remove()
+		this.unbind()
 	},
 	bindModel: function(){
 		this._modelBinder = new Backbone.ModelBinder();
@@ -63,78 +60,19 @@ define([
 		$("[name=city]").val(this.cityObject.name + ", " + this.cityObject.country)
 		if (this.model.get("sharingOnce") === true) $("div#sharing-dates").show()
 	},
-	close: function(){
-		this.remove();
-        this.unbind();
-	},
-	submitWing: function(evt){
-		evt.preventDefault()
-		var scope = this 
-		var data = utils.serializeForm(evt.target.id)
-		data.city = this.cityObject
-		if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
-			delete data.dateStart
-			delete data.dateEnd
-		} else {
-			data.dateStart += " 00:00:00"
-			data.dateEnd += " 00:00:00"
-		}
-		api.post(api.getApiVersion() + "/profiles/me/accomodations/", data, function(response){
-			var tpl
-			if (response.status === true){
-				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-				scope.parentView.getUserWings()
-			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
-			$('#main').prepend(tpl)
-		})
-	},
-	updateWing: function(evt){
-		$('#accomodation-form').validate()
-		evt.preventDefault()
-		var data = utils.serializeForm("accomodation-form")
-		data.city = this.cityObject
-		if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
-			delete data.dateStart
-			delete data.dateEnd
-		}
-		api.put(api.getApiVersion() + "/profiles/me/accomodations/" + this.wingId, data, function(response){
-			var tpl
-			if (response.status === true){
-				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-				$("body").scrollTop()
-				setTimeout(function(){ scope.parentView.getUserWings() }, 2000)
-			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
-			$('#main').prepend(tpl)
-		})
-	},
-	deleteWing: function(evt){
-		var scope = this
-		if (confirm("Are you sure you want to delete this wing?")){
-			api.delete(api.getApiVersion() + "/profiles/me/accomodations/" + this.wingId, {}, function(response){
-				var tpl
-				if (response.status === true){
-					scope.wingId = undefined
-					scope.close()
-					tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-					$("body").scrollTop()
-					setTimeout(function(){ scope.parentView.getUserWings() }, 2000)
-				} else{
-					tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
-				}
-				$('#main').prepend(tpl)
-			})
-		}else{
-			return
-		}		
-	},
-	cityAutocomplete: function(){
+	initWing: function(){
 		var sc = this
+		$("input[name=dateStart]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+		$("input[name=dateEnd]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+
 		require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en'],
 		function(){
 			var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), { types: ['(cities)'] });
 			google.maps.event.addListener(autoCity, 'place_changed', sc.setAutocomplete(autoCity, "inputCity"));   
 			$("#inputCity").keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
 		})
+		
+		$('#accomodation-form').validate()
 	},
 	setAutocomplete: function(auto, field){
 		var sc = this
@@ -167,7 +105,74 @@ define([
 		  }
 		return data
 	},
+	submitWing: function(evt){
+		evt.preventDefault()
+		var scope = this 
+		var data = utils.serializeForm(evt.target.id)
+		data.city = this.cityObject
+		if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
+			delete data.dateStart
+			delete data.dateEnd
+		} else {
+			data.dateStart += " 00:00:00"
+			data.dateEnd += " 00:00:00"
+		}
+		api.post(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/", data, function(response){
+			var tpl
+			if (response.status === true){
+				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
+				scope.papa.addWingToList({name: data.name, uri: "/profiles/" + api.getUserId() + "/accomodations/" + response.data.id})
+			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
+			$(tpl).prependTo('#main').delay(800).slideUp(300)
+		})
+	},
+	updateWing: function(evt){
+		evt.preventDefault()
+		var scope = this
+		var id = this.model.get("id")
+		//???
+		$('#accomodation-form').validate()
+		var data = utils.serializeForm("accomodation-form")
+		//???
+		data.city = this.cityObject
+		//???
+		if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
+			delete data.dateStart
+			delete data.dateEnd
+		}
+		api.put(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id, data, function(response){
+			var tpl
+			if (response.status === true){
+				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
+				scope.close()
+				$("body").scrollTop()
+				scope.papa.updateWingToList({name: data.name, uri: api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id})
+			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
+			$(tpl).prependTo('#main').delay(800).fadeOut(300)
+		})
+	},
+	deleteWing: function(evt){
+		var scope = this
+		var id = this.model.get("id")
+		var uri = api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id
+		if (confirm("Are you sure you want to delete this wing?")){
+			api.delete(uri, {}, function(response){
+				var tpl
+				if (response.status === true){
+					tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
+					scope.close()
+					$("body").scrollTop()
+					scope.papa.deleteWingFromList(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id)
+				} else{
+					tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
+				}
+				$(tpl).prependTo('#main').delay(800).fadeOut(300)
+			})
+		}else{
+			return
+		}		
+	},
   });
 
-  return new wingView;
+  return View;
 });

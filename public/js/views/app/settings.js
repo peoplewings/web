@@ -21,7 +21,7 @@ define([
 		"click button#delete-account-btn": "deleteAccount",
 	},
 	initialize: function(options){
-		this.model = new UserModel({id:"me"})
+		this.model = new UserModel({id:api.getUserId()})
 		this.model.bindings = {
 			firstName: '[name=firstName]',
             lastName: '[name=lastName]',
@@ -71,7 +71,7 @@ define([
 		if (data.newPassword) values.password = data.newPassword
 				
 		var sc = this
-		api.put(api.getApiVersion() + '/accounts/me', { resource: values, currentPassword: data.password }, function(response){ 
+		api.put(api.getApiVersion() + '/accounts/' + api.getUserId(), { resource: values, currentPassword: data.password }, function(response){ 
 			$('.alert').remove()
 			var tpl
 			if (response.status === true) {
@@ -104,7 +104,7 @@ define([
 				//console.log(resp.msg)
 			} 
 		}
-		if ($('#delete-account-form').valid()) api.delete(api.getApiVersion() + '/accounts/me', data, goodbye)
+		if ($('#delete-account-form').valid()) api.delete(api.getApiVersion() + '/accounts/' + api.getUserId(), data, goodbye)
 	}
   });
 

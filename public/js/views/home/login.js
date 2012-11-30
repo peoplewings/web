@@ -34,11 +34,11 @@ define([
 			if (response.status === true) {
 				if (response.code === 200) {
 					if ( loggedIn === "on" ) api.saveAuthToken(response.data.xAuthToken, true)
-					else api.saveAuthToken(response.data.xAuthToken, false)
+					else api.saveAuthToken(JSON.stringify({ auth: response.data.xAuthToken, uid: response.data.idAccount, pid: response.data.idProfile}), false)
 					//Get User Account details
-					api.get(api.getApiVersion() + '/accounts/me', {}, function(response){
+					api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {}, function(response){
 						if (response.status === true){
-							response.data.id = "me"
+							response.data.id = api.getUserId()
 							var user = new UserModel(response.data)
 							homeHeader.destroy()
 							require(['views/app/header', 'views/app/home'], function(appLoggedHeader, homeLoggedView){

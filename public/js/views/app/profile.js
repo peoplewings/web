@@ -42,7 +42,7 @@ define([
 		"submit form#contact-form": "submitProfile",
 	},
 	initialize: function(options){
-		this.model = new UserProfile({id:"me"})
+		this.model = new UserProfile({id: api.getProfileId()})
 		this.model.bindings = {
 			//Basic info 
 			gender: '[name=gender]',
@@ -126,21 +126,18 @@ define([
 	},
 	initLanguages: function(){
 		var sc = this
-		api.get(api.getApiVersion() + "/languages", {}, function(response){
-			sc.languages = response.data
-			if (sc.languagesCount === 0){
-			    var tpl = _.template(languageTpl, {index: 1, languages: sc.languages})
-				$('#languages-list').prepend(tpl)
-				sc.model.bindings["x_language_1"] = '[name=language-1]'
-				sc.model.bindings["x_level_1"] = '[name=level-1]'
-				sc.languagesCount = 1
-     		}else sc.setLanguages(sc.model.get("languages"))
-			  sc._modelBinder.bind(sc.model, sc.el, sc.model.bindings)
-		})
-	  
+		if (sc.languagesCount === 0){
+		    var tpl = _.template(languageTpl, {index: 1, extraAttribute: ""})
+			$('#languages-list').prepend(tpl)
+			sc.model.bindings["x_language_1"] = '[name=language-1]'
+			sc.model.bindings["x_level_1"] = '[name=level-1]'
+			sc.languagesCount = 1
+     	} else sc.setLanguages(sc.model.get("languages"))
+		sc._modelBinder.bind(sc.model, sc.el, sc.model.bindings)
 	},
 	setLanguages: function(languages){
 		var size = languages.length
+		console.log(languages)
 		for (var i = 1; i < size + 1; i++){
 			var tpl = _.template(languageTpl, {index: i, languages: this.languages, extraAttribute: 'disabled="true"'})
 			$('#languages-list').append(tpl)
@@ -151,6 +148,7 @@ define([
 			s = i + 1 + ""
 			sc.model.bindings["x_language_" + s] = '[name=language-' + s +']'
 			sc.model.bindings["x_level_" + s] = '[name=level-' + s +']'
+			//sc.collectLanguages()
 		})
 		this.languagesCount += size
 		this.collectLanguages()

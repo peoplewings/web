@@ -1,42 +1,61 @@
-<div class="search-result">	
-	<div class="span2">
-		<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
-			<img id="avatar" src="<%= result.avatar%>" alt="avatar" style="width: 108px; height: 108px">
-		</a>
+<!--<section id="search-results" class="container">-->
+	<div class="row">
+    	<div class="span8">
+			<ul class="pager pull-right">
+				<li> <div class="resultCounter"><span> <%= startResult %></span> - <span><%= endResult %></span> of <span> <%= totalCount %></span></div></li>
+				<li><a href="#" class="previousPage">«</a></li>
+			    <li><a href="#" class="nextPage">»</a></li>
+			</ul>
+			<legend></legend>
+			<% _.each(results, function(result) { %> 
+			<div class="search-result">	
+				<div class="span2">
+					<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
+						<img id="avatar" src="<%= result.avatar%>" alt="avatar" style="width: 108px; height: 108px">
+					</a>
+				</div>
+				<div class="span3">
+					<p id="user-name-label">
+						<span <%= blurrStyle%>><%= result.firstName%> 	<%= result.lastName%> </span>, <%= result.age%>
+						<% if (result.verified === true) { %> 
+							<span class="label label-success">Verified</span>
+						<% } %>
+						<% if (result.verified === false) { %> 
+							<span class="label label-important">Not verified</span>
+						<% } %>
+					</p>
+					<% if (result.current.name != undefined) { %> 
+						<p><b>Live in:</b> <%= result.current.name %>,  <%= result.current.country %></p>			
+					<% } %>
+					<p><b>Last in:</b> <%= result.lastLogin %></p>
+					<p><b>Friends:</b> <%= result.numFriends%> / <b>References:</b> <%= result.numReferences%> / <b>Response rate: </b><%= result.tasaRespuestas%> %</p>
+					<% if (result.allAboutYou != "") { %> 
+						<p><b>About</b> <%= result.allAboutYou%></p>
+					<% } %>	
+					<% if (result.languages.length > 0) { %> 
+						<p><b>Languages: </b>
+							<% _.each(result.languages, function(lang) { %> 
+								</br>
+			    				<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
+								<% }); %>
+						</p>
+					<% } %>
+				</div>
+				<div class="span2">
+					<div class="btn-group">
+					  <button class="btn fake-btn">Chat</button>
+					  <button class="btn fake-btn">Request</button>
+					  <button class="btn fake-btn">Invite</button>
+					</div>
+				</div>
+			<legend></legend>
+			</div>
+			<% }); %>
+			<ul class="pager pull-right">
+				<li> <div class="resultCounter"><span> <%= startResult %></span> - <span><%= endResult %></span> of <span> <%= totalCount %></span></div></li>
+				<li><a href="#" class="previousPage">«</a></li>
+			    <li><a href="#" class="nextPage">»</a></li>
+			</ul>
 	</div>
-	<div class="span3">
-		<p id="user-name-label">
-			<span <%= extraAttribute%>><%= result.firstName%> 	<%= result.lastName%> </span>, <%= result.age%>
-			<% if (result.verified === true) { %> 
-				<span class="label label-success">Verified</span>
-			<% } %>
-			<% if (result.verified === false) { %> 
-				<span class="label label-important">Not verified</span>
-			<% } %>
-		</p>
-		<% if (currentCity != undefined) { %> 
-			<p>Live in: <%= currentCity %>,  <%= currentCountry %></p>			
-		<% } %>
-		<p>Last in: <%= result.lastLogin %></p>
-		<p>Friends: <%= result.numFriends%> / References: <%= result.numReferences%> / Response rate: <%= result.tasaRespuestas%> %</p>
-		<% if (currentCity != undefined) { %> 
-			<p>About <%= result.allAboutYou%></p>
-		<% } %>		
-		<% if (languages.length > 0) { %> 
-			<p>Languages: 
-				<% _.each(languages, function(lang) { %> 
-					</br>
-    				<span style="text-transform: capitalize"><%= lang.name %> (<%= lang.level %>)</span>
-					<% }); %>
-			</p>
-		<% } %>
-	</div>
-	<div class="span2">
-		<div class="btn-group">
-		  <button class="btn fake-btn">Chat</button>
-		  <button class="btn fake-btn">Request</button>
-		  <button class="btn fake-btn">Invite</button>
-		</div>
-	</div>
-<legend></legend>
 </div>
+<!--		</section> -->
