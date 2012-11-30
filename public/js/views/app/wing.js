@@ -121,7 +121,7 @@ define([
 			var tpl
 			if (response.status === true){
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-				scope.papa.addWingToList({name: data.name, uri: response.data.uri})
+				scope.papa.addWingToList({name: data.name, uri: "/profiles/" + api.getUserId() + "/accomodations/" + response.data.id})
 			} else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
 			$(tpl).prependTo('#main').delay(800).slideUp(300)
 		})
