@@ -38,14 +38,13 @@ define([
 	},
 	uploadFile: function(file){
 		var fd = new FormData();
-		var profile = new ProfileModel({id:"me"})
+		var profile = new UserProfile({id: api.getProfileId()})
 	    fd.append("image", file);
-		fd.append("owner", profile.get("pid"));
+		fd.append("owner", profile.get("id"));
 		$(".progress").show()
 		var sc = this
 		$.ajax({
 		    url: api.getServerUrl() + "/cropper/",
-			//url: "http://192.168.1.36:5000/cropper/",
 		    data: fd,
 		    cache: false,
 		    contentType: false,
