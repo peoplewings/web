@@ -38,7 +38,7 @@ define([
 	},
 	uploadFile: function(file){
 		var fd = new FormData();
-		var profile = new UserProfile({id: api.getProfileId()})
+		var profile = new ProfileModel({id: api.getProfileId()})
 	    fd.append("image", file);
 		fd.append("owner", profile.get("id"));
 		$(".progress").show()
