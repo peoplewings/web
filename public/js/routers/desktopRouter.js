@@ -23,6 +23,7 @@ define([
 			 "logout": "logout",
 			 "settings":"settings",
 			 "profile":"profile",
+			 "profile/preview":"previewProfile",
 			 "wings": "wings",
 		//Default action
 			"*actions": "defaultAction",
@@ -77,6 +78,16 @@ define([
 					scope.profileView = new profileView()
 				})
 			} else this.profileView.render()
+		},
+		previewProfile: function(){
+			var scope = this
+			if (!this.previewView){
+				require(["views/app/preview"], function(previewView){
+					scope.previewView = previewView
+					previewView.render()
+				})
+			} else this.previewView.render()
+
 		},
 		wings: function(){
 			var scope = this

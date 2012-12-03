@@ -1,0 +1,72 @@
+<div class="row">
+	<div class="span12">
+		<div class="row">
+      		<div class="span5">
+				<p>
+					<h4 style="display: inline"><span name="firstName"></span> <span name="lastName"></span></h4>, <span name="age"></span>
+					<% if (verified === true) { %> 
+						<span class="label label-success"> Verified</span>
+					<% } %>
+					<% if (verified === false) { %> 
+						<span class="label label-important"> Not verified</span>
+					<% } %>
+				</p>
+				<ul class="unstyled">
+			  		<li>	
+						<% if (current.name != undefined) { %> 
+							Lives: <%= current.name %>,  <%= current.country %>
+						<% } %>
+				  	</li>
+				  	<li>
+						<% if (lastLoginDate != undefined) { %> 
+							Last login: "Located" user city, <%= lastLoginDate%>
+							<% } %>
+				  		</li>
+				</ul>
+			</div>
+      		<div class="span3">
+				<a href="#/profile" class="btn pull-right">Edit</a>
+				<div class="span3">
+					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas"></span> %
+					<label style="display: inline">Reply time: </label><span name="tasaRespuestas"></span> h
+				</div>
+			</div>
+    	</div>
+		<div class="row">
+			<div class="span8">
+				<ul class="nav nav-tabs">
+		  	  		<li class="active"><a href="#about" data-toggle="tab">About</a></li>
+			  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
+				</ul>
+				<div class="tab-content">
+			  		  <div class="tab-pane active" id="about">Basic</div>
+					  <div class="tab-pane" id="wings">Wings</div>
+				</div>
+			</div>	
+			<div class="span4">
+				<ul class="thumbnails">
+					<li class="span4">
+						<a href="" class="thumbnail" style="width:246px; height: 246px">
+							<img id="avatar" src="<%= avatar %>" alt="avatar">
+						</a>
+					</li>
+				</ul>
+			</div>
+   		</div>
+	</div>
+</div>
+<!--
+<div class="row">
+			<ul class="nav nav-tabs">
+	  	  		<li class="active"><a href="#about" data-toggle="tab">About</a></li>
+		  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
+			</ul>
+			<div class="tab-content">
+		  		<div class="tab-pane active" id="basic-info">Basic</div>
+				  <div class="tab-pane" id="about-me">About</div>
+				  <div class="tab-pane" id="likes-info">Likes</div>
+				  <div class="tab-pane" id="contact-info">Contact</div>
+				</div>
+			</div>	
+    	</div>
+-->
