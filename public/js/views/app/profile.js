@@ -14,10 +14,10 @@ define([
   'text!templates/lib/instant-field.html',
   'text!templates/lib/location-field.html',
   'text!templates/lib/alert.html',
-  'models/Profile',
   'views/app/list',
   'views/app/avatar',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, UserProfile, List, avatarView){
+  'models/Profile',
+], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, List, avatarView, UserProfile){
   
   var profileView = Backbone.View.extend({
     el: "#main",
@@ -79,9 +79,7 @@ define([
 	  var sc = this
 	  this.model.fetch({ 
 			success: function(model){
-				console.log("Fetch model:")
-				console.dir(model.attributes)
-				console.dir(model.bindings)
+				console.log("Fetch model:", model.attributes)
 				sc.languagesCount = model.get("languages").length
 				sc.render()
 			},
@@ -89,7 +87,15 @@ define([
 	  })
 	},
     render: function(){
-      $(this.el).html(profileTpl);
+	  var tpl = _.template(profileTpl, {
+			age: this.model.get("age"), 
+			firstName: this.model.get("firstName"), 
+			lastName: this.model.get("lastName"), 
+			verified: this.model.get("verified"),
+			current: this.model.get("current"),
+			lastLoginDate: this.model.get("lastLoginDate"),
+	  })
+      $(this.el).html(tpl);
 	  //Sets tab's contents
 	  $('#basic-info').html(basicInfoTpl)
 	  $('#about-me').html(aboutMeTpl)
@@ -111,7 +117,7 @@ define([
 	},
 	submitProfile: function(e){
 		e.preventDefault(e);
-		console.log('Submit profile ' + e.target.id, this.model.attributes, this.model.bindings)
+		//console.log('Submit profile ' + e.target.id, this.model.attributes, this.model.bindings)
 		this.model.save(this.feedbackResponse)
 	},
 	feedbackResponse: function(response){
@@ -137,7 +143,6 @@ define([
 	},
 	setLanguages: function(languages){
 		var size = languages.length
-		console.log(languages)
 		for (var i = 1; i < size + 1; i++){
 			var tpl = _.template(languageTpl, {index: i, languages: this.languages, extraAttribute: 'disabled="true"'})
 			$('#languages-list').append(tpl)
