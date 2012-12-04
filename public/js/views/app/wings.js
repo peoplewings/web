@@ -20,7 +20,7 @@ define([
 		"change #wings-list": "updateWing",
 	},
 	initialize: function(){
-		this.model = new UserProfile({id:"me"})
+		this.model = new UserProfile({id: api.getProfileId()})
 		this.bindings = { pwState: "[name=generalStatus]" }
 		this._modelBinder = new Backbone.ModelBinder();
 		//When no user model has been retrieved first
@@ -34,7 +34,7 @@ define([
     },
 	getUserWings: function(){
 		var sc = this
-		api.get(api.getApiVersion() + "/profiles/me/accomodations", {}, function(response){
+		api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations", {}, function(response){
 			$.each(response.data, function(index, wing){
 				sc.wings.push({name: wing.name, uri: wing.uri})
 			})

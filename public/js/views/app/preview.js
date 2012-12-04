@@ -30,7 +30,7 @@ define([
 				verified: this.model.get("verified"),
 				current: this.model.get("current"),
 				lastLoginDate: this.model.get("lastLoginDate"),
-				interestedIn: this.model.get("interestedIn")[0].gender + " " + this.model.get("interestedIn")[1].gender
+				interestedIn: this.model.get("interestedIn")[0].gender 
 			})
 			$(this.el).html(tpl);
 			this._modelBinder.bind(this.model, this.el)
