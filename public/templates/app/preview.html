@@ -30,6 +30,10 @@
 					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas"></span> %
 					<label style="display: inline">Reply time: </label><span name="tasaRespuestas"></span> h
 				</div>
+				<div class="span3">
+					<a href="#/friends" class="btn">Friends <span name="tasaRespuestas"></span></a>
+					<a href="#/references" class="btn">References <span name="tasaRespuestas"></span></a>
+				</div>
 			</div>
     	</div>
 		<div class="row">
@@ -39,7 +43,67 @@
 			  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
 				</ul>
 				<div class="tab-content">
-			  		  <div class="tab-pane active" id="about">Basic</div>
+			  		  <div class="tab-pane active" id="about">
+						<h4>Basic Info</h4>
+			  		  	<dl class="dl-horizontal">
+							<dt>Gender</dt>
+							<dd name="gender"></dd>
+							<dt>Birthday</dt>
+							<dd name="birthDay"></dd>
+							<dt>Interested in</dt>
+							<dd><%= interestedIn %></dd>
+							<dt>Relationship status</dt>
+							<dd name="civilState"></dd>
+							<dt>Languages</dt>
+							<dd name="languages"></dd>
+							<dt>Hometown</dt>
+							<dd name="hometown"></dd>
+							<dt>Places where I have lived</dt>
+							<dd name="otherLocations"></dd>
+							<dt></dt>
+							<dd><div id="mapcanvas"></div></dd>
+						</dl>
+						<legend></legend>
+						<h4>About Me</h4>
+			  		  	<dl class="dl-horizontal">
+							<dt>Description</dt>
+							<dd name="allAboutYou"></dd>
+							<dt>Current mission</dt>
+							<dd name="mainMission"></dd>
+							<dt>Occupation</dt>
+							<dd name="occupation"></dd>
+							<dt>Company</dt>
+							<dd name="company"></dd>
+							<dt>Education</dt>
+							<dd name="education"></dd>
+							<dt>Personal philosophy</dt>
+							<dd name="personalPhilosophy"></dd>
+							<dt>Political views</dt>
+							<dd name="politicalOpinion"></dd>
+							<dt>Religion</dt>
+							<dd name="religion"></dd>
+						</dl>
+						<legend></legend>
+						<h4>Likes</h4>
+			  		  	<dl class="dl-horizontal">
+							<dt>People I enjoy</dt>
+							<dd name="enjoyPeople"></dd>
+							<dt>Movies, books...</dt>
+							<dd name="movies"></dd>
+							<dt>Webs, apps</dt>
+							<dd name="otherPages"></dd>
+							<dt>Show, learn, share</dt>
+							<dd name="sharing"></dd>
+							<dt>Amazing things done/seen</dt>
+							<dd name="incredible"></dd>
+							<dt>People who inspires you</dt>
+							<dd name="inspiredBy"></dd>
+							<dt>Favorite quotes</dt>
+							<dd name="quotes"></dd>
+							<dt>Opinion about Peoplewings</dt>
+							<dd name="pwOpinion"></dd>
+						</dl>
+			  		  </div>
 					  <div class="tab-pane" id="wings">Wings</div>
 				</div>
 			</div>	
@@ -55,18 +119,3 @@
    		</div>
 	</div>
 </div>
-<!--
-<div class="row">
-			<ul class="nav nav-tabs">
-	  	  		<li class="active"><a href="#about" data-toggle="tab">About</a></li>
-		  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
-			</ul>
-			<div class="tab-content">
-		  		<div class="tab-pane active" id="basic-info">Basic</div>
-				  <div class="tab-pane" id="about-me">About</div>
-				  <div class="tab-pane" id="likes-info">Likes</div>
-				  <div class="tab-pane" id="contact-info">Contact</div>
-				</div>
-			</div>	
-    	</div>
--->
