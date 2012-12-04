@@ -1,6 +1,14 @@
 <form id="accomodation-form" class="form-horizontal well">
 	<% if (update === true) { %> 
-		<button type="button" class="close" id="delete-wing-btn">×</button>
+	<div class="btn-group pull-right">
+	  <button class="btn btn-mini">Options</button>
+	  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+		<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+	  </ul>
+	</div>
 	<% } %>
  <div class="control-group">
     <label class="control-label" for="inputName">Wing name</label>
