@@ -21,7 +21,7 @@
 		<div id="my-wings" class="control-group">
 			<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
 			<div class="controls" style="display: inline">
-				<select name="wingsList" id="wings-list" class="span4">
+				<select name="wingsList" id="wings-list" class="span3">
    					<% if (wings.length > 0){ %>
     					<option value="">Select wing</option>
 					<% } %>
@@ -32,7 +32,16 @@
     					<option value="<%= wing.uri %>"><%= wing.name %> (Accomodation)</option>
 				<% }); %>
 				</select>
-				<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>
+				<div class="btn-group" style="display: block">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+			    		Add wing
+				    	<span class="caret"></span>
+				  	</a>
+				  	<ul class="dropdown-menu">
+		  				<li><a id="add-wing-btn">Accomodation</a></li>
+				  	</ul>
+				</div>
+				<!--<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>-->
 				<span class="help-block"></span>
 				<span class="help-inline"></span>
 			</div>
