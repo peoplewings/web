@@ -28,11 +28,11 @@
 				<a href="#/profile" class="btn pull-right">Edit</a>
 				<div class="span3">
 					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas"></span> %
-					<label style="display: inline">Reply time: </label><span name="tasaRespuestas"></span> h
+					<label style="display: inline">Reply time: </label><span name="replyTime"></span> h
 				</div>
 				<div class="span3">
-					<a href="#/friends" class="btn">Friends <span name="tasaRespuestas"></span></a>
-					<a href="#/references" class="btn">References <span name="tasaRespuestas"></span></a>
+					<a href="#/friends" class="btn">Friends <span name="numFriends"></span></a>
+					<a href="#/references" class="btn">References <span name="numReferences"></span></a>
 				</div>
 			</div>
     	</div>
@@ -49,17 +49,31 @@
 							<dt>Gender</dt>
 							<dd name="gender"></dd>
 							<dt>Birthday</dt>
-							<dd name="birthDay"></dd>
+							<dd><%= birthday %></dd>
 							<dt>Interested in</dt>
 							<dd><%= interestedIn %></dd>
 							<dt>Relationship status</dt>
 							<dd name="civilState"></dd>
 							<dt>Languages</dt>
-							<dd name="languages"></dd>
+							<% if (languages.size != 0) { %> 
+							<dd>
+								<% _.each(languages, function(lang) { %> 
+									<%= lang.name%> <%= lang.level%>, 
+								<% }); %>
+							</dd>
+							<% } %>
 							<dt>Hometown</dt>
-							<dd name="hometown"></dd>
+							<% if (hometown.name != undefined) { %> 
+							<dd><%= hometown.name%>, <%= hometown.country%> </dd>
+							<% } %>
 							<dt>Places where I have lived</dt>
-							<dd name="otherLocations"></dd>
+							<% if (otherLocations.size != 0) { %> 
+							<dd>
+								<% _.each(otherLocations, function(location) { %> 
+									<%= location.name%>, 
+								<% }); %>
+							</dd>
+							<% } %>
 							<dt></dt>
 							<dd><div id="mapcanvas"></div></dd>
 						</dl>
