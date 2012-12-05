@@ -70,7 +70,7 @@
 							<% if (otherLocations.size != 0) { %> 
 							<dd>
 								<% _.each(otherLocations, function(location) { %> 
-									<%= location.name%>, 
+									<%= location.name%>, <%= location.country%>;
 								<% }); %>
 							</dd>
 							<% } %>
