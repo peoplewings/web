@@ -75,7 +75,7 @@ define([
 	},
 	changeStatus: function(e){
 		spinner.spin(document.getElementById('main'));
-		api.put(api.getApiVersion() + "/profiles/me", {pwState: e.target.value}, function(response){
+		api.put(api.getApiVersion() + "/profiles/" + api.getProfileId(), {pwState: e.target.value}, function(response){
 			spinner.stop()
 			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 			$('#main').prepend(tpl)
@@ -84,7 +84,7 @@ define([
 	updateWing: function(e){
 		//Refactor with createWing
 		var scope = this
-		console.log(e.target.value)
+		//console.log(e.target.value)
 		if (e.target.value){
 			var id = e.target.value.split("accomodations/", 2)[1]
 			if (!this.wingView){

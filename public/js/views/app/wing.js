@@ -34,7 +34,7 @@ define([
 		if (options.id){
 			this.model = new WingModel({id: options.id})
 			this.model.fetch({success: function(model){
-					console.log(model.attributes)
+					//console.log(model.attributes)
 					sc.cityObject = model.get("city")
 					tpl = _.template(wingTpl, {update: options.update})
 					$(sc.el).html(tpl)
