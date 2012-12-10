@@ -12,7 +12,6 @@ define([
 
     var Router = Backbone.Router.extend({
         routes: {
-        // When there is no hash bang on the url, the home method is called
 			"register": "register",
 			"login": "login",
 	  		"activate/:id": "activate",
@@ -98,9 +97,8 @@ define([
 		},
 		defaultAction: function(actions){
 			console.log('routers/desktopRouter.js: defaultAction()')
-			if (api.userIsLoggedIn()) {
-				appHomeView.render()
-			} else homeView.render()
+			if (api.userIsLoggedIn()) appHomeView.render()
+			else homeView.render()
     	},
 		initialize: function(){
 			console.log('routers/desktopRouter.js: initialize()')
