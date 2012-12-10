@@ -3,17 +3,15 @@ define([
 	"backbone",
 	"api",
 	//landing page views (AnonymousUser)
-	"views/home/header",
+	//"views/home/header",
     "views/home/main",
 	//app views (LoggedUser)
     "views/app/home",
     "models/User",
-], function($, Backbone, api, headerView, homeView, appHomeView, UserModel){
+], function($, Backbone, api, /*headerView,*/ homeView, appHomeView, UserModel){
 
     var Router = Backbone.Router.extend({
-        // All of your Backbone Routes (add more)
         routes: {
-        // When there is no hash bang on the url, the home method is called
 			"register": "register",
 			"login": "login",
 	  		"activate/:id": "activate",
@@ -97,22 +95,14 @@ define([
 					})
 			} else this.wingsView.render() 
 		},
-		//Common hashs
 		defaultAction: function(actions){
-			console.log('desktopRouter: defaultAction')
-			if (!api.userIsLoggedIn()) {
-				console.log('not logged')
-				homeView.render();
-			}else {
-				console.log('logged')
-				appHomeView.render()
-			}
+			console.log('routers/desktopRouter.js: defaultAction()')
+			if (api.userIsLoggedIn()) appHomeView.render()
+			else homeView.render()
     	},
 		initialize: function(){
-			console.log('desktopRouter: initialize')
-            // Tells Backbone to start watching for hashchange events
+			console.log('routers/desktopRouter.js: initialize()')
             Backbone.history.start();
-
 			if (api.userIsLoggedIn()){
 				var user = new UserModel({id: api.getUserId()})
 				if (user.firstName === undefined) {
@@ -124,7 +114,7 @@ define([
 						error: function() { console.log(arguments); }
 				 	});
 				} else appHomeView.render({model:user})
-			} else headerView.render();
+			} else homeView.render()
         }
     });
 
