@@ -89,7 +89,13 @@
 							<dt>Company</dt>
 							<dd name="company"></dd>
 							<dt>Education</dt>
-							<dd name="education"></dd>
+							<% if (education.size != 0) { %> 
+							<dd>
+								<% _.each(education, function(edu) { %> 
+									<%= edu.degree %> at <%= edu.institution %>, 
+								<% }); %>
+							</dd>
+							<% } %>
 							<dt>Personal philosophy</dt>
 							<dd name="personalPhilosophy"></dd>
 							<dt>Political views</dt>
@@ -118,7 +124,11 @@
 							<dd name="pwOpinion"></dd>
 						</dl>
 			  		  </div>
-					  <div class="tab-pane" id="wings">Wings</div>
+					  <div class="tab-pane" id="wings">
+							<% _.each(education, function(edu) { %> 
+								<%= edu.degree %> at <%= edu.institution %>, 
+							<% }); %>
+					  </div>
 				</div>
 			</div>	
 			<div class="span4">

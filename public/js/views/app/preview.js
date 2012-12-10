@@ -13,6 +13,7 @@ define([
 		initialize: function(){
 			this.model = new ProfilePreview({_id: "preview" })
 			this._modelBinder = new Backbone.ModelBinder();
+			//api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "")
 		},
 		render: function(){
 			var scope = this
@@ -36,7 +37,8 @@ define([
 				otherLocations: this.model.get("otherLocations"),
 				languages: this.model.get("languages"),
 				lastLoginDate: this.model.get("lastLoginDate"),
-				interestedIn: this.model.get("interestedIn")[0].gender 
+				interestedIn: this.model.get("interestedIn")[0].gender,
+				education: this.model.get("education"), 
 			})
 			$(this.el).html(tpl);
 			this._modelBinder.bind(this.model, this.el)
