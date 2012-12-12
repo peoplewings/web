@@ -6,21 +6,21 @@ var requirejs = require('./r.js');
 //Set up basic config, include config that is
 //common to all the requirejs.optimize() calls.
 var baseConfig = {
-  
+
   // Tells Require.js to look at desktop.js for all shim and path configurations
   mainConfigFile: "desktop.js",
 
   wrap: true,
-    
+
   //All the built layers will use almond.
-  name: "almond",
+  name: "build/almond",
 
   // Removes third-party license comments
   preserveLicenseComments: false,
 
   // Uses uglify.js for minification
   optimize: "uglify",
- 
+
  };
 
 //Create an array of build configs, the baseConfig will
@@ -29,13 +29,13 @@ var baseConfig = {
 var configs = [
     {
         include: ["mobile"],
-        out: "mobile.min.js"
+        out: "build/mobile.min.js"
     },
     {
         include: ["desktop"],
-        out: "desktop.min.js"
+        out: "build/desktop.min.js"
     },
-]; 
+];
 
 
 // Function used to mix in baseConfig to a new config target
@@ -51,7 +51,7 @@ function mix(target) {
 //Create a runner that will run a separate build for each item
 //in the configs array. Thanks to @jwhitley for this cleverness
 var runner = configs.reduceRight(function(prev, currentConfig) {
-  return function (buildReportText) { 
+  return function (buildReportText) {
     requirejs.optimize(mix(currentConfig), prev);
   };
 }, function(buildReportText) {
