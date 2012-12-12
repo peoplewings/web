@@ -16,10 +16,9 @@
   <script type="text/javascript">
       // Sets the require.js configuration for your application.
       require.config({
-  
+
           // 3rd party script alias names (Easier to type "jquery" than "libs/jquery-1.7.2.min")
           paths: {
-
               // Core Libraries
               "modernizr": "../libs/modernizr",
               "jquery": "../libs/jquery",
@@ -49,7 +48,7 @@
               "backbone.validateAll": ["backbone"]
 
           } // end Shim Configuration
-  
+
       });
 
       require(["spec/spec.js"], function() {
