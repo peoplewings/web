@@ -34,9 +34,10 @@ define([
     },
 	getUserWings: function(){
 		var sc = this
-		api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations", {}, function(response){
+		api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {}, function(response){
 			$.each(response.data, function(index, wing){
-				sc.wings.push({name: wing.name, uri: wing.uri})
+				//Fix this whene Eze fixes the uri's on server
+				sc.wings.push({name: wing.name, uri: api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/" + wing.uri.slice(wing.uri.length-2, wing.uri.length)})
 			})
 			sc.render()
 		})
@@ -46,13 +47,14 @@ define([
 		this.render()
 	},
 	updateWingToList: function(item){
+		//console.log(item, this.wings)
 		var updated = _.find(this.wings, function(wing){ return wing.uri == item.uri })
 		updated.name = item.name
 		this.render()
 	},
-	deleteWingFromList: function(id){
-		//Should be an id, but I need id's from server before!!??
-		this.wings = _.reject(this.wings, function(wing){ return wing.uri == id })
+	deleteWingFromList: function(uri){
+		//console.log(id, this.wings)
+		this.wings = _.reject(this.wings, function(wing){ return wing.uri == uri })
 		this.render()
 		
 	},
@@ -82,6 +84,7 @@ define([
 		})
 	},
 	updateWing: function(e){
+		console.log(this.wings)
 		//Refactor with createWing
 		var scope = this
 		//console.log(e.target.value)
