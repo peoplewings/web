@@ -117,7 +117,7 @@ define([
 			data.dateStart += " 00:00:00"
 			data.dateEnd += " 00:00:00"
 		}
-		api.post(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/", data, function(response){
+		api.post(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", data, function(response){
 			var tpl
 			if (response.status === true){
 				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
