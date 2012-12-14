@@ -13,20 +13,21 @@ define([
 		initialize: function(){
 			this.model = new ProfilePreview({_id: "preview" })
 			this._modelBinder = new Backbone.ModelBinder();
-			//api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "")
 		},
 		render: function(){
 			var scope = this
 			if (!this.model.get("avatar")){
 				this.model.fetch({success: function(model) {
 												scope.model = new ProfilePreview(model.attributes)
-												scope.doRender()
+												if (!scope.wingsList){
+													scope.getWingList()
+												}
 											}
 				})
-			}else this.doRender()
+			} else this.doRender()
 		},
 		doRender: function(){
-			console.log(this.model.attributes)
+			//console.log(this.model.attributes, this.wingsList)
 			var bDay = (this.model.get("birthday") === "") ? "Not public" : this.model.get("birthday")
 			var tpl = _.template(previewTpl, {
 				birthday: bDay,
@@ -37,8 +38,13 @@ define([
 				otherLocations: this.model.get("otherLocations"),
 				languages: this.model.get("languages"),
 				lastLoginDate: this.model.get("lastLoginDate"),
-				interestedIn: this.model.get("interestedIn")[0].gender,
-				education: this.model.get("education"), 
+				interestedIn: this.model.get("interestedIn")[0].gender, //Fix this shit please
+				education: this.model.get("education"),
+				wings: this.wingsList,
+				status_choices: {  Y: 'Yes', N: 'No', M: 'Maybe'},
+				sleep_choices: { C: "Common area", P: "Private area", S: "Shared private area"},
+				smoking_choices: { S: 'I smoke', D: "I don't smoke, but guests can smoke here", N: "No smoking allowed"}
+
 			})
 			$(this.el).html(tpl);
 			this._modelBinder.bind(this.model, this.el)
@@ -60,6 +66,13 @@ define([
 				});
 			})
 		})
+		},
+		getWingList: function(){
+			var sc = this
+			api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/preview", {}, function(wingsPreview){
+				sc.wingsList = wingsPreview.data
+				sc.doRender()
+			})
 		}
 	});
 
