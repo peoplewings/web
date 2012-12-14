@@ -34,7 +34,7 @@ define([
 		if (options.id){
 			this.model = new WingModel({id: options.id})
 			this.model.fetch({success: function(model){
-					//console.log(model.attributes)
+					console.log(model.attributes)
 					sc.cityObject = model.get("city")
 					tpl = _.template(wingTpl, {update: options.update})
 					$(sc.el).html(tpl)
@@ -113,9 +113,6 @@ define([
 		if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
 			delete data.dateStart
 			delete data.dateEnd
-		} else {
-			data.dateStart += " 00:00:00"
-			data.dateEnd += " 00:00:00"
 		}
 		api.post(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", data, function(response){
 			var tpl
