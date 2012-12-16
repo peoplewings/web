@@ -153,7 +153,7 @@ define([
 		var id = this.model.get("id")
 		var uri = api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id
 		if (confirm("Are you sure you want to delete this wing?")){
-			api.delete(uri, {}, function(response){
+			api.delete(uri, function(response){
 				var tpl
 				if (response.status === true){
 					tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
