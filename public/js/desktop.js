@@ -16,6 +16,7 @@ require.config({
 		"api": "core/api",
 		"api2": "core/api2",
 		"utils": "core/utils",
+		"promise": "core/promise",
 		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 		//"spinner": "lib/spin",
 		//"jquery.spinner": "lib/plugins/spin.plugin",
