@@ -1,6 +1,6 @@
 define(function(require) {
 
-    var text = require('lib/plugins/text');
+    var text = require('text');
     var Handlebars = require('handlebars');
     var cache = [];
 
