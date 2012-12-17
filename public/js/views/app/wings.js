@@ -36,8 +36,7 @@ define([
 		var sc = this
 		api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {}, function(response){
 			$.each(response.data, function(index, wing){
-				//Fix this whene Eze fixes the uri's on server
-				sc.wings.push({name: wing.name, uri: api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/" + wing.uri.slice(wing.uri.length-2, wing.uri.length)})
+				sc.wings.push({name: wing.name, uri: wing.uri})
 			})
 			sc.render()
 		})
@@ -47,13 +46,12 @@ define([
 		this.render()
 	},
 	updateWingToList: function(item){
-		//console.log(item, this.wings)
+		//Should only be invoked if Wing name is dirty
 		var updated = _.find(this.wings, function(wing){ return wing.uri == item.uri })
 		updated.name = item.name
 		this.render()
 	},
 	deleteWingFromList: function(uri){
-		//console.log(id, this.wings)
 		this.wings = _.reject(this.wings, function(wing){ return wing.uri == uri })
 		this.render()
 		

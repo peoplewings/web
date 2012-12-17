@@ -125,8 +125,84 @@
 						</dl>
 			  		  </div>
 					  <div class="tab-pane" id="wings">
-							<% _.each(education, function(edu) { %> 
-								<%= edu.degree %> at <%= edu.institution %>, 
+							<% _.each(wings, function(wing) { console.log(wing) %> 
+								<h4><%= wing.name %> (Accomodation)</h4>
+								<dl class="dl-horizontal">
+									<dt>Wing status</dt>
+									<dd><%= status_choices[wing.status] %></dd>
+									<dt>Are you sharing for one time?</dt>
+									<% if (wing.sharingOnce == true) { %>
+									<dd> <%= wing.dateStart %> to  <%= wing.dateEnd %> </dd>
+									<% } %>
+									<% if (wing.sharingOnce == false) { %>
+									<dd> No </dd>
+									<% } %>
+									<dt>Capacity</dt>
+									<dd> <%= wing.capacity %></dd>
+									<% if (wing.preferredMale == true && wing.preferredFemale == true) { %>
+									<dt>Preferred gender</dt>
+									<dd>
+										<% if (wing.preferredMale == true) { %>
+											Male 
+										<% } %>
+										<% if (wing.preferredFemale == true) { %>
+											Female
+										<% } %>
+									</dd>
+									<% } %>
+									<dt>Wheelchair accessible</dt>
+									<dd>
+									<% if (wing.wheelchair == true) { %>
+										Yes
+									<% } %>
+									<% if (wing.wheelchair == false) { %>
+										No
+									<% } %>	
+									</dd>
+									<dt>Sleeping arrangements</dt>
+									<dd> <%= sleep_choices[wing.whereSleepingType] %> </dd>
+									<dt>Smoking</dt>
+									<dd> <%= smoking_choices[wing.smoking] %> </dd>
+									<dt>Pets allowed</dt>
+									<dd> 
+									<% if (wing.petsAllowed == true) { %> 
+										Guest pets allowed 
+									<% } %>
+									<% if (wing.petsAllowed == false) { %> 
+										No guest pets allowed 
+									<% } %>
+									<% if (wing.iHavePet == true) { %> 
+										and I have a pet
+									<% } %>
+									<% if (wing.iHavePet == false) { %> 
+										and I don't have any pet
+									<% } %>
+									</dd>
+									<dt>I have blankets</dt>
+									<dd> 
+									<% if (wing.blankets == true) { %>
+										Yes
+									<% } %>
+									<% if (wing.blankets == false) { %>
+										No
+									<% } %>	
+									</dd>
+									<dt>I live in the center</dt>
+									<dd>
+									<% if (wing.liveCenter == true) { %>
+										Yes
+									<% } %>
+									<% if (wing.liveCenter == false) { %>
+										No
+									<% } %>
+									</dd>
+									<dt>Public transport</dt>
+									<dd> <%= wing.publicTransport %> </dd>
+									<dt>About your accmodation</dt>
+									<dd> <%= wing.about %> </dd>
+									
+								</dl>
+								<legend></legend>
 							<% }); %>
 					  </div>
 				</div>
