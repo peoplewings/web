@@ -23,6 +23,7 @@ define([
 			 "profile":"profile",
 			 "profile/preview":"previewProfile",
 			 "wings": "wings",
+			 "messages": "showNotifications",
 		//Default action
 			"*actions": "defaultAction",
         },
@@ -94,6 +95,14 @@ define([
 						wingsView.render()
 					})
 			} else this.wingsView.render() 
+		},
+		showNotifications: function(){
+			var scope = this
+			if (!this.notificationsView){
+				require(["views/app/notifications"], function(notificationsView){
+						notificationsView.render()
+					})
+			} else this.notificationsView.render()
 		},
 		defaultAction: function(actions){
 			console.log('routers/desktopRouter.js: defaultAction()')
