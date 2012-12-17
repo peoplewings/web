@@ -10,6 +10,7 @@ interface Promise {
 
 	static Future all(Array<Future|Promise> promises); alias parallel
 	static Future all(Future|Promise var_args...); alias parallel
+*	static Future wrap(fn, scope, args);
 }
 
 interface Future {
