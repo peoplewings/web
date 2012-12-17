@@ -14,18 +14,17 @@ define(function(require){
 
 		render: function(){
 			$(this.el).html(notificationsTpl);
-			this.$list = $(this.el).find('notifications-list');
+			this.$list = $(this.el).find('#notifications-list');
 			this.refresh();
 		},
 
 		refresh: function() {
+			var list = this.$list;
 			return api.get('/api/v1/notificationslist')
 				.prop('data')
-				.then(function(data) {
-					var html = data.map(itemTpl).join('');
-					this.$list.html(html);
-					return data;
-				});
+				.method('map', itemTpl)
+				.method('join', '')
+				.then(this.$list.html.bind(this.$list)));
 		},
 
 		destroy: function(){
