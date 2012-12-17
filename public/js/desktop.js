@@ -66,8 +66,3 @@ require(['modernizr', 'jquery', 'backbone', 'routers/desktopRouter', 'bootstrap'
 	// Instantiates a new Router
 	this.router = new Desktop();
 });
-
-
-require(['tmpl!templates/app/header.html'], function(tmpl) {
-	window.cosa = tmpl;
-})
