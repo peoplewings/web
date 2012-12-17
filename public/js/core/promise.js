@@ -49,8 +49,25 @@ interface Future {
 
 	var slice = Array.prototype.slice;
 
+	function returner(value) {
+		return function() {
+			return value;
+		};
+	}
+	function funct(name) {
+		var args = slice.call(arguments, 1);
+		return function(item) {
+			return item[name].apply(item, args.concat(arguments));
+		};
+	}
+	function prop(name) {
+		return function(item) {
+			return item[name];
+		};
+	}
+
 	function Promise() {
-		this.future = new Future();
+		Object.defineProperty(this, 'future', { get: returner(new Future()) });
 	}
 
 	Promise.prototype = {
@@ -99,17 +116,6 @@ interface Future {
 		return value instanceof Future ? value : Promise.resolved(value);
 	};
 
-	function funct(name) {
-		var args = slice.call(arguments, 1);
-		return function(item) {
-			return item[name].apply(item, args.concat(arguments));
-		};
-	}
-	function prop(name) {
-		return function(item) {
-			return item[name];
-		};
-	}
 	Promise.all = Promise.parallel = function(futures) {
 		if (!(futures instanceof Array))
 			futures = slice.call(arguments);
@@ -129,7 +135,7 @@ interface Future {
 
 	function Future() {
 		this.state = 'unfulfilled';
-		this._cbk = [];
+		Object.defineProperty(this, '_cbk', { get: returner([]) });
 	}
 
 	function invokeCallback(callback, value, promise, promiseMethod) {
@@ -179,7 +185,7 @@ interface Future {
 
 		fin: function(handler) {
 			return this.then(function(value) {
-				return Promise.normalize(handler()).then(function() { return value });
+				return Promise.normalize(handler()).then(returner(value));
 			}, function(error) {
 				return Promise.normalize(handler()).then(function() { return Promise.rejected(error) });
 			});
