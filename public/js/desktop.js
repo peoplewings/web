@@ -21,11 +21,16 @@ require.config({
 		"async": "lib/plugins/async",
 		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
 		"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
-		"text": "lib/plugins/text"
+		"text": "lib/plugins/text",
+		"tmpl": "lib/plugins/tmpl",
+		"handlebars": "lib/handlebars"
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
 	shim: {
+		"handlebars": {
+			"exports": "Handlebars"
+		},
 		"api": {
 			"exports": "API"
 		},
@@ -61,3 +66,8 @@ require(['modernizr', 'jquery', 'backbone', 'routers/desktopRouter', 'bootstrap'
 	// Instantiates a new Router
 	this.router = new Desktop();
 });
+
+
+require(['tmpl!templates/app/header.html'], function(tmpl) {
+	window.cosa = tmpl;
+})
