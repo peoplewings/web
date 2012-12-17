@@ -14,6 +14,7 @@ require.config({
 		"jquery.Validate": "lib/plugins/jquery.validate",
 		"templates": "../templates",
 		"api": "core/api",
+		"api2": "core/api2",
 		"utils": "core/utils",
 		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 		//"spinner": "lib/spin",
