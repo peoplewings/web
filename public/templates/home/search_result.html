@@ -7,7 +7,7 @@
 			    <li><a href="#" class="nextPage">»</a></li>
 			</ul>
 			<legend></legend>
-			<% _.each(results, function(result) { %> 
+			<% _.each(results, function(result){ %> 
 			<div class="search-result">	
 				<div class="span2">
 					<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
@@ -16,7 +16,7 @@
 				</div>
 				<div class="span3">
 					<p id="user-name-label">
-						<a href="#/users/waiting-for-hashes"><span <%= blurrStyle%>><%= result.firstName%> 	<%= result.lastName%> </span></a>, <%= result.age%>
+						<a href="#/users/<%- result.resourceUri.split("/")[4] %>"><span <%= blurrStyle%>><%= result.firstName%> 	<%= result.lastName%> </span></a>, <%= result.age%>
 						<% if (result.verified === true) { %> 
 							<span class="label label-success">Verified</span>
 						<% } %>
