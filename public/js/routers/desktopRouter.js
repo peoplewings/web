@@ -2,13 +2,14 @@ define([
 	"jquery",
 	"backbone",
 	"api",
+	"api2",
 	//landing page views (AnonymousUser)
 	//"views/home/header",
     "views/home/main",
 	//app views (LoggedUser)
     "views/app/home",
     "models/User",
-], function($, Backbone, api, /*headerView,*/ homeView, appHomeView, UserModel){
+], function($, Backbone, api, api2, homeView, appHomeView, UserModel){
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -110,19 +111,16 @@ define([
 			else homeView.render()
     	},
 		initialize: function(){
-			console.log('routers/desktopRouter.js: initialize()')
+			console.log('routers/desktopRouter.js: initialize()  ', api.getAuthToken(), api.getUserId())
             Backbone.history.start();
 			if (api.userIsLoggedIn()){
-				var user = new UserModel({id: api.getUserId()})
-				if (user.firstName === undefined) {
-					user.fetch({
-						headers: { "X-Auth-Token": api.getAuthToken() }, 
-						success: function(){
-							require(["views/app/header"], function(header){ header.render() })
-						},
-						error: function() { console.log(arguments); }
-				 	});
-				} else appHomeView.render({model:user})
+				api2.get('/api/v1/accounts/' + api.getUserId())
+					.prop('data')
+					.then(function(data) {
+						var user = new UserModel(data)
+						require(["views/app/header"], function(header){ header.render() })
+						return data;
+					})
 			} else homeView.render()
         }
     });
