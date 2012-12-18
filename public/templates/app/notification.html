@@ -1,11 +1,9 @@
-<div data-type="notification-item" data-rel="{{ id }}">
-	<div class="interlocutor">
-		<div>
-			<img src="{{avatar}}">
-			<span class="{{#if connected }}online{{/if}}"></span>
-			<a href="#verperfilde/{{interlocutorId}}">{{name}}</a>
-			, {{age}}
-		</div>
+<div data-type="notification-item" data-rel="{{ id }}" class="row">
+	<img src="{{avatar}}" class="span1 offset1">
+	<div class="span3">
+		<span class="{{#if connected }}online{{/if}}"></span>
+		<a href="#verperfilde/{{interlocutorId}}">{{name}}</a>
+		, {{age}}
 		<div>{{location}}</div>
 	</div>
 
@@ -13,22 +11,22 @@
 
 		{{#if isMessage }}
 
-		<div>{{content}}</div>
+		<div class="span5 offset1">{{content}}</div>
 
 		{{else}}
 
-		<div>
+		<div class="span3 offset1">
 			<div>{{kind}}</div>
 			<div>{{title}}</div>
 		</div>
-		<div>{{numPeople}}</div>
-		<div>
+		<div class="span1">{{numPeople}} people</div>
+		<div class="span1">
 			<div>{{date startDate}}</div>
 			<div>{{date endDate}}</div>
 		</div>
 
 		{{/if}}
 
-		<div>{{date created}}</div>
+		<div class="span1">{{date created}}</div>
 	</div>
 </div>
