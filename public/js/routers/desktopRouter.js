@@ -25,6 +25,7 @@ define([
 			 "profile/preview":"previewProfile",
 			 "wings": "wings",
 			 "messages": "showNotifications",
+			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
         },
@@ -88,6 +89,16 @@ define([
 				})
 			} else this.previewView.render()
 
+		},
+		showUserProfile: function(userId){
+			var scope = this
+			if (!this.userProfileView){
+				require(["views/app/userProfile"], function(view){
+					scope.userProfileView = view
+					view.render(userId)
+				})
+			} else 
+				this.userProfileView.render(userId)
 		},
 		wings: function(){
 			var scope = this
