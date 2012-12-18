@@ -8,7 +8,7 @@ define(function(require) {
         if (typeof date === 'number')
             date = new Date(date * 1000);
 
-        return 'pepe' + date.toString();
+        return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
     })
 
     function load(name, parentRequire, done, config) {

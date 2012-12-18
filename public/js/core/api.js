@@ -15,8 +15,6 @@ API = function() {
         request.onreadystatechange = function (oEvent) {
             var responseBody=null;
             var cb = callback || function(){};
-            // should we call normal handler if a error is dispatched?
-            var ec = errorCallback || cb;
 
             if (request.readyState === 4) {
                 if (request.responseText) {
@@ -27,11 +25,13 @@ API = function() {
                 } else {
                     if (request.status === 401) {
                         localStorage.removeItem("Peoplewings-Auth-Token");
-                        // FIXME: is this how to navigate without router?
-                        window.location = location.origin + location.pathname + '#/login'
+                        location.hash = '/login'
                     }
 
-               		ec(responseBody, request.status);
+                    if (errorCallback)
+               	        errorCallback(responseBody, request.status);
+                    else
+                        throw new Error(responseBody);
                 }
             }
         }
