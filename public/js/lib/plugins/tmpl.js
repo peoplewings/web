@@ -4,6 +4,13 @@ define(function(require) {
     var Handlebars = require('handlebars');
     var cache = [];
 
+    Handlebars.registerHelper('date', function(date) {
+        if (typeof date === 'number')
+            date = new Date(date * 1000);
+
+        return 'pepe' + date.toString();
+    })
+
     function load(name, parentRequire, done, config) {
         if (config.tmpl)
             var file = ((config.tmpl.path + '/') || '') + name + (config.tmpl.extension || '');

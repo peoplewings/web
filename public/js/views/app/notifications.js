@@ -22,9 +22,13 @@ define(function(require){
 			var list = this.$list;
 			return api.get('/api/v1/notificationslist')
 				.prop('data')
+				.method('map', function(item) {
+					item.isMessage = item.kind === 'messages';
+					return item;
+				})
 				.method('map', itemTpl)
 				.method('join', '')
-				.then(this.$list.html.bind(this.$list)));
+				.then(this.$list.html.bind(this.$list));
 		},
 
 		destroy: function(){
