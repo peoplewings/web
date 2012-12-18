@@ -1,32 +1,32 @@
 <li data-type="notification-item" data-rel="{{ id }}" class="row">
-    <img src="{{avatar}}" class="span1 offset1">
-    <div class="span3">
-            <span class="{{#if connected }}online{{/if}}"></span>
-           <a href="#/users/{{interlocutorId}}">{{name}}</a>
-            , {{age}}
-            <div>{{location}}</div>
-    </div>
+	<div class="span1 offset1" style="overflow: hidden"><img src="{{avatar}}"></div>
+	<div class="span3">
+			<span class="{{#if connected }}online{{/if}}"></span>
+			<a href="#/users/{{interlocutorId}}">{{name}}</a>
+			, {{age}}
+			<div>{{location}}</div>
+	</div>
 
-    <div class="{{#unless read }}unread{{/unless}}">
+	<div class="{{#unless read }}unread{{/unless}}">
 
-            {{#if isMessage }}
+			{{#if isMessage }}
 
-            <div class="span5 offset1">{{content}}</div>
+			<div class="span5 offset1">{{content}}</div>
 
-            {{else}}
+			{{else}}
 
-            <div class="span3 offset1">
-                    <div>{{kind}}</div>
-                    <div>{{title}}</div>
-            </div>
-            <div class="span1">{{numPeople}} people</div>
-            <div class="span1">
-                    <div>{{date startDate}}</div>
-                    <div>{{date endDate}}</div>
-            </div>
+			<div class="span3 offset1">
+					<div>{{enum kind 'notification-type'}}</div>
+					<div>{{title}}</div>
+			</div>
+			<div class="span1">{{numPeople}} people</div>
+			<div class="span1">
+					<div>{{date startDate}}</div>
+					<div>{{date endDate}}</div>
+			</div>
 
-            {{/if}}
+			{{/if}}
 
-            <div class="span1">{{date created "MMM Do"}}</div>
-    </div>
+			<div class="span1">{{date created "MMM Do"}}</div>
+	</div>
 </li>
