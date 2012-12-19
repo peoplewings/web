@@ -20,7 +20,7 @@ define(function(require) {
 	var enums = {
 		'notification-type': createEnum({
 			Request: 'requests',
-			Invitation: 'invitations',
+			Invitation: 'invites',
 			Message: 'messages'
 		})
 	};
