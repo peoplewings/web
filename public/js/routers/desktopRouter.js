@@ -93,9 +93,9 @@ define([
 		showUserProfile: function(userId){
 			var scope = this
 			if (!this.userProfileView){
-				require(["views/app/userProfile"], function(view){
-					scope.userProfileView = view
-					view.render(userId)
+				require(["views/app/userProfile"], function(View){
+					scope.userProfileView = new View(userId)
+					//scope.userProfileView.render()
 				})
 			} else 
 				this.userProfileView.render(userId)
