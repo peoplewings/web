@@ -9,26 +9,41 @@ define(function(require){
 	var notificationsView = Backbone.View.extend({
 		el: "#main",
 
+		events: {
+			'click #search-btn': 'search',
+			'keyup .search-query': function(event) {
+				if (event.keyCode === 13)
+					this.search();
+			}
+		},
+
 		initialize: function(){
+			this.refresh = this.refresh.bind(this);
+		},
+
+		search: function() {
+			var query = $('.search-query').val();
+
+			api.get('/api/v1/notificationslist?search=' + encodeURIComponent(query))
+				.prop('data')
+				.then(this.refresh);
 		},
 
 		render: function(){
 			$(this.el).html(notificationsTpl);
 			this.$list = $(this.el).find('#notifications-list');
-			this.refresh();
+
+			api.get('/api/v1/notificationslist')
+				.prop('data')
+				.then(this.refresh);
 		},
 
-		refresh: function() {
-			var list = this.$list;
-			return api.get('/api/v1/notificationslist')
-				.prop('data')
-				.method('map', function(item) {
-					item.isMessage = item.kind === 'messages';
-					return item;
-				})
-				.method('map', itemTpl)
-				.method('join', '')
-				.then(this.$list.html.bind(this.$list));
+		refresh: function(data) {
+			data.forEach(function(item) {
+				item.isMessage = item.kind === 'messages';
+			});
+
+			this.$list.html(data.map(itemTpl).join(''));
 		},
 
 		destroy: function(){
