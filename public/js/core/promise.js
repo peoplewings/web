@@ -92,7 +92,12 @@ interface Future {
 
 			this.future.error = error;
 			this.future.state = 'failed';
-			this.future._cbk.forEach(function(callback) {
+			var callbacks = this.future._cbk;
+
+			if (!callbacks.length)
+				throw error;
+
+			callbacks.forEach(function(callback) {
 				callback();
 			});
 		}

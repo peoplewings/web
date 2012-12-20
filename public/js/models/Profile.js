@@ -1,35 +1,15 @@
-define([
-	"jquery", 
-	"backbone",
-	"api",
-], function($, Backbone, api) {
+define(function(require) {
 
-	//Implementing a Factory Class (singleton)  
-	//Source from http://stackoverflow.com/questions/11145159/implement-javascript-instance-store-by-returning-existing-instance-from-construc
-	var makeStoreable = function(model){
-	  var StoreModel = function(attr, opt){
-	    if(!attr || !attr.id){
-	      // The behavior you exhibit here is up to you
-	      throw new Error('Cool Models always have IDs!');
-	    }
-	    if(this.store[attr.id]){
-	      this.store[attr.id].set(attr, opt);
-	    }else{
-	      var newModel = new model(attr, opt);
-	      this.store[attr.id] = newModel;
-	    }
-	    return this.store[attr.id];
-	  };
-	  StoreModel.prototype.store = {};
-	  return StoreModel;
-	};
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api2');
+	var factory = require('core/factory');
+
 
 	var UserProfileModel = Backbone.Model.extend({
-		
+
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/',
-        initialize: function() {
-			
-        },
+
 		// To set the JSON root of the model
 		parse: function(resp, xhr){
 			//Hydratation of data recived
@@ -37,7 +17,7 @@ define([
 			if (resp.data){
 				resp.data["Male"] = false
 				resp.data["Female"] = false
-				
+
 				$.each(resp.data.interestedIn, function(i, field){
 					var gender = field.gender
 					resp.data[gender] = true
@@ -82,7 +62,7 @@ define([
 					resp.data['x_hometown'] = ""
 				}
 			}
-			
+
 			return resp.data
 		},
 		save: function(successCb){
@@ -92,9 +72,9 @@ define([
 			if (this.get("Male") === true) gender.push({gender: "Male"})
 			if (this.get("Female") === true) gender.push({gender: "Female"})
 			this.set("interestedIn", gender)
-			
+
 			var langs = []
-			var edus = [] 
+			var edus = []
 			var socials = []
 			var instant = []
 			var id = []
@@ -127,14 +107,13 @@ define([
 			this.set("education", edus)
 			this.set("socialNetworks", socials)
 			this.set("instantMessages", instant)
-			
-			
+
+
 			var copy = this.clone()
 			copy.cleanXAttrs()
 			//Save a copy of UserProfile clean of X-Attributes
 			var profileId = this.get("id")
-			api.put(api.getApiVersion() + '/profiles/' + profileId, copy.attributes, successCb)
-			
+			api.put(api.getApiVersion() + '/profiles/' + profileId, copy.attributes).then(successCb)
 		},
 		success: function(){
 			console.log("You have to give feedback to the user!!", arguments)
@@ -146,8 +125,6 @@ define([
 		}
 	});
 
-	UserProfileModel = makeStoreable(UserProfileModel);
-
     // Returns the Model singleton instance
-	return UserProfileModel;
+	return factory(UserProfileModel);
 });
