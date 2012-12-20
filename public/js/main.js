@@ -64,7 +64,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr', 'jquery', 'backbone', 'routers/desktopRouter', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate', 'async'], function(Modernizr, $, Backbone, Desktop) {
+require(['modernizr', 'jquery', 'backbone', 'router', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate', 'async'], function(Modernizr, $, Backbone, Router) {
 	// Instantiates a new Router
-	this.router = new Desktop();
+	this.router = new Router();
 });

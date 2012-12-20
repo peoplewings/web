@@ -70,7 +70,7 @@ define([
 					settingsView.render()
 				})
 			} else this.login()
-			
+
 		},
 		profile: function(){
 			var scope = this
@@ -97,7 +97,7 @@ define([
 					scope.userProfileView = new View(userId)
 					//scope.userProfileView.render()
 				})
-			} else 
+			} else
 				this.userProfileView.render(userId)
 		},
 		wings: function(){
@@ -106,7 +106,7 @@ define([
 				require(["views/app/wings"], function(wingsView){
 						wingsView.render()
 					})
-			} else this.wingsView.render() 
+			} else this.wingsView.render()
 		},
 		showNotifications: function(){
 			var scope = this
@@ -117,12 +117,12 @@ define([
 			} else this.notificationsView.render()
 		},
 		defaultAction: function(actions){
-			console.log('routers/desktopRouter.js: defaultAction()')
+			console.log('router.js: defaultAction()')
 			if (api.userIsLoggedIn()) appHomeView.render()
 			else homeView.render()
     	},
 		initialize: function(){
-			console.log('routers/desktopRouter.js: initialize()  ', api.getAuthToken(), api.getUserId())
+			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
             Backbone.history.start();
 			if (api.userIsLoggedIn()){
 				api2.get('/api/v1/accounts/' + api.getUserId())
