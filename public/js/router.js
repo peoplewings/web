@@ -95,7 +95,7 @@ define([
 			if (!this.userProfileView){
 				require(["views/app/userProfile"], function(View){
 					scope.userProfileView = new View(userId)
-					//scope.userProfileView.render()
+					scope.userProfileView.render()
 				})
 			} else
 				this.userProfileView.render(userId)
