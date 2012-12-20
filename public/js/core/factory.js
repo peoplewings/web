@@ -11,7 +11,7 @@ define(function(require) {
 
 			var id = attr[idField];
 
-			if (!store.hasOwnProperty(id))
+			if (store.hasOwnProperty(id))
 				store[id].set(attr, opt);
 			else {
 				model.call(this, attr, opt);
