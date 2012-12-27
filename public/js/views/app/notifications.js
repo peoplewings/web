@@ -54,7 +54,14 @@ define(function(require){
 
 		onTypeFilterClick: function(event) {
 			var target = $(event.currentTarget);
+			var isReqInv = target.data('filter') === 'reqinv';
+
+			this.$('.ri-status')[isReqInv ? 'show' : 'hide']();
+			this.$('#search-btn').parent()
+				.removeClass('offset4 offset6')
+				.addClass(isReqInv ? 'offset4' : 'offset6');
 			this.$('.button.selected').removeClass('selected');
+
 			target.addClass('selected');
 			console.log('FILTER BY NOTIFICATION TYPE: ' + target.data('filter'));
 		}
