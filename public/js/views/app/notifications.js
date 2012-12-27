@@ -43,6 +43,7 @@ define(function(require){
 
 			api.get('/api/v1/notificationslist')
 				.prop('data')
+				.prop('items')
 				.then(this.refresh);
 		},
 
@@ -65,6 +66,7 @@ define(function(require){
 
 			return api.get('/api/v1/notificationslist?' + data.join('&'))
 				.prop('data')
+				.prop('items')
 				.then(this.refresh);
 		},
 
