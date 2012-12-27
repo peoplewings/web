@@ -60,10 +60,26 @@ define(function(require){
 			this.$('#search-btn').parent()
 				.removeClass('offset4 offset6')
 				.addClass(isReqInv ? 'offset4' : 'offset6');
+				
+			if (isReqInv) this.addFilters()
+			else this.removeFilters()
+			
+			
 			this.$('.button.selected').removeClass('selected');
 
 			target.addClass('selected');
 			console.log('FILTER BY NOTIFICATION TYPE: ' + target.data('filter'));
+		},
+		
+		addFilters: function(){
+			this.$(".ri-filters")
+			    .append('<option value="type">Wing Type</option>')
+			    .append('<option value="date-start">Wing Date</option>');
+		},
+		removeFilters: function(){
+			this.$(".ri-filters")
+				.find('option[value^=Wing]')
+				.remove()
 		}
 	});
 
