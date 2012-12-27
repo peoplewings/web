@@ -121,7 +121,6 @@ define(function(require){
 
 		previousPage: function(){
 			console.log('previousPage')
->>>>>>> 29a4c4436b1acbba2cf3266b46b1b3e78ae510bb
 		}
 	});
 
