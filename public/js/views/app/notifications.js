@@ -22,7 +22,7 @@ define(function(require){
 		},
 
 		search: function() {
-			var query = $('.search-query').val();
+			var query = this.$('.search-query').val();
 
 			api.get('/api/v1/notificationslist?search=' + encodeURIComponent(query))
 				.prop('data')
@@ -33,8 +33,31 @@ define(function(require){
 			this.$el.html(notificationsTpl);
 			this.$list = this.$('#notifications-list');
 			this.$('.notification-type').delegate('li', 'click', this.onTypeFilterClick.bind(this));
+			this.$('.notification-sender').delegate('input', 'change', this.filter.bind(this));
+			this.$('.ri-status select').on('change', this.filter.bind(this));
 
 			api.get('/api/v1/notificationslist')
+				.prop('data')
+				.then(this.refresh);
+		},
+
+		filter: function() {
+			this.$('.search-query').val('');
+
+			var data = [];
+
+			var kind = this.$('.button.selected').data('filter');
+			if (kind)
+				data.push('kind=' + kind);
+
+			var target = this.$('.notification-sender input:checked');
+			if (target.length === 1)
+				data.push('target=' + target.attr('name'));
+
+			if (kind === 'reqinv')
+				data.push('state=' + this.$('.ri-status select').val());
+
+			return api.get('/api/v1/notificationslist?' + data.join('&'))
 				.prop('data')
 				.then(this.refresh);
 		},
@@ -63,7 +86,7 @@ define(function(require){
 			this.$('.button.selected').removeClass('selected');
 
 			target.addClass('selected');
-			console.log('FILTER BY NOTIFICATION TYPE: ' + target.data('filter'));
+			this.filter();
 		}
 	});
 
