@@ -78,7 +78,10 @@ define(function(require){
 		},
 		removeFilters: function(){
 			this.$(".ri-filters")
-				.find('option[value^=Wing]')
+				.find('option[value=type]')
+				.remove()
+				.end()
+				.find('option[value=date-start]')
 				.remove()
 		}
 	});
