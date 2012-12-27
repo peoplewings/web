@@ -15,7 +15,7 @@
 					<option value="read">Read/Unread</option>
 			</select>
 			</div>	
-			<div class="span2 ri-status">
+			<div class="span2 ri-status" style="display:none">
 				<select class="span2">
 					<option value="Pending">Pending</option>
 					<option value="Accepted">Accepted</option>
@@ -28,7 +28,7 @@
 				<li class="checkbox"><input type="checkbox" name="to-me"> Recived</li>
 				<li class="checkbox"><input type="checkbox" name="from-me"> Applied</li>
 			</ul>
-			<div class="span3 offset4">
+			<div class="span3 offset6">
 				<input type="text" class="input-medium search-query" placeholder="Search">
 				<button id="search-btn" class="btn">
 					<span class="add-on">
@@ -41,7 +41,7 @@
 			<div class="span2">Checkboxes</div>
 			<div class="span3 offset7">
 				<div class="span1 resultCounter"><span> 0</span> - <span>0</span> of <span>0</span></div>
-				<div class="span1 btn-group">
+				<div id="notifications-pager"class="span1 btn-group">
 					<button class="btn previousPage">«</button>
 				    <button class="btn nextPage">»</button>
 				</div>
