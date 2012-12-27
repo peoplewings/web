@@ -34,7 +34,10 @@ define(function(require){
 			this.$list = this.$('#notifications-list');
 			this.$('.notification-type').delegate('li', 'click', this.onTypeFilterClick.bind(this));
 			this.$('.notification-sender').delegate('input', 'change', this.filter.bind(this));
-			this.$('.ri-status select').on('change', this.filter.bind(this));
+			this.$('.ri-status')
+				.hide()
+				.find('select')
+				.on('change', this.filter.bind(this));
 
 			api.get('/api/v1/notificationslist')
 				.prop('data')
@@ -54,8 +57,9 @@ define(function(require){
 			if (target.length === 1)
 				data.push('target=' + target.attr('name'));
 
-			if (kind === 'reqinv')
-				data.push('state=' + this.$('.ri-status select').val());
+			var status = this.$('.ri-status select').val()
+			if (kind === 'reqinv' && status)
+				data.push('state=' + status);
 
 			return api.get('/api/v1/notificationslist?' + data.join('&'))
 				.prop('data')
