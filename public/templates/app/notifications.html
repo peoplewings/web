@@ -7,8 +7,14 @@
 <div class="notification-panel row">
 	<div class="span12">
 		<div class="row">
-			<div class="span2">Organized by</div>
-
+			<div class="span2">
+			<span>Organized by</span>
+			<select class="span1 ri-filters">
+					<option value="date">Date</option>
+					<option value="interlocutor">Contact name</option>
+					<option value="read">Read/Unread</option>
+			</select>
+			</div>	
 			<div class="span2 ri-status">
 				<select class="span2">
 					<option value="">All</option>
@@ -23,9 +29,9 @@
 				<li class="checkbox"><input type="checkbox" name="received"> Recived</li>
 				<li class="checkbox"><input type="checkbox" name="sent"> Applied</li>
 			</ul>
-			<div class="span3 offset4">
+			<div class="span3 offset6">
 				<input type="text" class="input-medium search-query" placeholder="Search">
-				<button id="search-btn">
+				<button id="search-btn" class="btn">
 					<span class="add-on">
 						<i class="icon-search"></i>
 					</button>
@@ -34,7 +40,13 @@
 		</div>
 		<div class="row">
 			<div class="span2">Checkboxes</div>
-			<div class="span3 pull-right">Pagination</div>
+			<div class="span3 offset7">
+				<div class="span1 resultCounter"><span> 0</span> - <span>0</span> of <span>0</span></div>
+				<div id="notifications-pager"class="span1 btn-group">
+					<button class="btn previousPage">«</button>
+				    <button class="btn nextPage">»</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<legend></legend>

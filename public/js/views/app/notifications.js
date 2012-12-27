@@ -11,6 +11,8 @@ define(function(require){
 
 		events: {
 			'click #search-btn': 'search',
+			'click #notifications-pager > button.nextPage': 'nextPage',
+			'click #notifications-pager > button.previousPage': 'previousPage',
 			'keyup .search-query': function(event) {
 				if (event.keyCode === 13)
 					this.search();
@@ -87,10 +89,39 @@ define(function(require){
 			this.$('#search-btn').parent()
 				.removeClass('offset4 offset6')
 				.addClass(isReqInv ? 'offset4' : 'offset6');
+
+			if (isReqInv) this.addFilters()
+			else this.removeFilters()
+
+
 			this.$('.button.selected').removeClass('selected');
 
 			target.addClass('selected');
 			this.filter();
+		},
+
+		addFilters: function(){
+			this.$(".ri-filters")
+			    .append('<option value="type">Wing Type</option>')
+			    .append('<option value="date-start">Wing Date</option>');
+		},
+
+		removeFilters: function(){
+			this.$(".ri-filters")
+				.find('option[value=type]')
+				.remove()
+				.end()
+				.find('option[value=date-start]')
+				.remove()
+		},
+
+		nextPage: function(){
+			console.log('nextPage')
+		},
+
+		previousPage: function(){
+			console.log('previousPage')
+>>>>>>> 29a4c4436b1acbba2cf3266b46b1b3e78ae510bb
 		}
 	});
 
