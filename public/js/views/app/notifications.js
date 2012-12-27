@@ -30,8 +30,9 @@ define(function(require){
 		},
 
 		render: function(){
-			$(this.el).html(notificationsTpl);
-			this.$list = $(this.el).find('#notifications-list');
+			this.$el.html(notificationsTpl);
+			this.$list = this.$('#notifications-list');
+			this.$('.notification-type').delegate('li', 'click', this.onTypeFilterClick.bind(this));
 
 			api.get('/api/v1/notificationslist')
 				.prop('data')
@@ -49,6 +50,13 @@ define(function(require){
 		destroy: function(){
 			this.remove();
 			this.unbind();
+		},
+
+		onTypeFilterClick: function(event) {
+			var target = $(event.currentTarget);
+			this.$('.button.selected').removeClass('selected');
+			target.addClass('selected');
+			console.log('FILTER BY NOTIFICATION TYPE: ' + target.data('filter'));
 		}
 	});
 
