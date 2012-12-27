@@ -11,6 +11,8 @@ define(function(require){
 
 		events: {
 			'click #search-btn': 'search',
+			'click #notifications-pager > button.nextPage': 'nextPage',
+			'click #notifications-pager > button.previousPage': 'previousPage',
 			'keyup .search-query': function(event) {
 				if (event.keyCode === 13)
 					this.search();
@@ -76,6 +78,7 @@ define(function(require){
 			    .append('<option value="type">Wing Type</option>')
 			    .append('<option value="date-start">Wing Date</option>');
 		},
+		
 		removeFilters: function(){
 			this.$(".ri-filters")
 				.find('option[value=type]')
@@ -83,6 +86,14 @@ define(function(require){
 				.end()
 				.find('option[value=date-start]')
 				.remove()
+		},
+		
+		nextPage: function(){
+			console.log('nextPage')
+		},
+		
+		previousPage: function(){
+			console.log('previousPage')
 		}
 	});
 
