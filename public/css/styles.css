@@ -30,18 +30,13 @@ input {
  * NOTIFICATIONS *
  *****************/
 
-.notification-panel {
-	border: 1px solid #DDD;
-	clear: both;
-}
-
-.notification-type {
+#notification-type {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-.notification-type > .button {
+#notification-type > .button {
 	list-style: none;
 	padding: 10px 20px;
 	margin: 0;
@@ -49,10 +44,41 @@ input {
 	border: 1px solid #DDD;
 }
 
-.notification-type > .button.selected {
+#notification-type > .button.selected {
 	background: #eee;
 }
 
-.notification-sender {
+#notification-panel {
+	border: 1px solid #DDD;
+	clear: both;
+}
+
+
+
+#filter-title {
+	float: left;
+	margin: 10px;
+}
+
+#ri-status, #ri-filters {
+	float: left;
+	margin: 3px;
+	width: 130px;
+}
+
+#notification-sender {
+	float: left;
 	list-style: none;
+}
+
+#notification-panel #search {
+	float: right;
+}
+
+.floatality:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
 }
