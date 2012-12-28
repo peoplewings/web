@@ -36,6 +36,7 @@ define(function(require){
 			this.$list = this.$('#notifications-list');
 			this.$('#notification-type').delegate('li', 'click', this.onTypeFilterClick.bind(this));
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
+			this.$('select#ri-filters').on('change', this.filter.bind(this))
 			this.$('#ri-status')
 				.on('change', this.filter.bind(this))
 				.hide();
@@ -62,6 +63,11 @@ define(function(require){
 			var status = this.$('#ri-status').val()
 			if (kind === 'reqinv' && status)
 				data.push('state=' + status);
+
+			var order = this.$('#ri-filters').val();
+			if (order)
+				data.push('order=' + order)
+
 
 			return api.get('/api/v1/notificationslist?' + data.join('&'))
 				.prop('data')
