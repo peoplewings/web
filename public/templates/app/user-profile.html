@@ -1,0 +1,223 @@
+<div class="row">
+	<div class="span12">
+		<div class="row">
+      		<div class="span5">
+				<p>
+					<h4 style="display: inline"><span name="firstName">{{firstName}}</span> <span name="lastName">{{lastName}}</span></h4>, <span name="age">{{age}}</span>
+					{{#if verified}}
+						<span class="label label-success"> Verified</span>
+					{{else}}
+					<span class="label label-important"> Not verified</span>
+					{{/if}}
+				</p>
+				<ul class="unstyled">
+			  		<li>Lives: {{ current.name }},  {{current.country}}</li>
+				  	<li>Last login: **Located user city**, {{ lastLoginDate }} </li>
+				</ul>
+			</div>
+      		<div class="span3">
+				<div>
+					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas">{{ tasaRespuestas }}</span> %
+					<label style="display: inline">Reply time: </label><span name="replyTime"> {{replyTime}} </span> h
+				</div>
+				<div>
+					<a href="#/friends" class="btn">Friends {{ numFriends }}</a>
+					<a href="#/references" class="btn">References {{numReferences}} </a>
+				</div>
+			</div>
+    	</div>
+		<div class="row">
+			<div class="span8">
+				<ul class="nav nav-tabs">
+		  	  		<li class="active"><a href="#about" data-toggle="tab">About</a></li>
+			  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
+				</ul>
+				<div class="tab-content">
+			  		  <div class="tab-pane active" id="about">
+						<h5>Basic info</h5>
+						<table class="table">
+			              <tbody>
+			                <tr>
+			                  <td>Gender</td>
+			                  <td>{{ gender }}</td>
+			                </tr>
+			                <tr>
+			                  <td>Birthday</td>
+			                  <td>{{ birthday }}</td>
+			                </tr>
+							<tr>
+			                  <td>Interested in</td>
+			                  <td>{{ interestedIn }}</td>
+			                </tr>
+							<tr>
+			                  <td>Relationship status</td>
+			                  <td>{{ civilState }}</td>
+			                </tr>
+							<tr>
+			                  <td>Languages</td>
+			                  <td>{{#each languages}} {{ name }} {{ level }}, {{/each}}</td>
+			                </tr>
+							<tr>
+			                  <td>Hometown</td>
+			                  <td>{{ hometown.name }}, {{ hometown.country }}</td>
+			                </tr>
+							<tr>
+			                  <td>Places where I have lived</td>
+			                  <td>{{#each otherLocations}} {{ name }} {{ country }}, {{/each}}</td>
+			                </tr>
+							<tr></tr>
+			              </tbody>
+			            </table>
+						<legend></legend>
+						<h5>About me</h5>
+						<table class="table">
+			              <tbody>
+			                <tr>
+			                  <td>Description</td>
+			                  <td>{{ allAboutYou }}</td>
+			                </tr>
+			                <tr>
+			                  <td>Current mission</td>
+			                  <td>{{ mainMission }}</td>
+			                </tr>
+							<tr>
+			                  <td>Occupation</td>
+			                  <td>{{ occupation }} at {{ company }}</td>
+			                </tr>
+							<tr>
+			                  <td>Education</td>
+			                  <td>{{#each education}} {{ degree }} at {{ institution }}, {{/each}}</td>
+			                </tr>
+							<tr>
+			                  <td>Personal philosophy</td>
+			                  <td>{{ personalPhilosophy }}</td>
+			                </tr>
+							<tr>
+			                  <td>Political views</td>
+			                  <td>{{ politicalOpinion }}</td>
+			                </tr>
+							<tr>
+			                  <td>Religion</td>
+			                  <td>{{ religion }}</td>
+			                </tr>
+							<tr></tr>
+			              </tbody>
+			            </table>
+						<legend></legend>
+						<h5>Likes</h5>
+						<table class="table">
+			              <tbody>
+			                <tr>
+			                  <td>People I enjoy</td>
+			                  <td>{{ enjoyPeople }}</td>
+			                </tr>
+			                <tr>
+			                  <td>Movies, books...</td>
+			                  <td>{{ movies }}</td>
+			                </tr>
+							<tr>
+			                  <td>Other pages</td>
+			                  <td>{{ otherPages }}</td>
+			                </tr>
+							<tr>
+			                  <td>Show, learn, share</td>
+			                  <td>{{ sharing }}</td>
+			                </tr>
+							<tr>
+			                  <td>Amazing things done/seen</td>
+			                  <td>{{ incredible }}</td>
+			                </tr>
+							<tr>
+			                  <td>People who inspires you</td>
+			                  <td>{{ inspiredBy }}</td>
+			                </tr>
+							<tr>
+			                  <td>Favorite quotes</td>
+			                  <td>{{ quotes }}</td>
+			                </tr>
+							<tr>
+			                  <td>Opinion about Peoplewings</td>
+			                  <td>{{ pwOpinion }}</td>
+			                </tr>
+							<tr></tr>
+			              </tbody>
+			            </table>
+						</div>
+					  <div class="tab-pane" id="wings">
+						{{#each wings}}
+						<h5> {{ name }} (Accomodation)</h5>
+						<table class="table">
+			              <tbody>
+			                <tr>
+			                  <td>Wing status</td>
+			                  <td>{{ status }}</td>
+			                </tr>
+			                <tr>
+			                  <td>Are you sharing for one time?</td>
+			                  <td>
+									{{#if sharingOnce  }}
+										{{ startDate }} to {{ endDate }}
+									{{else}}
+										No
+									{{/if}}
+							  </td>
+			                </tr>
+							<tr>
+			                  <td>Capacity</td>
+			                  <td>{{ capacity }}</td>
+			                </tr>
+							<tr>
+			                  <td>Preferred gender</td>
+			                  <td>{{ preferredMale }} {{ preferredFemale }} </td>
+			                </tr>
+							<tr>
+			                  <td>Wheelchair accessible</td>
+			                  <td>{{ wheelchair }}</td>
+			                </tr>
+							<tr>
+			                  <td>Sleeping arrangements</td>
+			                  <td>{{ whereSleepingType }}</td>
+			                </tr>
+							<tr>
+			                  <td>Smoking</td>
+			                  <td>{{ smoking }}</td>
+			                </tr>
+							<tr>
+			                  <td>Pets allowed</td>
+			                  <td>{{ petsAllowed }} {{ iHavePet }}</td>
+			                </tr>
+							<tr>
+			                  <td>I have blankets</td>
+			                  <td>{{ blankets }}</td>
+			                </tr>
+							<tr>
+			                  <td>I live in the center</td>
+			                  <td>{{ liveCenter }}</td>
+			                </tr>
+							<tr>
+			                  <td>Public transport</td>
+			                  <td>{{ publicTransport }}</td>
+			                </tr>
+							<tr>
+			                  <td>About your accmodation</td>
+			                  <td>{{ about }}</td>
+			                </tr>
+			              </tbody>
+			            </table>
+						<legend></legend>
+						{{/each}}	
+					  </div>
+				</div>
+			</div>	
+			<div class="span4">
+				<ul class="thumbnails">
+					<li class="span4">
+						<a href="" class="thumbnail" style="width:246px; height: 246px">
+							<img id="avatar" src="{{ avatar }}" alt="avatar">
+						</a>
+					</li>
+				</ul>
+			</div>
+   		</div>
+	</div>
+</div>
