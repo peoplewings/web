@@ -43,7 +43,6 @@ define(function(require){
 
 			api.get('/api/v1/notificationslist')
 				.prop('data')
-				.prop('items')
 				.then(this.refresh);
 		},
 
@@ -66,16 +65,16 @@ define(function(require){
 
 			return api.get('/api/v1/notificationslist?' + data.join('&'))
 				.prop('data')
-				.prop('items')
 				.then(this.refresh);
 		},
 
 		refresh: function(data) {
-			data.forEach(function(item) {
+			data.items.forEach(function(item) {
 				item.isMessage = item.kind === 'messages';
 			});
 
-			this.$list.html(data.map(itemTpl).join(''));
+			this.$list.html(data.items.map(itemTpl).join(''));
+			this.renderCounters(data.startResult, data.endResult, data.count);
 		},
 
 		destroy: function(){
@@ -115,6 +114,13 @@ define(function(require){
 				.end()
 				.find('option[value=date-start]')
 				.remove()
+		},
+		
+		renderCounters: function(start, end, count){
+			var args = arguments
+			var spans = this.$(".resultCounter").find("span").wrap(function(span){
+				$(this).text(args[span])
+			})
 		},
 
 		nextPage: function(){
