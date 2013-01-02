@@ -4,7 +4,7 @@ define([
   'utils',
   'api',
   'views/app/home',
-  'text!templates/app/settings.html',
+  'tmpl!templates/app/settings.html',
   'text!templates/lib/alert.html',
   "models/User",
 ], function($, Backbone, utils, api, homeView, settingsTpl, alertTpl, UserModel){
@@ -22,20 +22,12 @@ define([
 	},
 	initialize: function(options){
 		this.model = new UserModel({id:api.getUserId()})
-		this.model.bindings = {
-			firstName: '[name=firstName]',
-            lastName: '[name=lastName]',
-            email: '[name=email]',
-		}
-		this._modelBinder = new Backbone.ModelBinder();
-		
-		//this.model.on("change", this.render)
+		this.model.on("change", this.render.bind(this));
 	},
     render: function(){
-      $(this.el).html(settingsTpl);
-	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
-	  
-	  $('#settings-form').validate({
+		$(this.el).html(settingsTpl(this.model.toJSON()));
+		
+		$('#settings-form').validate({
 			rules: {
 				newPassword: {
 		            minlength: 6
@@ -56,12 +48,6 @@ define([
 			}
 		})
     },
-	close: function(){ 
-		this._modelBinder.unbind()
-	},
-	loadSettings: function(){
-		
-	},
 	submitSettings: function(e){
 		e.preventDefault(e);
 		var data = utils.serializeForm('settings-form')
