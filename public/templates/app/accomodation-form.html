@@ -1,167 +1,168 @@
 <form id="accomodation-form" class="form-horizontal well">
-	<% if (update === true) { %> 
+	{{#if update}}
 	<div class="btn-group pull-right">
-	  <button class="btn btn-mini">Options</button>
-	  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-	    <span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu">
-		<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
-	  </ul>
+		<button class="btn btn-mini">Options</button>
+		<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+		</ul>
 	</div>
-	<% } %>
- <div class="control-group">
-    <label class="control-label" for="inputName">Wing name</label>
-    <div class="controls">
-      <input type="text" id="inputName" name="name" placeholder="Some name" class="input-medium required"> (Accomodation)
+	{{/if}}
+
+	<div class="control-group">
+		<label class="control-label" for="inputName">Wing name</label>
+		<div class="controls">
+			<input type="text" id="inputName" name="name" placeholder="Some name" class="input-medium required"> (Accomodation)
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputStatus">Wing status</label>
-    <div class="controls">
-      <select name="status" id="wingtatus">
-			<option value="Y" selected="selected">Yes</option>
-			<option value="N">No</option>
-			<option value="M">Maybe</option>
-	  </select>
+	<div class="control-group">
+		<label class="control-label" for="inputStatus">Wing status</label>
+		<div class="controls">
+			<select name="status" id="wingtatus">
+				<option value="Y" selected="selected">Yes</option>
+				<option value="N">No</option>
+				<option value="M">Maybe</option>
+			</select>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-	    <label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
-	    <div class="controls">
+	<div class="control-group">
+		<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
+		<div class="controls">
 			<label class="checkbox inline">
-			  <input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
+				<input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
 			</label>
 			<span class="help-inline"></span>
 		</div>
-  </div>
-  <div id="sharing-dates"class="control-group inline" style="display:none">
-    <label class="control-label" for="inputDate"></label>
-    <div class="controls">
-      <input type="text" name="dateStart" placeholder="Start date" class="input-small">
-	  <input type="text" name="dateEnd" placeholder="End date" class="input-small" style="margin-left:5pt">
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputNewEmail">Best days to host</label>
-    <div class="controls">
-      <select name="bestDays" id="inputBestDays">
-			<option value="A" selected="selected">Any</option>
-			<option value="F">From Monday to Friday</option>
-			<option value="T">From Monday to Thursday</option>
-			<option value="W">Weekend</option>
-	  </select>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputCapacity">Capacity</label>
-    <div class="controls">
-      <select name="capacity" class="input-small">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="m">+9</option>
-		</select>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputGender">Preferred gender</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="preferredMale" id="inlineCheckbox1" value="True"> Male
-	</label>
-	<label class="checkbox inline">
-	  <input type="checkbox" name="preferredFemale" id="inlineCheckbox2" value="True"> Female
-	</label>
-		<span class="help-inline"></span>
+	<div id="sharing-dates"class="control-group inline" style="display:none">
+		<label class="control-label" for="inputDate"></label>
+		<div class="controls">
+			<input type="text" name="dateStart" placeholder="Start date" class="input-small">
+			<input type="text" name="dateEnd" placeholder="End date" class="input-small" style="margin-left:5pt">
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputWheelchair">Wheelchair accessible</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="wheelchair" id="inlineCheckbox1" value="True">
-	</label>
-		<span class="help-inline"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputNewEmail">Best days to host</label>
+		<div class="controls">
+			<select name="bestDays" id="inputBestDays">
+				<option value="A" selected="selected">Any</option>
+				<option value="F">From Monday to Friday</option>
+				<option value="T">From Monday to Thursday</option>
+				<option value="W">Weekend</option>
+			</select>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
-    <div class="controls">
-      <select name="whereSleepingType" id="whereSleepingType">
-			<option value="C" selected="selected">Common area</option>
-			<option value="P">Private area</option>
-			<option value="S">Shared private area</option>
-	  </select>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputNewEmail">Smoking</label>
-    <div class="controls">
-      <select name="smoking" id="smoking">
-			<option value="N" selected="selected">No smoking allowed</option>
-			<option value="S">I smoke</option>
-			<option value="D">I don't smoke but guests can smoke here</option>
-	  </select>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPets">Pets</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="iHavePet" id="inlineCheckbox1" value="True"> I have pet
-	</label>
-	<label class="checkbox inline">
-	  <input type="checkbox" name="petsAllowed" id="inlineCheckbox2" value="True"> Guests pets allowed
-	</label>
-		<span class="help-inline"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputCapacity">Capacity</label>
+		<div class="controls">
+			<select name="capacity" class="input-small">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="m">+9</option>
+			</select>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPets">I have blankets</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="blankets" id="inputBlankets" value="True">
-	</label>
-		<span class="help-inline"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputGender">Preferred gender</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="preferredMale" id="inlineCheckbox1" value="True"> Male
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="preferredFemale" id="inlineCheckbox2" value="True"> Female
+			</label>
+			<span class="help-inline"></span>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputCenter">I live in the center</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="liveCenter" id="inputLiveCenter" value="True">
-	</label>
-		<span class="help-inline"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputWheelchair">Wheelchair accessible</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="wheelchair" id="inlineCheckbox1" value="True">
+			</label>
+			<span class="help-inline"></span>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPets">Transports</label>
-    <div class="controls">
-	<label class="checkbox inline">
-	  <input type="checkbox" name="undergorund" id="checkboxMetro" value="True"> Underground
-	</label>
-	<label class="checkbox inline">
-	  <input type="checkbox" name="bus" id="checkboxBus" value="True"> Bus
-	</label>
-		<label class="checkbox inline">
-	  <input type="checkbox" name="tram" id="checkboxTram" value="True"> Tram
-	</label>
-	<label class="checkbox inline">
-	  <input type="checkbox" name="train" id="checkboxTrain" value="True"> Train
-	</label>
-	<label class="checkbox inline">
-	  <input type="checkbox" name="others" id="checkboxOthers" value="True"> Others
-	</label>
-		<span class="help-inline"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
+		<div class="controls">
+			<select name="whereSleepingType" id="whereSleepingType">
+				<option value="C" selected="selected">Common area</option>
+				<option value="P">Private area</option>
+				<option value="S">Shared private area</option>
+			</select>
+		</div>
 	</div>
-  </div>
+	<div class="control-group">
+		<label class="control-label" for="inputNewEmail">Smoking</label>
+		<div class="controls">
+			<select name="smoking" id="smoking">
+				<option value="N" selected="selected">No smoking allowed</option>
+				<option value="S">I smoke</option>
+				<option value="D">I don't smoke but guests can smoke here</option>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputPets">Pets</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="iHavePet" id="inlineCheckbox1" value="True"> I have pet
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="petsAllowed" id="inlineCheckbox2" value="True"> Guests pets allowed
+			</label>
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputPets">I have blankets</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="blankets" id="inputBlankets" value="True">
+			</label>
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputCenter">I live in the center</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="liveCenter" id="inputLiveCenter" value="True">
+			</label>
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputPets">Transports</label>
+		<div class="controls">
+			<label class="checkbox inline">
+				<input type="checkbox" name="undergorund" id="checkboxMetro" value="True"> Underground
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="bus" id="checkboxBus" value="True"> Bus
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="tram" id="checkboxTram" value="True"> Tram
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="train" id="checkboxTrain" value="True"> Train
+			</label>
+			<label class="checkbox inline">
+				<input type="checkbox" name="others" id="checkboxOthers" value="True"> Others
+			</label>
+			<span class="help-inline"></span>
+		</div>
+	</div>
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputAbout">About your accomodation</label></label>
 		<div class="controls">
@@ -173,14 +174,14 @@
 	<legend><h3>Listing location</h3></legend>
 	<div class="well">
 		<h5>Show only to confirmed guests</h5>
-			<p>
-		Bla bla bla
-	</p>
-		</div>
+		<p>
+			Bla bla bla
+		</p>
+	</div>
 
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputAddress">Street address</label></label>
-		<div class="controls">
+			<div class="controls">
 			<input type="text" name="address" id="inputAddress" class="required">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
@@ -219,14 +220,13 @@
 		</div>
 	</div>
 
-  <div class="form-actions">
-	<button type="reset" id="cancel-wing-btn" class="btn">Cancel</button>
-	<% if (update === true) { %> 
+	<div class="form-actions">
+		<button type="reset" id="cancel-wing-btn" class="btn">Cancel</button>
+		{{#if update}}
 		<button id="update-wing-btn" class="btn btn-primary">Update</button>
-	<% } %>
-	<% if (update === false) { %> 
+		{{#else}}
 		<button type="submit" class="btn btn-primary">Save</button>
-	<% } %>
-  </div>
-  </div>
+		{{/if}}
+		</div>
+	</div>
 </form>
