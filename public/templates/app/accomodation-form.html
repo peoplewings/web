@@ -1,14 +1,14 @@
 <form id="accomodation-form" class="form-horizontal well">
 	{{#if update}}
-	<div class="btn-group pull-right">
-		<button class="btn btn-mini">Options</button>
-		<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu">
-			<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
-		</ul>
-	</div>
+		<div class="btn-group pull-right">
+			<button class="btn btn-mini">Options</button>
+			<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+			</ul>
+		</div>
 	{{/if}}
 
 	<div class="control-group">
@@ -223,9 +223,9 @@
 	<div class="form-actions">
 		<button type="reset" id="cancel-wing-btn" class="btn">Cancel</button>
 		{{#if update}}
-		<button id="update-wing-btn" class="btn btn-primary">Update</button>
-		{{#else}}
-		<button type="submit" class="btn btn-primary">Save</button>
+			<button id="update-wing-btn" class="btn btn-primary">Update</button>
+		{{else}}
+			<button type="submit" class="btn btn-primary">Save</button>
 		{{/if}}
 		</div>
 	</div>
