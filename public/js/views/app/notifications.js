@@ -8,6 +8,10 @@ define(function(require){
 
 	var notificationsView = Backbone.View.extend({
 		el: "#main",
+		
+		activePage: 1,
+		
+		lastPage: undefined,
 
 		events: {
 			'click #search-btn': 'search',
@@ -29,6 +33,8 @@ define(function(require){
 			api.get('/api/v1/notificationslist?search=' + encodeURIComponent(query))
 				.prop('data')
 				.then(this.refresh);
+			
+			this.resetPager()
 		},
 
 		render: function(){
@@ -46,12 +52,16 @@ define(function(require){
 				.then(this.refresh);
 		},
 
-		filter: function() {
-			this.$('#search-query').val('');
-
+		filter: function(useQuery) {
 			var data = [];
-
-			var kind = this.$('#button.selected').data('filter');
+			data.push('page=' + this.activePage)
+			
+			var query = this.$('#search-query').val()
+			console.log("QUERY:", query)
+			if (query)
+				data.push('search=' + encodeURIComponent(query))
+				
+			var kind = this.$('.button.selected').data('filter');
 			if (kind)
 				data.push('kind=' + kind);
 
@@ -77,7 +87,10 @@ define(function(require){
 			data.items.forEach(function(item) {
 				item.isMessage = item.kind === 'messages';
 			});
-
+			
+			if (!this.lastPage)
+				this.lastPage = Math.ceil(data.count / data.items.length)
+				
 			this.$list.html(data.items.map(itemTpl).join(''));
 			this.renderCounters(data.startResult, data.endResult, data.count);
 		},
@@ -97,6 +110,11 @@ define(function(require){
 				this.removeFilters()
 
 			target.addClass('selected');
+
+			this.resetPager()
+			
+			this.$('#search-query').val('');
+			
 			this.filter();
 		},
 
@@ -122,11 +140,26 @@ define(function(require){
 		},
 
 		nextPage: function(){
-			console.log('nextPage')
+			if (this.activePage + 1 > this.lastPage)
+				return false
+			else {
+				++this.activePage
+				this.filter()
+			}
 		},
 
 		previousPage: function(){
-			console.log('previousPage')
+			if (this.activePage - 1 < 1)
+				return false
+			else {
+				--this.activePage
+				this.filter()
+			}
+		},
+		
+		resetPager: function(){
+			this.activePage = 1
+			this.lastPage = undefined
 		}
 	});
 
