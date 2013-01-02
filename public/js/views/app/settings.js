@@ -6,7 +6,7 @@ define(function(require){
 	var utils = require("utils");
 	var settingsTpl = require("tmpl!templates/app/settings.html")
 	var alertTpl = require("text!templates/lib/alert.html")
-	var UserModel = require("models/User")
+	var UserModel = require("models/Account")
 	
 	var settingsView = Backbone.View.extend({
     	el: "#main",
@@ -88,7 +88,9 @@ define(function(require){
 					//console.log(resp.msg)
 				} 
 			}
-			if ($('#delete-account-form').valid()) api.delete(api.getApiVersion() + '/accounts/' + api.getUserId(), data, goodbye)
+			if ($('#delete-account-form').valid())
+				this.model.destroy({data: data, cb: goodbye })
+				//api.delete(api.getApiVersion() + '/accounts/' + api.getUserId(), data, goodbye)
 		}
 	});
 	

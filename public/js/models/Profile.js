@@ -5,64 +5,11 @@ define(function(require) {
 	var api = require('api2');
 	var factory = require('core/factory');
 
-
 	var UserProfileModel = Backbone.Model.extend({
 
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/',
 
-		// To set the JSON root of the model
 		parse: function(resp, xhr){
-			//Hydratation of data recived
-			//hydratates interestedIn, languages, education arrays, [TODO: locations. socialNetworks, instantMessages]
-			if (resp.data){
-				resp.data["Male"] = false
-				resp.data["Female"] = false
-
-				$.each(resp.data.interestedIn, function(i, field){
-					var gender = field.gender
-					resp.data[gender] = true
-				})
-				var s
-				$.each(resp.data.languages, function(i, field){
-					s = i + 1 + ""
-					resp.data["x_language_" + s] = field.name[0].toUpperCase() + field.name.slice(1)
-					resp.data["x_level_" + s] = field.level
-				})
-				$.each(resp.data.education, function(i, field){
-					s = i + 1 + ""
-					resp.data["x_institution_" + s] = field.institution
-					resp.data["x_degree_" + s] = field.degree
-				})
-				$.each(resp.data.socialNetworks, function(i, field){
-					s = i + 1 + ""
-					resp.data["x_socialNetwork_" + s] = field.socialNetwork
-					resp.data["x_snUsername_" + s] = field.snUsername
-				})
-				$.each(resp.data.instantMessages, function(i, field){
-					s = i + 1 + ""
-					resp.data["x_instantMessage_" + s] = field.instantMessage
-					resp.data["x_imUsername_" + s] = field.imUsername
-				})
-				$.each(resp.data.otherLocations, function(i, field){
-					s = i + 1 + ""
-					resp.data["x_name_" + s] = field.name + ", " + field.country
-				})
-				if (!$.isEmptyObject(resp.data['current'])){
-					resp.data['x_current'] = resp.data['current'].name + ", " + resp.data['current'].region + ", " + resp.data['current'].country
-					//resp.data['x_current_lat'] = resp.data['current'].lat
-					//resp.data['x_current_lon'] = resp.data['current'].lon
-				}else{
-					resp.data['x_current'] = ""
-				}
-				if (!$.isEmptyObject(resp.data['hometown'])){
-					resp.data['x_hometown'] = resp.data['hometown'].name + ", " + resp.data['hometown'].region + ", " + resp.data['hometown'].country
-					//resp.data['x_hometown_lat'] = resp.data['hometown'].lat
-					//resp.data['x_hometown_lon'] = resp.data['hometown'].lon
-				} else {
-					resp.data['x_hometown'] = ""
-				}
-			}
-
 			return resp.data
 		},
 		save: function(successCb){
