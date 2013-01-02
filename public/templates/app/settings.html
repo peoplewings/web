@@ -1,87 +1,87 @@
 <div class="row">
-    <div class="span8">
-<legend>Account settings</legend>
-<form id="settings-form" class="form-horizontal">
- <div class="control-group">
-    <label class="control-label" for="inputName">Name</label>
-    <div class="controls">
-      <input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
-	  <input type="text" id="lastName" name="lastName" placeholder="Last" class="input-small required">
-	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputName">Current email</label>
-    <div class="controls">
-      <p><strong name="email"></strong></p>
-	</div>
-  </div>
-  <legend><h5>Change your primary mail</h5></legend>
-  <div class="control-group">
-    <label class="control-label" for="inputNewEmail">Your new email address</label>
-    <div class="controls">
-      <input type="email" id="inputNewEmail" name="newEmail" placeholder="New email" class="input-large">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="repeatNewEmail">Retype your new email address</label>
-    <div class="controls">
-      <input type="email" id="repeatNewEmail" name="repeatNewEmail" placeholder="New email" class="input-large">
-    </div>
-  </div>
-  <legend><h5>Change your password</h5></legend>
-  <div class="control-group">
-    <label class="control-label" for="inputNewPassword">Your new password</label>
-    <div class="controls">
-      <input type="password" id="pass" placeholder="New password" name="newPassword" class="input-large">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputRepeatNewPassword">Your new password</label>
-    <div class="controls">
-      <input type="password" id="pass2" placeholder="New password" name="repeatNewPassword" class="input-large">
-    </div>
-  </div>
-<legend></legend>
-	<div class="control-group">
-		<p><b>To save this settings, please enter your PEOPLEWINGS password</b></p>
-    	<label class="control-label" for="inputPassword">Current password</label>
-	    <div class="controls">
-		  <input type="password" id="inputPasword" name="password" placeholder="Current password" class="input-large required">
-		</div>
-  </div>
-  <div class="form-actions">
-			<button type="reset" class="btn">Cancel</button>
-			<button type="submit" class="btn btn-primary" style="margin-left: 160px">Submit</button>
-  </div>
-<legend><h5>Delete your entire account <a href="#myModal" role="button" data-toggle="modal">here</a> </h5> </legend>
-  <div class="control-group">
-    <div class="controls">
-	   
-    </div>
-  </div>
-  </div>
-</form>
-
-<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Delete account</h3>
-  </div>
-  <div class="modal-body">
-    <p>Are you sure? In order to complete please type your acount password</p>
-	<form id="delete-account-form" class="form-horizontal">	    
-     	<div class="control-group">
-			<label class="control-label" for="textarea"><label for="inputCurrentPassword">Password</label></label>
-			<div class="controls">
-				<input type="password" id="currentPassword" name="currentPassword" maxlength="20" placeholder="Your password" class="input-medium required">
+	<div class="span8">
+		<legend>Account settings</legend>
+		<form id="settings-form" class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="inputName">Name</label>
+				<div class="controls">
+					<input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
+					<input type="text" id="lastName" name="lastName" placeholder="Last" class="input-small required">
+				</div>
 			</div>
-	    </div>
-	</form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button id="delete-account-btn" class="btn btn-primary">Submit</button>
-  </div>
-</div>
-  </div><!-- end of row-->
+			<div class="control-group">
+					<label class="control-label" for="inputName">Current email</label>
+					<div class="controls">
+						<p><strong name="email"></strong></p>
+					</div>
+				</div>
+				<legend><h5>Change your primary mail</h5></legend>
+				<div class="control-group">
+					<label class="control-label" for="inputNewEmail">Your new email address</label>
+					<div class="controls">
+						<input type="email" id="inputNewEmail" name="newEmail" placeholder="New email" class="input-large">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="repeatNewEmail">Retype your new email address</label>
+					<div class="controls">
+						<input type="email" id="repeatNewEmail" name="repeatNewEmail" placeholder="New email" class="input-large">
+					</div>
+				</div>
+				<legend><h5>Change your password</h5></legend>
+				<div class="control-group">
+					<label class="control-label" for="inputNewPassword">Your new password</label>
+					<div class="controls">
+						<input type="password" id="pass" placeholder="New password" name="newPassword" class="input-large">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputRepeatNewPassword">Your new password</label>
+					<div class="controls">
+						<input type="password" id="pass2" placeholder="New password" name="repeatNewPassword" class="input-large">
+					</div>
+				</div>
+				<legend></legend>
+				<div class="control-group">
+					<p><b>To save this settings, please enter your PEOPLEWINGS password</b></p>
+					<label class="control-label" for="inputPassword">Current password</label>
+					<div class="controls">
+						<input type="password" id="inputPasword" name="password" placeholder="Current password" class="input-large required">
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="reset" class="btn">Cancel</button>
+					<button type="submit" class="btn btn-primary" style="margin-left: 160px">Submit</button>
+				</div>
+				<legend><h5>Delete your entire account <a href="#myModal" role="button" data-toggle="modal">here</a> </h5> </legend>
+				<div class="control-group">
+					<div class="controls">
+
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Delete account</h3>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure? In order to complete please type your acount password</p>
+				<form id="delete-account-form" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="textarea"><label for="inputCurrentPassword">Password</label></label>
+						<div class="controls">
+							<input type="password" id="currentPassword" name="currentPassword" maxlength="20" placeholder="Your password" class="input-medium required">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button id="delete-account-btn" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div><!-- end of row-->
 </div><!-- end of span-->

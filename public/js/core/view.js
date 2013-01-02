@@ -16,7 +16,49 @@ define(function(require) {
 	});
 
 	Handlebars.registerHelper('enum', function(value, id) {
-		return enums[id].fromValue(value);
+		if (enums[id])
+			return enums[id].fromValue(value);
+		else
+			return window[id][value];
+	});
+
+	var originalEach = Handlebars.helpers['each'];
+	Handlebars.registerHelper('each', function(context, options) {
+		if (context instanceof Array) {
+			context = context.map(function(item, index) {
+				return _.extend({}, item, {
+					index: index,
+					indexPlusOne: index + 1,
+					indexMinusOne: index - 1,
+					first: index === 0,
+					last: index === context.length - 1
+				})
+			});
+		}
+
+		return originalEach.call(this, context, options);
+	});
+
+	Handlebars.registerHelper('range', function(start, end, modificator, options) {
+		if (arguments.length === 3) {
+			options = modificator;
+			modificator = 1;
+		} else if (arguments.length === 2) {
+			options = end;
+			modificator = 1;
+			end = start;
+			start = 1;
+		}
+
+		var checker = modificator > 0 ?
+			function(a) { return a <= end } :
+			function(a) { return a >= end };
+
+		var arr = [];
+		for (var i = start; checker(i); i += modificator)
+			arr.push(i);
+
+		return Handlebars.helpers['each'].call(this, arr, options);
 	});
 
 	/*********
