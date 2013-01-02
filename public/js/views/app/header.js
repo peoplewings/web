@@ -3,7 +3,7 @@ define([
   "backbone",
   'text!templates/app/header.html',
   "api",
-  "models/User",
+  "models/Account",
 ], function($, Backbone, headerTpl, api, UserModel){
 	
   var appHeader = Backbone.View.extend({
