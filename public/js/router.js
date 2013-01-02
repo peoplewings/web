@@ -8,7 +8,7 @@ define([
     "views/home/main",
 	//app views (LoggedUser)
     "views/app/home",
-    "models/User",
+    "models/Account",
 ], function($, Backbone, api, api2, homeView, appHomeView, UserModel){
 
     var Router = Backbone.Router.extend({
