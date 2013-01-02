@@ -1,221 +1,211 @@
 <div class="row">
 	<div class="span12">
 		<div class="row">
-      		<div class="span5">
+			<div class="span5">
 				<p>
 					<h4 style="display: inline"><span name="firstName"></span> <span name="lastName"></span></h4>, <span name="age"></span>
-					<% if (verified === true) { %> 
+					{{#if verified}}
 						<span class="label label-success"> Verified</span>
-					<% } %>
-					<% if (verified === false) { %> 
+					{{else}}
 						<span class="label label-important"> Not verified</span>
-					<% } %>
-				</p>
-				<ul class="unstyled">
-			  		<li>	
-						<% if (current.name != undefined) { %> 
-							Lives: <%= current.name %>,  <%= current.country %>
-						<% } %>
-				  	</li>
-				  	<li>
-						<% if (lastLoginDate != undefined) { %> 
-							Last login: "Located" user city, <%= lastLoginDate%>
-							<% } %>
-				  		</li>
-				</ul>
-			</div>
-      		<div class="span3">
-				<a href="#/profile" class="btn pull-right">Edit</a>
-				<div class="span3">
-					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas"></span> %
-					<label style="display: inline">Reply time: </label><span name="replyTime"></span> h
+					{{/if}}
+					</p>
+					<ul class="unstyled">
+						<li>
+							{{#if current.name}}
+								Lives: {{current.name}}, {{current.country}}
+							{{/if}}
+						</li>
+						<li>
+							{{#if lastLoginDate}}
+								Last login: "Located" user city, {{lastLoginDate}}
+							{{/if}}
+						</li>
+					</ul>
 				</div>
 				<div class="span3">
-					<a href="#/friends" class="btn">Friends <span name="numFriends"></span></a>
-					<a href="#/references" class="btn">References <span name="numReferences"></span></a>
+					<a href="#/profile" class="btn pull-right">Edit</a>
+					<div class="span3">
+						<label style="display: inline">Reply rate: </label><span name="tasaRespuestas"></span> %
+						<label style="display: inline">Reply time: </label><span name="replyTime"></span> h
+					</div>
+					<div class="span3">
+						<a href="#/friends" class="btn">Friends <span name="numFriends"></span></a>
+						<a href="#/references" class="btn">References <span name="numReferences"></span></a>
+					</div>
 				</div>
 			</div>
-    	</div>
-		<div class="row">
-			<div class="span8">
-				<ul class="nav nav-tabs">
-		  	  		<li class="active"><a href="#about" data-toggle="tab">About</a></li>
-			  		<li><a href="#wings" data-toggle="tab">Wings</a></li>
-				</ul>
-				<div class="tab-content">
-			  		  <div class="tab-pane active" id="about">
-						<h4>Basic Info</h4>
-			  		  	<dl class="dl-horizontal">
-							<dt>Gender</dt>
-							<dd name="gender"></dd>
-							<dt>Birthday</dt>
-							<dd><%= birthday %></dd>
-							<dt>Interested in</dt>
-							<dd><%= interestedIn %></dd>
-							<dt>Relationship status</dt>
-							<dd name="civilState"></dd>
-							<dt>Languages</dt>
-							<% if (languages.size != 0) { %> 
-							<dd>
-								<% _.each(languages, function(lang) { %> 
-									<%= lang.name%> <%= lang.level%>, 
-								<% }); %>
-							</dd>
-							<% } %>
-							<dt>Hometown</dt>
-							<% if (hometown.name != undefined) { %> 
-							<dd><%= hometown.name%>, <%= hometown.country%> </dd>
-							<% } %>
-							<dt>Places where I have lived</dt>
-							<% if (otherLocations.size != 0) { %> 
-							<dd>
-								<% _.each(otherLocations, function(location) { %> 
-									<%= location.name%>, <%= location.country%>;
-								<% }); %>
-							</dd>
-							<% } %>
-							<dt></dt>
-							<dd><div id="mapcanvas"></div></dd>
-						</dl>
-						<legend></legend>
-						<h4>About Me</h4>
-			  		  	<dl class="dl-horizontal">
-							<dt>Description</dt>
-							<dd name="allAboutYou"></dd>
-							<dt>Current mission</dt>
-							<dd name="mainMission"></dd>
-							<dt>Occupation</dt>
-							<dd name="occupation"></dd>
-							<dt>Company</dt>
-							<dd name="company"></dd>
-							<dt>Education</dt>
-							<% if (education.size != 0) { %> 
-							<dd>
-								<% _.each(education, function(edu) { %> 
-									<%= edu.degree %> at <%= edu.institution %>, 
-								<% }); %>
-							</dd>
-							<% } %>
-							<dt>Personal philosophy</dt>
-							<dd name="personalPhilosophy"></dd>
-							<dt>Political views</dt>
-							<dd name="politicalOpinion"></dd>
-							<dt>Religion</dt>
-							<dd name="religion"></dd>
-						</dl>
-						<legend></legend>
-						<h4>Likes</h4>
-			  		  	<dl class="dl-horizontal">
-							<dt>People I enjoy</dt>
-							<dd name="enjoyPeople"></dd>
-							<dt>Movies, books...</dt>
-							<dd name="movies"></dd>
-							<dt>Webs, apps</dt>
-							<dd name="otherPages"></dd>
-							<dt>Show, learn, share</dt>
-							<dd name="sharing"></dd>
-							<dt>Amazing things done/seen</dt>
-							<dd name="incredible"></dd>
-							<dt>People who inspires you</dt>
-							<dd name="inspiredBy"></dd>
-							<dt>Favorite quotes</dt>
-							<dd name="quotes"></dd>
-							<dt>Opinion about Peoplewings</dt>
-							<dd name="pwOpinion"></dd>
-						</dl>
-			  		  </div>
-					  <div class="tab-pane" id="wings">
-							<% _.each(wings, function(wing) { console.log(wing) %> 
-								<h4><%= wing.name %> (Accomodation)</h4>
+			<div class="row">
+				<div class="span8">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#about" data-toggle="tab">About</a></li>
+						<li><a href="#wings" data-toggle="tab">Wings</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="about">
+							<h4>Basic Info</h4>
+							<dl class="dl-horizontal">
+								<dt>Gender</dt>
+								<dd name="gender"></dd>
+								<dt>Birthday</dt>
+								<dd>{{birthday}}</dd>
+								<dt>Interested in</dt>
+								<dd>{{interestedIn}}</dd>
+								<dt>Relationship status</dt>
+								<dd name="civilState"></dd>
+								<dt>Languages</dt>
+								{{#if languages.length}}
+									<dd>
+										{{#each languages}}
+											{{name}} {{level}},
+										{{/each}}
+									</dd>
+								{{/if}}
+								</dd>
+								<dt>Hometown</dt>
+								{{#if hometown.name}}
+									<dd>{{hometown.name}}, {{hometown.country}}</dd>
+								{{/if}}
+								<dt>Places where I have lived</dt>
+								{{#if otherLocations.length}}
+									<dd>
+										{{#each otherLocations}}
+											{{name}}, {{country}}
+										{{/each}}
+									</dd>
+								{{/if}}
+								<dt></dt>
+								<dd><div id="mapcanvas"></div></dd>
+							</dl>
+							<legend></legend>
+							<h4>About Me</h4>
+							<dl class="dl-horizontal">
+								<dt>Description</dt>
+								<dd name="allAboutYou"></dd>
+								<dt>Current mission</dt>
+								<dd name="mainMission"></dd>
+								<dt>Occupation</dt>
+								<dd name="occupation"></dd>
+								<dt>Company</dt>
+								<dd name="company"></dd>
+								<dt>Education</dt>
+								{{#if education.size}}
+									<dd>
+										{{#each education}}
+											{{degree}} at {{insitution}}
+										{{/each}}
+									</dd>
+								{{/if}}
+								<dt>Personal philosophy</dt>
+								<dd name="personalPhilosophy"></dd>
+								<dt>Political views</dt>
+								<dd name="politicalOpinion"></dd>
+								<dt>Religion</dt>
+								<dd name="religion"></dd>
+							</dl>
+							<legend></legend>
+							<h4>Likes</h4>
+							<dl class="dl-horizontal">
+								<dt>People I enjoy</dt>
+								<dd name="enjoyPeople"></dd>
+								<dt>Movies, books...</dt>
+								<dd name="movies"></dd>
+								<dt>Webs, apps</dt>
+								<dd name="otherPages"></dd>
+								<dt>Show, learn, share</dt>
+								<dd name="sharing"></dd>
+								<dt>Amazing things done/seen</dt>
+								<dd name="incredible"></dd>
+								<dt>People who inspires you</dt>
+								<dd name="inspiredBy"></dd>
+								<dt>Favorite quotes</dt>
+								<dd name="quotes"></dd>
+								<dt>Opinion about Peoplewings</dt>
+								<dd name="pwOpinion"></dd>
+							</dl>
+						</div>
+						<div class="tab-pane" id="wings">
+							{{#each wings}}
+								<h4>{{name}} (Accomodation)</h4>
 								<dl class="dl-horizontal">
 									<dt>Wing status</dt>
-									<dd><%= status_choices[wing.status] %></dd>
+									<dd>{{#enum status 'status_choices'}}</dd>
 									<dt>Are you sharing for one time?</dt>
-									<% if (wing.sharingOnce == true) { %>
-									<dd> <%= wing.dateStart %> to  <%= wing.dateEnd %> </dd>
-									<% } %>
-									<% if (wing.sharingOnce == false) { %>
-									<dd> No </dd>
-									<% } %>
+									{{#if sharingOnce}}
+										<dd>{{dateStart}} to {{dateEnd}}</dd>
+									{{else}}
+										<dd>No</dd>
+									{{/if}}
 									<dt>Capacity</dt>
-									<dd> <%= wing.capacity %></dd>
-									<% if (wing.preferredMale == true && wing.preferredFemale == true) { %>
-									<dt>Preferred gender</dt>
-									<dd>
-										<% if (wing.preferredMale == true) { %>
-											Male 
-										<% } %>
-										<% if (wing.preferredFemale == true) { %>
-											Female
-										<% } %>
-									</dd>
-									<% } %>
+									<dd>{{capacity}}</dd>
+									{{#if preferredMale}}
+										<dt>Preferred gender</dt>
+										<dd>Male</dd>
+									{{/if}}
+									{{#if preferredFemale}}
+										<dt>Preferred gender</dt>
+										<dd>Female</dd>
+									{{/if}}
 									<dt>Wheelchair accessible</dt>
 									<dd>
-									<% if (wing.wheelchair == true) { %>
-										Yes
-									<% } %>
-									<% if (wing.wheelchair == false) { %>
-										No
-									<% } %>	
+										{{#if weelchair}}
+											Yes
+										{{else}}
+											No
+										{{/if}}
 									</dd>
 									<dt>Sleeping arrangements</dt>
-									<dd> <%= sleep_choices[wing.whereSleepingType] %> </dd>
+									<dd>{{#enum whereSleepingType 'sleep_choices'}}</dd>
 									<dt>Smoking</dt>
-									<dd> <%= smoking_choices[wing.smoking] %> </dd>
+									<dd>{{#enum smoking 'smoking_choices'}}</dd>
 									<dt>Pets allowed</dt>
-									<dd> 
-									<% if (wing.petsAllowed == true) { %> 
-										Guest pets allowed 
-									<% } %>
-									<% if (wing.petsAllowed == false) { %> 
-										No guest pets allowed 
-									<% } %>
-									<% if (wing.iHavePet == true) { %> 
-										and I have a pet
-									<% } %>
-									<% if (wing.iHavePet == false) { %> 
-										and I don't have any pet
-									<% } %>
+									<dd>
+										{{#if petsAllowed}}
+											Guest pets allowed
+										{{else}}
+											No guest pets allowed
+										{{/if}}
+										{{#if iHavePet}}
+											and I have a pet
+										{{else}}
+											and I don't have any pet
+										{{/if}}
 									</dd>
 									<dt>I have blankets</dt>
-									<dd> 
-									<% if (wing.blankets == true) { %>
-										Yes
-									<% } %>
-									<% if (wing.blankets == false) { %>
-										No
-									<% } %>	
+									<dd>
+										{{#if blankets}}
+											Yes
+										{{else}}
+											No
+										{{/if}}
 									</dd>
 									<dt>I live in the center</dt>
 									<dd>
-									<% if (wing.liveCenter == true) { %>
-										Yes
-									<% } %>
-									<% if (wing.liveCenter == false) { %>
-										No
-									<% } %>
+										{{#if liveCenter}}
+											Yes
+										{{else}}
+											No
+										{{/fi}}
 									</dd>
 									<dt>Public transport</dt>
-									<dd> <%= wing.publicTransport %> </dd>
+									<dd>{{publicTransport}}</dd>
 									<dt>About your accmodation</dt>
-									<dd> <%= wing.about %> </dd>
-									
+									<dd>{{about}}</dd>
 								</dl>
 								<legend></legend>
-							<% }); %>
-					  </div>
+							{{/each}}
+					</div>
 				</div>
-			</div>	
+			</div>
 			<div class="span4">
 				<ul class="thumbnails">
 					<li class="span4">
 						<a href="" class="thumbnail" style="width:246px; height: 246px">
-							<img id="avatar" src="<%= avatar %>" alt="avatar">
+							<img id="avatar" src="{{avatar}}" alt="avatar">
 						</a>
 					</li>
 				</ul>
 			</div>
-   		</div>
+		</div>
 	</div>
 </div>

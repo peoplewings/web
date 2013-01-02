@@ -75,7 +75,7 @@ input {
 	float: right;
 }
 
-.floatality:after {
+.clearfix:after {
     content: " ";
     visibility: hidden;
     display: block;
