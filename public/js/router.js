@@ -118,21 +118,18 @@ define([
 		},
 		defaultAction: function(actions){
 			console.log('router.js: defaultAction()')
-			if (api.userIsLoggedIn()) appHomeView.render()
-			else homeView.render()
+			if (api.userIsLoggedIn())
+				appHomeView.render();
+			else
+				homeView.render();
     	},
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
             Backbone.history.start();
-			if (api.userIsLoggedIn()){
-				api2.get('/api/v1/accounts/' + api.getUserId())
-					.prop('data')
-					.then(function(data) {
-						var user = new UserModel(data)
-						require(["views/app/header"], function(header){ header.render() })
-						return data;
-					})
-			} else homeView.render()
+			if (api.userIsLoggedIn())
+				require(["views/app/header"], function(header){ header.render() });
+			else 
+				homeView.render();
         }
     });
 
