@@ -59,8 +59,8 @@ API = function() {
         return localStorage.getItem("Peoplewings-Auth-Token")
     }
     return {
-		delete: function(uri, callback, errorCallback) {
-    		request('DELETE', uri, null, callback, errorCallback);
+		delete: function(uri, body, callback, errorCallback) {
+    		request('DELETE', uri, body, callback, errorCallback);
     	},
 	    put: function(uri, body, callback, errorCallback) {
     		request('PUT', uri, body, callback, errorCallback);

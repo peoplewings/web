@@ -4,9 +4,9 @@ define(function(require) {
 	var Promise = require('promise');
 
     return {
-		delete: function(uri) {
+		delete: function(uri, body) {
 			var promise = new Promise();
-			api.delete(uri, promise.resolve.bind(promise), promise.reject.bind(promise));
+			api.delete(uri, body, promise.resolve.bind(promise), promise.reject.bind(promise));
 			return promise.future;
     	},
 	    put: function(uri, body) {
