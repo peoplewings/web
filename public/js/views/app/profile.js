@@ -1,26 +1,26 @@
-define([
-  'jquery',
-  'backbone',
-  'utils',
-  'api',
-  'text!templates/app/profile.html',
-  'text!templates/app/basic-form.html',
-  'text!templates/app/about-form.html',
-  'text!templates/app/likes-form.html',
-  'text!templates/app/contact-form.html',
-  'text!templates/lib/language-field.html',
-  'text!templates/lib/education-field.html',
-  'text!templates/lib/social-field.html',
-  'text!templates/lib/instant-field.html',
-  'text!templates/lib/location-field.html',
-  'text!templates/lib/alert.html',
-  'views/app/list',
-  'views/app/avatar',
-  'models/Profile',
-], function($, Backbone, utils, api, profileTpl, basicInfoTpl, aboutMeTpl, likesTpl, contactTpl, languageTpl, educationTpl, socialTpl, instantTpl, locationTpl, alertTpl, List, avatarView, UserProfile){
-  
-  var profileView = Backbone.View.extend({
-    el: "#main",
+define(function(require){
+
+	var $ = require("jquery");
+	var Backbone = require("backbone");
+	var api = require("api2");
+	var utils = require("utils");
+	var profileTpl = require('tmpl!templates/app/profile.html');
+	var basicTpl = require('tmpl!templates/app/basic-form.html');
+	var aboutTpl = require('tmpl!templates/app/about-form.html');
+	var likesTpl = require('tmpl!templates/app/likes-form.html');
+	var contactTpl = require('tmpl!templates/app/contact-form.html');
+	var languageTpl = require('tmpl!templates/lib/language-field.html');
+	var educationTpl = require('tmpl!templates/lib/education-field.html');
+	var socialTpl = require('tmpl!templates/lib/social-field.html');
+	var instantTpl = require('tmpl!templates/lib/instant-field.html');
+	var locationTpl = require('tmpl!templates/lib/location-field.html');
+	var alertTpl = require('tmpl!templates/lib/alert.html');
+	var List = require('views/app/list');
+	var avatarView = require("views/app/avatar");
+	var ProfileModel = require("models/Profile");	
+	
+	var profileView = Backbone.View.extend({
+    	el: "#main",
 	markers: {},
 	languagesCount: 0,
 	languages: [],
@@ -41,66 +41,24 @@ define([
 		"submit form#likes-form": "submitProfile",
 		"submit form#contact-form": "submitProfile",
 	},
-	initialize: function(options){
-		this.model = new UserProfile({id: api.getProfileId()})
-		this.model.bindings = {
-			//Basic info 
-			gender: '[name=gender]',
-			civilState: '[name=civilState]',
-			showBirthday: '[name=showBirthday]',
-			birthDay: '[name=birthDay]',
-			birthMonth: '[name=birthMonth]',
-			birthYear: '[name=birthYear]',
-			Male: '[name=interestedInM]',
-			Female: '[name=interestedInF]',
-			//About me
-			allAboutYou: '[name=allAboutYou]',
-			mainMission: '[name=mainMission]',
-			occupation: '[name=occupation]',
-			company: '[name=company]',
-			personalPhilosophy: '[name=personalPhilosophy]',
-			politicalOpinion: '[name=politicalOpinion]',
-			religion: '[name=religion]',
-			// Likes
-			movies: '[name=movies]',
-			sports: '[name=sports]',
-			otherPages: '[name=otherPages]',
-			enjoyPeople: '[name=enjoyPeople]',
-			sharing: '[name=sharing]',
-			quotes: '[name=quotes]',
-			incredible: '[name=incredible]',
-			pwOpinion: '[name=pwOpinion]',
-			inspiredBy: '[name=inspiredBy]',
-			// Contact
-			emails: '[name=emails]',
-			phone: '[name=phone]',
-		}
-      this._modelBinder = new Backbone.ModelBinder();
-	  var sc = this
-	  this.model.fetch({ 
-			success: function(model){
+	initialize: function(options) {
+		this.model = new ProfileModel({id: api.getProfileId()})
+	  	var sc = this
+	  	this.model.fetch({ 
+			success: function(model) {
 				console.log("Fetch model:", model.attributes)
-				sc.languagesCount = model.get("languages").length
+				//sc.languagesCount = model.get("languages").length
 				sc.render()
-			},
-			error: function() { console.log(arguments) }	 	
+			}
 	  })
 	},
     render: function(){
-	  var tpl = _.template(profileTpl, {
-			age: this.model.get("age"), 
-			firstName: this.model.get("firstName"), 
-			lastName: this.model.get("lastName"), 
-			verified: this.model.get("verified"),
-			current: this.model.get("current"),
-			lastLoginDate: this.model.get("lastLoginDate"),
-	  })
-      $(this.el).html(tpl);
-	  //Sets tab's contents
-	  $('#basic-info').html(basicInfoTpl)
-	  $('#about-me').html(aboutMeTpl)
-	  $('#likes-info').html(likesTpl)
-	  $('#contact-info').html(contactTpl)
+      $(this.el).html(profileTpl(this.model.toJSON()));
+
+	  $('#basic-info').html(basicTpl(this.model.toJSON()))
+	  //$('#about-me').html(aboutTpl)
+	  //$('#likes-info').html(likesTpl)
+	  //$('#contact-info').html(contactTpl)
 	  avatarView.render(this.model.get("avatar"))
 	  //Clears bindings for x-attributes
 	  this.clearBindings()
@@ -112,9 +70,6 @@ define([
 	  this.initCanvas()
 	  
     },
-	close: function(){ 
-		this._modelBinder.unbind()
-	},
 	submitProfile: function(e){
 		e.preventDefault(e);
 		//console.log('Submit profile ' + e.target.id, this.model.attributes, this.model.bindings)
@@ -153,7 +108,6 @@ define([
 			s = i + 1 + ""
 			sc.model.bindings["x_language_" + s] = '[name=language-' + s +']'
 			sc.model.bindings["x_level_" + s] = '[name=level-' + s +']'
-			//sc.collectLanguages()
 		})
 		this.languagesCount += size
 		this.collectLanguages()

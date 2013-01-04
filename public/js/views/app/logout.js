@@ -4,7 +4,7 @@ define([
   "api",
   "views/app/header",
   "views/home/main",
-  "models/User",
+  "models/Account",
   "models/Profile",
 ], function($, Backbone, api, appHeaderView, homeView, UserModel, ProfileModel){
 	

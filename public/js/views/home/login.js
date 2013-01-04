@@ -5,7 +5,7 @@ define([
   'api',
   'text!templates/home/login.html',
   'text!templates/lib/alert.html',
-  'models/User',
+  'models/Account',
 ], function($, Backbone, utils, api, loginTpl, alertTpl, UserModel){
 
   var spinner = new Spinner(utils.getSpinOpts());
