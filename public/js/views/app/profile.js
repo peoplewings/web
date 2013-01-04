@@ -43,16 +43,11 @@ define(function(require){
 	},
 	initialize: function(options) {
 		this.model = new ProfileModel({id: api.getProfileId()})
-	  	var sc = this
-	  	this.model.fetch({ 
-			success: function(model) {
-				console.log("Fetch model:", model.attributes)
-				//sc.languagesCount = model.get("languages").length
-				sc.render()
-			}
-	  })
+		this.model.on("change", this.render.bind(this));
+	  	this.model.fetch()
 	},
     render: function(){
+	  console.log(this.model.attributes)
       $(this.el).html(profileTpl(this.model.toJSON()));
 
 	  $('#basic-info').html(basicTpl(this.model.toJSON()))
@@ -61,13 +56,13 @@ define(function(require){
 	  //$('#contact-info').html(contactTpl)
 	  avatarView.render(this.model.get("avatar"))
 	  //Clears bindings for x-attributes
-	  this.clearBindings()
+	  //this.clearBindings()
 	  //Takes care of languages, intializes bindings, etc
-	  this.initLanguages()
+	  //this.initLanguages()
 	  //Takes care of educations, socialNets, IMs and otherLocations
-	  this.initLists()
+	  //this.initLists()
 	  //Canvas assumes a location list exists
-	  this.initCanvas()
+	  //this.initCanvas()
 	  
     },
 	submitProfile: function(e){
