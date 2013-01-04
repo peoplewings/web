@@ -67,10 +67,6 @@ define(function(require){
 			alert("You need to be logged in to use this function")
 		},
 
-		pepe: function(event) {
-			this.sendMessage(event);
-		},
-
 		sendMessage: function(event) {
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
