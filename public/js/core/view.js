@@ -60,6 +60,30 @@ define(function(require) {
 
 		return Handlebars.helpers['each'].call(this, arr, options);
 	});
+	
+	Handlebars.registerHelper('selected', function(option, value) {
+        var equals = false
+		if (typeof option == 'string' )
+			equals = option.toLowerCase() == value.toLowerCase()
+		else{
+			equals = option === value
+		}
+		console.log(option, value, equals)
+		if (equals) {
+            return new Handlebars.SafeString(' selected');
+        } else {
+            return '';
+        }
+    });
+
+	Handlebars.registerHelper('checked', function(option, value) {
+        if (option == value) {
+            return new Handlebars.SafeString(' checked="checked"');
+        } else {
+            return '';
+        }
+    });
+	
 
 	/*********
 	 * ENUMS *
@@ -83,6 +107,18 @@ define(function(require) {
 			Request: 'requests',
 			Invitation: 'invites',
 			Message: 'messages'
+		}),
+		
+		'civil-states': createEnum({
+			SI: "Single",
+			EN: "Engaged",
+			MA: "Married",
+			WI: "Widowed",
+			IR: "In a relationship",
+			IO: "In an open relationship",
+			IC: "It's complicated",
+			DI: "Divorced",
+			SE: "Separated"
 		})
 	};
 

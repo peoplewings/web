@@ -21,10 +21,24 @@ define(function(require){
 	
 	var profileView = Backbone.View.extend({
     	el: "#main",
-	markers: {},
-	languagesCount: 0,
-	languages: [],
-	autoCompleteOptions: { types: ['(cities)'] },
+		months: [
+			{ name: 'January'},
+			{ name: 'Feburary'},
+			{ name: 'March'},
+			{ name: 'April'},
+			{ name: 'May'},
+			{ name: 'June'},
+			{ name: 'July'},
+			{ name: 'August'},
+			{ name: 'September'},
+			{ name: 'October'},
+			{ name: 'November'},
+			{ name: 'December'},
+		],
+		markers: {},
+		languagesCount: 0,
+		languages: [],
+		autoCompleteOptions: { types: ['(cities)'] },
 	events:{
 		"click a#add-language-btn": "addLanguage",
 		"click button[id^=delete-lang]": "deleteLanguage",
@@ -55,19 +69,20 @@ define(function(require){
     render: function(){
       $(this.el).html(profileTpl(this.model.toJSON()));
 
-	  $('#basic-info').html(basicTpl(this.model.toJSON()))
-	  //$('#about-me').html(aboutTpl)
-	  //$('#likes-info').html(likesTpl)
-	  //$('#contact-info').html(contactTpl)
+	  this.model.set('month', this.months)
+	  this.$('#basic-info').html(basicTpl(this.model.toJSON()))
+	  this.$('#about-me').html(aboutTpl(this.model.toJSON()))
+	  this.$('#likes-info').html(likesTpl(this.model.toJSON()))
+	  this.$('#contact-info').html(contactTpl(this.model.toJSON()))
 	  avatarView.render(this.model.get("avatar"))
 	  //Clears bindings for x-attributes
-	  this.clearBindings()
+	  //this.clearBindings()
 	  //Takes care of languages, intializes bindings, etc
-	  this.initLanguages()
+	  //this.initLanguages()
 	  //Takes care of educations, socialNets, IMs and otherLocations
-	  this.initLists()
+	  //this.initLists()
 	  //Canvas assumes a location list exists
-	  this.initCanvas()
+	  //this.initCanvas()
 	  
     },
 	submitProfile: function(e){
