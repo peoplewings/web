@@ -4,9 +4,10 @@ define(function(require){
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
-	var notifications = require('views/lib/notifications');
 	var UserAccount = require('models/Account');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
+	var modalTpl = require('tmpl!templates/lib/modal2.html');
+	var sendMessageTpl = require('tmpl!templates/lib/send-message.html');
 
 	var resultsView = Backbone.View.extend({
 		//el: "#search-results",
@@ -67,9 +68,46 @@ define(function(require){
 		},
 
 		sendMessage: function(event) {
+			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
+
+			var modal = $(modalTpl({
+				modalHeader: "New message",
+				acceptBtn: "Send",
+			}));
+			$("body section:last").append(modal);
+
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
-			notifications.message(id, name);
+
+			modal.find('div.modal-body').html(sendMessageTpl({
+				avatar: avatar,
+				to: {
+					id: id,
+					fullname: name,
+				}
+			}));
+
+			modal.modal('show');
+			modal.find('.btn-primary').click(send);
+
+			function send() {
+				api.post('/api/v1/notificationslist', {
+					"idReceiver": id,
+					"kind": "message",
+					"data": {
+						"content": modal.find('#message-content').val()
+					}
+				}).then(function() {
+					modal.modal('hide');
+					var alert = $('<div class="alert">Message sent</div>')
+					$(document.body).append(alert);
+					alert.alert();
+
+					setTimeout(function() {
+						alert.alert('close');
+					}, 3000);
+				});
+			}
 		}
 	});
 	return resultsView;
