@@ -3,8 +3,8 @@ define(function(require){
 	var $ = require('jquery');
 	var Backbone = require('backbone');
 	var utils = require('utils');
-	var api = require('api');
-	var UserAccount = require('models/User');
+	var api = require('api2');
+	var UserAccount = require('models/Account');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 	var sendMessageTpl = require('tmpl!templates/lib/send-message.html');
@@ -45,7 +45,7 @@ define(function(require){
 			//console.log("next", this.query.page)
 			var scope = this
 			this.query.page++
-			api.get(api.getApiVersion() + "/profiles", this.query, function(results){
+			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
 				scope.render(results.data)
 			})
 			return false
@@ -54,7 +54,7 @@ define(function(require){
 			//console.log("previous", this.query.page)
 			var scope = this
 			this.query.page--
-			api.get(api.getApiVersion() + "/profiles", this.query, function(results){
+			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
 				scope.render(results.data)
 			})
 			return false
@@ -88,6 +88,26 @@ define(function(require){
 			}));
 
 			modal.modal('show');
+			modal.find('.btn-primary').click(send);
+
+			function send() {
+				api.post('/api/v1/notificationslist', {
+					"idReceiver": id,
+					"kind": "message",
+					"data": {
+						"content": modal.find('#message-content').val()
+					}
+				}).then(function() {
+					modal.modal('hide');
+					var alert = $('<div class="alert">Message sent</div>')
+					$(document.body).append(alert);
+					alert.alert();
+
+					setTimeout(function() {
+						alert.alert('close');
+					}, 3000);
+				});
+			}
 		}
 	});
 	return resultsView;
