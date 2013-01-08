@@ -4,7 +4,7 @@ define(function(require) {
 	var Promise = require('promise');
 	var UserAccount = require('models/Account');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
-	var sendMessageTpl = require('tmpl!templates/lib/send-message.html');
+	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
 
 	function showModal(header, accept, content, callback) {
 		var modal = $(modalTpl({
@@ -24,49 +24,78 @@ define(function(require) {
 		return modal;
 	}
 
+	function show(targetId, targetName, kind, title, button, dataReturner) {
+		var prom = new Promise();
+		var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
+
+		var content = sendNotificationTpl({
+			avatar: avatar,
+			message: kind === 'message',
+			invitation: kind === 'invitation',
+			request: kind === 'request',
+			to: {
+				id: targetId,
+				fullname: targetName,
+			}
+		});
+
+		var modal = showModal(title, button, content, send);
+
+		modal.on('hidden', function() {
+			if (!prom.future.isCompleted())
+				prom.resolve(false);
+		});
+
+		function send() {
+			var data = dataReturner(modal);
+			if (!data)
+				return;
+
+			api.post('/api/v1/notificationslist', {
+				"idReceiver": targetId,
+				"kind": kind,
+				"data": data
+			}).then(function() {
+				var alert = $('<div class="alert">Message sent</div>')
+				$(document.body).append(alert);
+				alert.alert();
+
+				setTimeout(function() {
+					alert.alert('close');
+				}, 3000);
+
+				prom.resolve(true);
+				modal.modal('hide');
+			});
+		}
+
+		return prom;
+	}
+
 	return {
 
 		message: function(targetId, targetName) {
-			var prom = new Promise();
-			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
-			var content = sendMessageTpl({
-				avatar: avatar,
-				to: {
-					id: targetId,
-					fullname: targetName,
-				}
+			return show(targetId, targetName, 'message', 'New message', 'Send', function(modal) {
+				return {
+					"content": modal.find('#message-content').val()
+				};
 			});
+		},
 
-			var modal = showModal('New message', 'Send', content, send);
-			modal.on('hidden', function() {
-				if (!prom.future.isCompleted())
-					prom.reject();
+		request: function(targetId, targetName) {
+			return show(targetId, targetName, 'request', 'New request', 'Send Request', function(modal) {
+				return {
+					"content": modal.find('#message-content').val()
+				};
 			});
+		},
 
-			modal.find('#message-content').focus();
-
-			function send() {
-				api.post('/api/v1/notificationslist', {
-					"idReceiver": targetId,
-					"kind": "message",
-					"data": {
-						"content": modal.find('#message-content').val()
-					}
-				}).then(function() {
-					var alert = $('<div class="alert">Message sent</div>')
-					$(document.body).append(alert);
-					alert.alert();
-
-					setTimeout(function() {
-						alert.alert('close');
-					}, 3000);
-
-					prom.resolve();
-					modal.modal('hide');
-				});
-			}
-
-			return prom.future;
+		invitation: function(targetId, targetName) {
+			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', function(modal) {
+				return {
+					"content": modal.find('#message-content').val()
+				};
+			});
 		}
 	};
 });

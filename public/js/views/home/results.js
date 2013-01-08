@@ -12,7 +12,8 @@ define(function(require){
 		//el: "#search-results",
 		events: {
 			"click button.send-message-btn": "sendMessage",
-			"click button.fake-btn": "alertLog",
+			"click button.send-request-btn": "sendRequest",
+			"click button.send-invitation-btn": "sendInvitation",
 			"click a.nextPage": "nextPage",
 			"click a.previousPage": "previousPage"
 		},
@@ -62,14 +63,23 @@ define(function(require){
 			this.remove()
 			this.unbind()
 		},
-		alertLog: function(){
-			alert("You need to be logged in to use this function")
-		},
 
 		sendMessage: function(event) {
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
 			notifications.message(id, name);
+		},
+
+		sendRequest: function(event) {
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications.request(id, name);
+		},
+
+		sendInvitation: function(event) {
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications.invitation(id, name);
 		}
 	});
 	return resultsView;
