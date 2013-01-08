@@ -26,9 +26,17 @@
 			{{/if}}
 
 			{{#if invitation }}
-				{{ wingParams }}
+				<div id="new-invitation-content">
+					<div class="status-pending-from-me">Pending</div>
+					<div class="wing-data">
+						WINGS
+						<select id="wings"></select>
+						<input type="date"> to <input type="date"> Capacity <select>{{#range 10 }}<option>{{index}}</option>{{/range}}<select>
+						{{ wingParams }}
+					</div>
 
-				<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
+					<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
+				</div>
 			{{/if}}
 
 		</div>

@@ -35,7 +35,7 @@ define(function(require) {
 			request: kind === 'request',
 			to: {
 				id: targetId,
-				fullname: targetName,
+				fullname: targetName
 			}
 		});
 
