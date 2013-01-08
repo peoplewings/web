@@ -5,15 +5,15 @@ define(function(require){
 	var utils = require('utils');
 	var api = require('api2');
 	var UserAccount = require('models/Account');
+	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
-	var modalTpl = require('tmpl!templates/lib/modal2.html');
-	var sendMessageTpl = require('tmpl!templates/lib/send-message.html');
 
 	var resultsView = Backbone.View.extend({
 		//el: "#search-results",
 		events: {
 			"click button.send-message-btn": "sendMessage",
-			"click button.fake-btn": "alertLog",
+			"click button.send-request-btn": "sendRequest",
+			"click button.send-invitation-btn": "sendInvitation",
 			"click a.nextPage": "nextPage",
 			"click a.previousPage": "previousPage"
 		},
@@ -63,51 +63,23 @@ define(function(require){
 			this.remove()
 			this.unbind()
 		},
-		alertLog: function(){
-			alert("You need to be logged in to use this function")
-		},
 
 		sendMessage: function(event) {
-			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
-
-			var modal = $(modalTpl({
-				modalHeader: "New message",
-				acceptBtn: "Send",
-			}));
-			$("body section:last").append(modal);
-
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
+			notifications.message(id, name);
+		},
 
-			modal.find('div.modal-body').html(sendMessageTpl({
-				avatar: avatar,
-				to: {
-					id: id,
-					fullname: name,
-				}
-			}));
+		sendRequest: function(event) {
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications.request(id, name);
+		},
 
-			modal.modal('show');
-			modal.find('.btn-primary').click(send);
-
-			function send() {
-				api.post('/api/v1/notificationslist', {
-					"idReceiver": id,
-					"kind": "message",
-					"data": {
-						"content": modal.find('#message-content').val()
-					}
-				}).then(function() {
-					modal.modal('hide');
-					var alert = $('<div class="alert">Message sent</div>')
-					$(document.body).append(alert);
-					alert.alert();
-
-					setTimeout(function() {
-						alert.alert('close');
-					}, 3000);
-				});
-			}
+		sendInvitation: function(event) {
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications.invitation(id, name);
 		}
 	});
 	return resultsView;

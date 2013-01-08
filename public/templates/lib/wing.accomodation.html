@@ -1,0 +1,27 @@
+<span>
+	<input type="date" id="start-date"><br>
+	<input type="checkbox" id="flexible-start-date"><label for="flexible-start-date">Flexible date</label>
+</span>
+to
+<span>
+	<input type="date" id="end-date"><br>
+	<input type="checkbox" id="flexible-end-date"><label for="flexible-end-date">Flexible date</label>
+</span>
+
+Capacity
+<select>
+	{{#range 9 }}
+		<option>{{indexPlusOne}}</option>
+	{{/range}}
+	<option>+9</option>
+<select>
+
+{{#unless invitation }}
+	Arriving via
+	<select>
+		<option>Choose transport</option>
+		<option>Plane</option>
+		<option>Train</option>
+		<option>Car</option>
+	</select>
+{{/unless}}
