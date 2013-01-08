@@ -1,0 +1,36 @@
+<div class="form-horizontal" data-reciver-id="{{ to.id }}">
+	<div class="control-group">
+		<label class="control-label" for="reciver-name">For:</label>
+		<div class="controls">
+			<input type="text" id="reciver-name" placeholder="Name" value="{{ to.fullname }}" {{#if to.id }}readonly="readonly"{{/if}}>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="message-content">
+			<img src="{{ avatar }}">
+		</label>
+		<div class="controls">
+
+			{{#if message }}
+				<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
+			{{/if}}
+
+			{{#if request }}
+				Introduce
+				<textarea id="public-message-content" style="width: 90%" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea><br>
+				<input type="checkbox" id="public-request">
+				<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
+
+				Personal message to host
+				<textarea id="message-content" style="width: 90%" placeholder="Tell your host why you'd like to meet them..."></textarea>
+			{{/if}}
+
+			{{#if invitation }}
+				{{ wingParams }}
+
+				<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
+			{{/if}}
+
+		</div>
+	</div>
+</div>

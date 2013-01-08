@@ -4,9 +4,10 @@ define(function(require){
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
-	var notifications = require('views/lib/notifications');
 	var UserAccount = require('models/Account');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
+	var modalTpl = require('tmpl!templates/lib/modal2.html');
+	var sendMessageTpl = require('tmpl!templates/lib/send-message.html');
 
 	var resultsView = Backbone.View.extend({
 		//el: "#search-results",
