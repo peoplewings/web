@@ -5,6 +5,7 @@ define(function(require) {
 	var UserAccount = require('models/Account');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
+	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
 
 	function showModal(header, accept, content, callback) {
 		var modal = $(modalTpl({
@@ -24,11 +25,11 @@ define(function(require) {
 		return modal;
 	}
 
-	function show(targetId, targetName, kind, title, button, dataReturner) {
+	function show(targetId, targetName, kind, title, button, extra, dataReturner) {
 		var prom = new Promise();
 		var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
-		var content = sendNotificationTpl({
+		var content = sendNotificationTpl(_.extend({
 			avatar: avatar,
 			message: kind === 'message',
 			invitation: kind === 'invitation',
@@ -37,7 +38,7 @@ define(function(require) {
 				id: targetId,
 				fullname: targetName
 			}
-		});
+		}, extra));
 
 		var modal = showModal(title, button, content, send);
 
@@ -75,7 +76,7 @@ define(function(require) {
 	return {
 
 		message: function(targetId, targetName) {
-			return show(targetId, targetName, 'message', 'New message', 'Send', function(modal) {
+			return show(targetId, targetName, 'message', 'New message', 'Send', null, function(modal) {
 				return {
 					"content": modal.find('#message-content').val()
 				};
@@ -83,7 +84,7 @@ define(function(require) {
 		},
 
 		request: function(targetId, targetName) {
-			return show(targetId, targetName, 'request', 'New request', 'Send Request', function(modal) {
+			return show(targetId, targetName, 'request', 'New request', 'Send Request', null, function(modal) {
 				return {
 					"content": modal.find('#message-content').val()
 				};
@@ -91,7 +92,9 @@ define(function(require) {
 		},
 
 		invitation: function(targetId, targetName) {
-			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', function(modal) {
+			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', {
+				wingParams: accomodationTpl({ invite: true })
+			}, function(modal) {
 				return {
 					"content": modal.find('#message-content').val()
 				};

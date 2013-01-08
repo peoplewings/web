@@ -89,3 +89,7 @@ input {
     height: 0;
     clear: both;
 }
+
+#new-invitation-content input[type="date"] {
+	width: 100px;
+}
