@@ -95,6 +95,24 @@ define(function(require) {
 			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', {
 				wingParams: accomodationTpl({ invite: true })
 			}, function(modal) {
+				debugger;
+				var valid = modal.find('wing-accomodation-params').validate({
+					rules: {
+						'start-date': 'required',
+						'end-date': 'required',
+						'via': 'required'
+					},
+					messages: {
+						'start-date': 'Insert a start date',
+						'end-date': 'Instert a end date',
+						'via': 'Select via'
+					}
+				});
+
+				// TODO: ask sergio
+				if (!valid)
+					return null;
+
 				return {
 					"content": modal.find('#message-content').val()
 				};

@@ -1,27 +1,29 @@
-<span>
-	<input type="date" id="start-date"><br>
-	<input type="checkbox" id="flexible-start-date"><label for="flexible-start-date">Flexible date</label>
-</span>
-to
-<span>
-	<input type="date" id="end-date"><br>
-	<input type="checkbox" id="flexible-end-date"><label for="flexible-end-date">Flexible date</label>
-</span>
+<form id="wing-accomodation-params">
+	<span>
+		<input type="date" name="start-date"><br>
+		<input type="checkbox" id="flexible-start-date"><label for="flexible-start-date">Flexible date</label>
+	</span>
+	to
+	<span>
+		<input type="date" name="end-date"><br>
+		<input type="checkbox" id="flexible-end-date"><label for="flexible-end-date">Flexible date</label>
+	</span>
 
-Capacity
-<select>
-	{{#range 9 }}
-		<option>{{indexPlusOne}}</option>
-	{{/range}}
-	<option>+9</option>
-<select>
-
-{{#unless invitation }}
-	Arriving via
+	Capacity
+	<select name="capacity">
+		{{#range 9 }}
+			<option value="{{ indexPlusOne }}">{{ indexPlusOne }}</option>
+		{{/range}}
+		<option value="+9">+9</option>
 	<select>
-		<option>Choose transport</option>
-		<option>Plane</option>
-		<option>Train</option>
-		<option>Car</option>
-	</select>
-{{/unless}}
+
+	{{#unless invitation }}
+		Arriving via
+		<select name="via">
+			<option value="">Choose transport</option>
+			<option value="plane">Plane</option>
+			<option value="train">Train</option>
+			<option value="car">Car</option>
+		</select>
+	{{/unless}}
+</form>
