@@ -27,50 +27,65 @@ define(function(require) {
 
 	function show(targetId, targetName, kind, title, button, extra, dataReturner) {
 		var prom = new Promise();
-		var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
+		var hasTarget = !!targetId;
 
-		var content = sendNotificationTpl(_.extend({
-			avatar: avatar,
-			message: kind === 'message',
-			invitation: kind === 'invitation',
-			request: kind === 'request',
-			to: {
-				id: targetId,
-				fullname: targetName
+		Promise.normalize(hasTarget || api.post('/api/v1/getpeoplebyme', { me: api.getUserId() })).then(function(contacts) {
+			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
+
+			var content = sendNotificationTpl(_.extend({
+				avatar: avatar,
+				message: kind === 'message',
+				invitation: kind === 'invitation',
+				request: kind === 'request',
+				to: {
+					id: targetId,
+					fullname: targetName
+				}
+			}, extra));
+
+			var modal = showModal(title, button, content, send);
+
+			modal.on('hidden', function() {
+				if (!prom.future.isCompleted())
+					prom.resolve(false);
+			});
+
+			if (!hasTarget) {
+				modal.find('.autocompletePeople').typeahead({
+					source: contacts.map(function(c) { return c.nickname })
+				});
 			}
-		}, extra));
 
-		var modal = showModal(title, button, content, send);
+			function send() {
+				var data = dataReturner(modal);
+				if (!data)
+					return;
 
-		modal.on('hidden', function() {
-			if (!prom.future.isCompleted())
-				prom.resolve(false);
+				if (!hasTarget) {
+					var selected = modal.find('.autocompletePeople').val();
+					targetId = contacts.filter(function(c) { return c.nickname === selected })['0'].id
+				}
+
+				api.post('/api/v1/notificationslist', {
+					"idReceiver": targetId,
+					"kind": kind,
+					"data": data
+				}).then(function() {
+					var alert = $('<div class="alert">Message sent</div>')
+					$(document.body).append(alert);
+					alert.alert();
+
+					setTimeout(function() {
+						alert.alert('close');
+					}, 3000);
+
+					prom.resolve(true);
+					modal.modal('hide');
+				});
+			}
 		});
 
-		function send() {
-			var data = dataReturner(modal);
-			if (!data)
-				return;
-
-			api.post('/api/v1/notificationslist', {
-				"idReceiver": targetId,
-				"kind": kind,
-				"data": data
-			}).then(function() {
-				var alert = $('<div class="alert">Message sent</div>')
-				$(document.body).append(alert);
-				alert.alert();
-
-				setTimeout(function() {
-					alert.alert('close');
-				}, 3000);
-
-				prom.resolve(true);
-				modal.modal('hide');
-			});
-		}
-
-		return prom;
+		return prom.future;
 	}
 
 	return {
@@ -95,6 +110,24 @@ define(function(require) {
 			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', {
 				wingParams: accomodationTpl({ invite: true })
 			}, function(modal) {
+				debugger;
+				var valid = modal.find('wing-accomodation-params').validate({
+					rules: {
+						'start-date': 'required',
+						'end-date': 'required',
+						'via': 'required'
+					},
+					messages: {
+						'start-date': 'Insert a start date',
+						'end-date': 'Instert a end date',
+						'via': 'Select via'
+					}
+				});
+
+				// TODO: ask sergio
+				if (!valid)
+					return null;
+
 				return {
 					"content": modal.find('#message-content').val()
 				};
