@@ -30,7 +30,6 @@ define(function(require) {
 		var hasTarget = !!targetId;
 
 		Promise.normalize(hasTarget || api.post('/api/v1/getpeoplebyme', { me: api.getUserId() })).then(function(contacts) {
-			//contacts = [ {id:1,nickname:'pepe'}, {id:2,nickname:'pepa'} ];
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
 			var content = sendNotificationTpl(_.extend({
