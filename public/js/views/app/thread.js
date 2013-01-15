@@ -52,8 +52,9 @@ define(function(require) {
 
 		refresh: function(data) {
 			var last = data.items.pop();
-			var items = data.items.map(function(item) {
+			var items = data.items.map(function(item, index) {
 				return {
+					index: index,
 					isMessage: true,
 					created: item.created,
 					id: item.senderId,
@@ -63,11 +64,24 @@ define(function(require) {
 					verified: item.senderVerified,
 					avatar: item.senderSmallAvatar,
 					connected: item.senderConnected,
-					content: item.content.message,
+					contentgit: item.content.message,
 				};
 			});
 
 			this.$list.html(items.map(itemTpl).join('') + openItemTpl(last));
+
+			var allButLast = Array.prototype.slice.call(this.$list.children(), 0, -1);
+
+			$(allButLast).click(function openItem() {
+				var closed = $(this);
+				var open = $(openItemTpl(data.items[$(this).data('index')]));
+
+				$(this).replaceWith(open);
+				open.click(function closeItem() {
+					$(this).replaceWith(closed);
+					closed.click(openItem);
+				});
+			});
 		},
 
 		back: function() {
