@@ -59,7 +59,7 @@ define(function(require) {
 					index: index,
 					isMessage: true,
 					created: item.created,
-					id: item.senderId,
+					interlocutorId: item.senderId,
 					age: item.senderAge,
 					name: item.senderName,
 					location: item.senderLocation,

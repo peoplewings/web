@@ -1,25 +1,25 @@
 <li data-type="notification-item" data-rel="{{ id }}" data-thread="{{ reference }}" data-index="{{ index }}" class="row">
-	<div class="span1 offset1" style="overflow: hidden"><img src="{{avatar}}"></div>
+	<div class="span1 offset1" style="overflow: hidden"><img src="{{ avatar }}"></div>
 	<div class="span3">
 			<span class="{{#if connected }}online{{/if}}"></span>
-			<a href="#/users/{{interlocutorId}}">{{name}}</a>, {{age}}
-			<div>{{location}}</div>
+			<a href="#/users/{{ interlocutorId }}">{{ name }}</a>, {{age}}
+			<div>{{ location }}</div>
 	</div>
 
 	<div class="{{#unless read }}unread{{/unless}}">
 			{{#if isMessage }}
-				<div class="span5 offset1">{{content}}</div>
+				<div class="span5 offset1">{{ content }}</div>
 			{{else}}
 				<div class="span3 offset1">
-						<div>{{enum kind 'notification-type'}}</div>
-						<div>{{message}}</div>
+						<div>{{enum kind 'notification-type' }}</div>
+						<div>{{ message }}</div>
 				</div>
-				<div class="span1">{{numPeople}} people</div>
+				<div class="span1">{{ numPeople }} people</div>
 				<div class="span1">
-						<div>{{date startDate}}</div>
-						<div>{{date endDate}}</div>
+						<div>{{date startDate }}</div>
+						<div>{{date endDate }}</div>
 				</div>
 			{{/if}}
-			<div class="span1">{{date created "MMM Do"}}</div>
+			<div class="span1">{{date created "MMM Do" }}</div>
 	</div>
 </li>
