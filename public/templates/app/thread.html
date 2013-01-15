@@ -1,0 +1,6 @@
+<div>
+	<input type="button" id="back" value="Back">
+	<input type="button" id="previous" value="<" data-id="{{ previous }}" {{#unless previous }}disabled{{/unless}}>
+	<input type="button" id="next" value=">" data-id="{{ next }}" {{#unless next }}disabled{{/unless}}>
+	<ul id="notif-list" class="unstyled"></ul>
+</div>

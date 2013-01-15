@@ -29,7 +29,10 @@ define(function(require) {
 		var prom = new Promise();
 		var hasTarget = !!targetId;
 
-		Promise.normalize(hasTarget || api.post('/api/v1/getpeoplebyme', { me: api.getUserId() })).then(function(contacts) {
+		Promise.normalize(
+			hasTarget ||
+			api.get('/ajax/search/notification_addressee?type=' + kind)
+		).then(function(contacts) {
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
 			var content = sendNotificationTpl(_.extend({
@@ -51,8 +54,12 @@ define(function(require) {
 			});
 
 			if (!hasTarget) {
+				contacts.forEach(function(contact) {
+					contact.fullname = contact.name + ' ' + contact.last_name;
+				});
+
 				modal.find('.autocompletePeople').typeahead({
-					source: contacts.map(function(c) { return c.nickname })
+					source: contacts.map(function(c) { return c.fullname })
 				});
 			}
 
@@ -63,7 +70,7 @@ define(function(require) {
 
 				if (!hasTarget) {
 					var selected = modal.find('.autocompletePeople').val();
-					targetId = contacts.filter(function(c) { return c.nickname === selected })['0'].id
+					targetId = contacts.filter(function(c) { return c.fullname === selected })['0'].id
 				}
 
 				api.post('/api/v1/notificationslist', {

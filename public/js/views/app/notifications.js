@@ -3,14 +3,15 @@ define(function(require){
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
+	var Promise = require("promise");
 	var notificationsTpl = require("tmpl!templates/app/notifications.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
 
 	var notificationsView = Backbone.View.extend({
 		el: "#main",
-		
+
 		activePage: 1,
-		
+
 		lastPage: undefined,
 
 		events: {
@@ -25,6 +26,7 @@ define(function(require){
 
 		initialize: function(){
 			this.refresh = this.refresh.bind(this);
+			this.threads = null;
 		},
 
 		search: function() {
@@ -33,7 +35,7 @@ define(function(require){
 			api.get('/api/v1/notificationslist?search=' + encodeURIComponent(query))
 				.prop('data')
 				.then(this.refresh);
-			
+
 			this.resetPager()
 		},
 
@@ -47,20 +49,18 @@ define(function(require){
 				.on('change', this.filter.bind(this))
 				.hide();
 
-			api.get('/api/v1/notificationslist')
-				.prop('data')
-				.then(this.refresh);
+			return this.loadData().then(this.refresh);
 		},
 
 		filter: function(useQuery) {
 			var data = [];
 			data.push('page=' + this.activePage)
-			
+
 			var query = this.$('#search-query').val()
 			console.log("QUERY:", query)
 			if (query)
 				data.push('search=' + encodeURIComponent(query))
-				
+
 			var kind = this.$('.button.selected').data('filter');
 			if (kind)
 				data.push('kind=' + kind);
@@ -83,16 +83,45 @@ define(function(require){
 				.then(this.refresh);
 		},
 
+		loadData: function(data) {
+			return api.get('/api/v1/notificationslist')
+				.prop('data')
+				.then(function(data) {
+					data.items.forEach(function(item) {
+						item.isMessage = item.kind === 'message';
+					});
+
+					return data;
+				});
+		},
+
+		getThreads: function(data) {
+			var self = this;
+			return this.threads ?
+				Promise.normalize(this.threads) :
+				this.loadData().then(function(data) {
+					return self.threads = data.items.map(function(item) {
+						return item.reference;
+					});
+				});
+		},
+
 		refresh: function(data) {
-			data.items.forEach(function(item) {
-				item.isMessage = item.kind === 'messages';
-			});
-			
 			if (!this.lastPage)
 				this.lastPage = Math.ceil(data.count / data.items.length)
-				
+
 			this.$list.html(data.items.map(itemTpl).join(''));
+			this.$list.children().click(function(event) {
+				var thread = $(this).data('thread');
+				document.location.hash = '#/messages/' + thread;
+			});
 			this.renderCounters(data.startResult, data.endResult, data.count);
+
+			this.threads = data.items.map(function(item) {
+				return item.reference;
+			});
+
+			return this.threads;
 		},
 
 		destroy: function(){
@@ -112,9 +141,9 @@ define(function(require){
 			target.addClass('selected');
 
 			this.resetPager()
-			
+
 			this.$('#search-query').val('');
-			
+
 			this.filter();
 		},
 
@@ -131,7 +160,7 @@ define(function(require){
 				.find('option[value=type], option[value=date-start]')
 				.remove();
 		},
-		
+
 		renderCounters: function(start, end, count){
 			var args = arguments
 			var spans = this.$(".resultCounter").find("span").wrap(function(span){
@@ -141,22 +170,20 @@ define(function(require){
 
 		nextPage: function(){
 			if (this.activePage + 1 > this.lastPage)
-				return false
-			else {
-				++this.activePage
-				this.filter()
-			}
+				return Promise.resolved(false);
+
+			++this.activePage;
+			return this.filter();
 		},
 
 		previousPage: function(){
 			if (this.activePage - 1 < 1)
-				return false
-			else {
-				--this.activePage
-				this.filter()
-			}
+				return Promise.resolved(false);
+
+			--this.activePage;
+			return this.filter();
 		},
-		
+
 		resetPager: function(){
 			this.activePage = 1
 			this.lastPage = undefined
