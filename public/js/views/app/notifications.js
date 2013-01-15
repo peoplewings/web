@@ -11,16 +11,15 @@ define(function(require){
 		el: "#main",
 
 		activePage: 1,
-
-		lastPage: undefined,
+		lastPage: null,
 
 		events: {
-			'click #search-btn': 'search',
+			'click #search-btn': 'filter',
 			'click #notifications-pager > button.nextPage': 'nextPage',
 			'click #notifications-pager > button.previousPage': 'previousPage',
 			'keyup #search-query': function(event) {
 				if (event.keyCode === 13)
-					this.search();
+					this.filter();
 			}
 		},
 
@@ -29,62 +28,98 @@ define(function(require){
 			this.threads = null;
 		},
 
-		search: function() {
-			var query = this.$('#search-query').val();
-
-			api.get('/api/v1/notificationslist?search=' + encodeURIComponent(query))
-				.prop('data')
-				.then(this.refresh);
-
-			this.resetPager()
-		},
-
-		render: function(){
-			this.$el.html(notificationsTpl);
+		render: function(filters) {
+			this.rendered = true;
+			this.$el.html(notificationsTpl(filters));
 			this.$list = this.$('#notifications-list');
-			this.$('#notification-type').delegate('li', 'click', this.onTypeFilterClick.bind(this));
+
+			if (Object.keys(filters || {}).length)
+				this.unserializeFilters(filters);
+
+			var self = this;
+			this.$('#notification-type').delegate('li', 'click', function(e) {
+				self.selectTab($(this).data('filter'));
+			});
+
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
 			this.$('select#ri-filters').on('change', this.filter.bind(this))
-			this.$('#ri-status')
-				.on('change', this.filter.bind(this))
-				.hide();
-
-			return this.loadData().then(this.refresh);
+			this.$('#ri-status').on('change', this.filter.bind(this)).hide();
+			return this.loadData(filters).then(this.refresh);
 		},
 
-		filter: function(useQuery) {
-			var data = [];
-			data.push('page=' + this.activePage)
+		unserializeFilters: function(filters) {
+			if (filters.search)
+				this.$('#search-query').val(filters.search);
+
+			if (filters.kind) {
+				this.$('.button.selected').removeClass('selected');
+				this.$('.button[data-filter="' + filters.kind + '"]').addClass('selected');
+			}
+
+			if(filters.target)
+				this.$('#notification-sender [name="' + filters.target + '"]').attr('checked', 'checked');
+
+			if (filters.state)
+				this.$('#ri-status').val(filters.state);
+
+			if (filters.order)
+				this.$('#ri-filters').val(filters.order);
+		},
+
+		serializeFilters: function() {
+			if (!this.rendered)
+				return null;
+
+			var result = {};
+
+			if (this.activePage !== 1)
+				result.page = this.activePage
 
 			var query = this.$('#search-query').val()
-			console.log("QUERY:", query)
 			if (query)
-				data.push('search=' + encodeURIComponent(query))
+				result.search = query;
 
 			var kind = this.$('.button.selected').data('filter');
 			if (kind)
-				data.push('kind=' + kind);
+				result.kind = kind;
 
 			var target = this.$('#notification-sender input:checked');
 			if (target.length === 1)
-				data.push('target=' + target.attr('name'));
+				result.target = target.attr('name');
 
 			var status = this.$('#ri-status').val()
 			if (kind === 'reqinv' && status)
-				data.push('state=' + status);
+				result.state = status;
 
 			var order = this.$('#ri-filters').val();
-			if (order)
-				data.push('order=' + order)
+			if (order && order !== 'date')
+				result.order = order;
 
-
-			return api.get('/api/v1/notificationslist?' + data.join('&'))
-				.prop('data')
-				.then(this.refresh);
+			return Object.keys(result).length ? result : null;
 		},
 
-		loadData: function(data) {
-			return api.get('/api/v1/notificationslist')
+		filter: function(useQuery) {
+			this.resetPager();
+			this.applyFilters();
+		},
+
+		applyFilters: function() {
+			var filters = this.lastFilters || this.serializeFilters();
+			this.lastFilters = null;
+			document.location.hash = filters ? '#/messages/filter/' + JSON.stringify(filters) : '#/messages';
+		},
+
+		loadData: function(params) {
+			var args = '';
+			if (params) {
+				var data = _.map(params, function(value, key) {
+					return key + '=' + value;
+				});
+
+				var args = '?' + data.join('&');
+			}
+
+			return api.get('/api/v1/notificationslist' + args)
 				.prop('data')
 				.then(function(data) {
 					data.items.forEach(function(item) {
@@ -110,9 +145,11 @@ define(function(require){
 			if (!this.lastPage)
 				this.lastPage = Math.ceil(data.count / data.items.length)
 
+			var self = this;
 			this.$list.html(data.items.map(itemTpl).join(''));
 			this.$list.children().click(function(event) {
 				var thread = $(this).data('thread');
+				self.lastFilters = self.serializeFilters();
 				document.location.hash = '#/messages/' + thread;
 			});
 			this.renderCounters(data.startResult, data.endResult, data.count);
@@ -129,21 +166,17 @@ define(function(require){
 			this.unbind();
 		},
 
-		onTypeFilterClick: function(event) {
-			var target = $(event.currentTarget);
+		selectTab: function(type) {
 			this.$('.button.selected').removeClass('selected');
+			this.$('.button[data-filter="' + type + '"]').addClass('selected')
 
-			if (target.data('filter') === 'reqinv')
+			if (type === 'reqinv')
 				this.addFilters()
 			else
 				this.removeFilters()
 
-			target.addClass('selected');
-
 			this.resetPager()
-
 			this.$('#search-query').val('');
-
 			this.filter();
 		},
 

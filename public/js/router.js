@@ -25,6 +25,7 @@ define([
 			 "profile/preview":"previewProfile",
 			 "wings": "wings",
 			 "messages/:id": "showThread",
+			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
 			 "users/:id": "showUserProfile",
 		//Default action
@@ -109,11 +110,11 @@ define([
 					})
 			} else this.wingsView.render()
 		},
-		showNotifications: function(){
+		showNotifications: function(filters){
 			var scope = this
 			if (!this.notificationsView){
 				require(["views/app/notifications"], function(notificationsView){
-						notificationsView.render()
+						notificationsView.render(JSON.parse(filters || '{}'));
 					})
 			} else this.notificationsView.render()
 		},

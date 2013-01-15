@@ -85,7 +85,7 @@ define(function(require) {
 		},
 
 		back: function() {
-			document.location.hash = '#/messages';
+			notifList.applyFilters();
 		},
 
 		previous: function() {
