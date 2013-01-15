@@ -16,6 +16,7 @@ define(function(require) {
 			'click #back': 'back',
 			'click #previous': 'previous',
 			'click #next': 'next',
+			'click #delete-thread': 'remove',
 		},
 
 		initialize: function() {
@@ -27,6 +28,7 @@ define(function(require) {
 			console.log('Estoy dentro B-|');
 			Promise.debug = true;
 
+			this.threadId = id;
 			notifList.getThreads().then(function(threads) {
 				var index = threads.indexOf(id);
 
@@ -82,6 +84,10 @@ define(function(require) {
 					closed.click(openItem);
 				});
 			});
+		},
+
+		remove: function() {
+			api.put('/api/v1/notificationslist', { threads: [ this.threadId ] }).then(this.back.bind(this));
 		},
 
 		back: function() {
