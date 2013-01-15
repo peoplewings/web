@@ -4,6 +4,7 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var Promise = require("promise");
+	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
@@ -17,6 +18,9 @@ define(function(require) {
 			'click #previous': 'previous',
 			'click #next': 'next',
 			'click #delete-thread': 'remove',
+			'click #open-request': 'request',
+			'click #open-invite': 'invite',
+			'click #open-message': 'message',
 		},
 
 		initialize: function() {
@@ -101,6 +105,25 @@ define(function(require) {
 		next: function() {
 			document.location.hash = '#/messages/' + this.$('#next').data('id');
 		},
+
+		createNotification: function(event, type) {
+			var msg = $(event.target).parents('[data-type="notification-item"]');
+			var id = msg.data('user-id');
+			var name = msg.data('user-name');
+			notifications[type](id, name);
+		},
+
+		request: function(event) {
+			this.createNotification(event, 'request');
+		},
+
+		invite: function(event) {
+			this.createNotification(event, 'invitation');
+		},
+
+		message: function(event) {
+			this.createNotification(event, 'message');
+		}
 	});
 
 	return new threadView;

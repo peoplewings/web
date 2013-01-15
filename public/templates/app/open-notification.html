@@ -1,4 +1,4 @@
-<li data-type="notification-item" data-rel="{{ id }}" data-thread="{{ reference }}">
+<li data-type="notification-item" data-rel="{{ id }}" data-user-id="{{ senderId }}" data-user-name="{{ senderName }}">
 	<div class="row">
 
 		<div class="span2" style="overflow: hidden"><img src="{{ senderMedAvatar }}"></div>
@@ -16,9 +16,9 @@
 			</div>
 
 			<div class="span3">
-				<input type="button" value="Reply">
-				<input type="button" value="Request">
-				<input type="button" value="Invite">
+				<input type="button" id="open-message" value="Reply">
+				<input type="button" id="open-request" value="Request">
+				<input type="button" id="open-invite" value="Invite">
 				<input type="button" id="delete-thread" value="Delete">
 			</div>
 		</div>
