@@ -1,0 +1,52 @@
+<li data-type="notification-item" data-rel="{{ id }}" data-thread="{{ reference }}">
+	<div class="row">
+
+		<div class="span2" style="overflow: hidden"><img src="{{ senderMedAvatar }}"></div>
+
+		<div>
+			<div class="span5">
+					<span class="{{#if senderConnected }}online{{/if}}"></span>
+					<a href="#/users/{{interlocutorId}}">{{ senderName }}</a>, {{ senderAge }}
+					<div>{{ senderLocation }}</div>
+					<div>Friends: {{ senderFriends }} / References: {{ senderReferences }}</div>
+			</div>
+
+			<div class="span2">
+				{{date created "MMM Do, HH:mm" }}
+			</div>
+
+			<div class="span3">
+				<input type="button" value="Reply">
+				<input type="button" value="Request">
+				<input type="button" value="Invite">
+				<input type="button" id="delete-thread" value="Delete">
+			</div>
+		</div>
+
+		<div>
+			<div class="span10">
+				{{ content.message }}
+			</div>
+		</div>
+
+	</div>
+</li>
+
+	<!--
+		<div class="{{#unless read }}unread{{/unless}}">
+				{{#if isMessage }}
+					<div class="span5 offset1">{{ content }}</div>
+				{{else}}
+					<div class="span3 offset1">
+							<div>{{enum kind 'notification-type' }}</div>
+							<div>{{ message }}</div>
+					</div>
+					<div class="span1">{{ numPeople }} people</div>
+					<div class="span1">
+							<div>{{date startDate }}</div>
+							<div>{{date endDate }}</div>
+					</div>
+				{{/if}}
+				<div class="span1">{{date created "MMM Do" }}</div>
+		</div>
+	-->

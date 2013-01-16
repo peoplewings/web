@@ -6,6 +6,10 @@ define(function(require) {
 	 * HANDLEBARS *
 	 **************/
 
+	Handlebars.registerHelper('equals', function(value, expected, options) {
+		return Handlebars.helpers['if'].call(this, value == expected, options);
+	});
+
 	Handlebars.registerHelper('date', function(value, format) {
 		var date = typeof value === 'number' ? moment.unix(value) : moment(value);
 
