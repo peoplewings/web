@@ -69,25 +69,32 @@ define(function(require) {
 	 * ENUMS *
 	 *********/
 
-	function createEnum(values) {
-		if (values instanceof Array)
-			values = _.object(_.values(values), _.keys(values));
+	function Enum(values) {
+		var inverse = _.object(_.values(values), _.keys(values));
+		var map = values;
 
-		values.fromValue = function(value) {
-			var result;
-			_.each(this, function(id, key) { if (id === value) result = key });
-			return result;
-		};
+		if (values instanceof Array) {
+			var tmp = map;
+			map = inverse;
+			inverse = tmp;
+		}
 
-		return values;
+		map.fromValue = function(value) { return inverse[value] };
+		return map;
 	}
 
 	var enums = {
-		'notification-type': createEnum({
+		'notification-type': Enum({
 			Request: 'requests',
 			Invitation: 'invites',
 			Message: 'messages'
-		})
+		}),
+		'notification-state': Enum({
+			pending: 'P',
+			maybe: 'M',
+			accepted: 'A',
+			denied: 'D',
+		}),
 	};
 
 	/*****************

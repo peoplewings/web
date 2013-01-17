@@ -93,3 +93,34 @@ input {
 #new-invitation-content input[type="date"] {
 	width: 100px;
 }
+
+.state-flag {
+	height: 23px;
+	width: 27px;
+}
+
+.state-flag.from-me.pending {
+	background: url(../img/states/Pending-2.png);
+}
+.state-flag.from-me.maybe {
+	background: url(../img/states/Maybe-2.png);
+}
+.state-flag.from-me.accepted {
+	background: url(../img/states/Accept-2.png);
+}
+.state-flag.from-me.denied {
+	background: url(../img/states/Decline-2.png);
+}
+
+.state-flag.to-me.pending {
+	background: url(../img/states/Pending-1.png);
+}
+.state-flag.to-me.maybe {
+	background: url(../img/states/Maybe-1.png);
+}
+.state-flag.to-me.accepted {
+	background: url(../img/states/Accept-1.png);
+}
+.state-flag.to-me.denied {
+	background: url(../img/states/Decline-1.png);
+}
