@@ -20,6 +20,7 @@ define(function(require){
 	
 	var profileView = Backbone.View.extend({
     	el: "#main",
+
 		months: [
 			{ name: 'January'},
 			{ name: 'Feburary'},
@@ -34,6 +35,7 @@ define(function(require){
 			{ name: 'November'},
 			{ name: 'December'},
 		],
+		
 		events:{
 			"click a#add-language-btn": function(e){
 				e.preventDefault();
@@ -45,7 +47,8 @@ define(function(require){
 			},
 			"click a#add-edu-btn": function(e){
 				e.preventDefault();
-				this.educationsList.addItem()
+				this.educationsList.addItem();
+				this.initStudyTypeahead();
 			},
 			"click button[id^=delete-education]": function(e){
 				e.preventDefault();
@@ -101,59 +104,33 @@ define(function(require){
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 		},
+		
 		initialize: function(options) {
 			this.model = new ProfileModel({id: api.getProfileId()})
-			//this.model.on("change", this.render.bind(this));
+			this.model.on("change", this.render.bind(this));
 		  	this.model.fetch({success: this.render.bind(this) })
-		
 			this.map = new mapView({el: "#user-map", id: "mapcanvas"})
 		},
-	    render: function(){
-		  console.log(this.model.attributes)
 		
-	      $(this.el).html(profileTpl(this.model.toJSON()));
+	    render: function(){		
+			$(this.el).html(profileTpl(this.model.toJSON()));
 
-		  this.$('#basic-info').html(basicTpl(_.extend(this.model.toJSON(), { month: this.months})))
-		  this.$('#about-me').html(aboutTpl(this.model.toJSON()))
-		  this.$('#likes-info').html(likesTpl(this.model.toJSON()))
-		  this.$('#contact-info').html(contactTpl(this.model.toJSON()))
-		
-		  avatarView.render(this.model.get("avatar"))
-		
-			this.initLists();
-		
-		  	this.initTypeahead();
-		
-		  	this.map.render()	
-		
-		  	this.setInitialMarkers()
-		
-			this.map.renderMarkers()
-		
-		  
-	  
-	    },
-		submitProfile: function(e){
-			e.preventDefault(e);
-			var tpl = null
-			var sc = this
+			this.$('#basic-info').html(basicTpl(_.extend(this.model.toJSON(), { month: this.months})));
+			this.$('#about-me').html(aboutTpl(this.model.toJSON()));
+			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
+			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
 			
-			var data = this.collectData()
-			console.log("DONE", data)
-
+			avatarView.render(this.model.get("avatar"));
+			
+			this.initLists();
+		  	this.initLocationTypeahead();
+			this.initStudyTypeahead();
 		
-			this.model.save(data)
-				.then(function(status){
-					$('.alert').remove()
-					if (status === true)
-						tpl = alertTpl({extraClass: 'alert-success', heading: "Profile updated"})
-					else
-						tpl = alertTpl({extraClass: 'alert-error', heading: "Profile couldn't be updated" + ": ", message: 'Please try again later'})
-				})
-				.fin(function(){
-					$(sc.el).prepend(tpl)
-				})
-		},
+		  	this.map.render();		
+		  	this.initMarkers();
+			
+	    },
+		
 		initLists: function(){
 			this.languagesList = new List({
 				el: "#languages-list",
@@ -194,9 +171,108 @@ define(function(require){
 				tpl: "#otherLocation-tpl",
 				values: ["otherLocations", "other-city", "other-region", "other-country", "other-lat", "other-lon"]
 			});
+		},
 		
+		initStudyTypeahead: function(){
+			
+			$.ajaxSetup({
+                  beforeSend: function(xhr){
+                        xhr.setRequestHeader("X-Auth-Token", api.getAuthToken())
+                  },
+            });
+
+			$('.autocompleteStudy').typeahead({
+	      	ajax: {
+	              url: api.getServerUrl() + "/api/v1/universities",
+	              triggerLength: 1,
+	              method: "get",
+	              preDispatch: function (query) {
+	                  return {
+	                      name: query,
+	                  }
+	              },
+				  onselect: function(){
+				  	console.log(arguments)
+				  },
+	              preProcess: function (data) {
+	                  if (data.code !== 200) {
+	                      return false;
+	                  }
+	                  return data.data.map(function(uni){ return uni.name });
+	              }
+	          }
+			})
+		},
+		
+		initLocationTypeahead: function(){
+		
+			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
+			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));   
+			
+			var current = new google.maps.places.Autocomplete(document.getElementById("currentCity"), { types: ['(cities)'] });
+			google.maps.event.addListener(current, 'place_changed', this.updateMap(current, "current", "current"));
+			
+			var lastId = this.$("#otherLocations-list").children().last().prop("id")
+			var last = new google.maps.places.Autocomplete($("#" + lastId).children("[name=otherLocations]")[0], { types: ['(cities)'] });
+			google.maps.event.addListener(last, 'place_changed', this.updateMap(last, "other", lastId));
 		
 		},
+		
+		updateMap: function(auto, field, id) {
+			var sc = this
+			return function() {
+				var place = auto.getPlace();
+				if (place.geometry){
+					var cc = utils.getCityAndCountry(place.address_components)
+					
+					sc.map.setCenter(place.geometry.location);
+					sc.map.addMarker(field + Math.random().toString(36).substr(2, 5), place.geometry.location, cc.city + ", " + cc.country)
+
+					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city)
+					sc.$("#" + id + " input[name^=" + field + "-country]").val(cc.country)
+					sc.$("#" + id + " input[name^=" + field + "-region]").val(cc.region)
+					sc.$("#" + id + " input[name^=" + field + "-lat]").val(place.geometry.location.lat())
+					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng())
+				}  
+			}
+		},
+		
+		initMarkers: function(sc){
+			var sc = this
+			
+			var city = this.model.get("current")
+			this.map.addMarker("current", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)			
+			
+			city = this.model.get("hometown")
+			this.map.addMarker("hometown", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)
+			
+			var others = this.model.get("otherLocations")
+			_.each(others, function(location, index){
+				sc.map.addMarker(index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
+			})
+			
+			this.map.renderMarkers();
+		},
+		
+		submitProfile: function(e){
+			e.preventDefault(e);
+			var tpl = null
+			var sc = this
+			var data = this.collectData()
+			
+			this.model.save(data)
+				.then(function(status){
+					$('.alert').remove()
+					if (status === true)
+						tpl = alertTpl({extraClass: 'alert-success', heading: "Profile updated"})
+					else
+						tpl = alertTpl({extraClass: 'alert-error', heading: "Profile couldn't be updated" + ": ", message: 'Please try again later'})
+				})
+				.fin(function(){
+					$(sc.el).prepend(tpl)
+				})
+		},
+		
 		collectData: function() {
 		
 			var data = utils.serializeForm('basic-info-form')
@@ -303,99 +379,6 @@ define(function(require){
 			}
 		
 			return data;
-		},
-		
-		initTypeahead: function(){
-		
-			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
-			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));   
-			
-			var current = new google.maps.places.Autocomplete(document.getElementById("currentCity"), { types: ['(cities)'] });
-			google.maps.event.addListener(current, 'place_changed', this.updateMap(current, "current", "current"));
-			
-			var lastId = this.$("#otherLocations-list").children().last().prop("id")
-			var last = new google.maps.places.Autocomplete($("#" + lastId).children("[name=otherLocations]")[0], { types: ['(cities)'] });
-			google.maps.event.addListener(last, 'place_changed', this.updateMap(last, "other", lastId));
-		
-		},
-		
-		updateMap: function(auto, field, id) {
-			var sc = this
-			return function() {
-				var place = auto.getPlace();
-				if (place.geometry){
-					var cc = sc.getCityAndCountry(place.address_components)
-					
-					sc.map.setCenter(place.geometry.location);
-					sc.map.addMarker(field + Math.random().toString(36).substr(2, 5), place.geometry.location, cc.city + ", " + cc.country)
-
-					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city)
-					sc.$("#" + id + " input[name^=" + field + "-country]").val(cc.country)
-					sc.$("#" + id + " input[name^=" + field + "-region]").val(cc.region)
-					sc.$("#" + id + " input[name^=" + field + "-lat]").val(place.geometry.location.lat())
-					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng())
-				}  
-			}
-		},
-
-		setStudyAutocomplete: function(){
-			$('.autocompleteStudy').typeahead({
-	      	ajax: {
-	              url: api.getServerUrl() + "/api/v1/universities",
-	              timeout: 500,
-	              triggerLength: 1,
-	              method: "get",
-	              preDispatch: function (query) {
-	                  return {
-	                      name: query,
-	                      //otherParam: 123
-	                  }
-	              },
-				  onselect: function(){
-				  	console.log(arguments)
-				  },
-	              preProcess: function (data) {
-	                  if (data.code !== 200) {
-	                      return false;
-	                  }
-	                  return data.data;
-	              }
-	          }
-			})
-		},
-		
-		getCityAndCountry: function(address_components){
-			var data = {}
-			var component
-			for (obj in address_components){
-				component = address_components[obj]
-				for ( type in component.types){
-					switch(component.types[type]){
-						case "locality": data.city = component.long_name
-										 break;
-						case "country": data.country = component.long_name
-										 break;
-						case "administrative_area_level_1": data.region = component.long_name
-										 					break;
-					}
-				}
-			  }
-			return data
-		},
-		
-		setInitialMarkers: function(sc){
-			var sc = this
-			
-			var city = this.model.get("current")
-			this.map.addMarker("current", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)			
-			
-			city = this.model.get("hometown")
-			this.map.addMarker("hometown", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)
-			
-			var others = this.model.get("otherLocations")
-			_.each(others, function(location, index){
-				sc.map.addMarker(index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
-			})
 		},
 		
 	  });

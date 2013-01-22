@@ -1,18 +1,22 @@
 var Utils = function(){
 	
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	var isEmpty = function(obj) {
-    	// Assume if it has a length property with a non-zero value
-	    // that that property is correct.
-	    if (obj.length && obj.length > 0)    return false;
-	    if (obj.length && obj.length === 0)  return true;
-
-	    for (var key in obj) {
-	        if (hasOwnProperty.call(obj, key))    return false;
-	    }
-
-	    return true;
+	var getCC = function(address_components){
+		var data = {}
+		var component
+		for (obj in address_components){
+			component = address_components[obj]
+			for ( type in component.types){
+				switch(component.types[type]){
+					case "locality": data.city = component.long_name
+									 break;
+					case "country": data.country = component.long_name
+									 break;
+					case "administrative_area_level_1": data.region = component.long_name
+									 					break;
+				}
+			}
+		  }
+		return data
 	}
 	
 	var serialize = function(form_id){
@@ -57,7 +61,7 @@ var Utils = function(){
 
 	return {
 		serializeForm: serialize,
-		objectIsEmpty: isEmpty,
+		getCityAndCountry: getCC,
 		getSpinOpts: function(){
 			return opts;
 		},

@@ -38,12 +38,12 @@
 			<div id="education-list">
 				{{#each education}}
 				<div id="education-{{@index}}">
-					<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4" data-provide="typeahead">
+					<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
 					<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
 				</div>
 				{{/each}}
 				<div id="education-tpl">
-					<input type="text"  name="education" id="institution-field-{{@index}}" class="span4" data-provide="typeahead">
+					<input type="text"  name="education" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
 					<input type="text" name="degree" id="degree-field-{{@index}}" class="span2">
 				</div>
 			</div>
