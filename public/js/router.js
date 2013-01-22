@@ -77,7 +77,6 @@ define([
 			if (!this.profileView){
 				require(["views/app/profile"], function(profileView){
 					scope.profileView = new profileView()
-					scope.profileView.render()
 				})
 			} else this.profileView.render()
 		},
