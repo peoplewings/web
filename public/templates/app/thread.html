@@ -1,0 +1,24 @@
+<div>
+	<input type="button" id="back" value="Back">
+	<input type="button" id="previous" value="<" data-id="{{ previous }}" {{#unless previous }}disabled{{/unless}}>
+	<input type="button" id="next" value=">" data-id="{{ next }}" {{#unless next }}disabled{{/unless}}>
+	<ul id="notif-list" class="unstyled">
+		{{{ items }}}
+
+		<li class="row">
+			<img class="span1" src="{{ me.avatar }}">
+			<div class="span11">
+				<div id="response-options">
+					Click to <span id="response-reply">Reply</span>,
+					<span id="response-request">Request</span> or
+					<span id="reponse-invite">Invite</span>
+				</div>
+				<div id="write-response" style="display: none">
+					<textarea></textarea>
+					<button id="cancel-response" class="btn">Cancel</button>
+					<button id="send-response" class="btn btn-primary">Send</button>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

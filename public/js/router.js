@@ -24,6 +24,8 @@ define([
 			 "profile":"profile",
 			 "profile/preview":"previewProfile",
 			 "wings": "wings",
+			 "messages/:id": "showThread",
+			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
 			 "users/:id": "showUserProfile",
 		//Default action
@@ -108,13 +110,22 @@ define([
 					})
 			} else this.wingsView.render()
 		},
-		showNotifications: function(){
+		showNotifications: function(filters){
 			var scope = this
 			if (!this.notificationsView){
 				require(["views/app/notifications"], function(notificationsView){
-						notificationsView.render()
+						notificationsView.render(JSON.parse(filters || '{}'));
 					})
 			} else this.notificationsView.render()
+		},
+		showThread: function(id) {
+			var scope = this
+			if (!this.threadView){
+				require(["views/app/thread"], function(threadView){
+					scope.threadView = threadView;
+					threadView.render(id)
+				});
+			} else this.threadView.render(id)
 		},
 		defaultAction: function(actions){
 			console.log('router.js: defaultAction()')
@@ -128,7 +139,7 @@ define([
             Backbone.history.start();
 			if (api.userIsLoggedIn())
 				require(["views/app/header"], function(header){ header.render() });
-			else 
+			else
 				homeView.render();
         }
     });

@@ -6,6 +6,14 @@ define(function(require) {
 	 * HANDLEBARS *
 	 **************/
 
+	Handlebars.registerHelper('equals', function(value, expected, options) {
+		return Handlebars.helpers['if'].call(this, value == expected, options);
+	});
+
+	Handlebars.registerHelper('if_contains', function(value, expected, options) {
+		return Handlebars.helpers['if'].call(this, value && (value.indexOf(expected) !== -1), options);
+	});
+
 	Handlebars.registerHelper('date', function(value, format) {
 		var date = typeof value === 'number' ? moment.unix(value) : moment(value);
 
@@ -82,37 +90,34 @@ define(function(require) {
 	 * ENUMS *
 	 *********/
 
-	function createEnum(values) {
-		if (values instanceof Array)
-			values = _.object(_.values(values), _.keys(values));
+	function Enum(values) {
+		var inverse = _.object(_.values(values), _.keys(values));
+		var map = values;
 
-		values.fromValue = function(value) {
-			var result;
-			_.each(this, function(id, key) { if (id === value) result = key });
-			return result;
-		};
+		if (values instanceof Array) {
+			var tmp = map;
+			map = inverse;
+			inverse = tmp;
+		}
 
-		return values;
+		map.fromValue = function(value) { return inverse[value] };
+		return map;
 	}
 
 	var enums = {
-		'notification-type': createEnum({
+		'notification-type': Enum({
 			Request: 'requests',
 			Invitation: 'invites',
 			Message: 'messages'
 		}),
-		
-		'civil-states': createEnum({
-			SI: "Single",
-			EN: "Engaged",
-			MA: "Married",
-			WI: "Widowed",
-			IR: "In a relationship",
-			IO: "In an open relationship",
-			IC: "It's complicated",
-			DI: "Divorced",
-			SE: "Separated"
-		})
+
+		'notification-state': Enum({
+			pending: 'P',
+			maybe: 'M',
+			accepted: 'A',
+			denied: 'D',
+		}),
+
 	};
 
 	/*****************
@@ -120,12 +125,11 @@ define(function(require) {
 	 *****************/
 
 	return function(text, callback) {
-		var compiled;
+		var compiled = Handlebars.compile(text);
 
 		return function(data) {
-			if (!compiled)
-				compiled = Handlebars.compile(text);
-
+			if (arguments.length > 1)
+				data = _.extend.apply(_, [{}].concat(_.toArray(arguments)));
 			return compiled(data || {});
 		};
 	};
