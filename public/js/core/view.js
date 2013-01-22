@@ -10,6 +10,10 @@ define(function(require) {
 		return Handlebars.helpers['if'].call(this, value == expected, options);
 	});
 
+	Handlebars.registerHelper('if_contains', function(value, expected, options) {
+		return Handlebars.helpers['if'].call(this, value && (value.indexOf(expected) !== -1), options);
+	});
+
 	Handlebars.registerHelper('date', function(value, format) {
 		var date = typeof value === 'number' ? moment.unix(value) : moment(value);
 
@@ -102,12 +106,11 @@ define(function(require) {
 	 *****************/
 
 	return function(text, callback) {
-		var compiled;
+		var compiled = Handlebars.compile(text);
 
 		return function(data) {
-			if (!compiled)
-				compiled = Handlebars.compile(text);
-
+			if (arguments.length > 1)
+				data = _.extend.apply(_, [{}].concat(_.toArray(arguments)));
 			return compiled(data || {});
 		};
 	};

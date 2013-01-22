@@ -63,7 +63,7 @@ define(function(require) {
 			var items = data.items.map(function(item, index) {
 				return {
 					index: index,
-					isMessage: true,
+					isMessage: data.kind === 'message',
 					created: item.created,
 					interlocutorId: item.senderId,
 					age: item.senderAge,
@@ -76,6 +76,10 @@ define(function(require) {
 				};
 			});
 
+			function openTpl(item) {
+				return openItemTpl(last, data.wing, { isMessage: data.kind === 'message' });
+			}
+
 			this.current.interlocutor = {
 				id: last.senderId,
 				name: last.senderName,
@@ -86,13 +90,13 @@ define(function(require) {
 				previous: prevThread,
 				next: nextThread,
 				me: { avatar: avatar },
-				items: items.map(itemTpl).join('') + openItemTpl(last)
+				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
 
 			var allButLast = Array.prototype.slice.call(self.$('#notif-list').children(), 0, -2);
 			$(allButLast).click(function openItem() {
 				var closed = $(this);
-				var open = $(openItemTpl(data.items[$(this).data('index')]));
+				var open = $(openTpl(data.items[$(this).data('index')]));
 
 				$(this).replaceWith(open);
 				open.click(function closeItem() {
