@@ -186,8 +186,6 @@ define(function(require){
 					self.selection = self.selection.filter(function(a) { return a !== thread });
 					if ($(this).is(':checked'))
 						self.selection.push(thread);
-
-					console.log(self.selection);
 				});
 
 			this.renderCounters(data.startResult, data.endResult, data.count);
