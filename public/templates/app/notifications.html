@@ -32,8 +32,16 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="span2">Checkboxes</div>
+	<div class="row" style="clear: both">
+		<div class="span2">
+			<div class="btn-group">
+				<label for="main-checker" class="btn btn-primary"><input type="checkbox" id="main-checker"></label>
+				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="delete-all-selected">Delete</a></li>
+				</ul>
+			</div>
+		</div>
 		<div class="span3 offset7">
 			<div class="span1 resultCounter"><span> 0</span> - <span>0</span> of <span>0</span></div>
 			<div id="notifications-pager"class="span1 btn-group">
