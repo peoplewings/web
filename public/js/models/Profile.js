@@ -8,12 +8,6 @@ define(function(require) {
 	var UserProfileModel = Backbone.Model.extend({
 
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/',
-
-		/*
-		fetch: function() {
-			 api.get(api.getApiVersion() + '/profiles/' + this.id, {}, this.parse)
-		},
-		*/
 		
 		parse: function(resp, xhr){
 			return resp.data
@@ -21,18 +15,23 @@ define(function(require) {
 		
 		save: function(attributes){
 			var sc = this
+			var aux = []
+			_.each(attributes, function(value, attr){
+				//Marranada... waiting for better solutions
+				if (attr == "interestedInF" || attr == "interestedInM"){
+					aux.push({ gender: value})
+					sc.set('interestedIn', aux)
+				} 
+				else 
+					sc.set(attr, value)
+			})
+			//Marranada... waiting for range helper bug
+			sc.set("birthYear", "1985")
+			
 			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes)
 					.prop('status')
-					.then(function(status){
-						if (status === true){
-							for (attr in sc.attributes) 
-								sc.unset(attr);
-							}
-							return status;
-						})
 		},
 	});
 
-    // Returns the Model singleton instance
 	return factory(UserProfileModel);
 });
