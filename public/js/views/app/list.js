@@ -1,73 +1,71 @@
-define([
-  "jquery",
-  "backbone",
-  "api",
-  "models/Profile",
-], function($, Backbone, api, UserProfile){
+define(function(require){
+	
+	var $ = require("jquery");
+	var Backbone = require("backbone");
 
-  var list = Backbone.View.extend({
+	var list = Backbone.View.extend({
+	
 	initialize: function(options){
-		this.model = new UserProfile({id: api.getProfileId()})
 		this.el = options.el
-		this.store = options.items
+		this.key = options.key
+		this.values = options.values
 		this.tpl = options.tpl
-		//Used like an autoincremental Id 
-		this.storeSize = options.items.length + 1 | 1
-		this.keys = options.keys
-		this.itemId = options.itemId
-		this.extraCls = options.extraCls
+		this.store = options.store
+		
+		
+		
+		this.length = (this.store.length > 0) ? this.store.length : 0;
+		
+		this.render()
+		
 	},
-	render: function(opts){
+	
+	render: function(){
 		var sc = this
-		if (this.store.length > 0){
-			$.each(this.store, function(i, field){
-				$(sc.el).append(_.template(sc.tpl, {index: i + 1, itemId: sc.itemId, extraAttribute: 'disabled="true"'}))
-			})
-			this.bind()
-		}
-		this.setInitial()
-    },
-    setInitial: function(){
-		var sc = this
-		$(this.el).append(_.template(this.tpl, {index: this.storeSize, itemId: this.itemId, extraCls: this.extraCls}))
-		$.each(this.keys, function(key, element){
-			sc.model.bindings["x_" + element + "_" + sc.storeSize] = "[name=" + element + "-" + sc.storeSize + "]"
+		
+		this.$(this.tpl).hide()
+		
+		this.addItem()
+		
+		var sons = $(this.el).children().not(this.tpl)
+		
+		_.each(_.initial(sons), function(item, index){
+			$(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
 		})
+		
+		$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
 	},
-	bind: function(){
+	
+	addItem: function(){
 		var sc = this
-		var s
-		$.each(this.store, function(key, field){
-			s = key + 1 + ""
-			$.each(sc.keys, function(key, element){
-				sc.model.bindings["x_" + element + "_" + s] = '[name=' + element + '-' + s +']'
-			})
+		var added = this.$(this.tpl).clone()
+		
+		added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
+		
+		_.each(added.children('select, input, textarea'), function(item, index){
+			$(item).attr("name", sc.values[index])
 		})
+		
+		
+		added.children('button').attr("id", "delete-" + this.key + "-" + this.length)
+		
+		this.length++
+		
+		return added.prop("id");
+
 	},
-	addItem: function(keys){
-		this.storeSize++
-		var last = this.storeSize
-		var sc = this
-		$(this.el).append(_.template(this.tpl, {index: last, itemId: this.itemId, extraCls: this.extraCls}))
-		$.each(this.keys, function(key, element){
-			sc.model.bindings["x_" + element + "_" + last] = "[name=" + element + "-" + last + "]"
-		})
+	
+	deleteItem: function(e){
+		
+		var element = document.getElementById(e.target.id).parentNode
+
+		$(element).remove()
+		
+		this.length--
+		
 	},
-	deleteItem: function(nodeId){
-		var id = nodeId.split("-", 3)
-		var sc = this
-		id = id[id.length-1]
-		$.each(this.keys, function(key, element){
-			delete sc.model.bindings["x_" + element + "_" + id]
-			sc.model.unset("x_" + element + "_" + id)
-		})
-		$("#" + this.itemId + "-" + id).remove()
-	},
-	destroy: function(){
-  		this.remove();
-  		this.unbind();
-	}
-  });
+
+	 });
 
   return list;
 });
