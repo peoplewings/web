@@ -1,10 +1,38 @@
 var Utils = function(){
 	
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+	var isEmpty = function(obj) {
+    	// Assume if it has a length property with a non-zero value
+	    // that that property is correct.
+	    if (obj.length && obj.length > 0)    return false;
+	    if (obj.length && obj.length === 0)  return true;
+
+	    for (var key in obj) {
+	        if (hasOwnProperty.call(obj, key))    return false;
+	    }
+
+	    return true;
+	}
+	
 	var serialize = function(form_id){
 		var form = (form_id) ? 'form#' + form_id : 'form'
 		var values = {};
 		$.each(jQuery(form).serializeArray(), function(i, field) {
-    		values[field.name] = field.value;
+			if (field.value == "") return
+			
+			var aux = [];
+			var old = values[field.name];
+    		if (old) {
+				if (old instanceof Array)
+					values[field.name].push(field.value)
+				else {
+					aux.push(old, field.value)
+					values[field.name] = aux
+				}
+			}
+			else
+				values[field.name] = field.value;
 		});
 		return values
 	}
@@ -29,6 +57,7 @@ var Utils = function(){
 
 	return {
 		serializeForm: serialize,
+		objectIsEmpty: isEmpty,
 		getSpinOpts: function(){
 			return opts;
 		},
