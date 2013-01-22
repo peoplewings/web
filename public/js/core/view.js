@@ -62,14 +62,7 @@ define(function(require) {
 	});
 	
 	Handlebars.registerHelper('selected', function(option, value) {
-        var equals = false
-		if (typeof option == 'string' )
-			equals = option.toLowerCase() == value.toLowerCase()
-		else{
-			equals = option === value
-		}
-		console.log(option, value, equals)
-		if (equals) {
+		if (option == value) {
             return new Handlebars.SafeString(' selected');
         } else {
             return '';
