@@ -23,12 +23,31 @@
 			</div>
 		</div>
 
-		<div>
-			<div class="span10">
+		<div class="span10">
+			{{#if isMessage }}
 				{{ content.message }}
-			</div>
-		</div>
+			{{else}}
+				<div class="row">
+					<div class="span1">
+						<div class="state-flag
+							{{#if flagDirection }}to-me{{else}}from-me{{/if}}
+							{{enum state 'notification-state'}}">{{enum state 'notification-state'}}</div>
+					</div>
+				</div>
 
+				<div class="cosa-gris">
+					<label>Requested wing: <strong {{#if_contains parameters.modified "type" }}class="modified"{{/if_contains}}>{{ type }} in {{ parameters.wingCity }}</strong></label>
+					<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>
+					<label>Deperture date: <strong {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate }}</strong></label>
+					<label>Number of surfers: <strong {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ capacity }}</strong></label>
+					<label>Arriving via: {{ via }}</label>
+				</div>
+
+				<div>
+					{{ content.message }}
+				</div>
+			{{/if}}
+		</div>
 	</div>
 </li>
 
