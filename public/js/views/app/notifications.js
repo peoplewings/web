@@ -17,6 +17,20 @@ define(function(require){
 			'click #search-btn': 'filter',
 			'click #notifications-pager > button.nextPage': 'nextPage',
 			'click #notifications-pager > button.previousPage': 'previousPage',
+			'click #delete-all-selected': function(e) {
+				e.preventDefault();
+				this.removeSelection();
+			},
+			'change #main-checker': function(e) {
+				var a = this.$list.find('input[type="checkbox"]');
+				if ($(e.target).is(':checked')) {
+					a.attr('checked', 'checked');
+					this.selection = this.threads.concat();
+				} else {
+					a.removeAttr('checked');
+					this.selection = [];
+				}
+			},
 			'keyup #search-query': function(event) {
 				if (event.keyCode === 13)
 					this.filter();
@@ -24,6 +38,7 @@ define(function(require){
 		},
 
 		initialize: function(){
+			this.selection = [];
 			this.refresh = this.refresh.bind(this);
 			this.threads = null;
 		},
@@ -130,6 +145,10 @@ define(function(require){
 				});
 		},
 
+		removeSelection: function() {
+			api.put('/api/v1/notificationslist', { threads: this.selection }).then(this.render.bind(this));
+		},
+
 		getThreads: function(data) {
 			var self = this;
 			return this.threads ?
@@ -147,11 +166,30 @@ define(function(require){
 
 			var self = this;
 			this.$list.html(data.items.map(itemTpl).join(''));
-			this.$list.children().click(function(event) {
-				var thread = $(this).data('thread');
-				self.lastFilters = self.serializeFilters();
-				document.location.hash = '#/messages/' + thread;
-			});
+			this.$list.children()
+				.click(function(event) {
+					var thread = $(this).data('thread');
+					self.lastFilters = self.serializeFilters();
+					document.location.hash = '#/messages/' + thread;
+				})
+				.map(function() {
+					var check = $('<input type="checkbox">');
+					$(this).prepend(check);
+					return check.get(0);
+				})
+				.click(function(e) {
+					event.stopPropagation();
+				})
+				.on('change', function(event) {
+					var thread = $(this).closest('.notification-item').data('thread');
+
+					self.selection = self.selection.filter(function(a) { return a !== thread });
+					if ($(this).is(':checked'))
+						self.selection.push(thread);
+
+					console.log(self.selection);
+				});
+
 			this.renderCounters(data.startResult, data.endResult, data.count);
 
 			this.threads = data.items.map(function(item) {
