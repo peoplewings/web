@@ -166,7 +166,7 @@
 				<div id="otherLocations-list">
 					{{#each otherLocations}}
 					<div id="otherLocation-{{@index}}">
-						<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" value="{{name}}, {{region}}, {{country}}" class="span5" autocomplete="off">
+						<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" value="{{name}}, {{region}}, {{country}}" disabled class="span5" autocomplete="off">
 						<input name="other-city" type="hidden" value="{{name}}">
 						<input name="other-region" type="hidden" value="{{region}}">
 						<input name="other-country" type="hidden" value="{{country}}">
