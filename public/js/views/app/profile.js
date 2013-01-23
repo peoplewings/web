@@ -68,7 +68,9 @@ define(function(require){
 			},
 			"click button[id^=delete-otherLocation]": function(e){
 				e.preventDefault();
-				this.otherLocationsList.deleteItem(e)
+				var id = e.target.id.split("delete-")[1]
+				this.otherLocationsList.deleteItem(e)				
+				this.map.deleteMarker(id)
 			},
 			"click a#add-social-btn": function(e){
 				e.preventDefault();
@@ -226,7 +228,7 @@ define(function(require){
 					var cc = utils.getCityAndCountry(place.address_components)
 					
 					sc.map.setCenter(place.geometry.location);
-					sc.map.addMarker(field + Math.random().toString(36).substr(2, 5), place.geometry.location, cc.city + ", " + cc.country)
+					sc.map.addMarker(id, place.geometry.location, cc.city + ", " + cc.country)
 
 					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city)
 					sc.$("#" + id + " input[name^=" + field + "-country]").val(cc.country)
@@ -248,7 +250,7 @@ define(function(require){
 			
 			var others = this.model.get("otherLocations")
 			_.each(others, function(location, index){
-				sc.map.addMarker(index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
+				sc.map.addMarker("otherLocation-" + index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
 			})
 			
 			this.map.renderMarkers();
@@ -289,7 +291,7 @@ define(function(require){
 						return { name: item, level: data["levels"][index] }
 				})
 				delete data["levels"]
-			}
+			} else data["languages"] = []
 		
 			if (data["instantMessages"]){
 				if (!(data["instantMessages"] instanceof Array)) {
@@ -300,7 +302,7 @@ define(function(require){
 						return { instantMessage: item, imUsername: data["imUsername"][index] }
 				})
 				delete data["imUsername"]
-			}
+			} else data["instantMessages"] = []
 		
 			if (data["socialNetworks"]){
 				if (!(data["socialNetworks"] instanceof Array)) {
@@ -311,7 +313,7 @@ define(function(require){
 						return { socialNetwork: item, snUsername: data["snUsername"][index] }
 				})
 				delete data["snUsername"]
-			}
+			} else data["socialNetworks"] = []
 		
 			if (data["education"]){
 				if (!(data["education"] instanceof Array)) {
@@ -322,7 +324,7 @@ define(function(require){
 						return { institution: item, degree: data["degree"][index] }
 				})
 				delete data["degree"]
-			}
+			} else data["education"] = []
 		
 			if (data["other-city"]){
 				if (!(data["other-city"] instanceof Array)) {
@@ -346,7 +348,7 @@ define(function(require){
 				delete data["other-region"]
 				delete data["other-lat"]
 				delete data["other-lon"]
-			}
+			} else data["otherLocations"] = []
 			
 			if (data["current"]){
 				data["current"] =  { 

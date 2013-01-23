@@ -25,13 +25,17 @@ define(function(require){
 		
 		this.$(this.tpl).hide()
 		
-		this.addItem()
+
 		
-		var sons = $(this.el).children().not(this.tpl)
+		var sons = $(this.el).children()
+		//.not(this.tpl)
 		
-		_.each(_.initial(sons), function(item, index){
+		
+		_.each(sons, function(item, index){
 			$(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
 		})
+
+		this.addItem()
 		
 		$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
 	},
@@ -39,6 +43,8 @@ define(function(require){
 	addItem: function(){
 		var sc = this
 		var added = this.$(this.tpl).clone()
+		
+		//added.append('<button type="button" class="close" id="delete-' + sc.key + '-' + this.length + '">×</button>')
 		
 		added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
 		
@@ -57,6 +63,7 @@ define(function(require){
 	
 	deleteItem: function(e){
 		
+		debugger
 		var element = document.getElementById(e.target.id).parentNode
 
 		$(element).remove()

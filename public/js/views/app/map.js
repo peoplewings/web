@@ -56,6 +56,24 @@ define(function(require){
 				this.markers[id].setTitle(title)
 				
 			}
+			
+			return true;
+		},
+		
+		deleteMarker: function(id) {
+			
+			if (!this.markers[id]) {
+				
+				return false;
+				
+			}else {
+				
+				this.markers[id].setMap(null)
+				delete this.markers[id];
+			}
+			
+			return true;
+			
 		},
 		
 		renderMarkers: function() {
