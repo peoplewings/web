@@ -125,11 +125,27 @@ define(function(require) {
 		}),
 		
 		'sleep-choice': Enum({
-			
+			"Common area": 'C',
+			"Private area": 'P',
+			"Shared private area": 'S'
 		}),
 		
 		'smoking-choice': Enum({
-			
+			"I smoke": 'S',
+			"I don't smoke, but guests can smoke here": 'D',
+			"No smoking allowed": 'N'
+		}),
+		
+		'civil-state': Enum({
+			"Single": 'SI',
+			"Engaged": 'EN',
+			"Married": 'MA',
+			"Widowed": 'WI',
+			"In a relationship": 'IR',
+			"In an open relationship": 'IO',
+			"It's complicated": 'IC',
+			"Divorced": 'DI',
+			"Separated": 'SE'
 		})
 
 	};

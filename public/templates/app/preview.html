@@ -52,7 +52,7 @@
 								<dt>Interested in</dt>
 								<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
 								<dt>Relationship status</dt>
-								<dd>{{civilState}}</dd>
+								<dd>{{enum civilState 'civil-state'}}</dd>
 								<dt>Languages</dt>
 								{{#if languages.length}}
 									<dd>
