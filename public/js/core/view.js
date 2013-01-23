@@ -117,6 +117,20 @@ define(function(require) {
 			accepted: 'A',
 			denied: 'D',
 		}),
+		
+		'status-choice': Enum({
+			Yes: 'Y',
+			No: 'N',
+			Maybe: 'M'
+		}),
+		
+		'sleep-choice': Enum({
+			
+		}),
+		
+		'smoking-choice': Enum({
+			
+		})
 
 	};
 

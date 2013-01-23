@@ -19,6 +19,7 @@ define(function(require) {
 	var Preview = Backbone.Model.extend({
 
 		idAttribute: "_id",
+		
 		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/" + api.getProfileId(),
 
 		parse: function(resp, xhr){

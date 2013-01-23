@@ -87,7 +87,6 @@ define([
 			if (!this.previewView){
 				require(["views/app/preview"], function(previewView){
 					scope.previewView = previewView
-					previewView.render()
 				})
 			} else this.previewView.render()
 
