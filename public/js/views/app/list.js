@@ -5,74 +5,63 @@ define(function(require){
 
 	var list = Backbone.View.extend({
 	
-	initialize: function(options){
-		this.el = options.el
-		this.key = options.key
-		this.values = options.values
-		this.tpl = options.tpl
-		this.store = options.store
+		initialize: function(options){
+			this.el = options.el
+			this.key = options.key
+			this.values = options.values
+			this.tpl = options.tpl
+			this.store = options.store
 		
+			this.length = (this.store.length > 0) ? this.store.length : 0;
 		
-		
-		this.length = (this.store.length > 0) ? this.store.length : 0;
-		
-		this.render()
-		
-	},
+			this.render()
+		},
 	
-	render: function(){
-		var sc = this
+		render: function(){
+			var sc = this
 		
-		this.$(this.tpl).hide()
+			this.$(this.tpl).hide()
 		
+			var sons = $(this.el).children()
+		
+			_.each(sons, function(item, index){
+				$(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
+			})
 
+			this.addItem()
 		
-		var sons = $(this.el).children()
-		//.not(this.tpl)
-		
-		
-		_.each(sons, function(item, index){
-			$(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
-		})
-
-		this.addItem()
-		
-		$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
-	},
+			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
+		},
 	
-	addItem: function(){
-		var sc = this
-		var added = this.$(this.tpl).clone()
-		
-		//added.append('<button type="button" class="close" id="delete-' + sc.key + '-' + this.length + '">×</button>')
-		
-		added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
-		
-		_.each(added.children('select, input, textarea'), function(item, index){
-			$(item).attr("name", sc.values[index])
-		})
+		addItem: function(){
+			var sc = this
+			var added = this.$(this.tpl).clone()
 		
 		
-		added.children('button').attr("id", "delete-" + this.key + "-" + this.length)
+			added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
 		
-		this.length++
+			_.each(added.children('select, input, textarea'), function(item, index){
+				$(item).attr("name", sc.values[index])
+			})
 		
-		return added.prop("id");
-
-	},
+			added.children('button').attr("id", "delete-" + this.key + "-" + this.length)
+		
+			this.length++
+		
+			return added.prop("id");
+		},
 	
-	deleteItem: function(e){
+		deleteItem: function(e){
 		
-		debugger
-		var element = document.getElementById(e.target.id).parentNode
+			var element = document.getElementById(e.target.id).parentNode
 
-		$(element).remove()
+			$(element).remove()
 		
-		this.length--
-		
-	},
+			this.length--	
+		},
 
-	 });
-
-  return list;
+	});
+	
+	return list;
+	
 });

@@ -21,14 +21,11 @@ define(function(require){
 
 		},
 		render: function(){
-			
 			var data = _.extend(this.model.toJSON(), {wings: this.wingsList})
-			console.log(data)
 			$(this.el).html(previewTpl(data))
 			
 			this.map.render()
 			this.initMarkers()
-			
 		},
 		
 		initMarkers: function(){
@@ -46,7 +43,6 @@ define(function(require){
 			})
 			
 			this.map.renderMarkers()
-			
 		},
 		
 		getWingList: function(){
@@ -54,13 +50,13 @@ define(function(require){
 			api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/preview", {})
 				.prop("data")
 			 	.then(function(data){
-					console.log(data)
 					sc.wingsList = data
 				})
 				.fin(function(){
 					sc.render()
 				})
 		}
+		
 	});
 
   return new previewView;

@@ -16,7 +16,6 @@ define(function(require){
 			this.styles = _.extend(options.styles || {}, {height: "300px"})
 			this.mapOptions = options.mapOptions || { zoom: 1, center: new google.maps.LatLng(0,0), mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP }
 			
-			
 			this.mapcanvas = $(document.createElement('div'))
 			this.mapcanvas.attr({ id: this.id}) 
 			this.mapcanvas.css(this.styles)
@@ -31,7 +30,6 @@ define(function(require){
 			
 			
 		},
-		
 		
 		setCenter: function (location) {
 			
