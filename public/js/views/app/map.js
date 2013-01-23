@@ -13,7 +13,7 @@ define(function(require){
 		initialize: function(options) {
 			this.el = options.el
 			this.id = options.id
-			this.styles = options.styles || { height: "300px", marginLeft: "160px"} 
+			this.styles = _.extend(options.styles || {}, {height: "300px"})
 			this.mapOptions = options.mapOptions || { zoom: 1, center: new google.maps.LatLng(0,0), mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP }
 			
 			

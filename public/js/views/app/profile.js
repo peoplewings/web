@@ -111,7 +111,7 @@ define(function(require){
 			this.model = new ProfileModel({id: api.getProfileId()})
 			this.model.on("change", this.render.bind(this));
 		  	this.model.fetch({success: this.render.bind(this) })
-			this.map = new mapView({el: "#user-map", id: "mapcanvas"})
+			this.map = new mapView({el: "#user-map", id: "mapcanvas", styles: { marginLeft: "160px" }})
 		},
 		
 	    render: function(){		
