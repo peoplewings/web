@@ -118,6 +118,7 @@ define(function(require) {
 			denied: 'D',
 		}),
 		
+		/*
 		'status-choice': Enum({
 			Yes: 'Y',
 			No: 'N',
@@ -146,7 +147,7 @@ define(function(require) {
 			"It's complicated": 'IC',
 			"Divorced": 'DI',
 			"Separated": 'SE'
-		})
+		})*/
 
 	};
 

@@ -52,7 +52,7 @@
 								<dt>Interested in</dt>
 								<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
 								<dt>Relationship status</dt>
-								<dd>{{enum civilState 'civil-state'}}</dd>
+								<dd>{{civilState}}</dd>
 								<dt>Languages</dt>
 								{{#if languages.length}}
 									<dd>
@@ -129,7 +129,7 @@
 								<h4>{{name}} (Accomodation)</h4>
 								<dl class="dl-horizontal">
 									<dt>Wing status</dt>
-									<dd>{{enum status 'status-choice'}}</dd>
+									<dd>{{status}}</dd>
 									<dt>Are you sharing for one time?</dt>
 									{{#if sharingOnce}}
 										<dd>{{dateStart}} to {{dateEnd}}</dd>
@@ -155,9 +155,9 @@
 										{{/if}}
 									</dd>
 									<dt>Sleeping arrangements</dt>
-									<dd>{{enum whereSleepingType 'sleep-choice'}}</dd>
+									<dd>{{whereSleepingType}}</dd>
 									<dt>Smoking</dt>
-									<dd>{{enum smoking 'smoking-choice'}}</dd>
+									<dd>{{smoking}}</dd>
 									<dt>Pets allowed</dt>
 									<dd>
 										{{#if petsAllowed}}
