@@ -139,7 +139,6 @@ define(function(require){
 				store: this.model.get("languages"),
 				key: "language",
 				tpl: "#language-tpl",
-				values: ["languages", "levels"]
 			});
 		
 			this.educationsList = new List({
@@ -147,7 +146,6 @@ define(function(require){
 				store: this.model.get("education"),
 				key: "edu",
 				tpl: "#education-tpl",
-				values: ["education", "degree"]
 			});
 		
 			this.socialsList = new List({
@@ -155,7 +153,6 @@ define(function(require){
 				store: this.model.get("socialNetworks"),
 				key: "social",
 				tpl: "#socialNetwork-tpl",
-				values: ["socialNetworks", "snUsername"]
 			});
 		
 			this.imList = new List({
@@ -163,7 +160,6 @@ define(function(require){
 				store: this.model.get("instantMessages"),
 				key: "im",
 				tpl: "#im-tpl",
-				values: ["instantMessages", "imUsername"]
 			});
 		
 			this.otherLocationsList = new List({
@@ -171,7 +167,6 @@ define(function(require){
 				store: this.model.get("otherLocations"),
 				key: "otherLocation",
 				tpl: "#otherLocation-tpl",
-				values: ["otherLocations", "other-city", "other-region", "other-country", "other-lat", "other-lon"]
 			});
 		},
 		

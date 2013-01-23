@@ -1,67 +1,64 @@
-define(function(require){
-	
-	var $ = require("jquery");
-	var Backbone = require("backbone");
+define(function(require) {
 
-	var list = Backbone.View.extend({
-	
-		initialize: function(options){
-			this.el = options.el
-			this.key = options.key
-			this.values = options.values
-			this.tpl = options.tpl
-			this.store = options.store
-		
-			this.length = (this.store.length > 0) ? this.store.length : 0;
-		
-			this.render()
-		},
-	
-		render: function(){
-			var sc = this
-		
-			this.$(this.tpl).hide()
-		
-			var sons = $(this.el).children()
-		
-			_.each(sons, function(item, index){
-				$(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
-			})
+    var $ = require("jquery");
+    var Backbone = require("backbone");
 
-			this.addItem()
-		
-			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
-		},
-	
-		addItem: function(){
-			var sc = this
-			var added = this.$(this.tpl).clone()
-		
-		
-			added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
-		
-			_.each(added.children('select, input, textarea'), function(item, index){
-				$(item).attr("name", sc.values[index])
-			})
-		
-			added.children('button').attr("id", "delete-" + this.key + "-" + this.length)
-		
-			this.length++
-		
-			return added.prop("id");
-		},
-	
-		deleteItem: function(e){
-		
-			var element = document.getElementById(e.target.id).parentNode
+    var list = Backbone.View.extend({
 
-			$(element).remove()
-		
-			this.length--	
-		},
+        initialize: function(options) {
+            this.el = options.el
+            this.key = options.key
+            this.$tpl = $(options.tpl)
+            this.store = options.store
 
-	});
-	
-	return list;
-	
+            this.length = (this.store.length > 0) ? this.store.length: 0;
+
+            this.render()
+        },
+
+        render: function() {
+            var sc = this
+
+            this.$tpl.remove()
+
+            var sons = $(this.el).children()
+
+            _.each(sons,
+            function(item, index) {
+                $(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
+            })
+
+            $(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
+
+            if (this.length == 0) this.addItem()
+        },
+
+        addItem: function() {
+            var sc = this
+            var added = this.$tpl.clone()
+
+            added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
+
+            added.append('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
+
+            added.show()
+
+            this.length++
+
+            return added.prop("id");
+        },
+
+        deleteItem: function(e) {
+
+            var element = document.getElementById(e.target.id).parentNode
+
+            $(element).remove()
+
+            this.length--
+        },
+
+    });
+
+    return list;
+
 });
