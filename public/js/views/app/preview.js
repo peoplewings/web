@@ -40,8 +40,11 @@ define(function(require) {
                 } [this.model.get("civilState")]
             }
 
-            var data = _.extend(this.model.toJSON(), {wings: this.wingsList}, cs)
-			debugger
+            var data = _.extend(this.model.toJSON(), {
+                wings: this.wingsList
+            },
+            cs)
+
             $(this.el).html(previewTpl(data))
 
             this.map.render()
@@ -72,28 +75,30 @@ define(function(require) {
             .prop("data")
             .then(function(data) {
                 sc.wingsList = data.map(function(wing) {
-	                return _.extend(wing, {
-	                    smoking: {
-	                        S: "I smoke",
-	                        D: "I don't smoke, but guests can smoke here",
-	                        N: "No smoking allowed"
-	                    } [wing.smoking]
-	                },
-	                {
-	                    whereSleepingType: {
-	                        C: "Common area",
-	                        P: "Private area",
-	                        S: "Shared private area"
+                    return _.extend(wing, {
+                        smoking: {
+                            S: "I smoke",
+                            D: "I don't smoke, but guests can smoke here",
+                            N: "No smoking allowed"
+                        } [wing.smoking]
+                    },
+                    {
+                        whereSleepingType: {
+                            C: "Common area",
+                            P: "Private area",
+                            S: "Shared private area"
 
-	                    } [wing.whereSleepingType]
-	                },
-					{
-						Y: 'Yes',
-						N: 'No',
-						M: 'Maybe'
-					} [wing.status]
-					)
-	            })
+                        } [wing.whereSleepingType]
+                    },
+                    {
+                        status: {
+                            Y: "Yes",
+                            N: "No",
+                            M: "Maybe"
+                        } [wing.status]
+                    }
+                    )
+                })
             })
             .fin(function() {
                 sc.render()
