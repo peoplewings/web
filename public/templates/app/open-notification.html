@@ -16,10 +16,16 @@
 			</div>
 
 			<div class="span3">
-				<input type="button" id="open-message" value="Reply">
-				<input type="button" id="open-request" value="Request">
-				<input type="button" id="open-invite" value="Invite">
-				<input type="button" id="delete-thread" value="Delete">
+				{{#if isMessage }}
+					<input type="button" id="open-message" value="Reply">
+					<input type="button" id="open-request" value="Request">
+					<input type="button" id="open-invite" value="Invite">
+					<input type="button" id="delete-thread" value="Delete">
+				{{else}}
+					<input type="button" id="btn-accept" {{#unless_contains options 'accept' }}disabled{{/unless_contains}}>
+					<input type="button" id="btn-maybe"  {{#unless_contains options 'maybe' }} disabled{{/unless_contains}}>
+					<input type="button" id="btn-deny"   {{#unless_contains options 'deny' }}  disabled{{/unless_contains}}>
+				{{/if}}
 			</div>
 		</div>
 

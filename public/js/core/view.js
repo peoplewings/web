@@ -14,6 +14,10 @@ define(function(require) {
 		return Handlebars.helpers['if'].call(this, value && (value.indexOf(expected) !== -1), options);
 	});
 
+	Handlebars.registerHelper('unless_contains', function(value, expected, options) {
+		return Handlebars.helpers['unless'].call(this, value && (value.indexOf(expected) !== -1), options);
+	});
+
 	Handlebars.registerHelper('date', function(value, format) {
 		var date = typeof value === 'number' ? moment.unix(value) : moment(value);
 
@@ -35,11 +39,13 @@ define(function(require) {
 		if (context instanceof Array) {
 			context = context.map(function(item, index) {
 				return _.extend({}, item, {
+					self: item,
 					index: index,
 					indexPlusOne: index + 1,
 					indexMinusOne: index - 1,
 					first: index === 0,
-					last: index === context.length - 1
+					last: index === context.length - 1,
+					secondLast: index === context.length - 2,
 				})
 			});
 		}
