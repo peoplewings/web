@@ -13,12 +13,16 @@ define(function(require){
 		initialize: function(options) {
 			this.el = options.el
 			this.id = options.id
+			this.css = options.css
 			this.styles = _.extend(options.styles || {}, {height: "300px"})
 			this.mapOptions = options.mapOptions || { zoom: 1, center: new google.maps.LatLng(0,0), mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP }
 			
 			this.mapcanvas = $(document.createElement('div'))
 			this.mapcanvas.attr({ id: this.id}) 
 			this.mapcanvas.css(this.styles)
+			
+			if (this.css)
+				this.mapcanvas.addClass(this.css)
 			
 		},
 		
@@ -28,6 +32,7 @@ define(function(require){
 		    
 			this.map = new google.maps.Map(document.getElementById(this.id), this.mapOptions);
 			
+			this.renderMarkers()
 			
 		},
 		
@@ -37,21 +42,23 @@ define(function(require){
 			
 		},
 		
-		addMarker: function(id, location, title) {
-			if (!this.markers[id]) {
+		addMarker: function(options) {
+			
+			if (!this.markers[options.id]) {
 				
 				var marker = new google.maps.Marker({
 					map: this.map,
-					position: location,
-					title: title
+					position: options.location,
+					title: options.title,
+					icon: options.icon || null
 				});
 			
-				this.markers[id] = marker
+				this.markers[options.id] = marker
 				
 			} else {
 				
-				this.markers[id].setPosition(location)
-				this.markers[id].setTitle(title)
+				this.markers[options.id].setPosition(options.location)
+				this.markers[options.id].setTitle(options.title)
 				
 			}
 			
