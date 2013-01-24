@@ -5,12 +5,14 @@
     <div class="controls">
       <input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
 	  <input type="text" name="lastName" placeholder="Last" class="input-small required">
+	  <span class="help-block"></span>
 	</div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputPassword">Create a Password</label>
     <div class="controls">
       <input type="password" name="password" placeholder="Password" class="required">
+	  <span class="help-block"></span>
     </div>
   </div>
   <div class="control-group">
@@ -175,7 +177,7 @@
 			<option value="1901">1901</option>
 			<option value="1900">1900</option>
 		</select>
-		<span class="help-inline"></span>
+		<span class="help-block"></span>
 	</div>
   </div>
   <div class="control-group">
@@ -186,19 +188,21 @@
 			<option value="Male">Male</option>
 			<option value="Female">Female</option>
 		</select>
-		<span class="help-inline"></span>
+		<span class="help-block"></span>
 	</div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputEmail">Your current email</label>
     <div class="controls">
-      <input type="email" name="email" placeholder="Email" class="required">
+      <input id="email" type="email" name="email" placeholder="Email" class="required">
+	  <span class="help-block"></span>
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputEmail">Repeat email</label>
     <div class="controls">
       <input type="email" name="repeatEmail" placeholder="Email" class="required">
+	  <span class="help-block"></span>
     </div>
   </div>
   <div class="control-group">
