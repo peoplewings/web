@@ -1,10 +1,42 @@
 var Utils = function(){
 	
+	var getCC = function(address_components){
+		var data = {}
+		var component
+		for (obj in address_components){
+			component = address_components[obj]
+			for ( type in component.types){
+				switch(component.types[type]){
+					case "locality": data.city = component.long_name
+									 break;
+					case "country": data.country = component.long_name
+									 break;
+					case "administrative_area_level_1": data.region = component.long_name
+									 					break;
+				}
+			}
+		  }
+		return data
+	}
+	
 	var serialize = function(form_id){
 		var form = (form_id) ? 'form#' + form_id : 'form'
 		var values = {};
 		$.each(jQuery(form).serializeArray(), function(i, field) {
-    		values[field.name] = field.value;
+			if (field.value == "") return
+			
+			var aux = [];
+			var old = values[field.name];
+    		if (old) {
+				if (old instanceof Array)
+					values[field.name].push(field.value)
+				else {
+					aux.push(old, field.value)
+					values[field.name] = aux
+				}
+			}
+			else
+				values[field.name] = field.value;
 		});
 		return values
 	}
@@ -29,6 +61,7 @@ var Utils = function(){
 
 	return {
 		serializeForm: serialize,
+		getCityAndCountry: getCC,
 		getSpinOpts: function(){
 			return opts;
 		},

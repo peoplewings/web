@@ -75,6 +75,23 @@ define(function(require) {
 		return Handlebars.helpers['each'].call(this, arr, options);
 	});
 
+	Handlebars.registerHelper('selected', function(option, value) {
+		if (option == value) {
+			return new Handlebars.SafeString(' selected');
+		} else {
+			return '';
+		}
+	});
+
+	Handlebars.registerHelper('checked', function(option, value) {
+		if (option == value) {
+			return new Handlebars.SafeString(' checked="checked"');
+		} else {
+			return '';
+		}
+	});
+
+
 	/*********
 	 * ENUMS *
 	 *********/
@@ -89,7 +106,9 @@ define(function(require) {
 			inverse = tmp;
 		}
 
-		map.fromValue = function(value) { return inverse[value] };
+		map.fromValue = function(value) {
+			return inverse[value]
+		};
 		return map;
 	}
 
@@ -99,12 +118,14 @@ define(function(require) {
 			Invitation: 'invites',
 			Message: 'messages'
 		}),
+
 		'notification-state': Enum({
 			pending: 'P',
 			maybe: 'M',
 			accepted: 'A',
 			denied: 'D',
 		}),
+
 	};
 
 	/*****************
@@ -116,8 +137,8 @@ define(function(require) {
 
 		return function(data) {
 			if (arguments.length > 1)
-				data = _.extend.apply(_, [{}].concat(_.toArray(arguments)));
-			return compiled(data || {});
+			data = _.extend.apply(_, [{}].concat(_.toArray(arguments)));
+			return compiled(data ||   {});
 		};
 	};
 });

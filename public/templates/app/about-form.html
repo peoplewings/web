@@ -2,7 +2,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputAllAboutYou">All about you</label></label>
 		<div class="controls">
-			<textarea rows="8" class="span6" name="allAboutYou" placeholder="A description about you, can be anything"></textarea>
+			<textarea name="allAboutYou" rows="8" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -10,7 +10,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputMainMission">Current mission</label></label>
 		<div class="controls">
-			<textarea rows="8" class="span6" name="mainMission" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be"></textarea>
+			<textarea name="mainMission" rows="8" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -18,7 +18,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputOccupation">Occupation</label></label>
 		<div class="controls">
-			<input type="text" name="occupation" maxlength="20" placeholder="What do you do?" size="20">
+			<input name="occupation" type="text" value="{{occupation}}" maxlength="20" placeholder="What do you do?" size="20">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -26,24 +26,34 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputCompany">Company</label></label>
 		<div class="controls">
-			<input type="text" name="company" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
+			<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
 	</div>
+	
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputEducation">Education</label></label>
-		<div id="education-list" class="controls">
-		</div>
 		<div class="controls">
-			<span class="help-block"><a href="#" id="add-education-btn" role="button">Add another</a></span>
-			<span class="help-inline"></span>
+			<div id="education-list">
+				{{#each education}}
+				<div id="education-{{@index}}">
+					<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
+					<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
+				</div>
+				{{/each}}
+				<div id="education-tpl">
+					<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead">
+					<input type="text" name="degree" class="span2">
+				</div>
+			</div>
 		</div>
 	</div>
+	
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputPersonalPhilosophy">Personal philosophy</label></label>
 		<div class="controls">
-			<textarea rows="8" class="span6" name="personalPhilosophy" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?"></textarea>
+			<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -51,7 +61,7 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputPoliticalOpinion">Political views</label></label>
 		<div class="controls">
-			<input type="text" name="politicalOpinion" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
+			<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
@@ -59,13 +69,12 @@
 	<div id="" class="control-group">
 		<label class="control-label" for="textarea"><label for="inputReligion">Religion</label></label>
 		<div class="controls">
-			<input type="text" name="religion" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
+			<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
 			<span class="help-block"></span>
 			<span class="help-inline"></span>
 		</div>
 	</div>
 	<div class="form-actions">
-		<button type="reset" class="btn" style="margin-left: 160px">Cancel</button>
 		<button type="submit" class="btn btn-primary" style="margin-left: 160px">Submit</button>
 	</div>
 </form>
