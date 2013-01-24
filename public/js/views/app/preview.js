@@ -26,28 +26,13 @@ define(function(require) {
 
         },
         render: function() {
-            var cs = {
-                civilState: {
-                    SI: "Single",
-                    EN: "Engaged",
-                    MA: "Married",
-                    WI: "Widowed",
-                    IR: "In a relationship",
-                    IO: "In an open relationship",
-                    IC: "It's complicated",
-                    DI: "Divorced",
-                    SE: "Separated"
-                } [this.model.get("civilState")]
-            }
-
             var data = _.extend(this.model.toJSON(), {
                 wings: this.wingsList
-            },
-            cs)
-
+            })
             $(this.el).html(previewTpl(data))
 
             this.map.render()
+
             this.initMarkers()
         },
 
@@ -55,18 +40,31 @@ define(function(require) {
             var sc = this
 
             var city = this.model.get("current")
-            this.map.addMarker("current", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)
+            this.map.addMarker({
+                id: "current",
+                location: new google.maps.LatLng(city.lat, city.lon),
+                title: city.name + ", " + city.country,
+                icon: 'img/blue-marker.png'
+            })
 
             city = this.model.get("hometown")
-            this.map.addMarker("hometown", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)
+            this.map.addMarker({
+                id: "hometown",
+                location: new google.maps.LatLng(city.lat, city.lon),
+                title: city.name + ", " + city.country,
+                icon: 'img/green-marker.png'
+            })
 
             var others = this.model.get("otherLocations")
             _.each(others,
             function(location, index) {
-                sc.map.addMarker("otherLocation-" + index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
+                sc.map.addMarker({
+                    id: "otherLocation-" + index,
+                    location: new google.maps.LatLng(location.lat, location.lon),
+                    title: location.name + ", " + location.country
+                })
             })
 
-            this.map.renderMarkers()
         },
 
         getWingList: function() {
@@ -74,31 +72,7 @@ define(function(require) {
             api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/preview", {})
             .prop("data")
             .then(function(data) {
-                sc.wingsList = data.map(function(wing) {
-                    return _.extend(wing, {
-                        smoking: {
-                            S: "I smoke",
-                            D: "I don't smoke, but guests can smoke here",
-                            N: "No smoking allowed"
-                        } [wing.smoking]
-                    },
-                    {
-                        whereSleepingType: {
-                            C: "Common area",
-                            P: "Private area",
-                            S: "Shared private area"
-
-                        } [wing.whereSleepingType]
-                    },
-                    {
-                        status: {
-                            Y: "Yes",
-                            N: "No",
-                            M: "Maybe"
-                        } [wing.status]
-                    }
-                    )
-                })
+                sc.wingsList = data
             })
             .fin(function() {
                 sc.render()

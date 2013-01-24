@@ -111,7 +111,12 @@ define(function(require){
 			this.model = new ProfileModel({id: api.getProfileId()})
 			this.model.on("change", this.render.bind(this));
 		  	this.model.fetch({success: this.render.bind(this) })
-			this.map = new mapView({el: "#user-map", id: "mapcanvas", styles: { marginLeft: "160px" }})
+			
+			this.map = new mapView({
+				el: "#user-map", 
+				id: "mapcanvas", 
+				styles: { marginLeft: "160px" }
+			})
 		},
 		
 	    render: function(){		
@@ -123,12 +128,11 @@ define(function(require){
 			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
 			
 			avatarView.render(this.model.get("avatar"));
+			this.map.render()
 			
 			this.initLists();
 		  	this.initLocationTypeahead();
 			this.initStudyTypeahead();
-		
-		  	this.map.render();		
 		  	this.initMarkers();
 			
 	    },
@@ -223,7 +227,11 @@ define(function(require){
 					var cc = utils.getCityAndCountry(place.address_components)
 					
 					sc.map.setCenter(place.geometry.location);
-					sc.map.addMarker(id, place.geometry.location, cc.city + ", " + cc.country)
+					sc.map.addMarker({
+						id: id, 
+						location: place.geometry.location, 
+						title: cc.city + ", " + cc.country
+					})
 
 					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city)
 					sc.$("#" + id + " input[name^=" + field + "-country]").val(cc.country)
@@ -234,21 +242,34 @@ define(function(require){
 			}
 		},
 		
-		initMarkers: function(sc){
+		initMarkers: function(){
 			var sc = this
 			
 			var city = this.model.get("current")
-			this.map.addMarker("current", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)			
+			this.map.addMarker({
+				id: "current", 
+				location: new google.maps.LatLng(city.lat, city.lon), 
+				title: city.name + ", " + city.country,
+				icon: 'img/blue-marker.png'
+			})			
 			
 			city = this.model.get("hometown")
-			this.map.addMarker("hometown", new google.maps.LatLng(city.lat, city.lon), city.name + ", " + city.country)
+			this.map.addMarker({
+				id: "hometown", 
+				location: new google.maps.LatLng(city.lat, city.lon), 
+				title: city.name + ", " + city.country,
+				icon: 'img/green-marker.png'
+			})
 			
 			var others = this.model.get("otherLocations")
 			_.each(others, function(location, index){
-				sc.map.addMarker("otherLocation-" + index, new google.maps.LatLng(location.lat, location.lon), location.name + ", " + location.country)
+				sc.map.addMarker({
+					id: "otherLocation-" + index, 
+					location: new google.maps.LatLng(location.lat, location.lon), 
+					title: location.name + ", " + location.country
+				})
 			})
 			
-			this.map.renderMarkers();
 		},
 		
 		submitProfile: function(e){
