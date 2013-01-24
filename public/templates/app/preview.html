@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="span5">
 				<p>
-					<h4 style="display: inline"><span name="firstName"></span> <span name="lastName"></span></h4>, <span name="age"></span>
+					<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
 					{{#if verified}}
 						<span class="label label-success"> Verified</span>
 					{{else}}
@@ -46,13 +46,13 @@
 							<h4>Basic Info</h4>
 							<dl class="dl-horizontal">
 								<dt>Gender</dt>
-								<dd name="gender"></dd>
+								<dd>{{gender}}</dd>
 								<dt>Birthday</dt>
 								<dd>{{birthday}}</dd>
 								<dt>Interested in</dt>
-								<dd>{{interestedIn}}</dd>
+								<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
 								<dt>Relationship status</dt>
-								<dd name="civilState"></dd>
+								<dd>{{civilState}}</dd>
 								<dt>Languages</dt>
 								{{#if languages.length}}
 									<dd>
@@ -75,21 +75,21 @@
 									</dd>
 								{{/if}}
 								<dt></dt>
-								<dd><div id="mapcanvas"></div></dd>
+								<dd><div id="user-map"></div></dd>
 							</dl>
 							<legend></legend>
 							<h4>About Me</h4>
 							<dl class="dl-horizontal">
 								<dt>Description</dt>
-								<dd name="allAboutYou"></dd>
+								<dd>{{allAboutYou}}</dd>
 								<dt>Current mission</dt>
-								<dd name="mainMission"></dd>
+								<dd>{{mainMission}}</dd>
 								<dt>Occupation</dt>
-								<dd name="occupation"></dd>
+								<dd>{{occupation}}</dd>
 								<dt>Company</dt>
-								<dd name="company"></dd>
-								<dt>Education</dt>
+								<dd>{{company}}</dd>
 								{{#if education.size}}
+								<dt>Education</dt>
 									<dd>
 										{{#each education}}
 											{{degree}} at {{insitution}}
@@ -97,31 +97,31 @@
 									</dd>
 								{{/if}}
 								<dt>Personal philosophy</dt>
-								<dd name="personalPhilosophy"></dd>
+								<dd>{{personalPhilosophy}}</dd>
 								<dt>Political views</dt>
-								<dd name="politicalOpinion"></dd>
+								<dd>{{politicalOpinion}}</dd>
 								<dt>Religion</dt>
-								<dd name="religion"></dd>
+								<dd>{{religion}}</dd>
 							</dl>
 							<legend></legend>
 							<h4>Likes</h4>
 							<dl class="dl-horizontal">
 								<dt>People I enjoy</dt>
-								<dd name="enjoyPeople"></dd>
+								<dd>{{enjoyPeople}}</dd>
 								<dt>Movies, books...</dt>
-								<dd name="movies"></dd>
+								<dd>{{movies}}</dd>
 								<dt>Webs, apps</dt>
-								<dd name="otherPages"></dd>
+								<dd>{{otherPages}}</dd>
 								<dt>Show, learn, share</dt>
-								<dd name="sharing"></dd>
+								<dd>{{sharing}}</dd>
 								<dt>Amazing things done/seen</dt>
-								<dd name="incredible"></dd>
+								<dd>{{incredible}}</dd>
 								<dt>People who inspires you</dt>
-								<dd name="inspiredBy"></dd>
+								<dd>{{inspiredBy}}</dd>
 								<dt>Favorite quotes</dt>
-								<dd name="quotes"></dd>
+								<dd>{{quotes}}</dd>
 								<dt>Opinion about Peoplewings</dt>
-								<dd name="pwOpinion"></dd>
+								<dd>{{pwOpinion}}</dd>
 							</dl>
 						</div>
 						<div class="tab-pane" id="wings">
@@ -129,7 +129,7 @@
 								<h4>{{name}} (Accomodation)</h4>
 								<dl class="dl-horizontal">
 									<dt>Wing status</dt>
-									<dd>{{#enum status 'status_choices'}}</dd>
+									<dd>{{status}}</dd>
 									<dt>Are you sharing for one time?</dt>
 									{{#if sharingOnce}}
 										<dd>{{dateStart}} to {{dateEnd}}</dd>
@@ -155,9 +155,9 @@
 										{{/if}}
 									</dd>
 									<dt>Sleeping arrangements</dt>
-									<dd>{{#enum whereSleepingType 'sleep_choices'}}</dd>
+									<dd>{{whereSleepingType}}</dd>
 									<dt>Smoking</dt>
-									<dd>{{#enum smoking 'smoking_choices'}}</dd>
+									<dd>{{smoking}}</dd>
 									<dt>Pets allowed</dt>
 									<dd>
 										{{#if petsAllowed}}
@@ -185,10 +185,15 @@
 											Yes
 										{{else}}
 											No
-										{{/fi}}
+										{{/if}}
 									</dd>
 									<dt>Public transport</dt>
-									<dd>{{publicTransport}}</dd>
+									<dd>{{#if train}}Train{{/if}}, 
+										{{#if underground}}Underground{{/if}}, 
+										{{#if tram}}Tram{{/if}},
+										{{#if bus}}Bus{{/if}},
+										{{#if boat}}Boat{{/if}},
+										{{#if others}}Others{{/if}} </dd>
 									<dt>About your accmodation</dt>
 									<dd>{{about}}</dd>
 								</dl>
