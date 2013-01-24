@@ -1,4 +1,3 @@
-<!--<section id="search-results" class="container">-->
 	<div class="row">
 		<div class="span8">
 			<ul class="pager pull-right">
@@ -10,7 +9,7 @@
 			{{#each results }}
 				<div class="search-result" data-profile-id="{{ id }}">
 					<div class="span2">
-						<a href="" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
+						<a href="#/users/{{ id }}" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
 							<img id="avatar" src="{{ avatar }}" alt="avatar" style="width: 108px; height: 108px">
 						</a>
 					</div>
@@ -26,8 +25,11 @@
 						{{#if current.name }}
 							<p><b>Live in:</b> {{ current.name }}, {{ current.country }}</p>
 						{{/if}}
+						{{#if lastLogin}}
 						<p><b>Last in:</b> {{ lastLogin }}</p>
-						<p><b>Friends:</b> {{ numFriends }} / <b>References:</b> {{ numReferences }} / <b>Response rate:</b> {{ tasaRespuestas }} %</p>
+						{{/if}}
+						<p><b>Response rate:</b> {{ tasaRespuestas }} %</p>
+						<p><b>Average reply time:</b> {{ tasaRespuestas }}</p>
 						{{#if allAboutYou }}
 							<p><b>About</b> {{ allAboutYou }}</p>
 						{{/if}}
@@ -59,4 +61,3 @@
 			</ul>
 	</div>
 </div>
-<!--		</section> -->
