@@ -11,6 +11,11 @@ define(function(require) {
         return Handlebars.helpers['if'].call(this, value == expected, options);
     });
 
+    Handlebars.registerHelper('unless_equals',
+    function(value, expected, options) {
+        return Handlebars.helpers['unless'].call(this, value == expected, options);
+    });
+
     Handlebars.registerHelper('if_contains',
     function(value, expected, options) {
         return Handlebars.helpers['if'].call(this, value && (value.indexOf(expected) !== -1), options);

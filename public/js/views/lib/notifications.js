@@ -5,7 +5,10 @@ define(function(require) {
 	var UserAccount = require('models/Account');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
-	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
+	var wingsTemplates = {
+		'none': function() { return '' },
+		'accomodation': require('tmpl!templates/lib/wing.accomodation.html'),
+	};
 
 	function showModal(header, accept, content, callback) {
 		var modal = $(modalTpl({
@@ -25,32 +28,46 @@ define(function(require) {
 		return modal;
 	}
 
-	function show(targetId, targetName, kind, title, button, extra, dataReturner) {
+	function selectedWingType(container) {
+		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type')
+	}
+
+
+	function modalHelper(targetId, targetName, kind, title, button, wingsReq, getData) {
 		var prom = new Promise();
 		var hasTarget = !!targetId;
 
-		Promise.normalize(
-			hasTarget ||
-			api.get('/ajax/search/notification_addressee?type=' + kind)
-		).then(function(contacts) {
+		Promise.parallel(
+			hasTarget || api.get('/ajax/search/notification_addressee?type=' + kind),
+			wingsReq
+		).spread(function(contacts, wings) {
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
-			var content = sendNotificationTpl(_.extend({
+			var content = sendNotificationTpl({
 				avatar: avatar,
-				message: kind === 'message',
-				invitation: kind === 'invitation',
-				request: kind === 'request',
+				kind: kind,
 				to: {
 					id: targetId,
 					fullname: targetName
-				}
-			}, extra));
+				},
+				wings: wings ? [{
+					idWing: null,
+					wingName: 'Select a wing',
+					wingType: 'none',
+				}].concat(wings.items) : null,
+			});
 
 			var modal = showModal(title, button, content, send);
 
 			modal.on('hidden', function() {
 				if (!prom.future.isCompleted())
 					prom.resolve(false);
+			});
+			modal.delegate('#wings', 'change', function() {
+				var data = $(this).closest('#wing-data');
+				var type = selectedWingType(data);
+				data.find('#wing-parameters')
+					.html(wingsTemplates[type.toLowerCase()]({ kind: kind }));
 			});
 
 			if (!hasTarget) {
@@ -64,7 +81,7 @@ define(function(require) {
 			}
 
 			function send() {
-				var data = dataReturner(modal);
+				var data = getData(modal);
 				if (!data)
 					return;
 
@@ -76,7 +93,7 @@ define(function(require) {
 				api.post('/api/v1/notificationslist', {
 					"idReceiver": targetId,
 					"kind": kind,
-					"data": data
+					"data": data,
 				}).then(function() {
 					var alert = $('<div class="alert">Message sent</div>')
 					$(document.body).append(alert);
@@ -92,53 +109,48 @@ define(function(require) {
 			}
 		});
 
-		return prom.future;
+		return prom;
 	}
+
+
+	function reqinv(targetId, targetName, kind, title, button, wingsOwnerId) {
+		var request = api.get('/api/v1/wings?profile=' + wingsOwnerId).prop('data');
+		return modalHelper(targetId, targetName, kind, title, button, request, function(modal) {
+			return {
+				"privateText": modal.find('#message-content').val(),
+				"publicText": modal.find('#public-message-content').val(),
+				"makePublic": modal.find('#public-request').is(':checked'),
+				"wingType": selectedWingType(modal),
+				"wingParameters": {
+					"wingId": modal.find('#wings').val(),
+					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val()),
+					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val()),
+					"capacity": modal.find('#wing-parameters [name="capacity"]').val(),
+					"arrivingVia": modal.find('#wing-parameters [name="via"]').val(),
+					"flexibleStart": modal.find('#wing-parameters #flexible-start-date').is(':checked'),
+					"flexibleEnd": modal.find('#wing-parameters #flexible-end-date').is(':checked'),
+				}
+			};
+		});
+	}
+
 
 	return {
 
 		message: function(targetId, targetName) {
-			return show(targetId, targetName, 'message', 'New message', 'Send', null, function(modal) {
+			modalHelper(targetId, targetName, 'message', 'New message', 'Send', null, function(modal) {
 				return {
-					"content": modal.find('#message-content').val()
+					"content": modal.find('#message-content').val(),
 				};
 			});
 		},
 
 		request: function(targetId, targetName) {
-			return show(targetId, targetName, 'request', 'New request', 'Send Request', null, function(modal) {
-				return {
-					"content": modal.find('#message-content').val()
-				};
-			});
+			return reqinv(targetId, targetName, 'request', 'New request', 'Send request', targetId);
 		},
 
 		invitation: function(targetId, targetName) {
-			return show(targetId, targetName, 'invitation', 'New invitation', 'Send Invitation', {
-				wingParams: accomodationTpl({ invite: true })
-			}, function(modal) {
-				debugger;
-				var valid = modal.find('wing-accomodation-params').validate({
-					rules: {
-						'start-date': 'required',
-						'end-date': 'required',
-						'via': 'required'
-					},
-					messages: {
-						'start-date': 'Insert a start date',
-						'end-date': 'Instert a end date',
-						'via': 'Select via'
-					}
-				});
-
-				// TODO: ask sergio
-				if (!valid)
-					return null;
-
-				return {
-					"content": modal.find('#message-content').val()
-				};
-			});
+			return reqinv(targetId, targetName, 'invite', 'New invitation', 'Send invitation', api.getUserId());
 		}
 	};
 });
