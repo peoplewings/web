@@ -1,12 +1,13 @@
-<form id="wing-accomodation-params">
+<div id="wing-accomodation-params">
 	<span>
-		<input type="date" name="start-date"><br>
-		<input type="checkbox" id="flexible-start-date"><label for="flexible-start-date">Flexible date</label>
+
+		<input type="text" name="start-date" class="required"><br>
+		<input type="checkbox" id="flexible-start-date" name="flexibleStart"><label for="flexible-start-date">Flexible date</label>
 	</span>
 	to
 	<span>
-		<input type="date" name="end-date"><br>
-		<input type="checkbox" id="flexible-end-date"><label for="flexible-end-date">Flexible date</label>
+		<input type="text" name="end-date" class="required"><br>
+		<input type="checkbox" id="flexible-end-date" name="flexibleEnd"><label for="flexible-end-date">Flexible date</label>
 	</span>
 
 	Capacity
@@ -17,7 +18,7 @@
 		<option value="+9">+9</option>
 	<select>
 
-	{{#unless invitation }}
+	{{#unless_equals kind 'invite' }}
 		Arriving via
 		<select name="via">
 			<option value="">Choose transport</option>
@@ -25,5 +26,5 @@
 			<option value="train">Train</option>
 			<option value="car">Car</option>
 		</select>
-	{{/unless}}
-</form>
+	{{/unless_equals}}
+</div>

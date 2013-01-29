@@ -9,35 +9,43 @@
 		<label class="control-label" for="message-content">
 			<img src="{{ avatar }}">
 		</label>
-		<div class="controls">
+		<form>
+			<div class="controls">
 
-			{{#if message }}
-				<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
-			{{/if}}
-
-			{{#if request }}
-				Introduce
-				<textarea id="public-message-content" style="width: 90%" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea><br>
-				<input type="checkbox" id="public-request">
-				<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
-
-				Personal message to host
-				<textarea id="message-content" style="width: 90%" placeholder="Tell your host why you'd like to meet them..."></textarea>
-			{{/if}}
-
-			{{#if invitation }}
-				<div id="new-invitation-content">
-					<div class="status-pending-from-me">Pending</div>
-					<div class="wing-data">
-						WINGS
-						<select id="wings"></select>
-						{{{ wingParams }}}
+				{{#unless_equals kind 'message' }}
+					<div id="new-invitation-content">
+						<div class="status-pending-from-me">Pending</div>
+						<div id="wing-data">
+							WINGS
+							<select id="wings">
+								{{#each wings }}
+									<option value="{{ idWing }}" data-type="{{ wingType }}">
+										{{ wingName }} ({{ wingType }})
+									</option>
+								{{/each}}
+							</select>
+							<div id="wing-parameters"></div>
+						</div>
 					</div>
+				{{/unless_equals}}
 
-					<textarea id="message-content" style="width: 90%" placeholder="Write a message"></textarea>
-				</div>
-			{{/if}}
+				{{#equals kind 'request' }}
+					Introduce
+					<textarea id="public-message-content" class="required" style="width: 90%" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea><br>
+					<input type="checkbox" id="public-request">
+					<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
 
-		</div>
+					Personal message to host
+				{{/equals}}
+
+				<textarea id="message-content" class="required" style="width: 90%"
+					{{#equals kind 'request' }}
+						placeholder="Tell your host why you'd like to meet them..."
+					{{else}}
+						placeholder="Write a message"
+					{{/equals}}
+				></textarea>
+			</div>
+		</form>
 	</div>
 </div>
