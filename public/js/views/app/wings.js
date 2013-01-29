@@ -12,13 +12,15 @@ define(function(require) {
     var spinner = new Spinner(utils.getSpinOpts());
 
     var wingsView = Backbone.View.extend({
+
         el: "#main",
-        wings: [],
+
         events: {
             "click #add-wing-btn": "createWing",
-            "change #generalStatus": "changeStatus",
+            "change [name=generalStatus]": "changeStatus",
             "change #wings-list": "updateWing",
         },
+
         initialize: function() {
             this.model = new ProfileModel({
                 id: api.getProfileId()
@@ -28,28 +30,33 @@ define(function(require) {
             if (!this.model.get("pwState"))
             this.model.fetch()
 
+            this.wingsList = new Backbone.Collection();
+
             this.getUserWings()
         },
         render: function(url) {
+
             $(this.el).html(wingsTpl({
-                wings: this.wings
+                wings: this.wingsList.toJSON()
+            },
+            {
+                generalStatus: this.model.get("pwState")
             }));
 
         },
+
         getUserWings: function() {
             var sc = this
-            api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {},
-            function(response) {
-                $.each(response.data,
-                function(index, wing) {
-                    sc.wings.push({
-                        name: wing.name,
-                        uri: wing.uri
-                    })
-                })
+            api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {})
+            .prop('data')
+            .then(function(data) {
+                sc.wingsList.add(data)
+            })
+            .fin(function() {
                 sc.render()
             })
         },
+
         addWingToList: function(wing) {
             this.wings.push(wing)
             this.render()
@@ -101,19 +108,24 @@ define(function(require) {
             }
         },
         changeStatus: function(e) {
+            var sc = this
             spinner.spin(document.getElementById('main'));
             api.put(api.getApiVersion() + "/profiles/" + api.getProfileId(), {
                 pwState: e.target.value
-            },
-            function(response) {
-                spinner.stop()
-                var tpl = _.template(alertTpl, {
+            })
+            .prop('msg')
+            .then(function(msg) {
+                spinner.stop();
+                return msg;
+            })
+            .fin(function(msg) {
+                sc.$el.prepend(alertTpl({
                     extraClass: 'alert-success',
-                    heading: response.msg
-                })
-                $('#main').prepend(tpl)
+                    heading: msg
+                }));
             })
         },
+
         updateWing: function(e) {
             console.log(this.wings)
             //Refactor with createWing
