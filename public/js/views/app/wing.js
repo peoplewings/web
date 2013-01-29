@@ -90,39 +90,19 @@ define(function(require) {
             return function() {
                 var place = auto.getPlace()
                 if (place.geometry) {
-                    var cc = sc.getCityAndCountry(place.address_components)
+                    var cc = utils.getCityAndCountry(place.address_components)
                     cc.lat = place.geometry.location.lat() + ""
                     cc.lon = place.geometry.location.lng() + ""
                     sc.cityObject = cc
                 }
             }
         },
-        getCityAndCountry: function(address_components) {
-            //Replicated function from profileView --> Refactor please!
-            var data = {}
-            var component
-            for (obj in address_components) {
-                component = address_components[obj]
-                for (type in component.types) {
-                    switch (component.types[type]) {
-                    case "locality":
-                        data.name = component.long_name
-                        break;
-                    case "country":
-                        data.country = component.long_name
-                        break;
-                    case "administrative_area_level_1":
-                        data.region = component.long_name
-                        break;
-                    }
-                }
-            }
-            return data
-        },
+
         submitWing: function(evt) {
             evt.preventDefault()
             var scope = this
             var data = utils.serializeForm(evt.target.id)
+			debugger
             data.city = this.cityObject
             if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
                 delete data.dateStart
