@@ -22,14 +22,21 @@ define(function(require) {
 			'click #delete-thread': 'remove',
 			'click #open-request': 'request',
 			'click #open-invite': 'invite',
-			'click #open-message': 'message',
+			'click #open-message': 'reply',
 
-			'click #response-reply': 'message',
+			'click #response-reply': 'reply',
 			'click #response-request': 'request',
 			'click #reponse-invite': 'invite',
 
 			'click #send-response': 'sendResponse',
 			'click #cancel-response': 'cancelResponse',
+
+			'click .option-chat': 'reply',
+			'click .option-accept': 'optAccept',
+			'click .option-maybe': 'optMaybe',
+			'click .option-reopen': 'optReopen',
+			'click .option-deny': 'optDeny',
+			'click .option-cancel': 'optDeny',
 		},
 
 		initialize: function() {
@@ -60,6 +67,7 @@ define(function(require) {
 
 		refresh: function(prevThread, nextThread, data) {
 			var last = data.items.pop();
+			var isMessage = data.kind === 'message';
 			var items = data.items.map(function(item, index) {
 				return {
 					index: index,
@@ -77,7 +85,10 @@ define(function(require) {
 			});
 
 			function openTpl(item) {
-				return openItemTpl(last, data.wing, { isMessage: data.kind === 'message' });
+				return openItemTpl(item, data.wing, {
+					isMessage: isMessage,
+					options: [ 'accept', 'chat', 'maybe', 'reopen', 'cancel', 'deny' ]
+				});
 			}
 
 			this.current.interlocutor = {
@@ -86,9 +97,10 @@ define(function(require) {
 			};
 
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
-			this.$el.html(threadTpl({
-				previous: prevThread,
-				next: nextThread,
+			this.$el.html(threadTpl(data, {
+				isMessage: isMessage,
+				iStarted: data.firstSender === api.getUserId(),
+				options: [ 'accept', 'chat', 'maybe', 'reopen', 'cancel', 'deny' ],
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
@@ -135,7 +147,7 @@ define(function(require) {
 			notifications.invitation(inter.id, inter.name);
 		},
 
-		message: function(event) {
+		reply: function(event) {
 			this.$('#response-options').hide();
 			this.$('#write-response')
 				.show()
@@ -163,7 +175,23 @@ define(function(require) {
 			}).then(function() {
 				return self.render(self.current.id);
 			});
-		}
+		},
+
+		optAccept: function() {
+			console.log('accept');
+		},
+
+		optMaybe: function() {
+			console.log('maybe');
+		},
+
+		optReopen: function() {
+			console.log('reopen');
+		},
+
+		optDeny: function() {
+			console.log('deny');
+		},
 	});
 
 	return new threadView;
