@@ -121,9 +121,9 @@ define(function(require) {
 
     var enums = {
         'notification-type': Enum({
-            Request: 'requests',
-            Invitation: 'invites',
-            Message: 'messages'
+            Request: 'request',
+            Invitation: 'invite',
+            Message: 'message'
         }),
 
         'notification-state': Enum({

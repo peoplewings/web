@@ -18,6 +18,8 @@
 			{{else}}
 				<div class="span3">
 					<div>{{enum kind 'notification-type' }}</div>
+				{{#with wingParameters}}
+					<div>{{ wingType }} {{wingCity}}</div>
 					<div>{{ message }}</div>
 				</div>
 				<div class="span1">{{ numPeople }} people</div>
@@ -25,6 +27,7 @@
 					<div>{{date startDate }}</div>
 					<div>{{date endDate }}</div>
 				</div>
+				{{/with}}
 			{{/if}}
 			<div class="span1">{{date created "MMM Do" }}</div>
 	</div>
