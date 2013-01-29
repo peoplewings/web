@@ -5,9 +5,17 @@ define(function(require) {
 	var UserAccount = require('models/Account');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
-	var wingsTemplates = {
-		'none': function() { return '' },
-		'accomodation': require('tmpl!templates/lib/wing.accomodation.html'),
+	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
+	var wingsParams = {
+		'none': function(parent) {
+			parent.html('');
+		},
+		'accomodation': function(parent, params) {
+			parent.html(accomodationTpl(params));
+			parent.find('[name="start-date"], [name="end-date"]')
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd");
+		},
 	};
 
 	function showModal(header, accept, content, callback) {
@@ -66,8 +74,7 @@ define(function(require) {
 			modal.delegate('#wings', 'change', function() {
 				var data = $(this).closest('#wing-data');
 				var type = selectedWingType(data);
-				data.find('#wing-parameters')
-					.html(wingsTemplates[type.toLowerCase()]({ kind: kind }));
+				wingsParams[type.toLowerCase()](data.find('#wing-parameters'), { kind: kind });
 			});
 
 			if (!hasTarget) {
@@ -81,9 +88,10 @@ define(function(require) {
 			}
 
 			function send() {
-				var data = getData(modal);
-				if (!data)
+				if (!modal.find('form').valid())
 					return;
+
+				var data = getData(modal);
 
 				if (!hasTarget) {
 					var selected = modal.find('.autocompletePeople').val();
