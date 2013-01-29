@@ -7,6 +7,7 @@
 				<div class="controls">
 					<input type="text" id="firstName" name="firstName" value="{{firstName}}" placeholder="First" class="input-small required" style="margin-right:5pt">
 					<input type="text" id="lastName" name="lastName" value="{{lastName}}" placeholder="Last" class="input-small required">
+					<span class="help-block"></span>
 				</div>
 			</div>
 			<div class="control-group">
@@ -19,26 +20,30 @@
 				<div class="control-group">
 					<label class="control-label" for="inputNewEmail">Your new email address</label>
 					<div class="controls">
-						<input type="email" id="inputNewEmail" name="newEmail" placeholder="New email" class="input-large">
+						<input type="email" id="inputEmail" name="email" placeholder="New email" class="input-large">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="repeatNewEmail">Retype your new email address</label>
 					<div class="controls">
-						<input type="email" id="repeatNewEmail" name="repeatNewEmail" placeholder="New email" class="input-large">
+						<input type="email" id="repeatEmail" name="repeatEmail" placeholder="New email" class="input-large">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<legend><h5>Change your password</h5></legend>
 				<div class="control-group">
 					<label class="control-label" for="inputNewPassword">Your new password</label>
 					<div class="controls">
-						<input type="password" id="pass" placeholder="New password" name="newPassword" class="input-large">
+						<input type="password" id="pass" placeholder="New password" name="password" class="input-large">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputRepeatNewPassword">Your new password</label>
 					<div class="controls">
-						<input type="password" id="pass2" placeholder="New password" name="repeatNewPassword" class="input-large">
+						<input type="password" id="pass2" placeholder="New password" name="repeatPassword" class="input-large">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<legend></legend>
@@ -46,7 +51,8 @@
 					<p><b>To save this settings, please enter your PEOPLEWINGS password</b></p>
 					<label class="control-label" for="inputPassword">Current password</label>
 					<div class="controls">
-						<input type="password" id="inputPasword" name="password" placeholder="Current password" class="input-large required">
+						<input type="password" id="inputPasword" name="current_password" placeholder="Current password" class="input-large required">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="form-actions">
@@ -74,6 +80,7 @@
 						<label class="control-label" for="textarea"><label for="inputCurrentPassword">Password</label></label>
 						<div class="controls">
 							<input type="password" id="currentPassword" name="currentPassword" maxlength="20" placeholder="Your password" class="input-medium required">
+							<span class="help-block"></span>
 						</div>
 					</div>
 				</form>

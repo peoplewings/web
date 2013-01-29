@@ -2,27 +2,36 @@
 	<div class="span12">
 		<div class="row">
 			<div class="span5">
-				<p>
-					<h4 style="display: inline"><span name="firstName">{{firstName}}</span> <span name="lastName">{{lastName}}</span></h4>, <span name="age">{{age}}</span>
-					{{#if verified}}
-						<span class="label label-success"> Verified</span>
-					{{else}}
-						<span class="label label-important"> Not verified</span>
-					{{/if}}
-				</p>
+				<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
+				{{#if verified}}
+					<span class="label label-success"> Verified</span>
+				{{else}}
+					<span class="label label-important"> Not verified</span>
+				{{/if}}
 				<ul class="unstyled">
-					<li>Lives: {{ current.name }},  {{current.country}}</li>
-					<li>Last login: **Located user city**, {{ lastLoginDate }} </li>
+					<li>
+						{{#if current.name}}
+							Lives: {{current.name}}, {{current.country}}
+						{{/if}}
+					</li>
+					<li>
+						{{#if lastLoginDate}}
+							Last login: "Located" user city - {{lastLoginDate}}
+						{{/if}}
+					</li>
 				</ul>
 			</div>
-			<div class="span3">
-				<div>
-					<label style="display: inline">Reply rate: </label><span name="tasaRespuestas">{{ tasaRespuestas }}</span> %
-					<label style="display: inline">Reply time: </label><span name="replyTime"> {{replyTime}} </span> h
+			<div class="span2">
+				<div class="span2">
+					<div class="btn-group">
+						<button class="btn send-message-btn">Chat</button>
+						<button class="btn send-request-btn">Request</button>
+						<button class="btn send-invitation-btn">Invite</button>
+					</div>
 				</div>
-				<div>
-					<a href="#/friends" class="btn">Friends {{ numFriends }}</a>
-					<a href="#/references" class="btn">References {{numReferences}} </a>
+				<div class="span2">
+					<label style="display: inline">Reply rate: </label><span>{{tasaRespuestas}}</span> %
+					<label style="display: inline">Reply time: </label><span>{{replyTime}}</span>
 				</div>
 			</div>
 		</div>
@@ -34,190 +43,174 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="about">
-						<h5>Basic info</h5>
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>Gender</td>
-									<td>{{ gender }}</td>
-								</tr>
-								<tr>
-									<td>Birthday</td>
-									<td>{{ birthday }}</td>
-								</tr>
-								<tr>
-									<td>Interested in</td>
-									<td>{{ interestedIn }}</td>
-								</tr>
-								<tr>
-									<td>Relationship status</td>
-									<td>{{ civilState }}</td>
-								</tr>
-								<tr>
-									<td>Languages</td>
-									<td>{{#each languages}} {{ name }} {{ level }}, {{/each}}</td>
-								</tr>
-								<tr>
-									<td>Hometown</td>
-									<td>{{ hometown.name }}, {{ hometown.country }}</td>
-								</tr>
-								<tr>
-									<td>Places where I have lived</td>
-									<td>{{#each otherLocations}} {{ name }} {{ country }}, {{/each}}</td>
-								</tr>
-								<tr></tr>
-							</tbody>
-						</table>
+						<h4>Basic Info</h4>
+						<dl class="dl-horizontal">
+							<dt>Gender</dt>
+							<dd>{{gender}}</dd>
+							<dt>Birthday</dt>
+							<dd>{{birthday}}</dd>
+							<dt>Interested in</dt>
+							<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
+							<dt>Relationship status</dt>
+							<dd>{{civilState}}</dd>
+							{{#if languages.length}}
+							<dt>Languages</dt>
+								<dd>
+									{{#each languages}}
+										{{name}} {{level}},
+									{{/each}}
+								</dd>
+							{{/if}}
+							</dd>
+							{{#if hometown.name}}
+								<dt>Hometown</dt>
+								<dd>{{hometown.name}}, {{hometown.country}}</dd>
+							{{/if}}
+							<dt>Places where I have lived</dt>
+							{{#if otherLocations.length}}
+								<dd>
+									{{#each otherLocations}}
+										{{name}}, {{country}}
+									{{/each}}
+								</dd>
+							{{/if}}
+							<dt></dt>
+							<dd><div id="user-map"></div></dd>
+						</dl>
 						<legend></legend>
-						<h5>About me</h5>
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>Description</td>
-									<td>{{ allAboutYou }}</td>
-								</tr>
-								<tr>
-									<td>Current mission</td>
-									<td>{{ mainMission }}</td>
-								</tr>
-								<tr>
-									<td>Occupation</td>
-									<td>{{ occupation }} at {{ company }}</td>
-								</tr>
-								<tr>
-									<td>Education</td>
-									<td>{{#each education}} {{ degree }} at {{ institution }}, {{/each}}</td>
-								</tr>
-								<tr>
-									<td>Personal philosophy</td>
-									<td>{{ personalPhilosophy }}</td>
-								</tr>
-								<tr>
-									<td>Political views</td>
-									<td>{{ politicalOpinion }}</td>
-								</tr>
-								<tr>
-									<td>Religion</td>
-									<td>{{ religion }}</td>
-								</tr>
-								<tr></tr>
-							</tbody>
-						</table>
+						<h4>About Me</h4>
+						<dl class="dl-horizontal">
+							<dt>Description</dt>
+							<dd>{{allAboutYou}}</dd>
+							<dt>Current mission</dt>
+							<dd>{{mainMission}}</dd>
+							<dt>Occupation</dt>
+							<dd>{{occupation}}</dd>
+							<dt>Company</dt>
+							<dd>{{company}}</dd>
+							{{#if education.size}}
+							<dt>Education</dt>
+								<dd>
+									{{#each education}}
+										{{degree}} at {{insitution}}
+									{{/each}}
+								</dd>
+							{{/if}}
+							<dt>Personal philosophy</dt>
+							<dd>{{personalPhilosophy}}</dd>
+							<dt>Political views</dt>
+							<dd>{{politicalOpinion}}</dd>
+							<dt>Religion</dt>
+							<dd>{{religion}}</dd>
+						</dl>
 						<legend></legend>
-						<h5>Likes</h5>
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>People I enjoy</td>
-									<td>{{ enjoyPeople }}</td>
-								</tr>
-								<tr>
-									<td>Movies, books...</td>
-									<td>{{ movies }}</td>
-								</tr>
-								<tr>
-									<td>Other pages</td>
-									<td>{{ otherPages }}</td>
-								</tr>
-								<tr>
-									<td>Show, learn, share</td>
-									<td>{{ sharing }}</td>
-								</tr>
-								<tr>
-									<td>Amazing things done/seen</td>
-									<td>{{ incredible }}</td>
-								</tr>
-								<tr>
-									<td>People who inspires you</td>
-									<td>{{ inspiredBy }}</td>
-								</tr>
-								<tr>
-									<td>Favorite quotes</td>
-									<td>{{ quotes }}</td>
-								</tr>
-								<tr>
-									<td>Opinion about Peoplewings</td>
-									<td>{{ pwOpinion }}</td>
-								</tr>
-								<tr></tr>
-							</tbody>
-						</table>
+						<h4>Likes</h4>
+						<dl class="dl-horizontal">
+							<dt>People I enjoy</dt>
+							<dd>{{enjoyPeople}}</dd>
+							<dt>Movies, books...</dt>
+							<dd>{{movies}}</dd>
+							<dt>Webs, apps</dt>
+							<dd>{{otherPages}}</dd>
+							<dt>Show, learn, share</dt>
+							<dd>{{sharing}}</dd>
+							<dt>Amazing things done/seen</dt>
+							<dd>{{incredible}}</dd>
+							<dt>People who inspires you</dt>
+							<dd>{{inspiredBy}}</dd>
+							<dt>Favorite quotes</dt>
+							<dd>{{quotes}}</dd>
+							<dt>Opinion about Peoplewings</dt>
+							<dd>{{pwOpinion}}</dd>
+						</dl>
 					</div>
 					<div class="tab-pane" id="wings">
 						{{#each wings}}
-							<h5> {{ name }} (Accomodation)</h5>
-							<table class="table">
-								<tbody>
-									<tr>
-										<td>Wing status</td>
-										<td>{{ status }}</td>
-									</tr>
-									<tr>
-										<td>Are you sharing for one time?</td>
-										<td>
-											{{#if sharingOnce  }}
-												{{ startDate }} to {{ endDate }}
-											{{else}}
-												No
-											{{/if}}
-										</td>
-									</tr>
-									<tr>
-										<td>Capacity</td>
-										<td>{{ capacity }}</td>
-									</tr>
-									<tr>
-										<td>Preferred gender</td>
-										<td>{{ preferredMale }} {{ preferredFemale }} </td>
-									</tr>
-									<tr>
-										<td>Wheelchair accessible</td>
-										<td>{{ wheelchair }}</td>
-									</tr>
-									<tr>
-										<td>Sleeping arrangements</td>
-										<td>{{ whereSleepingType }}</td>
-									</tr>
-									<tr>
-										<td>Smoking</td>
-										<td>{{ smoking }}</td>
-									</tr>
-									<tr>
-										<td>Pets allowed</td>
-										<td>{{ petsAllowed }} {{ iHavePet }}</td>
-									</tr>
-									<tr>
-										<td>I have blankets</td>
-										<td>{{ blankets }}</td>
-									</tr>
-									<tr>
-										<td>I live in the center</td>
-										<td>{{ liveCenter }}</td>
-									</tr>
-									<tr>
-										<td>Public transport</td>
-										<td>{{ publicTransport }}</td>
-									</tr>
-									<tr>
-										<td>About your accmodation</td>
-										<td>{{ about }}</td>
-									</tr>
-									</tbody>
-								</table>
-								<legend></legend>
-							{{/each}}
-						</div>
-					</div>
+							<h4>{{name}} (Accomodation)</h4>
+							<dl class="dl-horizontal">
+								<dt>Wing status</dt>
+								<dd>{{status}}</dd>
+								<dt>Are you sharing for one time?</dt>
+								{{#if sharingOnce}}
+									<dd>{{dateStart}} to {{dateEnd}}</dd>
+								{{else}}
+									<dd>No</dd>
+								{{/if}}
+								<dt>Capacity</dt>
+								<dd>{{capacity}}</dd>
+								{{#if preferredMale}}
+									<dt>Preferred gender</dt>
+									<dd>Male</dd>
+								{{/if}}
+								{{#if preferredFemale}}
+									<dt>Preferred gender</dt>
+									<dd>Female</dd>
+								{{/if}}
+								<dt>Wheelchair accessible</dt>
+								<dd>
+									{{#if weelchair}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>Sleeping arrangements</dt>
+								<dd>{{whereSleepingType}}</dd>
+								<dt>Smoking</dt>
+								<dd>{{smoking}}</dd>
+								<dt>Pets allowed</dt>
+								<dd>
+									{{#if petsAllowed}}
+										Guest pets allowed
+									{{else}}
+										No guest pets allowed
+									{{/if}}
+									{{#if iHavePet}}
+										and I have a pet
+									{{else}}
+										and I don't have any pet
+									{{/if}}
+								</dd>
+								<dt>I have blankets</dt>
+								<dd>
+									{{#if blankets}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>I live in the center</dt>
+								<dd>
+									{{#if liveCenter}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>Public transport</dt>
+								<dd>{{#if train}}Train{{/if}}, 
+									{{#if underground}}Underground{{/if}}, 
+									{{#if tram}}Tram{{/if}},
+									{{#if bus}}Bus{{/if}},
+									{{#if boat}}Boat{{/if}},
+									{{#if others}}Others{{/if}} </dd>
+								<dt>About your accmodation</dt>
+								<dd>{{about}}</dd>
+							</dl>
+							<legend></legend>
+						{{/each}}
+				</div>
 			</div>
+		</div>
 			<div class="span4">
 				<ul class="thumbnails">
 					<li class="span4">
-						<a href="" class="thumbnail" style="width:246px; height: 246px">
-							<img id="avatar" src="{{ avatar }}" alt="avatar">
+						<a href="#/users/{{ id }}" class="thumbnail" style="width:246px; height: 246px">
+							<img id="avatar" src="{{avatar}}" alt="avatar">
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</div>
+</div>
 </div>
