@@ -68,8 +68,23 @@ define(function(require) {
 		refresh: function(prevThread, nextThread, data) {
 			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
+			var parameters = null
+			
+			if (!isMessage) {
+				parameters = data.wing.parameters
+				parameters['wingType'] = data.wing.type
+				parameters['numPeople'] = data.wing.parameters.capacity
+			}
+			
+			
+			
 			var items = data.items.map(function(item, index) {
-				return {
+				
+				if (!isMessage)
+					parameters['message'] = data.wing.parameters.wingName
+				
+				return _.extend(
+				{
 					index: index,
 					isMessage: data.kind === 'message',
 					created: item.created,
@@ -81,7 +96,10 @@ define(function(require) {
 					avatar: item.senderSmallAvatar,
 					connected: item.senderConnected,
 					content: item.content.message,
-				};
+				}, 
+				{ 
+					wingParameters: parameters 
+				});
 			});
 
 			function openTpl(item) {
