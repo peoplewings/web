@@ -45,7 +45,6 @@ define(function(require) {
 
 		render: function(id) {
 			var self = this;
-			Promise.debug = true;
 
 			this.current = { id: id };
 			return notifList.getThreads().then(function(threads) {
@@ -69,20 +68,20 @@ define(function(require) {
 			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
 			var parameters = null
-			
+
 			if (!isMessage) {
 				parameters = data.wing.parameters
 				parameters['wingType'] = data.wing.type
 				parameters['numPeople'] = data.wing.parameters.capacity
 			}
-			
-			
-			
+
+
+
 			var items = data.items.map(function(item, index) {
-				
+
 				if (!isMessage)
 					parameters['message'] = data.wing.parameters.wingName
-				
+
 				return _.extend(
 				{
 					index: index,
@@ -96,9 +95,9 @@ define(function(require) {
 					avatar: item.senderSmallAvatar,
 					connected: item.senderConnected,
 					content: item.content.message,
-				}, 
-				{ 
-					wingParameters: parameters 
+				},
+				{
+					wingParameters: parameters
 				});
 			});
 
