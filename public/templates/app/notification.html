@@ -22,10 +22,18 @@
 					<div>{{ wingType }} {{wingCity}}</div>
 					<div>{{ message }}</div>
 				</div>
-				<div class="span1">{{ numPeople }} people</div>
 				<div class="span1">
-					<div>{{date startDate }}</div>
-					<div>{{date endDate }}</div>
+					<label {{#if_contains parameters.modified "numPeople" }}class="modified"{{/if_contains}}>
+						{{ numPeople }} people
+					</label>
+				</div>
+				<div class="span1">
+					<label {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>
+						{{date startDate }}
+					</label>
+					<label {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>
+						{{date endDate }}
+					</label>
 				</div>
 				{{/with}}
 			{{/if}}
