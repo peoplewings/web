@@ -12,6 +12,7 @@ require.config({
 		//"backbone.validateAll": "lib/plugins/Backbone.validateAll",
 		"backbone.ModelBinder": "lib/Backbone.ModelBinder",
 		"jquery.Validate": "lib/plugins/jquery.validate",
+		"jquery.Extensions": "lib/plugins/jq-extensions",
 		"templates": "../templates",
 		"api": "core/api",
 		"api2": "core/api2",
@@ -51,10 +52,11 @@ require.config({
 		"backbone.validateAll": ["backbone"],
 		// Backbone.ModelBinder depends on Backbone.
 		"backbone.ModelBinder": ["backbone"],
-		// jQuery Validation plugin
+		
 		"jquery.Validate": ["jquery"],
 		"jquery.Jcrop": ["jquery"],
 		"jquery.Datepicker": ["jquery"],
+		"jquery.Extensions": ["jquery.Validate"],
 		/*
 		"jquery.spinner": {
 						deps: ['jquery', 'spinner'],
@@ -65,7 +67,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr', 'jquery', 'backbone', 'router', 'bootstrap', 'typeahead', 'backbone.ModelBinder', 'jquery.Validate', 'async'], function(Modernizr, $, Backbone, Router) {
+require(['modernizr', 'jquery', 'backbone', 'router', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router) {
 	// Instantiates a new Router
 	this.router = new Router();
 });
