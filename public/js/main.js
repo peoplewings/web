@@ -70,5 +70,5 @@ require.config({
 require(['modernizr', 'jquery', 'backbone', 'router', 'promise', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router, Promise) {
 	Promise.debug = true;
 	// Instantiates a new Router
-	this.router = new Router();
+	window.router = new Router();
 });
