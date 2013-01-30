@@ -31,7 +31,6 @@ define(function(require) {
 		getServerUrl: api.getServerUrl,
 		getApiVersion: api.getApiVersion,
 		getUserId: api.getUserId,
-       	getProfileId: api.getProfileId,
 		getAuthToken: api.getAuthToken
     }
 

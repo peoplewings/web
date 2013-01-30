@@ -68,7 +68,7 @@ define(function(require) {
 
         getWingList: function() {
             var sc = this
-            api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/preview", {})
+            api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/preview", {})
             .prop("data")
             .then(function(data) {
                 sc.wingsList = data.map(function(wing) {

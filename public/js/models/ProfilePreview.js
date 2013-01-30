@@ -8,7 +8,7 @@ define(function(require) {
 
 		idAttribute: "_id",
 		
-		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/" + api.getProfileId(),
+		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/" + api.getUserId(),
 
 		parse: function(resp, xhr){
 			return resp.data

@@ -5,7 +5,7 @@ define(function(require) {
 
 	var WingModel = Backbone.Model.extend({
 
-		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/' + api.getProfileId() + '/accomodations/',
+		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
 
 		parse: function(resp, xhr){
 			return resp.data
