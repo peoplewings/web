@@ -67,7 +67,7 @@ define(function(require) {
 			end = start;
 			start = 1;
 		} else {
-			modificator = +modificator
+			modificator = +modificator;
 		}
 
 		var checker = modificator > 0 ?

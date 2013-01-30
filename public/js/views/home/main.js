@@ -3,6 +3,7 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
+	var utils = require("utils");
 	var mainTpl = require("tmpl!templates/home/main.html")
 	var accomodationTpl = require("tmpl!templates/home/search.accomodation.html")
 	var jDate = require("jquery.Datepicker")
@@ -12,16 +13,12 @@ define(function(require) {
 		
 		el: "#main",
 		
-		ages: [],
-		
-		agesR: [],
-		
 		events: {
 			"submit form#accomodation-search-form": "submitSearch",
 		},
 		
 		initialize: function() {
-			this.setAges()
+			
 		},
 		
 		render: function() {
@@ -38,6 +35,7 @@ define(function(require) {
 		submitSearch: function(e) {
 			e.preventDefault()
 			var data = utils.serializeForm(e.target.id)
+			console.log(data)
 			for(attr in data) if(data[attr] === "") delete data[attr]
 			if(data['gender'] && data['gender2']) {
 				delete data['gender']
@@ -48,6 +46,8 @@ define(function(require) {
 				delete data['gender2']
 			}
 			data.page = 1
+			debugger
+			console.log("ENCODE:", api.urlEncode(data));
 			this.renderResults(data)
 
 		},
@@ -60,9 +60,13 @@ define(function(require) {
 						target: "#main > div.row:last",
 						query: data
 					})
-					api.get(api.getApiVersion() + "/profiles", data, function(results) {
-						scope.resultView.render(results.data)
+					api.get(api.getApiVersion() + "/profiles", data)
+					.prop('data')
+					.then(function(results){
+						scope.resultView.render(results)
+						return results;
 					})
+					
 				})
 			} else {
 				this.resultView.close()
@@ -78,12 +82,6 @@ define(function(require) {
 				})
 			}
 		},
-		setAges: function() {
-			for(var i = 18; i < 100; i++) {
-				this.agesR[i - 18] = (99 - i) + 18
-				this.ages[i - 18] = i
-			}
-		}
 	});
 	return new mainHomeView;
 });
