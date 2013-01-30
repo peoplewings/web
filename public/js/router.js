@@ -5,18 +5,18 @@ define([
 	"api2",
 	//landing page views (AnonymousUser)
 	//"views/home/header",
-    "views/home/main",
+	"views/home/main",
 	//app views (LoggedUser)
-    "views/app/home",
-    "models/Account",
+	"views/app/home",
+	"models/Account",
 ], function($, Backbone, api, api2, homeView, appHomeView, UserModel){
 
-    var Router = Backbone.Router.extend({
-        routes: {
+	var Router = Backbone.Router.extend({
+		routes: {
 			"register": "register",
 			"login": "login",
-	  		"activate/:id": "activate",
-		  	"forgot": "forgotPassword",
+			"activate/:id": "activate",
+			"forgot": "forgotPassword",
 			"forgot/:id": "forgotPassword",
 		//Logged User patterns
 			 "logout": "logout",
@@ -30,9 +30,9 @@ define([
 			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
-        },
+		},
 		//Anonymous User hashs
-        register: function(){
+		register: function(){
 			if (api.userIsLoggedIn()){
 				this.defaultAction()
 			} else {
@@ -59,7 +59,7 @@ define([
 			require(["views/home/password"], function(passwordView){
 				passwordView.render(id)
 			})
-    	},
+		},
 		//Logged User hashs
 		logout: function(){
 			require(["views/app/logout"], function(logoutView){
@@ -132,18 +132,18 @@ define([
 				appHomeView.render();
 			else
 				homeView.render();
-    	},
+		},
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
-            Backbone.history.start();
+			Backbone.history.start();
 			if (api.userIsLoggedIn())
 				require(["views/app/header"], function(header){ header.render() });
 			else
 				homeView.render();
-        }
-    });
+		}
+	});
 
-    // Returns the Router class
-    return Router;
+	// Returns the Router class
+	return Router;
 
 });
