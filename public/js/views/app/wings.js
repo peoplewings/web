@@ -20,7 +20,7 @@ define([
 		"change #wings-list": "updateWing",
 	},
 	initialize: function(){
-		this.model = new UserProfile({id: api.getProfileId()})
+		this.model = new UserProfile({id: api.getUserId()})
 		this.bindings = { pwState: "[name=generalStatus]" }
 		this._modelBinder = new Backbone.ModelBinder();
 		//When no user model has been retrieved first
@@ -34,7 +34,7 @@ define([
     },
 	getUserWings: function(){
 		var sc = this
-		api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {}, function(response){
+		api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list", {}, function(response){
 			$.each(response.data, function(index, wing){
 				sc.wings.push({name: wing.name, uri: wing.uri})
 			})
@@ -75,7 +75,7 @@ define([
 	},
 	changeStatus: function(e){
 		spinner.spin(document.getElementById('main'));
-		api.put(api.getApiVersion() + "/profiles/" + api.getProfileId(), {pwState: e.target.value}, function(response){
+		api.put(api.getApiVersion() + "/profiles/" + api.getUserId(), {pwState: e.target.value}, function(response){
 			spinner.stop()
 			var tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
 			$('#main').prepend(tpl)

@@ -108,7 +108,7 @@ define(function(require){
 		},
 		
 		initialize: function(options) {
-			this.model = new ProfileModel({id: api.getProfileId()})
+			this.model = new ProfileModel({id: api.getUserId()})
 			this.model.on("change", this.render.bind(this));
 		  	this.model.fetch({success: this.render.bind(this) })
 			

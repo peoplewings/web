@@ -27,8 +27,8 @@ define([
 		}
 	},
 	goodbye: function(){
-		var profile = new ProfileModel({id: api.getProfileId()})
-		var user = new UserModel({id: api.getProfileId()})		
+		var profile = new ProfileModel({id: api.getUserId()})
+		var user = new UserModel({id: api.getUserId()})		
 		//Remove memory models!!
 		user.clear()
 		profile.clear()
