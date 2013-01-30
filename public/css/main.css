@@ -1,0 +1,42 @@
+/* ==========================================================================
+ * HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+ * ========================================================================== */
+body {
+  font-family: Arial, Sans-Serif;
+  color: black; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style: none; }
+
+div, ul, li {
+  display: block; }
+
+header {
+  background: black;
+  overflow: hidden;
+  padding: 0.8em; }
+  header #header-content h1 {
+    float: left; }
+    header #header-content h1 a {
+      color: white; }
+  header #header-content ul {
+    float: right;
+    font-size: 0.8em; }
+    header #header-content ul li {
+      float: left; }
+      header #header-content ul li a {
+        color: white; }
+      header #header-content ul li .a-underline {
+        text-decoration: underline; }
+      header #header-content ul li span {
+        color: white;
+        margin-left: 0.8em;
+        margin-right: 0.8em; }
+
+.limits {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto; }
