@@ -25,6 +25,7 @@ define(function(require) {
 			return promise.future;
     	},
 
+    	urlEncode: api.encodeParams,
         saveAuthToken: api.saveAuthToken,
         clearAuthToken: api.clearAuthToken,
         userIsLoggedIn: api.userIsLoggedIn,
