@@ -118,6 +118,8 @@ define(function(require) {
 				isMessage: isMessage,
 				iStarted: data.firstSender === api.getUserId(),
 				options: [ 'accept', 'chat', 'maybe', 'reopen', 'cancel', 'deny' ],
+				previous: prevThread,
+				next: nextThread,
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
