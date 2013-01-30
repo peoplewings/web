@@ -33,14 +33,14 @@
     <label class="control-label" for="inputAge">People</label>
     <div class="controls">
 	<select name="startAge" class="input-small">
-			<% _.each(ages, function(age) { %> 
-    			<option value="<%= age %>"><%= age %></option>
-			<% }); %>
+			{{#range 18 99 1}}
+    			<option value="{{self}}">{{self}}</option>
+			{{/range}}
 	</select>
 	 <select name="endAge" class="input-small">
-			<% _.each(agesR, function(age) { %> 
-    			<option value="<%= age %>"><%= age %></option>
-			<% }); %>
+			{{#range 99 18 '-1'}}
+    			<option value="{{self}}">{{self}}</option>
+			{{/range}}
 		</select>
 	</div>
   </div>
