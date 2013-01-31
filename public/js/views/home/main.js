@@ -22,16 +22,16 @@ define(function(require) {
 
 		
 		initialize: function() {
-		
+			
 
 		},
 
 		
 		render: function(params) {
+			$(this.el).html(mainTpl);
 
 			//console.log("render home ", new Date())
 			
-			$(this.el).html(mainTpl);			
 			this.$("#accomodation").html(accomodationTpl);
 
 			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
@@ -75,12 +75,11 @@ define(function(require) {
 
 		renderResults: function(query, results) {
 
-			if(!this.resultsView){
 				this.resultsView = new ResultsView({
 					logged: api.userIsLoggedIn(),
 					query: query,
 				})	
-			}
+
 			this.resultsView.render(results);
 		},
 
@@ -91,14 +90,16 @@ define(function(require) {
 			var formData = utils.serializeForm(e.target.id);
 			formData.page = 1;
 			
-			api.get(api.getApiVersion() + "/profiles", formData)
+			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
+			
+			/*api.get(api.getApiVersion() + "/profiles", formData)
 			.prop('data')
 			.then(function(results){
 				self.renderResults(formData, results);
 			})
 			.fin(function(){
 				router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
-			})
+			})*/
 		},
 
 	});

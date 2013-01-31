@@ -33,7 +33,7 @@ define(function(require){
 	    	var self = this;
 
 	    	console.log("render results ", new Date())
-
+	    	debugger
 			this.$el.html(resultsTpl({
 				blurrStyle: this.blurrStyle,
 				startResult: results.startResult,

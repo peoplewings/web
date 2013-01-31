@@ -58,7 +58,7 @@ define([
 			})
 		},
 		search: function(params){
-			//console.log("PARAMS:", params, $.deparam(params))
+			console.log("PARAMS:", params, $.deparam(params))
 
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
