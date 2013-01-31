@@ -1,16 +1,17 @@
 
-//@import _effects
+@import _effects
 
 /* ==========================================================================
-   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   Initial
    ========================================================================== */
 
 body
-	font-family: Arial, Sans-Serif
+	font-family: 'Exo', sans-serif
 	color: #000
 
 a
 	text-decoration: none
+	color: #DDD
 	&:hover
 		color: red
 
@@ -20,116 +21,153 @@ li
 div, ul, li
 	display: block
 
-header
-	background: #000
-	overflow: hidden
-	padding: 0.8em
-	#header-content
-		h1
-			float: left
-			a
-				color: #FFF
-		ul
-			float: right
-			font-size: 0.8em
-			li
+/* ==========================================================================
+   HTML
+   ========================================================================== */
+
+#wrapper
+	background: #97D9E6 // <--
+	//background: url(http://lorempixel.com/1600/700/city) no-repeat // <--
+	header
+		background: rgba(0, 0, 0, 0.4)
+		overflow: hidden
+		padding: 0.8em
+		#header-content
+			h1
 				float: left
 				a
 					color: #FFF
-				.a-underline
-					text-decoration: underline
-				span
-					color: #FFF
-					margin-left: 0.8em
-					margin-right: 0.8em
-#main
-	background: url(http://lorempixel.com/1600/900/city) no-repeat // <--
-	background: #97D9E6
-	width: 100%
-	height: 500px
-	border-bottom: 2px solid #80B7C9
-	#sharing
-		h1
-			font-size: 3em
-			font-weight: bold
-			margin-bottom: 0.2em
-		h2
-		padding:
-			top: 5em
-			left: 1em
-			right: 1em
-			bottom: 2em
-#categories
-	overflow: hidden
-	margin-bottom: 1em
-	ul
-		li
-			float: left
-#landing-form
-	padding: 1em
-	background: #000
-	overflow: hidden
-	form
-		float: left
-		margin-right: 1em
-		label
-			color: #FFF
-			margin: 0.5em
-		input
-			padding: 0.8em
-			margin: 0.5em
-		#inputWings
-			width: 18em
-		#age
-			width: 6em
-		select
-			background: #FFF
-			height: 3.5em
-	a
-		margin-top: 0.4em
-#middle
-	border-bottom: 2px solid #CCC
-	#middle-content
-		overflow: hidden
-		margin:
-			top: 3em
-			bottom: 3em
-		div
-			background: red // <--
-			border: 1px dotted gray // <--
-			height: 8em
-			width: 14em
-			float: left
-			margin-right: 0.8em
-footer
-	background: #DDD
-	padding: 0.5em
-	#footer-content
-		overflow: hidden
-		font-size: 0.7em
-		color: #555
-		div
-			float: left
-			padding: 0.5em
-			border: 1px dotted gray // <--
 			ul
+				float: right
+				font-size: 0.8em
 				li
+					float: left
+					a
+						color: #FFF
+					.a-underline
+						text-decoration: underline
+					span
+						color: #FFF
+						margin-left: 0.8em
+						margin-right: 0.8em
+	#main
+		width: 100%
+		height: 500px
+		border-bottom: 2px solid #80B7C9
+		#sharing
+			margin-top: 5em
+			h1
+				color: #F8FF3C
+				font:
+					size: 5em
+					weight: 900
+					style: italic
+				line-height: 0.78em
+				letter-spacing: -2px
+				@include borde(3px, #003E57)
+			h2
+				color: #F8FF3C
+				font:
+					size: 1.3em
+					weight: 900
+					style: italic
+				line-height: 0.78em
+				letter-spacing: -1px
+				@include borde(2px, #003E57)
+				margin:
+					top: 0.7em
+					bottom: 1.2em
+	#categories
+		overflow: hidden
+		margin-bottom: 1em
+		ul
+			li
+				float: left
+	#landing-form
+		padding: 0.6em
+		background: rgba(0, 0, 0, 0.7)
+		overflow: hidden
+		@include radio(1em)
+		form
+			float: left
+			margin-right: 1em
+			label
+				color: #FFF
+				margin: 0.5em
+				font:
+					weight: bold
+					style: italic
+			input
+				padding: 0.8em
+				margin: 0.5em
+			#inputWings
+				width: 18em
+			#age
+				width: 6em
+			select
+				background: #FFF
+				height: 3.5em
+		a
+			margin-top: 0.4em
+			@include radio(1em)
+	#middle
+		background: #FFF
+		border-bottom: 2px solid #CCC
+		overflow: hidden
+		#middle-content
+			overflow: hidden
+			margin:
+				top: 3em
+				bottom: 3em
+			div
+				background: red // <--
+				border: 1px dotted gray // <--
+				height: 8em
+				width: 14em
+				float: left
+				margin-right: 0.8em
+	footer
+		background: #DDD
+		padding: 0.5em
+		#footer-content
+			overflow: hidden
+			font-size: 0.7em
+			color: #555
+			div
+				float: left
+				padding: 0.5em
+				ul
+					li
+						float: left
+						margin-right: 1.5em
+					.brand
+						font-weight: bold
+			#likes
+			#terms
+				position: relative
+				left: 23em
+			#follow
+				float: right
+				h1
 					float: left
 					margin-right: 1.5em
-		#likes
-		#terms
-			position: relative
-			left: 23em
-		#follow
-			float: right
-			ul
-				li
+					font-weight: bold
+				ul
 					float: left
-					margin-right: 0.2em
+					li
+						float: left
+						margin-right: 0.2em
 
 /* ==========================================================================
    Classes
    ========================================================================== */
+
+.spot
+	float: left
+	text-indent: -9999px
+
+.light
+	font-weight: 800
 
 .icon
 	background: orange // <--
