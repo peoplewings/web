@@ -6,14 +6,14 @@
    ========================================================================== */
 
 body
-	font-family: 'Exo', sans-serif
+	font-family: 'Arial', sans-serif
 	color: #000
 
 a
 	text-decoration: none
-	color: #DDD
+	color: #555
 	&:hover
-		color: red
+		color: #F8FF3C
 
 li
 	list-style: none
@@ -27,7 +27,7 @@ div, ul, li
 
 #wrapper
 	background: #97D9E6 // <--
-	//background: url(http://lorempixel.com/1600/700/city) no-repeat // <--
+	background: url(http://lorempixel.com/1600/700/city) no-repeat // <--
 	header
 		background: rgba(0, 0, 0, 0.4)
 		overflow: hidden
@@ -35,30 +35,33 @@ div, ul, li
 		#header-content
 			h1
 				float: left
-				a
-					color: #FFF
+				background: orange
 			ul
 				float: right
 				font-size: 0.8em
 				li
 					float: left
 					a
-						color: #FFF
+						color: #003E57
+						font-weight: bold
+						&:hover
+							color: #F8FF3C
 					.a-underline
 						text-decoration: underline
 					span
-						color: #FFF
+						color: #003E57
 						margin-left: 0.8em
 						margin-right: 0.8em
 	#main
 		width: 100%
-		height: 500px
+		height: 400px
 		border-bottom: 2px solid #80B7C9
 		#sharing
 			margin-top: 5em
 			h1
 				color: #F8FF3C
 				font:
+					family: 'Exo'
 					size: 5em
 					weight: 900
 					style: italic
@@ -68,6 +71,7 @@ div, ul, li
 			h2
 				color: #F8FF3C
 				font:
+					family: 'Exo'
 					size: 1.3em
 					weight: 900
 					style: italic
@@ -85,18 +89,21 @@ div, ul, li
 				float: left
 	#landing-form
 		padding: 0.6em
-		background: rgba(0, 0, 0, 0.7)
+		background: rgba(0, 0, 0, 0.4)
 		overflow: hidden
 		@include radio(1em)
 		form
 			float: left
 			margin-right: 1em
 			label
-				color: #FFF
+				color: #003E57
 				margin: 0.5em
 				font:
-					weight: bold
+					family: 'Exo'
+					size: 1.2em 
+					weight: 900
 					style: italic
+				@include borde(0.8px, #F8FF3C)
 			input
 				padding: 0.8em
 				margin: 0.5em
@@ -108,8 +115,8 @@ div, ul, li
 				background: #FFF
 				height: 3.5em
 		a
-			margin-top: 0.4em
-			@include radio(1em)
+			margin-top: 0.17em
+
 	#middle
 		background: #FFF
 		border-bottom: 2px solid #CCC
@@ -120,7 +127,7 @@ div, ul, li
 				top: 3em
 				bottom: 3em
 			div
-				background: red // <--
+				background: orange // <--
 				border: 1px dotted gray // <--
 				height: 8em
 				width: 14em
@@ -185,8 +192,21 @@ div, ul, li
 
 .search-button
 	float: left
-	background: #FFF
 	padding: 0.5em 1em
+	@include radio(1em)
+	color: #F8FF3C
+	background: #003E57
+	font:
+		family: 'Exo'
+		size: 1.2em
+		weight: 500
+		style: italic
+	line-height: 0.78em
+	//outline: 2px solid
+	border: 2px solid #F8FF3C
+	@include transition(box-shadow, 0.5s)
+	&:hover
+		@include sombrac(0px, 0px, 20px, #F8FF3C)
 
 .limits
 	max-width: 960px
