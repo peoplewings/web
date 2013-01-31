@@ -8,6 +8,9 @@ define(function(require) {
 	var accomodationTpl = require("tmpl!templates/home/search.accomodation.html")
 	var jDate = require("jquery.Datepicker")
 
+	var ResultsView = require("views/home/results")
+	
+
 
 	var mainHomeView = Backbone.View.extend({
 		
@@ -16,72 +19,89 @@ define(function(require) {
 		events: {
 			"submit form#accomodation-search-form": "submitSearch",
 		},
+
 		
 		initialize: function() {
-			
-		},
 		
-		render: function() {
+
+		},
+
+		
+		render: function(params) {
+
+			//console.log("render home ", new Date())
 			
-			$(this.el).html(mainTpl);
-			
-			this.$form = this.$("#accomodation");
-			this.$form.html(accomodationTpl);
+			$(this.el).html(mainTpl);			
+			this.$("#accomodation").html(accomodationTpl);
 
 			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 
-		},
-		submitSearch: function(e) {
-			e.preventDefault()
-			var data = utils.serializeForm(e.target.id)
-			console.log(data)
-			for(attr in data) if(data[attr] === "") delete data[attr]
-			if(data['gender'] && data['gender2']) {
-				delete data['gender']
-				delete data['gender2']
-			}
-			if(data['gender2'] !== undefined) {
-				data.gender = data['gender2']
-				delete data['gender2']
-			}
-			data.page = 1
-			debugger
-			console.log("ENCODE:", api.urlEncode(data));
-			this.renderResults(data)
+			if (params)
+				this.unserializeParams(params)
 
 		},
-		renderResults: function(data) {
-			var scope = this
-			if(!this.resultView) {
-				require(["views/home/results"], function(resultView) {
-					scope.resultView = new resultView({
-						logged: api.userIsLoggedIn(),
-						target: "#main > div.row:last",
-						query: data
-					})
-					api.get(api.getApiVersion() + "/profiles", data)
-					.prop('data')
-					.then(function(results){
-						scope.resultView.render(results)
-						return results;
-					})
-					
-				})
-			} else {
-				this.resultView.close()
-				require(["views/home/results"], function(resultView) {
-					scope.resultView = new resultView({
-						logged: api.userIsLoggedIn(),
-						target: "#main > div.row:last",
-						query: data
-					})
-					api.get(api.getApiVersion() + "/profiles", data, function(results) {
-						scope.resultView.render(results.data)
-					})
-				})
+
+		unserializeParams: function(params){
+
+			if (params.wings)
+				this.$("input[name=wings]").val(params.wings)
+
+			if (params.startDate){
+				this.$("input[name=startDate]").val(params.startDate)
+				this.$("input[name=endDate]").val(params.endDate)
 			}
+				
+			if (params.gender == "Male"){
+				this.$("input#inlineCheckbox1").attr("checked", true)
+			}
+
+			if (params.gender == "Female"){
+				this.$("input#inlineCheckbox1").attr("checked", true)
+			}
+
+			if (params.gender == "Male,Female"){
+				this.$("input#inlineCheckbox1").attr("checked", true)
+				this.$("input#inlineCheckbox2").attr("checked", true)
+			}
+
+			this.$("select[name=capacity] option[value=" + params.capacity + "]").attr("selected", true)
+			this.$("select[name=startAge] option[value=" + params.startAge + "]").attr("selected", true)
+			this.$("select[name=endAge] option[value=" + params.endAge + "]").attr("selected", true)
+			this.$("select[name=language] option[value=" + params.language + "]").attr("selected", true)
+			this.$("input[type=radio][value=" + params['type'] + "]").attr("checked", true)
+			
 		},
+
+		renderResults: function(query, results) {
+
+			if(!this.resultsView){
+				this.resultsView = new ResultsView({
+					logged: api.userIsLoggedIn(),
+					query: query,
+				})	
+			}
+			this.resultsView.render(results);
+		},
+
+		submitSearch: function(e) {
+			e.preventDefault();
+
+			var self = this;
+			var formData = utils.serializeForm(e.target.id);
+			formData.page = 1;
+			
+			api.get(api.getApiVersion() + "/profiles", formData)
+			.prop('data')
+			.then(function(results){
+				self.renderResults(formData, results);
+			})
+			.fin(function(){
+				router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
+			})
+		},
+
 	});
+
 	return new mainHomeView;
 });
