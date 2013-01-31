@@ -1,23 +1,20 @@
 define([
 	"jquery",
 	"backbone",
-	"api",
 	"api2",
-	//landing page views (AnonymousUser)
-	//"views/home/header",
-    "views/home/main",
-	//app views (LoggedUser)
-    "views/app/home",
-    "models/Account",
-], function($, Backbone, api, api2, homeView, appHomeView, UserModel){
+	"views/home/main",
+	"views/app/home",
+	"models/Account",
+], function($, Backbone, api, homeView, appHomeView, UserModel){
 
-    var Router = Backbone.Router.extend({
-        routes: {
+	var Router = Backbone.Router.extend({
+		routes: {
 			"register": "register",
 			"login": "login",
-	  		"activate/:id": "activate",
-		  	"forgot": "forgotPassword",
+			"activate/:id": "activate",
+			"forgot": "forgotPassword",
 			"forgot/:id": "forgotPassword",
+			"search/?:params": "search",
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
@@ -30,9 +27,9 @@ define([
 			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
-        },
+		},
 		//Anonymous User hashs
-        register: function(){
+		register: function(){
 			if (api.userIsLoggedIn()){
 				this.defaultAction()
 			} else {
@@ -59,7 +56,21 @@ define([
 			require(["views/home/password"], function(passwordView){
 				passwordView.render(id)
 			})
-    	},
+		},
+		search: function(params){
+			//console.log("PARAMS:", params, $.deparam(params))
+
+			var unserialized = $.deparam(params);
+			homeView.render(unserialized);
+
+			api.get(api.getApiVersion() + "/profiles?" + params, {})
+			.prop('data')
+			.then(function(results){
+				homeView.renderResults(unserialized, results);
+			})
+		},
+
+		
 		//Logged User hashs
 		logout: function(){
 			require(["views/app/logout"], function(logoutView){
@@ -132,18 +143,15 @@ define([
 				appHomeView.render();
 			else
 				homeView.render();
-    	},
+		},
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
-            Backbone.history.start();
+			Backbone.history.start();
 			if (api.userIsLoggedIn())
 				require(["views/app/header"], function(header){ header.render() });
-			else
-				homeView.render();
-        }
-    });
+		}
+	});
 
-    // Returns the Router class
-    return Router;
+	return Router;
 
 });
