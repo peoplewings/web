@@ -7,6 +7,8 @@ body {
 
 a {
   text-decoration: none; }
+  a:hover {
+    color: red; }
 
 li {
   list-style: none; }
@@ -35,6 +37,110 @@ header {
         color: white;
         margin-left: 0.8em;
         margin-right: 0.8em; }
+
+#main {
+  background: url(http://lorempixel.com/1600/900/city) no-repeat;
+  background: #97d9e6;
+  width: 100%;
+  height: 500px;
+  border-bottom: 2px solid #80b7c9; }
+  #main #sharing {
+    padding-top: 5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 2em; }
+    #main #sharing h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 0.2em; }
+
+#categories {
+  overflow: hidden;
+  margin-bottom: 1em; }
+  #categories ul li {
+    float: left; }
+
+#landing-form {
+  padding: 1em;
+  background: black;
+  overflow: hidden; }
+  #landing-form form {
+    float: left;
+    margin-right: 1em; }
+    #landing-form form label {
+      color: white;
+      margin: 0.5em; }
+    #landing-form form input {
+      padding: 0.8em;
+      margin: 0.5em; }
+    #landing-form form #inputWings {
+      width: 18em; }
+    #landing-form form #age {
+      width: 6em; }
+    #landing-form form select {
+      background: white;
+      height: 3.5em; }
+  #landing-form a {
+    margin-top: 0.4em; }
+
+#middle {
+  border-bottom: 2px solid #cccccc; }
+  #middle #middle-content {
+    overflow: hidden;
+    margin-top: 3em;
+    margin-bottom: 3em; }
+    #middle #middle-content div {
+      background: red;
+      border: 1px dotted gray;
+      height: 8em;
+      width: 14em;
+      float: left;
+      margin-right: 0.8em; }
+
+footer {
+  background: #dddddd;
+  padding: 0.5em; }
+  footer #footer-content {
+    overflow: hidden;
+    font-size: 0.7em;
+    color: #555555; }
+    footer #footer-content div {
+      float: left;
+      padding: 0.5em;
+      border: 1px dotted gray; }
+      footer #footer-content div ul li {
+        float: left;
+        margin-right: 1.5em; }
+    footer #footer-content #terms {
+      position: relative;
+      left: 23em; }
+    footer #footer-content #follow {
+      float: right; }
+      footer #footer-content #follow ul li {
+        float: left;
+        margin-right: 0.2em; }
+
+/* ==========================================================================
+ * Classes
+ * ========================================================================== */
+.icon {
+  background: orange;
+  float: left;
+  overflow: hidden;
+  width: 49px;
+  height: 49px;
+  border: 1px dotted black;
+  margin-right: 0.5em;
+  text-indent: -9999px; }
+
+.follow {
+  width: 30px;
+  height: 30px; }
+
+.search-button {
+  float: left;
+  background: white;
+  padding: 0.5em 1em; }
 
 .limits {
   max-width: 960px;
