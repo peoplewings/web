@@ -7,6 +7,7 @@ define([
 	"models/Account",
 ], function($, Backbone, api, homeView, appHomeView, UserModel){
 
+
 	var Router = Backbone.Router.extend({
 		routes: {
 			"register": "register",
@@ -69,8 +70,6 @@ define([
 				homeView.renderResults(unserialized, results);
 			})
 		},
-
-		
 		//Logged User hashs
 		logout: function(){
 			require(["views/app/logout"], function(logoutView){
