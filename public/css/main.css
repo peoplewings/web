@@ -20,138 +20,150 @@ div, ul, li {
 /* ==========================================================================
  * HTML
  * ========================================================================== */
-#wrapper {
-  background: url(../img/bg_mountain.png) no-repeat; }
-  #wrapper header {
-    background: rgba(0, 0, 0, 0.2);
-    height: 1em;
-    padding: 0.8em; }
-    #wrapper header #header-content h1 {
-      float: left;
-      position: relative;
-      background: url(../img/peoplewings.png) no-repeat;
-      text-indent: -9999px;
-      width: 237px;
-      height: 60px; }
-    #wrapper header #header-content ul {
-      float: right;
-      font-size: 0.8em; }
-      #wrapper header #header-content ul li {
-        float: left; }
-        #wrapper header #header-content ul li a {
-          color: #18183f;
-          font-weight: bold; }
-          #wrapper header #header-content ul li a:hover {
-            color: yellow; }
-        #wrapper header #header-content ul li .a-underline {
-          text-decoration: underline; }
-        #wrapper header #header-content ul li span {
-          color: #18183f;
-          margin-left: 0.8em;
-          margin-right: 0.8em; }
-  #wrapper #main {
-    width: 100%;
-    height: 400px; }
-    #wrapper #main #sharing {
-      margin-top: 7em; }
-      #wrapper #main #sharing h1 {
-        color: yellow;
-        font-family: "Exo";
-        font-size: 5em;
-        font-weight: 900;
-        font-style: italic;
-        line-height: 0.78em;
-        letter-spacing: -2px;
-        -webkit-text-stroke: 3px #18183f; }
-      #wrapper #main #sharing h2 {
-        color: yellow;
-        font-family: "Exo";
-        font-size: 1.5em;
-        font-weight: 900;
-        font-style: italic;
-        line-height: 0.78em;
-        letter-spacing: -1px;
-        -webkit-text-stroke: 2px #18183f;
-        margin-top: 0.7em;
-        margin-bottom: 1.2em; }
-  #wrapper #categories {
-    overflow: hidden;
-    margin-bottom: 1em; }
-    #wrapper #categories ul li {
+#background-roller {
+  width: 100%;
+  height: 637px;
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0px 1px 5px #888888;
+  -moz-box-shadow: 0px 1px 5px #888888;
+  -webkit-box-shadow: 0px 1px 5px #888888; }
+
+header {
+  background: rgba(0, 0, 0, 0.2);
+  height: 1em;
+  padding: 0.8em; }
+  header #header-content h1 {
+    float: left;
+    position: relative;
+    background: url(../img/peoplewings.png) no-repeat;
+    text-indent: -9999px;
+    width: 237px;
+    height: 60px; }
+  header #header-content ul {
+    float: right;
+    font-size: 0.8em; }
+    header #header-content ul li {
       float: left; }
-  #wrapper #landing-form {
-    padding: 0.6em;
-    background: rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    border-radius: 1em;
-    -moz-border-radius: 1em;
-    -webkit-border-radius: 1em; }
-    #wrapper #landing-form form {
-      float: left;
-      margin-right: 1em; }
-      #wrapper #landing-form form label {
+      header #header-content ul li a {
         color: #18183f;
-        margin: 0.5em;
-        font-family: "Exo";
-        font-size: 1.4em;
-        font-weight: 900;
-        font-style: italic;
-        -webkit-text-stroke: 0.8px yellow; }
-      #wrapper #landing-form form input {
-        padding: 0.8em;
-        margin: 0.5em; }
-      #wrapper #landing-form form #inputWings {
-        width: 18em; }
-      #wrapper #landing-form form #age {
-        width: 6em; }
-      #wrapper #landing-form form select {
-        background: white;
-        height: 3.5em; }
-    #wrapper #landing-form a {
-      margin-top: 0.17em; }
-  #wrapper #middle {
-    overflow: hidden; }
-    #wrapper #middle #middle-content {
-      overflow: hidden;
-      margin-top: 3em;
-      margin-bottom: 3em; }
-      #wrapper #middle #middle-content div {
-        width: 230px;
-        height: 133px;
+        font-weight: bold; }
+        header #header-content ul li a:hover {
+          color: yellow; }
+      header #header-content ul li .a-underline {
+        text-decoration: underline; }
+      header #header-content ul li span {
+        color: #18183f;
+        margin-left: 0.8em;
+        margin-right: 0.8em; }
+
+#main {
+  margin-bottom: 8em; }
+  #main #sharing {
+    margin-top: 7em; }
+    #main #sharing h1 {
+      color: yellow;
+      font-family: "Exo";
+      font-size: 5.8em;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.78em;
+      letter-spacing: -2px;
+      -webkit-text-stroke: 5px #18183f; }
+    #main #sharing h2 {
+      color: yellow;
+      font-family: "Exo";
+      font-size: 1.7em;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.78em;
+      letter-spacing: -1px;
+      -webkit-text-stroke: 2px #18183f;
+      margin-top: 0.7em;
+      margin-bottom: 1.2em; }
+
+#categories {
+  overflow: hidden;
+  margin-bottom: 1em; }
+  #categories ul li {
+    float: left; }
+
+#landing-form {
+  padding: 0.6em;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em; }
+  #landing-form form {
+    float: left;
+    margin-right: 1em; }
+    #landing-form form label {
+      color: #18183f;
+      margin: 0.5em;
+      font-family: "Exo";
+      font-size: 1.4em;
+      font-weight: 900;
+      font-style: italic;
+      -webkit-text-stroke: 0.8px yellow; }
+    #landing-form form input {
+      padding: 0.8em;
+      margin: 0.5em; }
+    #landing-form form #inputWings {
+      width: 18em; }
+    #landing-form form #age {
+      width: 6em; }
+    #landing-form form select {
+      background: white;
+      height: 3.5em; }
+  #landing-form a {
+    margin-top: 0.17em; }
+
+#middle {
+  overflow: hidden;
+  border-bottom: 2px solid #eeeeee; }
+  #middle #middle-content {
+    overflow: hidden;
+    margin-top: 3em;
+    margin-bottom: 3em; }
+    #middle #middle-content div {
+      width: 230px;
+      height: 133px;
+      float: left;
+      margin-right: 0.6em; }
+
+footer {
+  background: #dddddd;
+  padding: 0.5em;
+  box-shadow: 0px 1px 5px #888888;
+  -moz-box-shadow: 0px 1px 5px #888888;
+  -webkit-box-shadow: 0px 1px 5px #888888; }
+  footer #footer-content {
+    overflow: hidden;
+    font-size: 0.7em;
+    color: #555555; }
+    footer #footer-content div {
+      float: left;
+      padding: 0.5em; }
+      footer #footer-content div ul li {
         float: left;
-        margin-right: 0.6em; }
-  #wrapper footer {
-    background: #dddddd;
-    padding: 0.5em;
-    box-shadow: 0px 1px 5px #888888;
-    -moz-box-shadow: 0px 1px 5px #888888;
-    -webkit-box-shadow: 0px 1px 5px #888888; }
-    #wrapper footer #footer-content {
-      overflow: hidden;
-      font-size: 0.7em;
-      color: #555555; }
-      #wrapper footer #footer-content div {
+        margin-right: 1.5em; }
+      footer #footer-content div ul .brand {
+        font-weight: bold; }
+    footer #footer-content #terms {
+      position: relative;
+      left: 23em; }
+    footer #footer-content #follow {
+      float: right; }
+      footer #footer-content #follow h1 {
         float: left;
-        padding: 0.5em; }
-        #wrapper footer #footer-content div ul li {
+        margin-right: 1.5em;
+        font-weight: bold; }
+      footer #footer-content #follow ul {
+        float: left; }
+        footer #footer-content #follow ul li {
           float: left;
-          margin-right: 1.5em; }
-        #wrapper footer #footer-content div ul .brand {
-          font-weight: bold; }
-      #wrapper footer #footer-content #terms {
-        position: relative;
-        left: 23em; }
-      #wrapper footer #footer-content #follow {
-        float: right; }
-        #wrapper footer #footer-content #follow h1 {
-          float: left;
-          margin-right: 1.5em;
-          font-weight: bold; }
-        #wrapper footer #footer-content #follow ul {
-          float: left; }
-          #wrapper footer #footer-content #follow ul li {
-            float: left;
-            margin-right: 0.2em; }
+          margin-right: 0.2em; }
 
 /* ==========================================================================
  * Classes
@@ -236,3 +248,24 @@ div, ul, li {
 
 .light {
   font-weight: 800; }
+
+.background-1 {
+  background: url(../img/bg_afternoon.png) no-repeat; }
+
+.background-2 {
+  background: url(../img/bg_burncity.png) no-repeat; }
+
+.background-3 {
+  background: url(../img/bg_happypeople.png) no-repeat; }
+
+.background-4 {
+  background: url(../img/bg_ironman.png) no-repeat; }
+
+.background-5 {
+  background: url(../img/bg_lanterna.png) no-repeat; }
+
+.background-6 {
+  background: url(../img/bg_mountain.png) no-repeat; }
+
+.background-7 {
+  background: url(../img/bg_ocean.png) no-repeat; }

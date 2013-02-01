@@ -25,148 +25,152 @@ div, ul, li
    HTML
    ========================================================================== */
 
-#wrapper
-	background: url(../img/bg_mountain.png) no-repeat
-	//@include sombrac(0px, 1px, 5px, #888)
-	header
-		background: rgba(0, 0, 0, 0.2)
-		height: 1em
-		padding: 0.8em
-		#header-content
-			h1
-				float: left
-				position: relative
-				background: url(../img/peoplewings.png) no-repeat
-				text-indent: -9999px
-				width: 237px
-				height: 60px
-			ul
-				float: right
-				font-size: 0.8em
-				li
-					float: left
-					a
-						color: #18183F
-						font-weight: bold
-						&:hover
-							color: #FFFF00
-					.a-underline
-						text-decoration: underline
-					span
-						color: #18183F
-						margin-left: 0.8em
-						margin-right: 0.8em
-	#main
-		width: 100%
-		height: 400px
-		#sharing
-			margin-top: 7em
-			h1
-				color: #FFFF00
-				font:
-					family: 'Exo'
-					size: 5em
-					weight: 900
-					style: italic
-				line-height: 0.78em
-				letter-spacing: -2px
-				@include borde(3px, #18183F)
-			h2
-				color: #FFFF00
-				font:
-					family: 'Exo'
-					size: 1.5em
-					weight: 900
-					style: italic
-				line-height: 0.78em
-				letter-spacing: -1px
-				@include borde(2px, #18183F)
-				margin:
-					top: 0.7em
-					bottom: 1.2em
-	#categories
-		overflow: hidden
-		margin-bottom: 1em
+#background-roller
+	width: 100%
+	height: 637px
+	position: absolute
+	z-index: -1
+	@include sombrac(0px, 1px, 5px, #888)
+	//@include animacion(anima1, 3s)
+
+header
+	background: rgba(0, 0, 0, 0.2)
+	height: 1em
+	padding: 0.8em
+	#header-content
+		h1
+			float: left
+			position: relative
+			background: url(../img/peoplewings.png) no-repeat
+			text-indent: -9999px
+			width: 237px
+			height: 60px
 		ul
+			float: right
+			font-size: 0.8em
 			li
 				float: left
-	#landing-form
-		padding: 0.6em
-		background: rgba(0, 0, 0, 0.4)
-		overflow: hidden
-		@include radio(1em)
-		form
-			float: left
-			margin-right: 1em
-			label
-				color: #18183F
-				margin: 0.5em
-				font:
-					family: 'Exo'
-					size: 1.4em 
-					weight: 900
-					style: italic
-				@include borde(0.8px, #FFFF00)
-			input
-				padding: 0.8em
-				margin: 0.5em
-			#inputWings
-				width: 18em
-			#age
-				width: 6em
-			select
-				background: #FFF
-				height: 3.5em
-		a
-			margin-top: 0.17em
-	#middle
-		overflow: hidden
-		#middle-content
-			overflow: hidden
+				a
+					color: #18183F
+					font-weight: bold
+					&:hover
+						color: #FFFF00
+				.a-underline
+					text-decoration: underline
+				span
+					color: #18183F
+					margin-left: 0.8em
+					margin-right: 0.8em
+#main
+	margin-bottom: 8em
+	#sharing
+		margin-top: 7em
+		h1
+			color: #FFFF00
+			font:
+				family: 'Exo'
+				size: 5.8em
+				weight: 900
+				style: italic
+			line-height: 0.78em
+			letter-spacing: -2px
+			@include borde(5px, #18183F)
+		h2
+			color: #FFFF00
+			font:
+				family: 'Exo'
+				size: 1.7em
+				weight: 900
+				style: italic
+			line-height: 0.78em
+			letter-spacing: -1px
+			@include borde(2px, #18183F)
 			margin:
-				top: 3em
-				bottom: 3em
-			div
-				width: 230px
-				height: 133px
-				float: left
-				margin-right: 0.6em
-	footer
-		background: #DDD
-		padding: 0.5em
-		@include sombrac(0px, 1px, 5px, #888)
-		#footer-content
-			overflow: hidden
-			font-size: 0.7em
-			color: #555
-			div
-				float: left
-				padding: 0.5em
-				ul
-					li
-						float: left
-						margin-right: 1.5em
-					.brand
-						font-weight: bold
-			#terms
-				position: relative
-				left: 23em
-			#follow
-				float: right
-				h1
+				top: 0.7em
+				bottom: 1.2em
+#categories
+	overflow: hidden
+	margin-bottom: 1em
+	ul
+		li
+			float: left
+#landing-form
+	padding: 0.6em
+	background: rgba(0, 0, 0, 0.4)
+	overflow: hidden
+	@include radio(1em)
+	form
+		float: left
+		margin-right: 1em
+		label
+			color: #18183F
+			margin: 0.5em
+			font:
+				family: 'Exo'
+				size: 1.4em 
+				weight: 900
+				style: italic
+			@include borde(0.8px, #FFFF00)
+		input
+			padding: 0.8em
+			margin: 0.5em
+		#inputWings
+			width: 18em
+		#age
+			width: 6em
+		select
+			background: #FFF
+			height: 3.5em
+	a
+		margin-top: 0.17em
+#middle
+	overflow: hidden
+	border-bottom: 2px solid #EEE
+	#middle-content
+		overflow: hidden
+		margin:
+			top: 3em
+			bottom: 3em
+		div
+			width: 230px
+			height: 133px
+			float: left
+			margin-right: 0.6em
+footer
+	background: #DDD
+	padding: 0.5em
+	@include sombrac(0px, 1px, 5px, #888)
+	#footer-content
+		overflow: hidden
+		font-size: 0.7em
+		color: #555
+		div
+			float: left
+			padding: 0.5em
+			ul
+				li
 					float: left
 					margin-right: 1.5em
+				.brand
 					font-weight: bold
-				ul
+		#terms
+			position: relative
+			left: 23em
+		#follow
+			float: right
+			h1
+				float: left
+				margin-right: 1.5em
+				font-weight: bold
+			ul
+				float: left
+				li
 					float: left
-					li
-						float: left
-						margin-right: 0.2em
+					margin-right: 0.2em
 
 /* ==========================================================================
    Classes
    ========================================================================== */
-
 
 .limits
 	max-width: 960px
@@ -243,3 +247,31 @@ div, ul, li
 
 .light
 	font-weight: 800
+
+.background-1
+	background: url(../img/bg_afternoon.png) no-repeat
+
+.background-2
+	background: url(../img/bg_burncity.png) no-repeat
+
+.background-3
+	background: url(../img/bg_happypeople.png) no-repeat
+
+.background-4
+	background: url(../img/bg_ironman.png) no-repeat
+
+.background-5
+	background: url(../img/bg_lanterna.png) no-repeat
+
+.background-6
+	background: url(../img/bg_mountain.png) no-repeat
+
+.background-7
+	background: url(../img/bg_ocean.png) no-repeat
+
+
+
+
+
+
+
