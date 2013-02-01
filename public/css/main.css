@@ -30,8 +30,8 @@ div, ul, li {
   -webkit-box-shadow: 0px 1px 5px #888888; }
 
 header {
-  background: rgba(0, 0, 0, 0.2);
-  height: 1em;
+  background: rgba(0, 0, 0, 0.15);
+  height: 1.2em;
   padding: 0.8em; }
   header #header-content h1 {
     float: left;
@@ -42,7 +42,9 @@ header {
     height: 60px; }
   header #header-content ul {
     float: right;
-    font-size: 0.8em; }
+    font-size: 0.75em;
+    position: relative;
+    top: 0.6em; }
     header #header-content ul li {
       float: left; }
       header #header-content ul li a {
@@ -62,14 +64,9 @@ header {
   #main #sharing {
     margin-top: 7em; }
     #main #sharing h1 {
-      color: yellow;
-      font-family: "Exo";
-      font-size: 5.8em;
-      font-weight: 900;
-      font-style: italic;
-      line-height: 0.78em;
-      letter-spacing: -2px;
-      -webkit-text-stroke: 5px #18183f; }
+      background: url(../img/sharingpeople.png) no-repeat;
+      height: 158px;
+      text-indent: -9999px; }
     #main #sharing h2 {
       color: yellow;
       font-family: "Exo";
