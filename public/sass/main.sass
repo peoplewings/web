@@ -30,7 +30,6 @@ div, ul, li
 	height: 637px
 	position: absolute
 	z-index: -1
-	@include sombrac(0px, 1px, 5px, #888)
 
 header
 	background: rgba(0, 0, 0, 0.15)
@@ -134,7 +133,6 @@ header
 footer
 	background: #DDD
 	padding: 0.5em
-	@include sombrac(0px, 1px, 5px, #888)
 	#footer-content
 		overflow: hidden
 		font-size: 0.7em
@@ -192,24 +190,30 @@ footer
 
 .icon
 	float: left
-	overflow: hidden
 	width: 55px
-	height: 55px
+	height: 80px
 	margin-right: 0.5em
 	text-indent: -9999px
-	background: orange // default icons
 
 .all
 	background: url(../img/icon_all.png) no-repeat
+	&:hover
+		background: url(../img/icon_all_selected.png) no-repeat
 
 .transport
 	background: url(../img/icon_transport.png) no-repeat
-	
+	&:hover
+		background: url(../img/icon_transport_selected.png) no-repeat
+
 .accommodation
 	background: url(../img/icon_accommodation.png) no-repeat
+	&:hover
+		background: url(../img/icon_accommodation_selected.png) no-repeat
 
 .travel
 	background: url(../img/icon_trip.png) no-repeat
+	&:hover
+		background: url(../img/icon_trip_selected.png) no-repeat
 
 .follow
 	width: 33px
@@ -243,23 +247,24 @@ footer
 .light
 	font-weight: 800
 
+
 .background-1
 	background: url(../img/bg_afternoon.png) no-repeat
 
 .background-2
-	background: url(../img/bg_burncity.png) no-repeat
-
-.background-3
 	background: url(../img/bg_happypeople.png) no-repeat
 
-.background-4
+.background-3
 	background: url(../img/bg_ironman.png) no-repeat
 
+.background-4
+	background: url(../img/bg_mountain.png) no-repeat
+	
 .background-5
 	background: url(../img/bg_lanterna.png) no-repeat
 
 .background-6
-	background: url(../img/bg_mountain.png) no-repeat
+	background: url(../img/bg_burncity.png) no-repeat
 
 .background-7
 	background: url(../img/bg_ocean.png) no-repeat
