@@ -41,6 +41,8 @@ define(function(require){
 				totalCount: results.count,
 				results: results.profiles.map(function(result) {
 					result.id = result.resourceUri.split("/")[4];
+					result.replyTime = moment.duration(result.replyTime).humanize();
+
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
 					return result;
 				})
