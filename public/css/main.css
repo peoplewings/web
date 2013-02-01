@@ -9,7 +9,7 @@ a {
   text-decoration: none;
   color: #555555; }
   a:hover {
-    color: #f8ff3c; }
+    color: yellow; }
 
 li {
   list-style: none; }
@@ -21,55 +21,57 @@ div, ul, li {
  * HTML
  * ========================================================================== */
 #wrapper {
-  background: #97d9e6;
-  background: url(http://lorempixel.com/1600/700/city) no-repeat; }
+  background: url(../img/bg_mountain.png) no-repeat; }
   #wrapper header {
-    background: rgba(0, 0, 0, 0.4);
-    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    height: 1em;
     padding: 0.8em; }
     #wrapper header #header-content h1 {
       float: left;
-      background: orange; }
+      position: relative;
+      background: url(../img/peoplewings.png) no-repeat;
+      text-indent: -9999px;
+      width: 237px;
+      height: 60px; }
     #wrapper header #header-content ul {
       float: right;
       font-size: 0.8em; }
       #wrapper header #header-content ul li {
         float: left; }
         #wrapper header #header-content ul li a {
-          color: #003e57;
+          color: #18183f;
           font-weight: bold; }
           #wrapper header #header-content ul li a:hover {
-            color: #f8ff3c; }
+            color: yellow; }
         #wrapper header #header-content ul li .a-underline {
           text-decoration: underline; }
         #wrapper header #header-content ul li span {
-          color: #003e57;
+          color: #18183f;
           margin-left: 0.8em;
           margin-right: 0.8em; }
   #wrapper #main {
     width: 100%;
-    height: 400px;
-    border-bottom: 2px solid #80b7c9; }
+    height: 400px; }
     #wrapper #main #sharing {
-      margin-top: 5em; }
+      margin-top: 7em; }
       #wrapper #main #sharing h1 {
-        color: #f8ff3c;
+        color: yellow;
         font-family: "Exo";
         font-size: 5em;
         font-weight: 900;
         font-style: italic;
         line-height: 0.78em;
         letter-spacing: -2px;
-        -webkit-text-stroke: 3px #003e57; }
+        -webkit-text-stroke: 3px #18183f; }
       #wrapper #main #sharing h2 {
-        color: #f8ff3c;
+        color: yellow;
         font-family: "Exo";
-        font-size: 1.3em;
+        font-size: 1.5em;
         font-weight: 900;
         font-style: italic;
         line-height: 0.78em;
         letter-spacing: -1px;
-        -webkit-text-stroke: 2px #003e57;
+        -webkit-text-stroke: 2px #18183f;
         margin-top: 0.7em;
         margin-bottom: 1.2em; }
   #wrapper #categories {
@@ -88,13 +90,13 @@ div, ul, li {
       float: left;
       margin-right: 1em; }
       #wrapper #landing-form form label {
-        color: #003e57;
+        color: #18183f;
         margin: 0.5em;
         font-family: "Exo";
-        font-size: 1.2em;
+        font-size: 1.4em;
         font-weight: 900;
         font-style: italic;
-        -webkit-text-stroke: 0.8px #f8ff3c; }
+        -webkit-text-stroke: 0.8px yellow; }
       #wrapper #landing-form form input {
         padding: 0.8em;
         margin: 0.5em; }
@@ -108,23 +110,22 @@ div, ul, li {
     #wrapper #landing-form a {
       margin-top: 0.17em; }
   #wrapper #middle {
-    background: white;
-    border-bottom: 2px solid #cccccc;
     overflow: hidden; }
     #wrapper #middle #middle-content {
       overflow: hidden;
       margin-top: 3em;
       margin-bottom: 3em; }
       #wrapper #middle #middle-content div {
-        background: orange;
-        border: 1px dotted gray;
-        height: 8em;
-        width: 14em;
+        width: 230px;
+        height: 133px;
         float: left;
-        margin-right: 0.8em; }
+        margin-right: 0.6em; }
   #wrapper footer {
     background: #dddddd;
-    padding: 0.5em; }
+    padding: 0.5em;
+    box-shadow: 0px 1px 5px #888888;
+    -moz-box-shadow: 0px 1px 5px #888888;
+    -webkit-box-shadow: 0px 1px 5px #888888; }
     #wrapper footer #footer-content {
       overflow: hidden;
       font-size: 0.7em;
@@ -155,26 +156,10 @@ div, ul, li {
 /* ==========================================================================
  * Classes
  * ========================================================================== */
-.spot {
-  float: left;
-  text-indent: -9999px; }
-
-.light {
-  font-weight: 800; }
-
-.icon {
-  background: orange;
-  float: left;
-  overflow: hidden;
-  width: 49px;
-  height: 49px;
-  border: 1px dotted black;
-  margin-right: 0.5em;
-  text-indent: -9999px; }
-
-.follow {
-  width: 30px;
-  height: 30px; }
+.limits {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto; }
 
 .search-button {
   float: left;
@@ -182,24 +167,72 @@ div, ul, li {
   border-radius: 1em;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
-  color: #f8ff3c;
-  background: #003e57;
+  color: yellow;
+  background: #18183f;
   font-family: "Exo";
   font-size: 1.2em;
   font-weight: 500;
   font-style: italic;
   line-height: 0.78em;
-  border: 2px solid #f8ff3c;
+  border: 2px solid yellow;
   transition: box-shadow 0.5s;
   -moz-transition: box-shadow 0.5s;
   -webkit-transition: box-shadow 0.5s;
   -o-transition: box-shadow 0.5s; }
   .search-button:hover {
-    box-shadow: 0px 0px 20px #f8ff3c;
-    -moz-box-shadow: 0px 0px 20px #f8ff3c;
-    -webkit-box-shadow: 0px 0px 20px #f8ff3c; }
+    box-shadow: 0px 0px 20px yellow;
+    -moz-box-shadow: 0px 0px 20px yellow;
+    -webkit-box-shadow: 0px 0px 20px yellow; }
 
-.limits {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto; }
+.icon {
+  float: left;
+  overflow: hidden;
+  width: 55px;
+  height: 55px;
+  margin-right: 0.5em;
+  text-indent: -9999px;
+  background: orange; }
+
+.all {
+  background: url(../img/icon_all.png) no-repeat; }
+
+.transport {
+  background: url(../img/icon_transport.png) no-repeat; }
+
+.accommodation {
+  background: url(../img/icon_accommodation.png) no-repeat; }
+
+.travel {
+  background: url(../img/icon_trip.png) no-repeat; }
+
+.follow {
+  width: 33px;
+  height: 33px; }
+
+.facebook {
+  background: url(../img/icon_fb.png) no-repeat; }
+
+.twitter {
+  background: url(../img/icon_tw.png) no-repeat; }
+
+.youtube {
+  background: url(../img/icon_yt.png) no-repeat; }
+
+.spot {
+  float: left;
+  text-indent: -9999px; }
+
+.house {
+  background: url(../img/spot_car.png) no-repeat; }
+
+.car {
+  background: url(../img/spot_house.png) no-repeat; }
+
+.trip {
+  background: url(../img/spot_trip.png) no-repeat; }
+
+.offer {
+  background: url(../img/spot_offer.png) no-repeat; }
+
+.light {
+  font-weight: 800; }
