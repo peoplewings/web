@@ -12,16 +12,20 @@ define([
 		routes: {
 			"register": "register",
 			"login": "login",
-			"activate/:id": "activate",
+			"activate/:token": "activate",
 			"forgot": "forgotPassword",
-			"forgot/:id": "forgotPassword",
+			"forgot/:token": "forgotPassword",
 			"search/?:params": "search",
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
-			 "profiles/:id":"profile",
-			 "profiles/:id/preview":"previewProfile",
+
+			 "profiles/:id/edit":"profile",
+			 "profiles/:id/about":"previewProfile",
+			 "profiles/:id/wings":"previewProfile",
+
 			 "wings": "wings",
+
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
@@ -58,8 +62,6 @@ define([
 			})
 		},
 		search: function(params){
-			console.log("PARAMS:", params, $.deparam(params))
-
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
 
@@ -84,16 +86,17 @@ define([
 
 		},
 		profile: function(id){
-			var scope = this
-			if (+id === api.getUserId()){
-				if (!this.profileView){
+			var self = this
+
+			if (+id !== api.getUserId())
+				this.showUserProfile(id)
+
+			if (!this.profileView){
 				require(["views/app/profile"], function(profileView){
-					scope.profileView = new profileView()
+					self.profileView = new profileView()
 				})
-				} else this.profileView.render()	;
-			} else {
-				this.showUserProfile(id);
-			}
+			} else this.profileView.render()
+			
 		},
 		showUserProfile: function(userId){
 			var scope = this
@@ -107,14 +110,17 @@ define([
 		},
 		previewProfile: function(id){
 			var scope = this
-			if (!this.previewView){
-				require(["views/app/preview"], function(previewView){
-					scope.previewView = previewView
-				})
+			if (+id === api.getUserId()){
+				if (!this.previewView){
+					require(["views/app/preview"], function(previewView){
+						scope.previewView = previewView
+					})
+				} else {
+					this.previewView.render()	
+				}	
 			} else {
-				this.previewView.render()	
+				this.showUserProfile(id)
 			}
-
 		},
 		wings: function(){
 			var scope = this

@@ -27,13 +27,12 @@ define([
 		}
 	},
 	goodbye: function(){
+		api.clearAuthToken()
+
 		var profile = new ProfileModel({id: api.getUserId()})
 		var user = new UserModel({id: api.getUserId()})		
-		
 		user.clear()
 		profile.clear()
-
-		api.clearAuthToken()
 		
 		window.router.navigate("/#/")
 		location.reload()
