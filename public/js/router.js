@@ -25,7 +25,6 @@ define([
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
-			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
 		},
@@ -86,20 +85,15 @@ define([
 		},
 		profile: function(id){
 			var scope = this
-			if (!this.profileView){
+			if (+id === api.getUserId()){
+				if (!this.profileView){
 				require(["views/app/profile"], function(profileView){
 					scope.profileView = new profileView()
 				})
-			} else this.profileView.render()
-		},
-		previewProfile: function(id){
-			var scope = this
-			if (!this.previewView){
-				require(["views/app/preview"], function(previewView){
-					scope.previewView = previewView
-				})
-			} else this.previewView.render()
-
+				} else this.profileView.render()	;
+			} else {
+				this.showUserProfile(id);
+			}
 		},
 		showUserProfile: function(userId){
 			var scope = this
@@ -110,6 +104,17 @@ define([
 				})
 			} else
 				this.userProfileView.render(userId)
+		},
+		previewProfile: function(id){
+			var scope = this
+			if (!this.previewView){
+				require(["views/app/preview"], function(previewView){
+					scope.previewView = previewView
+				})
+			} else {
+				this.previewView.render()	
+			}
+
 		},
 		wings: function(){
 			var scope = this

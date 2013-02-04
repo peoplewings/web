@@ -10,8 +10,6 @@ define(function(require) {
 
 	var ResultsView = require("views/home/results")
 	
-
-
 	var mainHomeView = Backbone.View.extend({
 		
 		el: "#main",
@@ -20,12 +18,9 @@ define(function(require) {
 			"submit form#accomodation-search-form": "submitSearch",
 		},
 
-		
 		initialize: function() {
-			
 
 		},
-
 		
 		render: function(params) {
 			$(this.el).html(mainTpl);
@@ -75,10 +70,10 @@ define(function(require) {
 
 		renderResults: function(query, results) {
 
-				this.resultsView = new ResultsView({
-					logged: api.userIsLoggedIn(),
-					query: query,
-				})	
+			this.resultsView = new ResultsView({
+				logged: api.userIsLoggedIn(),
+				query: query,
+			})	
 
 			this.resultsView.render(results);
 		},
@@ -91,15 +86,6 @@ define(function(require) {
 			formData.page = 1;
 			
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
-			
-			/*api.get(api.getApiVersion() + "/profiles", formData)
-			.prop('data')
-			.then(function(results){
-				self.renderResults(formData, results);
-			})
-			.fin(function(){
-				router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
-			})*/
 		},
 
 	});

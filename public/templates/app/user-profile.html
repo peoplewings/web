@@ -47,12 +47,18 @@
 						<dl class="dl-horizontal">
 							<dt>Gender</dt>
 							<dd>{{gender}}</dd>
+							{{#if birthday}}
 							<dt>Birthday</dt>
 							<dd>{{birthday}}</dd>
+							{{/if}}
+							{{#if interestedIn.length}}
 							<dt>Interested in</dt>
 							<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
+							{{/if}}
+							{{#if civilState}}
 							<dt>Relationship status</dt>
 							<dd>{{civilState}}</dd>
+							{{/if}}
 							{{#if languages.length}}
 							<dt>Languages</dt>
 								<dd>
