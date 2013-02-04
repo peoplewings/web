@@ -2,8 +2,8 @@
 @import _effects
 
 /* ==========================================================================
-   Initial
-   ========================================================================== */
+	 Initial
+	 ========================================================================== */
 
 body
 	font-family: 'Arial', sans-serif
@@ -22,8 +22,8 @@ div, ul, li
 	display: block
 
 /* ==========================================================================
-   HTML
-   ========================================================================== */
+	 HTML
+	 ========================================================================== */
 
 #background-roller
 	width: 100%
@@ -78,7 +78,7 @@ header
 				style: italic
 			line-height: 0.78em
 			letter-spacing: -1px
-			@include borde(2px, #18183F)
+			@include borde(2.5px, #18183F)
 			margin:
 				top: 0.7em
 				bottom: 0.3em
@@ -105,19 +105,25 @@ header
 				size: 1.4em 
 				weight: 900
 				style: italic
-			@include borde(0.8px, #FFFF00)
+			@include borde(1px, #FFFF00)
 		input
-			padding: 0.8em
+			font:
+				family: Arial
+				size: 1em
+			padding: 0.7em
 			margin: 0.5em
+			border: 1px solid #CCC
+			@include radio(5px)
 		#inputWings
-			width: 18em
+			width: 15em
 		#age
-			width: 6em
+			width: 5.2em
 		select
-			background: #FFF
 			height: 3.5em
+		span
+			background: #FFF
 	a
-		margin-top: 0.17em
+		margin-top: 0.6em
 #middle
 	overflow: hidden
 	border-bottom: 2px solid #EEE
@@ -130,7 +136,16 @@ header
 			width: 230px
 			height: 133px
 			float: left
-			margin-right: 0.6em
+			h1
+				font:
+					family: 'Exo'
+					size: 1.4em
+					weight: 900
+					style: italic
+				color: #18183F
+			.light-500
+				font-weight: 500
+
 footer
 	background: #DDD
 	padding: 0.2em
@@ -165,8 +180,8 @@ footer
 					margin-right: 0.2em
 
 /* ==========================================================================
-   Classes
-   ========================================================================== */
+	 Classes
+	 ========================================================================== */
 
 .limits
 	max-width: 960px
@@ -185,11 +200,15 @@ footer
 		weight: 500
 		style: italic
 	line-height: 0.78em
-	//outline: 2px solid
 	border: 2px solid #FFFF00
 	@include transition(box-shadow, 0.5s)
 	&:hover
 		@include sombrac(0px, 0px, 20px, #FFFF00)
+
+.share-wings
+	margin-top: 0.6em
+	font-size: 1em
+	padding: 0.5em 1.3em
 
 .icon
 	float: left
@@ -232,8 +251,8 @@ footer
 	background: url(../img/icon_yt.png) no-repeat
 
 .spot
-	float: left
 	text-indent: -9999px
+	margin-right: 0.6em
 
 .house
 	background: url(../img/spot_car.png) no-repeat
@@ -245,9 +264,10 @@ footer
 	background: url(../img/spot_trip.png) no-repeat
 
 .offer
-	background: url(../img/spot_offer.png) no-repeat
+	margin-left: 0.7em
+	width: 200px !important
 
-.light
+.light-800
 	font-weight: 800
 
 
@@ -271,10 +291,3 @@ footer
 
 .background-7
 	background: url(../img/bg_ocean.png) no-repeat
-
-
-
-
-
-
-

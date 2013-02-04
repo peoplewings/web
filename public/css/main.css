@@ -72,7 +72,7 @@ header {
       font-style: italic;
       line-height: 0.78em;
       letter-spacing: -1px;
-      -webkit-text-stroke: 2px #18183f;
+      -webkit-text-stroke: 2.5px #18183f;
       margin-top: 0.7em;
       margin-bottom: 0.3em; }
 
@@ -100,19 +100,26 @@ header {
       font-size: 1.4em;
       font-weight: 900;
       font-style: italic;
-      -webkit-text-stroke: 0.8px yellow; }
+      -webkit-text-stroke: 1px yellow; }
     #landing-form form input {
-      padding: 0.8em;
-      margin: 0.5em; }
+      font-family: Arial;
+      font-size: 1em;
+      padding: 0.7em;
+      margin: 0.5em;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px; }
     #landing-form form #inputWings {
-      width: 18em; }
+      width: 15em; }
     #landing-form form #age {
-      width: 6em; }
+      width: 5.2em; }
     #landing-form form select {
-      background: white;
       height: 3.5em; }
+    #landing-form form span {
+      background: white; }
   #landing-form a {
-    margin-top: 0.17em; }
+    margin-top: 0.6em; }
 
 #middle {
   overflow: hidden;
@@ -124,8 +131,15 @@ header {
     #middle #middle-content div {
       width: 230px;
       height: 133px;
-      float: left;
-      margin-right: 0.6em; }
+      float: left; }
+      #middle #middle-content div h1 {
+        font-family: "Exo";
+        font-size: 1.4em;
+        font-weight: 900;
+        font-style: italic;
+        color: #18183f; }
+      #middle #middle-content div .light-500 {
+        font-weight: 500; }
 
 footer {
   background: #dddddd;
@@ -190,6 +204,11 @@ footer {
     -moz-box-shadow: 0px 0px 20px yellow;
     -webkit-box-shadow: 0px 0px 20px yellow; }
 
+.share-wings {
+  margin-top: 0.6em;
+  font-size: 1em;
+  padding: 0.5em 1.3em; }
+
 .icon {
   float: left;
   width: 55px;
@@ -231,8 +250,8 @@ footer {
   background: url(../img/icon_yt.png) no-repeat; }
 
 .spot {
-  float: left;
-  text-indent: -9999px; }
+  text-indent: -9999px;
+  margin-right: 0.6em; }
 
 .house {
   background: url(../img/spot_car.png) no-repeat; }
@@ -244,9 +263,10 @@ footer {
   background: url(../img/spot_trip.png) no-repeat; }
 
 .offer {
-  background: url(../img/spot_offer.png) no-repeat; }
+  margin-left: 0.7em;
+  width: 200px !important; }
 
-.light {
+.light-800 {
   font-weight: 800; }
 
 .background-1 {
