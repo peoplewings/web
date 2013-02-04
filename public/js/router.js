@@ -19,8 +19,8 @@ define([
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
-			 "profile":"profile",
-			 "profile/preview":"previewProfile",
+			 "profiles/:id":"profile",
+			 "profiles/:id/preview":"previewProfile",
 			 "wings": "wings",
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
@@ -84,7 +84,7 @@ define([
 			} else this.login()
 
 		},
-		profile: function(){
+		profile: function(id){
 			var scope = this
 			if (!this.profileView){
 				require(["views/app/profile"], function(profileView){
@@ -92,7 +92,7 @@ define([
 				})
 			} else this.profileView.render()
 		},
-		previewProfile: function(){
+		previewProfile: function(id){
 			var scope = this
 			if (!this.previewView){
 				require(["views/app/preview"], function(previewView){
