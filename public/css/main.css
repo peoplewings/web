@@ -7,7 +7,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #555555; }
+  color: #18183f; }
   a:hover {
     color: yellow; }
 
@@ -45,8 +45,7 @@ header {
     header #header-content ul li {
       float: left; }
       header #header-content ul li a {
-        color: #18183f;
-        font-weight: bold; }
+        font-size: 11px; }
         header #header-content ul li a:hover {
           color: yellow; }
       header #header-content ul li .a-underline {
@@ -167,6 +166,9 @@ footer {
     font-size: 0.7em;
     color: #555555;
     padding-top: 1.5em; }
+    footer #footer-content a:hover {
+      color: #18183f;
+      text-decoration: underline; }
     footer #footer-content div {
       float: left; }
       footer #footer-content div ul li {
