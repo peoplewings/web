@@ -7,24 +7,29 @@ define([
 	"models/Account",
 ], function($, Backbone, api, homeView, appHomeView, UserModel){
 
+
 	var Router = Backbone.Router.extend({
 		routes: {
 			"register": "register",
 			"login": "login",
-			"activate/:id": "activate",
+			"activate/:token": "activate",
 			"forgot": "forgotPassword",
-			"forgot/:id": "forgotPassword",
+			"forgot/:token": "forgotPassword",
 			"search/?:params": "search",
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
-			 "profile":"profile",
-			 "profile/preview":"previewProfile",
+
+			 "profiles/:id/edit":"profile",
+			 "profiles/:id/about":"previewProfile",
+			 "profiles/:id/wings":"previewProfile",
+
 			 "wings": "wings",
+			 "wings/:id": "wings",
+
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
-			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
 		},
@@ -58,8 +63,6 @@ define([
 			})
 		},
 		search: function(params){
-			console.log("PARAMS:", params, $.deparam(params))
-
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
 
@@ -69,8 +72,6 @@ define([
 				homeView.renderResults(unserialized, results);
 			})
 		},
-
-		
 		//Logged User hashs
 		logout: function(){
 			require(["views/app/logout"], function(logoutView){
@@ -85,22 +86,18 @@ define([
 			} else this.login()
 
 		},
-		profile: function(){
-			var scope = this
+		profile: function(id){
+			var self = this
+
+			if (+id !== api.getUserId())
+				this.showUserProfile(id)
+
 			if (!this.profileView){
 				require(["views/app/profile"], function(profileView){
-					scope.profileView = new profileView()
+					self.profileView = new profileView()
 				})
 			} else this.profileView.render()
-		},
-		previewProfile: function(){
-			var scope = this
-			if (!this.previewView){
-				require(["views/app/preview"], function(previewView){
-					scope.previewView = previewView
-				})
-			} else this.previewView.render()
-
+			
 		},
 		showUserProfile: function(userId){
 			var scope = this
@@ -112,14 +109,32 @@ define([
 			} else
 				this.userProfileView.render(userId)
 		},
-		wings: function(){
+		previewProfile: function(id){
 			var scope = this
+			if (+id === api.getUserId()){
+				if (!this.previewView){
+					require(["views/app/preview"], function(previewView){
+						scope.previewView = previewView
+					})
+				} else {
+					this.previewView.render()	
+				}	
+			} else {
+				this.showUserProfile(id)
+			}
+		},
+
+		wings: function(wingId){
+			var scope = this
+			debugger
 			if (!this.wingsView){
 				require(["views/app/wings"], function(wingsView){
-						wingsView.render()
-					})
-			} else this.wingsView.render()
+						scope.wingsView = wingsView;
+						scope.wingsView.render(wingId)
+				})
+			} else this.wingsView.render(wingId)
 		},
+		
 		showNotifications: function(filters){
 			var scope = this
 			if (!this.notificationsView){

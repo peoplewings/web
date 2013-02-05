@@ -29,11 +29,9 @@ define(function(require){
 		setQuery: function(query){
 			this.query = query;
 		},
-	    render: function(results){
-	    	var self = this;
+		render: function(results){
+			var self = this;
 
-	    	console.log("render results ", new Date())
-	    	debugger
 			this.$el.html(resultsTpl({
 				blurrStyle: this.blurrStyle,
 				startResult: results.startResult,
@@ -48,7 +46,7 @@ define(function(require){
 				})
 			}));
 
-	    },
+		},
 		nextPage: function(evt){
 			var scope = this
 			this.query.page++

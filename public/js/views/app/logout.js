@@ -27,16 +27,13 @@ define([
 		}
 	},
 	goodbye: function(){
+		api.clearAuthToken()
+
 		var profile = new ProfileModel({id: api.getUserId()})
 		var user = new UserModel({id: api.getUserId()})		
-		//Remove memory models!!
 		user.clear()
 		profile.clear()
-		//if server says OK we clear the authToken from session or local storage
-		api.clearAuthToken()
-		//Destroy old views??
-		//appHeaderView.destroy()
-		//$("#feedback-btn").hide()
+		
 		window.router.navigate("/#/")
 		location.reload()
 	}
