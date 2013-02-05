@@ -916,10 +916,19 @@ input, button, select, textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 label {
-  display: block;
-  margin-bottom: 5px; }
+  display: block; }
 
-select, textarea {
+select {
+  border: 1px solid #cccccc;
+  padding: 0.5em 1.5em 0.5em 0.5em;
+  font-size: 1em;
+  color: #aaaaaa;
+  font-family: Arial;
+  box-shadow: inset 0px 0px 3px #dddddd;
+  -webkit-box-shadow: inset 0px 0px 3px #dddddd;
+  -webkit-appearance: none; }
+
+textarea {
   display: inline-block;
   height: 20px;
   padding: 4px 6px;
@@ -932,16 +941,13 @@ select, textarea {
   border-radius: 3px; }
 
 input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
-  display: inline-block;
-  height: 20px;
-  padding: 4px 6px;
-  margin-bottom: 9px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #555555;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px; }
+  padding: 0.7em;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: inset 1px 1px 4px #eeeeee;
+  box-shadow: inset 1px 1px 4px #eeeeee; }
 
 .uneditable-input {
   display: inline-block;
@@ -1032,16 +1038,18 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
   width: auto; }
 
 select, input[type="file"] {
-  height: 30px;
+  height: 41px;
   /* In IE7, the height of the select element cannot be changed by height, only font-size */
   *margin-top: 4px;
-  /* For IE7, add top margin to align select with labels */
-  line-height: 30px; }
+  /* For IE7, add top margin to align select with labels */ }
 
 select {
   width: 220px;
-  border: 1px solid #bbbbbb;
-  background-color: white; }
+  border: 1px solid #cccccc;
+  background-color: white;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   select[multiple], select[size] {
     height: auto; }
   select:focus {
@@ -1098,7 +1106,7 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   width: 60px; }
 
 .input-small {
-  width: 90px; }
+  width: 108px; }
 
 .input-medium {
   width: 150px; }
@@ -1107,7 +1115,7 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   width: 210px; }
 
 .input-xlarge {
-  width: 100px; }
+  width: 240px; }
 
 .input-xxlarge {
   width: 530px; }
@@ -1255,6 +1263,11 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
   box-shadow: 0 0 6px #f8b9b7; }
 
 .form-actions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 40px;
+  float: right;
+  clear: both;
   *zoom: 1; }
   .form-actions:before {
     display: table;
@@ -1440,8 +1453,13 @@ legend + .control-group {
   -webkit-margin-top-collapse: separate; }
 
 .form-horizontal .control-group {
-  float: left;
+  display: inline;
   *zoom: 1; }
+  .form-horizontal .control-group label {
+    float: left;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    margin-left: 2.5em; }
   .form-horizontal .control-group:before {
     display: table;
     content: "";
@@ -1451,13 +1469,18 @@ legend + .control-group {
     content: "";
     line-height: 0;
     clear: both; }
-.form-horizontal .control-label {
-  float: left; }
 .form-horizontal .controls {
-  float: left;
+  display: inline;
   *display: inline-block;
   *padding-left: 20px;
   *margin-left: 0; }
+  .form-horizontal .controls input, .form-horizontal .controls select {
+    margin-right: 3px;
+    margin-bottom: 6px; }
+  .form-horizontal .controls select.input-small {
+    background: url(../img/arrow.png) no-repeat 5.6em 1.2em; }
+  .form-horizontal .controls select.input-medium {
+    background: url(../img/arrow.png) no-repeat 8.6em 1.2em; }
   .form-horizontal .controls:first-child {
     *padding-left: 160px; }
 .form-horizontal .help-block {
@@ -4901,5 +4924,31 @@ button.close {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important; } }
+/* ==========================================================================
+ * My Classes
+ * ========================================================================== */
 .nod {
   display: none; }
+
+.btn-peoplewings {
+  float: left;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  color: yellow;
+  background: #18183f;
+  font-family: "Exo";
+  font-size: 1.2em;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 0.78em;
+  border: 2px solid yellow;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  .btn-peoplewings:hover {
+    box-shadow: 0px 0px 20px yellow;
+    -moz-box-shadow: 0px 0px 20px yellow;
+    -webkit-box-shadow: 0px 0px 20px yellow; }
