@@ -1,169 +1,129 @@
 define(function(require) {
 
-    var $ = require("jquery");
-    var Backbone = require("backbone");
-    var api = require("api2");
-    var utils = require("utils");
-    var wingsTpl = require("tmpl!templates/app/wings.html");
-    var alertTpl = require("tmpl!templates/lib/alert.html");
-    var ProfileModel = require("models/Profile");
-    var WingModel = require("models/Wing");
+	var $ = require("jquery");
+	var Backbone = require("backbone");
+	var api = require("api2");
+	var utils = require("utils");
+	var wingsTpl = require("tmpl!templates/app/wings.html");
+	var alertTpl = require("tmpl!templates/lib/alert.html");
+	var wingView = require("views/app/wing");
+	var ProfileModel = require("models/Profile");
+	var WingModel = require("models/Wing");
 
-    var spinner = new Spinner(utils.getSpinOpts());
+	var spinner = new Spinner(utils.getSpinOpts());
 
-    var wingsView = Backbone.View.extend({
+	var wingsView = Backbone.View.extend({
 
-        el: "#main",
+		el: "#main",
 
-        events: {
-            "click #add-wing-btn": "createWing",
-            "change [name=generalStatus]": "changeStatus",
-            "change #wings-list": "updateWing",
-        },
+		events: {
+			"change [name=generalStatus]": "changeStatus",
+			"click #add-wing-btn": function(evt){
+				this.openWing({ update: false})
+			},
+			"change #wings-list": function(evt){
+				var id = evt.target.value.split("accomodations/", 2)[1]
+				console.log("Change to... ", id)
+				router.navigate("/#/wings/" + id);
+			}
+		},
 
-        initialize: function() {
-            debugger
-            this.model = new ProfileModel({
-                id: api.getProfileId()
-            })
-            this.model.on("change", this.render.bind(this))
+		initialize: function() {
+			debugger
+			this.model = new ProfileModel({
+				id: api.getUserId()
+			})
+			this.model.on("change", this.render.bind(this, null))
 
-            if (!this.model.get("pwState"))
-            this.model.fetch()
+			if (!this.model.get("pwState"))
+				this.model.fetch()
 
-            this.wingsList = new Backbone.Collection();
+			this.wingsList = new Backbone.Collection();
+			this.getUserWings()
+		},
 
-            this.getUserWings()
-        },
-        render: function(url) {
+		render: function(wingId) {
+			debugger
+			$(this.el).html(wingsTpl(
+				{
+					wings: this.wingsList.toJSON(),
+					generalStatus: this.model.get("pwState")
+				}
+			));
 
-            $(this.el).html(wingsTpl({
-                wings: this.wingsList.toJSON()
-            },
-            {
-                generalStatus: this.model.get("pwState")
-            }));
+			if (wingId){
+				this.openWing({ id: wingId, update: true});
+			}
+		},
 
-        },
+		openWing: function(options){
 
-        getUserWings: function() {
-            var sc = this
-            api.get(api.getApiVersion() + "/profiles/" + api.getProfileId() + "/accomodations/list", {})
-            .prop('data')
-            .then(function(data) {
-                sc.wingsList.add(data)
-            })
-            .fin(function() {
-                sc.render()
-            })
-        },
+			this.wingView = new wingView({
+					papa: self,
+					id: options.id,
+					update: options.update,
+			})
 
-        addWingToList: function(wing) {
-            this.wings.push(wing)
-            this.render()
-        },
-        updateWingToList: function(item) {
-            //Should only be invoked if Wing name is dirty
-            var updated = _.find(this.wings,
-            function(wing) {
-                return wing.uri == item.uri
-            })
-            updated.name = item.name
-            this.render()
-        },
-        deleteWingFromList: function(uri) {
-            this.wings = _.reject(this.wings,
-            function(wing) {
-                return wing.uri == uri
-            })
-            this.render()
+			this.wingView.render(options.update);
 
-        },
-        createWing: function() {
-            //Refactor with changeWing!!
-            var scope = this
-            if (!this.wingView) {
-                require(["views/app/wing"],
-                function(wingView) {
-                    scope.wingView = new wingView({
-                        papa: scope
-                    })
-                    scope.wingView.render({
-                        target: "#my-wings",
-                        update: false
-                    })
-                })
-            } else {
-                this.wingView.close()
-                require(["views/app/wing"],
-                function(wingView) {
-                    scope.wingView = new wingView({
-                        papa: scope
-                    })
-                    scope.wingView.render({
-                        target: "#my-wings",
-                        update: false
-                    })
-                })
+		},
 
-            }
-        },
-        changeStatus: function(e) {
-            var sc = this
-            spinner.spin(document.getElementById('main'));
-            api.put(api.getApiVersion() + "/profiles/" + api.getProfileId(), {
-                pwState: e.target.value
-            })
-            .prop('msg')
-            .then(function(msg) {
-                spinner.stop();
-                return msg;
-            })
-            .fin(function(msg) {
-                sc.$el.prepend(alertTpl({
-                    extraClass: 'alert-success',
-                    heading: msg
-                }));
-            })
-        },
+		getUserWings: function() {
+			var self = this
+			debugger
+			api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
+			.prop('data')
+			.then(function(data) {
+				self.wingsList.reset(data)
+			})
+			.fin(function(){
+				self.render()
+			})
+		},
 
-        updateWing: function(e) {
-            console.log(this.wings)
-            //Refactor with createWing
-            var scope = this
-            //console.log(e.target.value)
-            if (e.target.value) {
-                var id = e.target.value.split("accomodations/", 2)[1]
-                if (!this.wingView) {
-                    require(["views/app/wing"],
-                    function(wingView) {
-                        scope.wingView = new wingView({
-                            papa: scope
-                        })
-                        scope.wingView.render({
-                            target: "#my-wings",
-                            update: true,
-                            id: id
-                        })
-                    })
-                } else {
-                    this.wingView.close()
-                    require(["views/app/wing"],
-                    function(wingView) {
-                        scope.wingView = new wingView({
-                            papa: scope
-                        })
-                        scope.wingView.render({
-                            target: "#my-wings",
-                            update: true,
-                            id: id
-                        })
-                    })
+		changeStatus: function(e) {
+			var self = this
+			spinner.spin(document.getElementById('main'));
+			api.put(api.getApiVersion() + "/profiles/" + api.getUserId(), {
+				pwState: e.target.value
+			})
+			.prop('msg')
+			.then(function(msg) {
+				spinner.stop();
+				return msg;
+			})
+			.fin(function(msg) {
+				self.$el.prepend(alertTpl({
+					extraClass: 'alert-success',
+					heading: msg
+				}));
+			})
+		},
 
-                }
-            }
-        }
-    });
+		addWingToList: function(wing) {
+			this.wingsList.push(wing)
+			this.render()
+		},
 
-    return new wingsView;
+		updateWingToList: function(item) {
+			//Should only be invoked if Wing name is dirty
+			var updated = _.find(this.wings,
+			function(wing) {
+				return wing.uri == item.uri
+			})
+			updated.name = item.name
+			this.render()
+		},
+
+		deleteWingFromList: function(uri) {
+			this.wingsList = _.reject(this.wingsList,
+			function(wing) {
+				return wing.uri == uri
+			})
+			this.render()
+
+		},
+	});
+
+	return new wingsView;
 });

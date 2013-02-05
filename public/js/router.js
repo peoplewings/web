@@ -25,6 +25,7 @@ define([
 			 "profiles/:id/wings":"previewProfile",
 
 			 "wings": "wings",
+			 "wings/:id": "wings",
 
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
@@ -122,14 +123,18 @@ define([
 				this.showUserProfile(id)
 			}
 		},
-		wings: function(){
+
+		wings: function(wingId){
 			var scope = this
+			debugger
 			if (!this.wingsView){
 				require(["views/app/wings"], function(wingsView){
-						wingsView.render()
-					})
-			} else this.wingsView.render()
+						scope.wingsView = wingsView;
+						scope.wingsView.render(wingId)
+				})
+			} else this.wingsView.render(wingId)
 		},
+		
 		showNotifications: function(filters){
 			var scope = this
 			if (!this.notificationsView){
