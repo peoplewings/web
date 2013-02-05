@@ -11,7 +11,7 @@
 
 	<title>Peoplewings</title>
 	<meta name="description" content="">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"> 
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/styles.css">
@@ -25,9 +25,21 @@
 	</style>
 </head>
 <body>
-		<header></header>
+		<header>
+			<div class="navbar nav navbar-fixed-top">
+				<div class="navbar-inner" style="padding: 0 15pt">
+								<a class="brand" href="#">Peoplewings</a>
+								<div class="nav-collapse">
+										<ul class="nav pull-right">
+												<li class="register-menu"><a href="#/register">Register</a></li>
+												<li class="login-menu"><a href="#/login">Login</a></li>
+										</ul>
+								</div>
+				</div>
+		</div>
+		</header>
 		<section id="main" class="container">
-				
+
 		</section>
 	<div id="feedback-btn" class="navbar-fixed-bottom" style="display:none">
 		<div class="pull-right">
@@ -36,14 +48,15 @@
 	</div>
 <!--
 		<footer class="footer navbar navbar-fixed-bottom">
-				<p> 
-			&copy; 2012 Peoplewings <a href="#" target="_blank">Terms of service</a>
-			<a href="#" target="_blank">Provacy Policy</a>
-			<a href="#" target="_blank">Help</a>
-		</p>
+			<p>
+				&copy; 2012 Peoplewings <a href="#" target="_blank">Terms of service</a>
+				<a href="#" target="_blank">Provacy Policy</a>
+				<a href="#" target="_blank">Help</a>
+			</p>
 		</footer>-->
-	<script src="js/lib/libs/spin.min.js"></script>
-	<script data-main="js/desktop" src="js/lib/libs/require.js"></script>
+	<script src="js/lib/spin.min.js"></script>
+	<script src="js/lib/moment.js"></script>
+	<script data-main="js/main" src="js/lib/require.js"></script>
 
 	<!-- Add your site or application content here -->
 

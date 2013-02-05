@@ -1,0 +1,77 @@
+<li data-type="notification-item" data-rel="{{ id }}" data-user-id="{{ senderId }}" data-user-name="{{ senderName }}">
+	<div class="row">
+
+		<div class="span2" style="overflow: hidden"><img src="{{ senderMedAvatar }}"></div>
+
+		<div>
+			<div class="span5">
+					<span class="{{#if senderConnected }}online{{/if}}"></span>
+					<a href="#/users/{{interlocutorId}}">{{ senderName }}</a>, {{ senderAge }}
+					<div>{{ senderLocation }}</div>
+					<div>Friends: {{ senderFriends }} / References: {{ senderReferences }}</div>
+			</div>
+
+			<div class="span2">
+				{{date created "MMM Do, HH:mm" }}
+			</div>
+
+			<div class="span3">
+				{{#if isMessage }}
+					<input type="button" id="open-message" value="Reply">
+					<input type="button" id="open-request" value="Request">
+					<input type="button" id="open-invite" value="Invite">
+				{{else}}
+					<input type="button" id="btn-accept" {{#unless_contains options 'accept' }}disabled{{/unless_contains}}>
+					<input type="button" id="btn-maybe"  {{#unless_contains options 'maybe' }} disabled{{/unless_contains}}>
+					<input type="button" id="btn-deny"   {{#unless_contains options 'deny' }}  disabled{{/unless_contains}}>
+				{{/if}}
+				<input type="button" id="delete-thread" value="Delete">
+			</div>
+		</div>
+
+		<div class="span10">
+			{{#if isMessage }}
+				{{ content.message }}
+			{{else}}
+				<div class="row">
+					<div class="span1">
+						<div class="state-flag
+							{{#if flagDirection }}to-me{{else}}from-me{{/if}}
+							{{enum state 'notification-state'}}">{{enum state 'notification-state'}}</div>
+					</div>
+				</div>
+
+				<div class="params-box">
+					<label>Requested wing: <strong {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</strong></label>
+					<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>
+					<label>Deperture date: <strong {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate }}</strong></label>
+					<label>Number of surfers: <strong {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ parameters.capacity }}</strong></label>
+					<label>Arriving via: {{ parameters.arrivingVia }}</label>
+				</div>
+
+				<div>
+					{{ content.message }}
+				</div>
+			{{/if}}
+		</div>
+	</div>
+</li>
+
+	<!--
+		<div class="{{#unless read }}unread{{/unless}}">
+				{{#if isMessage }}
+					<div class="span5 offset1">{{ content }}</div>
+				{{else}}
+					<div class="span3 offset1">
+							<div>{{enum kind 'notification-type' }}</div>
+							<div>{{ message }}</div>
+					</div>
+					<div class="span1">{{ numPeople }} people</div>
+					<div class="span1">
+							<div>{{date startDate }}</div>
+							<div>{{date endDate }}</div>
+					</div>
+				{{/if}}
+				<div class="span1">{{date created "MMM Do" }}</div>
+		</div>
+	-->

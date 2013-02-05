@@ -2,12 +2,11 @@ define([
   "jquery",
   "backbone",
   "api",
-  "views/home/header",
   "views/app/header",
   "views/home/main",
-  "models/User",
+  "models/Account",
   "models/Profile",
-], function($, Backbone, api, headerView, appHeaderView, homeView, UserModel, ProfileModel){
+], function($, Backbone, api, appHeaderView, homeView, UserModel, ProfileModel){
 	
   var logoutView = Backbone.View.extend({
 	logout: function(){
@@ -28,22 +27,15 @@ define([
 		}
 	},
 	goodbye: function(){
-		//if server says OK we clear the authToken from session or local storage
-		var profile = new ProfileModel({id: api.getProfileId()})
-		var user = new UserModel({id: api.getProfileId()})		
+		api.clearAuthToken()
+
+		var profile = new ProfileModel({id: api.getUserId()})
+		var user = new UserModel({id: api.getUserId()})		
 		user.clear()
 		profile.clear()
 		
-		api.clearAuthToken()
-		//Destroy old views
-		appHeaderView.destroy()
-		$("#feedback-btn").hide()
-		//Remove memory models
-		
-		//render the home View
-		headerView.render();
-		homeView.render();
-		location.hash = "/" 
+		window.router.navigate("/#/")
+		location.reload()
 	}
   });
 

@@ -1,0 +1,222 @@
+<div class="row">
+	<div class="span12">
+		<div class="row">
+			<div class="span5">
+				<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
+				{{#if verified}}
+					<span class="label label-success"> Verified</span>
+				{{else}}
+					<span class="label label-important"> Not verified</span>
+				{{/if}}
+				<ul class="unstyled">
+					<li>
+						{{#if current.name}}
+							Lives: {{current.name}}, {{current.country}}
+						{{/if}}
+					</li>
+					<li>
+						{{#if lastLoginDate}}
+							Last login: "Located" user city - {{lastLoginDate}}
+						{{/if}}
+					</li>
+				</ul>
+			</div>
+			<div class="span2">
+				<div class="span2">
+					<div class="btn-group">
+						<button class="btn send-message-btn">Chat</button>
+						<button class="btn send-request-btn">Request</button>
+						<button class="btn send-invitation-btn">Invite</button>
+					</div>
+				</div>
+				<div class="span2">
+					<label style="display: inline">Reply rate: </label><span>{{tasaRespuestas}}</span> %
+					<label style="display: inline">Reply time: </label><span>{{replyTime}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#about" data-toggle="tab">About</a></li>
+					<li><a href="#wings" data-toggle="tab">Wings</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="about">
+						<h4>Basic Info</h4>
+						<dl class="dl-horizontal">
+							<dt>Gender</dt>
+							<dd>{{gender}}</dd>
+							{{#if birthday}}
+							<dt>Birthday</dt>
+							<dd>{{birthday}}</dd>
+							{{/if}}
+							{{#if interestedIn.length}}
+							<dt>Interested in</dt>
+							<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
+							{{/if}}
+							{{#if civilState}}
+							<dt>Relationship status</dt>
+							<dd>{{civilState}}</dd>
+							{{/if}}
+							{{#if languages.length}}
+							<dt>Languages</dt>
+								<dd>
+									{{#each languages}}
+										{{name}} {{level}},
+									{{/each}}
+								</dd>
+							{{/if}}
+							</dd>
+							{{#if hometown.name}}
+								<dt>Hometown</dt>
+								<dd>{{hometown.name}}, {{hometown.country}}</dd>
+							{{/if}}
+							<dt>Places where I have lived</dt>
+							{{#if otherLocations.length}}
+								<dd>
+									{{#each otherLocations}}
+										{{name}}, {{country}}
+									{{/each}}
+								</dd>
+							{{/if}}
+							<dt></dt>
+							<dd><div id="user-map"></div></dd>
+						</dl>
+						<legend></legend>
+						<h4>About Me</h4>
+						<dl class="dl-horizontal">
+							<dt>Description</dt>
+							<dd>{{allAboutYou}}</dd>
+							<dt>Current mission</dt>
+							<dd>{{mainMission}}</dd>
+							<dt>Occupation</dt>
+							<dd>{{occupation}}</dd>
+							<dt>Company</dt>
+							<dd>{{company}}</dd>
+							{{#if education.size}}
+							<dt>Education</dt>
+								<dd>
+									{{#each education}}
+										{{degree}} at {{insitution}}
+									{{/each}}
+								</dd>
+							{{/if}}
+							<dt>Personal philosophy</dt>
+							<dd>{{personalPhilosophy}}</dd>
+							<dt>Political views</dt>
+							<dd>{{politicalOpinion}}</dd>
+							<dt>Religion</dt>
+							<dd>{{religion}}</dd>
+						</dl>
+						<legend></legend>
+						<h4>Likes</h4>
+						<dl class="dl-horizontal">
+							<dt>People I enjoy</dt>
+							<dd>{{enjoyPeople}}</dd>
+							<dt>Movies, books...</dt>
+							<dd>{{movies}}</dd>
+							<dt>Webs, apps</dt>
+							<dd>{{otherPages}}</dd>
+							<dt>Show, learn, share</dt>
+							<dd>{{sharing}}</dd>
+							<dt>Amazing things done/seen</dt>
+							<dd>{{incredible}}</dd>
+							<dt>People who inspires you</dt>
+							<dd>{{inspiredBy}}</dd>
+							<dt>Favorite quotes</dt>
+							<dd>{{quotes}}</dd>
+							<dt>Opinion about Peoplewings</dt>
+							<dd>{{pwOpinion}}</dd>
+						</dl>
+					</div>
+					<div class="tab-pane" id="wings">
+						{{#each wings}}
+							<h4>{{name}} (Accomodation)</h4>
+							<dl class="dl-horizontal">
+								<dt>Wing status</dt>
+								<dd>{{status}}</dd>
+								<dt>Are you sharing for one time?</dt>
+								{{#if sharingOnce}}
+									<dd>{{dateStart}} to {{dateEnd}}</dd>
+								{{else}}
+									<dd>No</dd>
+								{{/if}}
+								<dt>Capacity</dt>
+								<dd>{{capacity}}</dd>
+								{{#if preferredMale}}
+									<dt>Preferred gender</dt>
+									<dd>Male</dd>
+								{{/if}}
+								{{#if preferredFemale}}
+									<dt>Preferred gender</dt>
+									<dd>Female</dd>
+								{{/if}}
+								<dt>Wheelchair accessible</dt>
+								<dd>
+									{{#if weelchair}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>Sleeping arrangements</dt>
+								<dd>{{whereSleepingType}}</dd>
+								<dt>Smoking</dt>
+								<dd>{{smoking}}</dd>
+								<dt>Pets allowed</dt>
+								<dd>
+									{{#if petsAllowed}}
+										Guest pets allowed
+									{{else}}
+										No guest pets allowed
+									{{/if}}
+									{{#if iHavePet}}
+										and I have a pet
+									{{else}}
+										and I don't have any pet
+									{{/if}}
+								</dd>
+								<dt>I have blankets</dt>
+								<dd>
+									{{#if blankets}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>I live in the center</dt>
+								<dd>
+									{{#if liveCenter}}
+										Yes
+									{{else}}
+										No
+									{{/if}}
+								</dd>
+								<dt>Public transport</dt>
+								<dd>{{#if train}}Train{{/if}}, 
+									{{#if underground}}Underground{{/if}}, 
+									{{#if tram}}Tram{{/if}},
+									{{#if bus}}Bus{{/if}},
+									{{#if boat}}Boat{{/if}},
+									{{#if others}}Others{{/if}} </dd>
+								<dt>About your accmodation</dt>
+								<dd>{{about}}</dd>
+							</dl>
+							<legend></legend>
+						{{/each}}
+				</div>
+			</div>
+		</div>
+			<div class="span4">
+				<ul class="thumbnails">
+					<li class="span4">
+						<a href="#/users/{{ id }}" class="thumbnail" style="width:246px; height: 246px">
+							<img id="avatar" src="{{avatar}}" alt="avatar">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+</div>
+</div>

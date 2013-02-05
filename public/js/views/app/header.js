@@ -1,25 +1,31 @@
-define([
-  "jquery",
-  "backbone",
-  'text!templates/app/header.html',
-  "api",
-  "models/User",
-], function($, Backbone, headerTpl, api, UserModel){
+define(function(require){
 	
-  var appHeader = Backbone.View.extend({
+	var $ = require("jquery");
+	var Backbone = require("backbone");
+	var api = require("api2");
+	var headerTpl = require("tmpl!templates/app/header.html");
+	var UserModel = require("models/Account");
 	
-	initialize: function(){
-		this.model = new UserModel({id: api.getUserId()})
-	},
-	render: function(){
-	  var tpl = _.template( headerTpl, { firstName: this.model.get('firstName'), lastName: this.model.get('lastName'), avatar: this.model.get('avatar') });
-      $('header').html(tpl);
-    },
-	destroy: function(){
-  		this.remove();
-  		this.unbind();
-	}
-  });
-
-  return new appHeader;
+	var appHeader = Backbone.View.extend({
+	
+		el: 'header',
+	
+		initialize: function(){
+			this.model = new UserModel({id: api.getUserId()});
+			this.model.on("change", this.render.bind(this));
+			if (!this.model.get("firstName"))
+				this.model.fetch()
+		},
+		
+		render: function(){
+			$(this.el).html(headerTpl(this.model.toJSON()));
+	    },
+	
+		destroy: function(){
+	  		this.remove();
+	  		this.unbind();
+		}
+  	});
+	
+	return new appHeader;
 });

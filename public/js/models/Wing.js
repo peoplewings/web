@@ -1,19 +1,16 @@
-define([
-	"backbone",
-	"api",
-], function(Backbone, api) {
+define(function(require) {
+
+	var Backbone = require('backbone');
+	var api = require('api2');
 
 	var WingModel = Backbone.Model.extend({
-		
-		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/me/accomodations/',
-        // Model Constructor
-        initialize: function() {
-		
-        },
+
+		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
+
 		parse: function(resp, xhr){
 			return resp.data
 		}
-		
+
 	});
 
 	return WingModel;

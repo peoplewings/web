@@ -1,16 +1,31 @@
 <div class="row">
-    <div class="span8">
+	<div class="span8">
+		<div class="row">
+			<div class="span6">
+				<p id="user-name-label">
+					<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
+					{{#if verified}}
+						<span class="label label-success"> Verified</span>
+					{{else}}
+						<span class="label label-important"> Not verified</span>
+					{{/if}}
+				</p>
+			</div>
+			<div class="span2"><a href="#/profiles/{{id}}/about" class="btn pull-right">View profile</a></div>
+		</div>
+	</div>
+	<div class="span8">
 		<ul class="nav nav-tabs">
-	  	  <li class="active"><a href="#basic-info" data-toggle="tab">Basic info</a></li>
-		  <li><a href="#about-me" data-toggle="tab">About me</a></li>
-		  <li><a href="#likes-info" data-toggle="tab">Likes</a></li>
-		  <li><a href="#contact-info" data-toggle="tab">Contact info</a></li>
+			<li class="active"><a href="#basic-info" data-toggle="tab">Basic info</a></li>
+			<li><a href="#about-me" data-toggle="tab">About me</a></li>
+			<li><a href="#likes-info" data-toggle="tab">Likes</a></li>
+			<li><a href="#contact-info" data-toggle="tab">Contact info</a></li>
 		</ul>
 		<div class="tab-content">
-		  <div class="tab-pane active" id="basic-info">Basic</div>
-		  <div class="tab-pane" id="about-me">About</div>
-		  <div class="tab-pane" id="likes-info">Likes</div>
-		  <div class="tab-pane" id="contact-info">Contact</div>
+			<div class="tab-pane active" id="basic-info">Basic</div>
+			<div class="tab-pane" id="about-me">About</div>
+			<div class="tab-pane" id="likes-info">Likes</div>
+			<div class="tab-pane" id="contact-info">Contact</div>
 		</div>
-    </div>
+	</div>
 </div>

@@ -1,0 +1,42 @@
+<li class="notification-item row" data-type="notification-item" data-rel="{{ id }}" data-thread="{{ reference }}" data-index="{{ index }}">
+	<div class="span1"><img src="{{ avatar }}"></div>
+	<div class="span3 interlocutor">
+			<span class="{{#if connected }}online{{/if}}"></span>
+			<a href="#/users/{{ interlocutorId }}">{{ name }}</a>, {{age}}
+			<div>{{ location }}</div>
+	</div>
+	<div class="span1">
+		<div class="state-flag
+			{{#if flagDirection }}to-me{{else}}from-me{{/if}}
+			{{enum state 'notification-state'}}"></div>
+	</div>
+
+	<div class="{{#unless read }}unread{{/unless}}">
+
+			{{#if isMessage }}
+				<div class="span5">{{ content }}</div>
+			{{else}}
+				<div class="span3">
+					<div>{{enum kind 'notification-type' }}</div>
+				{{#with wingParameters}}
+					<div>{{ wingType }} {{wingCity}}</div>
+					<div>{{ message }}</div>
+				</div>
+				<div class="span1">
+					<label {{#if_contains parameters.modified "numPeople" }}class="modified"{{/if_contains}}>
+						{{ numPeople }} people
+					</label>
+				</div>
+				<div class="span1">
+					<label {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>
+						{{date startDate }}
+					</label>
+					<label {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>
+						{{date endDate }}
+					</label>
+				</div>
+				{{/with}}
+			{{/if}}
+			<div class="span1">{{date created "MMM Do" }}</div>
+	</div>
+</li>

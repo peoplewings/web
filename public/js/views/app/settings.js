@@ -1,112 +1,129 @@
-define([
-  'jquery',
-  'backbone',
-  'utils',
-  'api',
-  'views/app/home',
-  'text!templates/app/settings.html',
-  'text!templates/lib/alert.html',
-  "models/User",
-], function($, Backbone, utils, api, homeView, settingsTpl, alertTpl, UserModel){
+define(function(require) {
 
+    var $ = require("jquery");
+    var Backbone = require("backbone");
+    var api = require("api2");
+    var utils = require("utils");
+    var settingsTpl = require("tmpl!templates/app/settings.html")
+    var alertTpl = require("tmpl!templates/lib/alert.html")
+    var UserModel = require("models/Account")
 
-  var settingsView = Backbone.View.extend({
-    el: "#main",
-	events:{
-		"submit form#settings-form": "submitSettings",
-		"click a[href='#myModal']": function(){ 
-										$('.alert').remove()
-										$('#myModal').modal({show:false}) 
-									},
-		"click button#delete-account-btn": "deleteAccount",
-	},
-	initialize: function(options){
-		this.model = new UserModel({id:api.getUserId()})
-		this.model.bindings = {
-			firstName: '[name=firstName]',
-            lastName: '[name=lastName]',
-            email: '[name=email]',
-		}
-		this._modelBinder = new Backbone.ModelBinder();
-		
-		//this.model.on("change", this.render)
-	},
-    render: function(){
-      $(this.el).html(settingsTpl);
-	  this._modelBinder.bind(this.model, this.el, this.model.bindings)
-	  
-	  $('#settings-form').validate({
-			rules: {
-				newPassword: {
-		            minlength: 6
-		        },
-		        repeatNewPassword: {
-		            minlength: 6,
-		            equalTo: "#pass"
-		        },
-				newEmail: { email: true},
-				repeatNewEmail: {email: true, equalTo: '#inputNewEmail'},
-			}
-		})
-		$('#delete-account-form').validate({
-			rules: {
-				currentPassword: {
-		            required: true,
-		        }
-			}
-		})
-    },
-	close: function(){ 
-		this._modelBinder.unbind()
-	},
-	loadSettings: function(){
-		
-	},
-	submitSettings: function(e){
-		e.preventDefault(e);
-		var data = utils.serializeForm('settings-form')
-		var values = { firstName: data.firstName, lastName: data.lastName }
-		
-		if (data.newEmail) values.email = data.newEmail
-		if (data.newPassword) values.password = data.newPassword
-				
-		var sc = this
-		api.put(api.getApiVersion() + '/accounts/' + api.getUserId(), { resource: values, currentPassword: data.password }, function(response){ 
-			$('.alert').remove()
-			var tpl
-			if (response.status === true) {
-				tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-			}else tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg + ": ", message: 'Please try again later'})
-			$('#settings-form')[0].reset()
+    var settingsView = Backbone.View.extend({
 
-			for (val in values) sc.model.set(val, values[val])
-			
-			$('#firstName').val(sc.model.get("firstName"))
-			$('#lastName').val(sc.model.get("lastName"))
-			
-			$('#main').prepend(tpl)
-			
-		})
-	},
-	deleteAccount: function(){
-		var data = utils.serializeForm('delete-account-form')
-		var goodbye = function(resp){
-			if (resp.status === true) {
-				$('#myModal').modal('hide')
-				require(["views/app/logout"], function(logoutView){
-					logoutView.goodbye()
-				})
-			}
-			else{
-				$('.alert').remove()
-				var tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: resp.msg + ": ", message: 'Please retype your password'})
-				$('#myModal > .modal-body').prepend(tpl)
-				//console.log(resp.msg)
-			} 
-		}
-		if ($('#delete-account-form').valid()) api.delete(api.getApiVersion() + '/accounts/' + api.getUserId(), data, goodbye)
-	}
-  });
+        el: "#main",
 
-  return new settingsView;
+        events: {
+            "submit form#settings-form": "submitSettings",
+            "click a[href='#myModal']": function() {
+                $('.alert').remove()
+                $('#myModal').modal({
+                    show: false
+                })
+            },
+            "click button#delete-account-btn": "deleteAccount",
+        },
+
+        validation: {
+            rules: {
+                password: {
+                    minlength: 8,
+                    validpassword: true
+                },
+                repeatPassword: {
+                    minlength: 8,
+                    equalTo: '#pass'
+                },
+                email: {
+                    email: true
+                },
+                repeatEmail: {
+                    email: true,
+                    equalTo: '#inputEmail'
+                },
+            },
+            errorPlacement: function(error, element) {
+                error.appendTo(element.nextAll("span.help-block"));
+            },
+        },
+
+        initialize: function(options) {
+            this.model = new UserModel({
+                id: api.getUserId()
+            })
+            this.model.on("change", this.render.bind(this));
+
+        },
+
+        render: function() {
+            $(this.el).html(settingsTpl(this.model.toJSON()));
+
+            $('#settings-form').validate(this.validation)
+
+            $('#delete-account-form').validate()
+        },
+
+        submitSettings: function(e) {
+            e.preventDefault(e);
+            var tpl = null
+
+            var data = utils.serializeForm('settings-form')
+            var values = {}
+
+            _.each(data,
+            function(value, key) {
+                if (key != "repeatPassword" && key != "repeatEmail" && key != "current_password")
+                values[key] = value
+            })
+
+            this.model.save(values, data.current_password)
+            .then(function(status) {
+                if (status === true) {
+                    tpl = alertTpl({
+                        extraClass: 'alert-success',
+                        heading: "Account updated"
+                    })
+                } else {
+                    tpl = alertTpl({
+                        extraClass: 'alert-error',
+                        heading: "Account couldn't be updated" + ": ",
+                        message: 'Please try again later'
+                    })
+                }
+            })
+            .fin(function() {
+                $('#settings-form')[0].reset()
+                $("#main").prepend(tpl)
+            })
+        },
+
+        deleteAccount: function() {
+            if ($('#delete-account-form').valid()) {
+                var data = utils.serializeForm('delete-account-form')
+
+                this.model.destroy(data)
+                .then(function(status) {
+                    if (status === true) {
+                        $('#myModal').modal('hide')
+                        require(["views/app/logout"],
+                        function(logoutView) {
+                            logoutView.goodbye()
+                        })
+                    } else {
+                        $('.alert').remove()
+                        var tpl = alertTpl({
+                            extraClass: 'alert-error',
+                            heading: "Couldn't delete your account" + ": ",
+                            message: 'Please retype your password'
+                        })
+                        $('#myModal > .modal-body').prepend(tpl)
+                        $('#delete-account-form')[0].reset()
+                    }
+                })
+            } else
+            return;
+        }
+    });
+
+    return new settingsView;
+
 });
