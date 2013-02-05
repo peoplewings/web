@@ -20,14 +20,14 @@
 			</select>
 			<select id="id_birthday_day" name="birthDay" class="input-mini required">
 				<option value="">Day</option>
-				{{#range 31}}
-					<option value="{{index}}" {{selected ../birthDay index}}>{{index}}</option>
+				{{#range 1 31 1}}
+					<option value="{{self}}" {{selected ../birthDay self}}>{{self}}</option>
 				{{/range}}
 			</select>
 			<select id="id_birthday_year" name="birthYear" class="input-mini required">
 				<option value="">Year</option>
-				{{#range 2006 1900 -1}}
-					<option value="{{index}}" {{selected ../birthYear index}}>{{index}}</option>
+				{{#range 2006 1900 '-1'}}
+					<option value="{{self}}" {{selected ../birthYear self}}>{{self}}</option>
 				{{/range}}
 			</select>
 			<span class="help-block"></span>

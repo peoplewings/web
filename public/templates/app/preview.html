@@ -22,9 +22,9 @@
 				</ul>
 			</div>
 			<div class="span3">
-				<a href="#/profile" class="btn pull-right">Edit</a>
+				<a href="#/profiles/{{id}}/edit" class="btn pull-right">Edit</a>
 				<div class="span3">
-					<label style="display: inline">Reply rate: </label><span>{{tasaRespuestas}}</span>%
+					<label style="display: inline">Reply rate: </label><span>{{replyRate}}</span>%
 					<label style="display: inline">Reply time: </label><span>{{replyTime}}</span>
 				</div>
 			</div>
@@ -39,12 +39,18 @@
 					<div class="tab-pane active" id="about">
 						<h4>Basic Info</h4>
 						<dl class="dl-horizontal">
+							{{#if gender}}
 							<dt>Gender</dt>
 							<dd>{{gender}}</dd>
+							{{/if}}
+							{{#if birthday}}
 							<dt>Birthday</dt>
 							<dd>{{birthday}}</dd>
+							{{/if}}
+							{{#if interestedIn.length}}
 							<dt>Interested in</dt>
 							<dd>{{#each interestedIn}}{{gender}} {{/each}}</dd>
+							{{/if}}
 							<dt>Relationship status</dt>
 							<dd>{{civilState}}</dd>
 							{{#if languages.length}}

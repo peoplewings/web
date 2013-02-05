@@ -70,6 +70,9 @@ API = function() {
 		get: function(uri, params, callback, errorCallback) {
 			request('GET', addParams(uri, params), null, callback, errorCallback);
 		},
+		encodeParams: function(params){
+			return addParams("", params);
+		},
 		saveAuthToken: function(authToken) {
 			localStorage.setItem("Peoplewings-Auth-Token", authToken)
 		},

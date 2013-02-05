@@ -66,12 +66,14 @@ define(function(require) {
 			modificator = 1;
 			end = start;
 			start = 1;
+		} else {
+			modificator = +modificator;
 		}
 
 		var checker = modificator > 0 ?
 			function(a) { return a <= end } :
 			function(a) { return a >= end };
-
+		
 		var arr = [];
 		for (var i = start; checker(i); i += modificator)
 			arr.push(i);
