@@ -9,17 +9,16 @@ define(function(require){
 	var aboutTpl = require('tmpl!templates/app/about-form.html');
 	var likesTpl = require('tmpl!templates/app/likes-form.html');
 	var contactTpl = require('tmpl!templates/app/contact-form.html');
-	
+
 	var alertTpl = require('tmpl!templates/lib/alert.html');
 	var List = require('views/app/list');
 	var avatarView = require("views/app/avatar");
 	var ProfileModel = require("models/Profile");
-	
-	var gMaps = require("async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en")	
+
 	var mapView = require("views/app/map")
-	
+
 	var profileView = Backbone.View.extend({
-    	el: "#main",
+		el: "#main",
 
 		months: [
 			{ name: 'January'},
@@ -35,7 +34,7 @@ define(function(require){
 			{ name: 'November'},
 			{ name: 'December'},
 		],
-		
+
 		events:{
 			"click a#add-language-btn": function(e){
 				e.preventDefault();
@@ -56,20 +55,20 @@ define(function(require){
 			},
 			"click a#add-otherLocation-btn": function(e){
 				e.preventDefault();
-				
+
 				var added = this.otherLocationsList.addItem()
 				var newInput = this.$("#" + added).children("[name=otherLocations]")[0]
 				var auto = new google.maps.places.Autocomplete(newInput, { types: ['(cities)'] });
-				
-				google.maps.event.addListener(auto, 'place_changed', this.updateMap(auto, "other", added));   
-				
+
+				google.maps.event.addListener(auto, 'place_changed', this.updateMap(auto, "other", added));
+
 				$(newInput).keypress(function(event) { if ( event.which == 13 ) event.preventDefault() })
-				
+
 			},
 			"click button[id^=delete-otherLocation]": function(e){
 				e.preventDefault();
 				var id = e.target.id.split("delete-")[1]
-				this.otherLocationsList.deleteItem(e)				
+				this.otherLocationsList.deleteItem(e)
 				this.map.deleteMarker(id)
 			},
 			"click a#add-social-btn": function(e){
@@ -106,37 +105,37 @@ define(function(require){
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 		},
-		
+
 		initialize: function(options) {
 			this.model = new ProfileModel({id: api.getUserId()})
 			this.model.on("change", this.render.bind(this));
-		  	this.model.fetch({success: this.render.bind(this) })
-			
+			this.model.fetch({success: this.render.bind(this) })
+
 			this.map = new mapView({
-				el: "#user-map", 
-				id: "mapcanvas", 
+				el: "#user-map",
+				id: "mapcanvas",
 				styles: { marginLeft: "160px" }
 			})
 		},
-		
-	    render: function(){		
+
+		render: function(){
 			$(this.el).html(profileTpl(this.model.toJSON()));
 
 			this.$('#basic-info').html(basicTpl(_.extend(this.model.toJSON(), { month: this.months})));
 			this.$('#about-me').html(aboutTpl(this.model.toJSON()));
 			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
 			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
-			
+
 			avatarView.render(this.model.get("avatar"));
 			this.map.render()
-			
+
 			this.initLists();
-		  	this.initLocationTypeahead();
+			this.initLocationTypeahead();
 			this.initStudyTypeahead();
-		  	this.initMarkers();
-			
-	    },
-		
+			this.initMarkers();
+
+		},
+
 		initLists: function(){
 			this.languagesList = new List({
 				el: "#languages-list",
@@ -144,28 +143,28 @@ define(function(require){
 				key: "language",
 				tpl: "#language-tpl",
 			});
-		
+
 			this.educationsList = new List({
 				el: "#education-list",
 				store: this.model.get("education"),
 				key: "edu",
 				tpl: "#education-tpl",
 			});
-		
+
 			this.socialsList = new List({
 				el: "#socialNetwork-list",
 				store: this.model.get("socialNetworks"),
 				key: "social",
 				tpl: "#socialNetwork-tpl",
 			});
-		
+
 			this.imList = new List({
 				el: "#instantMessage-list",
 				store: this.model.get("instantMessages"),
 				key: "im",
 				tpl: "#im-tpl",
 			});
-		
+
 			this.otherLocationsList = new List({
 				el: "#otherLocations-list",
 				store: this.model.get("otherLocations"),
@@ -173,63 +172,63 @@ define(function(require){
 				tpl: "#otherLocation-tpl",
 			});
 		},
-		
+
 		initStudyTypeahead: function(){
-			
+
 			$.ajaxSetup({
-                  beforeSend: function(xhr){
-                        xhr.setRequestHeader("X-Auth-Token", api.getAuthToken())
-                  },
-            });
+				  beforeSend: function(xhr){
+						xhr.setRequestHeader("X-Auth-Token", api.getAuthToken())
+				  },
+			});
 
 			$('.autocompleteStudy').typeahead({
-	      	ajax: {
-	              url: api.getServerUrl() + "/api/v1/universities",
-	              triggerLength: 1,
-	              method: "get",
-	              preDispatch: function (query) {
-	                  return {
-	                      name: query,
-	                  }
-	              },
-				  onselect: function(){
-				  	console.log(arguments)
+			ajax: {
+				  url: api.getServerUrl() + "/api/v1/universities",
+				  triggerLength: 1,
+				  method: "get",
+				  preDispatch: function (query) {
+					  return {
+						  name: query,
+					  }
 				  },
-	              preProcess: function (data) {
-	                  if (data.code !== 200) {
-	                      return false;
-	                  }
-	                  return data.data.map(function(uni){ return uni.name });
-	              }
-	          }
+				  onselect: function(){
+					console.log(arguments)
+				  },
+				  preProcess: function (data) {
+					  if (data.code !== 200) {
+						  return false;
+					  }
+					  return data.data.map(function(uni){ return uni.name });
+				  }
+			  }
 			})
 		},
-		
+
 		initLocationTypeahead: function(){
-		
+
 			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
-			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));   
-			
+			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));
+
 			var current = new google.maps.places.Autocomplete(document.getElementById("currentCity"), { types: ['(cities)'] });
 			google.maps.event.addListener(current, 'place_changed', this.updateMap(current, "current", "current"));
-			
+
 			var lastId = this.$("#otherLocations-list").children().last().prop("id")
 			var last = new google.maps.places.Autocomplete($("#" + lastId).children("[name=otherLocations]")[0], { types: ['(cities)'] });
 			google.maps.event.addListener(last, 'place_changed', this.updateMap(last, "other", lastId));
-		
+
 		},
-		
+
 		updateMap: function(auto, field, id) {
 			var sc = this
 			return function() {
 				var place = auto.getPlace();
 				if (place.geometry){
 					var cc = utils.getCityAndCountry(place.address_components)
-					
+
 					sc.map.setCenter(place.geometry.location);
 					sc.map.addMarker({
-						id: id, 
-						location: place.geometry.location, 
+						id: id,
+						location: place.geometry.location,
 						title: cc.city + ", " + cc.country
 					})
 
@@ -241,43 +240,43 @@ define(function(require){
 				}  
 			}
 		},
-		
+
 		initMarkers: function(){
 			var sc = this
-			
+
 			var city = this.model.get("current")
 			this.map.addMarker({
-				id: "current", 
-				location: new google.maps.LatLng(city.lat, city.lon), 
+				id: "current",
+				location: new google.maps.LatLng(city.lat, city.lon),
 				title: city.name + ", " + city.country,
 				icon: 'img/blue-marker.png'
-			})			
-			
+			})
+
 			city = this.model.get("hometown")
 			this.map.addMarker({
-				id: "hometown", 
-				location: new google.maps.LatLng(city.lat, city.lon), 
+				id: "hometown",
+				location: new google.maps.LatLng(city.lat, city.lon),
 				title: city.name + ", " + city.country,
 				icon: 'img/green-marker.png'
 			})
-			
+
 			var others = this.model.get("otherLocations")
 			_.each(others, function(location, index){
 				sc.map.addMarker({
-					id: "otherLocation-" + index, 
-					location: new google.maps.LatLng(location.lat, location.lon), 
+					id: "otherLocation-" + index,
+					location: new google.maps.LatLng(location.lat, location.lon),
 					title: location.name + ", " + location.country
 				})
 			})
-			
+
 		},
-		
+
 		submitProfile: function(e){
 			e.preventDefault(e);
 			var tpl = null
 			var sc = this
 			var data = this.collectData()
-			
+
 			this.model.save(data)
 				.then(function(status){
 					$('.alert').remove()
@@ -290,14 +289,14 @@ define(function(require){
 					$(sc.el).prepend(tpl)
 				})
 		},
-		
+
 		collectData: function() {
-		
+
 			var data = utils.serializeForm('basic-info-form')
 			_.extend(data, utils.serializeForm('contact-form'))
 			_.extend(data, utils.serializeForm('about-me-form'))
 			_.extend(data, utils.serializeForm('likes-form'))
-		
+
 			if (data["languages"]){
 				if (!(data["languages"] instanceof Array)) {
 					data["languages"] = [data["languages"]]
@@ -308,7 +307,7 @@ define(function(require){
 				})
 				delete data["levels"]
 			} else data["languages"] = []
-		
+
 			if (data["instantMessages"]){
 				if (!(data["instantMessages"] instanceof Array)) {
 					data["instantMessages"] = [data["instantMessages"]]
@@ -319,7 +318,7 @@ define(function(require){
 				})
 				delete data["imUsername"]
 			} else data["instantMessages"] = []
-		
+
 			if (data["socialNetworks"]){
 				if (!(data["socialNetworks"] instanceof Array)) {
 					data["socialNetworks"] = [data["socialNetworks"]]
@@ -330,7 +329,7 @@ define(function(require){
 				})
 				delete data["snUsername"]
 			} else data["socialNetworks"] = []
-		
+
 			if (data["education"]){
 				if (!(data["education"] instanceof Array)) {
 					data["education"] = [data["education"]]
@@ -341,7 +340,7 @@ define(function(require){
 				})
 				delete data["degree"]
 			} else data["education"] = []
-		
+
 			if (data["other-city"]){
 				if (!(data["other-city"] instanceof Array)) {
 					data["other-city"] = [data["other-city"]]
@@ -349,11 +348,11 @@ define(function(require){
 					data["other-country"] = [data["other-country"]]
 					data["other-lat"] = [data["other-lat"]]
 					data["other-lon"] = [data["other-lon"]]
-																
+
 				}
 				data["otherLocations"] = data["other-city"].map(function(item, index){
-						return { 
-							name: item, 
+						return {
+							name: item,
 							country: data["other-country"][index],
 							region:  data["other-region"][index],
 							lat:  data["other-lat"][index],
@@ -365,10 +364,10 @@ define(function(require){
 				delete data["other-lat"]
 				delete data["other-lon"]
 			} else data["otherLocations"] = []
-			
+
 			if (data["current"]){
-				data["current"] =  { 
-					name: data["current-city"], 
+				data["current"] =  {
+					name: data["current-city"],
 					country: data["current-country"],
 					region:  data["current-region"],
 					lat:  data["current-lat"],
@@ -380,10 +379,10 @@ define(function(require){
 				delete data["current-lat"]
 				delete data["current-lon"]
 			}
-			
+
 			if (data["hometown"]){
-				data["hometown"] =  { 
-					name: data["hometown-city"], 
+				data["hometown"] =  {
+					name: data["hometown-city"],
 					country: data["hometown-country"],
 					region:  data["hometown-region"],
 					lat:  data["hometown-lat"],
@@ -395,10 +394,10 @@ define(function(require){
 				delete data["hometown-lat"]
 				delete data["hometown-lon"]
 			}
-		
+
 			return data;
 		},
-		
+
 	  });
 
 	  return profileView;

@@ -1,6 +1,5 @@
 define(function(require) {
 
-	require('async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en');
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
