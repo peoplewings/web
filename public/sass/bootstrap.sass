@@ -123,7 +123,8 @@ body
 	font-size: 14px
 	line-height: 20px
 	color: #333333
-	background-color: #ffffff
+	//background-color: #ffffff
+	background: #f7f7f3
 
 a
 	color: #0088cc
@@ -383,7 +384,6 @@ a
 	//margin-right: auto
 	//margin-left: auto
 	margin:
-		top: 5em
 		right: auto
 		left: auto
 	*zoom: 1
@@ -935,7 +935,7 @@ legend
 	line-height: 40px
 	color: #333333
 	border: 0
-	border-bottom: 1px solid #e5e5e5
+	//border-bottom: 1px solid #e5e5e5
 	small
 		font-size: 15px
 		color: #999999
@@ -1026,7 +1026,8 @@ textarea
 input
 	&[type="text"], &[type="password"], &[type="datetime"], &[type="datetime-local"], &[type="date"], &[type="month"], &[type="time"], &[type="week"], &[type="number"], &[type="email"], &[type="url"], &[type="search"], &[type="tel"], &[type="color"]
 		background-color: #ffffff
-		border: 1px solid #cccccc
+		//border: 1px solid #cccccc
+		border: 2px solid #50506c
 		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
 		-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
@@ -1097,7 +1098,8 @@ select, input[type="file"]
 select
 	width: 220px
 	//border: 1px solid #bbbbbb
-	border: 1px solid #CCC
+	//border: 1px solid #CCC
+	border: 2px solid #50506c
 	background-color: #ffffff
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
@@ -2766,12 +2768,13 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 		clear: both
 
 .tab-content
+	position: relative
+	top: -1.4em
 	overflow: auto
 	padding-top: 4em
-	-webkit-box-shadow: 0px 1px 20px #888
-	-webkit-border-radius: 10px
-	position: relative
-	top: -4.3em
+	border: 1px solid #EEE
+	border-top: none
+	background: #FFF
 
 .tabs-below > .nav-tabs, .tabs-right > .nav-tabs, .tabs-left > .nav-tabs
 	border-bottom: 0
@@ -2864,7 +2867,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 	//padding-left: 20px
 	//padding-right: 20px
 	//background-color: #fafafa
-	background: rgba(0, 0, 0, 0.15)
+	//background: rgba(0, 0, 0, 0.15)
+	background: #f7f7f3
 	//background-image: -moz-linear-gradient(top, white, #f2f2f2)
 	//background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#f2f2f2))
 	//background-image: -webkit-linear-gradient(top, white, #f2f2f2)
@@ -3356,9 +3360,11 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 	text-align: right
 
 .pager
-	margin: 20px 0
+	//margin: 20px 0
 	list-style: none
 	text-align: center
+	margin: 0
+	
 	*zoom: 1
 	&:before
 		display: table
@@ -3369,23 +3375,37 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 		content: ""
 		line-height: 0
 		clear: both
-	li
+	p
+		margin: 0
+		margin-top: 0.2em
 		display: inline
+	li
+		//display: inline
+		float: left
 	a
-		display: inline-block
-		padding: 5px 14px
-		background-color: #fff
-		border: 1px solid #dddddd
-		-webkit-border-radius: 15px
-		-moz-border-radius: 15px
-		border-radius: 15px
+		//display: inline-block
+		//padding: 5px 14px
+		//background-color: #fff
+		////border: 1px solid #dddddd
+		//-webkit-border-radius: 15px
+		//-moz-border-radius: 15px
+		//border-radius: 15px
 		&:hover
 			text-decoration: none
 			background-color: #f5f5f5
-	.next a
-		float: right
-	.previous a
-		float: left
+	.icon a
+		display: block
+		width: 25px
+		height: 24px
+		text-indent: -9999px
+	.previousPage
+		background: url(../img/pager-prev.png) no-repeat left top
+	.nextPage
+		background: url(../img/pager-next.png) no-repeat left top
+//	.next a
+//		float: right
+//	.previous a
+//		float: left
 	.disabled a
 		color: #999999
 		background-color: #fff
@@ -5065,3 +5085,22 @@ button.close
 		box-shadow: 0px 0px 20px #FFFF00
 		-moz-box-shadow: 0px 0px 20px #FFFF00
 		-webkit-box-shadow: 0px 0px 20px #FFFF00
+
+.pager-content
+	background: #FFF
+	border: 1px solid #EEE
+	overflow: hidden
+	padding: 1em
+	padding-left: 1.5em
+	margin-bottom: 2em
+
+.adjust
+	margin:
+		right: 1em
+		top: 0.2em
+
+.in-line
+	display: inline
+
+.underline
+	text-decoration: underline
