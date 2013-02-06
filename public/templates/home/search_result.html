@@ -26,14 +26,16 @@
 			<legend></legend> <!-- ?! -->
 			{{#each results }}
 			<div class="search-result" data-profile-id="{{ id }}">
-				<div class="span2">
-					<a href="#/profiles/{{id}}/about" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
-						<img id="avatar" src="{{ avatar }}" alt="avatar" style="width: 108px; height: 108px">
+				<!-- <div class="span2"> -->
+				<div class="span2 correct-margin">
+					<a href="#/profiles/{{id}}/about" class="thumbnail">
+						<img id="avatar" class="avatar1" src="{{ avatar }}" alt="avatar">
 					</a>
 				</div>
 				<div class="span3">
 					<p id="user-name-label">
-						<a href="#/profiles/{{id}}/about"><span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
+						<a href="#/profiles/{{id}}/about">
+							<span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
 						{{else}}
