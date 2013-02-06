@@ -97,7 +97,6 @@ define(function(require) {
 					$(self.el).html(responseView.el);
 
 				} else {
-					debugger
 					$(self.el).prepend(alertTpl( {
 						extraClass: 'alert-error',
 						heading: "Code: " + response.code + ". Error: ",

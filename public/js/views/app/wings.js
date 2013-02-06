@@ -29,7 +29,7 @@ define(function(require) {
 		},
 
 		initialize: function() {
-			debugger
+			
 			this.model = new ProfileModel({
 				id: api.getUserId()
 			})
@@ -43,7 +43,7 @@ define(function(require) {
 		},
 
 		render: function(wingId) {
-			debugger
+			
 			$(this.el).html(wingsTpl(
 				{
 					wings: this.wingsList.toJSON(),
@@ -70,7 +70,7 @@ define(function(require) {
 
 		getUserWings: function() {
 			var self = this
-			debugger
+			
 			api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
 			.prop('data')
 			.then(function(data) {
