@@ -1,5 +1,5 @@
 var Utils = function(){
-	
+
 	var getCC = function(address_components){
 		var data = {}
 		var component
@@ -18,13 +18,13 @@ var Utils = function(){
 		  }
 		return data
 	}
-	
+
 	var serialize = function(form_id){
 		var form = (form_id) ? 'form#' + form_id : 'form'
 		var values = {};
 		$.each(jQuery(form).serializeArray(), function(i, field) {
 			if (field.value == "") return
-			
+
 			var aux = [];
 			var old = values[field.name];
     		if (old) {
@@ -40,7 +40,7 @@ var Utils = function(){
 		});
 		return values
 	}
-	
+
 	var opts = {
   		  lines: 13, // The number of lines to draw
 		  length: 7, // The length of each line
@@ -66,5 +66,7 @@ var Utils = function(){
 			return opts;
 		},
 	}
-	
+
 }();
+
+define(function() { return Utils });

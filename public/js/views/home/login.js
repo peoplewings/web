@@ -1,23 +1,23 @@
-define(function(require){
+define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var loginTpl = require('tmpl!templates/home/login.html')
-	var alertTpl = require('tmpl!templates/lib/alert.html')
-	var UserModel = require('models/Account')
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var utils = require('utils');
+	var api = require('api2');
+	var loginTpl = require('text!templates/home/login.html');
+	var alertTpl = require('text!templates/lib/alert.html');
+	var UserModel = require('models/Account');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
 	var loginView = Backbone.View.extend({
-		
+
 		el: "#main",
-		
+
 		events: {
 			"submit form#login-form": "submitLogin"
 		},
-		
+
 		render: function() {
 
 			$(this.el).html(loginTpl);
@@ -28,7 +28,7 @@ define(function(require){
 
 		submitLogin: function(e) {
 			e.preventDefault(e);
-			
+
 			spinner.spin(document.getElementById('main'));
 			$('.alert').remove()
 
@@ -59,7 +59,7 @@ define(function(require){
 				auth: data.xAuthToken,
 				uid: data.idAccount
 			}));
-				
+
 
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
@@ -71,7 +71,7 @@ define(function(require){
 				require(["views/app/header"], function(header){
 					header.render()
 				});
-				
+
 				router.navigate("#/search");
 
 			})

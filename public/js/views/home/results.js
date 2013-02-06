@@ -11,7 +11,7 @@ define(function(require){
 	var resultsView = Backbone.View.extend({
 
 		el: "#search-results",
-		
+
 		events: {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
@@ -38,7 +38,6 @@ define(function(require){
 				endResult: results.endResult,
 				totalCount: results.count,
 				results: results.profiles.map(function(result) {
-					result.id = result.resourceUri.split("/")[4];
 					result.replyTime = moment.duration(result.replyTime).humanize();
 
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
