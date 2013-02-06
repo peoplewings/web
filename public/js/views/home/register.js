@@ -9,6 +9,7 @@ define(function(require) {
 	var responseView = require('views/lib/response');
 
 	var registerTpl = require('tmpl!templates/home/register.html');
+	var termsTpl = require('tmpl!templates/home/terms.html');
 	var alertTpl = require('tmpl!templates/lib/alert.html');
 
 	var registerView = Backbone.View.extend({
@@ -16,7 +17,11 @@ define(function(require) {
 		el: "#main",
 
 		events: {
-			"submit form#register-form": "submitRegister"
+			"submit form#register-form": "submitRegister",
+			"click a#terms-link": function(e){
+				e.preventDefault();
+				var modal = utils.showModal("Terms and conditions", null, termsTpl);
+			},
 		},
 
 		validation: {
@@ -100,7 +105,7 @@ define(function(require) {
 					}))
 				}
 			});
-		}
+		},
 
 	});
 
