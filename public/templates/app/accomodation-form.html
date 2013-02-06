@@ -10,7 +10,6 @@
 			</ul>
 		</div>
 	{{/if}}
-
 	<div class="control-group">
 		<label class="control-label" for="inputName">Wing name</label>
 		<div class="controls">
@@ -20,7 +19,7 @@
 	<div class="control-group">
 		<label class="control-label" for="inputStatus">Wing status</label>
 		<div class="controls">
-			<select name="status" id="wingtatus">
+			<select name="status" id="wingStatus">
 				<option value="Y" selected="selected">Yes</option>
 				<option value="N">No</option>
 				<option value="M">Maybe</option>
@@ -146,7 +145,7 @@
 		<label class="control-label" for="inputPets">Transports</label>
 		<div class="controls">
 			<label class="checkbox inline">
-				<input type="checkbox" name="undergorund" id="checkboxMetro" value="True"> Underground
+				<input type="checkbox" name="underground" id="checkboxMetro" value="True"> Underground
 			</label>
 			<label class="checkbox inline">
 				<input type="checkbox" name="bus" id="checkboxBus" value="True"> Bus
@@ -223,7 +222,7 @@
 	<div class="form-actions">
 		<button type="reset" id="cancel-wing-btn" class="btn">Cancel</button>
 		{{#if update}}
-			<button id="update-wing-btn" class="btn btn-primary">Update</button>
+			<button id="update-wing-btn" type="submit" class="btn btn-primary">Update</button>
 		{{else}}
 			<button type="submit" class="btn btn-primary">Save</button>
 		{{/if}}

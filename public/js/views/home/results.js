@@ -9,7 +9,9 @@ define(function(require){
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
 
 	var resultsView = Backbone.View.extend({
-		//el: "#search-results",
+
+		el: "#search-results",
+
 		events: {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
@@ -20,13 +22,15 @@ define(function(require){
 
 		initialize: function(options){
 			this.namesById = {};
-			this.targetEl = options.target
 			this.logged = options.logged
 			this.query = options.query
 			this.blurrStyle = (this.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : ""
 		},
-	    render: function(results){
-	    	var self = this;
+		setQuery: function(query){
+			this.query = query;
+		},
+		render: function(results){
+			var self = this;
 
 			this.$el.html(resultsTpl({
 				blurrStyle: this.blurrStyle,
@@ -34,15 +38,15 @@ define(function(require){
 				endResult: results.endResult,
 				totalCount: results.count,
 				results: results.profiles.map(function(result) {
-					result.id = result.resourceUri.split("/")[4];
+					result.replyTime = moment.duration(result.replyTime).humanize();
+
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
 					return result;
 				})
 			}));
-			$(this.targetEl).after(this.$el)
-	    },
+
+		},
 		nextPage: function(evt){
-			//console.log("next", this.query.page)
 			var scope = this
 			this.query.page++
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
@@ -51,7 +55,6 @@ define(function(require){
 			return false
 		},
 		previousPage: function(){
-			//console.log("previous", this.query.page)
 			var scope = this
 			this.query.page--
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){

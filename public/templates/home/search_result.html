@@ -9,27 +9,32 @@
 			{{#each results }}
 				<div class="search-result" data-profile-id="{{ id }}">
 					<div class="span2">
-						<a href="#/users/{{ id }}" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
+						<a href="#/profiles/{{id}}/about" class="thumbnail" style="width: 108px; height: 108px; margin-bottom: 20px">
 							<img id="avatar" src="{{ avatar }}" alt="avatar" style="width: 108px; height: 108px">
 						</a>
 					</div>
 					<div class="span3">
 						<p id="user-name-label">
-							<a href="#/users/{{ id }}"><span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
+							<a href="#/profiles/{{id}}/about"><span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
 							{{#if verified }}
 								<span class="label label-success">Verified</span>
 							{{else}}
 								<span class="label label-important">Not verified</span>
 							{{/if}}
 						</p>
+						{{#if online }}
+							<p><b>Online:</b> {{ online }}</p>
+						{{/if}}
 						{{#if current.name }}
 							<p><b>Live in:</b> {{ current.name }}, {{ current.country }}</p>
 						{{/if}}
 						{{#if lastLogin}}
 						<p><b>Last in:</b> {{ lastLogin }}</p>
 						{{/if}}
-						<p><b>Response rate:</b> {{ tasaRespuestas }} %</p>
-						<p><b>Average reply time:</b> {{ tasaRespuestas }}</p>
+						
+						<p><b>Response rate:</b> {{ replyRate }}%</p>
+						<p><b>Average reply time:</b> {{replyTime}}</p>
+
 						{{#if allAboutYou }}
 							<p><b>About</b> {{ allAboutYou }}</p>
 						{{/if}}

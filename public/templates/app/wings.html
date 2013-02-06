@@ -4,17 +4,15 @@
 			<div class="control-group">
 				<label class="control-label" for="textarea"><label for="generalStatus">General status</label></label>
 				<div class="controls">
-					<select name="generalStatus" id="generalStatus">
+					<select name="generalStatus">
 						<option value="">--------</option>
-						<option value="W" selected="selected">By Wing</option>
-						<option value="Y">Yes</option>
-						<option value="N">No</option>
-						<option value="M">Maybe</option>
-						<option value="T">Travelling</option>
-						<option value="C">Cofee or drink</option>
+						<option value="W" {{selected generalStatus 'W'}}>By Wing</option>
+						<option value="Y" {{selected generalStatus 'Y'}}>Yes</option>
+						<option value="N" {{selected generalStatus 'N'}}>No</option>
+						<option value="M" {{selected generalStatus 'M'}}>Maybe</option>
+						<option value="T" {{selected generalStatus 'T'}}>Travelling</option>
+						<option value="C" {{selected generalStatus 'C'}}>Cofee or drink</option>
 					</select>
-					<span class="help-block"></span>
-					<span class="help-inline"></span>
 				</div>
 			</div>
 		</form>

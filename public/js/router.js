@@ -27,19 +27,24 @@ define(function(require) {
 		routes: {
 			"register": "register",
 			"login": "login",
-			"activate/:id": "activate",
+			"activate/:token": "activate",
 			"forgot": "forgotPassword",
-			"forgot/:id": "forgotPassword",
+			"forgot/:token": "forgotPassword",
+			"search/?:params": "search",
 		//Logged User patterns
 			 "logout": "logout",
 			 "settings":"settings",
-			 "profile":"profile",
-			 "profile/preview":"previewProfile",
+
+			 "profiles/:id/edit":"profile",
+			 "profiles/:id/about":"previewProfile",
+			 "profiles/:id/wings":"previewProfile",
+
 			 "wings": "wings",
+			 "wings/:id": "wings",
+
 			 "messages/:id": "showThread",
 			 "messages/filter/:filters": "showNotifications",
 			 "messages": "showNotifications",
-			 "users/:id": "showUserProfile",
 		//Default action
 			"*actions": "defaultAction",
 		},
@@ -65,6 +70,16 @@ define(function(require) {
 		forgotPassword: function(id){
 			passwordView.render(id)
 		},
+		search: function(params){
+			var unserialized = $.deparam(params);
+			homeView.render(unserialized);
+
+			api.get(api.getApiVersion() + "/profiles?" + params, {})
+			.prop('data')
+			.then(function(results){
+				homeView.renderResults(unserialized, results);
+			})
+		},
 		//Logged User hashs
 		logout: function(){
 			logoutView.logout()
@@ -75,17 +90,13 @@ define(function(require) {
 			} else this.login()
 
 		},
-		profile: function(){
-			var scope = this
+		profile: function(id){
+			if (+id !== api.getUserId())
+				this.showUserProfile(id)
+
 			if (!this.profileView){
-				scope.profileView = new profileView()
+				this.profileView = new profileView()
 			} else this.profileView.render()
-		},
-		previewProfile: function(){
-			var scope = this
-			if (!this.previewView){
-				scope.previewView = previewView
-			} else this.previewView.render()
 
 		},
 		showUserProfile: function(userId){
@@ -96,12 +107,26 @@ define(function(require) {
 			} else
 				this.userProfileView.render(userId)
 		},
-		wings: function(){
-			var scope = this
-			if (!this.wingsView){
-				wingsView.render()
-			} else this.wingsView.render()
+		previewProfile: function(id){
+			if (+id === api.getUserId()){
+				if (!this.previewView){
+					this.previewView = previewView
+				} else {
+					this.previewView.render()
+				}
+			} else {
+				this.showUserProfile(id)
+			}
 		},
+
+		wings: function(wingId){
+			debugger
+			if (!this.wingsView){
+				this.wingsView = wingsView;
+				this.wingsView.render(wingId)
+			} else this.wingsView.render(wingId)
+		},
+
 		showNotifications: function(filters){
 			var scope = this
 			if (!this.notificationsView){
@@ -126,13 +151,10 @@ define(function(require) {
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
 			Backbone.history.start();
 			if (api.userIsLoggedIn())
-				header.render()
-			else
-				homeView.render();
+				header.render();
 		}
 	});
 
-	// Returns the Router class
 	return Router;
 
 });
