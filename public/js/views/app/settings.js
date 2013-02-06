@@ -122,6 +122,6 @@ define(function(require) {
 		}
 	});
 
-	return new settingsView;
+	return settingsView;
 
 });

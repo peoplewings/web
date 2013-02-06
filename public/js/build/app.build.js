@@ -5,7 +5,7 @@
   wrap: true,
 
   //All the built layers will use almond.
-  name: "build/almond",
+  //name: "build/almond",
 
   // Removes third-party license comments
   preserveLicenseComments: false,

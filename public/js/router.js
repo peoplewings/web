@@ -86,7 +86,9 @@ define(function(require) {
 		},
 		settings: function(){
 			if (api.userIsLoggedIn()){
-				settingsView.render()
+				if (!this.settingsView)
+					this.settingsView = new settingsView;
+				this.settingsView.render()
 			} else this.login()
 
 		},
@@ -110,7 +112,7 @@ define(function(require) {
 		previewProfile: function(id){
 			if (+id === api.getUserId()){
 				if (!this.previewView){
-					this.previewView = previewView
+					this.previewView = new previewView
 				} else {
 					this.previewView.render()
 				}
@@ -122,7 +124,7 @@ define(function(require) {
 		wings: function(wingId){
 			debugger
 			if (!this.wingsView){
-				this.wingsView = wingsView;
+				this.wingsView = new wingsView;
 				this.wingsView.render(wingId)
 			} else this.wingsView.render(wingId)
 		},

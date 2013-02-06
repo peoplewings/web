@@ -125,5 +125,5 @@ define(function(require) {
 		},
 	});
 
-	return new wingsView;
+	return wingsView;
 });
