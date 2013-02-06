@@ -22,6 +22,9 @@
 								<span class="label label-important">Not verified</span>
 							{{/if}}
 						</p>
+						{{#if online }}
+							<p><b>Online:</b> {{ online }}</p>
+						{{/if}}
 						{{#if current.name }}
 							<p><b>Live in:</b> {{ current.name }}, {{ current.country }}</p>
 						{{/if}}
