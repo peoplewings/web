@@ -77,8 +77,6 @@ define(function(require) {
 			var self = this;
 			var formData = utils.serializeForm(e.target.id);
 
-			debugger
-
 			if (formData.gender.indexOf("Both") == 0)
 				formData.gender = ["Male", "Female"];
 			
