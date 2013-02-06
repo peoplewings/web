@@ -5,7 +5,7 @@
 
 		<div>
 			<div class="span5">
-					<span class="{{#if senderConnected }}online{{/if}}"></span>
+					<span class="{{#if senderOnline }}online{{/if}}">{{ senderOnline }}</span>
 					<a href="#/users/{{interlocutorId}}">{{ senderName }}</a>, {{ senderAge }}
 					<div>{{ senderLocation }}</div>
 					<div>Friends: {{ senderFriends }} / References: {{ senderReferences }}</div>
