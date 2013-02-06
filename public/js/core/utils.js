@@ -1,5 +1,8 @@
-var Utils = function(){
+define(function(require) {
 	
+	var $ = require('jquery');
+	var modalTpl = require('tmpl!templates/lib/modal2.html');
+
 	var getCC = function(address_components){
 		var data = {}
 		var component
@@ -17,7 +20,7 @@ var Utils = function(){
 			}
 		  }
 		return data
-	}
+	};
 	
 	var serialize = function(form_id){
 		var form = (form_id) ? 'form#' + form_id : 'form'
@@ -39,6 +42,24 @@ var Utils = function(){
 				values[field.name] = field.value;
 		});
 		return values
+	};
+
+	var showModal = function(header, accept, content, callback) {
+		var modal = $(modalTpl({
+			header: header,
+			accept: accept,
+			content: content
+		}));
+		$("body section:last").append(modal);
+
+		modal.modal('show');
+		modal.find('.btn-primary').click(callback);
+
+		modal.on('hidden', function() {
+			modal.remove();
+		});
+
+		return modal;
 	}
 	
 	var opts = {
@@ -62,9 +83,10 @@ var Utils = function(){
 	return {
 		serializeForm: serialize,
 		getCityAndCountry: getCC,
+		showModal: showModal,
 		getSpinOpts: function(){
 			return opts;
 		},
 	}
 	
-}();
+});
