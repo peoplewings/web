@@ -1,33 +1,32 @@
-define([
-  "jquery",
-  "backbone",
-  "api",
-  "utils",
-  "views/home/main",
-], function($, Backbone, api, utils, mainView){
+define(function(require) {
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var utils = require('utils');
+	var mainView = require('views/home/main');
+	var feedView = require('views/app/feedback');
 
-  var homeView = Backbone.View.extend({
-	initialize: function(){
-		this.eventBinds()
-	},
-	eventBinds: function(){
-		$("#feedback-btn-submit").live("click", this.showFeedback(this))
-	},
-    render: function(){
-		mainView.render()
-		$("#feedback-btn").show()
-    },
-	showFeedback: function(scope){
-		return function(evt){
-			evt.preventDefault()
-			if (!scope.feedbackView){
-				require(["views/app/feedback"], function(feedView){
-						feedView.render()
-				})
-			} else scope.feedbackView.render()
+	var homeView = Backbone.View.extend({
+		initialize: function(){
+			this.eventBinds()
+		},
+		eventBinds: function(){
+			$("#feedback-btn-submit").live("click", this.showFeedback(this))
+		},
+		render: function(){
+			mainView.render()
+			$("#feedback-btn").show()
+		},
+		showFeedback: function(scope){
+			return function(evt){
+				evt.preventDefault()
+				if (!scope.feedbackView)
+					feedView.render()
+				else
+					scope.feedbackView.render()
+			}
 		}
-	}
-  });
+	});
 
-  return new homeView;
+	return new homeView;
 });

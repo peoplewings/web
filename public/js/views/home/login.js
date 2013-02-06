@@ -1,4 +1,14 @@
-define(['jquery', 'backbone', 'utils', 'api', 'text!templates/home/login.html', 'text!templates/lib/alert.html', 'models/Account', ], function($, Backbone, utils, api, loginTpl, alertTpl, UserModel) {
+define(function(require) {
+
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var utils = require('utils');
+	var api = require('api');
+	var loginTpl = require('text!templates/home/login.html');
+	var alertTpl = require('text!templates/lib/alert.html');
+	var UserModel = require('models/Account');
+	var appLoggedHeader = require('views/app/header');
+	var homeLoggedView = require('views/app/home');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
@@ -34,10 +44,8 @@ define(['jquery', 'backbone', 'utils', 'api', 'text!templates/home/login.html', 
 							if(response.status === true) {
 								response.data.id = api.getUserId()
 								var user = new UserModel(response.data)
-								require(['views/app/header', 'views/app/home'], function(appLoggedHeader, homeLoggedView) {
-									homeLoggedView.render()
-									appLoggedHeader.render()
-								})
+								homeLoggedView.render()
+								appLoggedHeader.render()
 							}
 						})
 					}
