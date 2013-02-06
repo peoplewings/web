@@ -48,14 +48,14 @@
 			<label class="control-label" for="inputAge">People</label>
 			<div class="controls">
 				<select name="startAge" class="input-small">
-					<% _.each(ages, function(age) { %> 
-						<option value="<%= age %>"><%= age %></option>
-					<% }); %>
+					{{#range 18 99 1}}
+					<option value="{{self}}">{{self}}</option>
+					{{/range}}
 		    </select>
 		 		<select name="endAge" class="input-small">
-					<% _.each(agesR, function(age) { %> 
-						<option value="<%= age %>"><%= age %></option>
-					<% }); %>
+					{{#range 99 18 '-1'}}
+					<option value="{{self}}">{{self}}</option>
+					{{/range}}
 				</select>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 			<label class="control-label nod" for="inputLanguage">Language</label>
 			<div class="controls">
 				<select name="language" class="input-medium">
-					<option value="default">Languaje</option>
+					<option value="all">Language</option>
 					<option value="all">All</option>
 					<option value="English">English</option>
 					<option value="French">French</option>
@@ -107,7 +107,7 @@
 		<div class="control-group">
 			<label for="inputGender" class="control-label nod">Gender</label>
 			<div class="controls">
-				<select class="input-small">
+				<select name="gender" class="input-small">
 					<option value="Male">Male</option>
 					<option value="Female">Female</option>
 					<option value="Both">Both</option>
@@ -128,9 +128,9 @@
 		<div class="control-group">
 			<label class="control-label nod" for="inputHost"></label>
 			<div class="controls">
-				<select class="input-small">
-					<option name="type" value="Host">Host</option>
-					<option name="type" value="Applicant">Applicant</option>
+				<select name="type" class="input-small">
+					<option value="Host">Host</option>
+					<option value="Applicant">Applicant</option>
 				</select>
 			</div><!-- EOF controls -->
 		</div><!-- EOF control-group -->
