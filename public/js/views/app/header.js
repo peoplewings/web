@@ -18,6 +18,7 @@ define(function(require){
 		},
 		
 		render: function(){
+			debugger
 			$(this.el).html(headerTpl(this.model.toJSON()));
 	    },
 	
@@ -27,5 +28,5 @@ define(function(require){
 		}
   	});
 	
-	return new appHeader;
+	return appHeader;
 });
