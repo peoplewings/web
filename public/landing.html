@@ -45,11 +45,21 @@
 				<label class="control-label" for="inputWings">WINGS</label>
 				<input type="text" id="inputWings" name="wings" placeholder="Where you need accomodation?">
 				<label class="control-label" for="inputPeople">PEOPLE</label>
-				<input type="text" id="age" name="age" placeholder="Age 18 - 99">
-				<span class="select-1">
-					<span>Female</span>
-					<a href="#" class="arrow"><span>arrow</span></a>
-				</span>
+				<select name="startAge" class="input-mini">
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+				</select>
+				<select name="endAge" class="input-mini">
+					<option value="99">99</option>
+					<option value="98">98</option>
+					<option value="97">97</option>
+				</select>
+				<select class="input-small">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					<option value="Both">Both</option>
+				</select>
 			</form>
 				<a href="#" class="search-button">SEARCH PEOPLEWINGS</a>
 		</section>

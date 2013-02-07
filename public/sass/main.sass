@@ -21,6 +21,23 @@ li
 div, ul, li
 	display: block
 
+select
+	border: 1px solid #CCC
+	padding: 0.7em 1.5em 0.7em 0.5em
+	font-size: 1em
+	color: #AAA
+	font-family: Arial
+	box-shadow: inset 0px 0px 3px #DDD
+	-webkit-box-shadow: inset 0px 0px 3px #DDD
+	-webkit-appearance: none
+
+.input-small
+	background: url(../img/arrow.png) no-repeat 4.3em 1em white
+	width: 95px
+
+.input-mini
+	width: 60px
+
 /* ==========================================================================
 	 HTML
 	 ========================================================================== */
@@ -100,6 +117,7 @@ header
 		label
 			color: #18183F
 			margin: 0.2em
+			margin-right: 0.5em
 			font:
 				family: 'Exo'
 				size: 1.4em 
@@ -118,16 +136,6 @@ header
 			width: 15em
 		#age
 			width: 5.2em
-		.select-1
-			display: inline
-			color: #979797
-			background: #FFF
-			padding: 0.7em 1em
-			padding-right: 2em
-			border: 1px solid #CCC
-			@include radio(5px)
-			-webkit-box-shadow: inset 1px 1px 4px #EEE
-			box-shadow: inset 1px 1px 4px #EEE
 		.arrow
 			background: url(../img/arrow.png) no-repeat
 			width: 12px
@@ -138,7 +146,9 @@ header
 			top: 17px
 			right: 24px
 	a
-		margin-top: 0.6em
+		margin:
+			top: 0.6em
+			left: 1em
 #middle
 	overflow: hidden
 	border-bottom: 2px solid #EEE
