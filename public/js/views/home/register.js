@@ -48,7 +48,7 @@ define(function(require) {
 				birthdayYear: {
 					max: "You need to be +18 years old to register"
 				},
-				has_accepted_terms: "Please accept our terms"
+				hasAcceptedTerms: "Please accept our terms"
 			},
 			errorPlacement: function(error, element) {
 				error.appendTo(element.nextAll("span.help-block"));
@@ -72,8 +72,8 @@ define(function(require) {
 			var spinner = new Spinner(utils.getSpinOpts());
 			var data = utils.serializeForm(e.target.id);
 
-			if (data.has_accepted_terms === "on") 
-				data.has_accepted_terms = true;
+			if (data.hasAcceptedTerms === "on") 
+				data.hasAcceptedTerms = true;
 			else {
 				console.error("Hmm...");
 				return;
