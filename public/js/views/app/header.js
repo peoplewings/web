@@ -18,7 +18,6 @@ define(function(require){
 		},
 		
 		render: function(){
-			debugger
 			$(this.el).html(headerTpl(this.model.toJSON()));
 	    },
 	
