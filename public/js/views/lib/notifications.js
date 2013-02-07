@@ -2,8 +2,9 @@ define(function(require) {
 
 	var api = require('api2');
 	var Promise = require('promise');
+	var utils = require('utils');
 	var UserAccount = require('models/Account');
-	var modalTpl = require('tmpl!templates/lib/modal2.html');
+	
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
 	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
 	var wingsParams = {
@@ -17,24 +18,6 @@ define(function(require) {
 				.datepicker("option", "dateFormat", "yy-mm-dd");
 		},
 	};
-
-	function showModal(header, accept, content, callback) {
-		var modal = $(modalTpl({
-			header: header,
-			accept: accept,
-			content: content
-		}));
-		$("body section:last").append(modal);
-
-		modal.modal('show');
-		modal.find('.btn-primary').click(callback);
-
-		modal.on('hidden', function() {
-			modal.remove();
-		});
-
-		return modal;
-	}
 
 	function selectedWingType(container) {
 		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type')
@@ -65,7 +48,7 @@ define(function(require) {
 				}].concat(wings.items) : null,
 			});
 
-			var modal = showModal(title, button, content, send);
+			var modal = utils.showModal(title, button, content, send);
 
 			modal.on('hidden', function() {
 				if (!prom.future.isCompleted())

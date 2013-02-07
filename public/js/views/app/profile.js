@@ -4,37 +4,25 @@ define(function(require){
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
+	var phrases = require('phrases');
+
 	var profileTpl = require('tmpl!templates/app/profile.html');
 	var basicTpl = require('tmpl!templates/app/basic-form.html');
 	var aboutTpl = require('tmpl!templates/app/about-form.html');
 	var likesTpl = require('tmpl!templates/app/likes-form.html');
 	var contactTpl = require('tmpl!templates/app/contact-form.html');
-	
 	var alertTpl = require('tmpl!templates/lib/alert.html');
+
 	var List = require('views/app/list');
 	var avatarView = require("views/app/avatar");
+	var mapView = require("views/app/map");
+
 	var ProfileModel = require("models/Profile");
+	var gMaps = require("async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en");
 	
-	var gMaps = require("async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en")	
-	var mapView = require("views/app/map")
 	
 	var profileView = Backbone.View.extend({
     	el: "#main",
-
-		months: [
-			{ name: 'January'},
-			{ name: 'Feburary'},
-			{ name: 'March'},
-			{ name: 'April'},
-			{ name: 'May'},
-			{ name: 'June'},
-			{ name: 'July'},
-			{ name: 'August'},
-			{ name: 'September'},
-			{ name: 'October'},
-			{ name: 'November'},
-			{ name: 'December'},
-		],
 		
 		events:{
 			"click a#add-language-btn": function(e){
@@ -122,7 +110,7 @@ define(function(require){
 	    render: function(){		
 			$(this.el).html(profileTpl(this.model.toJSON()));
 
-			this.$('#basic-info').html(basicTpl(_.extend(this.model.toJSON(), { month: this.months})));
+			this.$('#basic-info').html(basicTpl(this.model.toJSON(), { month: phrases.months }));
 			this.$('#about-me').html(aboutTpl(this.model.toJSON()));
 			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
 			this.$('#contact-info').html(contactTpl(this.model.toJSON()));

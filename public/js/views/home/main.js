@@ -36,29 +36,11 @@ define(function(require) {
 		},
 
 		unserializeParams: function(params){
-
-			if (params.wings)
-				this.$("input[name=wings]").val(params.wings)
-
-			if (params.startDate){
-				this.$("input[name=startDate]").val(params.startDate)
-				this.$("input[name=endDate]").val(params.endDate)
-			}
-				
-			if (params.gender.length == 1){
-				this.$("select[name=capacity] option[value=" + params.gender[0] + "]").attr("selected", true)
-			}
-
-			if (params.gender.length > 1){
-				this.$("select[name=capacity] option[value=Both]").attr("selected", true)
-			}
-
-			this.$("select[name=capacity] option[value=" + params.capacity + "]").attr("selected", true)
-			this.$("select[name=startAge] option[value=" + params.startAge + "]").attr("selected", true)
-			this.$("select[name=endAge] option[value=" + params.endAge + "]").attr("selected", true)
-			this.$("select[name=language] option[value=" + params.language + "]").attr("selected", true)
-			this.$("select[name=type] option[value=" + params.type + "]").attr("selected", true)
-			
+			var self = this;
+			_.each(params, function(value, key){
+				self.$("[name=" + key + "]")
+				.val(value);
+			});
 		},
 
 		renderResults: function(query, results) {
@@ -76,9 +58,6 @@ define(function(require) {
 
 			var self = this;
 			var formData = utils.serializeForm(e.target.id);
-
-			if (formData.gender.indexOf("Both") == 0)
-				formData.gender = ["Male", "Female"];
 			
 			formData.page = 1;
 			

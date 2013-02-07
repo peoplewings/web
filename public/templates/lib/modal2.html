@@ -6,6 +6,6 @@
   <div class="modal-body">{{{ content }}}</div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="generic-modal-btn btn btn-primary">{{ accept }}</button>
+    {{#if accept}}<button class="generic-modal-btn btn btn-primary">{{ accept }}</button>{{/if}}
   </div>
 </div>

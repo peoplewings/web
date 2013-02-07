@@ -27,7 +27,6 @@ define(function(require) {
 		},
 
 		initialize: function(options) {
-			debugger
 			this.papa = options.papa
 			this.update = options.update
 
@@ -40,7 +39,6 @@ define(function(require) {
 		},
 
 		render: function(update) {
-			debugger
 			if (update) this.update = update;
 
 			$(this.el).html(wingTpl({ update: this.update }));
@@ -54,8 +52,6 @@ define(function(require) {
 		},
 
 		unserialize: function(){
-			console.log(this.model.toJSON())
-			debugger;
 			if (this.model.get("city") === undefined) return;
 
 			this.papa.$("select#wings-list option[value='/api/v1/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id") + "']")

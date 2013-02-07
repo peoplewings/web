@@ -2,8 +2,7 @@ define(function(require) {
 
 	var $ = require("jquery");
 	var Backbone = require("backbone");
-	var api = require("api");
-	var api2 = require("api2");
+	var api = require("api2");
 	var homeView = require("views/home/main");
 	var appHomeView = require("views/app/home");
 	var UserModel = require("models/Account");
