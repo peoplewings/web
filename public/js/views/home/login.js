@@ -7,6 +7,7 @@ define(function(require) {
 	var loginTpl = require('text!templates/home/login.html');
 	var alertTpl = require('text!templates/lib/alert.html');
 	var UserModel = require('models/Account');
+	var Header = require('views/app/header');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
@@ -64,13 +65,11 @@ define(function(require) {
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
 			.then(function(data){
-				var user = new UserModel({
-					id: data.idAccount,
-				});
+				debugger
+				var user = new UserModel(data);
 
-				require(["views/app/header"], function(header){
-					header.render()
-				});
+				router.header = new Header
+				router.header.render();
 
 				router.navigate("#/search");
 
