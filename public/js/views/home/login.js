@@ -65,7 +65,6 @@ define(function(require) {
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
 			.then(function(data){
-				debugger
 				var user = new UserModel(data);
 
 				router.header = new Header
