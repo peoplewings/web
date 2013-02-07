@@ -8,3 +8,9 @@
 	background: -o-linear-gradient(top,  $color_from 0%,$color_to 100%) /* Opera 11.10+ */
 	background: -ms-linear-gradient(top,  $color_from 0%,$color_to 100%) /* IE10+ */
 	background: linear-gradient(to bottom,  $color_from 0%,$color_to 100%) /* W3C */
+
+@mixin transition($property, $time)
+	transition: $property $time
+	-moz-transition: $property $time /* Firefox 4 */
+	-webkit-transition: $property $time /* Safari and Chrome */
+	-o-transition: $property $time /* Opera */
