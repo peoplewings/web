@@ -2,8 +2,7 @@ define(function(require) {
 
 	var $ = require("jquery");
 	var Backbone = require("backbone");
-	var api = require("api");
-	var api2 = require("api2");
+	var api = require("api2");
 	var homeView = require("views/home/main");
 	var appHomeView = require("views/app/home");
 	var UserModel = require("models/Account");
@@ -20,7 +19,7 @@ define(function(require) {
 	var wingsView = require("views/app/wings");
 	var notificationsView = require("views/app/notifications");
 	var threadView = require("views/app/thread");
-	var header = require("views/app/header");
+	var Header = require("views/app/header");
 
 
 	var Router = Backbone.Router.extend({
@@ -152,8 +151,13 @@ define(function(require) {
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
 			Backbone.history.start();
-			if (api.userIsLoggedIn())
-				header.render();
+			if (api.userIsLoggedIn()){
+				if (!this.header){
+					this.header = new Header
+				} else {
+					this.header.render()
+				}
+			}
 		}
 	});
 
