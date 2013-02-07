@@ -1,0 +1,10 @@
+// mixin effects
+
+@mixin bg_gradient($color_from, $color_to) 
+	background: $color_from /* Old browsers */
+	background: -moz-linear-gradient(top,  $color_from 0%, $color_to 100%) /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color_from), color-stop(100%,$color_to)) /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $color_from 0%,$color_to 100%) /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $color_from 0%,$color_to 100%) /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $color_from 0%,$color_to 100%) /* IE10+ */
+	background: linear-gradient(to bottom,  $color_from 0%,$color_to 100%) /* W3C */
