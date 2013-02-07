@@ -79,6 +79,10 @@ define(function(require) {
 				return;
 			}
 
+			data.birthdayYear = +data.birthdayYear;
+			data.birthdayMonth = +data.birthdayMonth;
+			data.birthdayDay = +data.birthdayDay;
+
 			spinner.spin(document.getElementById('main'));
 
 			api.post(api.getApiVersion() + '/newuser', data)
