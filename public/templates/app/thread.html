@@ -2,6 +2,7 @@
 	<input type="button" id="back" value="Back">
 	<input type="button" id="previous" value="<" data-id="{{ previous }}" {{#unless previous }}disabled{{/unless}}>
 	<input type="button" id="next" value=">" data-id="{{ next }}" {{#unless next }}disabled{{/unless}}>
+	<input type="button" id="delete-thread" value="Delete" class="pull-right">
 	<ul id="notif-list" class="unstyled">
 		{{{ items }}}
 
@@ -27,6 +28,7 @@
 					<button id="cancel-response" class="btn">Cancel</button>
 					<button id="send-response" class="btn btn-primary">Send</button>
 				</div>
+				
 			</div>
 		</li>
 	</ul>
