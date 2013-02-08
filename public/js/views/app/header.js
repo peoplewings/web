@@ -11,7 +11,6 @@ define(function(require){
 		el: 'header',
 	
 		initialize: function(){
-			debugger
 			this.model = new UserModel({id: api.getUserId()});
 			this.model.on("change", this.render.bind(this));
 			if (!this.model.get("firstName"))
