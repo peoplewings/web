@@ -243,8 +243,8 @@ define(function(require) {
 		parseOptions: function(options, firstSender, wingState){
 			if (api.getUserId() == firstSender)
 				options[options.indexOf("Deny")] = "Cancel";
-				if (wingState == "D")
-					options[options.indexOf("Pending")] = "Reopen";
+			if (wingState == "D")
+				options[options.indexOf("Pending")] = "Reopen";
 		},
 
 		getWingParameters: function(){
