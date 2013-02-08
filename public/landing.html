@@ -47,13 +47,9 @@
 				<label class="control-label" for="inputPeople">PEOPLE</label>
 				<select name="startAge" class="input-mini">
 					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
 				</select>
 				<select name="endAge" class="input-mini">
-					<option value="99">99</option>
-					<option value="98">98</option>
-					<option value="97">97</option>
+					<option value="18">18</option>
 				</select>
 				<select name="gender" class="input-small">
 					<option value="Male">Male</option>
@@ -114,11 +110,16 @@
 	<script type="text/javascript" src="js/lib/jquery.js"></script>
 	<script type="text/javascript">
 
+		$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
+			var num = 18 + index * 2;
+			return '<option value="' + num + '">' + num + '</option>';
+		}).join(''));
+
 		$('#accomodation-search-form').on('submit', function() {
 			var wings = $('#inputWings').val();
 			if (wings) {
 				document.location =
-					'/#/search/?capacity=1&language=all&type=host&page=1&' +
+					'/#/search/?capacity=1&language=all&type=host&page=1&gender=Male&' +
 					$('#accomodation-search-form [name]')
 						.toArray()
 						.map($)
