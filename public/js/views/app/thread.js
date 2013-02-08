@@ -184,7 +184,7 @@ define(function(require) {
 					.focus();
 		},
 
-		editWingParams: function(){
+		/*editWingParams: function(){
 			this.$('#response-options').hide();
 			this.$('#write-response')
 				.show()
@@ -192,7 +192,7 @@ define(function(require) {
 					.focus();
 			this.$('#edit-wing-params')
 				.show();
-		},
+		},*/
 
 		cancelResponse: function() {
 			this.$('#response-options').show();
