@@ -70,7 +70,6 @@ define(function(require) {
 		},
 
 		refresh: function(prevThread, nextThread, data) {
-			var defaultOptions = ["Accept", "Pending", "Maybe", "Deny"];
 			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
 			var parameters = null
@@ -109,11 +108,10 @@ define(function(require) {
 				});
 			});
 
-			function openTpl(item, defaultOptions) {
+			function openTpl(item) {
 				return openItemTpl(item, data.wing, {
 					isMessage: isMessage,
 					options: data.options,
-					defaultOptions: defaultOptions,
 				});
 			}
 
@@ -131,13 +129,13 @@ define(function(require) {
 				next: nextThread,
 				parameters: data.wing.parameters,
 				me: { avatar: avatar },
-				items: items.map(itemTpl).join('') + openTpl(last, defaultOptions),
+				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
 
 			var allButLast = Array.prototype.slice.call(self.$('#notif-list').children(), 0, -2);
 			$(allButLast).click(function openItem() {
 				var closed = $(this);
-				var open = $(openTpl(data.items[$(this).data('index')], defaultOptions));
+				var open = $(openTpl(data.items[$(this).data('index')]));
 
 				$(this).replaceWith(open);
 				open.click(function closeItem() {
