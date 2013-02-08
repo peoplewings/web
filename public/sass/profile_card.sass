@@ -1,17 +1,19 @@
-
-body
-	background: #f5f5f0
-
 @import _effects1.sass
 
 .profile
 	font-family: Arial
-	margin: 2em
 	border: 1px solid #ccccd3
-	max-width: 697px
-	margin-right: auto
-	margin-left: auto
-	line-height: 1.3em
+	max-width: 770px
+	margin-bottom: 2em
+
+	h1, h2, h3, h4, h5, h6
+		line-height: 20px
+		margin: 0
+		padding: 0
+		font-weight: normal
+
+	li
+		list-style-type: none
 
 	div
 		display: block
@@ -42,18 +44,19 @@ body
 				top: -18px
 
 	.content-right
+		float: right
 		background: #FFF
 
 		.personal-info
-			padding: 1.5em
-			padding-bottom: 0.9em
-			max-width: 474px
+			margin: 24px
+			margin-bottom: 14px
+			max-width: 545px
 			max-height: 95px
 			overflow: hidden
 
 			h1.name
 				font:
-					size: 1.3em
+					size: 21px
 					weight: bold
 				display: inline
 				a
@@ -66,24 +69,31 @@ body
 				margin-left: 0.2em
 
 			.age
-				font-size: 0.9em
+				font-size: 14px
 
 			.online
 				color: #808080
 				font:
 					style: italic
-					size: 0.8em
-
+					size: 13px
+			
 			h2.home-town
+				font-size: 16px
 
 			h3.current-location
 				color: #808080
-				font-size: 0.9em
+				font-size: 14px
 				margin-bottom: 0.8em
 
 			h4
 				display: inline
-				font-size: 0.8em
+				font-size: 13px
+				float: left
+
+			p
+				white-space: nowrap
+				text-overflow: ellipsis
+				overflow: hidden
 
 			.languages-tag
 				color: #808080
@@ -91,15 +101,15 @@ body
 
 			.languages
 				color: #000
+				text-transform: capitalize
 
 		.main-bar
-			font-size: 0.7em
+			font-size: 11px
 			color: #808080
 			@include bg_gradient(#ffffff, #ecece5)
 			border-top: 1px solid #e5e5e5
 			border-bottom: 1px solid #d0cec7
 			overflow: hidden
-			max-height: 40px
 
 			div
 				float: left
@@ -115,7 +125,7 @@ body
 
 				.results
 					font:
-						size: 1.4em
+						size: 16px
 						weight: bold
 					color: #000
 
@@ -149,27 +159,24 @@ body
 		font-size: 0.8em
 
 		.about-info
-			padding: 2.1em
+			padding: 27px
 			overflow: hidden
 
 			h1
-				font-size: 1.3em
+				font-size: 17px
 				margin-bottom: 0.6em
 				float: left
 
 			h2
 				font:
-					size: 0.9em
+					size: 12px
 					style: italic
 				float: right
 			
 			p
+				font-size: 13px
 				color: #AAA
 				clear: both
-
-			&:active
-				height: 0px
-				@include transition(height, 2s)
 
 		.about-footer
 			border-top: 1px solid #e5e5e5
@@ -182,8 +189,10 @@ body
 				left: 17em
 
 			span.more-about
+				font-size: 13px
 				background: url(../img/arrow_about.png) no-repeat 12px center
 				text-indent: -9999px
 
 			h1
+				font-size: 13px
 				text-align: center

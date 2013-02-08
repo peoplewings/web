@@ -24,56 +24,73 @@
 				</ul>
 			</div><!-- EOF pager content -->
 			<legend></legend> <!-- ?! -->
+			
 			{{#each results }}
-			<div class="search-result" data-profile-id="{{ id }}">
-				<!-- <div class="span2"> -->
-				<div class="span2 correct-margin">
-					<a href="#/profiles/{{id}}/about" class="thumbnail">
-						<img id="avatar" class="avatar1" src="{{ avatar }}" alt="avatar">
-					</a>
-				</div>
-				<div class="span3">
-					<p id="user-name-label">
+			<div class="profile" data-profile-id="{{ id }}">
+				<div class="content-left">
+					<div class="avatar">
+						<span class="online-dot">online dot</span>
 						<a href="#/profiles/{{id}}/about">
-							<span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
-						{{#if verified }}
+							<img id="avatar" src="{{ avatar }}" alt="avatar">
+						</a>
+					</div>
+				</div>
+				<div class="content-right">
+					<div class="personal-info">
+						<h1 id="user-name-label" class="name">
+							<a href="#/profiles/{{id}}/about">{{ firstName }} {{ lastName }}</a>
+						</h1>
+						<span class="age">[{{ age }}]</span>
+						<span class="online">Online</span>
+<!-- 						{{#if verified }}
 							<span class="label label-success">Verified</span>
 						{{else}}
 							<span class="label label-important">Not verified</span>
 						{{/if}}
-					</p>
-					{{#if current.name }}
-						<p><b>Live in:</b> {{ current.name }}, {{ current.country }}</p>
-					{{/if}}
-					{{#if lastLogin}}
-					<p><b>Last in:</b> {{ lastLogin }}</p>
-					{{/if}}
-					
-					<p><b>Response rate:</b> {{ replyRate }}%</p>
-					<p><b>Average reply time:</b> {{replyTime}}</p>
-
-					{{#if allAboutYou }}
-						<p><b>About</b> {{ allAboutYou }}</p>
-					{{/if}}
-
-					{{#if languages.length }}
-						<p>
-							<b>Languages: </b>
+						{{#if lastLogin}}
+								<p><b>Last in:</b> {{ lastLogin }}</p>
+							{{/if}} -->
+						{{#if current.name }}
+						<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
+						<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>
+						{{/if}}
+						<h4 class="languages-tag">Languages</h4>
+						{{#if languages.length }}
+						<p class="languages">
 							{{#each languages }}
-								<br>
-								<span style="text-transform: capitalize">{{ name }} ({{ level }})</span>
+								{{ name }} ({{ level }}),
 							{{/each}}
 						</p>
-					{{/if}}
-				</div>
-				<div class="span2">
-					<div class="btn-group">
-						<button class="btn send-message-btn">Chat</button>
-						<button class="btn send-request-btn">Request</button>
-						<button class="btn send-invitation-btn">Invite</button>
+						{{/if}}
+					</div>
+					<div class="main-bar">
+						<div class="info-bar">
+							<span class="">Replay time</span>
+							<span class="results">{{replyTime}}</span>
+							<span class="">Replay rate</span>
+							<span class="results">{{ replyRate }}%</span>
+						</div>
+						<div class="button-bar">
+							<ul>
+								<li><a href="#" class="button">MESSAGE</a></li>
+								<li><a href="#" class="button">REQUEST</a></li>
+								<li><a href="#" class="button">INVITE</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			<legend></legend>
+				<div class="content-bottom">
+					<div class="about-info">
+						<h1>About me !</h1>
+						<h2>Member until <span>May 2012</span></h2>
+						<p>{{ allAboutYou }}</p>
+					</div>
+					<div class="about-footer">
+						<span class="more-about">more about</span>
+						<h1>SEE MORE ABOUT YANA </h1>
+						<span class="more-about">more about</span>
+					</div>
+				</div>
 			</div>
 			{{/each}}
 			<div class="pager-content">

@@ -1,14 +1,15 @@
-body {
-  background: #f5f5f0; }
-
 .profile {
   font-family: Arial;
-  margin: 2em;
   border: 1px solid #ccccd3;
-  max-width: 697px;
-  margin-right: auto;
-  margin-left: auto;
-  line-height: 1.3em; }
+  max-width: 770px;
+  margin-bottom: 2em; }
+  .profile h1, .profile h2, .profile h3, .profile h4, .profile h5, .profile h6 {
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    font-weight: normal; }
+  .profile li {
+    list-style-type: none; }
   .profile div {
     display: block; }
   .profile .online-dot {
@@ -33,15 +34,16 @@ body {
         position: relative;
         top: -18px; }
   .profile .content-right {
+    float: right;
     background: white; }
     .profile .content-right .personal-info {
-      padding: 1.5em;
-      padding-bottom: 0.9em;
-      max-width: 474px;
+      margin: 24px;
+      margin-bottom: 14px;
+      max-width: 545px;
       max-height: 95px;
       overflow: hidden; }
       .profile .content-right .personal-info h1.name {
-        font-size: 1.3em;
+        font-size: 21px;
         font-weight: bold;
         display: inline; }
         .profile .content-right .personal-info h1.name a {
@@ -52,25 +54,33 @@ body {
       .profile .content-right .personal-info span {
         margin-left: 0.2em; }
       .profile .content-right .personal-info .age {
-        font-size: 0.9em; }
+        font-size: 14px; }
       .profile .content-right .personal-info .online {
         color: gray;
         font-style: italic;
-        font-size: 0.8em; }
+        font-size: 13px; }
+      .profile .content-right .personal-info h2.home-town {
+        font-size: 16px; }
       .profile .content-right .personal-info h3.current-location {
         color: gray;
-        font-size: 0.9em;
+        font-size: 14px;
         margin-bottom: 0.8em; }
       .profile .content-right .personal-info h4 {
         display: inline;
-        font-size: 0.8em; }
+        font-size: 13px;
+        float: left; }
+      .profile .content-right .personal-info p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; }
       .profile .content-right .personal-info .languages-tag {
         color: gray;
         margin-right: 1em; }
       .profile .content-right .personal-info .languages {
-        color: black; }
+        color: black;
+        text-transform: capitalize; }
     .profile .content-right .main-bar {
-      font-size: 0.7em;
+      font-size: 11px;
       color: gray;
       background: white;
       background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
@@ -81,8 +91,7 @@ body {
       background: linear-gradient(to bottom, white 0%, #ecece5 100%);
       border-top: 1px solid #e5e5e5;
       border-bottom: 1px solid #d0cec7;
-      overflow: hidden;
-      max-height: 40px; }
+      overflow: hidden; }
       .profile .content-right .main-bar div {
         float: left; }
       .profile .content-right .main-bar .info-bar {
@@ -93,7 +102,7 @@ body {
           float: left;
           margin-right: 0.8em; }
         .profile .content-right .main-bar .info-bar .results {
-          font-size: 1.4em;
+          font-size: 16px;
           font-weight: bold;
           color: black; }
       .profile .content-right .main-bar .button-bar {
@@ -124,25 +133,20 @@ body {
     background: white;
     font-size: 0.8em; }
     .profile .content-bottom .about-info {
-      padding: 2.1em;
+      padding: 27px;
       overflow: hidden; }
       .profile .content-bottom .about-info h1 {
-        font-size: 1.3em;
+        font-size: 17px;
         margin-bottom: 0.6em;
         float: left; }
       .profile .content-bottom .about-info h2 {
-        font-size: 0.9em;
+        font-size: 12px;
         font-style: italic;
         float: right; }
       .profile .content-bottom .about-info p {
+        font-size: 13px;
         color: #aaaaaa;
         clear: both; }
-      .profile .content-bottom .about-info:active {
-        height: 0px;
-        transition: height 2s;
-        -moz-transition: height 2s;
-        -webkit-transition: height 2s;
-        -o-transition: height 2s; }
     .profile .content-bottom .about-footer {
       border-top: 1px solid #e5e5e5;
       padding: 0.8em;
@@ -152,7 +156,9 @@ body {
         position: relative;
         left: 17em; }
       .profile .content-bottom .about-footer span.more-about {
+        font-size: 13px;
         background: url(../img/arrow_about.png) no-repeat 12px center;
         text-indent: -9999px; }
       .profile .content-bottom .about-footer h1 {
+        font-size: 13px;
         text-align: center; }
