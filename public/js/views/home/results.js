@@ -69,7 +69,6 @@ define(function(require){
 		},
 
 		sendMessage: function(event) {
-			debugger
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
 			notifications.message(id, name);
