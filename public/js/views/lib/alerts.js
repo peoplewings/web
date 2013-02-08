@@ -30,7 +30,7 @@ define(function(require) {
 		return alert;
 	}
 
-	return window.cosa = {
+	return {
 		success: showAlert.bind(null, 'success'),
 		info: showAlert.bind(null, 'info'),
 		warning: showAlert.bind(null, null),
