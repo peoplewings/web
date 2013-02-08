@@ -38,6 +38,7 @@ define(function(require){
 				endResult: results.endResult,
 				totalCount: results.count,
 				results: results.profiles.map(function(result) {
+					result.id = result.resourceUri.split("/api/v1/profiles/")[1];
 					result.replyTime = moment.duration(result.replyTime).humanize();
 
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
@@ -68,6 +69,7 @@ define(function(require){
 		},
 
 		sendMessage: function(event) {
+			debugger
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
 			notifications.message(id, name);
