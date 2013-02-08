@@ -121,7 +121,6 @@ define(function(require) {
 		},
 
 		wings: function(wingId){
-			debugger
 			if (!this.wingsView){
 				this.wingsView = new wingsView;
 				this.wingsView.render(wingId)

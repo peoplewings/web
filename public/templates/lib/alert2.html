@@ -1,0 +1,7 @@
+<div class="alert {{#if options.block }}alert-block{{/if}} {{#if type }}alert-{{ type }}{{/if}}" style="z-index: 1200">
+	{{#unless options.noClose }}
+		<button type="button" class="close" data-dismiss="alert">×</button>
+	{{/unless}}
+	<h2>{{ title }}</h2>
+	{{{ content }}}
+</div>
