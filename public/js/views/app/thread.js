@@ -101,7 +101,7 @@ define(function(require) {
 					connected: item.senderConnected,
 					content: item.content.message,
 					state: data.wing.state,
-					//flagDirection: data.firstSender !== api.getUserId()
+					flagDirection: data.firstSender === api.getUserId()
 				},
 				{
 					wingParameters: parameters
@@ -112,6 +112,7 @@ define(function(require) {
 				return openItemTpl(item, data.wing, {
 					isMessage: isMessage,
 					options: data.options,
+					flagDirection: data.firstSender === api.getUserId()
 				});
 			}
 
