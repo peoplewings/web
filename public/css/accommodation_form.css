@@ -25,8 +25,11 @@ form#accomodation-search-form {
     width: 74px;
     margin-right: 13px; }
   form#accomodation-search-form div.control-group {
-    margin: 0;
-    display: inline; }
+    margin: 0; }
+    form#accomodation-search-form div.control-group:before {
+      display: inline; }
+    form#accomodation-search-form div.control-group:after {
+      display: inline; }
     form#accomodation-search-form div.control-group input, form#accomodation-search-form div.control-group select {
       float: left;
       font-size: 12px;
