@@ -4,10 +4,10 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
-	var loginTpl = require('text!templates/home/login.html');
-	var alertTpl = require('text!templates/lib/alert.html');
+	var alerts = require('views/lib/alerts');
 	var UserModel = require('models/Account');
 	var Header = require('views/app/header');
+	var loginTpl = require('text!templates/home/login.html');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
@@ -82,13 +82,7 @@ define(function(require) {
 		},
 
 		loginFail: function(msg){
-
-			this.$el.prepend(alertTpl({
-				extraClass: 'alert-error',
-				heading: "",
-				message: msg
-			}));
-
+			alerts.error(msg);
 			this.$inputPassword.val("");
 		}
 	});
