@@ -1,0 +1,91 @@
+form#accomodation-search-form {
+  background: #e1e0d9;
+  padding: 27px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  overflow: hidden; }
+  form#accomodation-search-form label {
+    display: none; }
+  form#accomodation-search-form div.line-1, form#accomodation-search-form div.line-2 {
+    width: 100%;
+    height: 42px; }
+  form#accomodation-search-form h1 {
+    float: left;
+    margin-top: 10px;
+    margin-right: 20px;
+    text-indent: -9999px; }
+  form#accomodation-search-form h1.wings_text {
+    background: url(../../img/wings_text.png) no-repeat;
+    height: 20px;
+    width: 67px; }
+  form#accomodation-search-form h1.people_text {
+    background: url(../../img/people_text.png) no-repeat;
+    height: 20px;
+    width: 74px;
+    margin-right: 13px; }
+  form#accomodation-search-form div.control-group {
+    margin: 0;
+    display: inline; }
+    form#accomodation-search-form div.control-group input, form#accomodation-search-form div.control-group select {
+      float: left;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 1px solid #79766c;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      color: black;
+      line-height: 15px; }
+    form#accomodation-search-form div.control-group input.input-sdate {
+      width: 90px;
+      background: url(../img/start-date.png) no-repeat 75px center white; }
+    form#accomodation-search-form div.control-group input.input-edate {
+      width: 90px;
+      background: url(../img/end-date.png) no-repeat 75px center white; }
+    form#accomodation-search-form div.control-group input.input-large {
+      width: 202px; }
+    form#accomodation-search-form div.control-group select {
+      height: 38px; }
+    form#accomodation-search-form div.control-group select.input-age1 {
+      width: 77px;
+      background: url(../img/mini-arrow.png) no-repeat 56px center white; }
+    form#accomodation-search-form div.control-group select.input-age2 {
+      width: 46px;
+      background: url(../img/mini-arrow.png) no-repeat 28px center white; }
+    form#accomodation-search-form div.control-group select.input-language {
+      width: 89px;
+      background: url(../img/mini-arrow.png) no-repeat 69px center white; }
+    form#accomodation-search-form div.control-group select.input-others {
+      width: 108px;
+      background: url(../img/mini-arrow.png) no-repeat 87px center white; }
+  form#accomodation-search-form div.form-actions {
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    background: none;
+    padding: 0px; }
+    form#accomodation-search-form div.form-actions button.btn-peoplewings {
+      padding: 5px 20px;
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      color: yellow;
+      background: #18183f;
+      font-family: "Exo";
+      font-size: 18px;
+      font-weight: 500;
+      font-style: italic;
+      border: 2px solid yellow;
+      transition: box-shadow 0.5s;
+      -moz-transition: box-shadow 0.5s;
+      -webkit-transition: box-shadow 0.5s;
+      -o-transition: box-shadow 0.5s; }
+      form#accomodation-search-form div.form-actions button.btn-peoplewings:hover {
+        box-shadow: 0px 0px 20px yellow;
+        -moz-box-shadow: 0px 0px 20px yellow;
+        -webkit-box-shadow: 0px 0px 20px yellow; }

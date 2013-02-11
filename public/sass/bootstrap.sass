@@ -1164,7 +1164,8 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 	width: 60px
 
 .input-small
-	width: 108px
+	//width: 108px
+	width: 85px
 
 .input-medium
 	width: 150px
@@ -1173,7 +1174,8 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 	width: 210px
 
 .input-xlarge
-	width: 240px
+	//width: 240px
+	width: 209px
 
 .input-xxlarge
 	width: 530px
@@ -1331,15 +1333,8 @@ input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, selec
 
 .form-actions
 	//padding: 19px 20px 20px
-	margin:
-		top: 30px
-		bottom: 30px
-		right: 40px
 	//background-color: #f5f5f5
 	//border-top: 1px solid #e5e5e5
-	.btn-peoplewings
-		position: relative
-		left: 31em
 	*zoom: 1
 	&:before
 		display: table
@@ -1543,11 +1538,20 @@ legend + .control-group
 		label
 			float: left
 			margin:
-				top: 0.5em
-				right: 1em
-				left: 2.5em
+				top: 12px
+				right: 12px
+			text-indent: -9999px
 		//margin-bottom: 20px
 		display: inline
+		.wings_text
+			width: 67px
+			height: 20px
+			background: url(../../img/wings_text.png) no-repeat left top
+		.people_text
+			width: 75px
+			height: 20px
+			background: url(../../img/people_text.png) no-repeat left top
+			margin-right: 4px
 		*zoom: 1
 		&:before
 			display: table
@@ -1573,9 +1577,9 @@ legend + .control-group
 				right: 3px
 				bottom: 6px
 		select.input-small
-			background: url(../img/arrow.png) no-repeat 5.6em 1.2em #FFF
+			//background: url(../img/arrow.png) no-repeat 59px center #FFF
 		select.input-medium
-			background: url(../img/arrow.png) no-repeat 8.6em 1.2em #FFF
+			//background: url(../img/arrow.png) no-repeat 59px center #FFF
 		&:first-child
 			*padding-left: 160px
 	.help-block
@@ -2774,11 +2778,10 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 		clear: both
 
 .tab-content
-	margin-top: 3.5em
-	border: 1px solid #EEE
-	border-top: none
+	margin-top: 10px
 	background: #e1e0d9
 	-webkit-border-radius: 12px
+	padding: 29px
 
 .tabs-below > .nav-tabs, .tabs-right > .nav-tabs, .tabs-left > .nav-tabs
 	border-bottom: 0
@@ -3003,6 +3006,14 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini
 	-webkit-border-radius: 0
 	-moz-border-radius: 0
 	border-radius: 0
+	-webkit-box-shadow: 0px 2px 4px #ccc
+	-moz-box-shadow: 0px 2px 4px #ccc
+	box-shadow: 0px 2px 4px #ccc
+	background: #edede6
+	margin:
+		left: auto
+		right: auto
+	max-width: 960px
 
 .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container
 	width: 940px
@@ -4733,7 +4744,7 @@ button.close
 		float: left
 		margin-left: 30px
 	.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .span12
-		width: 1170px
+		width: 960px
 	.span11
 		width: 1070px
 	.span10
@@ -4741,7 +4752,8 @@ button.close
 	.span9
 		width: 870px
 	.span8
-		width: 770px
+		//width: 770px
+		width: 700px
 	.span7
 		width: 670px
 	.span6
@@ -4749,7 +4761,8 @@ button.close
 	.span5
 		width: 470px
 	.span4
-		width: 370px
+		//width: 370px
+		width: 230px
 	.span3
 		width: 270px
 	.span2

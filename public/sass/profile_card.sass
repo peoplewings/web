@@ -1,6 +1,6 @@
 @import _effects1.sass
 
-.profile
+div.profile
 	font-family: Arial
 	border: 1px solid #ccccd3
 	max-width: 770px
@@ -18,7 +18,7 @@
 	div
 		display: block
 
-	.online-dot
+	div.online-dot
 		float: left
 		width: 18px
 		height: 18px
@@ -30,10 +30,10 @@
 		left: -1px
 		z-index: 1
 
-	.content-left
+	div.content-left
 		float: left
 
-		.avatar
+		div.avatar
 			width: 175px
 			height: 175px
 
@@ -43,15 +43,14 @@
 				position: relative
 				top: -18px
 
-	.content-right
+	div.content-right
 		float: right
 		background: #FFF
-		min-width: 593px
+		max-width: 523px
 
-		.personal-info
+		div.personal-info
 			margin: 24px
 			margin-bottom: 14px
-			max-width: 545px
 			max-height: 95px
 			overflow: hidden
 
@@ -69,10 +68,10 @@
 			span
 				margin-left: 0.2em
 
-			.age
+			span.age
 				font-size: 14px
 
-			.online
+			span.online
 				color: #808080
 				font:
 					style: italic
@@ -96,15 +95,15 @@
 				text-overflow: ellipsis
 				overflow: hidden
 
-			.languages-tag
+			p.languages-tag
 				color: #808080
 				margin-right: 1em
 
-			.languages
+			p.languages
 				color: #000
 				text-transform: capitalize
 
-		.main-bar
+		div.main-bar
 			font-size: 11px
 			color: #808080
 			@include bg_gradient(#ffffff, #ecece5)
@@ -115,22 +114,23 @@
 			div
 				float: left
 
-			.info-bar
+			div.info-bar
 				padding: 1em 0em 0em 2.1em
 				overflow: hidden
 				max-height: 20px
+				width: 240px
 
 				span
 					float: left
 					margin-right: 0.8em
 
-				.results
+				span.results
 					font:
 						size: 16px
 						weight: bold
 					color: #000
 
-			.button-bar
+			div.button-bar
 				float: right
 
 				li
@@ -153,13 +153,13 @@
 						color: #000
 						@include bg_gradient(#ffff00, #ffea00)
 
-	.content-bottom
+	div.content-bottom
 		clear: both
 		color: #808080
 		background: #FFF
 		font-size: 0.8em
 
-		.about-info
+		div.about-info
 			padding: 27px
 			overflow: hidden
 
@@ -179,7 +179,7 @@
 				color: #AAA
 				clear: both
 
-		.about-footer
+		div.about-footer
 			border-top: 1px solid #e5e5e5
 			padding: 0.8em
 			overflow: hidden
@@ -187,7 +187,7 @@
 			h1, span
 				float: left
 				position: relative
-				left: 17em
+				left: 230px
 
 			span.more-about
 				font-size: 13px
@@ -197,3 +197,4 @@
 			h1
 				font-size: 13px
 				text-align: center
+				text-transform: uppercase

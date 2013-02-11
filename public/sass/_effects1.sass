@@ -14,3 +14,17 @@
 	-moz-transition: $property $time /* Firefox 4 */
 	-webkit-transition: $property $time /* Safari and Chrome */
 	-o-transition: $property $time /* Opera */
+
+@mixin border_radius($value)
+	border-radius: $value
+	-webkit-border-radius: $value
+	-moz-border-radius: $value
+
+@mixin appearance($value)
+	-webkit-appearance: $value
+	-moz-appearance: $value
+
+@mixin box-shadow($hor, $ver, $blur, $color)
+	box-shadow: $hor $ver $blur $color
+	-moz-box-shadow: $hor $ver $blur $color
+	-webkit-box-shadow:  $hor $ver $blur $color
