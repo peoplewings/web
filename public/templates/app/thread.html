@@ -24,6 +24,13 @@
 					{{/if}}
 				</div>
 				<div id="write-response" style="display: none">
+					<div class="state-flag
+						{{#if flagDirection }}from-me{{else}}to-me{{/if}}
+						{{enum state 'notification-state'}}" style="display: none">
+						<span>
+							{{enum state 'notification-state'}}
+						</span>
+					</div>
 					<div class="params-box" style="display: none">
 						<label>Requested wing: <strong {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</strong></label>
 						<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>

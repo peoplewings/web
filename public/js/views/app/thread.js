@@ -108,11 +108,12 @@ define(function(require) {
 				});
 			});
 
+			var self = this;
 			function openTpl(item) {
 				return openItemTpl(item, data.wing, {
 					isMessage: isMessage,
 					options: data.options,
-					flagDirection: data.firstSender === api.getUserId()
+					flagDirection: data.firstSender === api.getUserId(),
 				});
 			}
 
@@ -129,7 +130,7 @@ define(function(require) {
 				previous: prevThread,
 				next: nextThread,
 				parameters: data.wing.parameters,
-				capacity: data.wing.parameters.capacity,
+				state: self.data.wing.state,
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
@@ -189,7 +190,22 @@ define(function(require) {
 			this.$('#write-response')
 				.hide()
 				.find('textarea')
-					.val('');
+					.val('')
+					
+			this.$('#write-response > div.state-flag')
+					.hide();
+
+			this.$('#edit-wing-params')
+				.hide();
+
+			var e = Handlebars.helpers['enum'];
+			this.$('.state-flag')
+				.removeClass(e(this.data.wing.state, "notification-state"))
+				.addClass(e(this.prevState, "notification-state"))
+				.find("span")
+				.text(e(this.prevState, "notification-state"));
+
+			this.data.wing.state = this.prevState;
 		},
 
 		sendResponse: function() {
@@ -212,38 +228,66 @@ define(function(require) {
 		},
 
 		optAccept: function() {
+			this.prevState = this.data.wing.state;
+			this.data.wing.state = "A";
 			this.reply();
 
 			this.$('#edit-wing-params')
 				.show();
 
-			this.initWingForm();
+			var e = Handlebars.helpers['enum'];
+			this.$('.state-flag')
+				.show()
+				.addClass(e("A", "notification-state"))
+				.find("span")
+				.text(e("A", "notification-state"));
 
-			this.data.wing.state = "A";
+			this.initWingForm();
 		},
 
 		optMaybe: function() {
+			this.prevState = this.data.wing.state;
+			this.data.wing.state = "M";
 			this.reply();
 
 			this.$('#edit-wing-params')
 				.show();
 
-			this.initWingForm();
+			var e = Handlebars.helpers['enum'];
+			this.$('.state-flag')
+				.show()
+				.addClass(e("A", "notification-state"))
+				.find("span")
+				.text(e("A", "notification-state"));
 
-			this.data.wing.state = "M";
+			this.initWingForm();
 		},
 
 		optReopen: function() {
-			console.log('reopen');
+			this.reply();
+
+
+
+			this.data.wing.state = "P";
 		},
 
 		optDeny: function() {
+			this.prevState = this.data.wing.state;
+			this.data.wing.state = "D";
+
 			this.reply();
 			
 			this.$('#write-response > .params-box')
 			.show();
 
-			this.data.wing.state = "D";
+			var e = Handlebars.helpers['enum'];
+			this.$('.state-flag')
+				.show()
+				.addClass(e("D", "notification-state"))
+				.find("span")
+				.text(e("D", "notification-state"));
+
+			this.initWingForm();
 		},
 
 		initWingForm: function(){
