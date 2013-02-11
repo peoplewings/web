@@ -191,7 +191,7 @@ define(function(require) {
 				.hide()
 				.find('textarea')
 					.val('')
-					
+
 			this.$('#write-response > div.state-flag')
 					.hide();
 
@@ -264,11 +264,10 @@ define(function(require) {
 		},
 
 		optReopen: function() {
-			this.reply();
+			this.prevState = this.data.wing.state;
+			this.data.wing.state = "D";
 
-
-
-			this.data.wing.state = "P";
+			//this.reply();
 		},
 
 		optDeny: function() {
