@@ -212,12 +212,17 @@ define(function(require) {
 		},
 
 		optAccept: function() {
-			console.log('accept');
+			this.reply();
+
+			this.$('#edit-wing-params')
+				.show();
+
+			this.initWingForm();
+
+			this.data.wing.state = "A";
 		},
 
 		optMaybe: function() {
-			console.log('maybe');
-			
 			this.reply();
 
 			this.$('#edit-wing-params')
@@ -226,7 +231,6 @@ define(function(require) {
 			this.initWingForm();
 
 			this.data.wing.state = "M";
-			//debugger
 		},
 
 		optReopen: function() {
