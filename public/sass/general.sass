@@ -1,0 +1,128 @@
+@import _effects1.sass
+
+body
+	background: #f5f5f0
+
+
+/* ==========================================================================
+	 Containers and Columns
+	 ========================================================================== */
+
+.container
+	margin:
+		right: auto
+		left: auto
+	width: 960px
+
+.span8
+	width: 700px
+
+.span4
+	width: 230px
+
+
+/* ==========================================================================
+	 Header
+	 ========================================================================== */
+
+.navbar-inner
+	background: #edede6
+	background: #e1e0d9
+
+.navbar .brand
+	background: url(../img/peoplewings.png) no-repeat
+	float: left
+	display: block
+	width: 237px
+	height: 60px
+	text-indent: -9999px
+
+
+/* ==========================================================================
+	 Nav
+	 ========================================================================== */
+
+.nav-tabs .nav-pills >
+	li > a
+		padding-top: 8px
+		padding-bottom: 8px
+		margin-top: 2px
+		margin-bottom: 2px
+		@include border_radius(5px)
+	.active > a
+		color: #ffffff
+		background-color: #0088cc
+		&:hover
+
+.all
+	background: url(../img/icon_all.png) no-repeat
+	&:hover
+		background: url(../img/icon_all_pre.png) no-repeat
+.transport
+	background: url(../img/icon_transport.png) no-repeat
+	&:hover
+		background: url(../img/icon_transport_pre.png) no-repeat
+.accommodation
+	background: url(../img/icon_accommodation.png) no-repeat
+	&:hover
+		background: url(../img/icon_accommodation_pre.png) no-repeat
+.travel
+	background: url(../img/icon_trip.png) no-repeat
+	&:hover
+		background: url(../img/icon_trip_pre.png) no-repeat
+
+
+/* ==========================================================================
+	 Pager Counter
+	 ========================================================================== */
+
+.pager
+	list-style: none
+	text-align: center
+	margin: 0
+	p
+		margin: 0
+		margin-top: 0.2em
+		display: inline
+	li
+		float: left
+	a
+		padding: 0
+		border: none
+		@include border-radius(0px)
+		&:hover
+			text-decoration: none
+			background-color: #f5f5f5
+	.icon a
+		display: block
+		width: 25px
+		height: 24px
+		text-indent: -9999px
+	.previousPage
+		background: url(../img/pager-prev.png) no-repeat left top
+	.nextPage
+		background: url(../img/pager-next.png) no-repeat left top
+	.disabled a
+		color: #999999
+		background-color: #fff
+		cursor: default
+		&:hover
+			color: #999999
+			background-color: #fff
+			cursor: default
+
+.pager-content
+	background: #FFF
+	border: 1px solid #ccccd3
+	overflow: hidden
+	padding: 1em
+	padding-left: 1.5em
+	margin:
+		top: 2em
+		bottom: 2em
+
+.adjust
+	margin:
+		top: 0.2em
+		right: 1em
+

@@ -4,7 +4,8 @@ form#accomodation-search-form {
   border-radius: 12px;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0; }
   form#accomodation-search-form label {
     display: none; }
   form#accomodation-search-form div.line-1, form#accomodation-search-form div.line-2 {
@@ -54,6 +55,9 @@ form#accomodation-search-form {
       width: 202px; }
     form#accomodation-search-form div.control-group select {
       height: 38px; }
+    form#accomodation-search-form div.control-group select.input-guests {
+      width: 90px;
+      background: url(../img/mini-arrow.png) no-repeat 66px center white; }
     form#accomodation-search-form div.control-group select.input-age1 {
       width: 77px;
       background: url(../img/mini-arrow.png) no-repeat 56px center white; }

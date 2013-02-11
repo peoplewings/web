@@ -1,0 +1,119 @@
+body {
+  background: #f5f5f0; }
+
+/* ==========================================================================
+ * Containers and Columns
+ * ========================================================================== */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 960px; }
+
+.span8 {
+  width: 700px; }
+
+.span4 {
+  width: 230px; }
+
+/* ==========================================================================
+ * Header
+ * ========================================================================== */
+.navbar-inner {
+  background: #edede6;
+  background: #e1e0d9; }
+
+.navbar .brand {
+  background: url(../img/peoplewings.png) no-repeat;
+  float: left;
+  display: block;
+  width: 237px;
+  height: 60px;
+  text-indent: -9999px; }
+
+/* ==========================================================================
+ * Nav
+ * ========================================================================== */
+.nav-tabs .nav-pills > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px; }
+.nav-tabs .nav-pills > .active > a {
+  color: white;
+  background-color: #0088cc; }
+
+.all {
+  background: url(../img/icon_all.png) no-repeat; }
+  .all:hover {
+    background: url(../img/icon_all_pre.png) no-repeat; }
+
+.transport {
+  background: url(../img/icon_transport.png) no-repeat; }
+  .transport:hover {
+    background: url(../img/icon_transport_pre.png) no-repeat; }
+
+.accommodation {
+  background: url(../img/icon_accommodation.png) no-repeat; }
+  .accommodation:hover {
+    background: url(../img/icon_accommodation_pre.png) no-repeat; }
+
+.travel {
+  background: url(../img/icon_trip.png) no-repeat; }
+  .travel:hover {
+    background: url(../img/icon_trip_pre.png) no-repeat; }
+
+/* ==========================================================================
+ * Pager Counter
+ * ========================================================================== */
+.pager {
+  list-style: none;
+  text-align: center;
+  margin: 0; }
+  .pager p {
+    margin: 0;
+    margin-top: 0.2em;
+    display: inline; }
+  .pager li {
+    float: left; }
+  .pager a {
+    padding: 0;
+    border: none;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px; }
+    .pager a:hover {
+      text-decoration: none;
+      background-color: whitesmoke; }
+  .pager .icon a {
+    display: block;
+    width: 25px;
+    height: 24px;
+    text-indent: -9999px; }
+  .pager .previousPage {
+    background: url(../img/pager-prev.png) no-repeat left top; }
+  .pager .nextPage {
+    background: url(../img/pager-next.png) no-repeat left top; }
+  .pager .disabled a {
+    color: #999999;
+    background-color: white;
+    cursor: default; }
+    .pager .disabled a:hover {
+      color: #999999;
+      background-color: white;
+      cursor: default; }
+
+.pager-content {
+  background: white;
+  border: 1px solid #ccccd3;
+  overflow: hidden;
+  padding: 1em;
+  padding-left: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+.adjust {
+  margin-top: 0.2em;
+  margin-right: 1em; }
