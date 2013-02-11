@@ -129,6 +129,7 @@ define(function(require) {
 				previous: prevThread,
 				next: nextThread,
 				parameters: data.wing.parameters,
+				capacity: data.wing.parameters.capacity,
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
@@ -183,16 +184,6 @@ define(function(require) {
 					.focus();
 		},
 
-		/*editWingParams: function(){
-			this.$('#response-options').hide();
-			this.$('#write-response')
-				.show()
-				.find('textarea')
-					.focus();
-			this.$('#edit-wing-params')
-				.show();
-		},*/
-
 		cancelResponse: function() {
 			this.$('#response-options').show();
 			this.$('#write-response')
@@ -207,7 +198,7 @@ define(function(require) {
 				return Promise.resolved(false);
 
 			if (this.data.kind === "request" || this.data.kind === "invite"){
-				resp.wingParameters = this.getWingParameters();
+				resp.wingParameters = this.getWingParameters(this.data.wing.state);
 				resp.state = this.getWingState();
 			}
 
@@ -226,6 +217,16 @@ define(function(require) {
 
 		optMaybe: function() {
 			console.log('maybe');
+			
+			this.reply();
+
+			this.$('#edit-wing-params')
+				.show();
+
+			this.initWingForm();
+
+			this.data.wing.state = "M";
+			//debugger
 		},
 
 		optReopen: function() {
@@ -241,6 +242,14 @@ define(function(require) {
 			this.data.wing.state = "D";
 		},
 
+		initWingForm: function(){
+			this.$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			this.$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+
+			this.$('select[name=capacity]')
+				.val(this.data.wing.parameters.capacity);
+		},
+
 		parseOptions: function(options, firstSender, wingState){
 			if (api.getUserId() == firstSender)
 				options[options.indexOf("Deny")] = "Cancel";
@@ -248,7 +257,13 @@ define(function(require) {
 				options[options.indexOf("Pending")] = "Reopen";
 		},
 
-		getWingParameters: function(){
+		getWingParameters: function(state){
+			if (state == 'M' || state == 'A'){
+				this.data.wing.parameters.startDate = +new Date(this.$("input[name=startDate]").val())/1000;
+				this.data.wing.parameters.endDate = +new Date(this.$("input[name=endDate]").val())/1000;
+				this.data.wing.parameters.capacity = this.$("select[name=capacity]").val();
+			}
+
 			return {
 				startDate: this.data.wing.parameters.startDate,
 				endDate: this.data.wing.parameters.endDate,
