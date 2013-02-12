@@ -25,17 +25,33 @@ body
 	 Header
 	 ========================================================================== */
 
-.navbar-inner
+.navbar.nav.navbar-fixed-top
+	height: 40px
 	background: #edede6
-	background: #e1e0d9
+	//background: #e1e0d9
+	@include box-shadow(0px, 1px, 4px, #C0C0C0)
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner
+	box-shadow: none
+	-moz-box-shadow: none
+	-webkit-box-shadow: none
+
+.navbar-inner
+	margin:
+		left: auto
+		right: auto
+	max-width: 960px
+	background: none
 
 .navbar .brand
-	background: url(../img/peoplewings.png) no-repeat
 	float: left
-	display: block
+	background: url(../img/peoplewings.png) no-repeat
+	margin: 0
 	width: 237px
 	height: 60px
 	text-indent: -9999px
+	padding: 0px
 
 
 /* ==========================================================================
