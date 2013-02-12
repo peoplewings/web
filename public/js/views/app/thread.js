@@ -285,7 +285,7 @@ define(function(require) {
 		},
 
 		getWingParameters: function(state){
-			if (state == 'M' || state == 'A'){
+			if (state == 'M' || state == 'A' || state == 'P'){
 				this.data.wing.parameters.startDate = +new Date(this.$("input[name=startDate]").val())/1000;
 				this.data.wing.parameters.endDate = +new Date(this.$("input[name=endDate]").val())/1000;
 				this.data.wing.parameters.capacity = this.$("select[name=capacity]").val();
