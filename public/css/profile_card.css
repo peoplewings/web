@@ -120,13 +120,23 @@ div.profile {
           border-right: 1px solid white; }
           div.profile div.content-right div.main-bar div.button-bar a.button:hover {
             color: black;
-            background: yellow;
-            background: -moz-linear-gradient(top, yellow 0%, #ffea00 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffea00));
-            background: -webkit-linear-gradient(top, yellow 0%, #ffea00 100%);
-            background: -o-linear-gradient(top, yellow 0%, #ffea00 100%);
-            background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
-            background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
+            background: white; }
+          div.profile div.content-right div.main-bar div.button-bar a.button:active {
+            background: #ffeb00;
+            background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+            background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+            background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+            background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+            background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
+        div.profile div.content-right div.main-bar div.button-bar .selected {
+          background: yellow;
+          background: -moz-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffea00));
+          background: -webkit-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -o-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
   div.profile div.content-bottom {
     clear: both;
     color: gray;

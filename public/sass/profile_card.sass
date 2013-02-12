@@ -149,7 +149,13 @@ div.profile
 
 					&:hover
 						color: #000
-						@include bg-gradient(#ffff00, #ffea00)
+						background: #FFF
+
+					&:active
+						@include bg-gradient(#ffeb00, #fbfac5)
+
+				.selected
+					@include bg-gradient(#ffff00, #ffea00)
 
 	div.content-bottom
 		clear: both
