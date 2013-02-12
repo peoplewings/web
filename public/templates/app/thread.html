@@ -11,20 +11,20 @@
 			<div class="span11">
 				<div id="response-options">
 					{{#if isMessage }}
-						Click to <span id="response-reply">Reply</span>
+					Click to <span id="response-reply">Reply</span>
 					{{else}}
-						Click to
+					Click to
 
-						{{#each options }}
-							<span class="response-option option-{{ self }}">
-							{{ self }}</span>{{#unless last }}{{#if secondLast }} or {{else}}, {{/if}}{{/unless}}
+					{{#each options }}
+					<span class="response-option option-{{ self }}">
+						{{ self }}</span>{{#unless last }}{{#if secondLast }} or {{else}}, {{/if}}{{/unless}}
 						{{/each}}
-					{{/if}}
-				</div>
-				<div id="write-response" style="display: none">
-					{{#if isMessage }}
-					{{else}}
-					<div class="state-flag
+						{{/if}}
+					</div>
+					<div id="write-response" style="display: none">
+						{{#if isMessage }}
+						{{else}}
+						<div class="state-flag
 						{{#if iStarted }}from-me{{else}}to-me{{/if}}
 						{{enum state 'notification-state'}}" style="display: none">
 						<span>
@@ -48,10 +48,10 @@
 									<input type="text" name="endDate" class="required input-small" value="{{date parameters.endDate}}">
 									<select name="capacity" class="input-mini">
 										{{#range 9}}
-											<option value="{{ indexPlusOne }}" {{selected capacity indexPlusOne}}>{{ indexPlusOne }}</option>
+										<option value="{{ indexPlusOne }}" {{selected capacity indexPlusOne}}>{{ indexPlusOne }}</option>
 										{{/range}}
-											<option value="+9" {{selected capacity '+9'}}>+9</option>
-									<select>
+										<option value="+9" {{selected capacity '+9'}}>+9</option>
+									</select>
 								</div>
 							</div>
 						</form>
@@ -61,7 +61,6 @@
 					<button id="cancel-response" class="btn">Cancel</button>
 					<button id="send-response" class="btn btn-primary">Send</button>
 				</div>
-				
 			</div>
 		</li>
 	</ul>
