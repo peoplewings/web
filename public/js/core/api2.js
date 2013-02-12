@@ -1,8 +1,16 @@
 define(function(require) {
 
 	var Promise = require('promise');
+	var alerts = require('views/lib/alerts');
 	var server = 'http://peoplewings-backend.herokuapp.com';
 	var apiVersion = '/api/v1';
+
+	function logout() {
+		alerts.error('ERROR', 'Invalid session');
+		localStorage.removeItem("Peoplewings-Auth-Token");
+		document.location.hash = '/login'
+		document.location.refresh(true);
+	}
 
 	function request(method, uri, body) {
 		var prom = new Promise();
@@ -14,27 +22,45 @@ define(function(require) {
 
 		request.onreadystatechange = function(oEvent) {
 			if(request.readyState === 4) {
+				if (request.status == 401)
+					return logout();
+
 				try {
-					var responseBody = request.responseText ? JSON.parse(request.responseText) : null;
+					var response = JSON.parse(request.responseText);
 				} catch(err) {
 					console.error('Invalid JSON (', uri, '): ', request.responseText);
 					return prom.reject(err);
 				}
 
-				if (request.status)
-					return prom.resolve(responseBody);
+				if (response.status)
+					return prom.resolve(response);
 
 				// ANALYZE ERROR
 
-				if (request.status === 401) {
-					localStorage.removeItem("Peoplewings-Auth-Token");
-					document.location.hash = '/login'
-					document.location.refresh(true);
-					return;
-				}
+				if (!response.errors || !response.errors.length)
+					return alerts.error('ERROR', 'Sorry an error ocurred');
 
+				response.errors.forEach(function(error) {
+					switch (error) {
+						case 'AUTH_REQUIRED':
+							logout();
+							break;
 
-				console.error('Unknown request code', request.responseText);
+						case 'INVALID':
+						case 'FIELD_REQUIRED':
+						case 'TOO_LONG':
+						case 'NOT_EMPTY':
+						case 'NO_CONTENT':
+						case 'FORBIDDEN':
+						case 'INTERNAL_ERROR':
+						case 'START_DATE_GT_END_DATE':
+							alerts.error(JSON.stringify(error, null, '\t'), {autclose:0});
+							break;
+
+						default:
+							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autclose:0});
+					}
+				});
 			}
 		}
 		if(body) {

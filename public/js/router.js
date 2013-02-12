@@ -73,7 +73,7 @@ define(function(require) {
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
 
-			api.get(api.getApiVersion() + "/profiles?" + params, {})
+			api.get(api.getApiVersion() + "/profiles", unserialized)
 			.prop('data')
 			.then(function(results){
 				homeView.renderResults(unserialized, results);
