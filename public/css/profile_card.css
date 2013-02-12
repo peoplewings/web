@@ -65,17 +65,16 @@ div.profile {
         color: gray;
         font-size: 14px;
         margin-bottom: 0.8em; }
-      div.profile div.content-right div.personal-info h4 {
-        display: inline;
+      div.profile div.content-right div.personal-info h4.languages-tag {
+        float: left;
         font-size: 13px;
-        float: left; }
+        color: gray;
+        margin-right: 10px; }
       div.profile div.content-right div.personal-info p {
+        font-size: 13px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden; }
-      div.profile div.content-right div.personal-info p.languages-tag {
-        color: gray;
-        margin-right: 1em; }
       div.profile div.content-right div.personal-info p.languages {
         color: black;
         text-transform: capitalize; }
