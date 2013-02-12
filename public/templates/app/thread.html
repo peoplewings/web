@@ -11,9 +11,7 @@
 			<div class="span11">
 				<div id="response-options">
 					{{#if isMessage }}
-						Click to <span id="response-reply">Reply</span>,
-						<span id="response-request">Request</span> or
-						<span id="reponse-invite">Invite</span>
+						Click to <span id="response-reply">Reply</span>
 					{{else}}
 						Click to
 
@@ -24,6 +22,8 @@
 					{{/if}}
 				</div>
 				<div id="write-response" style="display: none">
+					{{#if isMessage }}
+					{{else}}
 					<div class="state-flag
 						{{#if iStarted }}from-me{{else}}to-me{{/if}}
 						{{enum state 'notification-state'}}" style="display: none">
@@ -56,6 +56,7 @@
 							</div>
 						</form>
 					</div>
+					{{/if}}
 					<textarea></textarea>
 					<button id="cancel-response" class="btn">Cancel</button>
 					<button id="send-response" class="btn btn-primary">Send</button>

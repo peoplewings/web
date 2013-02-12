@@ -60,7 +60,9 @@ define(function(require) {
 					return api.get('/api/v1/notificationsthread/' + id)
 						.prop('data')
 						.then(function(data){
-							self.parseOptions(data.options, data.firstSender, data.wing.state)
+							if (data.kind !== "message")
+								self.parseOptions(data.options, data.firstSender, data.wing.state)
+
 							self.data = data;
 							return data;
 						})
@@ -72,6 +74,8 @@ define(function(require) {
 		refresh: function(prevThread, nextThread, data) {
 			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
+			var flagDirection = data.firstSender === api.getUserId();
+			var state = (isMessage) ? null : data.wing.state;
 			var parameters = null
 
 			if (!isMessage) {
@@ -80,17 +84,14 @@ define(function(require) {
 				parameters['numPeople'] = data.wing.parameters.capacity
 			}
 
-
-
 			var items = data.items.map(function(item, index) {
 
 				if (!isMessage)
 					parameters['message'] = data.wing.parameters.wingName
 
-				return _.extend(
-				{
+				return {
 					index: index,
-					isMessage: data.kind === 'message',
+					isMessage: isMessage,
 					created: item.created,
 					interlocutorId: item.senderId,
 					age: item.senderAge,
@@ -100,12 +101,10 @@ define(function(require) {
 					avatar: item.senderSmallAvatar,
 					connected: item.senderConnected,
 					content: item.content.message,
-					state: data.wing.state,
-					flagDirection: data.firstSender === api.getUserId()
-				},
-				{
+					state: state,
+					flagDirection: flagDirection,
 					wingParameters: parameters
-				});
+				};
 			});
 
 			var self = this;
@@ -113,7 +112,7 @@ define(function(require) {
 				return openItemTpl(item, data.wing, {
 					isMessage: isMessage,
 					options: data.options,
-					flagDirection: data.firstSender === api.getUserId(),
+					flagDirection: flagDirection,
 				});
 			}
 
@@ -122,15 +121,17 @@ define(function(require) {
 				name: last.senderName,
 			};
 
+			//debugger
+
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 			this.$el.html(threadTpl(data, {
 				isMessage: isMessage,
-				iStarted: data.firstSender === api.getUserId(),
+				iStarted: flagDirection,
 				options: data.options,
 				previous: prevThread,
 				next: nextThread,
-				parameters: data.wing.parameters,
-				state: self.data.wing.state,
+				parameters: parameters,
+				state: state,
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
@@ -178,7 +179,8 @@ define(function(require) {
 		},
 
 		reply: function(event) {
-			this.prevState = this.data.wing.state;
+			if (this.data.kind !== "message")
+				this.prevState = this.data.wing.state;
 
 			this.$('#response-options').hide();
 			this.$('#write-response')
@@ -200,14 +202,16 @@ define(function(require) {
 			this.$('#edit-wing-params')
 				.hide();
 
-			var e = Handlebars.helpers['enum'];
-			this.$('.state-flag')
+			if (this.prevState) {
+				var e = Handlebars.helpers['enum'];
+				this.$('.state-flag')
 				.removeClass(e(this.data.wing.state, "notification-state"))
 				.addClass(e(this.prevState, "notification-state"))
 				.find("span")
 				.text(e(this.prevState, "notification-state"));
 
-			this.data.wing.state = this.prevState;
+				this.data.wing.state = this.prevState;
+			}
 		},
 
 		sendResponse: function() {
