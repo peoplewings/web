@@ -114,8 +114,8 @@ define(function(require) {
 				"wingType": selectedWingType(modal),
 				"wingParameters": {
 					"wingId": modal.find('#wings').val(),
-					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val()),
-					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val()),
+					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val())/1000,
+					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val())/1000,
 					"capacity": modal.find('#wing-parameters [name="capacity"]').val(),
 					"arrivingVia": modal.find('#wing-parameters [name="via"]').val(),
 					"flexibleStart": modal.find('#wing-parameters #flexible-start-date').is(':checked'),
