@@ -60,7 +60,9 @@ define(function(require) {
 					return api.get('/api/v1/notificationsthread/' + id)
 						.prop('data')
 						.then(function(data){
-							self.parseOptions(data.options, data.firstSender, data.wing.state)
+							if (data.kind !== "message")
+								self.parseOptions(data.options, data.firstSender, data.wing.state)
+
 							self.data = data;
 							return data;
 						})
@@ -72,6 +74,8 @@ define(function(require) {
 		refresh: function(prevThread, nextThread, data) {
 			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
+			var flagDirection = data.firstSender === api.getUserId();
+			var state = (isMessage) ? null : data.wing.state;
 			var parameters = null
 
 			if (!isMessage) {
@@ -80,17 +84,14 @@ define(function(require) {
 				parameters['numPeople'] = data.wing.parameters.capacity
 			}
 
-
-
 			var items = data.items.map(function(item, index) {
 
 				if (!isMessage)
 					parameters['message'] = data.wing.parameters.wingName
 
-				return _.extend(
-				{
+				return {
 					index: index,
-					isMessage: data.kind === 'message',
+					isMessage: isMessage,
 					created: item.created,
 					interlocutorId: item.senderId,
 					age: item.senderAge,
@@ -100,19 +101,18 @@ define(function(require) {
 					avatar: item.senderSmallAvatar,
 					connected: item.senderConnected,
 					content: item.content.message,
-					state: data.wing.state,
-					flagDirection: data.firstSender === api.getUserId()
-				},
-				{
+					state: state,
+					flagDirection: flagDirection,
 					wingParameters: parameters
-				});
+				};
 			});
 
+			var self = this;
 			function openTpl(item) {
 				return openItemTpl(item, data.wing, {
 					isMessage: isMessage,
 					options: data.options,
-					flagDirection: data.firstSender === api.getUserId()
+					flagDirection: flagDirection,
 				});
 			}
 
@@ -121,14 +121,17 @@ define(function(require) {
 				name: last.senderName,
 			};
 
+			//debugger
+
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 			this.$el.html(threadTpl(data, {
 				isMessage: isMessage,
-				iStarted: data.firstSender === api.getUserId(),
+				iStarted: flagDirection,
 				options: data.options,
 				previous: prevThread,
 				next: nextThread,
-				parameters: data.wing.parameters,
+				parameters: parameters,
+				state: state,
 				me: { avatar: avatar },
 				items: items.map(itemTpl).join('') + openTpl(last),
 			}));
@@ -176,6 +179,9 @@ define(function(require) {
 		},
 
 		reply: function(event) {
+			if (this.data.kind !== "message")
+				this.prevState = this.data.wing.state;
+
 			this.$('#response-options').hide();
 			this.$('#write-response')
 				.show()
@@ -183,22 +189,29 @@ define(function(require) {
 					.focus();
 		},
 
-		/*editWingParams: function(){
-			this.$('#response-options').hide();
-			this.$('#write-response')
-				.show()
-				.find('textarea')
-					.focus();
-			this.$('#edit-wing-params')
-				.show();
-		},*/
-
 		cancelResponse: function() {
 			this.$('#response-options').show();
 			this.$('#write-response')
 				.hide()
 				.find('textarea')
-					.val('');
+					.val('')
+
+			this.$('#write-response > div.state-flag')
+					.hide();
+
+			this.$('#edit-wing-params')
+				.hide();
+
+			if (this.prevState) {
+				var e = Handlebars.helpers['enum'];
+				this.$('.state-flag')
+				.removeClass(e(this.data.wing.state, "notification-state"))
+				.addClass(e(this.prevState, "notification-state"))
+				.find("span")
+				.text(e(this.prevState, "notification-state"));
+
+				this.data.wing.state = this.prevState;
+			}
 		},
 
 		sendResponse: function() {
@@ -207,7 +220,7 @@ define(function(require) {
 				return Promise.resolved(false);
 
 			if (this.data.kind === "request" || this.data.kind === "invite"){
-				resp.wingParameters = this.getWingParameters();
+				resp.wingParameters = this.getWingParameters(this.data.wing.state);
 				resp.state = this.getWingState();
 			}
 
@@ -221,24 +234,47 @@ define(function(require) {
 		},
 
 		optAccept: function() {
-			console.log('accept');
+			this.reply();
+			this.data.wing.state = "A";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optMaybe: function() {
-			console.log('maybe');
+			this.reply();
+			this.data.wing.state = "M";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optReopen: function() {
-			console.log('reopen');
+			this.reply();
+			this.data.wing.state = "P";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optDeny: function() {
 			this.reply();
-			
-			this.$('#write-response > .params-box')
-			.show();
-
 			this.data.wing.state = "D";
+			this.$('#write-response > .params-box').show();
+			this.handleOption(this.data.wing.state, this.prevState)
+		},
+
+		handleOption: function(option, prevState) {
+			var e = Handlebars.helpers['enum'];
+			this.$('.state-flag')
+				.show()
+				.removeClass(e(prevState, "notification-state"))
+				.addClass(e(option, "notification-state"))
+				.find("span")
+				.text(e(option, "notification-state"));
+
+			this.$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			this.$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+
+			this.$('select[name=capacity]')
+				.val(this.data.wing.parameters.capacity);
 		},
 
 		parseOptions: function(options, firstSender, wingState){
@@ -248,7 +284,13 @@ define(function(require) {
 				options[options.indexOf("Pending")] = "Reopen";
 		},
 
-		getWingParameters: function(){
+		getWingParameters: function(state){
+			if (state == 'M' || state == 'A' || state == 'P'){
+				this.data.wing.parameters.startDate = +new Date(this.$("input[name=startDate]").val())/1000;
+				this.data.wing.parameters.endDate = +new Date(this.$("input[name=endDate]").val())/1000;
+				this.data.wing.parameters.capacity = this.$("select[name=capacity]").val();
+			}
+
 			return {
 				startDate: this.data.wing.parameters.startDate,
 				endDate: this.data.wing.parameters.endDate,
