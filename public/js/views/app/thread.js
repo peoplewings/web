@@ -178,6 +178,8 @@ define(function(require) {
 		},
 
 		reply: function(event) {
+			this.prevState = this.data.wing.state;
+
 			this.$('#response-options').hide();
 			this.$('#write-response')
 				.show()
@@ -218,6 +220,7 @@ define(function(require) {
 				resp.state = this.getWingState();
 			}
 
+			debugger
 			var self = this;
 			return api.post('/api/v1/notificationsthread/', {
 				reference: this.current.id,
@@ -228,68 +231,42 @@ define(function(require) {
 		},
 
 		optAccept: function() {
-			this.prevState = this.data.wing.state;
-			this.data.wing.state = "A";
 			this.reply();
-
-			this.$('#edit-wing-params')
-				.show();
-
-			var e = Handlebars.helpers['enum'];
-			this.$('.state-flag')
-				.show()
-				.addClass(e("A", "notification-state"))
-				.find("span")
-				.text(e("A", "notification-state"));
-
-			this.initWingForm();
+			this.data.wing.state = "A";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optMaybe: function() {
-			this.prevState = this.data.wing.state;
-			this.data.wing.state = "M";
 			this.reply();
-
-			this.$('#edit-wing-params')
-				.show();
-
-			var e = Handlebars.helpers['enum'];
-			this.$('.state-flag')
-				.show()
-				.addClass(e("A", "notification-state"))
-				.find("span")
-				.text(e("A", "notification-state"));
-
-			this.initWingForm();
+			this.data.wing.state = "M";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optReopen: function() {
-			this.prevState = this.data.wing.state;
-			this.data.wing.state = "D";
-
-			//this.reply();
+			this.reply();
+			this.data.wing.state = "P";
+			this.$('#edit-wing-params').show();
+			this.handleOption(this.data.wing.state, this.prevState)
 		},
 
 		optDeny: function() {
-			this.prevState = this.data.wing.state;
-			this.data.wing.state = "D";
-
 			this.reply();
-			
-			this.$('#write-response > .params-box')
-			.show();
+			this.data.wing.state = "D";
+			this.$('#write-response > .params-box').show();
+			this.handleOption(this.data.wing.state, this.prevState)
+		},
 
+		handleOption: function(option, prevState) {
 			var e = Handlebars.helpers['enum'];
 			this.$('.state-flag')
 				.show()
-				.addClass(e("D", "notification-state"))
+				.removeClass(e(prevState, "notification-state"))
+				.addClass(e(option, "notification-state"))
 				.find("span")
-				.text(e("D", "notification-state"));
+				.text(e(option, "notification-state"));
 
-			this.initWingForm();
-		},
-
-		initWingForm: function(){
 			this.$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
 			this.$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
 
