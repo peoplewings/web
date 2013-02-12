@@ -97,48 +97,64 @@ body {
   list-style: none;
   text-align: center;
   margin: 0; }
+  .pager a {
+    display: inline;
+    border: none;
+    padding: 0; }
+    .pager a:hover {
+      background: none;
+      text-decoration: underline; }
   .pager p {
     margin: 0;
     margin-top: 0.2em;
     display: inline; }
   .pager li {
     float: left; }
-  .pager a {
-    padding: 0;
-    border: none;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px; }
-    .pager a:hover {
-      text-decoration: none;
-      background-color: whitesmoke; }
-  .pager .icon a {
-    display: block;
-    width: 25px;
-    height: 24px;
-    text-indent: -9999px; }
-  .pager .previousPage {
-    background: url(../img/pager-prev.png) no-repeat left top; }
-  .pager .nextPage {
-    background: url(../img/pager-next.png) no-repeat left top; }
-  .pager .disabled a {
-    color: #999999;
-    background-color: white;
-    cursor: default; }
-    .pager .disabled a:hover {
-      color: #999999;
-      background-color: white;
-      cursor: default; }
+  .pager .icon {
+    border: 1px solid #d8d6d0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+    background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+    background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
+    .pager .icon:hover {
+      background: white; }
+    .pager .icon:active {
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d0cec7));
+      background: -webkit-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -o-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -ms-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: linear-gradient(to bottom, white 0%, #d0cec7 100%); }
+    .pager .icon a {
+      float: left;
+      display: block;
+      width: 25px;
+      height: 25px;
+      text-indent: -9999px;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px; }
+    .pager .icon .previousPage {
+      background: url(../img/pager-prev.png) no-repeat 8px 8px; }
+    .pager .icon .nextPage {
+      background: url(../img/pager-next.png) no-repeat 10px 8px; }
 
 .pager-content {
   background: white;
   border: 1px solid #ccccd3;
   overflow: hidden;
-  padding: 1em;
-  padding-left: 1.5em;
-  margin-top: 2em;
-  margin-bottom: 2em; }
+  padding: 14px;
+  padding-left: 18px;
+  margin-top: 27px;
+  margin-bottom: 27px; }
 
 .adjust {
-  margin-top: 0.2em;
-  margin-right: 1em; }
+  margin-top: 2px;
+  margin-right: 14px; }

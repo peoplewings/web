@@ -1,4 +1,4 @@
-@import _effects1.sass
+@import _effects.sass
 
 body
 	background: #f5f5f0
@@ -109,49 +109,51 @@ body
 	list-style: none
 	text-align: center
 	margin: 0
+	a
+		display: inline
+		border: none
+		padding: 0
+		&:hover
+			background: none
+			text-decoration: underline
 	p
 		margin: 0
 		margin-top: 0.2em
 		display: inline
 	li
 		float: left
-	a
-		padding: 0
-		border: none
-		@include border-radius(0px)
+	.icon
+		border: 1px solid #D8D6D0
+		@include border-radius(2px)
+		@include bg-gradient(#FFF, #ecece5)
 		&:hover
-			text-decoration: none
-			background-color: #f5f5f5
-	.icon a
-		display: block
-		width: 25px
-		height: 24px
-		text-indent: -9999px
-	.previousPage
-		background: url(../img/pager-prev.png) no-repeat left top
-	.nextPage
-		background: url(../img/pager-next.png) no-repeat left top
-	.disabled a
-		color: #999999
-		background-color: #fff
-		cursor: default
-		&:hover
-			color: #999999
-			background-color: #fff
-			cursor: default
+			background: #FFF
+		&:active
+			@include bg-gradient(#FFF, #d0cec7)
+		a
+			float: left
+			display: block
+			width: 25px
+			height: 25px
+			text-indent: -9999px
+			@include border-radius(0px)
+		.previousPage
+			background: url(../img/pager-prev.png) no-repeat 8px 8px
+		.nextPage
+			background: url(../img/pager-next.png) no-repeat 10px 8px
 
 .pager-content
 	background: #FFF
 	border: 1px solid #ccccd3
 	overflow: hidden
-	padding: 1em
-	padding-left: 1.5em
+	padding: 14px
+	padding-left: 18px
 	margin:
-		top: 2em
-		bottom: 2em
+		top: 27px
+		bottom: 27px
 
 .adjust
 	margin:
-		top: 0.2em
-		right: 1em
+		top: 2px
+		right: 14px
 
