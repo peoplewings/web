@@ -1,6 +1,7 @@
 form#accomodation-search-form {
   background: #e1e0d9;
   padding: 27px;
+  padding-top: 40px;
   border-radius: 12px;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;

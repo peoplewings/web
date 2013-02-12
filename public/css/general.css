@@ -33,37 +33,46 @@ body {
 /* ==========================================================================
  * Nav
  * ========================================================================== */
-.nav-tabs .nav-pills > li > a {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px; }
-.nav-tabs .nav-pills > .active > a {
-  color: white;
-  background-color: #0088cc; }
+.nav {
+  margin: 0; }
 
-.all {
-  background: url(../img/icon_all.png) no-repeat; }
-  .all:hover {
-    background: url(../img/icon_all_pre.png) no-repeat; }
-
-.transport {
-  background: url(../img/icon_transport.png) no-repeat; }
-  .transport:hover {
-    background: url(../img/icon_transport_pre.png) no-repeat; }
-
-.accommodation {
-  background: url(../img/icon_accommodation.png) no-repeat; }
-  .accommodation:hover {
-    background: url(../img/icon_accommodation_pre.png) no-repeat; }
-
-.travel {
-  background: url(../img/icon_trip.png) no-repeat; }
-  .travel:hover {
-    background: url(../img/icon_trip_pre.png) no-repeat; }
+.nav-tabs {
+  display: inline-block;
+  border: none;
+  position: relative;
+  top: 35px;
+  left: 25px; }
+  .nav-tabs li a {
+    width: 64px;
+    height: 78px;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    border: none; }
+    .nav-tabs li a:hover {
+      border: none; }
+  .nav-tabs li .all {
+    background: url(../img/icon_all.png) no-repeat center top; }
+    .nav-tabs li .all:hover {
+      background: url(../img/icon_all_pre.png) no-repeat center top; }
+  .nav-tabs li .transport {
+    background: url(../img/icon_transport.png) no-repeat center top; }
+    .nav-tabs li .transport:hover {
+      background: url(../img/icon_transport_pre.png) no-repeat center top; }
+  .nav-tabs li .accommodation {
+    background: url(../img/icon_accommodation.png) no-repeat center top; }
+    .nav-tabs li .accommodation:hover {
+      background: url(../img/icon_accommodation_pre.png) no-repeat center top; }
+  .nav-tabs li .travel {
+    background: url(../img/icon_trip.png) no-repeat center top; }
+    .nav-tabs li .travel:hover {
+      background: url(../img/icon_trip_pre.png) no-repeat center top; }
+  .nav-tabs .active a {
+    border: none;
+    background: url(../img/icon_accommodation_selected.png) no-repeat center top; }
+    .nav-tabs .active a:hover {
+      border: none;
+      background: url(../img/icon_accommodation_selected.png) no-repeat center top; }
 
 /* ==========================================================================
  * Pager Counter

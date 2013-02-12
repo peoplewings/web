@@ -42,34 +42,47 @@ body
 	 Nav
 	 ========================================================================== */
 
-.nav-tabs .nav-pills >
-	li > a
-		padding-top: 8px
-		padding-bottom: 8px
-		margin-top: 2px
-		margin-bottom: 2px
-		@include border_radius(5px)
-	.active > a
-		color: #ffffff
-		background-color: #0088cc
-		&:hover
+.nav
+	margin: 0
 
-.all
-	background: url(../img/icon_all.png) no-repeat
-	&:hover
-		background: url(../img/icon_all_pre.png) no-repeat
-.transport
-	background: url(../img/icon_transport.png) no-repeat
-	&:hover
-		background: url(../img/icon_transport_pre.png) no-repeat
-.accommodation
-	background: url(../img/icon_accommodation.png) no-repeat
-	&:hover
-		background: url(../img/icon_accommodation_pre.png) no-repeat
-.travel
-	background: url(../img/icon_trip.png) no-repeat
-	&:hover
-		background: url(../img/icon_trip_pre.png) no-repeat
+.nav-tabs
+	display: inline-block
+	border: none
+	position: relative
+	top: 35px
+	left: 25px
+	li
+		a
+			width: 64px
+			height: 78px
+			text-indent: -9999px
+			padding: 0
+			margin: 0
+			border: none
+			&:hover
+				border: none
+		.all
+			background: url(../img/icon_all.png) no-repeat center top
+			&:hover
+				background: url(../img/icon_all_pre.png) no-repeat center top
+		.transport
+			background: url(../img/icon_transport.png) no-repeat center top
+			&:hover
+				background: url(../img/icon_transport_pre.png) no-repeat center top
+		.accommodation
+			background: url(../img/icon_accommodation.png) no-repeat center top
+			&:hover
+				background: url(../img/icon_accommodation_pre.png) no-repeat center top
+		.travel
+			background: url(../img/icon_trip.png) no-repeat center top
+			&:hover
+				background: url(../img/icon_trip_pre.png) no-repeat center top
+	.active a
+		border: none
+		background: url(../img/icon_accommodation_selected.png) no-repeat center top
+		&:hover
+			border: none
+			background: url(../img/icon_accommodation_selected.png) no-repeat center top
 
 
 /* ==========================================================================
