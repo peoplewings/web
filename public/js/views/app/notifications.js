@@ -129,7 +129,6 @@ define(function(require){
 				.prop('data')
 				.then(function(data) {
 					data.items.forEach(function(item) {
-						debugger
 						item.isMessage = item.kind === 'message';
 					});
 
