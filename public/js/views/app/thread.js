@@ -220,7 +220,6 @@ define(function(require) {
 				resp.state = this.getWingState();
 			}
 
-			debugger
 			var self = this;
 			return api.post('/api/v1/notificationsthread/', {
 				reference: this.current.id,
