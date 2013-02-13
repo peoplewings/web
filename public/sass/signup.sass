@@ -49,6 +49,7 @@ header
 			font-size: 0.75em
 			position: relative
 			top: 23px
+			margin-right: 36px
 			li
 				float: left
 				a
@@ -66,25 +67,6 @@ header
 					margin-right: 0.8em
 #main
 	height: 491px
-	#sharing
-		margin-top: 7em
-		h1
-			background: url(../img/sharingpeople.png) no-repeat
-			height: 158px
-			text-indent: -9999px
-		h2
-			color: $yellow_corporative
-			font:
-				family: 'Exo'
-				size: 1.7em
-				weight: 900
-				style: italic
-			line-height: 0.78em
-			letter-spacing: -1px
-			@include borde(2.5px, $blue_corporative)
-			margin:
-				top: 0.7em
-				bottom: 0.3em
 
 	form#register-form
 		float: right
@@ -99,16 +81,19 @@ header
 		input[type="password"],
 		input[type="email"],
 		select
-			font-size: 12px
+			font-size: 13px
 			padding: 8px
 			@include border-radius(4px)
 			@include appearance(none)
 			border: 1px solid #79766c
+			color: #000
+			line-height: 15px
+			//width: 140px
+			//height: 17px
+			margin: 0
 			margin:
 				right: 4px
 				bottom: 4px
-			color: #000
-			line-height: 15px
 
 		input[type="checkbox"]
 			float: left
@@ -129,12 +114,28 @@ header
 			width: 100px
 			padding: 11px
 			text-shadow: 1px 1px 1px #000
+			font-size: 14px
 
 		.controls
 			margin-left: 125px
 
+			input[type="email"]
+				width: 303px
+
+			select
+				background: url(../img/mini-arrow.png) no-repeat 74px center white
+				height: 35px
+
+			.select-mini
+				width: 97px
+
+			.select-medium
+				width: 120px
+				background-position: 94px center
+
 			.terms
 				margin-left: 117px
+
 
 		.terms
 			color: #FFF
@@ -231,7 +232,6 @@ header
 	a
 		margin-top: 0.6em
 #middle
-	overflow: hidden
 	background: #FFF
 	height: 179px
 	border-bottom: 2px solid #EEE
