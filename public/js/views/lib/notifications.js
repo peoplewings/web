@@ -105,7 +105,7 @@ define(function(require) {
 
 
 	function reqinv(targetId, targetName, kind, title, button, wingsOwnerId) {
-		var request = api.get('/api/v1/wings?profile=' + wingsOwnerId).prop('data');
+		var request = api.get('/api/v1/wings', { profile:  wingsOwnerId}).prop('data');
 		return modalHelper(targetId, targetName, kind, title, button, request, function(modal) {
 			return {
 				"privateText": modal.find('#message-content').val(),
