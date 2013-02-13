@@ -70,9 +70,9 @@ header
 
 	form#register-form
 		float: right
-		width: 323px
 		background: $blue_register
-		padding: 27px
+		padding: 27px 14px
+		padding-top: 0px
 		margin: 27px
 		@include border-radius(12px)
 		width: 470px
@@ -99,18 +99,33 @@ header
 			float: left
 			margin-right: 11px
 
+		span.signal
+			float: left
+			text-indent: -9999px
+			height: 16px
+			width: 15px
+			background: url(../img/signal.png) no-repeat
+			position: relative
+			bottom: 16px
+			left: 200px
+			@include opacity(0.7)
+
 		legend
 			float: right
 			position: relative
-			bottom: 39px
+			right: 10px
+			bottom: 13px
 			width: 107px
 			height: 28px
 			text-indent: -9999px
 			background: url(../img/signup.png) no-repeat
 
+		.clear
+			clear: both
+
 		.control-label
-			color: #FFF
 			float: left
+			color: #FFF
 			width: 100px
 			padding: 11px
 			text-shadow: 1px 1px 1px #000
@@ -165,72 +180,8 @@ header
 			@include transition(box-shadow, 0.5s)
 			&:hover
 				@include box-shadow(0px, 0px, 20px, #FFFF00)
+				cursor: pointer
 
-//		div.signal
-//			height: 16px
-//			width: 15px
-//			background: url(../img/signal.png) no-repeat
-//			background: $blue_register
-//			position: relative
-//			bottom: 43px
-//			left: 79px
-
-#categories
-	overflow: hidden
-	position: relative
-	top: 20px
-	ul
-		li
-			float: left
-#landing-form
-	padding: 0.6em
-	background: rgba(0, 0, 0, 0.4)
-	overflow: hidden
-	@include radio(1em)
-	form
-		float: left
-		label
-			color: $blue_corporative
-			margin: 0.2em
-			font:
-				family: 'Exo'
-				size: 1.4em 
-				weight: 900
-				style: italic
-			@include borde(1px, $yellow_corporative)
-		input
-			font:
-				family: Arial
-				size: 1em
-			padding: 0.7em
-			margin: 0.5em
-			border: 1px solid #CCC
-			@include radio(5px)
-		#inputWings
-			width: 15em
-		#age
-			width: 5.2em
-		.select-1
-			display: inline
-			color: #979797
-			background: #FFF
-			padding: 0.7em 1em
-			padding-right: 2em
-			border: 1px solid #CCC
-			@include radio(5px)
-			-webkit-box-shadow: inset 1px 1px 4px #EEE
-			box-shadow: inset 1px 1px 4px #EEE
-		.arrow
-			background: url(../img/arrow.png) no-repeat
-			width: 12px
-			height: 10px
-			float: right
-			text-indent: -9999px
-			position: relative
-			top: 17px
-			right: 24px
-	a
-		margin-top: 0.6em
 #middle
 	background: #FFF
 	height: 179px

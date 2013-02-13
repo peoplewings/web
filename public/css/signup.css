@@ -63,9 +63,9 @@ header {
   height: 491px; }
   #main form#register-form {
     float: right;
-    width: 323px;
     background: rgba(30, 30, 57, 0.7);
-    padding: 27px;
+    padding: 27px 14px;
+    padding-top: 0px;
     margin: 27px;
     border-radius: 12px;
     -webkit-border-radius: 12px;
@@ -91,17 +91,31 @@ header {
     #main form#register-form input[type="checkbox"] {
       float: left;
       margin-right: 11px; }
+    #main form#register-form span.signal {
+      float: left;
+      text-indent: -9999px;
+      height: 16px;
+      width: 15px;
+      background: url(../img/signal.png) no-repeat;
+      position: relative;
+      bottom: 16px;
+      left: 200px;
+      opacity: 0.7;
+      filter: alpha(opacity=70); }
     #main form#register-form legend {
       float: right;
       position: relative;
-      bottom: 39px;
+      right: 10px;
+      bottom: 13px;
       width: 107px;
       height: 28px;
       text-indent: -9999px;
       background: url(../img/signup.png) no-repeat; }
+    #main form#register-form .clear {
+      clear: both; }
     #main form#register-form .control-label {
-      color: white;
       float: left;
+      color: white;
       width: 100px;
       padding: 11px;
       text-shadow: 1px 1px 1px black;
@@ -152,69 +166,8 @@ header {
       #main form#register-form button.btn-peoplewings:hover {
         box-shadow: 0px 0px 20px yellow;
         -moz-box-shadow: 0px 0px 20px yellow;
-        -webkit-box-shadow: 0px 0px 20px yellow; }
-
-#categories {
-  overflow: hidden;
-  position: relative;
-  top: 20px; }
-  #categories ul li {
-    float: left; }
-
-#landing-form {
-  padding: 0.6em;
-  background: rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  border-radius: 1em;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em; }
-  #landing-form form {
-    float: left; }
-    #landing-form form label {
-      color: #18183f;
-      margin: 0.2em;
-      font-family: "Exo";
-      font-size: 1.4em;
-      font-weight: 900;
-      font-style: italic;
-      -webkit-text-stroke: 1px yellow;
-      -moz-text-stroke: 1px yellow; }
-    #landing-form form input {
-      font-family: Arial;
-      font-size: 1em;
-      padding: 0.7em;
-      margin: 0.5em;
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px; }
-    #landing-form form #inputWings {
-      width: 15em; }
-    #landing-form form #age {
-      width: 5.2em; }
-    #landing-form form .select-1 {
-      display: inline;
-      color: #979797;
-      background: white;
-      padding: 0.7em 1em;
-      padding-right: 2em;
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -webkit-box-shadow: inset 1px 1px 4px #eeeeee;
-      box-shadow: inset 1px 1px 4px #eeeeee; }
-    #landing-form form .arrow {
-      background: url(../img/arrow.png) no-repeat;
-      width: 12px;
-      height: 10px;
-      float: right;
-      text-indent: -9999px;
-      position: relative;
-      top: 17px;
-      right: 24px; }
-  #landing-form a {
-    margin-top: 0.6em; }
+        -webkit-box-shadow: 0px 0px 20px yellow;
+        cursor: pointer; }
 
 #middle {
   background: white;
