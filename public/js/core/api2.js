@@ -54,11 +54,11 @@ define(function(require) {
 						case 'FORBIDDEN':
 						case 'INTERNAL_ERROR':
 						case 'START_DATE_GT_END_DATE':
-							alerts.error(JSON.stringify(error, null, '\t'), {autclose:0});
+							alerts.error(JSON.stringify(error, null, '\t'), {autoclose:0});
 							break;
 
 						default:
-							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autclose:0});
+							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autoclose:0});
 					}
 				});
 			}
