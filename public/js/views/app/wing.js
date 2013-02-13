@@ -124,10 +124,11 @@ define(function(require) {
 				this.$("input[name=others]").attr("checked", true);
 		},
 
-		close: function() {
+		close: function(e) {
+			e.preventDefault();
 			this.remove();
 			this.unbind();
-			router.navigate("/#/wings");
+			router.navigate("#/wings");
 		},
 
 		initWing: function() {

@@ -4,6 +4,7 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
+	var Promise = require('promise');
 	var wingsTpl = require("tmpl!templates/app/wings.html");
 	var alertTpl = require("tmpl!templates/lib/alert.html");
 	var wingView = require("views/app/wing");
@@ -29,35 +30,29 @@ define(function(require) {
 		},
 
 		initialize: function() {
-			
-			this.model = new ProfileModel({
-				id: api.getUserId()
-			})
-			this.model.on("change", this.render.bind(this, null))
+			this.model = new ProfileModel({ id: api.getUserId() });
+			this.model.on("change", this.render.bind(this, null));
 
-			if (!this.model.get("pwState"))
-				this.model.fetch()
+			this.list = new Backbone.Collection();
+			this.list.on("reset", this.render.bind(this, null));
 
-			this.wingsList = new Backbone.Collection();
-			this.getUserWings()
+			this.getWingsData();
+
 		},
 
 		render: function(wingId) {
-			
 			$(this.el).html(wingsTpl(
 				{
-					wings: this.wingsList.toJSON(),
-					generalStatus: this.model.get("pwState")
+					generalStatus: this.model.get("pwState"),
+					wings: this.list.toJSON(),
 				}
 			));
 
-			if (wingId){
+			if (wingId)
 				this.openWing({ id: wingId, update: true});
-			}
 		},
 
 		openWing: function(options){
-
 			this.wingView = new wingView({
 					papa: self,
 					id: options.id,
@@ -65,20 +60,18 @@ define(function(require) {
 			})
 
 			this.wingView.render(options.update);
-
 		},
 
-		getUserWings: function() {
-			var self = this
-			
-			api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
-			.prop('data')
-			.then(function(data) {
-				self.wingsList.reset(data)
-			})
-			.fin(function(){
-				self.render()
-			})
+		getWingsData: function() {
+			var self = this;
+
+			Promise.parallel(
+				api.get(api.getApiVersion() + "/profiles/" + api.getUserId()),
+				api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
+			).spread(function(profile, wings) {
+				self.model.set(profile.data);
+				self.list.reset(wings.data);
+			});
 		},
 
 		changeStatus: function(e) {
@@ -101,27 +94,16 @@ define(function(require) {
 		},
 
 		addWingToList: function(wing) {
-			this.wingsList.push(wing)
-			this.render()
-		},
-
-		updateWingToList: function(item) {
-			//Should only be invoked if Wing name is dirty
-			var updated = _.find(this.wings,
-			function(wing) {
-				return wing.uri == item.uri
-			})
-			updated.name = item.name
+			this.list.push(wing)
 			this.render()
 		},
 
 		deleteWingFromList: function(uri) {
-			this.wingsList = _.reject(this.wingsList,
+			this.list = _.reject(this.list,
 			function(wing) {
 				return wing.uri == uri
 			})
 			this.render()
-
 		},
 	});
 
