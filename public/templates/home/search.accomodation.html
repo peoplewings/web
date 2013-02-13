@@ -1,87 +1,89 @@
 <form id="accomodation-search-form" class="form-horizontal">
-		<div class="control-group">
-			<label class="control-label" for="inputWings">Wings</label>
-			<div class="controls">
-				<input type="text" id="inputWings" name="wings" placeholder="Where do you need accomodation?" class="input-xlarge">
-			</div><!-- EOF controls -->
-		</div><!-- EOF control-group -->
-		<div class="control-group">
-			<label class="control-label nod" for="inputDate"></label>
-			<div class="controls">
-				<input type="text" name="startDate" placeholder="Start date" class="input-small">
-		 		<input type="text" name="endDate" placeholder="End date" class="input-small">
-			</div><!-- EOF controls -->
-		</div><!-- EOF control-group -->
-		<div class="control-group">
-			<label class="control-label nod" for="inputCapacity">Capacity</label>
-			<div class="controls">
-				<select name="capacity" class="input-small">
-					<option value="1">1 Guest</option>
-					<option value="2">2 Guests</option>
-					<option value="3">3 Guests</option>
-					<option value="4">4 Guests</option>
-					<option value="5">5 Guests</option>
-					<option value="6">6 Guests</option>
-					<option value="7">7 Guests</option>
-					<option value="8">8 Guests</option>
-					<option value="9">9 Guests</option>
-					<option value="+9">+9 Guests</option>
-				</select>
-			</div><!-- EOF controls -->
-		</div><!-- EOF control-group -->
-		<div class="control-group">
-			<label class="control-label" for="inputAge">People</label>
-			<div class="controls">
-				<select name="startAge" class="input-small">
-					{{#range 18 99 1}}
+	<div class="control-group">
+		<label class="control-label" for="inputWings">Wings</label>
+		<div class="controls">
+			<input type="text" id="inputWings" name="wings" placeholder="Where do you need accomodation?" class="input-xlarge">
+		</div><!-- EOF controls -->
+	</div><!-- EOF control-group -->
+	<div class="control-group">
+		<label class="control-label nod" for="inputDate"></label>
+		<div class="controls">
+			<input type="text" name="startDate" placeholder="Start date" class="input-small">
+			<input type="text" name="endDate" placeholder="End date" class="input-small">
+		</div><!-- EOF controls -->
+	</div><!-- EOF control-group -->
+	<div class="control-group">
+		<label class="control-label nod" for="inputCapacity">Capacity</label>
+		<div class="controls">
+			<select name="capacity" class="input-small">
+				<option value="1">1 Guest</option>
+				<option value="2">2 Guests</option>
+				<option value="3">3 Guests</option>
+				<option value="4">4 Guests</option>
+				<option value="5">5 Guests</option>
+				<option value="6">6 Guests</option>
+				<option value="7">7 Guests</option>
+				<option value="8">8 Guests</option>
+				<option value="9">9 Guests</option>
+				<option value="+9">+9 Guests</option>
+			</select>
+		</div><!-- EOF controls -->
+	</div><!-- EOF control-group -->
+	<div class="control-group">
+		<label class="control-label" for="inputAge">People</label>
+		<div class="controls">
+			<select name="startAge" class="input-small">
+				{{#range 18 99 1}}
 					<option value="{{self}}">{{self}}</option>
-					{{/range}}
-		    </select>
-		 		<select name="endAge" class="input-small">
-					{{#range 99 18 '-1'}}
+				{{/range}}
+			</select>
+			<select name="endAge" class="input-small">
+				{{#range 99 18 '-1'}}
 					<option value="{{self}}">{{self}}</option>
-					{{/range}}
-				</select>
-			</div>
+				{{/range}}
+			</select>
 		</div>
-		<div class="control-group">
-			<label class="control-label nod" for="inputLanguage">Language</label>
-			<div class="controls">
-				<select name="language" class="input-medium">
-					<option value="all">Language</option>
-					<option value="all">All</option>
-					<option value="English">English</option>
-					<option value="French">French</option>
-					<option value="Spanish">Spanish</option>
-					<option value="Catalan">Catalan</option>
-					<option value="German">German</option>
-					<option value="Japanese">Japanese</option>
-					<option value="Armenian">Armenian</option>
-					<option value="Chinese">Chinese</option>
-				</select>
-			</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label nod" for="inputLanguage">Language</label>
+		<div class="controls">
+			<select name="language" class="input-medium">
+				<option value="all">Language</option>
+				<option value="all">All</option>
+				<option value="English">English</option>
+				<option value="French">French</option>
+				<option value="Spanish">Spanish</option>
+				<option value="Catalan">Catalan</option>
+				<option value="German">German</option>
+				<option value="Japanese">Japanese</option>
+				<option value="Armenian">Armenian</option>
+				<option value="Chinese">Chinese</option>
+			</select>
 		</div>
-		<div class="control-group">
-			<label for="inputGender" class="control-label nod">Gender</label>
-			<div class="controls">
-				<select name="gender" class="input-small">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-					<option value="Both">Both</option>
-				</select>
-			</div><!-- EOF controls -->
-		</div><!-- EOF control-group -->
-		<div class="control-group">
-			<label class="control-label nod" for="inputHost"></label>
-			<div class="controls">
-				<select name="type" class="input-small">
-					<option value="Host">Host</option>
-					<option value="Applicant">Applicant</option>
-				</select>
-			</div><!-- EOF controls -->
-		</div><!-- EOF control-group -->
-		<div class="form-actions">
-			<button type="reset" class="btn nod">Clear</button>
-			<button type="submit" class="btn-peoplewings">SEARCH PEOPLEWINGS</button>
-		</div><!-- EOF form-actions -->
+	</div>
+	<div class="control-group">
+		<label for="inputGender" class="control-label nod">Gender</label>
+		<div class="controls">
+			<select name="gender" class="input-small">
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Both">Both</option>
+			</select>
+		</div><!-- EOF controls -->
+	</div><!-- EOF control-group -->
+	<div class="control-group">
+		<label class="control-label nod" for="inputHost"></label>
+		<div class="controls">
+			<select name="type" class="input-small">
+				<option value="Host">Host</option>
+				<option value="Applicant">Applicant</option>
+			</select>
+		</div><!-- EOF controls -->
+	</div><!-- EOF control-group -->
+
+	<div class="form-actions">
+		<button type="reset" class="btn nod">Clear</button>
+		<button type="submit" class="btn-peoplewings">SEARCH PEOPLEWINGS</button>
+	</div><!-- EOF form-actions -->
 </form>
+<ul class="form-errors"></ul>
