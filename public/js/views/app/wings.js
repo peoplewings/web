@@ -69,7 +69,7 @@ define(function(require) {
 				api.get(api.getApiVersion() + "/profiles/" + api.getUserId()),
 				api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
 			).spread(function(profile, wings) {
-				self.model.set(profile.data);
+				self.model.set(profile.data, {silent: true});
 				self.list.reset(wings.data);
 			});
 		},
