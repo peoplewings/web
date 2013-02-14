@@ -6,10 +6,17 @@ define(function(require) {
     var api = require("api2");
     var profileTpl = require("tmpl!templates/app/user-profile.html");
     var phrases = require('phrases');
+    var notifications = require('views/lib/notifications');
 
 
     var userProfile = Backbone.View.extend({
         el: "#main",
+
+        events: {
+            "click button.send-message-btn": "sendMessage",
+            "click button.send-request-btn": "sendRequest",
+            "click button.send-invitation-btn": "sendInvitation",
+        },
 
         initialize: function(userId) {
             this.userId = userId
@@ -17,7 +24,10 @@ define(function(require) {
         },
 
         render: function(userId) {
-            if (userId) this.userId = userId
+            if (userId)
+                this.userId = userId;
+
+            var self = this;
             Promise.parallel(
             api.get('/api/v1/profiles/' + this.userId + '/preview'),
             api.get('/api/v1/profiles/' + this.userId + '/accomodations/preview')
@@ -29,16 +39,27 @@ define(function(require) {
                     return wing
                 })
                 profile.data.civilState = phrases.choices["civilState"][profile.data.civilState]
+                self.name = profile.data.firstName + " " + profile.data.lastName;
                 return profile.data
             }).then(this.refresh);
 
         },
 
         refresh: function(data) {
-
             $(this.el).html(profileTpl(data))
-
         },
+
+        sendMessage: function(event) {
+            notifications.message(this.userId, this.name);
+        },
+
+        sendRequest: function(event) {
+            notifications.request(this.userId, this.name);
+        },
+
+        sendInvitation: function(event) {
+            notifications.invitation(this.userId, this.name);
+        }
 
 
     });
