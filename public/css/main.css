@@ -19,7 +19,7 @@ div, ul, li {
 
 select {
   border: 1px solid #cccccc;
-  padding: 0.7em 1.5em 0.7em 0.5em;
+  padding: 0.7em 0.5em 0.7em 0.5em;
   font-size: 1em;
   color: #aaaaaa;
   font-family: Arial;
@@ -32,7 +32,7 @@ select {
   width: 95px; }
 
 .input-mini {
-  width: 60px; }
+  width: 50px; }
 
 /* ==========================================================================
  * HTML
@@ -96,7 +96,7 @@ header {
 #categories {
   overflow: hidden;
   position: relative;
-  top: 20px; }
+  top: 11px; }
   #categories ul li {
     float: left; }
 
@@ -107,40 +107,61 @@ header {
   border-radius: 1em;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em; }
-  #landing-form form {
-    float: left; }
-    #landing-form form label {
-      color: #18183f;
-      margin: 0.2em;
-      margin-right: 0.5em;
-      font-family: "Exo";
-      font-size: 1.4em;
-      font-weight: 900;
-      font-style: italic;
-      -webkit-text-stroke: 1px yellow;
-      -moz-text-stroke: 1px yellow; }
-    #landing-form form input {
-      font-family: Arial;
-      font-size: 1em;
-      padding: 0.7em;
-      margin: 0.5em;
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px; }
-    #landing-form form #inputWings {
-      width: 15em; }
-    #landing-form form #age {
-      width: 5.2em; }
-    #landing-form form .arrow {
-      background: url(../img/arrow.png) no-repeat;
-      width: 12px;
-      height: 10px;
-      float: right;
-      text-indent: -9999px;
-      position: relative;
-      top: 17px;
-      right: 24px; }
+  #landing-form form label {
+    color: #18183f;
+    margin: 0.2em;
+    margin-right: 0.5em;
+    font-family: "Exo";
+    font-size: 1.4em;
+    font-weight: 900;
+    font-style: italic;
+    -webkit-text-stroke: 1px yellow;
+    -moz-text-stroke: 1px yellow; }
+  #landing-form form input {
+    font-family: Arial;
+    font-size: 1em;
+    padding: 0.7em;
+    margin: 0.5em;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+  #landing-form form input[type="submit"].search-button {
+    float: right;
+    padding: 0.5em 1em;
+    margin: 0.5em 0.2em 0 0;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: yellow;
+    background: #18183f;
+    font-family: "Exo";
+    font-size: 1.2em;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 0.78em;
+    border: 2px solid yellow;
+    transition: box-shadow 0.5s;
+    -moz-transition: box-shadow 0.5s;
+    -webkit-transition: box-shadow 0.5s;
+    -o-transition: box-shadow 0.5s; }
+    #landing-form form input[type="submit"].search-button:hover {
+      box-shadow: 0px 0px 20px yellow;
+      -moz-box-shadow: 0px 0px 20px yellow;
+      -webkit-box-shadow: 0px 0px 20px yellow; }
+  #landing-form form #inputWings {
+    width: 15em; }
+  #landing-form form #age {
+    width: 5.2em; }
+  #landing-form form .arrow {
+    background: url(../img/arrow.png) no-repeat;
+    width: 12px;
+    height: 10px;
+    float: right;
+    text-indent: -9999px;
+    position: relative;
+    top: 17px;
+    right: 24px; }
   #landing-form a {
     margin-top: 0.6em;
     margin-left: 1em; }
@@ -215,29 +236,6 @@ footer {
   margin-left: auto;
   margin-right: auto; }
 
-.search-button {
-  float: left;
-  padding: 0.5em 1em;
-  border-radius: 1em;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  color: yellow;
-  background: #18183f;
-  font-family: "Exo";
-  font-size: 1.2em;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 0.78em;
-  border: 2px solid yellow;
-  transition: box-shadow 0.5s;
-  -moz-transition: box-shadow 0.5s;
-  -webkit-transition: box-shadow 0.5s;
-  -o-transition: box-shadow 0.5s; }
-  .search-button:hover {
-    box-shadow: 0px 0px 20px yellow;
-    -moz-box-shadow: 0px 0px 20px yellow;
-    -webkit-box-shadow: 0px 0px 20px yellow; }
-
 .share-wings {
   margin-top: 0.6em;
   font-size: 1em;
@@ -245,30 +243,29 @@ footer {
 
 .icon {
   float: left;
-  width: 55px;
-  height: 80px;
-  margin-right: 0.5em;
+  width: 65px;
+  height: 78px;
   text-indent: -9999px; }
 
 .all {
   background: url(../img/icon_all.png) no-repeat; }
   .all:hover {
-    background: url(../img/icon_all_selected.png) no-repeat; }
+    background: url(../img/icon_all_pre.png) no-repeat; }
 
 .transport {
   background: url(../img/icon_transport.png) no-repeat; }
   .transport:hover {
-    background: url(../img/icon_transport_selected.png) no-repeat; }
+    background: url(../img/icon_transport_pre.png) no-repeat; }
 
 .accommodation {
   background: url(../img/icon_accommodation.png) no-repeat; }
   .accommodation:hover {
-    background: url(../img/icon_accommodation_selected.png) no-repeat; }
+    background: url(../img/icon_accommodation_pre.png) no-repeat; }
 
 .travel {
   background: url(../img/icon_trip.png) no-repeat; }
   .travel:hover {
-    background: url(../img/icon_trip_selected.png) no-repeat; }
+    background: url(../img/icon_trip_pre.png) no-repeat; }
 
 .follow {
   width: 33px;
@@ -304,25 +301,25 @@ footer {
   font-weight: 800; }
 
 .background-1 {
-  background: url(../img/bg_afternoon.png) no-repeat; }
+  background: url(../img/bg_afternoon.png) no-repeat top center; }
 
 .background-2 {
-  background: url(../img/bg_happypeople.png) no-repeat; }
+  background: url(../img/bg_happypeople.png) no-repeat top center; }
 
 .background-3 {
-  background: url(../img/bg_ironman.png) no-repeat; }
+  background: url(../img/bg_ironman.png) no-repeat top center; }
 
 .background-4 {
-  background: url(../img/bg_mountain.png) no-repeat; }
+  background: url(../img/bg_mountain.png) no-repeat top center; }
 
 .background-5 {
-  background: url(../img/bg_lanterna.png) no-repeat; }
+  background: url(../img/bg_lanterna.png) no-repeat top center; }
 
 .background-6 {
-  background: url(../img/bg_burncity.png) no-repeat; }
+  background: url(../img/bg_burncity.png) no-repeat top center; }
 
 .background-7 {
-  background: url(../img/bg_ocean.png) no-repeat; }
+  background: url(../img/bg_ocean.png) no-repeat top center; }
 
 .selected {
-  background: url(../img/icon_accommodation_selected.png) no-repeat; }
+  background: url(../img/icon_accommodation_selected.png) no-repeat top center; }

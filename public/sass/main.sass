@@ -23,7 +23,7 @@ div, ul, li
 
 select
 	border: 1px solid #CCC
-	padding: 0.7em 1.5em 0.7em 0.5em
+	padding: 0.7em 0.5em 0.7em 0.5em
 	font-size: 1em
 	color: #AAA
 	font-family: Arial
@@ -36,7 +36,7 @@ select
 	width: 95px
 
 .input-mini
-	width: 60px
+	width: 50px
 
 /* ==========================================================================
 	 HTML
@@ -103,7 +103,7 @@ header
 #categories
 	overflow: hidden
 	position: relative
-	top: 20px
+	top: 11px
 	ul
 		li
 			float: left
@@ -113,7 +113,6 @@ header
 	overflow: hidden
 	@include radio(1em)
 	form
-		float: left
 		label
 			color: #18183F
 			margin: 0.2em
@@ -132,6 +131,23 @@ header
 			margin: 0.5em
 			border: 1px solid #CCC
 			@include radio(5px)
+		input[type="submit"].search-button
+			float: right
+			padding: 0.5em 1em
+			margin: 0.5em 0.2em 0 0
+			@include radio(1em)
+			color: #FFFF00
+			background: #18183F
+			font:
+				family: 'Exo'
+				size: 1.2em
+				weight: 500
+				style: italic
+			line-height: 0.78em
+			border: 2px solid #FFFF00
+			@include transition(box-shadow, 0.5s)
+			&:hover
+				@include sombrac(0px, 0px, 20px, #FFFF00)
 		#inputWings
 			width: 15em
 		#age
@@ -223,23 +239,6 @@ footer
 	margin-left: auto
 	margin-right: auto
 
-.search-button
-	float: left
-	padding: 0.5em 1em
-	@include radio(1em)
-	color: #FFFF00
-	background: #18183F
-	font:
-		family: 'Exo'
-		size: 1.2em
-		weight: 500
-		style: italic
-	line-height: 0.78em
-	border: 2px solid #FFFF00
-	@include transition(box-shadow, 0.5s)
-	&:hover
-		@include sombrac(0px, 0px, 20px, #FFFF00)
-
 .share-wings
 	margin-top: 0.6em
 	font-size: 1em
@@ -247,30 +246,29 @@ footer
 
 .icon
 	float: left
-	width: 55px
-	height: 80px
-	margin-right: 0.5em
+	width: 65px
+	height: 78px
 	text-indent: -9999px
 
 .all
 	background: url(../img/icon_all.png) no-repeat
 	&:hover
-		background: url(../img/icon_all_selected.png) no-repeat
+		background: url(../img/icon_all_pre.png) no-repeat
 
 .transport
 	background: url(../img/icon_transport.png) no-repeat
 	&:hover
-		background: url(../img/icon_transport_selected.png) no-repeat
+		background: url(../img/icon_transport_pre.png) no-repeat
 
 .accommodation
 	background: url(../img/icon_accommodation.png) no-repeat
 	&:hover
-		background: url(../img/icon_accommodation_selected.png) no-repeat
+		background: url(../img/icon_accommodation_pre.png) no-repeat
 
 .travel
 	background: url(../img/icon_trip.png) no-repeat
 	&:hover
-		background: url(../img/icon_trip_selected.png) no-repeat
+		background: url(../img/icon_trip_pre.png) no-repeat
 
 .follow
 	width: 33px
@@ -307,25 +305,25 @@ footer
 
 
 .background-1
-	background: url(../img/bg_afternoon.png) no-repeat
+	background: url(../img/bg_afternoon.png) no-repeat top center
 
 .background-2
-	background: url(../img/bg_happypeople.png) no-repeat
+	background: url(../img/bg_happypeople.png) no-repeat top center
 
 .background-3
-	background: url(../img/bg_ironman.png) no-repeat
+	background: url(../img/bg_ironman.png) no-repeat top center
 
 .background-4
-	background: url(../img/bg_mountain.png) no-repeat
+	background: url(../img/bg_mountain.png) no-repeat top center
 	
 .background-5
-	background: url(../img/bg_lanterna.png) no-repeat
+	background: url(../img/bg_lanterna.png) no-repeat top center
 
 .background-6
-	background: url(../img/bg_burncity.png) no-repeat
+	background: url(../img/bg_burncity.png) no-repeat top center
 
 .background-7
-	background: url(../img/bg_ocean.png) no-repeat
+	background: url(../img/bg_ocean.png) no-repeat top center
 
 .selected
-	background: url(../img/icon_accommodation_selected.png) no-repeat
+	background: url(../img/icon_accommodation_selected.png) no-repeat top center
