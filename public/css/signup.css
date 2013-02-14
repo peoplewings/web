@@ -134,6 +134,8 @@ header {
         background-position: 94px center; }
       #main form#register-form .controls .terms {
         margin-left: 117px; }
+    #main form#register-form .accepts {
+      margin-left: 98px; }
     #main form#register-form .terms {
       color: white;
       font-size: 12px;
