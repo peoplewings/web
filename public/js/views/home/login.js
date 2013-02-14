@@ -21,6 +21,7 @@ define(function(require) {
 
 		render: function() {
 			$(this.el).html(loginTpl);
+			this.$('form').validate();
 			this.$inputEmail = this.$("#inputEmail")
 			this.$inputPassword = this.$("#inputPassword")
 		},
