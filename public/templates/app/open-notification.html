@@ -5,27 +5,13 @@
 
 		<div>
 			<div class="span5">
-					<span class="{{#if senderConnected }}online{{/if}}"></span>
+					<span class="{{#if senderOnline }}online{{/if}}">{{ senderOnline }}</span>
 					<a href="#/users/{{interlocutorId}}">{{ senderName }}</a>, {{ senderAge }}
 					<div>{{ senderLocation }}</div>
-					<div>Friends: {{ senderFriends }} / References: {{ senderReferences }}</div>
 			</div>
 
 			<div class="span2">
 				{{date created "MMM Do, HH:mm" }}
-			</div>
-
-			<div class="span3">
-				{{#if isMessage }}
-					<input type="button" id="open-message" value="Reply">
-					<input type="button" id="open-request" value="Request">
-					<input type="button" id="open-invite" value="Invite">
-				{{else}}
-					<input type="button" id="btn-accept" {{#unless_contains options 'accept' }}disabled{{/unless_contains}}>
-					<input type="button" id="btn-maybe"  {{#unless_contains options 'maybe' }} disabled{{/unless_contains}}>
-					<input type="button" id="btn-deny"   {{#unless_contains options 'deny' }}  disabled{{/unless_contains}}>
-				{{/if}}
-				<input type="button" id="delete-thread" value="Delete">
 			</div>
 		</div>
 
@@ -36,8 +22,12 @@
 				<div class="row">
 					<div class="span1">
 						<div class="state-flag
-							{{#if flagDirection }}to-me{{else}}from-me{{/if}}
-							{{enum state 'notification-state'}}">{{enum state 'notification-state'}}</div>
+							{{#if flagDirection }}from-me{{else}}to-me{{/if}}
+							{{enum state 'notification-state'}}">
+							<span>
+								{{enum state 'notification-state'}}
+							</span>
+						</div>
 					</div>
 				</div>
 

@@ -2,8 +2,9 @@ define(function(require) {
 
 	var api = require('api2');
 	var Promise = require('promise');
+	var utils = require('utils');
 	var UserAccount = require('models/Account');
-	var modalTpl = require('tmpl!templates/lib/modal2.html');
+	
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
 	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
 	var wingsParams = {
@@ -17,24 +18,6 @@ define(function(require) {
 				.datepicker("option", "dateFormat", "yy-mm-dd");
 		},
 	};
-
-	function showModal(header, accept, content, callback) {
-		var modal = $(modalTpl({
-			header: header,
-			accept: accept,
-			content: content
-		}));
-		$("body section:last").append(modal);
-
-		modal.modal('show');
-		modal.find('.btn-primary').click(callback);
-
-		modal.on('hidden', function() {
-			modal.remove();
-		});
-
-		return modal;
-	}
 
 	function selectedWingType(container) {
 		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type')
@@ -65,7 +48,7 @@ define(function(require) {
 				}].concat(wings.items) : null,
 			});
 
-			var modal = showModal(title, button, content, send);
+			var modal = utils.showModal(title, button, content, send);
 
 			modal.on('hidden', function() {
 				if (!prom.future.isCompleted())
@@ -122,7 +105,7 @@ define(function(require) {
 
 
 	function reqinv(targetId, targetName, kind, title, button, wingsOwnerId) {
-		var request = api.get('/api/v1/wings?profile=' + wingsOwnerId).prop('data');
+		var request = api.get('/api/v1/wings', { profile:  wingsOwnerId}).prop('data');
 		return modalHelper(targetId, targetName, kind, title, button, request, function(modal) {
 			return {
 				"privateText": modal.find('#message-content').val(),
@@ -131,8 +114,8 @@ define(function(require) {
 				"wingType": selectedWingType(modal),
 				"wingParameters": {
 					"wingId": modal.find('#wings').val(),
-					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val()),
-					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val()),
+					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val())/1000,
+					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val())/1000,
 					"capacity": modal.find('#wing-parameters [name="capacity"]').val(),
 					"arrivingVia": modal.find('#wing-parameters [name="via"]').val(),
 					"flexibleStart": modal.find('#wing-parameters #flexible-start-date').is(':checked'),

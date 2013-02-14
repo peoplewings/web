@@ -38,29 +38,29 @@ define(function(require) {
 
 		initMarkers: function(){
 			var sc = this
-			
+
 			var city = this.model.get("current")
 			if (city){
 				this.map.addMarker({
-					id: "current", 
-					location: new google.maps.LatLng(city.lat, city.lon), 
+					id: "current",
+					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
 					icon: 'img/blue-marker.png'
-				})          
-				
+				})
+
 				city = this.model.get("hometown")
 				this.map.addMarker({
-					id: "hometown", 
-					location: new google.maps.LatLng(city.lat, city.lon), 
+					id: "hometown",
+					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
 					icon: 'img/green-marker.png'
 				})
-				
+
 				var others = this.model.get("otherLocations")
 				_.each(others, function(location, index){
 					sc.map.addMarker({
-						id: "otherLocation-" + index, 
-						location: new google.maps.LatLng(location.lat, location.lon), 
+						id: "otherLocation-" + index,
+						location: new google.maps.LatLng(location.lat, location.lon),
 						title: location.name + ", " + location.country
 					})
 				})
@@ -86,5 +86,5 @@ define(function(require) {
 
 	});
 
-	return new previewView;
+	return previewView;
 });

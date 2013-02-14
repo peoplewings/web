@@ -125,16 +125,7 @@ define(function(require){
 		},
 
 		loadData: function(params) {
-			var args = '';
-			if (params) {
-				var data = _.map(params, function(value, key) {
-					return key + '=' + value;
-				});
-
-				var args = '?' + data.join('&');
-			}
-
-			return api.get('/api/v1/notificationslist' + args)
+			return api.get('/api/v1/notificationslist', params)
 				.prop('data')
 				.then(function(data) {
 					data.items.forEach(function(item) {

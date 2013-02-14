@@ -26,20 +26,18 @@ define(function(require) {
 		},
 
 		initialize: function(options) {
-			debugger
 			this.papa = options.papa
 			this.update = options.update
 
 			this.model = new WingModel({
 					id: options.id
 			})
-			
+
 			this.model.on("change", this.render.bind(this, false))
 			this.model.fetch()
 		},
 
 		render: function(update) {
-			debugger
 			if (update) this.update = update;
 
 			$(this.el).html(wingTpl({ update: this.update }));
@@ -53,8 +51,6 @@ define(function(require) {
 		},
 
 		unserialize: function(){
-			console.log(this.model.toJSON())
-			debugger;
 			if (this.model.get("city") === undefined) return;
 
 			this.papa.$("select#wings-list option[value='/api/v1/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id") + "']")
@@ -78,10 +74,10 @@ define(function(require) {
 				this.$("input[name=dateStart]").val(this.model.get("dateStart"));
 				this.$("input[name=dateEnd]").val(this.model.get("dateEnd"));
 				this.$("div#sharing-dates").show();
-			
+
 			if (this.model.get("bestDays"))
 				this.$("select#inputBestDays option[value=" + this.model.get("bestDays") + "]").attr("selected", true);
-			
+
 			if (this.model.get("capacity"))
 				this.$("select[name=capacity] option[value=" + this.model.get("capacity") + "]").attr("selected", true);
 
@@ -128,26 +124,24 @@ define(function(require) {
 				this.$("input[name=others]").attr("checked", true);
 		},
 
-		close: function() {
+		close: function(e) {
+			e.preventDefault();
 			this.remove();
 			this.unbind();
-			router.navigate("/#/wings");
+			router.navigate("#/wings");
 		},
-		
+
 		initWing: function() {
 			var self = this
 			this.$("input[name=dateStart]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 			this.$("input[name=dateEnd]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
 
-			require(['async!https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en'],
-			function() {
-				var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
-					types: ['(cities)']
-				});
-				google.maps.event.addListener(autoCity, 'place_changed', self.setAutocomplete(autoCity, "inputCity"));
-				self.$("#inputCity").keypress(function(event) {
-					if (event.which == 13) event.preventDefault()
-				})
+			var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
+				types: ['(cities)']
+			});
+			google.maps.event.addListener(autoCity, 'place_changed', self.setAutocomplete(autoCity, "inputCity"));
+			self.$("#inputCity").keypress(function(event) {
+				if (event.which == 13) event.preventDefault()
 			})
 
 			this.$('#accomodation-form').validate()
@@ -165,7 +159,8 @@ define(function(require) {
 					delete cc.city
 					sc.cityObject = cc
 				}
-			}
+			  }
+			return data
 		},
 
 		submitWing: function(evt) {
@@ -197,7 +192,6 @@ define(function(require) {
 				delete data.dateStart
 				delete data.dateEnd
 			}
-
 			api.put(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id"), data)
 			.then(this.handleResponse.bind(this));
 		},

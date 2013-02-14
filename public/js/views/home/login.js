@@ -1,23 +1,24 @@
-define(function(require){
+define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var loginTpl = require('tmpl!templates/home/login.html')
-	var alertTpl = require('tmpl!templates/lib/alert.html')
-	var UserModel = require('models/Account')
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var utils = require('utils');
+	var api = require('api2');
+	var alerts = require('views/lib/alerts');
+	var UserModel = require('models/Account');
+	var Header = require('views/app/header');
+	var loginTpl = require('text!templates/home/login.html');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
 	var loginView = Backbone.View.extend({
-		
+
 		el: "#main",
-		
+
 		events: {
 			"submit form#login-form": "submitLogin"
 		},
-		
+
 		render: function() {
 
 			$(this.el).html(loginTpl);
@@ -28,7 +29,7 @@ define(function(require){
 
 		submitLogin: function(e) {
 			e.preventDefault(e);
-			
+
 			spinner.spin(document.getElementById('main'));
 			$('.alert').remove()
 
@@ -59,19 +60,16 @@ define(function(require){
 				auth: data.xAuthToken,
 				uid: data.idAccount
 			}));
-				
+
 
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
 			.then(function(data){
-				var user = new UserModel({
-					id: data.idAccount,
-				});
+				var user = new UserModel(data);
 
-				require(["views/app/header"], function(header){
-					header.render()
-				});
-				
+				router.header = new Header
+				router.header.render();
+
 				router.navigate("#/search");
 
 			})
@@ -84,13 +82,7 @@ define(function(require){
 		},
 
 		loginFail: function(msg){
-
-			this.$el.prepend(alertTpl({
-				extraClass: 'alert-error',
-				heading: "",
-				message: msg
-			}));
-
+			alerts.error(msg);
 			this.$inputPassword.val("");
 		}
 	});

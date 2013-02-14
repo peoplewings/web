@@ -24,8 +24,6 @@ define(function(require) {
 		
 		render: function(params) {
 			$(this.el).html(mainTpl);
-
-			//console.log("render home ", new Date())
 			
 			this.$("#accomodation").html(accomodationTpl);
 
@@ -38,34 +36,11 @@ define(function(require) {
 		},
 
 		unserializeParams: function(params){
-
-			if (params.wings)
-				this.$("input[name=wings]").val(params.wings)
-
-			if (params.startDate){
-				this.$("input[name=startDate]").val(params.startDate)
-				this.$("input[name=endDate]").val(params.endDate)
-			}
-				
-			if (params.gender == "Male"){
-				this.$("input#inlineCheckbox1").attr("checked", true)
-			}
-
-			if (params.gender == "Female"){
-				this.$("input#inlineCheckbox1").attr("checked", true)
-			}
-
-			if (params.gender == "Male,Female"){
-				this.$("input#inlineCheckbox1").attr("checked", true)
-				this.$("input#inlineCheckbox2").attr("checked", true)
-			}
-
-			this.$("select[name=capacity] option[value=" + params.capacity + "]").attr("selected", true)
-			this.$("select[name=startAge] option[value=" + params.startAge + "]").attr("selected", true)
-			this.$("select[name=endAge] option[value=" + params.endAge + "]").attr("selected", true)
-			this.$("select[name=language] option[value=" + params.language + "]").attr("selected", true)
-			this.$("input[type=radio][value=" + params['type'] + "]").attr("checked", true)
-			
+			var self = this;
+			_.each(params, function(value, key){
+				self.$("[name=" + key + "]")
+				.val(value);
+			});
 		},
 
 		renderResults: function(query, results) {
@@ -83,6 +58,7 @@ define(function(require) {
 
 			var self = this;
 			var formData = utils.serializeForm(e.target.id);
+			
 			formData.page = 1;
 			
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
