@@ -1,76 +1,76 @@
 <form id="register-form" class="form-horizontal pull-right">
-  <legend>Sign up</legend>
-  <div class="control-group">
-    <label class="control-label" for="inputName">Name</label>
-    <div class="controls">
-      <input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
-	  <input type="text" name="lastName" placeholder="Last" class="input-small required">
-	  <span class="help-block"></span>
+	<legend>Sign up</legend>
+	<div class="control-group">
+		<label class="control-label" for="inputName">Name</label>
+		<div class="controls">
+			<input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
+			<input type="text" name="lastName" placeholder="Last" class="input-small required">
+			<span class="help-block"></span>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Create a Password</label>
-    <div class="controls">
-      <input type="password" name="password" placeholder="Password" class="required">
-	  <span class="help-block"></span>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputBirthday">Birthday</label>
-    <div class="controls">
-		<select id="id_birthday_month" name="birthdayMonth" class="input-small required">
-			<option value="">Month</option>
+	<div class="control-group">
+		<label class="control-label" for="inputPassword">Create a Password</label>
+		<div class="controls">
+			<input type="password" name="password" placeholder="Password" class="required">
+		<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputBirthday">Birthday</label>
+		<div class="controls">
+			<select id="id_birthday_month" name="birthdayMonth" class="input-small required">
+				<option value="">Month</option>
 				{{#each month}}
 					<option value="{{indexPlusOne}}">{{name}}</option>
 				{{/each}}
-		</select>
-		<select id="id_birthday_day" name="birthdayDay" class="input-mini required">
-			<option value="">Day</option>
+			</select>
+			<select id="id_birthday_day" name="birthdayDay" class="input-mini required">
+				<option value="">Day</option>
 				{{#range 1 31 1}}
 					<option value="{{self}}">{{self}}</option>
-				{{/range}}		
-		</select>
-		<select id="id_birthday_year" name="birthdayYear" class="input-mini required">
-			<option value="">Year</option>
-			{{#range 2006 1900 '-1'}}
-				<option value="{{self}}">{{self}}</option>
-			{{/range}}		
-		</select>
-		<span class="help-block"></span>
+				{{/range}}
+			</select>
+			<select id="id_birthday_year" name="birthdayYear" class="input-mini required">
+				<option value="">Year</option>
+				{{#range 2006 1900 '-1'}}
+					<option value="{{self}}">{{self}}</option>
+				{{/range}}
+			</select>
+			<span class="help-block"></span>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputGender">Gender</label>
-    <div class="controls">
-		<select name="gender" id="id_gender" class="required">
-			<option value="">I am</option>
-			<option value="Male">Male</option>
-			<option value="Female">Female</option>
-		</select>
-		<span class="help-block"></span>
+	<div class="control-group">
+		<label class="control-label" for="inputGender">Gender</label>
+		<div class="controls">
+			<select name="gender" id="id_gender" class="required">
+				<option value="">I am</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+			<span class="help-block"></span>
+		</div>
 	</div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Your current email</label>
-    <div class="controls">
-      <input id="email" type="email" name="email" placeholder="Email" class="required">
-	  <span class="help-block"></span>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Repeat email</label>
-    <div class="controls">
-      <input type="email" name="repeatEmail" placeholder="Email" class="required">
-	  <span class="help-block"></span>
-    </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <label class="checkbox">
-        <input type="checkbox" name="hasAcceptedTerms" class="required"> Accept <a id="terms-link" href="/#/terms"> Terms &amp; Conditions</a>
-        <span class="help-block"></span>
-      </label>
-      <button type="submit" class="btn">Sign in</button>
-    </div>
-  </div>
+	<div class="control-group">
+		<label class="control-label" for="inputEmail">Your current email</label>
+		<div class="controls">
+			<input id="email" type="email" name="email" placeholder="Email" class="required">
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputEmail">Repeat email</label>
+		<div class="controls">
+			<input type="email" name="repeatEmail" placeholder="Email" class="required">
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+				<input type="checkbox" name="hasAcceptedTerms" class="required"> Accept <a id="terms-link" href="/#/terms"> Terms &amp; Conditions</a>
+				<span class="help-block"></span>
+			</label>
+			<button type="submit" class="btn">Sign in</button>
+		</div>
+	</div>
 </form>
