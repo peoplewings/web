@@ -300,14 +300,8 @@ define(function(require) {
 
 				});
 
-			
-
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);
-
-			
-
-
 		},
 
 		parseOptions: function(options, firstSender, wingState){
