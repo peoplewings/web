@@ -37,8 +37,13 @@ define(function(require) {
 
 				// ANALYZE ERROR
 
-				if (!response.errors || !response.errors.length)
-					return alerts.error('ERROR', 'Sorry an error ocurred');
+				if (!response.errors || !response.errors.length) {
+					prom.reject(new Error('Server error'));
+					alerts.error('ERROR', 'Sorry an error ocurred');
+					return;
+				}
+
+				var errorOptions = {autoclose:5000};
 
 				response.errors.forEach(function(error) {
 					switch (error) {
@@ -46,14 +51,40 @@ define(function(require) {
 							logout();
 							break;
 
-						case 'INVALID':
+						case 'INVALID_USER_OR_PASS':
+							alerts.error('Wrong email or password', errorOptions);
+							break;
+
+						case 'INACTIVE_USER':
+							alerts.error('Your account is not activated. Please check your email inbox', errorOptions);
+							break;
+
+						case 'EXPIRED_KEY':
+							alerts.error('Your key has expired.', errorOptions);
+							break;
+
+						case 'USED_KEY':
+							alerts.error('This key is already activated.', errorOptions);
+							break;
+
+						case 'EMAIL_IN_USE':
+							break;
+
+						case 'AUTH_REQUIRED':
+						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
-						case 'TOO_LONG':
-						case 'NOT_EMPTY':
-						case 'NO_CONTENT':
 						case 'FORBIDDEN':
+						case 'INCORRECT_PASSWORD':
 						case 'INTERNAL_ERROR':
+						case 'INVALID':
+						case 'INVALID_FIELD':
+						case 'JSON_ERROR':
+						case 'METHOD_NOT_ALLOWED':
+						case 'NO_CONTENT':
+						case 'NOT_EMPTY':
 						case 'START_DATE_GT_END_DATE':
+						case 'TOO_LONG':
+						case 'VALIDATION_ERROR':
 							alerts.error(JSON.stringify(error, null, '\t'), {autoclose:0});
 							break;
 
@@ -61,6 +92,8 @@ define(function(require) {
 							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autoclose:0});
 					}
 				});
+
+				prom.reject(response.errors);
 			}
 		}
 		if(body) {

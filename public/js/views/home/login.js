@@ -20,9 +20,8 @@ define(function(require) {
 		},
 
 		render: function() {
-
 			$(this.el).html(loginTpl);
-
+			this.$('form').validate();
 			this.$inputEmail = this.$("#inputEmail")
 			this.$inputPassword = this.$("#inputPassword")
 		},
@@ -30,26 +29,21 @@ define(function(require) {
 		submitLogin: function(e) {
 			e.preventDefault(e);
 
-			spinner.spin(document.getElementById('main'));
-			$('.alert').remove()
-
-			if ( this.$inputPassword.val() == "" || this.$inputEmail.val() == "")
+			if (this.$inputPassword.val() == '' || this.$inputEmail.val() == '')
 				return;
 
+			spinner.spin(document.getElementById('main'));
 			var self = this
 			var formData = utils.serializeForm()
 
 			api.post(api.getApiVersion() + '/auth/', formData)
-			.then(function(response){
-
-				if (!response.status){
-					self.loginFail(response.msg)
-				}
-				else
-					self.loginSuccess(response.data, formData.remember)
+			.prop('data')
+			.then(function(data){
+				self.loginSuccess(data, formData.remember)
 			})
 			.fin(function(){
-				spinner.stop()
+				self.$inputPassword.val('');
+				spinner.stop();
 			})
 		},
 
@@ -61,7 +55,6 @@ define(function(require) {
 				uid: data.idAccount
 			}));
 
-
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
 			.then(function(data){
@@ -71,19 +64,11 @@ define(function(require) {
 				router.header.render();
 
 				router.navigate("#/search");
-
 			})
 			.fin(function(){
-
 				self.$inputPassword.val("")
 				self.$inputEmail.val("")
-
 			});
-		},
-
-		loginFail: function(msg){
-			alerts.error(msg);
-			this.$inputPassword.val("");
 		}
 	});
 
