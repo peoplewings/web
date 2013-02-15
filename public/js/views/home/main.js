@@ -9,11 +9,11 @@ define(function(require) {
 	var jDate = require("jquery.Datepicker")
 
 	var ResultsView = require("views/home/results")
-	
+
 	var mainHomeView = Backbone.View.extend({
-		
+
 		el: "#main",
-		
+
 		events: {
 			"submit form#accomodation-search-form": "submitSearch",
 		},
@@ -21,10 +21,10 @@ define(function(require) {
 		initialize: function() {
 
 		},
-		
+
 		render: function(params) {
 			$(this.el).html(mainTpl);
-			
+
 			this.$("#accomodation").html(accomodationTpl);
 
 			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
@@ -48,19 +48,32 @@ define(function(require) {
 			this.resultsView = new ResultsView({
 				logged: api.userIsLoggedIn(),
 				query: query,
-			})	
+			})
 
 			this.resultsView.render(results);
 		},
 
+		displayErrors: function(errors) {
+			this.$('.form-errors').html(errors.map(function(error) {
+				return '<li>' + error + '</li>';
+			}));
+		},
+
 		submitSearch: function(e) {
+			var errors = [];
 			e.preventDefault();
 
-			var self = this;
+			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
+				errors.push('DATE IS WRONG MODAFOKA!!!');
+
+			if (+$("select[name=endAge]").val() < +$("select[name=startAge]").val())
+				errors.push('AGE IS WRONG MODAFOKA!!!');
+
+			if (errors.length)
+				return this.displayErrors(errors);
+
 			var formData = utils.serializeForm(e.target.id);
-			
 			formData.page = 1;
-			
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
 		},
 

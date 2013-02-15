@@ -58,6 +58,7 @@
 				</select>
 				<input type="submit" class="search-button">SEARCH PEOPLEWINGS</input>
 			</form>
+			<div class="form-errors"></div>
 		</section>
 	</div><!-- EOF main -->
 	<div id="middle">
@@ -114,20 +115,24 @@
 			var num = 18 + index * 2;
 			return '<option value="' + num + '">' + num + '</option>';
 		}).join(''));
+		$('[name="endAge"]').val(98);
 
 		$('#accomodation-search-form').on('submit', function() {
-			var wings = $('#inputWings').val();
-			if (wings) {
-				document.location =
-					'/#/search/?capacity=1&language=all&type=host&page=1&gender=Male&' +
-					$('#accomodation-search-form [name]')
-						.toArray()
-						.map($)
-						.map(function(input) {
-							return input.attr('name') + '=' + encodeURI(input.val());
-						})
-						.join('&');
+			if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
+				$('.form-errors').html('The start age is bigger than end age');
+				return false;
 			}
+
+			document.location =
+				'/#/search/?capacity=1&language=all&type=host&page=1&' +
+				$('#accomodation-search-form [name]')
+					.toArray()
+					.map($)
+					.map(function(input) {
+						return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
+					})
+					.join('&');
+
 			return false;
 		});
 
