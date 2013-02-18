@@ -68,9 +68,9 @@ define(function(require) {
 							break;
 
 						case 'EMAIL_IN_USE':
+							alerts.error('The gicen email is already in use', errorOptions);
 							break;
 
-						case 'AUTH_REQUIRED':
 						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
 						case 'FORBIDDEN':
