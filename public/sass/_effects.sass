@@ -33,33 +33,6 @@
 	opacity: $value
 	filter: alpha(opacity=$value*100) // For IE8 and earlier
 
-// olders
-
-@mixin opacidad($value)
-	opacity: $value
-	filter: alpha(opacity=$value*100) // For IE8 and earlier
-
-@mixin radio($radius)
-	border-radius: $radius
-	-moz-border-radius: $radius
-	-webkit-border-radius: $radius
-
-@mixin sombrac($hor, $ver, $blur, $color)
-	box-shadow: $hor $ver $blur $color
-	-moz-box-shadow: $hor $ver $blur $color
-	-webkit-box-shadow: $hor $ver $blur $color
-
-@mixin sombrat($hor, $ver, $blur, $color)
-	text-shadow: $hor $ver $blur $color
-	-moz-text-shadow: $hor $ver $blur $color
-	-webkit-text-shadow: $hor $ver $blur $color
-
-@mixin borde($width, $color)
+@mixin text-stroke($width, $color)
 	-webkit-text-stroke: $width $color
 	-moz-text-stroke: $width $color
-
-@mixin animacion($name, $time)
-	animation: $name $time
-	-moz-animation: $name $time /* Firefox 4 */
-	-webkit-animation: $name $time /* Safari and Chrome */
-	-o-animation: $name $time /* Opera */
