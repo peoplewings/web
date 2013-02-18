@@ -4,9 +4,8 @@
 
 @import _reset.sass
 @import _variables.sass
-@import _globals.sass
 @import _effects.sass
-
+@import _globals.sass
 
 /* ==========================================================================
    HTML Structure
@@ -48,7 +47,7 @@
 				style: italic
 			line-height: 0.78em
 			letter-spacing: -1px
-			@include borde(2.5px, #18183F)
+			@include text-stroke(2.5px, #18183F)
 			margin:
 				top: 0.7em
 				bottom: 0.3em
@@ -63,43 +62,21 @@
 	padding: 0.6em
 	background: rgba(0, 0, 0, 0.4)
 	overflow: hidden
-	@include radio(1em)
+	@include border-radius(1em)
 	form
-		label
-			color: #18183F
-			margin: 0.2em
-			margin-right: 0.5em
-			font:
-				family: 'Exo'
-				size: 1.4em 
-				weight: 900
-				style: italic
-			@include borde(1px, #FFFF00)
-		input
-			font:
-				family: Arial
-				size: 1em
-			padding: 0.7em
-			margin: 0.5em
-			border: 1px solid #CCC
-			@include radio(5px)
-		input[type="submit"].search-button
-			float: right
-			padding: 0.5em 1em
-			margin: 0.5em 0.2em 0 0
-			@include radio(1em)
-			color: #FFFF00
-			background: #18183F
-			font:
-				family: 'Exo'
-				size: 1.2em
-				weight: 500
-				style: italic
-			line-height: 0.78em
-			border: 2px solid #FFFF00
-			@include transition(box-shadow, 0.5s)
-			&:hover
-				@include sombrac(0px, 0px, 20px, #FFFF00)
+		.control-group
+			float: left
+		.control-label
+			float: left
+			width: 67px
+			height: 20px
+			margin: 19px 8px
+			text-indent: -9999px
+		.wings_text
+			background: url(../img/wings_text.png) no-repeat
+		.people_text
+			width: 75px
+			background: url(../img/people_text.png) no-repeat
 		#inputWings
 			width: 15em
 		#age
@@ -160,10 +137,8 @@
 	&:hover
 		background: url(../img/icon_transport_pre.png) no-repeat
 
-.accommodation
-	background: url(../img/icon_accommodation.png) no-repeat
-	&:hover
-		background: url(../img/icon_accommodation_pre.png) no-repeat
+.accommodation.selected
+	background: url(../img/icon_accommodation_selected.png) no-repeat
 
 .travel
 	background: url(../img/icon_trip.png) no-repeat

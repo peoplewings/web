@@ -22,12 +22,20 @@ div, ul, li
 	display: block
 
 input, select
-	font-family: $ffamily
+	font:
+		family: $ffamily
+		size: 1em
+	padding: 0.7em
+	margin: 0.5em
+	border: 1px solid #CCC
+	@include border-radius(5px)
 
 select
+	margin:
+		left: 0.1em
+		right: 0
 	border: 1px solid #CCC
 	padding: 0.7em 0.5em 0.7em 0.5em
-	font-size: 1em
 	color: #AAA
 	box-shadow: inset 0px 0px 3px #DDD
 	-webkit-box-shadow: inset 0px 0px 3px #DDD
@@ -61,6 +69,24 @@ select:focus,
 .navbar-static-top .navbar-inner,
 .navbar-fixed-bottom .navbar-inner
 	@include box-shadow(0px, 0px, 0px, #000)
+
+.search-button
+	float: right
+	padding: 0.5em 1em
+	margin: 0.5em 0.2em 0 0
+	@include border-radius(1em)
+	color: #FFFF00
+	background: #18183F
+	font:
+		family: 'Exo'
+		size: 1.2em
+		weight: 500
+		style: italic
+	line-height: 0.78em
+	border: 2px solid #FFFF00
+	@include transition(box-shadow, 0.5s)
+	&:hover
+		@include box-shadow(0px, 0px, 20px, #FFFF00)
 
 .icon
 	float: left

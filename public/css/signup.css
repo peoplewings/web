@@ -64,12 +64,20 @@ div, ul, li {
   display: block; }
 
 input, select {
-  font-family: Arial, Sans-Serif; }
+  font-family: Arial, Sans-Serif;
+  font-size: 1em;
+  padding: 0.7em;
+  margin: 0.5em;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px; }
 
 select {
+  margin-left: 0.1em;
+  margin-right: 0;
   border: 1px solid #cccccc;
   padding: 0.7em 0.5em 0.7em 0.5em;
-  font-size: 1em;
   color: #aaaaaa;
   box-shadow: inset 0px 0px 3px #dddddd;
   -webkit-box-shadow: inset 0px 0px 3px #dddddd;
@@ -105,6 +113,30 @@ select:focus,
   box-shadow: 0px 0px 0px black;
   -moz-box-shadow: 0px 0px 0px black;
   -webkit-box-shadow: 0px 0px 0px black; }
+
+.search-button {
+  float: right;
+  padding: 0.5em 1em;
+  margin: 0.5em 0.2em 0 0;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  color: yellow;
+  background: #18183f;
+  font-family: "Exo";
+  font-size: 1.2em;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 0.78em;
+  border: 2px solid yellow;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  .search-button:hover {
+    box-shadow: 0px 0px 20px yellow;
+    -moz-box-shadow: 0px 0px 20px yellow;
+    -webkit-box-shadow: 0px 0px 20px yellow; }
 
 .icon {
   float: left;

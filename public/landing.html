@@ -13,7 +13,7 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
 		<link rel="stylesheet" href="css/landing.css">
-		<link href='http://fonts.googleapis.com/css?family=Exo:500,500italic' rel='stylesheet' type='text/css'>	
+		<link href='http://fonts.googleapis.com/css?family=Exo:500,800,500italic,800italic' rel='stylesheet' type='text/css'>	
 	</head>
 
 	<body>
@@ -49,21 +49,23 @@
 				</ul>
 			</section>
 			<section id="landing-form" class="limits">
-				<form id="accomodation-search-form" class="form-horizontal">
-					<label class="control-label" for="inputWings">WINGS</label>
-					<input type="text" id="inputWings" name="wings" placeholder="Where you need accomodation?">
-					<label class="control-label" for="inputPeople">PEOPLE</label>
-					<select name="startAge" class="input-mini">
-						<option value="18">18</option>
+				<form id="accomodation-search-form">
+					<div class="control-group">
+						<label class="control-label wings_text" for="inputWings">WINGS</label>
+						<input type="text" id="inputWings" name="wings" placeholder="Where you need accomodation?">
+					</div>
+					<label class="control-label people_text" for="inputPeople">PEOPLE</label>
+					<select name="startAge">
+						<option value="18">Age 18</option>
 					</select>
-					<select name="endAge" class="input-mini">
-						<option value="18">18</option>
+					<select name="endAge">
+						<option value="99">Age 99</option>
 					</select>
-					<select name="gender" class="input-small">
+					<select name="gender">
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 						<option value="Both">Both</option>
-					</select>
+					</div>
 					<input type="submit" class="search-button" value="SEARCH PEOPLEWINGS">
 				</form>
 			</section>
@@ -122,7 +124,7 @@
 
 			$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
 				var num = 18 + index * 2;
-				return '<option value="' + num + '">' + num + '</option>';
+				return '<option value="' + num + '">' + 'Age ' + num + '</option>';
 			}).join(''));
 
 			$('#accomodation-search-form').on('submit', function() {
