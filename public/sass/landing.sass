@@ -1,14 +1,15 @@
 /* ==========================================================================
-   Initial Config
+   INITIAL CONFIG
    ========================================================================== */
 
 @import _reset.sass
-@import _variables.sass
-@import _effects.sass
 @import _globals.sass
 
+select
+	color: #AAA
+
 /* ==========================================================================
-   HTML Structure
+   HTML STRUCTURE
    ========================================================================== */
 
 #background-roller
@@ -21,7 +22,7 @@
 
 .navbar.nav.navbar-fixed-top
 	background: rgba(0, 0, 0, 0.15)
-	@include box-shadow(0px, 0px, 0px, #000)
+	@include box-shadow(none)
 	ul
 		li
 			a, &:after
@@ -105,14 +106,13 @@
 			width: 230px
 			height: 133px
 			float: left
-			h1
+			p
 				font:
 					family: 'Exo'
 					size: 1.4em
 					weight: 900
 					style: italic
 				color: #18183F
-			.light-500
 				font-weight: 500
 
 @import _footer.sass
@@ -125,7 +125,6 @@
 .share-wings
 	margin-top: 0.6em
 	font-size: 1em
-	padding: 0.5em 1.3em
 
 .all
 	background: url(../img/icon_all.png) no-repeat

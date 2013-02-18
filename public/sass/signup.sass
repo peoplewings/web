@@ -1,38 +1,12 @@
 /* ==========================================================================
-   Initial Config
+   INITIAL CONFIG
    ========================================================================== */
 
 @import _reset.sass
-@import _variables.sass
 @import _globals.sass
-@import _effects.sass
-
-textarea:hover,
-input[type="text"]:hover,
-input[type="password"]:hover,
-input[type="datetime"]:hover,
-input[type="datetime-local"]:hover,
-input[type="date"]:hover,
-input[type="month"]:hover,
-input[type="time"]:hover,
-input[type="week"]:hover,
-input[type="number"]:hover,
-input[type="email"]:hover,
-input[type="url"]:hover,
-input[type="search"]:hover,
-input[type="tel"]:hover,
-input[type="color"]:hover,
-select:hover,
-.uneditable-input:hover
-	border-color: #FFFF00
-	outline: 0
-	outline: thin dotted 9
-	-webkit-box-shadow: 0 0 8px 3px #FFFF00
-	-moz-box-shadow: 0 0 8px 3px  #FFFF00
-	box-shadow: 0 0 8px 3px #FFFF00
 
 /* ==========================================================================
-   HTML Structure
+   HTML STRUCTURE
    ========================================================================== */
 
 #background-roller
@@ -44,7 +18,6 @@ select:hover,
 @import _header.sass
 
 #main
-	height: 491px
 
 	form#register-form
 		float: right
@@ -149,24 +122,6 @@ select:hover,
 				&:hover
 					text-decoration: underline
 					cursor: pointer
-
-		button.btn-peoplewings
-			margin-top: 20px
-			text-transform: uppercase
-			padding: 4px 20px
-			@include border-radius(20px)
-			color: #FFFF00
-			background: #18183F
-			font:
-				family: 'Exo', Tahoma, Sans Serif
-				size: 18px
-				weight: 500
-				style: italic
-			border: 2px solid #FFFF00
-			@include transition(box-shadow, 0.5s)
-			&:hover
-				@include box-shadow(0px, 0px, 20px, #FFFF00)
-				cursor: pointer
 
 #middle
 	background: #FFF

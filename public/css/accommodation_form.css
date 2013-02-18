@@ -1,3 +1,6 @@
+/* --------------------------------------------------------------------------
+ * _Effects
+ * -------------------------------------------------------------------------- */
 .tab-pane {
   background: #e1e0d9;
   padding: 27px;
@@ -94,6 +97,6 @@
       -webkit-transition: box-shadow 0.5s;
       -o-transition: box-shadow 0.5s; }
       .tab-pane div.form-actions button.btn-peoplewings:hover {
-        box-shadow: 0px 0px 20px yellow;
-        -moz-box-shadow: 0px 0px 20px yellow;
-        -webkit-box-shadow: 0px 0px 20px yellow; }
+        box-shadow: 0px 0px 20px 0px yellow;
+        -moz-box-shadow: 0px 0px 0px 20px yellow;
+        -webkit-box-shadow: 0px 0px 20px 0px yellow; }

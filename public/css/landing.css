@@ -1,10 +1,10 @@
 /* ==========================================================================
- * Initial Config
+ * INITIAL CONFIG
  * ========================================================================== */
-/* ==========================================================================
- * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
- * http://cssreset.com
- * ========================================================================== */
+/* --------------------------------------------------------------------------
+ * _Reset : Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * 					http://cssreset.com
+ * -------------------------------------------------------------------------- */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -38,18 +38,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* ==========================================================================
- * _Variables
- * ========================================================================== */
-/* ==========================================================================
+/* --------------------------------------------------------------------------
  * _Globals
- * ========================================================================== */
-/* ==========================================================================
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
  * _Variables
- * ========================================================================== */
-body {
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * _Effects
+ * -------------------------------------------------------------------------- */
+body, input, select {
   font-family: Arial, Sans-Serif;
-  color: black; }
+  color: black;
+  background: white; }
 
 a {
   text-decoration: none;
@@ -60,83 +61,67 @@ a {
 li {
   list-style: none; }
 
-div, ul, li {
-  display: block; }
-
 input, select {
-  font-family: Arial, Sans-Serif;
   font-size: 1em;
   padding: 0.7em;
   margin: 0.5em;
   border: 1px solid #cccccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px; }
-
-select {
-  margin-left: 0.1em;
-  margin-right: 0;
-  border: 1px solid #cccccc;
-  padding: 0.7em 0.5em 0.7em 0.5em;
-  color: #aaaaaa;
-  box-shadow: inset 0px 0px 3px #dddddd;
-  -webkit-box-shadow: inset 0px 0px 3px #dddddd;
-  -webkit-appearance: none; }
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-select:focus,
-.uneditable-input:focus {
-  border-color: rgba(255, 255, 0, 0.8);
-  outline: 0;
-  outline: thin dotted 9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 255, 0, 0.8);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 255, 0, 0.8);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 255, 0, 0.8); }
-
-.navbar-fixed-top .navbar-inner,
-.navbar-static-top .navbar-inner,
-.navbar-fixed-bottom .navbar-inner {
-  box-shadow: 0px 0px 0px black;
-  -moz-box-shadow: 0px 0px 0px black;
-  -webkit-box-shadow: 0px 0px 0px black; }
-
-.search-button {
-  float: right;
-  padding: 0.5em 1em;
-  margin: 0.5em 0.2em 0 0;
-  border-radius: 1em;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  color: yellow;
-  background: #18183f;
-  font-family: "Exo";
-  font-size: 1.2em;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 0.78em;
-  border: 2px solid yellow;
+  -moz-border-radius: 5px;
   transition: box-shadow 0.5s;
   -moz-transition: box-shadow 0.5s;
   -webkit-transition: box-shadow 0.5s;
   -o-transition: box-shadow 0.5s; }
-  .search-button:hover {
-    box-shadow: 0px 0px 20px yellow;
-    -moz-box-shadow: 0px 0px 20px yellow;
-    -webkit-box-shadow: 0px 0px 20px yellow; }
+  input:hover, input:focus, input:active, select:hover, select:focus, select:active {
+    outline: 0;
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; }
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.navbar-inner {
+  width: 960px;
+  margin: auto;
+  background: none;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+/* Buttons
+ * -------------------------------------------------------------------------- */
+.btn-peoplewings {
+  text-transform: uppercase;
+  padding: 0.2em 1em;
+  margin: 0;
+  color: yellow;
+  background: #18183f;
+  font-family: "Exo", Tahoma, Sans-Serif;
+  font-size: 1.2em;
+  font-weight: 500;
+  font-style: italic;
+  border: 2px solid yellow;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  .btn-peoplewings:hover {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    cursor: pointer; }
 
 .icon {
   float: left;
@@ -144,11 +129,8 @@ select:focus,
   height: 78px;
   text-indent: -9999px; }
 
-.limits {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto; }
-
+/* Backgrounds
+ * -------------------------------------------------------------------------- */
 .background-1 {
   background: url(../img/bg_afternoon.png) no-repeat top center; }
 
@@ -173,8 +155,11 @@ select:focus,
 .background-8 {
   background: url(../img/bg_city.png) no-repeat top center; }
 
+select {
+  color: #aaaaaa; }
+
 /* ==========================================================================
- * HTML Structure
+ * HTML STRUCTURE
  * ========================================================================== */
 #background-roller {
   width: 100%;
@@ -187,19 +172,10 @@ select:focus,
  * ========================================================================== */
 .navbar.nav.navbar-fixed-top {
   background: #edede6;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 1px 0px 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
   height: 53px; }
-
-.navbar-inner {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 960px;
-  background: none;
-  box-shadow: 0px 0px 0px black;
-  -moz-box-shadow: 0px 0px 0px black;
-  -webkit-box-shadow: 0px 0px 0px black; }
 
 .navbar .brand {
   float: left;
@@ -240,9 +216,9 @@ select:focus,
 
 .navbar.nav.navbar-fixed-top {
   background: rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 0px black;
-  -moz-box-shadow: 0px 0px 0px black;
-  -webkit-box-shadow: 0px 0px 0px black; }
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
   .navbar.nav.navbar-fixed-top ul li a, .navbar.nav.navbar-fixed-top ul li:after {
     color: #18183f; }
   .navbar.nav.navbar-fixed-top ul li a:hover {
@@ -324,13 +300,12 @@ select:focus,
       width: 230px;
       height: 133px;
       float: left; }
-      #middle #middle-content div h1 {
+      #middle #middle-content div p {
         font-family: "Exo";
         font-size: 1.4em;
         font-weight: 900;
         font-style: italic;
-        color: #18183f; }
-      #middle #middle-content div .light-500 {
+        color: #18183f;
         font-weight: 500; }
 
 /* ==========================================================================
@@ -415,8 +390,7 @@ select:focus,
  * ========================================================================== */
 .share-wings {
   margin-top: 0.6em;
-  font-size: 1em;
-  padding: 0.5em 1.3em; }
+  font-size: 1em; }
 
 .all {
   background: url(../img/icon_all.png) no-repeat; }
