@@ -1,46 +1,16 @@
+/* ==========================================================================
+   Initial Config
+   ========================================================================== */
 
-@import _effects
+@import _reset.sass
+@import _variables.sass
+@import _globals.sass
+@import _effects.sass
+
 
 /* ==========================================================================
-	 Initial
-	 ========================================================================== */
-
-body
-	font-family: 'Arial', sans-serif
-	color: #000
-
-a
-	text-decoration: none
-	color: #18183F
-	&:hover
-		color: #FFFF00
-
-li
-	list-style: none
-
-div, ul, li
-	display: block
-
-select
-	border: 1px solid #CCC
-	padding: 0.7em 0.5em 0.7em 0.5em
-	font-size: 1em
-	color: #AAA
-	font-family: Arial
-	box-shadow: inset 0px 0px 3px #DDD
-	-webkit-box-shadow: inset 0px 0px 3px #DDD
-	-webkit-appearance: none
-
-.input-small
-	background: url(../img/arrow.png) no-repeat 4.3em 1em white
-	width: 95px
-
-.input-mini
-	width: 50px
-
-/* ==========================================================================
-	 HTML
-	 ========================================================================== */
+   HTML Structure
+   ========================================================================== */
 
 #background-roller
 	width: 100%
@@ -48,37 +18,19 @@ select
 	position: absolute
 	z-index: -1
 
-header
+@import _header.sass
+
+.navbar.nav.navbar-fixed-top
 	background: rgba(0, 0, 0, 0.15)
-	height: 1.2em
-	padding: 0.8em
-	#header-content
-		h1
-			float: left
-			position: relative
-			background: url(../img/peoplewings.png) no-repeat
-			text-indent: -9999px
-			width: 237px
-			height: 60px
-		ul
-			float: right
-			font-size: 0.75em
-			position: relative
-			top: 0.6em
-			li
-				float: left
-				a
-					font:
-						//weight: bold
-						size: 11px
-					&:hover
-						color: #FFFF00
-				.a-underline
-					text-decoration: underline
-				span
-					color: #18183F
-					margin-left: 0.8em
-					margin-right: 0.8em
+	@include box-shadow(0px, 0px, 0px, #000)
+	ul
+		li
+			a, &:after
+				color: $blue-corp
+			a:hover
+				color: $yellow-corp
+				text-decoration: none
+
 #main
 	margin-bottom: 8em
 	#sharing
@@ -167,7 +119,6 @@ header
 			left: 1em
 #middle
 	overflow: hidden
-	border-bottom: 2px solid #EEE
 	#middle-content
 		overflow: hidden
 		margin:
@@ -187,68 +138,17 @@ header
 			.light-500
 				font-weight: 500
 
-footer
-	background: #DDD
-	padding: 0.2em
-	#footer-content
-		overflow: hidden
-		font-size: 0.7em
-		color: #555
-		padding-top: 1.5em
-		a:hover
-			color: #18183F
-			text-decoration: underline
-		div
-			float: left
-			ul
-				li
-					float: left
-					margin-right: 1.5em
-				.brand
-					font-weight: bold
-		#likes
-			background: url(../img/like.png) no-repeat
-			height: 20px
-			width: 81px
-			text-indent: -9999px
-			position: relative
-			top: -3px
-		#terms
-			position: relative
-			left: 18em
-		#follow
-			float: right
-			h1
-				float: left
-				margin-right: 1.5em
-				font-weight: bold
-			ul
-				float: left
-				position: relative
-				top: -10px
-				li
-					float: left
-					margin-right: 0.2em
+@import _footer.sass
 
 /* ==========================================================================
 	 Classes
 	 ========================================================================== */
 
-.limits
-	max-width: 960px
-	margin-left: auto
-	margin-right: auto
 
 .share-wings
 	margin-top: 0.6em
 	font-size: 1em
 	padding: 0.5em 1.3em
-
-.icon
-	float: left
-	width: 65px
-	height: 78px
-	text-indent: -9999px
 
 .all
 	background: url(../img/icon_all.png) no-repeat
@@ -270,19 +170,6 @@ footer
 	&:hover
 		background: url(../img/icon_trip_pre.png) no-repeat
 
-.follow
-	width: 33px
-	height: 33px
-
-.facebook
-	background: url(../img/icon_fb.png) no-repeat
-
-.twitter
-	background: url(../img/icon_tw.png) no-repeat
-
-.youtube
-	background: url(../img/icon_yt.png) no-repeat
-
 .spot
 	text-indent: -9999px
 	margin-right: 0.6em
@@ -302,28 +189,3 @@ footer
 
 .light-800
 	font-weight: 800
-
-
-.background-1
-	background: url(../img/bg_afternoon.png) no-repeat top center
-
-.background-2
-	background: url(../img/bg_happypeople.png) no-repeat top center
-
-.background-3
-	background: url(../img/bg_ironman.png) no-repeat top center
-
-.background-4
-	background: url(../img/bg_mountain.png) no-repeat top center
-	
-.background-5
-	background: url(../img/bg_lanterna.png) no-repeat top center
-
-.background-6
-	background: url(../img/bg_burncity.png) no-repeat top center
-
-.background-7
-	background: url(../img/bg_ocean.png) no-repeat top center
-
-.selected
-	background: url(../img/icon_accommodation_selected.png) no-repeat top center

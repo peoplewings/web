@@ -206,123 +206,113 @@ select:focus,
         color: #18183f;
         text-decoration: underline; }
 
+.navbar.nav.navbar-fixed-top {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 0px black;
+  -moz-box-shadow: 0px 0px 0px black;
+  -webkit-box-shadow: 0px 0px 0px black; }
+  .navbar.nav.navbar-fixed-top ul li a, .navbar.nav.navbar-fixed-top ul li:after {
+    color: #18183f; }
+  .navbar.nav.navbar-fixed-top ul li a:hover {
+    color: yellow;
+    text-decoration: none; }
+
 #main {
-  height: 491px; }
-  #main form#register-form {
-    float: right;
-    background: rgba(30, 30, 57, 0.7);
-    padding: 27px 14px;
-    padding-top: 0px;
-    margin: 27px;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    width: 470px; }
-    #main form#register-form input[type="text"],
-    #main form#register-form input[type="password"],
-    #main form#register-form input[type="email"],
-    #main form#register-form select {
-      font-size: 13px;
-      padding: 8px;
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      border: 1px solid #79766c;
-      color: black;
-      line-height: 15px;
-      margin: 0;
-      margin-right: 4px;
-      margin-bottom: 4px; }
-    #main form#register-form input[type="text"],
-    #main form#register-form input[type="password"] {
-      max-width: 140px; }
-    #main form#register-form input[type="checkbox"] {
-      float: left;
-      margin-right: 11px; }
-    #main form#register-form span.signal {
-      float: left;
-      text-indent: -9999px;
-      height: 16px;
-      width: 15px;
-      background: url(../img/signal.png) no-repeat;
-      position: relative;
-      bottom: 16px;
-      left: 200px;
-      opacity: 0.7;
-      filter: alpha(opacity=70); }
-    #main form#register-form legend {
-      float: right;
-      position: relative;
-      right: 10px;
-      bottom: 13px;
-      width: 107px;
-      height: 28px;
-      text-indent: -9999px;
-      background: url(../img/signup.png) no-repeat; }
-    #main form#register-form .clear {
-      clear: both; }
-    #main form#register-form .control-label {
-      float: left;
-      color: white;
-      width: 100px;
-      padding: 11px;
-      text-shadow: 1px 1px 1px black;
-      font-size: 14px; }
-    #main form#register-form .controls {
-      margin-left: 125px; }
-      #main form#register-form .controls input[type="email"] {
-        width: 303px; }
-      #main form#register-form .controls select {
-        background: url(../img/mini-arrow.png) no-repeat 74px center white;
-        height: 35px; }
-      #main form#register-form .controls .select-mini {
-        width: 97px; }
-      #main form#register-form .controls .select-medium {
-        width: 120px;
-        background-position: 94px center; }
-      #main form#register-form .controls .terms {
-        margin-left: 117px; }
-    #main form#register-form .accepts {
-      margin-left: 98px; }
-    #main form#register-form .terms {
-      color: white;
-      font-size: 12px;
-      line-height: 18px; }
-      #main form#register-form .terms p {
-        margin: 12px 0px; }
-      #main form#register-form .terms a {
-        color: yellow; }
-        #main form#register-form .terms a:hover {
-          text-decoration: underline;
-          cursor: pointer; }
-    #main form#register-form button.btn-peoplewings {
-      margin-top: 20px;
-      text-transform: uppercase;
-      padding: 4px 20px;
-      border-radius: 20px;
-      -webkit-border-radius: 20px;
-      -moz-border-radius: 20px;
+  margin-bottom: 8em; }
+  #main #sharing {
+    margin-top: 7em; }
+    #main #sharing h1 {
+      background: url(../img/sharingpeople.png) no-repeat;
+      height: 158px;
+      text-indent: -9999px; }
+    #main #sharing h2 {
       color: yellow;
-      background: #18183f;
-      font-family: "Exo", Tahoma, Sans Serif;
-      font-size: 18px;
-      font-weight: 500;
+      font-family: "Exo";
+      font-size: 1.7em;
+      font-weight: 900;
       font-style: italic;
-      border: 2px solid yellow;
-      transition: box-shadow 0.5s;
-      -moz-transition: box-shadow 0.5s;
-      -webkit-transition: box-shadow 0.5s;
-      -o-transition: box-shadow 0.5s; }
-      #main form#register-form button.btn-peoplewings:hover {
-        box-shadow: 0px 0px 20px yellow;
-        -moz-box-shadow: 0px 0px 20px yellow;
-        -webkit-box-shadow: 0px 0px 20px yellow;
-        cursor: pointer; }
+      line-height: 0.78em;
+      letter-spacing: -1px;
+      -webkit-text-stroke: 2.5px #18183f;
+      -moz-text-stroke: 2.5px #18183f;
+      margin-top: 0.7em;
+      margin-bottom: 0.3em; }
+
+#categories {
+  overflow: hidden;
+  position: relative;
+  top: 11px; }
+  #categories ul li {
+    float: left; }
+
+#landing-form {
+  padding: 0.6em;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em; }
+  #landing-form form label {
+    color: #18183f;
+    margin: 0.2em;
+    margin-right: 0.5em;
+    font-family: "Exo";
+    font-size: 1.4em;
+    font-weight: 900;
+    font-style: italic;
+    -webkit-text-stroke: 1px yellow;
+    -moz-text-stroke: 1px yellow; }
+  #landing-form form input {
+    font-family: Arial;
+    font-size: 1em;
+    padding: 0.7em;
+    margin: 0.5em;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+  #landing-form form input[type="submit"].search-button {
+    float: right;
+    padding: 0.5em 1em;
+    margin: 0.5em 0.2em 0 0;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: yellow;
+    background: #18183f;
+    font-family: "Exo";
+    font-size: 1.2em;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 0.78em;
+    border: 2px solid yellow;
+    transition: box-shadow 0.5s;
+    -moz-transition: box-shadow 0.5s;
+    -webkit-transition: box-shadow 0.5s;
+    -o-transition: box-shadow 0.5s; }
+    #landing-form form input[type="submit"].search-button:hover {
+      box-shadow: 0px 0px 20px yellow;
+      -moz-box-shadow: 0px 0px 20px yellow;
+      -webkit-box-shadow: 0px 0px 20px yellow; }
+  #landing-form form #inputWings {
+    width: 15em; }
+  #landing-form form #age {
+    width: 5.2em; }
+  #landing-form form .arrow {
+    background: url(../img/arrow.png) no-repeat;
+    width: 12px;
+    height: 10px;
+    float: right;
+    text-indent: -9999px;
+    position: relative;
+    top: 17px;
+    right: 24px; }
+  #landing-form a {
+    margin-top: 0.6em;
+    margin-left: 1em; }
 
 #middle {
-  background: white; }
+  overflow: hidden; }
   #middle #middle-content {
     overflow: hidden;
     margin-top: 3em;
@@ -416,3 +406,51 @@ select:focus,
 
 .youtube {
   background: url(../img/icon_yt.png) no-repeat; }
+
+/* ==========================================================================
+ * Classes
+ * ========================================================================== */
+.share-wings {
+  margin-top: 0.6em;
+  font-size: 1em;
+  padding: 0.5em 1.3em; }
+
+.all {
+  background: url(../img/icon_all.png) no-repeat; }
+  .all:hover {
+    background: url(../img/icon_all_pre.png) no-repeat; }
+
+.transport {
+  background: url(../img/icon_transport.png) no-repeat; }
+  .transport:hover {
+    background: url(../img/icon_transport_pre.png) no-repeat; }
+
+.accommodation {
+  background: url(../img/icon_accommodation.png) no-repeat; }
+  .accommodation:hover {
+    background: url(../img/icon_accommodation_pre.png) no-repeat; }
+
+.travel {
+  background: url(../img/icon_trip.png) no-repeat; }
+  .travel:hover {
+    background: url(../img/icon_trip_pre.png) no-repeat; }
+
+.spot {
+  text-indent: -9999px;
+  margin-right: 0.6em; }
+
+.house {
+  background: url(../img/spot_car.png) no-repeat; }
+
+.car {
+  background: url(../img/spot_house.png) no-repeat; }
+
+.trip {
+  background: url(../img/spot_trip.png) no-repeat; }
+
+.offer {
+  margin-left: 0.7em;
+  width: 200px !important; }
+
+.light-800 {
+  font-weight: 800; }

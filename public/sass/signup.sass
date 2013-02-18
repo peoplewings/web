@@ -1,82 +1,16 @@
+/* ==========================================================================
+   Initial Config
+   ========================================================================== */
 
-@import _standards
-@import _effects
+@import _reset.sass
+@import _variables.sass
+@import _globals.sass
+@import _effects.sass
+
 
 /* ==========================================================================
-	 Initial
-	 ========================================================================== */
-
-body
-	font-family: 'Arial', sans-serif
-	color: #000
-
-a
-	text-decoration: none
-	color: $gray_link
-	color: #848178
-	&:hover
-		color: $yellow_corporative
-
-li
-	list-style: none
-
-div, ul, li
-	display: block
-
-input, select
-	font-family: Arial
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-select:focus,
-.uneditable-input:focus
-	border-color: rgba(255, 255, 0, 1)
-	outline: 0
-	outline: thin dotted 9
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-
-textarea:hover,
-input[type="text"]:hover,
-input[type="password"]:hover,
-input[type="datetime"]:hover,
-input[type="datetime-local"]:hover,
-input[type="date"]:hover,
-input[type="month"]:hover,
-input[type="time"]:hover,
-input[type="week"]:hover,
-input[type="number"]:hover,
-input[type="email"]:hover,
-input[type="url"]:hover,
-input[type="search"]:hover,
-input[type="tel"]:hover,
-input[type="color"]:hover,
-select:hover,
-.uneditable-input:hover
-	border-color: rgba(255, 255, 0, 1)
-	outline: 0
-	outline: thin dotted 9
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px 2px rgba(255, 255, 0, 1)
-
-/* ==========================================================================
-	 HTML
-	 ========================================================================== */
+   HTML Structure
+   ========================================================================== */
 
 #background-roller
 	width: 100%
@@ -84,50 +18,14 @@ select:hover,
 	position: absolute
 	z-index: -1
 
-header
-	background: $gray_clear
-	@include box-shadow(0px, 1px, 4px, rgba(0, 0, 0, 0.34))
-	height: 53px
-	#header-content
-		h1
-			float: left
-			background: url(../img/peoplewings.png) no-repeat
-			text-indent: -9999px
-			width: 237px
-			height: 60px
-			margin-top: 17px
-		ul
-			float: right
-			font-size: 0.75em
-			margin-right: 10px
-			margin-top: 20px
-			li
-				display: inline
-				&:after
-					content: "|"
-					margin-left: 10px
-					margin-right: 10px
-					color: #848178
-				&:last-child:after
-					content: ''
-				a
-					font-size: 11px
-					text-align: center
-					&:hover
-						color: $blue_corporative
-					&.a-underline
-						text-decoration: underline
+@import _header.sass
 
-				span
-					color: $blue_corporative
-					margin-left: 0.8em
-					margin-right: 0.8em
 #main
 	height: 491px
 
 	form#register-form
 		float: right
-		background: $blue_register
+		background: $blue_sign
 		padding: 27px 14px
 		padding-top: 0px
 		margin: 27px
@@ -246,8 +144,6 @@ header
 
 #middle
 	background: #FFF
-	height: 179px
-	border-bottom: 2px solid #EEE
 	#middle-content
 		overflow: hidden
 		margin:
@@ -263,165 +159,8 @@ header
 					size: 1.4em
 					weight: 900
 					style: italic
-				color: $blue_corporative
+				color: $blue_corp
 			.light-500
 				font-weight: 500
 
-footer
-	background: $gray_clear
-	padding: 0.2em
-	#footer-content
-		overflow: hidden
-		font-size: 0.7em
-		color: $gray_link
-		padding-top: 1.5em
-		a:hover
-			color: $blue_corporative
-			text-decoration: underline
-		div
-			float: left
-			ul
-				li
-					float: left
-					margin-right: 1.5em
-				.brand
-					font-weight: bold
-		#likes
-			background: url(../img/like.png) no-repeat
-			height: 20px
-			width: 81px
-			text-indent: -9999px
-			position: relative
-			top: -3px
-		#terms
-			position: relative
-			left: 18em
-		#follow
-			float: right
-			h1
-				float: left
-				margin-right: 1.5em
-				font-weight: bold
-			ul
-				float: left
-				position: relative
-				top: -10px
-				li
-					float: left
-					margin-right: 0.2em
-
-/* ==========================================================================
-	 Classes
-	 ========================================================================== */
-
-.limits
-	max-width: 960px
-	margin-left: auto
-	margin-right: auto
-
-.search-button
-	float: left
-	padding: 0.5em 1em
-	@include radio(1em)
-	color: $yellow_corporative
-	background: $blue_corporative
-	font:
-		family: 'Exo'
-		size: 1.2em
-		weight: 500
-		style: italic
-	line-height: 0.78em
-	border: 2px solid $yellow_corporative
-	@include transition(box-shadow, 0.5s)
-	&:hover
-		@include sombrac(0px, 0px, 20px, $yellow_corporative)
-
-.share-wings
-	margin-top: 0.6em
-	font-size: 1em
-	padding: 0.5em 1.3em
-
-.icon
-	float: left
-	width: 55px
-	height: 80px
-	margin-right: 0.5em
-	text-indent: -9999px
-
-.all
-	background: url(../img/icon_all.png) no-repeat
-	&:hover
-		background: url(../img/icon_all_selected.png) no-repeat
-
-.transport
-	background: url(../img/icon_transport.png) no-repeat
-	&:hover
-		background: url(../img/icon_transport_selected.png) no-repeat
-
-.accommodation
-	background: url(../img/icon_accommodation.png) no-repeat
-	&:hover
-		background: url(../img/icon_accommodation_selected.png) no-repeat
-
-.travel
-	background: url(../img/icon_trip.png) no-repeat
-	&:hover
-		background: url(../img/icon_trip_selected.png) no-repeat
-
-.follow
-	width: 33px
-	height: 33px
-
-.facebook
-	background: url(../img/icon_fb.png) no-repeat
-
-.twitter
-	background: url(../img/icon_tw.png) no-repeat
-
-.youtube
-	background: url(../img/icon_yt.png) no-repeat
-
-.spot
-	text-indent: -9999px
-	margin-right: 0.6em
-
-.house
-	background: url(../img/spot_car.png) no-repeat
-
-.car
-	background: url(../img/spot_house.png) no-repeat
-
-.trip
-	background: url(../img/spot_trip.png) no-repeat
-
-.offer
-	margin-left: 0.7em
-	width: 200px !important
-
-.light-800
-	font-weight: 800
-
-
-.background-1
-	background: url(../img/bg_afternoon.png) no-repeat top center
-
-.background-2
-	background: url(../img/bg_happypeople.png) no-repeat top center
-
-.background-3
-	background: url(../img/bg_ironman.png) no-repeat top center
-
-.background-4
-	background: url(../img/bg_mountain.png) no-repeat top center
-	
-.background-5
-	background: url(../img/bg_lanterna.png) no-repeat top center
-
-.background-6
-	background: url(../img/bg_burncity.png) no-repeat top center
-
-.background-7
-	background: url(../img/bg_ocean.png) no-repeat top center
-
-.background-8
-	background: url(../img/bg_city.png) no-repeat top center
+@import _footer.sass

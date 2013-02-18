@@ -1,0 +1,98 @@
+/* ==========================================================================
+   _Globals
+   ========================================================================== */
+
+@import _effects.sass
+@import _variables.sass
+
+body
+	font-family: $ffamily
+	color: $fcolor
+
+a
+	text-decoration: none
+	color: $gray_link
+	&:hover
+		color: $yellow_corp
+
+li
+	list-style: none
+
+div, ul, li
+	display: block
+
+input, select
+	font-family: $ffamily
+
+select
+	border: 1px solid #CCC
+	padding: 0.7em 0.5em 0.7em 0.5em
+	font-size: 1em
+	color: #AAA
+	box-shadow: inset 0px 0px 3px #DDD
+	-webkit-box-shadow: inset 0px 0px 3px #DDD
+	-webkit-appearance: none
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+select:focus,
+.uneditable-input:focus
+	border-color: rgba(255, 255, 0, 0.8)
+	outline: 0
+	outline: thin dotted 9
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 0, 0.8)
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 0, 0.8)
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 0, 0.8)
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner
+	@include box-shadow(0px, 0px, 0px, #000)
+
+.icon
+	float: left
+	width: 65px
+	height: 78px
+	text-indent: -9999px
+
+.limits
+	max-width: 960px
+	margin-left: auto
+	margin-right: auto
+
+.background-1
+	background: url(../img/bg_afternoon.png) no-repeat top center
+
+.background-2
+	background: url(../img/bg_happypeople.png) no-repeat top center
+
+.background-3
+	background: url(../img/bg_ironman.png) no-repeat top center
+
+.background-4
+	background: url(../img/bg_mountain.png) no-repeat top center
+	
+.background-5
+	background: url(../img/bg_lanterna.png) no-repeat top center
+
+.background-6
+	background: url(../img/bg_burncity.png) no-repeat top center
+
+.background-7
+	background: url(../img/bg_ocean.png) no-repeat top center
+
+.background-8
+	background: url(../img/bg_city.png) no-repeat top center
