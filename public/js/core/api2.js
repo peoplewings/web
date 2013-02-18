@@ -2,7 +2,8 @@ define(function(require) {
 
 	var Promise = require('promise');
 	var alerts = require('views/lib/alerts');
-	var server = 'http://peoplewings-backend.herokuapp.com';
+	//var server = 'http://peoplewings-backend.herokuapp.com';
+	var server = 'http://192.1681.1.47:5000';
 	var apiVersion = '/api/v1';
 
 	function logout() {
