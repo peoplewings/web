@@ -173,6 +173,30 @@ select:focus,
 .background-8 {
   background: url(../img/bg_city.png) no-repeat top center; }
 
+textarea:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="date"]:hover,
+input[type="month"]:hover,
+input[type="time"]:hover,
+input[type="week"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="color"]:hover,
+select:hover,
+.uneditable-input:hover {
+  border-color: yellow;
+  outline: 0;
+  outline: thin dotted 9;
+  -webkit-box-shadow: 0 0 8px 3px yellow;
+  -moz-box-shadow: 0 0 8px 3px yellow;
+  box-shadow: 0 0 8px 3px yellow; }
+
 /* ==========================================================================
  * HTML Structure
  * ========================================================================== */
@@ -250,6 +274,8 @@ select:focus,
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     width: 470px; }
+    #main form#register-form input, #main form#register-form select {
+      min-height: 22px; }
     #main form#register-form input[type="text"],
     #main form#register-form input[type="password"],
     #main form#register-form input[type="email"],

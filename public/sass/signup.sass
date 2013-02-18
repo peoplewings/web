@@ -7,6 +7,29 @@
 @import _globals.sass
 @import _effects.sass
 
+textarea:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="date"]:hover,
+input[type="month"]:hover,
+input[type="time"]:hover,
+input[type="week"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="color"]:hover,
+select:hover,
+.uneditable-input:hover
+	border-color: #FFFF00
+	outline: 0
+	outline: thin dotted 9
+	-webkit-box-shadow: 0 0 8px 3px #FFFF00
+	-moz-box-shadow: 0 0 8px 3px  #FFFF00
+	box-shadow: 0 0 8px 3px #FFFF00
 
 /* ==========================================================================
    HTML Structure
@@ -31,6 +54,9 @@
 		margin: 27px
 		@include border-radius(12px)
 		width: 470px
+
+		input, select
+			min-height: 22px
 
 		input[type="text"],
 		input[type="password"],
