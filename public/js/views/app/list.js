@@ -1,64 +1,51 @@
 define(function(require) {
 
-    var $ = require("jquery");
-    var Backbone = require("backbone");
+	var $ = require("jquery");
+	var Backbone = require("backbone");
 
-    var list = Backbone.View.extend({
+	var list = Backbone.View.extend({
 
-        initialize: function(options) {
-            this.el = options.el
-            this.key = options.key
-            this.$tpl = $(options.tpl)
-            this.store = options.store
+		initialize: function(options) {
+			this.el = options.el;
+			this.key = options.key;
+			this.$tpl = $(options.tpl);
+			this.store = options.store;
 
-            this.length = (this.store.length > 0) ? this.store.length: 0;
+			this.length = (this.store.length > 0) ? this.store.length: 0;
+			this.render();
+		},
 
-            this.render()
-        },
+		render: function() {
+			var self = this;
+			this.$tpl.remove();
 
-        render: function() {
-            var sc = this
+			_.each($(this.el).children(), function(item, index) {
+				$(item).append('<button type="button" class="close" id="delete-' + self.key + '-' + index + '">×</button>');
+			})
 
-            this.$tpl.remove()
+			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>');
+			if (this.length == 0)
+				this.addItem();
+		},
 
-            var sons = $(this.el).children()
+		addItem: function() {
+			this.length++;
 
-            _.each(sons,
-            function(item, index) {
-                $(item).append('<button type="button" class="close" id="delete-' + sc.key + '-' + index + '">×</button>')
-            })
+			return this.$tpl.clone()
+				.attr('id', this.key + "-" + this.length + "")
+				.appendTo(this.el)
+				.append('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
+				.show()
+				.prop("id");
+		},
 
-            $(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>')
+		deleteItem: function(e) {
+			$(e.target).parent().remove()
+			this.length--;
+		},
 
-            if (this.length == 0) this.addItem()
-        },
+	});
 
-        addItem: function() {
-            var sc = this
-            var added = this.$tpl.clone()
-
-            added.attr('id', this.key + "-" + this.length + "").appendTo(this.el).show()
-
-            added.append('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
-
-            added.show()
-
-            this.length++
-
-            return added.prop("id");
-        },
-
-        deleteItem: function(e) {
-
-            var element = document.getElementById(e.target.id).parentNode
-
-            $(element).remove()
-
-            this.length--
-        },
-
-    });
-
-    return list;
+	return list;
 
 });
