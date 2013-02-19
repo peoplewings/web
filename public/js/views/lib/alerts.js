@@ -35,6 +35,7 @@ define(function(require) {
 		info: showAlert.bind(null, 'info'),
 		warning: showAlert.bind(null, null),
 		error: showAlert.bind(null, 'error'),
+		defaultError: showAlert.bind(null, 'error', 'Sorry, an error ocurred, it has been reported'),
 	};
 
 });

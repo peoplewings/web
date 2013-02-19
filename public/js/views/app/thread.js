@@ -5,6 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var Promise = require("promise");
 	var UserAccount = require('models/Account');
+	var alerts = require('views/lib/alerts');
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
@@ -162,7 +163,16 @@ define(function(require) {
 		},
 
 		remove: function() {
-			api.put('/api/v1/notificationslist', { threads: [ this.current.id ] }).then(this.back.bind(this));
+			var self = this;
+			return api.put('/api/v1/notificationslist', {
+				threads: [ this.current.id ],
+			}).then(function() {
+				alerts.success('Thread removed');
+				self.back();
+			}, function(error) {
+				debugger;
+				alerts.defaultError();
+			});
 		},
 
 		back: function() {
@@ -227,7 +237,8 @@ define(function(require) {
 		},
 
 		sendResponse: function() {
-			if (!this.$("#edit-wing-params > form").valid())
+			var form = this.$("#edit-wing-params > form");
+			if (form.length && !form.valid())
 				return Promise.resolved(false);
 
 			var resp = { content: this.$('#write-response textarea').val() };
@@ -245,7 +256,12 @@ define(function(require) {
 				data: resp,
 			}).then(function() {
 				return self.render(self.current.id);
-			});
+			}).then(function() {
+				alerts.success('Response sent');
+			}, function() {
+				debugger;
+				alerts.defaultError();
+			})
 		},
 
 		optAccept: function() {
@@ -295,7 +311,7 @@ define(function(require) {
 			this.$("input[name=endDate]")
 				.datepicker()
 				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.rules("add", { 
+				.rules("add", {
 					greatThan: this.$("input[name=startDate]") ,
 
 				});
