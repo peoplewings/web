@@ -6,6 +6,16 @@ define(function(require) {
 	},
 	"Password too weak: use digits and letters");
 
+	$.validator.addMethod("lessThan", function(small, element, big) {
+		return new Date(small) < new Date(big.val());
+	},
+	"Check your dates: invalid lapse of time");
+
+	$.validator.addMethod("greatThan", function(small, element, big) {
+		return new Date(small) > new Date(big.val());
+	},
+	"Check your dates: invalid lapse of time");
+
 	$.deparam  = function( params, coerce ) {
 		var obj = {};
 

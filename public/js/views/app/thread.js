@@ -39,6 +39,20 @@ define(function(require) {
 			'click .option-Cancel': 'optDeny',
 		},
 
+		responseValidation: {
+			rules: {
+				startDate: {
+					date: true,
+				},
+				endDate: {
+					date: true,
+				}
+			},
+			errorPlacement: function(error, element) {
+				error.appendTo(element.nextAll("span.help-block"));
+			},
+		},
+
 		initialize: function() {
 			this.refresh = this.refresh.bind(this);
 		},
@@ -120,8 +134,6 @@ define(function(require) {
 				id: last.senderId,
 				name: last.senderName,
 			};
-
-			//debugger
 
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 			this.$el.html(threadTpl(data, {
@@ -215,6 +227,9 @@ define(function(require) {
 		},
 
 		sendResponse: function() {
+			if (!this.$("#edit-wing-params > form").valid())
+				return Promise.resolved(false);
+
 			var resp = { content: this.$('#write-response textarea').val() };
 			if (!resp.content)
 				return Promise.resolved(false);
@@ -270,8 +285,20 @@ define(function(require) {
 				.find("span")
 				.text(e(option, "notification-state"));
 
-			this.$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-			this.$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			this.$("#wing-params-form")
+				.validate(this.responseValidation);
+
+			this.$("input[name=startDate]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd");
+
+			this.$("input[name=endDate]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd")
+				.rules("add", { 
+					greatThan: this.$("input[name=startDate]") ,
+
+				});
 
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);
