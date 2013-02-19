@@ -11,12 +11,6 @@ body
 .span8
 	width: 700px
 
-.span4
-	width: 230px
-
-input[type="text"]:focus
-	@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
-
 /* ==========================================================================
 	 HTML STRUCTURE
 	 ========================================================================== */
@@ -81,6 +75,8 @@ input[type="text"]:focus
 input, select
 	margin: 0px
 
+.tab-content
+	margin-top: 60px
 
 /* ==========================================================================
 	 Pager Counter
@@ -90,6 +86,7 @@ input, select
 	list-style: none
 	text-align: center
 	margin: 0
+	font-size: 0.9em
 	a
 		display: inline
 		border: none
@@ -104,6 +101,8 @@ input, select
 	li
 		float: left
 	.icon
+		width: 25px
+		height: 25px
 		border: 1px solid #D8D6D0
 		@include border-radius(2px)
 		@include bg-gradient(#FFF, #ecece5)
@@ -133,8 +132,8 @@ input, select
 		top: 27px
 		bottom: 27px
 
-.adjust
-	margin:
-		top: 2px
-		right: 14px
+	.adjust
+		margin:
+			top: 7px
+			right: 14px
 
