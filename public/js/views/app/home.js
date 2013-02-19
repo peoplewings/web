@@ -1,7 +1,7 @@
 define(function(require) {
+
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api');
 	var utils = require('utils');
 	var mainView = require('views/home/main');
 	var feedView = require('views/app/feedback');
