@@ -47,6 +47,12 @@ table {
 /* --------------------------------------------------------------------------
  * _Effects
  * -------------------------------------------------------------------------- */
+* {
+  margin: 0; }
+
+html, body {
+  height: 100%; }
+
 body, input, select {
   font-family: Arial, Sans-Serif;
   color: black;
@@ -81,6 +87,18 @@ input, select {
     -moz-box-shadow: 0 0 3px 8px yellow;
     -webkit-box-shadow: 0 0 8px 3px yellow; }
 
+input[type="button"] {
+  text-transform: uppercase; }
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -75px; }
+
+.push {
+  height: 75px; }
+
 .navbar-fixed-top .navbar-inner,
 .navbar-static-top .navbar-inner,
 .navbar-fixed-bottom .navbar-inner {
@@ -90,7 +108,7 @@ input, select {
 
 .navbar-inner {
   width: 960px;
-  margin: auto;
+  margin: 0 auto;
   background: none;
   border: none;
   box-shadow: none;
@@ -112,17 +130,15 @@ input, select {
   border: 2px solid yellow;
   border-radius: 1em;
   -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  transition: box-shadow 0.5s;
-  -moz-transition: box-shadow 0.5s;
-  -webkit-transition: box-shadow 0.5s;
-  -o-transition: box-shadow 0.5s; }
-  .btn-peoplewings:hover {
-    box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    cursor: pointer; }
+  -moz-border-radius: 1em; }
+  .btn-peoplewings:hover, .btn-peoplewings:focus, .btn-peoplewings:active {
+    outline: 0;
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; }
 
+/* Icons
+ * -------------------------------------------------------------------------- */
 .icon {
   float: left;
   width: 65px;
@@ -131,6 +147,12 @@ input, select {
 
 /* Backgrounds
  * -------------------------------------------------------------------------- */
+.background-roller {
+  width: 100%;
+  height: 637px;
+  position: absolute;
+  z-index: -1; }
+
 .background-1 {
   background: url(../img/bg_afternoon.png) no-repeat top center; }
 
@@ -158,15 +180,9 @@ input, select {
 /* ==========================================================================
  * HTML STRUCTURE
  * ========================================================================== */
-#background-roller {
-  width: 100%;
-  height: 637px;
-  position: absolute;
-  z-index: -1; }
-
-/* ==========================================================================
- * MIXIN Header
- * ========================================================================== */
+/* --------------------------------------------------------------------------
+ * _Header
+ * -------------------------------------------------------------------------- */
 .navbar.nav.navbar-fixed-top {
   background: #edede6;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
@@ -322,17 +338,15 @@ input, select {
       #middle #middle-content div .light-500 {
         font-weight: 500; }
 
-/* ==========================================================================
+/* --------------------------------------------------------------------------
  * _Footer
- * ========================================================================== */
+ * -------------------------------------------------------------------------- */
 .navbar-fixed-bottom {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin-bottom: 0; }
+  height: 40px;
+  clear: both; }
 
 .footer.navbar.navbar-fixed-bottom {
+  position: relative;
   background: #edede6;
   color: #848178;
   font-size: 11px;
@@ -385,16 +399,12 @@ input, select {
           line-height: 1; }
       .footer.navbar.navbar-fixed-bottom #follow ul a {
         margin-right: 10px; }
-
-.follow {
-  width: 33px;
-  height: 33px; }
-
-.facebook {
-  background: url(../img/icon_fb.png) no-repeat; }
-
-.twitter {
-  background: url(../img/icon_tw.png) no-repeat; }
-
-.youtube {
-  background: url(../img/icon_yt.png) no-repeat; }
+    .footer.navbar.navbar-fixed-bottom #follow .follow {
+      width: 33px;
+      height: 33px; }
+    .footer.navbar.navbar-fixed-bottom #follow .facebook {
+      background: url(../img/icon_fb.png) no-repeat; }
+    .footer.navbar.navbar-fixed-bottom #follow .twitter {
+      background: url(../img/icon_tw.png) no-repeat; }
+    .footer.navbar.navbar-fixed-bottom #follow .youtube {
+      background: url(../img/icon_yt.png) no-repeat; }
