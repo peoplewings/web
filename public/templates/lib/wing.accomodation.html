@@ -1,30 +1,41 @@
 <div id="wing-accomodation-params">
-	<span>
-
-		<input type="text" name="start-date" class="required"><br>
-		<input type="checkbox" id="flexible-start-date" name="flexibleStart"><label for="flexible-start-date">Flexible date</label>
-	</span>
-	to
-	<span>
-		<input type="text" name="end-date" class="required"><br>
-		<input type="checkbox" id="flexible-end-date" name="flexibleEnd"><label for="flexible-end-date">Flexible date</label>
-	</span>
-
-	Capacity
-	<select name="capacity">
-		{{#range 9 }}
-			<option value="{{ indexPlusOne }}">{{ indexPlusOne }}</option>
-		{{/range}}
-		<option value="+9">+9</option>
-	<select>
-
+	<div class="control-group">
+		<div class="controls">
+			<input type="text" name="start-date" class="required">
+			<span class="help-block"></span>
+			<label class="checkbox">
+			<input type="checkbox" id="flexible-start-date" name="flexibleStart">Flexible date
+			</label>
+			<input type="text" name="end-date" class="required">
+			<span class="help-block"></span>
+			<label class="checkbox">
+				<input type="checkbox" id="flexible-end-date" name="flexibleEnd">Flexible date
+			</label>
+			
+		</div>
+	</div>
+	<div class="control-group span8">
+		<div class="controls">
+			<label for="capacity">Capacity</label>
+			<select name="capacity">
+				{{#range 9 }}
+				<option value="{{ indexPlusOne }}">{{ indexPlusOne }}</option>
+				{{/range}}
+				<option value="+9">+9</option>
+			</select>
+		</div>
+	</div>	
 	{{#unless_equals kind 'invite' }}
-		Arriving via
-		<select name="via">
-			<option value="">Choose transport</option>
-			<option value="plane">Plane</option>
-			<option value="train">Train</option>
-			<option value="car">Car</option>
-		</select>
+	<div class="control-group span8">
+		<div class="controls">
+			<label for="via">Arriving via</label>
+			<select name="via">
+				<option value="">Choose transport</option>
+				<option value="plane">Plane</option>
+				<option value="train">Train</option>
+				<option value="car">Car</option>
+			</select>
+		</div>
+	</div>	
 	{{/unless_equals}}
 </div>
