@@ -5,7 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var utils = require("utils");
 	var wingTpl = require("tmpl!templates/app/accomodation-form.html");
-	var alertTpl = require("tmpl!templates/lib/alert.html");
+	var alerts = require('views/lib/alerts');
 	var WingModel = require("models/Wing");
 
 	var WingView = Backbone.View.extend({
@@ -47,7 +47,6 @@ define(function(require) {
 
 			if (this.model.get("id") !== undefined)
 				this.unserialize();
-
 		},
 
 		unserialize: function(){
@@ -125,10 +124,14 @@ define(function(require) {
 		},
 
 		close: function(e) {
-			e.preventDefault();
+			if (e)
+				e.preventDefault();
+			
 			this.remove();
 			this.unbind();
 			router.navigate("#/wings");
+
+			return false;
 		},
 
 		initWing: function() {
@@ -165,9 +168,6 @@ define(function(require) {
 
 		submitWing: function(evt) {
 			evt.preventDefault()
-
-			var self = this
-			var alertClass = ""
 			var data = utils.serializeForm(evt.target.id)
 
 			data.city = this.cityObject
@@ -176,15 +176,18 @@ define(function(require) {
 				delete data.dateEnd
 			}
 
+			var self = this;
 			api.post(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list/", data)
-			.then(this.handleResponse.bind(this));
+			.then(function() {
+				alerts.success('Wing created');
+				self.close();
+			}, function(error) {
+				alerts.defaultError();
+			});
 		},
 
 		updateWing: function(evt) {
 			evt.preventDefault()
-
-			var self = this
-			var alertClass = ""
 			var data = utils.serializeForm("accomodation-form")
 
 			data.city = this.cityObject
@@ -192,33 +195,32 @@ define(function(require) {
 				delete data.dateStart
 				delete data.dateEnd
 			}
+
+			var self = this;
 			api.put(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id"), data)
-			.then(this.handleResponse.bind(this));
+			.then(function() {
+				alerts.success('Wing updated');
+				self.close();
+			}, function(error) {
+				alerts.defaultError();
+			});
 		},
 
 		deleteWing: function(evt) {
-			var scope = this
-			var id = this.model.get("id")
-			var uri = api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + id
+			evt.preventDefault();
+			var wingId = this.model.get("id")
+
+			var self = this;
 			if (confirm("Are you sure you want to delete this wing?")) {
-				api.delete(uri)
-				.then(this.handleResponse.bind(this));
+				api.delete(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + wingId)
+				.then(function() {
+					alerts.success('Wing deleted');
+					self.close();
+				}, function(error) {
+					alerts.defaultError();
+				});
 			}
 		},
-
-		handleResponse: function(response){
-
-			var alertClass = (!!response.status) ? 'alert-success' : 'alert-error';
-
-			$(alertTpl({ extraClass: alertClass, heading: response.msg }))
-			.prependTo('#main')
-			.delay(800)
-			.slideUp(300);
-
-			if (response.status === true)
-				router.navigate("/#/wings");
-		}
-
 	});
 
 	return WingView;
