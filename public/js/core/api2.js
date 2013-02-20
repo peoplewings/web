@@ -25,6 +25,8 @@ define(function(require) {
 				if (request.status == 401)
 					return logout();
 
+				pooling.restart();
+
 				try {
 					var response = JSON.parse(request.responseText);
 				} catch(err) {
@@ -117,6 +119,32 @@ define(function(require) {
 	function loadAuthToken() {
 		return localStorage.getItem("Peoplewings-Auth-Token")
 	}
+
+	var pooling = {
+		// seconds
+		interval: 60,
+
+		start: function() {
+			this.timeout = setTimeout(this.tick, this.interval * 1000);
+		},
+
+		stop: function() {
+			clearTimeout(this.timeout);
+		},
+
+		restart: function() {
+			this.stop();
+			this.start();
+		},
+
+		tick: function() {
+			this.stop();
+			request('GET', apiVersion + '/control');
+		}
+	};
+	pooling.tick = pooling.tick.bind(pooling);
+	pooling.start();
+
 
     return {
 		delete: function(uri, body) {
