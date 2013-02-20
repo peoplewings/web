@@ -1,81 +1,28 @@
+/* ==========================================================================
+   INITIAL CONFIG
+   ========================================================================== */
 
-@import _standards
-@import _effects
+@import _reset.sass
+@import _globals.sass
 
 /* ==========================================================================
-	 Initial
-	 ========================================================================== */
+   HTML STRUCTURE
+   ========================================================================== */
 
-body
-	font-family: 'Arial', sans-serif
-	color: #000
+@import _header.sass
 
-a
-	text-decoration: none
-	color: $gray_link
-	&:hover
-		color: $yellow_corporative
-
-li
-	list-style: none
-
-div, ul, li
-	display: block
-
-/* ==========================================================================
-	 HTML
-	 ========================================================================== */
-
-#background-roller
-	width: 100%
-	height: 637px
-	position: absolute
-	z-index: -1
-
-header
-	background: $gray_clear
-	@include box-shadow(0px, 1px, 4px, rgba(0, 0, 0, 0.34))
-	height: 53px
-	#header-content
-		h1
-			float: left
-			background: url(../img/peoplewings.png) no-repeat
-			text-indent: -9999px
-			width: 237px
-			height: 60px
-			margin-top: 17px
-		ul
-			float: right
-			font-size: 0.75em
-			position: relative
-			top: 23px
-			margin-right: 36px
-			li
-				float: left
-				a
-					font:
-						//weight: bold
-						size: 11px
-					&:hover
-						color: $blue_corporative
-						font-weight: bold
-				.a-underline
-					text-decoration: underline
-				span
-					color: $blue_corporative
-					margin-left: 0.8em
-					margin-right: 0.8em
 #main
-	height: 491px
-
 	form#register-form
 		float: right
-		background: $blue_register
+		background: $blue_sign
 		padding: 27px 14px
 		padding-top: 0px
 		margin: 27px
 		@include border-radius(12px)
 		width: 470px
+
+		input, select
+			min-height: 22px
 
 		input[type="text"],
 		input[type="password"],
@@ -88,12 +35,14 @@ header
 			border: 1px solid #79766c
 			color: #000
 			line-height: 15px
-			//width: 140px
-			//height: 17px
 			margin: 0
 			margin:
 				right: 4px
 				bottom: 4px
+
+		input[type="text"],
+		input[type="password"]
+			max-width: 140px
 
 		input[type="checkbox"]
 			float: left
@@ -167,28 +116,8 @@ header
 					text-decoration: underline
 					cursor: pointer
 
-		button.btn-peoplewings
-			margin-top: 20px
-			text-transform: uppercase
-			padding: 4px 20px
-			@include border-radius(20px)
-			color: #FFFF00
-			background: #18183F
-			font:
-				family: 'Exo', Tahoma, Sans Serif
-				size: 18px
-				weight: 500
-				style: italic
-			border: 2px solid #FFFF00
-			@include transition(box-shadow, 0.5s)
-			&:hover
-				@include box-shadow(0px, 0px, 20px, #FFFF00)
-				cursor: pointer
-
 #middle
 	background: #FFF
-	height: 179px
-	border-bottom: 2px solid #EEE
 	#middle-content
 		overflow: hidden
 		margin:
@@ -204,165 +133,8 @@ header
 					size: 1.4em
 					weight: 900
 					style: italic
-				color: $blue_corporative
+				color: $blue_corp
 			.light-500
 				font-weight: 500
 
-footer
-	background: $gray_clear
-	padding: 0.2em
-	#footer-content
-		overflow: hidden
-		font-size: 0.7em
-		color: $gray_link
-		padding-top: 1.5em
-		a:hover
-			color: $blue_corporative
-			text-decoration: underline
-		div
-			float: left
-			ul
-				li
-					float: left
-					margin-right: 1.5em
-				.brand
-					font-weight: bold
-		#likes
-			background: url(../img/like.png) no-repeat
-			height: 20px
-			width: 81px
-			text-indent: -9999px
-			position: relative
-			top: -3px
-		#terms
-			position: relative
-			left: 18em
-		#follow
-			float: right
-			h1
-				float: left
-				margin-right: 1.5em
-				font-weight: bold
-			ul
-				float: left
-				position: relative
-				top: -10px
-				li
-					float: left
-					margin-right: 0.2em
-
-/* ==========================================================================
-	 Classes
-	 ========================================================================== */
-
-.limits
-	max-width: 960px
-	margin-left: auto
-	margin-right: auto
-
-.search-button
-	float: left
-	padding: 0.5em 1em
-	@include radio(1em)
-	color: $yellow_corporative
-	background: $blue_corporative
-	font:
-		family: 'Exo'
-		size: 1.2em
-		weight: 500
-		style: italic
-	line-height: 0.78em
-	border: 2px solid $yellow_corporative
-	@include transition(box-shadow, 0.5s)
-	&:hover
-		@include sombrac(0px, 0px, 20px, $yellow_corporative)
-
-.share-wings
-	margin-top: 0.6em
-	font-size: 1em
-	padding: 0.5em 1.3em
-
-.icon
-	float: left
-	width: 55px
-	height: 80px
-	margin-right: 0.5em
-	text-indent: -9999px
-
-.all
-	background: url(../img/icon_all.png) no-repeat
-	&:hover
-		background: url(../img/icon_all_selected.png) no-repeat
-
-.transport
-	background: url(../img/icon_transport.png) no-repeat
-	&:hover
-		background: url(../img/icon_transport_selected.png) no-repeat
-
-.accommodation
-	background: url(../img/icon_accommodation.png) no-repeat
-	&:hover
-		background: url(../img/icon_accommodation_selected.png) no-repeat
-
-.travel
-	background: url(../img/icon_trip.png) no-repeat
-	&:hover
-		background: url(../img/icon_trip_selected.png) no-repeat
-
-.follow
-	width: 33px
-	height: 33px
-
-.facebook
-	background: url(../img/icon_fb.png) no-repeat
-
-.twitter
-	background: url(../img/icon_tw.png) no-repeat
-
-.youtube
-	background: url(../img/icon_yt.png) no-repeat
-
-.spot
-	text-indent: -9999px
-	margin-right: 0.6em
-
-.house
-	background: url(../img/spot_car.png) no-repeat
-
-.car
-	background: url(../img/spot_house.png) no-repeat
-
-.trip
-	background: url(../img/spot_trip.png) no-repeat
-
-.offer
-	margin-left: 0.7em
-	width: 200px !important
-
-.light-800
-	font-weight: 800
-
-
-.background-1
-	background: url(../img/bg_afternoon.png) no-repeat
-
-.background-2
-	background: url(../img/bg_happypeople.png) no-repeat
-
-.background-3
-	background: url(../img/bg_ironman.png) no-repeat
-
-.background-4
-	background: url(../img/bg_mountain.png) no-repeat
-	
-.background-5
-	background: url(../img/bg_lanterna.png) no-repeat
-
-.background-6
-	background: url(../img/bg_burncity.png) no-repeat
-
-.background-7
-	background: url(../img/bg_ocean.png) no-repeat
-
-.background-8
-	background: url(../img/bg_city.png) no-repeat
+@import _footer.sass

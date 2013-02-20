@@ -1,0 +1,140 @@
+/* ==========================================================================
+   INITIAL CONFIG
+   ========================================================================== */
+
+@import _reset.sass
+@import _globals.sass
+
+/* ==========================================================================
+   HTML STRUCTURE
+   ========================================================================== */
+
+@import _header.sass
+
+.navbar.nav.navbar-fixed-top
+	background: rgba(0, 0, 0, 0.15)
+	@include box-shadow(none)
+	ul
+		li
+			a, &:after
+				color: $blue-corp
+			a:hover
+				color: $yellow-corp
+				text-decoration: none
+
+/* --------------------------------------------------------------------------
+   Content
+   -------------------------------------------------------------------------- */
+
+#main
+	margin-bottom: 7em
+	#sharing
+		margin-top: 7em
+		h1
+			background: url(../img/sharingpeople.png) no-repeat
+			height: 158px
+			text-indent: -9999px
+		h2
+			text-transform: uppercase
+			color: #FFFF00
+			font:
+				family: $ffamily-corp
+				size: 1.7em
+				weight: 800
+				style: italic
+			line-height: 0.78em
+			letter-spacing: -1px
+			@include text-stroke(2.5px, $blue_corp)
+			margin:
+				top: 0.7em
+				bottom: 0.3em
+
+#categories
+	overflow: hidden
+	position: relative
+	top: 11px
+	ul
+		li
+			float: left
+	.all
+	background: url(../img/icon_all.png) no-repeat
+	&:hover
+		background: url(../img/icon_all_pre.png) no-repeat
+	.transport
+		background: url(../img/icon_transport.png) no-repeat
+		&:hover
+			background: url(../img/icon_transport_pre.png) no-repeat
+	.accommodation.selected
+		background: url(../img/icon_accommodation_selected.png) no-repeat
+	.travel
+		background: url(../img/icon_trip.png) no-repeat
+		&:hover
+			background: url(../img/icon_trip_pre.png) no-repeat
+
+#landing-form
+	padding: 0.6em
+	background: rgba(0, 0, 0, 0.4)
+	overflow: hidden
+	@include border-radius(1em)
+	form
+		.control-group
+			float: left
+		.control-label
+			float: left
+			width: 67px
+			height: 20px
+			margin: 19px 8px
+			text-indent: -9999px
+		.people_text
+			width: 75px
+			background: url(../img/people_text.png) no-repeat
+		input[type="text"]
+			width: 15em
+		.wings_text
+			background: url(../img/wings_text.png) no-repeat
+		select
+			background: url(../img/arrow.png) no-repeat 4.9em 1.1em #FFF
+			min-width: 6.5em
+			margin: 0.5em 0.2em
+			color: #AAA
+		input[type="submit"]
+			margin-left: 1em
+
+#middle
+	overflow: hidden
+	.navbar-inner
+		overflow: hidden
+		margin:
+			top: 3em
+			bottom: 3em
+		div
+			width: 230px
+			height: 133px
+			float: left
+			p
+				font:
+					family: $ffamily-corp
+					size: 1.4em
+					style: italic
+					weight: 500
+				color: $blue_corp
+				margin-bottom: 0.8em
+				span
+					font-weight: 800
+			a
+				font-size: 1em
+		.spot
+			text-indent: -9999px
+			margin-right: 0.7em
+		.house
+			background: url(../img/spot_car.png) no-repeat
+		.car
+			background: url(../img/spot_house.png) no-repeat
+		.trip
+			background: url(../img/spot_trip.png) no-repeat		
+		.offer
+			margin-left: 0.5em
+			text-indent: 0
+			width: 200px !important
+
+@import _footer.sass

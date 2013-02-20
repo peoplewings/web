@@ -1,4 +1,12 @@
-// mixin effects
+/* --------------------------------------------------------------------------
+   _Effects
+   -------------------------------------------------------------------------- */
+
+@mixin transition($property, $time)
+	transition: $property $time
+	-moz-transition: $property $time /* Firefox 4 */
+	-webkit-transition: $property $time /* Safari and Chrome */
+	-o-transition: $property $time /* Opera */
 
 @mixin bg-gradient($color_from, $color_to) 
 	background: $color_from /* Old browsers */
@@ -9,21 +17,15 @@
 	background: -ms-linear-gradient(top,  $color_from 0%,$color_to 100%) /* IE10+ */
 	background: linear-gradient(to bottom,  $color_from 0%,$color_to 100%) /* W3C */
 
-@mixin transition($property, $time)
-	transition: $property $time
-	-moz-transition: $property $time /* Firefox 4 */
-	-webkit-transition: $property $time /* Safari and Chrome */
-	-o-transition: $property $time /* Opera */
-
 @mixin border-radius($value)
 	border-radius: $value
 	-webkit-border-radius: $value
 	-moz-border-radius: $value
 
-@mixin box-shadow($hor, $ver, $blur, $color)
-	box-shadow: $hor $ver $blur $color
-	-moz-box-shadow: $hor $ver $blur $color
-	-webkit-box-shadow:  $hor $ver $blur $color
+@mixin box-shadow($hor:null, $ver:null, $blur:null, $spr:null, $color:null, $ins:null)
+	box-shadow: $hor $ver $blur $spr $color $ins
+	-moz-box-shadow: $hor $ver $spr $blur $color $ins
+	-webkit-box-shadow: $hor $ver $blur $spr $color $ins
 
 @mixin appearance($value)
 	-webkit-appearance: $value
@@ -33,33 +35,7 @@
 	opacity: $value
 	filter: alpha(opacity=$value*100) // For IE8 and earlier
 
-// olders
-
-@mixin opacidad($value)
-	opacity: $value
-	filter: alpha(opacity=$value*100) // For IE8 and earlier
-
-@mixin radio($radius)
-	border-radius: $radius
-	-moz-border-radius: $radius
-	-webkit-border-radius: $radius
-
-@mixin sombrac($hor, $ver, $blur, $color)
-	box-shadow: $hor $ver $blur $color
-	-moz-box-shadow: $hor $ver $blur $color
-	-webkit-box-shadow: $hor $ver $blur $color
-
-@mixin sombrat($hor, $ver, $blur, $color)
-	text-shadow: $hor $ver $blur $color
-	-moz-text-shadow: $hor $ver $blur $color
-	-webkit-text-shadow: $hor $ver $blur $color
-
-@mixin borde($width, $color)
+@mixin text-stroke($width, $color)
 	-webkit-text-stroke: $width $color
 	-moz-text-stroke: $width $color
-
-@mixin animacion($name, $time)
-	animation: $name $time
-	-moz-animation: $name $time /* Firefox 4 */
-	-webkit-animation: $name $time /* Safari and Chrome */
-	-o-animation: $name $time /* Opera */
+	

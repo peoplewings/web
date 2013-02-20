@@ -227,116 +227,126 @@ input[type="button"] {
         color: #18183f;
         text-decoration: underline; }
 
-#main form#register-form {
-  float: right;
-  background: rgba(30, 30, 57, 0.7);
-  padding: 27px 14px;
-  padding-top: 0px;
-  margin: 27px;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  width: 470px; }
-  #main form#register-form input, #main form#register-form select {
-    min-height: 22px; }
-  #main form#register-form input[type="text"],
-  #main form#register-form input[type="password"],
-  #main form#register-form input[type="email"],
-  #main form#register-form select {
-    font-size: 13px;
-    padding: 8px;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 1px solid #79766c;
-    color: black;
-    line-height: 15px;
-    margin: 0;
-    margin-right: 4px;
-    margin-bottom: 4px; }
-  #main form#register-form input[type="text"],
-  #main form#register-form input[type="password"] {
-    max-width: 140px; }
-  #main form#register-form input[type="checkbox"] {
+.navbar.nav.navbar-fixed-top {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+  .navbar.nav.navbar-fixed-top ul li a, .navbar.nav.navbar-fixed-top ul li:after {
+    color: #18183f; }
+  .navbar.nav.navbar-fixed-top ul li a:hover {
+    color: yellow;
+    text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+ * Content
+ * -------------------------------------------------------------------------- */
+#main {
+  margin-bottom: 7em; }
+  #main #sharing {
+    margin-top: 7em; }
+    #main #sharing h1 {
+      background: url(../img/sharingpeople.png) no-repeat;
+      height: 158px;
+      text-indent: -9999px; }
+    #main #sharing h2 {
+      text-transform: uppercase;
+      color: yellow;
+      font-family: "Exo", Tahoma, Sans-Serif;
+      font-size: 1.7em;
+      font-weight: 800;
+      font-style: italic;
+      line-height: 0.78em;
+      letter-spacing: -1px;
+      -webkit-text-stroke: 2.5px #18183f;
+      -moz-text-stroke: 2.5px #18183f;
+      margin-top: 0.7em;
+      margin-bottom: 0.3em; }
+
+#categories {
+  overflow: hidden;
+  position: relative;
+  top: 11px;
+  background: url(../img/icon_all.png) no-repeat; }
+  #categories ul li {
+    float: left; }
+  #categories:hover {
+    background: url(../img/icon_all_pre.png) no-repeat; }
+  #categories .transport {
+    background: url(../img/icon_transport.png) no-repeat; }
+    #categories .transport:hover {
+      background: url(../img/icon_transport_pre.png) no-repeat; }
+  #categories .accommodation.selected {
+    background: url(../img/icon_accommodation_selected.png) no-repeat; }
+  #categories .travel {
+    background: url(../img/icon_trip.png) no-repeat; }
+    #categories .travel:hover {
+      background: url(../img/icon_trip_pre.png) no-repeat; }
+
+#landing-form {
+  padding: 0.6em;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em; }
+  #landing-form form .control-group {
+    float: left; }
+  #landing-form form .control-label {
     float: left;
-    margin-right: 11px; }
-  #main form#register-form span.signal {
-    float: left;
-    text-indent: -9999px;
-    height: 16px;
-    width: 15px;
-    background: url(../img/signal.png) no-repeat;
-    position: relative;
-    bottom: 16px;
-    left: 200px;
-    opacity: 0.7;
-    filter: alpha(opacity=70); }
-  #main form#register-form legend {
-    float: right;
-    position: relative;
-    right: 10px;
-    bottom: 13px;
-    width: 107px;
-    height: 28px;
-    text-indent: -9999px;
-    background: url(../img/signup.png) no-repeat; }
-  #main form#register-form .clear {
-    clear: both; }
-  #main form#register-form .control-label {
-    float: left;
-    color: white;
-    width: 100px;
-    padding: 11px;
-    text-shadow: 1px 1px 1px black;
-    font-size: 14px; }
-  #main form#register-form .controls {
-    margin-left: 125px; }
-    #main form#register-form .controls input[type="email"] {
-      width: 303px; }
-    #main form#register-form .controls select {
-      background: url(../img/mini-arrow.png) no-repeat 74px center white;
-      height: 35px; }
-    #main form#register-form .controls .select-mini {
-      width: 97px; }
-    #main form#register-form .controls .select-medium {
-      width: 120px;
-      background-position: 94px center; }
-    #main form#register-form .controls .terms {
-      margin-left: 117px; }
-  #main form#register-form .accepts {
-    margin-left: 98px; }
-  #main form#register-form .terms {
-    color: white;
-    font-size: 12px;
-    line-height: 18px; }
-    #main form#register-form .terms p {
-      margin: 12px 0px; }
-    #main form#register-form .terms a {
-      color: yellow; }
-      #main form#register-form .terms a:hover {
-        text-decoration: underline;
-        cursor: pointer; }
+    width: 67px;
+    height: 20px;
+    margin: 19px 8px;
+    text-indent: -9999px; }
+  #landing-form form .people_text {
+    width: 75px;
+    background: url(../img/people_text.png) no-repeat; }
+  #landing-form form input[type="text"] {
+    width: 15em; }
+  #landing-form form .wings_text {
+    background: url(../img/wings_text.png) no-repeat; }
+  #landing-form form select {
+    background: url(../img/arrow.png) no-repeat 4.9em 1.1em white;
+    min-width: 6.5em;
+    margin: 0.5em 0.2em;
+    color: #aaaaaa; }
+  #landing-form form input[type="submit"] {
+    margin-left: 1em; }
 
 #middle {
-  background: white; }
-  #middle #middle-content {
+  overflow: hidden; }
+  #middle .navbar-inner {
     overflow: hidden;
     margin-top: 3em;
     margin-bottom: 3em; }
-    #middle #middle-content div {
+    #middle .navbar-inner div {
       width: 230px;
       height: 133px;
       float: left; }
-      #middle #middle-content div h1 {
-        font-family: "Exo";
+      #middle .navbar-inner div p {
+        font-family: "Exo", Tahoma, Sans-Serif;
         font-size: 1.4em;
-        font-weight: 900;
         font-style: italic;
-        color: #18183f; }
-      #middle #middle-content div .light-500 {
-        font-weight: 500; }
+        font-weight: 500;
+        color: #18183f;
+        margin-bottom: 0.8em; }
+        #middle .navbar-inner div p span {
+          font-weight: 800; }
+      #middle .navbar-inner div a {
+        font-size: 1em; }
+    #middle .navbar-inner .spot {
+      text-indent: -9999px;
+      margin-right: 0.7em; }
+    #middle .navbar-inner .house {
+      background: url(../img/spot_car.png) no-repeat; }
+    #middle .navbar-inner .car {
+      background: url(../img/spot_house.png) no-repeat; }
+    #middle .navbar-inner .trip {
+      background: url(../img/spot_trip.png) no-repeat; }
+    #middle .navbar-inner .offer {
+      margin-left: 0.5em;
+      text-indent: 0;
+      width: 200px !important; }
 
 /* --------------------------------------------------------------------------
  * _Footer

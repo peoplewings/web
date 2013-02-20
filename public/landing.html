@@ -1,141 +1,155 @@
 <!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Peoplewings</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,400italic,500italic,900italic,800italic,700italic,600italic,100italic,200italic,300italic' rel='stylesheet' type='text/css'>
-</head>
-<body>
-	<div id="background-roller" class="background-4"></div>
-	<header>
-		<div id="header-content" class="limits">
-			<h1><a href="#">PeopleWings</a></h1>
-			<ul id="navigation">
-				<li><a href="#">SIGN UP</a><span class="separator">|</span></li>
-				<li><a href="#">LOG IN</a><span class="separator">|</span></li>
-				<li><a href="#">HELP</a><span class="separator">|</span></li>
-				<li><a href="#" class="a-underline">SHARE YOUR WINGS</a></li>
-			</ul>
-		</div><!-- EOF header-content -->
-	</header>
-	<div id="main" class="container" class="limits">
-		<section id="sharing" class="limits">
-			<h1>SHARING THE WORLD</h1>
-			<h2><span class="light-800">FREE SHARES AND </span>MAKE NEW FRIENDS</h2>
-		</section>
-		<section id="categories" class="limits">
-			<ul id="options">
-				<li><a href="#" class="icon all">All</a></li>
-				<li><a href="#" class="icon accommodation selected">Acommodation</a></li>
-				<li><a href="#" class="icon transport">Transport</a></li>
-				<li><a href="#" class="icon travel">Travel</a></li>
-			</ul>
-		</section>
-		<section id="landing-form" class="limits">
-			<form id="accomodation-search-form" class="form-horizontal">
-				<label class="control-label" for="inputWings">WINGS</label>
-				<input type="text" id="inputWings" name="wings" placeholder="Where you need accomodation?">
-				<label class="control-label" for="inputPeople">PEOPLE</label>
-				<select name="startAge" class="input-mini">
-					<option value="18">18</option>
-				</select>
-				<select name="endAge" class="input-mini">
-					<option value="18">18</option>
-				</select>
-				<select name="gender" class="input-small">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-					<option value="Both">Both</option>
-				</select>
-				<input type="submit" class="search-button">SEARCH PEOPLEWINGS</input>
-			</form>
-			<div class="form-errors"></div>
-		</section>
-	</div><!-- EOF main -->
-	<div id="middle">
-		<div id="middle-content" class="limits">
-			<ul id="spots">
-				<li>
-					<a href="#"><div class="spot house">spot house</div></a>
-				</li>
-				<li>
-					<a href="#"><div class="spot car">spot car</div></a>
-				</li>
-				<li>
-					<a href="#"><div class="spot trip">spot trip</div></a>
-				</li>
-				<li>
-					<div class="offer">
-						<h1>PEOPLEWINGS
-							<span class="light-500">IS A SITE THAT FIND A PEOPLE TO LOREM IPSUM SIT ANEU !</span>
-						</h1>
-						<a href="#" class="search-button share-wings">SHARE YOUR WINGS</a>
+		<title>Peoplewings</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+		<link rel="stylesheet" href="css/landing.css">
+		<link href='http://fonts.googleapis.com/css?family=Exo:500,800,500italic,800italic' rel='stylesheet' type='text/css'>	
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="background-roller background-4"></div>
+
+			<header>
+				<div class="navbar nav navbar-fixed-top">
+					<div class="navbar-inner">
+						<a class="brand" href="#">Peoplewings</a>
+						<div class="nav-collapse">
+							<ul class="nav pull-right">
+								<li class="register-menu"><a href="#/register">SIGN UP</a></li>
+								<li class="login-menu"><a href="#/login">LOG IN</a></li>
+								<li class="help-menu"><a href="#">HELP</a></li>
+								<li class="sharewings-menu"><a href="#">SHARE YOUR WINGS</a></li>
+							</ul>
+						</div>
 					</div>
-				</li>
-			</ul>
-		</div><!-- EOF middle-content -->
-	</div><!-- EOF middle -->
-	<footer>
-		<div id="footer-content" class="limits">
-			<div id="likes">
-				<a href="#">like</a>
-			</div>
-			<div id="terms">
-				<ul id="service-terms">
-					<li><a href="#" class="brand">©2013 PEOPLEWINGS</a></li>
-					<li><a href="#">Terms of Service</a></li>
-					<li><a href="#">Privacy Policy</a></li>
-					<li><a href="#">Help</a></li>
-				</ul>
-			</div>
-			<div id="follow">
-				<h1>Follow us on ...</h1>
-				<ul id="follow-us">
-					<li><a href="#" class="icon follow facebook">facebook</a></li>
-					<li><a href="#" class="icon follow twitter">twitter</a></li>
-					<li><a href="#" class="icon follow youtube">youtube</a></li>
-				</ul>
-			</div>
-		</div><!-- EOF follow -->
-	</footer>
+				</div>
+			</header>
 
-	<script type="text/javascript" src="js/lib/jquery.js"></script>
-	<script type="text/javascript">
+			<div id="main" class="navbar-inner">
+				<section id="sharing" class="navbar-inner">
+					<h1>Sharing the world</h1>
+					<h2>Free shares and make new friends</h2>
+				</section>
+				<section id="categories" class="navbar-inner">
+					<ul id="options">
+						<li><a href="#" class="icon all">All</a></li>
+						<li><a href="#" class="icon accommodation selected">Acommodation</a></li>
+						<li><a href="#" class="icon transport">Transport</a></li>
+						<li><a href="#" class="icon travel">Travel</a></li>
+					</ul>
+				</section>
+				<section id="landing-form" class="navbar-inner">
+					<form id="accomodation-search-form">
+						<div class="control-group">
+							<label class="control-label wings_text" for="inputWings">WINGS</label>
+							<input type="text" id="inputWings" name="wings" placeholder="Where you need accomodation?">
+						</div>
+						<label class="control-label people_text" for="inputPeople">PEOPLE</label>
+						<select name="startAge">
+							<option value="18">Age 18</option>
+						</select>
+						<select name="endAge">
+							<option value="99">Age 99</option>
+						</select>
+						<input type="submit" class="btn-peoplewings" value="Search Peoplewings">
+					</form>
+				</section>
+			</div>
 
-		$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
-			var num = 18 + index * 2;
-			return '<option value="' + num + '">' + num + '</option>';
-		}).join(''));
-		$('[name="endAge"]').val(98);
+			<div id="middle">
+				<div class="navbar-inner">
+					<ul>
+						<li>
+							<a href="#">
+								<div class="spot house">spot house</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="spot car">spot car</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="spot trip">spot trip</div>
+							</a>
+						</li>
+						<li>
+							<div class="spot offer">
+								<p><span>PEOPLEWINGS</span> IS A SITE THAT FIND A PEOPLE TO LOREM IPSUM SIT ANEU !</p>
+								<a href="#" class="btn-peoplewings">Share your wings</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 
-		$('#accomodation-search-form').on('submit', function() {
-			if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
-				$('.form-errors').html('The start age is bigger than end age');
+			<div class="push"></div>
+		</div>
+
+		<footer class="footer navbar navbar-fixed-bottom">
+			<div class="navbar-inner">
+				<div id="likes">
+					<a href="#">like</a>
+				</div>
+					<div id="terms">
+						<ul id="service-terms">
+							<li><a href="#">©2013 PEOPLEWINGS</a></li>
+							<li><a href="#">Terms of Service</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Help</a></li>
+						</ul>
+					</div>
+					<div id="follow">
+						<ul>
+							<li><p>Follow us ...</p></li>
+							<li><a href="#" class="icon follow facebook">facebook</a></li>
+							<li><a href="#" class="icon follow twitter">twitter</a></li>
+							<li><a href="#" class="icon follow youtube">youtube</a></li>
+						</ul>
+					</div>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script type="text/javascript">
+
+			$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
+				var num = 18 + index * 2;
+				return '<option value="' + num + '">' + num + '</option>';
+			}).join(''));
+			$('[name="endAge"]').val(98);
+
+			$('#accomodation-search-form').on('submit', function() {
+				if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
+					$('.form-errors').html('The start age is bigger than end age');
+					return false;
+				}
+
+				document.location =
+					'/#/search/?capacity=1&language=all&type=host&page=1&' +
+					$('#accomodation-search-form [name]')
+						.toArray()
+						.map($)
+						.map(function(input) {
+							return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
+						})
+						.join('&');
+
 				return false;
-			}
+			});
 
-			document.location =
-				'/#/search/?capacity=1&language=all&type=host&page=1&' +
-				$('#accomodation-search-form [name]')
-					.toArray()
-					.map($)
-					.map(function(input) {
-						return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
-					})
-					.join('&');
-
-			return false;
-		});
-
-	</script>
-</body>
+		</script>
+	</body>
 </html>

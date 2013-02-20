@@ -1,0 +1,126 @@
+/* --------------------------------------------------------------------------
+   _Globals
+   -------------------------------------------------------------------------- */
+
+@import _variables.sass
+@import _effects.sass
+
+*
+	margin: 0
+
+html, body
+	height: 100%
+
+body, input, select
+	font-family: $ffamily
+	color: $fcolor
+	background: $background
+
+a
+	text-decoration: none
+	color: $gray_link
+	&:hover
+		color: $yellow_corp
+
+li
+	list-style: none
+
+input, select
+	font-size: 1em
+	padding: 0.7em
+	margin: 0.5em
+	border: 1px solid #CCC
+	@include appearance(none)
+	@include border-radius(5px)
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:focus, &:active
+		outline: 0
+		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+
+input[type="button"]
+	text-transform: uppercase
+
+.wrapper
+	min-height: 100%
+	height: auto !important
+	height: 100%
+	margin: 0 auto (-1) * $footer-size + $footer-unit
+
+.push
+	height: $footer-size + $footer-unit
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner
+	@include box-shadow(none)
+
+.navbar-inner
+	width: 960px
+	margin: 0 auto
+	background: none
+	border: none
+	@include box-shadow(none)
+
+/* Buttons
+	 -------------------------------------------------------------------------- */
+
+.btn-peoplewings
+	text-transform: uppercase
+	padding: 0.2em 1em
+	margin: 0
+	color: $yellow_corp
+	background: $blue-corp
+	font:
+		family: $ffamily-corp
+		size: 1.2em
+		weight: 500
+		style: italic
+	border: 2px solid $yellow_corp
+	@include border-radius(1em)
+	&:hover, &:focus, &:active
+		outline: 0
+		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+
+
+/* Icons
+	 -------------------------------------------------------------------------- */
+
+.icon
+	float: left
+	width: 65px
+	height: 78px
+	text-indent: -9999px
+
+
+/* Backgrounds
+   -------------------------------------------------------------------------- */
+
+.background-roller
+	width: 100%
+	height: 637px
+	position: absolute
+	z-index: -1
+
+.background-1
+	background: url(../img/bg_afternoon.png) no-repeat top center
+
+.background-2
+	background: url(../img/bg_happypeople.png) no-repeat top center
+
+.background-3
+	background: url(../img/bg_ironman.png) no-repeat top center
+
+.background-4
+	background: url(../img/bg_mountain.png) no-repeat top center
+	
+.background-5
+	background: url(../img/bg_lanterna.png) no-repeat top center
+
+.background-6
+	background: url(../img/bg_burncity.png) no-repeat top center
+
+.background-7
+	background: url(../img/bg_ocean.png) no-repeat top center
+
+.background-8
+	background: url(../img/bg_city.png) no-repeat top center

@@ -13,58 +13,69 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
 		<link rel="stylesheet" href="css/bootstrap_older.css">
-		<link rel="stylesheet" href="css/general.css">
-		<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/home.css">
+		<!-- <link rel="stylesheet" href="css/styles.css"> -->
 		<link rel="stylesheet" href="css/profile_card.css">
 		<link rel="stylesheet" href="css/accommodation_form.css">
 		<link rel="stylesheet" href="css/jquery.Jcrop.min.css">
 		<link rel="stylesheet" href="css/jquery-ui-1.9.1.custom.min.css">
-		<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,400italic,500italic,900italic,800italic,700italic,600italic,100italic,200italic,300italic' rel='stylesheet' type='text/css'>
-		
-		<style>
-			body {
-				padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-			}
-		</style>
-
+		<link href='http://fonts.googleapis.com/css?family=Exo:500,500italic' rel='stylesheet' type='text/css'>
 	</head>
+
 	<body>
-		<div id="alerts-container"></div>
-		<header>
-			<div class="navbar nav navbar-fixed-top">
-				<div class="navbar-inner">
-					<a class="brand" href="#">Peoplewings</a>
-					<div class="nav-collapse">
-						<ul class="nav pull-right">
-							<li class="register-menu"><a href="#/register">SIGN UP<span class="separator">|</span></a></li>
-							<li class="login-menu"><a href="#/login">LOG IN<span class="separator">|</span></a></li>
-							<li class="help-menu"><a href="#">HELP<span class="separator">|</span></a></li>
-							<li class="sharewings-menu"><a href="#">SHARE YOUR WINGS</a></li>
-						</ul>
+		<div class="wrapper">
+			<div id="alerts-container"></div>
+
+			<header>
+				<div class="navbar nav navbar-fixed-top">
+					<div class="navbar-inner">
+						<a class="brand" href="#">Peoplewings</a>
+						<div class="nav-collapse">
+							<ul class="nav pull-right">
+								<li class="register-menu"><a href="#/register">SIGN UP</a></li>
+								<li class="login-menu"><a href="#/login">LOG IN</a></li>
+								<li class="help-menu"><a href="#">HELP</a></li>
+								<li class="sharewings-menu"><a href="#">SHARE YOUR WINGS</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
 
-		<section id="main" class="container">
-		</section>
+			<section id="main" class="navbar-inner"></section>
 
-		<div id="feedback-btn" class="navbar-fixed-bottom" style="display:none">
-			<div class="pull-right">
-				<a id="feedback-btn-submit" href="#/feedback" role="button" class="btn" >Feedback</a>
+			<div id="feedback-btn" class="navbar-fixed-bottom" style="display:none">
+				<div class="pull-right">
+					<a id="feedback-btn-submit" href="#/feedback" role="button" class="btn" >Feedback</a>
+				</div>
 			</div>
+
+			<div class="push"></div>
 		</div>
 
-<!--
 		<footer class="footer navbar navbar-fixed-bottom">
-			<p>
-				&copy; 2012 Peoplewings <a href="#" target="_blank">Terms of service</a>
-				<a href="#" target="_blank">Provacy Policy</a>
-				<a href="#" target="_blank">Help</a>
-			</p>
+			<div class="navbar-inner">
+				<div id="likes">
+					<a href="#">like</a>
+				</div>
+					<div id="terms">
+						<ul id="service-terms">
+							<li><a href="#">©2013 PEOPLEWINGS</a></li>
+							<li><a href="#">Terms of Service</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Help</a></li>
+						</ul>
+					</div>
+					<div id="follow">
+						<ul>
+							<li><p>Follow us ...</p></li>
+							<li><a href="#" class="icon follow facebook">facebook</a></li>
+							<li><a href="#" class="icon follow twitter">twitter</a></li>
+							<li><a href="#" class="icon follow youtube">youtube</a></li>
+						</ul>
+					</div>
+			</div>
 		</footer>
--->
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en"></script>
 		<script src="js/lib/spin.min.js"></script>

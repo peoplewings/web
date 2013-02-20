@@ -1,0 +1,73 @@
+/* --------------------------------------------------------------------------
+   _Footer
+   -------------------------------------------------------------------------- */
+
+.navbar-fixed-bottom
+	height: ($footer-size - 35) + $footer-unit
+	clear: both
+
+.footer.navbar.navbar-fixed-bottom
+	position: relative
+	background: $gray-clear
+	color: $gray-link
+	font-size: 11px
+	overflow: hidden
+	padding:
+		top: 25px
+		bottom: 10px
+	ul
+		margin: 0
+	.navbar-inner
+		min-height: 40px
+		div
+			float: left
+	#likes
+		background: url(../img/like.png) no-repeat
+		height: 20px
+		width: 81px
+		text-indent: -9999px
+	#terms
+		position: relative
+		left: 15em
+		line-height: 11px
+		li
+			line-height: inherit
+			display: inline
+			a
+				margin-right: 12px
+				&:hover
+					text-decoration: underline
+					color: $blue-corp
+			&:first-child
+				font-weight: bold
+	#follow
+		float: right
+		width: 260px
+		h1
+			font-weight: bold
+			font-size: 11px
+			line-height: 1
+			margin: 0px
+			float: left
+		ul
+			margin-right: 20px
+			li
+				display: inline
+				&:first-child
+					float: left
+					font-size: 11px
+					font-weight: bold
+					margin-right: 20px
+					line-height: 1
+			a
+				margin-right: 10px
+		.follow
+			width: 33px
+			height: 33px
+		.facebook
+			background: url(../img/icon_fb.png) no-repeat
+		.twitter
+			background: url(../img/icon_tw.png) no-repeat
+		.youtube
+			background: url(../img/icon_yt.png) no-repeat
+
