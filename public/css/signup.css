@@ -65,7 +65,8 @@ a {
     color: yellow; }
 
 li {
-  list-style: none; }
+  list-style: none;
+  float: left; }
 
 input, select {
   font-size: 1em;
@@ -87,8 +88,36 @@ input, select {
     -moz-box-shadow: 0 0 3px 8px yellow;
     -webkit-box-shadow: 0 0 8px 3px yellow; }
 
-input[type="button"] {
+input[type="submit"] {
   text-transform: uppercase; }
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox; }
+
+button {
+  display: block;
+  padding: 11px 14px;
+  font-size: 11px;
+  font-style: italic;
+  color: gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  border-left: 1px solid #cecdce;
+  border-right: 1px solid white;
+  background: none; }
+  button:hover {
+    color: black;
+    background: white; }
+  button:active {
+    background: #ffeb00;
+    background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+    background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
 
 .wrapper {
   min-height: 100%;
@@ -261,7 +290,9 @@ input[type="button"] {
     max-width: 140px; }
   #main form#register-form input[type="checkbox"] {
     float: left;
-    margin-right: 11px; }
+    margin-top: 2px;
+    margin-right: 15px;
+    margin-left: 0; }
   #main form#register-form span.signal {
     float: left;
     text-indent: -9999px;
@@ -306,7 +337,8 @@ input[type="button"] {
     #main form#register-form .controls .terms {
       margin-left: 117px; }
   #main form#register-form .accepts {
-    margin-left: 98px; }
+    margin-left: 98px;
+    margin-bottom: 2em; }
   #main form#register-form .terms {
     color: white;
     font-size: 12px;

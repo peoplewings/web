@@ -24,6 +24,7 @@ a
 
 li
 	list-style: none
+	float: left
 
 input, select
 	font-size: 1em
@@ -37,8 +38,34 @@ input, select
 		outline: 0
 		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
 
-input[type="button"]
+input[type="submit"]
 	text-transform: uppercase
+
+input[type="checkbox"]
+	@include appearance(checkbox)
+
+button
+	display: block
+	padding: 11px 14px
+	font:
+		size: 11px
+		style: italic
+		//weight: bold
+	color: #808080
+	text-decoration: none
+	text-transform: uppercase
+	border: none
+	border:
+		left: 1px solid #CECDCE
+		right: 1px solid #FFF
+	background: none
+
+	&:hover
+		color: #000
+		background: #FFF
+
+	&:active
+		@include bg-gradient(#ffeb00, #fbfac5)
 
 .wrapper
 	min-height: 100%

@@ -65,7 +65,8 @@ a {
     color: yellow; }
 
 li {
-  list-style: none; }
+  list-style: none;
+  float: left; }
 
 input, select {
   font-size: 1em;
@@ -87,8 +88,36 @@ input, select {
     -moz-box-shadow: 0 0 3px 8px yellow;
     -webkit-box-shadow: 0 0 8px 3px yellow; }
 
-input[type="button"] {
+input[type="submit"] {
   text-transform: uppercase; }
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox; }
+
+button {
+  display: block;
+  padding: 11px 14px;
+  font-size: 11px;
+  font-style: italic;
+  color: gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  border-left: 1px solid #cecdce;
+  border-right: 1px solid white;
+  background: none; }
+  button:hover {
+    color: black;
+    background: white; }
+  button:active {
+    background: #ffeb00;
+    background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+    background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
 
 .wrapper {
   min-height: 100%;
@@ -234,6 +263,399 @@ body {
         text-decoration: underline; }
 
 /* --------------------------------------------------------------------------
+ * _Search Accommodation
+ * -------------------------------------------------------------------------- */
+.tab-pane {
+  background: #e1e0d9;
+  padding: 27px;
+  padding-top: 40px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  overflow: hidden;
+  margin: 0; }
+  .tab-pane label {
+    display: none; }
+  .tab-pane h1 {
+    float: left;
+    margin-top: 10px;
+    margin-right: 20px;
+    text-indent: -9999px; }
+  .tab-pane h1.wings_text {
+    background: url(../../img/wings_text.png) no-repeat;
+    height: 20px;
+    width: 67px; }
+  .tab-pane h1.people_text {
+    background: url(../../img/people_text.png) no-repeat;
+    height: 20px;
+    width: 74px;
+    margin-right: 13px; }
+  .tab-pane div.control-group {
+    margin: 0; }
+    .tab-pane div.control-group:before {
+      display: inline; }
+    .tab-pane div.control-group:after {
+      display: inline; }
+    .tab-pane div.control-group input, .tab-pane div.control-group select {
+      float: left;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 1px solid #79766c;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      color: black;
+      line-height: 15px; }
+    .tab-pane div.control-group input.input-sdate {
+      width: 90px;
+      background: url(../img/start-date.png) no-repeat 75px center white; }
+    .tab-pane div.control-group input.input-edate {
+      width: 90px;
+      background: url(../img/end-date.png) no-repeat 75px center white; }
+    .tab-pane div.control-group input.input-large {
+      width: 202px; }
+    .tab-pane div.control-group select {
+      height: 38px; }
+    .tab-pane div.control-group select.input-guests {
+      width: 90px;
+      background: url(../img/mini-arrow.png) no-repeat 66px center white; }
+    .tab-pane div.control-group select.input-age1 {
+      width: 77px;
+      background: url(../img/mini-arrow.png) no-repeat 56px center white; }
+    .tab-pane div.control-group select.input-age2 {
+      width: 46px;
+      background: url(../img/mini-arrow.png) no-repeat 28px center white; }
+    .tab-pane div.control-group select.input-language {
+      width: 89px;
+      background: url(../img/mini-arrow.png) no-repeat 69px center white; }
+    .tab-pane div.control-group select.input-others {
+      width: 108px;
+      background: url(../img/mini-arrow.png) no-repeat 87px center white; }
+  .tab-pane div.form-actions {
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    background: none;
+    padding: 0px; }
+    .tab-pane div.form-actions button.btn-peoplewings {
+      padding: 5px 20px;
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      color: yellow;
+      background: #18183f;
+      font-family: "Exo", Tahoma, Sans Serif;
+      font-size: 18px;
+      font-weight: 500;
+      font-style: italic;
+      border: 2px solid yellow;
+      transition: box-shadow 0.5s;
+      -moz-transition: box-shadow 0.5s;
+      -webkit-transition: box-shadow 0.5s;
+      -o-transition: box-shadow 0.5s; }
+      .tab-pane div.form-actions button.btn-peoplewings:hover {
+        box-shadow: 0px 0px 20px 0px yellow;
+        -moz-box-shadow: 0px 0px 0px 20px yellow;
+        -webkit-box-shadow: 0px 0px 20px 0px yellow; }
+
+/* --------------------------------------------------------------------------
+ * _Search Results
+ * -------------------------------------------------------------------------- */
+/* Pager Counter
+ * -------------------------------------------------------------------------- */
+.pager {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  font-size: 0.9em; }
+  .pager a {
+    display: inline;
+    border: none;
+    padding: 0; }
+    .pager a:hover {
+      background: none;
+      text-decoration: underline; }
+  .pager p {
+    margin: 0;
+    margin-top: 0.2em;
+    display: inline; }
+  .pager li {
+    float: left; }
+  .pager .icon {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d8d6d0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+    background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+    background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
+    .pager .icon:hover {
+      background: white; }
+    .pager .icon:active {
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d0cec7));
+      background: -webkit-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -o-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -ms-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: linear-gradient(to bottom, white 0%, #d0cec7 100%); }
+    .pager .icon a {
+      float: left;
+      display: block;
+      width: 25px;
+      height: 25px;
+      text-indent: -9999px;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px; }
+    .pager .icon .previousPage {
+      background: url(../img/pager-prev.png) no-repeat 8px 8px; }
+    .pager .icon .nextPage {
+      background: url(../img/pager-next.png) no-repeat 10px 8px; }
+
+.pager-content {
+  background: white;
+  border: 1px solid #ccccd3;
+  overflow: hidden;
+  padding: 14px;
+  padding-left: 18px;
+  margin-top: 27px;
+  margin-bottom: 27px; }
+  .pager-content .adjust {
+    margin-top: 7px;
+    margin-right: 14px; }
+
+/* Profile Card
+ * -------------------------------------------------------------------------- */
+div.profile {
+  border: 1px solid #ccccd3;
+  margin-bottom: 2em;
+  line-height: 20px; }
+  div.profile div.content-left {
+    float: left; }
+    div.profile div.content-left div.avatar {
+      width: 175px;
+      height: 175px; }
+      div.profile div.content-left div.avatar img {
+        width: 175px;
+        height: 175px;
+        position: relative;
+        top: -18px; }
+    div.profile div.content-left span.online-dot {
+      float: left;
+      width: 18px;
+      height: 18px;
+      background: lime;
+      background: url(../img/online-corner.png) no-repeat left top;
+      text-indent: -9999px;
+      position: relative;
+      top: -1px;
+      left: -1px;
+      z-index: 1; }
+  div.profile div.content-right {
+    float: left;
+    background: white;
+    max-width: 523px; }
+    div.profile div.content-right div.personal-info {
+      margin: 24px;
+      margin-bottom: 14px;
+      max-height: 95px;
+      min-width: 477px;
+      overflow: hidden; }
+      div.profile div.content-right div.personal-info h1.name {
+        font-size: 21px;
+        font-weight: bold;
+        display: inline; }
+        div.profile div.content-right div.personal-info h1.name a {
+          text-decoration: none;
+          color: black; }
+          div.profile div.content-right div.personal-info h1.name a:hover {
+            color: #01a6da; }
+      div.profile div.content-right div.personal-info span {
+        margin-left: 0.2em; }
+      div.profile div.content-right div.personal-info span.age {
+        font-size: 14px; }
+      div.profile div.content-right div.personal-info span.online {
+        color: gray;
+        font-style: italic;
+        font-size: 13px; }
+      div.profile div.content-right div.personal-info h2.home-town {
+        font-size: 16px; }
+      div.profile div.content-right div.personal-info h3.current-location {
+        color: gray;
+        font-size: 14px;
+        margin-bottom: 0.8em; }
+      div.profile div.content-right div.personal-info h4.languages-tag {
+        float: left;
+        font-size: 13px;
+        color: gray;
+        margin-right: 10px; }
+      div.profile div.content-right div.personal-info p {
+        font-size: 13px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 20px; }
+      div.profile div.content-right div.personal-info p.languages {
+        color: black;
+        text-transform: capitalize; }
+    div.profile div.content-right div.main-bar {
+      font-size: 11px;
+      color: gray;
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+      background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+      background: linear-gradient(to bottom, white 0%, #ecece5 100%);
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #d0cec7;
+      overflow: hidden;
+      max-height: 41px; }
+      div.profile div.content-right div.main-bar div {
+        float: left; }
+      div.profile div.content-right div.main-bar div.info-bar {
+        padding: 10px 10px 10px 24px;
+        overflow: hidden;
+        width: 240px; }
+        div.profile div.content-right div.main-bar div.info-bar span {
+          float: left;
+          margin-right: 0.8em; }
+        div.profile div.content-right div.main-bar div.info-bar span.results {
+          font-size: 16px;
+          font-weight: bold;
+          color: black; }
+      div.profile div.content-right div.main-bar div.button-bar {
+        float: right; }
+        div.profile div.content-right div.main-bar div.button-bar button.selected {
+          background: yellow;
+          background: -moz-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffea00));
+          background: -webkit-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -o-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
+  div.profile div.content-bottom {
+    clear: both;
+    color: gray;
+    background: white;
+    font-size: 0.8em; }
+    div.profile div.content-bottom div.about-info {
+      padding: 27px;
+      overflow: hidden; }
+      div.profile div.content-bottom div.about-info h1 {
+        font-size: 17px;
+        margin-bottom: 0.6em;
+        float: left; }
+      div.profile div.content-bottom div.about-info h2 {
+        font-size: 12px;
+        font-style: italic;
+        float: right; }
+      div.profile div.content-bottom div.about-info p {
+        font-size: 13px;
+        color: #aaaaaa;
+        clear: both;
+        line-height: 20px; }
+    div.profile div.content-bottom div.about-footer {
+      border-top: 1px solid #e5e5e5;
+      padding: 0.8em;
+      overflow: hidden; }
+      div.profile div.content-bottom div.about-footer h1, div.profile div.content-bottom div.about-footer span {
+        float: left;
+        position: relative;
+        left: 230px; }
+      div.profile div.content-bottom div.about-footer span.more-about {
+        font-size: 13px;
+        background: url(../img/arrow_about.png) no-repeat 12px center;
+        text-indent: -9999px; }
+      div.profile div.content-bottom div.about-footer h1 {
+        font-size: 13px;
+        text-align: center;
+        text-transform: uppercase; }
+
+/* --------------------------------------------------------------------------
+ * _Pager Counter
+ * -------------------------------------------------------------------------- */
+.pager {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  font-size: 0.9em; }
+  .pager a {
+    display: inline;
+    border: none;
+    padding: 0; }
+    .pager a:hover {
+      background: none;
+      text-decoration: underline; }
+  .pager p {
+    margin: 0;
+    margin-top: 0.2em;
+    display: inline; }
+  .pager li {
+    float: left; }
+  .pager .icon {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d8d6d0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+    background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+    background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+    background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
+    .pager .icon:hover {
+      background: white; }
+    .pager .icon:active {
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d0cec7));
+      background: -webkit-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -o-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: -ms-linear-gradient(top, white 0%, #d0cec7 100%);
+      background: linear-gradient(to bottom, white 0%, #d0cec7 100%); }
+    .pager .icon a {
+      float: left;
+      display: block;
+      width: 25px;
+      height: 25px;
+      text-indent: -9999px;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px; }
+    .pager .icon .previousPage {
+      background: url(../img/pager-prev.png) no-repeat 8px 8px; }
+    .pager .icon .nextPage {
+      background: url(../img/pager-next.png) no-repeat 10px 8px; }
+
+.pager-content {
+  background: white;
+  border: 1px solid #ccccd3;
+  overflow: hidden;
+  padding: 14px;
+  padding-left: 18px;
+  margin-top: 27px;
+  margin-bottom: 27px; }
+  .pager-content .adjust {
+    margin-top: 7px;
+    margin-right: 14px; }
+
+/* --------------------------------------------------------------------------
  * _Footer
  * -------------------------------------------------------------------------- */
 .navbar-fixed-bottom {
@@ -357,74 +779,3 @@ input, select {
 
 .tab-content {
   margin-top: 60px; }
-
-/* ==========================================================================
- * Pager Counter
- * ========================================================================== */
-.pager {
-  list-style: none;
-  text-align: center;
-  margin: 0;
-  font-size: 0.9em; }
-  .pager a {
-    display: inline;
-    border: none;
-    padding: 0; }
-    .pager a:hover {
-      background: none;
-      text-decoration: underline; }
-  .pager p {
-    margin: 0;
-    margin-top: 0.2em;
-    display: inline; }
-  .pager li {
-    float: left; }
-  .pager .icon {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #d8d6d0;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    background: white;
-    background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
-    background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -o-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
-    background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
-    .pager .icon:hover {
-      background: white; }
-    .pager .icon:active {
-      background: white;
-      background: -moz-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d0cec7));
-      background: -webkit-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -o-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -ms-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: linear-gradient(to bottom, white 0%, #d0cec7 100%); }
-    .pager .icon a {
-      float: left;
-      display: block;
-      width: 25px;
-      height: 25px;
-      text-indent: -9999px;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px; }
-    .pager .icon .previousPage {
-      background: url(../img/pager-prev.png) no-repeat 8px 8px; }
-    .pager .icon .nextPage {
-      background: url(../img/pager-next.png) no-repeat 10px 8px; }
-
-.pager-content {
-  background: white;
-  border: 1px solid #ccccd3;
-  overflow: hidden;
-  padding: 14px;
-  padding-left: 18px;
-  margin-top: 27px;
-  margin-bottom: 27px; }
-  .pager-content .adjust {
-    margin-top: 7px;
-    margin-right: 14px; }
