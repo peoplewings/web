@@ -1,0 +1,111 @@
+/* --------------------------------------------------------------------------
+	 _Search Accommodation
+	 -------------------------------------------------------------------------- */
+
+.tab-pane
+	background: #E1E0D9
+	padding: 27px
+	padding-top: 40px
+	@include border-radius(12px)
+	overflow: hidden
+	margin: 0
+
+	label
+		display: none
+
+	h1
+		float: left
+		margin-top: 10px
+		margin-right: 20px
+		text-indent: -9999px
+
+	h1.wings_text
+		background: url(../../img/wings_text.png) no-repeat
+		height: 20px
+		width: 67px
+
+	h1.people_text
+		background: url(../../img/people_text.png) no-repeat
+		height: 20px
+		width: 74px
+		margin-right: 13px
+
+	div.control-group
+		margin: 0
+		&:before
+			display: inline
+		&:after
+			display: inline
+
+		input, select
+			float: left
+			font-size: 12px
+			padding: 8px
+			@include border-radius(4px)
+			@include appearance(none)
+			border: 1px solid #79766c
+			margin:
+				right: 4px
+				bottom: 4px
+			color: #000
+			line-height: 15px
+
+		input.input-sdate
+			width: 90px
+			background: url(../img/start-date.png) no-repeat 75px center #FFF
+
+		input.input-edate
+			width: 90px
+			background: url(../img/end-date.png) no-repeat 75px center #FFF
+
+		input.input-large
+			width: 202px	
+
+		select
+			//overflow: hidden
+			//width: 120%
+			height: 38px
+
+		select.input-guests
+			width: 90px
+			background: url(../img/mini-arrow.png) no-repeat 66px center #FFF
+
+		select.input-age1
+			width: 77px
+			background: url(../img/mini-arrow.png) no-repeat 56px center #FFF
+
+		select.input-age2
+			width: 46px
+			background: url(../img/mini-arrow.png) no-repeat 28px center #FFF
+
+		select.input-language
+			width: 89px
+			background: url(../img/mini-arrow.png) no-repeat 69px center #FFF
+
+		select.input-others
+			width: 108px
+			background: url(../img/mini-arrow.png) no-repeat 87px center #FFF
+
+	div.form-actions
+		float: right
+		margin:
+			top: 20px
+			bottom: 0px
+		background: none
+		padding: 0px
+
+		button.btn-peoplewings
+			padding: 5px 20px
+			@include border-radius(20px)
+			color: #FFFF00
+			background: #18183F
+			font:
+				family: 'Exo', Tahoma, Sans Serif
+				size: 18px
+				weight: 500
+				style: italic
+			border: 2px solid #FFFF00
+			@include transition(box-shadow, 0.5s)
+			&:hover
+				@include box-shadow(0px, 0px, 20px, 0px, #FFFF00)
+
