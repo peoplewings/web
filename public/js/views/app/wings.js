@@ -6,12 +6,18 @@ define(function(require) {
 	var utils = require("utils");
 	var Promise = require('promise');
 	var wingsTpl = require("tmpl!templates/app/wings.html");
-	var alertTpl = require("tmpl!templates/lib/alert.html");
+	var alerts = require('views/lib/alerts');
 	var wingView = require("views/app/wing");
 	var ProfileModel = require("models/Profile");
 	var WingModel = require("models/Wing");
 
 	var spinner = new Spinner(utils.getSpinOpts());
+	/*
+		spinner.spin(document.getElementById('main'));
+		spinner.stop();
+
+		var alertTpl = rekire("tmpl!templates/lib/alert.html");
+	*/
 
 	var wingsView = Backbone.View.extend({
 
@@ -24,7 +30,6 @@ define(function(require) {
 			},
 			"change #wings-list": function(evt){
 				var id = evt.target.value.split("accomodations/", 2)[1]
-				console.log("Change to... ", id)
 				router.navigate("/#/wings/" + id);
 			}
 		},
@@ -75,22 +80,15 @@ define(function(require) {
 		},
 
 		changeStatus: function(e) {
-			var self = this
-			spinner.spin(document.getElementById('main'));
 			api.put(api.getApiVersion() + "/profiles/" + api.getUserId(), {
 				pwState: e.target.value
 			})
-			.prop('msg')
-			.then(function(msg) {
-				spinner.stop();
-				return msg;
-			})
-			.fin(function(msg) {
-				self.$el.prepend(alertTpl({
-					extraClass: 'alert-success',
-					heading: msg
-				}));
-			})
+			.then(function() {
+				alerts.success('Wings general status updated');
+			}, function(error) {
+				alerts.defaultError();
+			});
+			
 		},
 
 		addWingToList: function(wing) {
