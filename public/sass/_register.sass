@@ -1,0 +1,124 @@
+/* --------------------------------------------------------------------------
+	 _Register
+	 -------------------------------------------------------------------------- */
+
+form#register-form
+	float: right
+	background: $blue_sign
+	padding: 27px 14px
+	padding-top: 0px
+	margin: 27px
+	@include border-radius(12px)
+	width: 470px
+
+	.help-block
+		margin: 0
+
+	input, select
+		margin: 0
+		min-height: 22px
+
+	select
+		height: 40px
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select
+		font-size: 13px
+		padding: 8px
+		@include border-radius(4px)
+		@include appearance(none)
+		border: 1px solid #79766c
+		color: #000
+		line-height: 15px
+
+	input[type="text"],
+	input[type="password"]
+		max-width: 140px
+
+	input[type="checkbox"]
+		float: left
+		margin:
+			top: 2px
+			right: 15px
+			left: 0
+
+	span.signal
+		float: left
+		text-indent: -9999px
+		height: 16px
+		width: 15px
+		background: url(../img/signal.png) no-repeat
+		position: relative
+		bottom: 16px
+		left: 200px
+		@include opacity(0.7)
+
+	legend
+		float: right
+		position: relative
+		right: 10px
+		bottom: 13px
+		width: 107px
+		height: 28px
+		text-indent: -9999px
+		background: url(../img/signup.png) no-repeat
+
+	.clear
+		clear: both
+
+	.control-group
+		margin: 0
+		margin-bottom: 5px
+
+	.control-group:after, .control-group:before
+		display: block
+
+	.control-label
+		float: left
+		color: #FFF
+		width: 135px
+		padding: 11px
+		text-shadow: 1px 1px 1px #000
+		font-size: 14px
+
+	.controls
+		margin-left: 125px
+
+		input[type="text"]
+			width: 140px
+
+		input[type="email"],
+		input[type="password"]
+			width: 303px
+
+		select
+			background: url(../img/mini-arrow.png) no-repeat 74px center white
+			width: 100px
+
+		.select-mini
+			width: 97px
+
+		.select-medium
+			width: 120px
+			background-position: 94px center
+
+		.terms
+			margin-left: 117px
+
+	.accepts
+		margin-left: 98px
+		margin-bottom: 2em
+
+	.terms
+		color: #FFF
+		font-size: 12px
+		line-height: 18px
+		p
+			margin: 12px 0px
+		a
+			color: #FFFF00
+			&:hover
+				text-decoration: underline
+				cursor: pointer

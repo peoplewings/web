@@ -212,6 +212,9 @@ body {
 .span8 {
   width: 700px; }
 
+#main {
+  padding-top: 55px; }
+
 /* ==========================================================================
  * HTML STRUCTURE
  * ========================================================================== */
@@ -263,9 +266,117 @@ body {
         text-decoration: underline; }
 
 /* --------------------------------------------------------------------------
+ * _Register
+ * -------------------------------------------------------------------------- */
+form#register-form {
+  float: right;
+  background: rgba(30, 30, 57, 0.7);
+  padding: 27px 14px;
+  padding-top: 0px;
+  margin: 27px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 470px; }
+  form#register-form .help-block {
+    margin: 0; }
+  form#register-form input, form#register-form select {
+    margin: 0;
+    min-height: 22px; }
+  form#register-form select {
+    height: 40px; }
+  form#register-form input[type="text"],
+  form#register-form input[type="password"],
+  form#register-form input[type="email"],
+  form#register-form select {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #79766c;
+    color: black;
+    line-height: 15px; }
+  form#register-form input[type="text"],
+  form#register-form input[type="password"] {
+    max-width: 140px; }
+  form#register-form input[type="checkbox"] {
+    float: left;
+    margin-top: 2px;
+    margin-right: 15px;
+    margin-left: 0; }
+  form#register-form span.signal {
+    float: left;
+    text-indent: -9999px;
+    height: 16px;
+    width: 15px;
+    background: url(../img/signal.png) no-repeat;
+    position: relative;
+    bottom: 16px;
+    left: 200px;
+    opacity: 0.7;
+    filter: alpha(opacity=70); }
+  form#register-form legend {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 13px;
+    width: 107px;
+    height: 28px;
+    text-indent: -9999px;
+    background: url(../img/signup.png) no-repeat; }
+  form#register-form .clear {
+    clear: both; }
+  form#register-form .control-group {
+    margin: 0;
+    margin-bottom: 5px; }
+  form#register-form .control-group:after, form#register-form .control-group:before {
+    display: block; }
+  form#register-form .control-label {
+    float: left;
+    color: white;
+    width: 135px;
+    padding: 11px;
+    text-shadow: 1px 1px 1px black;
+    font-size: 14px; }
+  form#register-form .controls {
+    margin-left: 125px; }
+    form#register-form .controls input[type="text"] {
+      width: 140px; }
+    form#register-form .controls input[type="email"],
+    form#register-form .controls input[type="password"] {
+      width: 303px; }
+    form#register-form .controls select {
+      background: url(../img/mini-arrow.png) no-repeat 74px center white;
+      width: 100px; }
+    form#register-form .controls .select-mini {
+      width: 97px; }
+    form#register-form .controls .select-medium {
+      width: 120px;
+      background-position: 94px center; }
+    form#register-form .controls .terms {
+      margin-left: 117px; }
+  form#register-form .accepts {
+    margin-left: 98px;
+    margin-bottom: 2em; }
+  form#register-form .terms {
+    color: white;
+    font-size: 12px;
+    line-height: 18px; }
+    form#register-form .terms p {
+      margin: 12px 0px; }
+    form#register-form .terms a {
+      color: yellow; }
+      form#register-form .terms a:hover {
+        text-decoration: underline;
+        cursor: pointer; }
+
+/* --------------------------------------------------------------------------
  * _Search Accommodation
  * -------------------------------------------------------------------------- */
-.tab-pane {
+div.tab-pane {
   background: #e1e0d9;
   padding: 27px;
   padding-top: 40px;
@@ -274,93 +385,70 @@ body {
   -moz-border-radius: 12px;
   overflow: hidden;
   margin: 0; }
-  .tab-pane label {
+  div.tab-pane label {
     display: none; }
-  .tab-pane h1 {
+  div.tab-pane h1 {
     float: left;
     margin-top: 10px;
     margin-right: 20px;
     text-indent: -9999px; }
-  .tab-pane h1.wings_text {
+  div.tab-pane h1.wings_text {
     background: url(../../img/wings_text.png) no-repeat;
     height: 20px;
     width: 67px; }
-  .tab-pane h1.people_text {
+  div.tab-pane h1.people_text {
     background: url(../../img/people_text.png) no-repeat;
     height: 20px;
     width: 74px;
     margin-right: 13px; }
-  .tab-pane div.control-group {
+  div.tab-pane div.control-group {
     margin: 0; }
-    .tab-pane div.control-group:before {
+    div.tab-pane div.control-group:before {
       display: inline; }
-    .tab-pane div.control-group:after {
+    div.tab-pane div.control-group:after {
       display: inline; }
-    .tab-pane div.control-group input, .tab-pane div.control-group select {
+    div.tab-pane div.control-group input, div.tab-pane div.control-group select {
       float: left;
       font-size: 12px;
       padding: 8px;
       border-radius: 4px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
       border: 1px solid #79766c;
       margin-right: 4px;
       margin-bottom: 4px;
-      color: black;
       line-height: 15px; }
-    .tab-pane div.control-group input.input-sdate {
+    div.tab-pane div.control-group input.input-sdate {
       width: 90px;
       background: url(../img/start-date.png) no-repeat 75px center white; }
-    .tab-pane div.control-group input.input-edate {
+    div.tab-pane div.control-group input.input-edate {
       width: 90px;
       background: url(../img/end-date.png) no-repeat 75px center white; }
-    .tab-pane div.control-group input.input-large {
+    div.tab-pane div.control-group input.input-large {
       width: 202px; }
-    .tab-pane div.control-group select {
+    div.tab-pane div.control-group select {
       height: 38px; }
-    .tab-pane div.control-group select.input-guests {
+    div.tab-pane div.control-group select.input-guests {
       width: 90px;
       background: url(../img/mini-arrow.png) no-repeat 66px center white; }
-    .tab-pane div.control-group select.input-age1 {
+    div.tab-pane div.control-group select.input-age1 {
       width: 77px;
       background: url(../img/mini-arrow.png) no-repeat 56px center white; }
-    .tab-pane div.control-group select.input-age2 {
+    div.tab-pane div.control-group select.input-age2 {
       width: 46px;
       background: url(../img/mini-arrow.png) no-repeat 28px center white; }
-    .tab-pane div.control-group select.input-language {
+    div.tab-pane div.control-group select.input-language {
       width: 89px;
       background: url(../img/mini-arrow.png) no-repeat 69px center white; }
-    .tab-pane div.control-group select.input-others {
+    div.tab-pane div.control-group select.input-others {
       width: 108px;
       background: url(../img/mini-arrow.png) no-repeat 87px center white; }
-  .tab-pane div.form-actions {
+  div.tab-pane div.form-actions {
     float: right;
     margin-top: 20px;
     margin-bottom: 0px;
     background: none;
     padding: 0px; }
-    .tab-pane div.form-actions button.btn-peoplewings {
-      padding: 5px 20px;
-      border-radius: 20px;
-      -webkit-border-radius: 20px;
-      -moz-border-radius: 20px;
-      color: yellow;
-      background: #18183f;
-      font-family: "Exo", Tahoma, Sans Serif;
-      font-size: 18px;
-      font-weight: 500;
-      font-style: italic;
-      border: 2px solid yellow;
-      transition: box-shadow 0.5s;
-      -moz-transition: box-shadow 0.5s;
-      -webkit-transition: box-shadow 0.5s;
-      -o-transition: box-shadow 0.5s; }
-      .tab-pane div.form-actions button.btn-peoplewings:hover {
-        box-shadow: 0px 0px 20px 0px yellow;
-        -moz-box-shadow: 0px 0px 0px 20px yellow;
-        -webkit-box-shadow: 0px 0px 20px 0px yellow; }
 
 /* --------------------------------------------------------------------------
  * _Search Results
@@ -585,77 +673,6 @@ div.profile {
         text-transform: uppercase; }
 
 /* --------------------------------------------------------------------------
- * _Pager Counter
- * -------------------------------------------------------------------------- */
-.pager {
-  list-style: none;
-  text-align: center;
-  margin: 0;
-  font-size: 0.9em; }
-  .pager a {
-    display: inline;
-    border: none;
-    padding: 0; }
-    .pager a:hover {
-      background: none;
-      text-decoration: underline; }
-  .pager p {
-    margin: 0;
-    margin-top: 0.2em;
-    display: inline; }
-  .pager li {
-    float: left; }
-  .pager .icon {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #d8d6d0;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    background: white;
-    background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
-    background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -o-linear-gradient(top, white 0%, #ecece5 100%);
-    background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
-    background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
-    .pager .icon:hover {
-      background: white; }
-    .pager .icon:active {
-      background: white;
-      background: -moz-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d0cec7));
-      background: -webkit-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -o-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: -ms-linear-gradient(top, white 0%, #d0cec7 100%);
-      background: linear-gradient(to bottom, white 0%, #d0cec7 100%); }
-    .pager .icon a {
-      float: left;
-      display: block;
-      width: 25px;
-      height: 25px;
-      text-indent: -9999px;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px; }
-    .pager .icon .previousPage {
-      background: url(../img/pager-prev.png) no-repeat 8px 8px; }
-    .pager .icon .nextPage {
-      background: url(../img/pager-next.png) no-repeat 10px 8px; }
-
-.pager-content {
-  background: white;
-  border: 1px solid #ccccd3;
-  overflow: hidden;
-  padding: 14px;
-  padding-left: 18px;
-  margin-top: 27px;
-  margin-bottom: 27px; }
-  .pager-content .adjust {
-    margin-top: 7px;
-    margin-right: 14px; }
-
-/* --------------------------------------------------------------------------
  * _Footer
  * -------------------------------------------------------------------------- */
 .navbar-fixed-bottom {
@@ -726,9 +743,6 @@ div.profile {
     .footer.navbar.navbar-fixed-bottom #follow .youtube {
       background: url(../img/icon_yt.png) no-repeat; }
 
-/* ==========================================================================
- * Nav
- * ========================================================================== */
 .nav {
   margin: 0; }
 

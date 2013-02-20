@@ -1,10 +1,11 @@
-<form id="register-form" class="form-horizontal pull-right">
+<form id="register-form" class="form-horizontal pull-right navbar-inner">
+	<span class="signal">register signal</span>
 	<legend>Sign up</legend>
-	<div class="control-group">
+	<div class="control-group clear">
 		<label class="control-label" for="inputName">Name</label>
 		<div class="controls">
-			<input type="text" id="firstName" name="firstName" placeholder="First" class="input-small required" style="margin-right:5pt">
-			<input type="text" name="lastName" placeholder="Last" class="input-small required">
+			<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required">
+			<input type="text" name="lastName" placeholder="Last Name" class="input-small required">
 			<span class="help-block"></span>
 		</div>
 	</div>
@@ -60,8 +61,13 @@
 	<div class="control-group">
 		<label class="control-label" for="inputEmail">Repeat email</label>
 		<div class="controls">
-			<input type="email" name="repeatEmail" placeholder="Email" class="required">
+			<input type="email" name="repeatEmail" placeholder="Repeat Email" class="required">
 			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls terms">
+			<p>By continuing, you're confirming that you've read and agree to our the <a hrer="#">Terms and Conditions</a>, Privacy Policy and Cookie Policy, and that you're 18 or older.</p>
 		</div>
 	</div>
 	<div class="control-group">
@@ -70,7 +76,7 @@
 				<input type="checkbox" name="hasAcceptedTerms" class="required"> Accept <a id="terms-link" href="/#/terms"> Terms &amp; Conditions</a>
 				<span class="help-block"></span>
 			</label>
-			<button type="submit" class="btn">Sign in</button>
+			<input type="submit" class="btn-peoplewings" value="Sign me on !">
 		</div>
 	</div>
 </form>
