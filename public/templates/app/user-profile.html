@@ -3,11 +3,13 @@
 		<div class="row">
 			<div class="span5">
 				<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
+				<!--
 				{{#if verified}}
 					<span class="label label-success"> Verified</span>
 				{{else}}
 					<span class="label label-important"> Not verified</span>
 				{{/if}}
+				-->
 				<ul class="unstyled">
 					<li>
 						{{#if current.name}}
@@ -199,8 +201,8 @@
 									{{/if}}
 								</dd>
 								<dt>Public transport</dt>
-								<dd>{{#if train}}Train{{/if}}, 
-									{{#if underground}}Underground{{/if}}, 
+								<dd>{{#if train}}Train{{/if}},
+									{{#if underground}}Underground{{/if}},
 									{{#if tram}}Tram{{/if}},
 									{{#if bus}}Bus{{/if}},
 									{{#if boat}}Boat{{/if}},

@@ -12,6 +12,27 @@ define(function(require) {
 		document.location.refresh(true);
 	}
 
+	var updateListeners = {};
+
+	function parseUpdates(updates) {
+		_.each(updates, function(value, key) {
+			var listeners = updateListeners[key];
+			if (!listeners)
+				return;
+
+			listeners.forEach(function(listener) {
+				listener(value);
+			});
+		});
+	}
+
+	function registerUpdateListener(type, callback) {
+		if (!updateListeners[type])
+			updateListeners[type] = [];
+
+		updateListeners[type].push(callback);
+	}
+
 	function request(method, uri, body) {
 		var prom = new Promise();
 		var url = server + uri
@@ -25,6 +46,8 @@ define(function(require) {
 				if (request.status == 401)
 					return logout();
 
+				pooling.restart();
+
 				try {
 					var response = JSON.parse(request.responseText);
 				} catch(err) {
@@ -32,13 +55,21 @@ define(function(require) {
 					return prom.reject(err);
 				}
 
+				if (response.updates)
+					parseUpdates(response.updates);
+
 				if (response.status)
 					return prom.resolve(response);
 
 				// ANALYZE ERROR
 
-				if (!response.errors || !response.errors.length)
-					return alerts.error('ERROR', 'Sorry an error ocurred');
+				if (!response.errors || !response.errors.length) {
+					prom.reject(new Error('Server error'));
+					alerts.error('ERROR', 'Sorry an error ocurred');
+					return;
+				}
+
+				var errorOptions = {autoclose:5000};
 
 				response.errors.forEach(function(error) {
 					switch (error) {
@@ -46,14 +77,40 @@ define(function(require) {
 							logout();
 							break;
 
-						case 'INVALID':
+						case 'INVALID_USER_OR_PASS':
+							alerts.error('Wrong email or password', errorOptions);
+							break;
+
+						case 'INACTIVE_USER':
+							alerts.error('Your account is not activated. Please check your email inbox', errorOptions);
+							break;
+
+						case 'EXPIRED_KEY':
+							alerts.error('Your key has expired.', errorOptions);
+							break;
+
+						case 'USED_KEY':
+							alerts.error('This key is already activated.', errorOptions);
+							break;
+
+						case 'EMAIL_IN_USE':
+							alerts.error('The gicen email is already in use', errorOptions);
+							break;
+
+						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
-						case 'TOO_LONG':
-						case 'NOT_EMPTY':
-						case 'NO_CONTENT':
 						case 'FORBIDDEN':
+						case 'INCORRECT_PASSWORD':
 						case 'INTERNAL_ERROR':
+						case 'INVALID':
+						case 'INVALID_FIELD':
+						case 'JSON_ERROR':
+						case 'METHOD_NOT_ALLOWED':
+						case 'NO_CONTENT':
+						case 'NOT_EMPTY':
 						case 'START_DATE_GT_END_DATE':
+						case 'TOO_LONG':
+						case 'VALIDATION_ERROR':
 							alerts.error(JSON.stringify(error, null, '\t'), {autoclose:0});
 							break;
 
@@ -61,6 +118,8 @@ define(function(require) {
 							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autoclose:0});
 					}
 				});
+
+				prom.reject(response.errors);
 			}
 		}
 		if(body) {
@@ -85,6 +144,32 @@ define(function(require) {
 		return localStorage.getItem("Peoplewings-Auth-Token")
 	}
 
+	var pooling = {
+		// seconds
+		interval: 60,
+
+		start: function() {
+			this.timeout = setTimeout(this.tick, this.interval * 1000);
+		},
+
+		stop: function() {
+			clearTimeout(this.timeout);
+		},
+
+		restart: function() {
+			this.stop();
+			this.start();
+		},
+
+		tick: function() {
+			this.stop();
+			request('GET', apiVersion + '/control');
+		}
+	};
+	pooling.tick = pooling.tick.bind(pooling);
+	pooling.start();
+
+
     return {
 		delete: function(uri, body) {
 			return request('DELETE', uri, body);
@@ -98,6 +183,8 @@ define(function(require) {
 		get: function(uri, params) {
 			return request('GET', addParams(uri, params), null);
 		},
+
+		listenUpdate: registerUpdateListener,
 
 		urlEncode: function(params){
 			return addParams("", params);

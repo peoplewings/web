@@ -28,7 +28,7 @@ define(function(require) {
 			if (window.File && window.FileReader && window.FileList && window.Blob) {
 				function handleFileSelect(evt) {
 					var files = evt.target.files; // FileList object
-					 console.dir(files)
+					console.dir(files)
 					if (files.length > 0) sc.uploadFile(files[0])
 				}
 				document.getElementById('upload').addEventListener('change', handleFileSelect, false);

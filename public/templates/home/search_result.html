@@ -26,7 +26,7 @@
 					</li>
 				</ul>
 			</div><!-- EOF pager content -->
-			
+
 			{{#each results }}
 			<div class="profile" data-profile-id="{{ id }}">
 				<div class="content-left">
@@ -44,14 +44,16 @@
 						</h1>
 						<span class="age">[{{ age }}]</span>
 						<span class="online">Online</span>
-<!-- 						{{#if verified }}
+						<!--
+						{{#if verified }}
 							<span class="label label-success">Verified</span>
 						{{else}}
 							<span class="label label-important">Not verified</span>
 						{{/if}}
 						{{#if lastLogin}}
 								<p><b>Last in:</b> {{ lastLogin }}</p>
-							{{/if}} -->
+						{{/if}}
+						-->
 						{{#if current.name }}
 						<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
 						<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>

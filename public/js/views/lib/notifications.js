@@ -1,22 +1,43 @@
 define(function(require) {
 
+	var $ = require('jquery');
 	var api = require('api2');
 	var Promise = require('promise');
 	var utils = require('utils');
+	var alerts = require('views/lib/alerts');
 	var UserAccount = require('models/Account');
-	
+
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
 	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
+	var notificationsModule = this;
+
 	var wingsParams = {
 		'none': function(parent) {
 			parent.html('');
 		},
 		'accomodation': function(parent, params) {
 			parent.html(accomodationTpl(params));
-			parent.find('[name="start-date"], [name="end-date"]')
+			parent.parents("form").validate(validation);
+			var endDate = parent.find('[name="start-date"], [name="end-date"]')
 				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd");
+				.datepicker("option", "dateFormat", "yy-mm-dd")[1];
+
+			$(endDate).rules("add", { greatThan: notificationsModule.$("[name=start-date]") });
 		},
+	};
+
+	var validation = {
+			rules: {
+				publicMessage: {
+					maxlength: 1500,
+				},
+				privateMessage: {
+					maxlength: 1500,
+				},
+			},
+			errorPlacement: function(error, element) {
+				error.appendTo(element.next("span.help-block"));
+			},
 	};
 
 	function selectedWingType(container) {
@@ -70,6 +91,8 @@ define(function(require) {
 				});
 			}
 
+			modal.find('form').validate(validation);
+
 			function send() {
 				if (!modal.find('form').valid())
 					return;
@@ -86,15 +109,13 @@ define(function(require) {
 					"kind": kind,
 					"data": data,
 				}).then(function() {
-					var alert = $('<div class="alert">Message sent</div>')
-					$(document.body).append(alert);
-					alert.alert();
-
-					setTimeout(function() {
-						alert.alert('close');
-					}, 3000);
-
+					alerts.success('Message Sent');
 					prom.resolve(true);
+				}, function(error) {
+					debugger;
+					alerts.defaultError();
+					prom.reject(error);
+				}).fin(function() {
 					modal.modal('hide');
 				});
 			}

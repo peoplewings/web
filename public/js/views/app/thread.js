@@ -5,6 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var Promise = require("promise");
 	var UserAccount = require('models/Account');
+	var alerts = require('views/lib/alerts');
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
@@ -37,6 +38,20 @@ define(function(require) {
 			'click .option-Reopen': 'optReopen',
 			'click .option-Deny': 'optDeny',
 			'click .option-Cancel': 'optDeny',
+		},
+
+		responseValidation: {
+			rules: {
+				startDate: {
+					date: true,
+				},
+				endDate: {
+					date: true,
+				}
+			},
+			errorPlacement: function(error, element) {
+				error.appendTo(element.nextAll("span.help-block"));
+			},
 		},
 
 		initialize: function() {
@@ -121,8 +136,6 @@ define(function(require) {
 				name: last.senderName,
 			};
 
-			//debugger
-
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 			this.$el.html(threadTpl(data, {
 				isMessage: isMessage,
@@ -150,7 +163,16 @@ define(function(require) {
 		},
 
 		remove: function() {
-			api.put('/api/v1/notificationslist', { threads: [ this.current.id ] }).then(this.back.bind(this));
+			var self = this;
+			return api.put('/api/v1/notificationslist', {
+				threads: [ this.current.id ],
+			}).then(function() {
+				alerts.success('Thread removed');
+				self.back();
+			}, function(error) {
+				debugger;
+				alerts.defaultError();
+			});
 		},
 
 		back: function() {
@@ -215,6 +237,10 @@ define(function(require) {
 		},
 
 		sendResponse: function() {
+			var form = this.$("#edit-wing-params > form");
+			if (form.length && !form.valid())
+				return Promise.resolved(false);
+
 			var resp = { content: this.$('#write-response textarea').val() };
 			if (!resp.content)
 				return Promise.resolved(false);
@@ -230,7 +256,12 @@ define(function(require) {
 				data: resp,
 			}).then(function() {
 				return self.render(self.current.id);
-			});
+			}).then(function() {
+				alerts.success('Response sent');
+			}, function() {
+				debugger;
+				alerts.defaultError();
+			})
 		},
 
 		optAccept: function() {
@@ -270,8 +301,20 @@ define(function(require) {
 				.find("span")
 				.text(e(option, "notification-state"));
 
-			this.$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-			this.$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			this.$("#wing-params-form")
+				.validate(this.responseValidation);
+
+			this.$("input[name=startDate]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd");
+
+			this.$("input[name=endDate]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd")
+				.rules("add", {
+					greatThan: this.$("input[name=startDate]") ,
+
+				});
 
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);

@@ -7,6 +7,12 @@ define(function(require){
 	var notificationsTpl = require("tmpl!templates/app/notifications.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
 
+	api.listenUpdate('notifs', function(count) {
+		$('#notif-count')
+			.css('display', count ? 'block' : 'hidden')
+			.html(count);
+	});
+
 	var notificationsView = Backbone.View.extend({
 		el: "#main",
 

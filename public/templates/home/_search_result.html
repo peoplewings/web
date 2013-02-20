@@ -36,11 +36,13 @@
 					<p id="user-name-label">
 						<a href="#/profiles/{{id}}/about">
 							<span {{ blurrStyle }}>{{ firstName }} {{ lastName }}</span></a>, {{ age }}
+						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
 						{{else}}
 							<span class="label label-important">Not verified</span>
 						{{/if}}
+						-->
 					</p>
 					{{#if current.name }}
 						<p><b>Live in:</b> {{ current.name }}, {{ current.country }}</p>
@@ -49,7 +51,7 @@
 					{{#if lastLogin}}
 						<p><b>Last in:</b> {{ lastLogin }}</p>
 					{{/if}}
-					
+
 					<p><b>Response rate:</b> {{ replyRate }}%</p>
 					<p><b>Average reply time:</b> {{replyTime}}</p>
 

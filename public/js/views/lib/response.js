@@ -1,14 +1,15 @@
-define([
-  'jquery',
-  'backbone',
-  'text!templates/lib/response.html',
-], function($, Backbone, Tpl, form){
+define(function(require) {
 
-  var responseView = Backbone.View.extend({
-    render: function(data){
-        var template = _.template( Tpl, data );
-		$(this.el).html( template );
-    }
-  });
-  return new responseView;
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var template = require('text!templates/lib/response.html');
+
+	var responseView = Backbone.View.extend({
+		render: function(data){
+			var html = _.template(template, data);
+			$(this.el).html(html);
+		}
+	});
+
+	return new responseView;
 });
