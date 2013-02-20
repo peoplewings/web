@@ -12,6 +12,27 @@ define(function(require) {
 		document.location.refresh(true);
 	}
 
+	var updateListeners = {};
+
+	function parseUpdates(updates) {
+		_.each(updates, function(value, key) {
+			var listeners = updateListeners[key];
+			if (!listeners)
+				return;
+
+			listeners.forEach(function(listener) {
+				listener(value);
+			});
+		});
+	}
+
+	function registerUpdateListener(type, callback) {
+		if (!updateListeners[type])
+			updateListeners[type] = [];
+
+		updateListeners[type].push(callback);
+	}
+
 	function request(method, uri, body) {
 		var prom = new Promise();
 		var url = server + uri
@@ -31,6 +52,9 @@ define(function(require) {
 					console.error('Invalid JSON (', uri, '): ', request.responseText);
 					return prom.reject(err);
 				}
+
+				if (response.updates)
+					parseUpdates(response.updates);
 
 				if (response.status)
 					return prom.resolve(response);
@@ -131,6 +155,8 @@ define(function(require) {
 		get: function(uri, params) {
 			return request('GET', addParams(uri, params), null);
 		},
+
+		listenUpdate: registerUpdateListener,
 
 		urlEncode: function(params){
 			return addParams("", params);
