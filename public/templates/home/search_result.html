@@ -28,7 +28,7 @@
 			</div><!-- EOF pager content -->
 
 			{{#each results }}
-			<div class="profile" data-profile-id="{{ id }}">
+			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
 					<div class="avatar">
 						<span class="online-dot">online dot</span>
@@ -76,9 +76,9 @@
 						</div>
 						<div class="button-bar">
 							<ul>
-								<li><a href="#" class="button">MESSAGE</a></li>
-								<li><a href="#" class="button selected">REQUEST</a></li>
-								<li><a href="#" class="button">INVITE</a></li>
+								<li><button class="button send-message-btn">MESSAGE</button></li>
+								<li><button class="button send-request-btn selected">REQUEST</button></li>
+								<li><button class="button send-invitation-btn">INVITE</button></li>
 							</ul>
 						</div>
 					</div>

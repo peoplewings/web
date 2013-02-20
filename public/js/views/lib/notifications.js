@@ -50,7 +50,7 @@ define(function(require) {
 		var hasTarget = !!targetId;
 
 		Promise.parallel(
-			hasTarget || api.get('/ajax/search/notification_addressee?type=' + kind),
+			hasTarget || api.get(api.getApiVersion() + '/contacts?type=' + kind),
 			wingsReq
 		).spread(function(contacts, wings) {
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
