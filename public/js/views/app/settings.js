@@ -75,20 +75,9 @@ define(function(require) {
 
 			this.model.save(values, data.current_password)
 				.then(function(status) {
-					if (status === true) {
-						tpl = alertTpl({
-							extraClass: 'alert-success',
-							heading: "Account updated"
-						})
-					} else {
-						tpl = alertTpl({
-							extraClass: 'alert-error',
-							heading: "Account couldn't be updated" + ": ",
-							message: 'Please try again later'
-						})
-					}
+					alerts.success('Account updated');
 				}, function() {
-
+					alerts.defaultError();
 				})
 				.fin(function() {
 					$('#settings-form')[0].reset()
