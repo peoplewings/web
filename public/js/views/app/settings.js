@@ -65,43 +65,32 @@ define(function(require) {
 
 		submitSettings: function(e) {
 			e.preventDefault(e);
-			var tpl = null
-
 			var data = utils.serializeForm('settings-form')
 			var values = {}
 
-			_.each(data,
-			function(value, key) {
+			_.each(data, function(value, key) {
 				if (key != "repeatPassword" && key != "repeatEmail" && key != "current_password")
 				values[key] = value
-			})
+			});
 
 			this.model.save(values, data.current_password)
-			.then(function(status) {
-				if (status === true) {
-					tpl = alertTpl({
-						extraClass: 'alert-success',
-						heading: "Account updated"
-					})
-				} else {
-					tpl = alertTpl({
-						extraClass: 'alert-error',
-						heading: "Account couldn't be updated" + ": ",
-						message: 'Please try again later'
-					})
-				}
-			})
-			.fin(function() {
-				$('#settings-form')[0].reset()
-				$("#main").prepend(tpl)
-			})
+				.then(function(status) {
+					alerts.success('Account updated');
+				}, function() {
+					alerts.defaultError();
+				})
+				.fin(function() {
+					$('#settings-form')[0].reset()
+				})
 		},
 
 		deleteAccount: function() {
-			if ($('#delete-account-form').valid()) {
-				var data = utils.serializeForm('delete-account-form')
+			if (!$('#delete-account-form').valid())
+				return;
 
-				this.model.destroy(data)
+			var data = utils.serializeForm('delete-account-form')
+
+			this.model.destroy(data)
 				.then(function(status) {
 					if (status === true) {
 						$('#myModal').modal('hide')
@@ -116,9 +105,7 @@ define(function(require) {
 						$('#myModal > .modal-body').prepend(tpl)
 						$('#delete-account-form')[0].reset()
 					}
-				})
-			} else
-			return;
+				});
 		}
 	});
 
