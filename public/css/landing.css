@@ -344,9 +344,9 @@ input[type="button"] {
     #middle .navbar-inner .trip {
       background: url(../img/spot_trip.png) no-repeat; }
     #middle .navbar-inner .offer {
-      background: red;
-      width: 200px !important;
-      text-align: center; }
+      margin-left: 0.5em;
+      text-indent: 0;
+      width: 200px !important; }
 
 /* --------------------------------------------------------------------------
  * _Footer
