@@ -11,14 +11,6 @@ define(function(require) {
 	var ProfileModel = require("models/Profile");
 	var WingModel = require("models/Wing");
 
-	var spinner = new Spinner(utils.getSpinOpts());
-	/*
-		spinner.spin(document.getElementById('main'));
-		spinner.stop();
-
-		var alertTpl = rekire("tmpl!templates/lib/alert.html");
-	*/
-
 	var wingsView = Backbone.View.extend({
 
 		el: "#main",
@@ -36,25 +28,32 @@ define(function(require) {
 
 		initialize: function() {
 			this.model = new ProfileModel({ id: api.getUserId() });
-			this.model.on("change", this.render.bind(this, null));
+			this.model.on("change", this.refresh.bind(this));
 
 			this.list = new Backbone.Collection();
-			this.list.on("reset", this.render.bind(this, null));
-
-			this.getWingsData();
+			this.list.on("reset", this.refresh.bind(this));
 
 		},
 
 		render: function(wingId) {
-			$(this.el).html(wingsTpl(
-				{
-					generalStatus: this.model.get("pwState"),
-					wings: this.list.toJSON(),
-				}
-			));
+			var self = this;
 
-			if (wingId)
-				this.openWing({ id: wingId, update: true});
+			Promise.parallel(
+				api.get(api.getApiVersion() + "/profiles/" + api.getUserId()),
+				api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
+			).spread(function(profile, wings) {
+				self.model.set(profile.data, {silent: true});
+				self.list.reset(wings.data);
+				if (wingId)
+					self.openWing({ id: wingId, update: true});
+			});
+		},
+
+		refresh: function() {
+			$(this.el).html(wingsTpl({
+				generalStatus: this.model.get("pwState"),
+				wings: this.list.toJSON(),
+			}));
 		},
 
 		openWing: function(options){
@@ -65,18 +64,6 @@ define(function(require) {
 			})
 
 			this.wingView.render(options.update);
-		},
-
-		getWingsData: function() {
-			var self = this;
-
-			Promise.parallel(
-				api.get(api.getApiVersion() + "/profiles/" + api.getUserId()),
-				api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list")
-			).spread(function(profile, wings) {
-				self.model.set(profile.data, {silent: true});
-				self.list.reset(wings.data);
-			});
 		},
 
 		changeStatus: function(e) {
