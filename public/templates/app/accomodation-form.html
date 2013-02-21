@@ -222,9 +222,9 @@
 	<div class="form-actions">
 		<button id="cancel-wing-btn" class="btn">Cancel</button>
 		{{#if update}}
-			<button id="update-wing-btn" type="submit" class="btn btn-primary">Update</button>
+			<button id="update-wing-btn" type="button" class="btn btn-primary" data-loading-text="Updating...">Update</button>
 		{{else}}
-			<button type="submit" class="btn btn-primary">Save</button>
+			<button id="save-wing-btn" type="submit" class="btn btn-primary" data-loading-text="Saving...">Save</button>
 		{{/if}}
 		</div>
 	</div>

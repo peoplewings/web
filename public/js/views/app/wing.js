@@ -168,6 +168,8 @@ define(function(require) {
 
 		submitWing: function(evt) {
 			evt.preventDefault()
+			debugger
+			this.$("#save-wing-btn").button('loading');
 			var data = utils.serializeForm(evt.target.id)
 
 			data.city = this.cityObject
@@ -183,11 +185,15 @@ define(function(require) {
 				self.close();
 			}, function(error) {
 				alerts.defaultError();
+			})
+			.fin(function(){
+				self.$("#save-wing-btn").button('reset');
 			});
 		},
 
 		updateWing: function(evt) {
 			evt.preventDefault()
+			$(evt.target).button('loading')
 			var data = utils.serializeForm("accomodation-form")
 
 			data.city = this.cityObject
@@ -203,6 +209,9 @@ define(function(require) {
 				self.close();
 			}, function(error) {
 				alerts.defaultError();
+			})
+			.fin(function(){
+				$(evt.target).button('reset')
 			});
 		},
 
