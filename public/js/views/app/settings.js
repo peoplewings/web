@@ -5,9 +5,9 @@ define(function(require) {
 	var api = require("api2");
 	var utils = require("utils");
 	var logoutView = require("views/app/logout");
-	var settingsTpl = require("tmpl!templates/app/settings.html")
-	var alertTpl = require("tmpl!templates/lib/alert.html")
-	var UserModel = require("models/Account")
+	var settingsTpl = require("tmpl!templates/app/settings.html");
+	var alerts = require('views/lib/alerts');
+	var UserModel = require("models/Account");
 
 	var settingsView = Backbone.View.extend({
 
@@ -64,7 +64,8 @@ define(function(require) {
 		},
 
 		submitSettings: function(e) {
-			e.preventDefault(e);
+			e.preventDefault();
+			this.$("#save-settings-btn").button('loading');
 			var data = utils.serializeForm('settings-form')
 			var values = {}
 
@@ -80,18 +81,24 @@ define(function(require) {
 					alerts.defaultError();
 				})
 				.fin(function() {
-					$('#settings-form')[0].reset()
-				})
+					$('#settings-form')[0].reset();
+					self.$("#save-settings-btn").button('reset');
+				});
 		},
 
 		deleteAccount: function() {
 			if (!$('#delete-account-form').valid())
 				return;
-
+			this.$("#delete-account-btn").button('loading');
 			var data = utils.serializeForm('delete-account-form')
+			debugger
+			this.model.destroy(data);
 
+			/*
 			this.model.destroy(data)
-				.then(function(status) {
+				.then(function() {
+					debugger
+					
 					if (status === true) {
 						$('#myModal').modal('hide')
 						logoutView.goodbye()
@@ -105,7 +112,9 @@ define(function(require) {
 						$('#myModal > .modal-body').prepend(tpl)
 						$('#delete-account-form')[0].reset()
 					}
+					
 				});
+			*/
 		}
 	});
 
