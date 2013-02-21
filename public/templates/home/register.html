@@ -10,10 +10,25 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputPassword">Create a Password</label>
+		<label class="control-label" for="inputPassword">Password</label>
 		<div class="controls">
 			<input type="password" name="password" placeholder="Password" class="required">
+			<input type="password" name="confirm_password" placeholder="Repeat Password" class="required">
 		<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputEmail">Your email</label>
+		<div class="controls">
+			<input id="email" type="email" name="email" placeholder="Your current email address" class="required">
+			<span class="help-block"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputEmail">Repeat email</label>
+		<div class="controls">
+			<input type="email" name="repeatEmail" placeholder="Repeat your email address" class="required">
+			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="control-group">
@@ -52,28 +67,11 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputEmail">Your current email</label>
-		<div class="controls">
-			<input id="email" type="email" name="email" placeholder="Email" class="required">
-			<span class="help-block"></span>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputEmail">Repeat email</label>
-		<div class="controls">
-			<input type="email" name="repeatEmail" placeholder="Repeat Email" class="required">
-			<span class="help-block"></span>
-		</div>
-	</div>
-	<div class="control-group">
 		<div class="controls terms">
-			<p>By continuing, you're confirming that you've read and agree to our the <a hrer="#">Terms and Conditions</a>, Privacy Policy and Cookie Policy, and that you're 18 or older.</p>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
+			<p>By continuing, you're confirming that you've read and agree to our the <a id="terms-link" href="/#/terms">Terms and Conditions</a>, Privacy Policy and Cookie Policy, and that you're 18 or older.</p>
 			<label class="checkbox">
-				<input type="checkbox" name="hasAcceptedTerms" class="required"> Accept <a id="terms-link" href="/#/terms"> Terms &amp; Conditions</a>
+				<input type="checkbox" name="hasAcceptedTerms" class="required">
+					<p>I'm agree with this terms</p>
 				<span class="help-block"></span>
 			</label>
 			<input type="submit" class="btn-peoplewings" value="Sign me on !">

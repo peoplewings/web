@@ -5,11 +5,10 @@
 form#register-form
 	float: right
 	background: $blue_sign
-	padding: 27px 14px
-	padding-top: 0px
+	padding: 0 27px 27px 14px
 	margin: 27px
 	@include border-radius(12px)
-	width: 470px
+	width: 460px
 
 	.help-block
 		margin: 0
@@ -35,7 +34,7 @@ form#register-form
 
 	input[type="text"],
 	input[type="password"]
-		max-width: 140px
+		max-width: 149px
 
 	input[type="checkbox"]
 		float: left
@@ -78,24 +77,32 @@ form#register-form
 	.control-label
 		float: left
 		color: #FFF
-		width: 135px
+		width: 100px
 		padding: 11px
 		text-shadow: 1px 1px 1px #000
 		font-size: 14px
+		text-align: left
+
+	.checkbox
+		padding-left: 0
 
 	.controls
-		margin-left: 125px
+		margin-left: 122px
 
 		input[type="text"]
-			width: 140px
+			width: 149px
 
 		input[type="email"],
 		input[type="password"]
-			width: 303px
+			width: 95%
+
+		input[type="submit"]
+			font-size: 18px
 
 		select
-			background: url(../img/mini-arrow.png) no-repeat 74px center white
-			width: 100px
+			background: url(../img/mini-arrow.png) no-repeat 82px center white
+			width: 110px
+			color: $gray-link
 
 		.select-mini
 			width: 97px
@@ -116,9 +123,23 @@ form#register-form
 		font-size: 12px
 		line-height: 18px
 		p
-			margin: 12px 0px
+			margin: 15px 0px
 		a
 			color: #FFFF00
 			&:hover
 				text-decoration: underline
 				cursor: pointer
+
+label.error
+	background: #FFBDBD
+	width: 289px
+	padding: 15px
+	margin: 5px 0
+	color: #FF0000
+	text-shadow: 1px 1px #CCC
+	font-size: 13px
+
+.btn-peoplewings
+	font-size: 18px
+	float: right
+	margin-top: 20px
