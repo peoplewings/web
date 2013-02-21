@@ -244,8 +244,7 @@ body {
   margin-top: 23px;
   line-height: 12px; }
   .navbar .nav li {
-    display: inline;
-    float: none;
+    float: left;
     line-height: inherit; }
     .navbar .nav li:after {
       content: "|";
@@ -260,10 +259,125 @@ body {
       font-family: Arial, Sans-Serif;
       text-shadow: none;
       padding: 0;
-      color: #848178; }
+      color: #848178;
+      text-transform: uppercase; }
       .navbar .nav li a:hover {
         color: #18183f;
         text-decoration: underline; }
+
+.nav.pull-right {
+  text-transform: uppercase; }
+  .nav.pull-right span#notif-count {
+    float: left;
+    padding-right: 10px; }
+  .nav.pull-right img {
+    float: right;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: -6px;
+    right: 7px; }
+
+.btn-group.pull-right {
+  margin-top: 20px; }
+
+/* --------------------------------------------------------------------------
+ * _Notifications filters
+ * -------------------------------------------------------------------------- */
+#notification-type {
+  margin-top: 50px; }
+  #notification-type li {
+    margin-right: 10px;
+    margin-left: 10px; }
+    #notification-type li:hover {
+      cursor: pointer;
+      color: yellow; }
+    #notification-type li:active {
+      color: red; }
+
+.notification-item {
+  border: 1px solid #dddddd;
+  background: #eeeeee;
+  padding: 20px; }
+  .notification-item:hover {
+    background: #d1fc9a;
+    cursor: pointer; }
+
+#notification-panel {
+  background: #e1e0d9;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  background: #e1e0d9;
+  padding: 27px;
+  padding-top: 40px; }
+  #notification-panel li {
+    float: none;
+    margin: 0; }
+  #notification-panel h1 {
+    float: left;
+    margin-top: 10px;
+    margin-right: 20px;
+    text-indent: -9999px; }
+  #notification-panel h1.wings_text {
+    background: url(../../img/wings_text.png) no-repeat;
+    height: 20px;
+    width: 67px; }
+  #notification-panel h1.people_text {
+    background: url(../../img/people_text.png) no-repeat;
+    height: 20px;
+    width: 74px;
+    margin-right: 13px; }
+  #notification-panel div.control-group {
+    margin: 0; }
+    #notification-panel div.control-group:before {
+      display: inline; }
+    #notification-panel div.control-group:after {
+      display: inline; }
+    #notification-panel div.control-group input, #notification-panel div.control-group select {
+      float: left;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border: 1px solid #79766c;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      line-height: 15px; }
+    #notification-panel div.control-group input.input-sdate {
+      width: 90px;
+      background: url(../img/start-date.png) no-repeat 75px center white; }
+    #notification-panel div.control-group input.input-edate {
+      width: 90px;
+      background: url(../img/end-date.png) no-repeat 75px center white; }
+    #notification-panel div.control-group input.input-large {
+      width: 202px; }
+    #notification-panel div.control-group select {
+      height: 38px; }
+    #notification-panel div.control-group select.input-guests {
+      width: 90px;
+      background: url(../img/mini-arrow.png) no-repeat 66px center white; }
+    #notification-panel div.control-group select.input-age1 {
+      width: 77px;
+      background: url(../img/mini-arrow.png) no-repeat 56px center white; }
+    #notification-panel div.control-group select.input-age2 {
+      width: 46px;
+      background: url(../img/mini-arrow.png) no-repeat 28px center white; }
+    #notification-panel div.control-group select.input-language {
+      width: 89px;
+      background: url(../img/mini-arrow.png) no-repeat 69px center white; }
+    #notification-panel div.control-group select.input-others {
+      width: 108px;
+      background: url(../img/mini-arrow.png) no-repeat 87px center white; }
+  #notification-panel div.form-actions {
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    background: none;
+    padding: 0px; }
 
 /* --------------------------------------------------------------------------
  * _Register
@@ -938,6 +1052,3 @@ div.profile {
 
 input, select {
   margin: 0px; }
-
-.tab-content {
-  margin-top: 60px; }
