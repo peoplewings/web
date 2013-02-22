@@ -12,8 +12,7 @@ define(function(require){
 	var likesTpl = require('tmpl!templates/app/likes-form.html');
 	var contactTpl = require('tmpl!templates/app/contact-form.html');
 
-	var alertTpl = require('tmpl!templates/lib/alert.html');
-
+	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
 	var avatarView = require("views/app/avatar");
 	var mapView = require("views/app/map");
@@ -260,10 +259,19 @@ define(function(require){
 
 		submitProfile: function(e){
 			e.preventDefault(e);
-			var tpl = null
-			var sc = this
 			var data = this.collectData()
 
+			this.$("#save-profile-btn").button('loading');
+
+			this.model.save(data)
+				.then(function(){
+					alerts.success('Profile saved');
+				})
+				.fin(function(){
+					this.$("#save-profile-btn").button('reset');		
+				});
+			
+			/*
 			this.model.save(data)
 				.then(function(status){
 					$('.alert').remove()
@@ -274,7 +282,7 @@ define(function(require){
 				})
 				.fin(function(){
 					$(sc.el).prepend(tpl)
-				})
+				})*/
 		},
 
 		collectData: function() {
