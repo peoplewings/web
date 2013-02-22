@@ -9,7 +9,7 @@ define(function(require) {
 		alerts.error('ERROR', 'Invalid session');
 		localStorage.removeItem("Peoplewings-Auth-Token");
 		document.location.hash = '/login'
-		document.location.refresh(true);
+		document.location.reload(true);
 	}
 
 	var updateListeners = {};
@@ -72,7 +72,7 @@ define(function(require) {
 				var errorOptions = {autoclose:5000};
 
 				response.errors.forEach(function(error) {
-					switch (error) {
+					switch (error.type) {
 						case 'AUTH_REQUIRED':
 							logout();
 							break;
@@ -163,7 +163,8 @@ define(function(require) {
 
 		tick: function() {
 			this.stop();
-			request('GET', apiVersion + '/control');
+			if (loadAuthToken())
+				request('GET', apiVersion + '/control');
 		}
 	};
 	pooling.tick = pooling.tick.bind(pooling);
