@@ -271,19 +271,6 @@ define(function(require){
 				.fin(function(){
 					self.$("#save-profile-btn").button('reset');		
 				});
-			
-			/*
-			this.model.save(data)
-				.then(function(status){
-					$('.alert').remove()
-					if (status === true)
-						tpl = alertTpl({extraClass: 'alert-success', heading: "Profile updated"})
-					else
-						tpl = alertTpl({extraClass: 'alert-error', heading: "Profile couldn't be updated" + ": ", message: 'Please try again later'})
-				})
-				.fin(function(){
-					$(sc.el).prepend(tpl)
-				})*/
 		},
 
 		collectData: function() {

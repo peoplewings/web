@@ -168,7 +168,6 @@ define(function(require) {
 
 		submitWing: function(evt) {
 			evt.preventDefault()
-			debugger
 			this.$("#save-wing-btn").button('loading');
 			var data = utils.serializeForm(evt.target.id)
 
