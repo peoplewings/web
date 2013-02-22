@@ -64,9 +64,9 @@ define(function(require) {
 
 	var opts = {
 		lines: 13, // The number of lines to draw
-		length: 7, // The length of each line
-		width: 4, // The line thickness
-		radius: 10, // The radius of the inner circle
+		length: 3, // The length of each line
+		width: 1, // The line thickness
+		radius: 7, // The radius of the inner circle
 		corners: 1, // Corner roundness (0..1)
 		rotate: 0, // The rotation offset
 		color: '#000', // #rgb or #rrggbb

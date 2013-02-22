@@ -3,24 +3,28 @@ define(function(require) {
 	require("jquery.Jcrop");
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api');
+	var api = require('api2');
 	var utils = require('utils');
-	var avatarTpl = require('text!templates/app/avatar.html');
+	var avatarTpl = require('tmpl!templates/app/avatar.html');
 	var ProfileModel = require('models/Profile');
+	var alerts = require("views/lib/alerts");
 
 
 	var avatarView = Backbone.View.extend({
 		originalAvatarId: "",
+
 		events: {},
+
 		initialize: function(){
 		},
+
 		render: function(url){
-			var tpl = _.template( avatarTpl, { avatarUrl: url });
-			$('#main > .row').append(tpl);
+			$('#main > .row').append(avatarTpl({ avatarUrl: url }));
 			this.initAvatarForm();
 		},
+
 		initAvatarForm: function(){
-			$('a.thumbnail').click(function(e){
+			$('a#upload-avatar-link').click(function(e){
 				e.preventDefault();
 				$('#upload').trigger('click');
 			});
@@ -28,7 +32,6 @@ define(function(require) {
 			if (window.File && window.FileReader && window.FileList && window.Blob) {
 				function handleFileSelect(evt) {
 					var files = evt.target.files; // FileList object
-					console.dir(files)
 					if (files.length > 0) sc.uploadFile(files[0])
 				}
 				document.getElementById('upload').addEventListener('change', handleFileSelect, false);
@@ -38,6 +41,7 @@ define(function(require) {
 				sc.submitAvatar()
 			})
 		},
+
 		uploadFile: function(file){
 			var fd = new FormData();
 			var profile = new ProfileModel({id: api.getUserId()})
@@ -111,16 +115,23 @@ define(function(require) {
 			}
 		},
 		submitAvatar: function(){
-			//50% of times it breaks : Acces-Control-Origin....
-			var vs = utils.serializeForm("crop-avatar-form")
-			api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, vs, this.avatarUploaded)
+			var data = utils.serializeForm("crop-avatar-form");
+
+			$("#submit-avatar").button('loading');
+
+			api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, data)
+				.then(function(resp){
+					alerts.success("Avatar uploaded");
+					$('#avatar').attr("src", resp.data.url);
+					$('#crop-modal').modal('hide');
+				}, function(error) {
+					debugger;
+					alerts.defaultError();
+				})
+				.fin(function(){
+					$("#submit-avatar").button('reset');
+				});
 		},
-		avatarUploaded: function(response){
-			if (response.status === true){
-				$('#avatar').attr("src", response.data.url)
-				$('#crop-modal').modal('hide')
-			} else alert("Error", response.msg)
-		}
 	});
 
 	return new avatarView;
