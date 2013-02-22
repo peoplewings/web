@@ -25,8 +25,7 @@
 		margin-top: 23px
 		line-height: 12px
 		li
-			display: inline
-			float: none
+			float: left
 			line-height: inherit
 			&:after
 				content: "|"
@@ -42,6 +41,24 @@
 				text-shadow: none
 				padding: 0
 				color: $gray-link
+				text-transform: uppercase
 				&:hover
 					color: $blue_corp
 					text-decoration: underline
+
+.nav.pull-right
+	text-transform: uppercase
+	span#notif-count
+		float: left
+		padding-right: 10px
+	img
+		float: right
+		width: 24px
+		height: 24px
+		position: relative
+		top: -6px
+		right: 7px
+
+.btn-group.pull-right
+	margin-top: 20px
+
