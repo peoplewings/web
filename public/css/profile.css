@@ -1,0 +1,147 @@
+/* --------------------------------------------------------------------------
+ * _Reset : Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * 					http://cssreset.com
+ * -------------------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* --------------------------------------------------------------------------
+ * _Effects
+ * -------------------------------------------------------------------------- */
+body {
+  font-family: "Helvetica Neue", Arial;
+  background: #f5f5f0; }
+
+div {
+  line-height: 20px; }
+
+.container {
+  max-width: 960px;
+  margin: auto; }
+  .container .landscape {
+    background: red;
+    min-height: 270px;
+    padding: 27px;
+    background: url(http://lorempixel.com/960/325/city/7) no-repeat center top;
+    position: relative;
+    margin-bottom: 8px; }
+    .container .landscape .people, .container .landscape .stars {
+      float: right;
+      width: 60px;
+      height: 60px;
+      background: white;
+      margin-left: 10px;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px; }
+    .container .landscape .personal-info {
+      background: white;
+      background: rgba(255, 255, 255, 0.9);
+      width: 375px;
+      height: 135px;
+      float: right;
+      position: absolute;
+      bottom: 27px;
+      right: 0; }
+      .container .landscape .personal-info button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 14px 24px;
+        margin: 0;
+        border: none;
+        font-style: italic;
+        background: none;
+        text-shadow: 1px #eeeeee;
+        border-right: 1px solid #d2d2d2;
+        text-transform: uppercase; }
+        .container .landscape .personal-info button:hover {
+          background: yellow;
+          cursor: pointer; }
+        .container .landscape .personal-info button:active {
+          background: #ffd52f; }
+      .container .landscape .personal-info span.config {
+        float: left;
+        width: 15px;
+        height: 14px;
+        text-indent: -9999px;
+        background: url(../img/config.png) no-repeat left top;
+        margin: 14px; }
+      .container .landscape .personal-info .button-bar ul > li {
+        float: left; }
+      .container .landscape .personal-info .content-top {
+        padding: 20px;
+        border-bottom: 1px solid #d2d2d2;
+        padding-bottom: 10px; }
+        .container .landscape .personal-info .content-top h1.name {
+          font-size: 21px;
+          font-weight: bold;
+          display: inline; }
+          .container .landscape .personal-info .content-top h1.name a {
+            text-decoration: none;
+            color: black; }
+            .container .landscape .personal-info .content-top h1.name a:hover {
+              color: #01a6da; }
+        .container .landscape .personal-info .content-top span {
+          margin-left: 0.2em; }
+        .container .landscape .personal-info .content-top span.age {
+          font-size: 14px; }
+        .container .landscape .personal-info .content-top span.online {
+          color: gray;
+          font-style: italic;
+          font-size: 13px; }
+        .container .landscape .personal-info .content-top h2.home-town {
+          font-size: 16px; }
+        .container .landscape .personal-info .content-top h3.current-location {
+          color: gray;
+          font-size: 14px; }
+        .container .landscape .personal-info .content-top p {
+          font-size: 13px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          line-height: 20px; }
+  .container .profile-column {
+    float: left;
+    background: #e1e0d9;
+    height: 100%;
+    width: 174px;
+    padding: 8px;
+    border: 1px solid #d0cec7; }
+  .container .columns {
+    float: left;
+    background: white;
+    height: 100%;
+    width: 326px;
+    margin-left: 8px;
+    padding: 24px;
+    border: 1px solid #d0cec7; }

@@ -1,0 +1,125 @@
+@import _reset.sass
+@import _effects.sass
+
+body
+	font-family: "Helvetica Neue", Arial
+	background: #f5f5f0
+
+div
+	line-height: 20px
+
+.container
+	max-width: 960px
+	margin: auto
+
+	.landscape
+		background: red
+		min-height: 270px
+		padding: 27px
+		background: url(http://lorempixel.com/960/325/city/7) no-repeat center top
+		position: relative
+		margin-bottom: 8px
+
+		.people, .stars
+			float: right
+			width: 60px
+			height: 60px
+			background: #FFF
+			margin-left: 10px
+			@include border-radius(6px)
+
+		.personal-info
+			background: #FFF
+			background: rgba(255, 255, 255, 0.9)
+			width: 375px
+			height: 135px
+			float: right
+			position: absolute
+			bottom: 27px
+			right: 0
+
+			button
+				@include appearance(none)
+				padding: 14px 24px
+				margin: 0
+				border: none
+				font-style: italic
+				background: none
+				text-shadow: 1px #EEE
+				border-right: 1px solid #d2d2d2
+				text-transform: uppercase
+				&:hover
+					background: yellow
+					cursor: pointer
+				&:active
+					background: #FFD52F
+
+			span.config
+				float: left
+				width: 15px
+				height: 14px
+				text-indent: -9999px
+				background: url(../img/config.png) no-repeat left top
+				margin: 14px
+
+			.button-bar ul > li
+				float: left
+
+			.content-top
+				padding: 20px
+				border-bottom: 1px solid #d2d2d2
+				padding-bottom: 10px
+
+				h1.name
+					font:
+						size: 21px
+						weight: bold
+					display: inline
+					a
+						text-decoration: none
+						color: #000
+						&:hover
+							color: #01A6DA
+
+				span
+					margin-left: 0.2em
+
+				span.age
+					font-size: 14px
+
+				span.online
+					color: #808080
+					font:
+						style: italic
+						size: 13px
+
+				h2.home-town
+					font-size: 16px
+
+				h3.current-location
+					color: #808080
+					font-size: 14px
+
+				p
+					font-size: 13px
+					white-space: nowrap
+					text-overflow: ellipsis
+					overflow: hidden
+					line-height: 20px
+
+	.profile-column
+		float: left
+		background: #e1e0d9
+		height: 100%
+		width: 174px
+		padding: 8px
+		border: 1px solid #d0cec7
+
+	.columns
+		float: left
+		background: #FFF
+		height: 100%
+		width: 326px
+		margin-left: 8px
+		padding: 24px
+		border: 1px solid #d0cec7

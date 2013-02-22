@@ -138,6 +138,7 @@ button {
 .navbar-inner {
   width: 960px;
   margin: 0 auto;
+  padding: 0;
   background: none;
   border: none;
   box-shadow: none;
@@ -213,7 +214,7 @@ body {
   width: 700px; }
 
 #main {
-  padding-top: 55px; }
+  padding-top: 100px; }
 
 /* ==========================================================================
  * HTML STRUCTURE

@@ -138,6 +138,7 @@ button {
 .navbar-inner {
   width: 960px;
   margin: 0 auto;
+  padding: 0;
   background: none;
   border: none;
   box-shadow: none;
