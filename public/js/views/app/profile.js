@@ -263,12 +263,13 @@ define(function(require){
 
 			this.$("#save-profile-btn").button('loading');
 
+			var self = this;
 			this.model.save(data)
 				.then(function(){
 					alerts.success('Profile saved');
 				})
 				.fin(function(){
-					this.$("#save-profile-btn").button('reset');		
+					self.$("#save-profile-btn").button('reset');		
 				});
 			
 			/*

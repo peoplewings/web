@@ -260,7 +260,7 @@ define(function(require) {
 				return self.render(self.current.id);
 			}).then(function() {
 				alerts.success('Response sent');
-				this.$("#send-response").button('reset');
+				self.$("#send-response").button('reset');
 			}, function() {
 				debugger;
 				alerts.defaultError();
