@@ -1,7 +1,9 @@
 define(function(require) {
 
+	var _ = require('underscore');
 	var Promise = require('promise');
 	var alerts = require('views/lib/alerts');
+	var spinner = require('views/lib/spinner');
 	var server = 'http://peoplewings-backend.herokuapp.com';
 	var apiVersion = '/api/v1';
 
@@ -33,16 +35,21 @@ define(function(require) {
 		updateListeners[type].push(callback);
 	}
 
+
 	function request(method, uri, body) {
+		var reqId = _.uniqueId('request');
 		var prom = new Promise();
 		var url = server + uri
 		var request = new XMLHttpRequest();
-		var requestBody = null
+		var requestBody = null;
 
+		spinner.show(reqId, 1000);
 		request.open(method, url, true);
 
 		request.onreadystatechange = function(oEvent) {
 			if(request.readyState === 4) {
+				spinner.hide(reqId);
+
 				if (request.status == 401)
 					return logout();
 

@@ -9,29 +9,21 @@ define(function(require) {
 	var ProfileModel = require('models/Profile');
 
 	var logoutView = Backbone.View.extend({
-		logout: function() {
-			api.post(api.getApiVersion() + '/noauth/', {}, this.logoutSuccess(this))
-		},
 
-		logoutSuccess: function(scope) {
-			return function(response) {
-				if (response.status===true) {
-					if (response.code === 200) {
-						console.log('Trying to destroy...')
-						scope.goodbye()
-					}
-				} else {
-					for (var error in response.error)
-						console.error("Server said: " + error + " : " + response.error[error])
-				}
-			}
+		logout: function() {
+			var self = this;
+
+			api.post(api.getApiVersion() + '/noauth/', {})
+				.then(function(){
+					self.goodbye();
+				});
 		},
 
 		goodbye: function() {
 			api.clearAuthToken()
 			new ProfileModel({ id: api.getUserId() }).clear();
 			new UserModel({ id: api.getUserId() }).clear();
-			window.router.navigate("/#/")
+			router.navigate("/#/");
 			location.reload()
 		}
 	});
