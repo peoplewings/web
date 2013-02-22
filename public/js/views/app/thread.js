@@ -250,6 +250,8 @@ define(function(require) {
 				resp.state = this.getWingState();
 			}
 
+			this.$("#send-response").button('loading');
+
 			var self = this;
 			return api.post('/api/v1/notificationsthread/', {
 				reference: this.current.id,
@@ -258,6 +260,7 @@ define(function(require) {
 				return self.render(self.current.id);
 			}).then(function() {
 				alerts.success('Response sent');
+				this.$("#send-response").button('reset');
 			}, function() {
 				debugger;
 				alerts.defaultError();
