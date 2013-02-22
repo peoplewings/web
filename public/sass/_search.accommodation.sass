@@ -2,7 +2,7 @@
 	 _Search Accommodation
 	 -------------------------------------------------------------------------- */
 
-.tab-pane
+div.tab-pane
 	background: #E1E0D9
 	padding: 27px
 	padding-top: 40px
@@ -42,12 +42,10 @@
 			font-size: 12px
 			padding: 8px
 			@include border-radius(4px)
-			@include appearance(none)
 			border: 1px solid #79766c
 			margin:
 				right: 4px
 				bottom: 4px
-			color: #000
 			line-height: 15px
 
 		input.input-sdate
@@ -62,8 +60,6 @@
 			width: 202px	
 
 		select
-			//overflow: hidden
-			//width: 120%
 			height: 38px
 
 		select.input-guests
@@ -93,19 +89,3 @@
 			bottom: 0px
 		background: none
 		padding: 0px
-
-		button.btn-peoplewings
-			padding: 5px 20px
-			@include border-radius(20px)
-			color: #FFFF00
-			background: #18183F
-			font:
-				family: 'Exo', Tahoma, Sans Serif
-				size: 18px
-				weight: 500
-				style: italic
-			border: 2px solid #FFFF00
-			@include transition(box-shadow, 0.5s)
-			&:hover
-				@include box-shadow(0px, 0px, 20px, 0px, #FFFF00)
-

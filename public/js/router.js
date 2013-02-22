@@ -15,7 +15,7 @@ define(function(require) {
 	var settingsView = require("views/app/settings");
 	var profileView = require("views/app/profile");
 	var previewView = require("views/app/preview");
-	var View = require("views/app/userProfile");
+	var userProfileView = require("views/app/userProfile");
 	var wingsView = require("views/app/wings");
 	var notificationsView = require("views/app/notifications");
 	var threadView = require("views/app/thread");
@@ -103,7 +103,7 @@ define(function(require) {
 		showUserProfile: function(userId){
 			var scope = this
 			if (!this.userProfileView){
-				scope.userProfileView = new View(userId)
+				scope.userProfileView = new userProfileView(userId)
 				scope.userProfileView.render()
 			} else
 				this.userProfileView.render(userId)

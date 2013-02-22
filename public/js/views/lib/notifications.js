@@ -104,11 +104,13 @@ define(function(require) {
 					targetId = contacts.filter(function(c) { return c.fullname === selected })['0'].id
 				}
 
+				$(".generic-modal-btn").button('loading');
+				
 				api.post('/api/v1/notificationslist', {
 					"idReceiver": targetId,
 					"kind": kind,
 					"data": data,
-				}).then(function() {
+				}).then(function() {					
 					alerts.success('Message Sent');
 					prom.resolve(true);
 				}, function(error) {
@@ -116,6 +118,7 @@ define(function(require) {
 					alerts.defaultError();
 					prom.reject(error);
 				}).fin(function() {
+					$(".generic-modal-btn").button('reset');
 					modal.modal('hide');
 				});
 			}
