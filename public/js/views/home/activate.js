@@ -2,6 +2,7 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var _ = require('underscore');
+	var api = require('api2');
 	var Backbone = require('backbone');
 	var handlersV = require('views/lib/handlers');
 	var responseView = require('views/lib/response');
