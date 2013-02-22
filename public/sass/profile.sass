@@ -1,12 +1,48 @@
 @import _reset.sass
 @import _effects.sass
 
+/* --------------------------------------------------------------------------
+   Globals
+   -------------------------------------------------------------------------- */
+
 body
 	font-family: "Helvetica Neue", Arial
 	background: #f5f5f0
 
 div
 	line-height: 20px
+
+/* --------------------------------------------------------------------------
+   Commons
+   -------------------------------------------------------------------------- */
+
+.button
+	@include appearance(none)
+	text-transform: uppercase
+	margin: 0
+	padding: 14px
+	width: 190px
+	border: none
+	border:
+		top: 1px solid #D0CEC7
+		bottom: 1px solid #D0CEC7
+	font-style: italic
+	text-shadow: 1px 1px #EEE
+	color: #848178
+	@include bg-gradient(#f5f5f0, #e1e0d9)
+	&:hover
+		background: #FFF
+	&:active
+		@include bg-gradient(#FFEB00 , #FBFAC5)
+
+.font-rate
+	color: #808080
+	font-size: 12px
+
+
+/* --------------------------------------------------------------------------
+   Structure
+   -------------------------------------------------------------------------- */
 
 .container
 	max-width: 960px
@@ -49,10 +85,10 @@ div
 				border-right: 1px solid #d2d2d2
 				text-transform: uppercase
 				&:hover
-					background: yellow
+					background: #FFF
 					cursor: pointer
 				&:active
-					background: #FFD52F
+					@include bg-gradient(#FFEB00 , #FBFAC5)
 
 			span.config
 				float: left
@@ -111,15 +147,97 @@ div
 		float: left
 		background: #e1e0d9
 		height: 100%
-		width: 174px
-		padding: 8px
+		width: 190px
 		border: 1px solid #d0cec7
 
-	.columns
+		.avatar
+			float: left
+			background: url(../img/profile.png) no-repeat left top
+			width: 172px
+			height: 172px
+			text-indent: -9999px
+			margin: 8px
+
+		.add-friend-icon
+			background: url(../img/add-friend.png) no-repeat 18px center
+
+		.box
+			padding: 15px 20px
+			
+		.rate-box
+			border-bottom: 1px solid #D0CEC7
+
+			.rate-info
+				float: left
+				width: 75px
+
+			.rate-results
+				font:
+					size: 16px
+					weight: bold
+				margin-left: 23px
+
+		.basic-info
+			font-size: 12px
+			h1
+				color: #808080
+				font:
+					size: 16px
+					weight: bold
+				margin-bottom: 10px
+			p, li
+				color: #000
+
+			p, li:last-child
+				margin-bottom: 10px
+
+	.box-info
 		float: left
 		background: #FFF
+		color: #808080
 		height: 100%
-		width: 326px
+		width: 375px
 		margin-left: 8px
-		padding: 24px
 		border: 1px solid #d0cec7
+		margin-bottom: 8px
+		
+		.content-top
+			h1
+				font:
+					size: 14px
+					weight: bold
+				text-shadow: 1px 1px white
+				padding: 12px 10px 10px 55px
+				background: url(../img/about-icon.png) no-repeat 27px 14px
+				border-bottom: 1px solid #D0CEC7
+
+			h2
+				padding: 14px 10px 10px 27px
+
+			p
+				padding: 0px 27px
+				color: #000
+				font-size: 12px
+
+		.gradient-box
+			background: url(../img/gradient-transparent.png) repeat-x left top
+			height: 100px
+			position: relative
+			margin: -100px 0 0 0
+
+		.content-footer
+			border-top: 1px solid #e5e5e5
+			padding: 0.8em
+			overflow: hidden
+
+			p, span
+				float: left
+
+			span.more-about
+				background: url(../img/arrow_about.png) no-repeat 15px center
+				text-indent: -9999px
+
+			p
+				font-size: 12px
+				text-align: center
+				text-transform: uppercase
