@@ -2,11 +2,11 @@
 	<div class="landscape">
 		<div class="tabs">
 			<ul>
-				<li class="selected"><a href="#">Profile</a></li>
-				<li><a href="#">Wings</a></li>
+				<li class="active"><a href="#about" data-toggle="tab">Profile</a></li>
+				<li><a href="#wings" data-toggle="tab">Wings</a></li>
 			</ul>
 		</div>
-		<div class="personal-info">
+		<div class="personal-info" id="about">
 			<div class="content-top">
 				<h1 id="user-name-label" class="name">
 					<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
@@ -54,22 +54,22 @@
 			</div>
 			<div class="box basic-info" id="about">
 				<h1>Basic info</h1>
-				<h2 class="font-rate">Gender</h2>
+				<h2>Gender</h2>
 				<p>{{gender}}</p>
 				{{#if birthday}}
-					<h2 class="font-rate">Birthday</h2>
+					<h2>Birthday</h2>
 					<p>{{birthday}}</p>
 				{{/if}}
 				{{#if interestedIn.length}}
-					<h2 class="font-rate">Interesed in</h2>
+					<h2>Interesed in</h2>
 					<p>{{gender}}</p>
 				{{/if}}
 				{{#if civilState}}
-					<h2 class="font-rate">Relationship status</h2>
+					<h2>Relationship status</h2>
 					<p>{{civilState}}</p>
 				{{/if}}
 				{{#if languages.length}}
-					<h2 class="font-rate">Languages</h2>
+					<h2>Languages</h2>
 					<ul>
 					{{#each languages}}
 						<li>{{name}} ({{level}})</li>
@@ -85,28 +85,40 @@
 				<div class="content-top">
 					<h1 class="head about-icon">About me</h1>
 					{{#if allAboutYou}}
-						<h2 class="font-rate">Description</h2>
+						<h2>Description</h2>
 						<p>{{allAboutYou}}</p>
 					{{/if}}
 					{{#if mainMission}}
-						<h2 class="font-rate">Current mission</h2>
+						<h2>Current mission</h2>
 						<p>{{mainMission}}</p>
 					{{/if}}
 					{{#if occupation}}
-						<h2 class="font-rate">Occupation</h2>
+						<h2>Occupation</h2>
 						<p>{{occupation}}</p>
 					{{/if}}
 					{{#if company}}
-						<h2 class="font-rate">Company</h2>
+						<h2>Company</h2>
 						<p>{{company}}</p>
 					{{/if}}
 					{{#if education.size}}
-						<h2 class="font-rate">Education</h2>
+						<h2>Education</h2>
 						<p>
 							{{#each education}}
 								{{degree}} at {{insitution}}
 							{{/each}}
 						</p>
+					{{/if}}
+					{{#if personalPhilosophy}}
+						<h2>Personal philosophy</h2>
+						<p>{{personalPhilosophy}}</p>
+					{{/if}}
+					{{#if politicalOpinion}}
+						<h2>Political views</h2>
+						<p>{{politicalOpinion}}</p>
+					{{/if}}
+					{{#if religion}}
+						<h2>Religion</h2>
+						<p>{{religion}}</p>
 					{{/if}}
 				</div>
 				<div class="gradient-box"></div>
@@ -124,16 +136,36 @@
 				<div class="content-top">
 					<h1 class="head likes-icon">Likes</h1>
 					{{#if enjoyPeople}}
-						<h2 class="font-rate">People I enjoy</h2>
+						<h2>People I enjoy</h2>
 						<p>{{enjoyPeople}}</p>
 					{{/if}}
 					{{#if movies}}
-						<h2 class="font-rate">Movies, series, books, ...</h2>
+						<h2>Movies, series, books, ...</h2>
 						<p>{{movies}}</p>
 					{{/if}}
 					{{#if otherPages}}
-						<h2 class="font-rate">Web, Apps</h2>
+						<h2>Web, Apps</h2>
 						<p>{{otherPages}}</p>
+					{{/if}}
+					{{#if sharing}}
+						<h2>Show, learn, share</h2>
+						<p>{{sharing}}</p>
+					{{/if}}
+					{{#if incredible}}
+						<h2>Amazing things done/seen</h2>
+						<p>{{incredible}}</p>
+					{{/if}}
+					{{#if inspiredBy}}
+						<h2>People who inspires you</h2>
+						<p>{{inspiredBy}}</p>
+					{{/if}}
+					{{#if quotes}}
+						<h2>Favourite quotes</h2>
+						<p>{{quotes}}</p>
+					{{/if}}
+					{{#if pwOpinion}}
+						<h2>Opinion about Peoplewings</h2>
+						<p>{{pwOpinion}}</p>
 					{{/if}}
 				</div>
 				<div class="gradient-box"></div>
@@ -146,6 +178,10 @@
 				</div>
 			</div>	
 		</div>
+
+
+
+
 		<div class="box-info maps">
 			<h1 class="head places-icon">Places</h1>
 			<img src="../img/map.png" alt="">

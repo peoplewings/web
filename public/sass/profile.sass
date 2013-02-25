@@ -13,6 +13,9 @@ body
 div
 	line-height: 20px
 
+a
+	text-decoration: none
+
 /* --------------------------------------------------------------------------
    Commons
    -------------------------------------------------------------------------- */
@@ -50,6 +53,10 @@ div
 	margin: 0 auto
 	overflow: hidden
 	margin-bottom: 4em
+
+	h2
+		color: #999
+		font-size: 12px
 
 	.landscape
 		background: red
@@ -161,6 +168,7 @@ div
 			width: 172px
 			height: 172px
 			margin: 8px
+			margin-left: 9px
 
 		.add-friend-icon
 			background: url(../img/add-friend.png) no-repeat 18px center
@@ -172,10 +180,12 @@ div
 			border-bottom: 1px solid #D0CEC7
 
 			.rate-info
+				display: block
 				float: left
 				width: 75px
 
 			.rate-results
+				display: block
 				font:
 					size: 16px
 					weight: bold
@@ -206,7 +216,7 @@ div
 
 		.content-top
 			overflow: hidden
-			height: 450px
+			//height: 450px
 			h1
 				font:
 					size: 14px
