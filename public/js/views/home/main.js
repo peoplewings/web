@@ -37,7 +37,9 @@ define(function(require) {
 
 		unserializeParams: function(params){
 			var self = this;
+
 			_.each(params, function(value, key){
+				console.log(key + " " + self.$("[name=" + key + "]").length)
 				self.$("[name=" + key + "]")
 				.val(value);
 			});

@@ -86,9 +86,21 @@
 				<div class="content-bottom">
 					<div class="about-info">
 						<h1>About me !</h1>
-						<h2>Member until <span>May 2012</span></h2>
+						<h2>Member since <span>May 2012</span></h2>
 						<p>{{ allAboutYou }}</p>
 					</div>
+					{{#if ../applicant}}
+					<div class="applicant-info about-info">
+						<h1>Looking for...</h1>
+						<h2><span>{{ wingType }}</span></h2>
+						<p> Introduction: <span>{{ wingIntroduction }}</span></p>
+						<p> City: <span>{{ wingCity }}</span></p>
+						<p> Capacity: <span>{{ wingCapacity }}</span></p>
+						<p> Start Date: <span>{{ wingStartDate }}</span></p>
+						<p> End date: <span>{{ wingEndDate }}</span></p>
+						<p> Type <span>{{ wingType }}</span></p>
+					</div>
+					{{/if}}
 					<div class="about-footer">
 						<span class="more-about">more about</span>
 						<h1>SEE MORE ABOUT {{ firstName }} </h1>
