@@ -1,5 +1,6 @@
 @import _reset.sass
 @import _effects.sass
+@import _globals.sass
 
 /* --------------------------------------------------------------------------
    Globals
@@ -36,7 +37,7 @@ div
 		@include bg-gradient(#FFEB00 , #FBFAC5)
 
 .font-rate
-	color: #808080
+	color: #999
 	font-size: 12px
 
 
@@ -46,7 +47,9 @@ div
 
 .container
 	max-width: 960px
-	margin: auto
+	margin: 0 auto
+	overflow: hidden
+	margin-bottom: 4em
 
 	.landscape
 		background: red
@@ -73,17 +76,21 @@ div
 			position: absolute
 			bottom: 27px
 			right: 0
+			background: 1px solid #DDD
 
 			button
 				@include appearance(none)
 				padding: 14px 24px
 				margin: 0
 				border: none
-				font-style: italic
+				font:
+					weight: bold
+					style: italic
 				background: none
 				text-shadow: 1px #EEE
 				border-right: 1px solid #d2d2d2
 				text-transform: uppercase
+				color: #000
 				&:hover
 					background: #FFF
 					cursor: pointer
@@ -124,7 +131,7 @@ div
 					font-size: 14px
 
 				span.online
-					color: #808080
+					color: #999
 					font:
 						style: italic
 						size: 13px
@@ -133,8 +140,9 @@ div
 					font-size: 16px
 
 				h3.current-location
-					color: #808080
-					font-size: 14px
+					color: #999
+					font-size: 13px
+					margin-top: 3px
 
 				p
 					font-size: 13px
@@ -187,37 +195,40 @@ div
 				margin-bottom: 10px
 			p, li
 				color: #000
+				float: none
 
 			p, li:last-child
 				margin-bottom: 10px
 
 	.box-info
-		float: left
 		background: #FFF
 		color: #808080
-		height: 100%
-		width: 375px
-		margin-left: 8px
-		border: 1px solid #d0cec7
 		margin-bottom: 8px
-		
+		border: 1px solid #d0cec7
+
 		.content-top
+			overflow: hidden
+			height: 450px
 			h1
 				font:
 					size: 14px
 					weight: bold
 				text-shadow: 1px 1px white
-				padding: 12px 10px 10px 55px
-				background: url(../img/about-icon.png) no-repeat 27px 14px
+				padding: 12px 10px 10px 50px
 				border-bottom: 1px solid #D0CEC7
-
+			.about-icon
+				background: url(../img/about-icon.png) no-repeat 27px 14px
+			.likes-icon
+				background: url(../img/like-icon.png) no-repeat 27px 14px
 			h2
-				padding: 14px 10px 10px 27px
+				padding: 14px 10px 5px 27px
 
 			p
-				padding: 0px 27px
+				margin: 0px 27px
 				color: #000
 				font-size: 12px
+				padding-bottom: 20px
+				border-bottom: 1px solid #DDD
 
 		.gradient-box
 			background: url(../img/gradient-transparent.png) repeat-x left top
@@ -241,3 +252,95 @@ div
 				font-size: 12px
 				text-align: center
 				text-transform: uppercase
+
+.about-column
+	float: left
+	height: 100%
+	width: 375px
+	margin-left: 8px
+
+.like-column
+	float: left
+	height: 100%
+	width: 375px
+	margin-left: 8px
+
+.tabs
+	position: absolute
+	bottom: -5px
+	left: 200px
+
+	li
+		background: rgba(255, 255, 255, 0.5)
+		margin-right: 8px
+		@include border-radius(6px)
+
+	.prueba
+		background: #f5f5f0
+		color: $gray-link
+		a
+			color: $gray-link
+			text-shadow: none
+			font-weight: bold
+
+	a
+		display: block
+		padding: 15px 25px
+		text-transform: uppercase
+		font:
+			size: 13px
+			style: italic
+		text-shadow: 1px 1px #000
+		@include border-radius(6px)
+		color: #FFF
+		&:hover, &:active
+			background: #f5f5f0
+			color: $gray-link
+
+.maps
+	clear: both
+	background: white
+	border: 1px dotted #DDD
+	margin-left: 8px
+	overflow: hidden
+
+	h1
+		font:
+			size: 14px
+			weight: bold
+		text-shadow: 1px 1px white
+		padding: 12px 10px 10px 50px
+		border-bottom: 1px solid #D0CEC7
+	.places-icon
+		background: url(../img/places-icon.png) no-repeat 23px 11px
+
+.content-left
+	height: 100%
+	float: left
+
+.content-right
+	float: left
+
+.box-info
+	background: #FFF
+	color: #808080
+	margin-bottom: 8px
+	border: 1px solid #d0cec7
+
+
+.maps-footer
+	img
+		width: 756px
+		height: 262px
+	li
+		display: inline
+		margin-right: 10px
+		a
+			display: block
+			background: url(../img/place-current-icon.png) no-repeat 12px center
+			font-size: 12px
+			padding: 10px 0 10px 35px
+			&:hover
+				color: red
+
+@import _footer.sass
