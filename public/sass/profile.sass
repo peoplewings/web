@@ -329,6 +329,8 @@ div
 
 
 .maps-footer
+	overflow: hidden
+	padding-left: 10px
 	img
 		width: 756px
 		height: 262px
@@ -337,10 +339,15 @@ div
 		margin-right: 10px
 		a
 			display: block
-			background: url(../img/place-current-icon.png) no-repeat 12px center
 			font-size: 12px
 			padding: 10px 0 10px 35px
 			&:hover
 				color: red
+		.places-current-icon
+			background: url(../img/places-current-icon.png) no-repeat 12px center
+		.places-lived-icon
+			background: url(../img/places-lived-icon.png) no-repeat 12px center
+		.places-home-icon
+			background: url(../img/places-home-icon.png) no-repeat 12px center
 
 @import _footer.sass
