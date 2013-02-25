@@ -153,6 +153,7 @@ define(function(require) {
 			if (api.userIsLoggedIn()){
 				if (!this.header){
 					this.header = new Header
+					this.header.render()
 				} else {
 					this.header.render()
 				}
