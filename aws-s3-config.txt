@@ -1,8 +1,0 @@
-New settings:
-  Access Key: AKIAI5TSJI7DYXGRQDYA
-  Secret Key: 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
-  Encryption password: wings208b
-  Path to GPG program: None
-  Use HTTPS protocol: True
-  HTTP Proxy server name: 
-  HTTP Proxy server port: 0
