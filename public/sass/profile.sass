@@ -43,6 +43,19 @@ a
 	color: #999
 	font-size: 12px
 
+.button2
+	border: none
+	border-left: 1px solid #d0cec7
+	float: right
+	@include bg-gradient(#FFF, #ecece5)
+	padding: 11px 25px
+	span
+		background-position: left
+		padding-left: 25px
+		padding-right: 10px
+
+.edit-icon
+	background: url(../img/edit-icon.png) no-repeat 18px center
 
 /* --------------------------------------------------------------------------
    Structure
@@ -82,7 +95,7 @@ a
 			position: absolute
 			bottom: 27px
 			right: 0
-			background: 1px solid #DDD
+			border: 1px solid #DDD
 
 			button
 				@include appearance(none)
@@ -102,14 +115,6 @@ a
 					cursor: pointer
 				&:active
 					@include bg-gradient(#FFEB00 , #FBFAC5)
-
-			span.config
-				float: left
-				width: 15px
-				height: 14px
-				text-indent: -9999px
-				background: url(../img/config.png) no-repeat left top
-				margin: 14px
 
 			.button-bar ul > li
 				float: left
@@ -218,12 +223,12 @@ a
 			overflow: hidden
 			//height: 450px
 			h1
+				float: left
 				font:
 					size: 14px
 					weight: bold
 				text-shadow: 1px 1px white
 				padding: 12px 10px 10px 50px
-				border-bottom: 1px solid #D0CEC7
 			.about-icon
 				background: url(../img/about-icon.png) no-repeat 27px 14px
 			.likes-icon
@@ -358,3 +363,8 @@ a
 			background: url(../img/places-home-icon.png) no-repeat 12px center
 
 @import _footer.sass
+
+.header-box
+	border-bottom: 1px solid #d0cec7
+	overflow: hidden
+

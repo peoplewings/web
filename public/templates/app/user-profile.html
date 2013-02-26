@@ -24,12 +24,19 @@
 				</h2>
 				<h3 class="current-location">Now in KCK, Western Wyandotte</h3>
 			</div>
+<!-- 			HELLO SERGI !
+			{{#if myProfile}}
+				<div class="button-bar">
+					<ul>
+						<li><button class="send-message-btn">Message</button></li>
+						<li><button class="send-request-btn selected">Request</button></li>
+						<li><button class="send-invitation-btn">Invite</button></li>
+					</ul>
+				</div>
+			{{/if}} -->
 			<div class="button-bar">
 				<ul>
-					<li><button class="send-message-btn">MESSAGE</button></li>
-					<li><button class="send-request-btn selected">REQUEST</button></li>
-					<li><button class="send-invitation-btn">INVITE</button></li>
-					<li><span class="config">CONFIG</span></li>
+					<li><button class="send-message-btn">Button test</button></li>
 				</ul>
 			</div>
 		</div>
@@ -42,8 +49,18 @@
 				</a>
 			</div>
 			<div class="info">
-				<button class="button1 add-friend">
-					<p class="add-friend-icon">Add friend</p>
+<!-- 				HELLO SERGI !
+				{{#if myProfile}}
+					<button class="button1 edit-profile">
+						<p class="edit-icon">Edit profile</p>
+					</button>
+				{{else}}
+					<button class="button1 add-friend">
+						<p class="add-friend-icon">Add friend</p>
+					</button>
+				{{/if}} -->
+				<button class="button1 edit-profile">
+					<p class="edit-icon">Edit profile</p>
 				</button>
 			</div>
 			<div class="box rate-box">
@@ -83,7 +100,14 @@
 		<div class="about-column">
 			<div class="box-info">
 				<div class="content-top">
-					<h1 class="head about-icon">About me</h1>
+					<div class="header-box">
+						<h1 class="head about-icon">About me</h1>
+<!-- 					HELLO SERGI !
+					{{#if myProfile}}
+						<button class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}} -->
+						<button class="button2"><span class="edit-icon">Edit</span></button> <!-- ELIMINAR ESTE BOTÓN -->
+					</div>
 					{{#if allAboutYou}}
 						<h2>Description</h2>
 						<p>{{allAboutYou}}</p>
@@ -134,7 +158,14 @@
 		<div class="like-column">
 			<div class="box-info">
 				<div class="content-top">
-					<h1 class="head likes-icon">Likes</h1>
+					<div class="header-box">
+						<h1 class="head likes-icon">Likes</h1>
+<!-- 					HELLO SERGI !
+					{{#if myProfile}}
+						<button class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}} -->
+						<button class="button2"><span class="edit-icon">Edit</span></button> <!-- ELIMINAR ESTE BOTÓN -->
+					</div>
 					{{#if enjoyPeople}}
 						<h2>People I enjoy</h2>
 						<p>{{enjoyPeople}}</p>
@@ -178,9 +209,6 @@
 				</div>
 			</div>	
 		</div>
-
-
-
 
 		<div class="box-info maps">
 			<h1 class="head places-icon">Places</h1>
