@@ -1,33 +1,193 @@
-<div class="row">
-	<div class="span8">
-		<div class="row">
-			<div class="span6">
-				<p id="user-name-label">
-					<h4 style="display: inline">{{firstName}} {{lastName}}</h4>, {{age}}
-					<!--
-					{{#if verified}}
-						<span class="label label-success"> Verified</span>
-					{{else}}
-						<span class="label label-important"> Not verified</span>
+<div class="container">
+	<div class="landscape">
+		<div class="tabs">
+			<ul data-toggle="nav navtabs">
+				<li class="selected"><a href="#" data-toggle="tab">Profile</a></li>
+				<li><a href="#" data-toggle="tab">Wings</a></li>
+			</ul>
+		</div>
+		<div class="personal-info">
+			<div class="content-top">
+				<h1 id="user-name-label" class="name">
+					<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
+				</h1>
+				<span class="age">[{{age}}]</span>
+				<span class="online">Online :
+					{{#if online}}
+						{{online}}
 					{{/if}}
-					-->
-				</p>
+				</span>
+				<h2 class="home-town">
+					{{#if hometown.name}}
+						{{hometown.name}}, {{hometown.country}}
+					{{/if}}
+				</h2>
+				<h3 class="current-location">Now in KCK, Western Wyandotte</h3>
 			</div>
-			<div class="span2"><a href="#/profiles/{{id}}/about" class="btn pull-right">View profile</a></div>
+			<div class="button-bar">
+				<ul>
+					<li><button class="send-message-btn">MESSAGE</button></li>
+					<li><button class="send-request-btn selected">REQUEST</button></li>
+					<li><button class="send-invitation-btn">INVITE</button></li>
+					<li><span class="config">CONFIG</span></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="span8">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#basic-info" data-toggle="tab">Basic info</a></li>
-			<li><a href="#about-me" data-toggle="tab">About me</a></li>
-			<li><a href="#likes-info" data-toggle="tab">Likes</a></li>
-			<li><a href="#contact-info" data-toggle="tab">Contact info</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="basic-info">Basic</div>
-			<div class="tab-pane" id="about-me">About</div>
-			<div class="tab-pane" id="likes-info">Likes</div>
-			<div class="tab-pane" id="contact-info">Contact</div>
+	<div class="content-left">
+		<div class="profile-column">
+			<div class="avatar">
+				<a href="#/profiles/{{id}}/about">
+					<img id="avatar" src="{{ avatar }}" alt="avatar">
+				</a>
+			</div>
+			<div class="info">
+				<button class="button1 add-friend">
+					<p class="add-friend-icon">Add friend</p>
+				</button>
+			</div>
+			<div class="box rate-box">
+				<p class="rate-info font-rate">Replay rate</p>
+				<span class="rate-results">{{replyRate}}%</span>
+				<p class="rate-info font-rate">Replay time</p>
+				<span class="rate-results">{{replyTime}}</span>
+			</div>
+			<div class="box basic-info" id="about">
+				<h1>Basic info</h1>
+				<h2>Gender</h2>
+				<p>{{gender}}</p>
+				{{#if birthday}}
+					<h2>Birthday</h2>
+					<p>{{birthday}}</p>
+				{{/if}}
+				{{#if interestedIn.length}}
+					<h2>Interesed in</h2>
+					<p>{{gender}}</p>
+				{{/if}}
+				{{#if civilState}}
+					<h2>Relationship status</h2>
+					<p>{{civilState}}</p>
+				{{/if}}
+				{{#if languages.length}}
+					<h2>Languages</h2>
+					<ul>
+					{{#each languages}}
+						<li>{{name}} ({{level}})</li>
+					{{/each}}
+					</ul>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="content-right">
+		<div class="about-column">
+			<div class="box-info">
+				<div class="content-top">
+					<h1 class="head about-icon">About me</h1>
+					{{#if allAboutYou}}
+						<h2>Description</h2>
+						<p>{{allAboutYou}}</p>
+					{{/if}}
+					{{#if mainMission}}
+						<h2>Current mission</h2>
+						<p>{{mainMission}}</p>
+					{{/if}}
+					{{#if occupation}}
+						<h2>Occupation</h2>
+						<p>{{occupation}}</p>
+					{{/if}}
+					{{#if company}}
+						<h2>Company</h2>
+						<p>{{company}}</p>
+					{{/if}}
+					{{#if education.size}}
+						<h2>Education</h2>
+						<p>
+							{{#each education}}
+								{{degree}} at {{insitution}}
+							{{/each}}
+						</p>
+					{{/if}}
+					{{#if personalPhilosophy}}
+						<h2>Personal philosophy</h2>
+						<p>{{personalPhilosophy}}</p>
+					{{/if}}
+					{{#if politicalOpinion}}
+						<h2>Political views</h2>
+						<p>{{politicalOpinion}}</p>
+					{{/if}}
+					{{#if religion}}
+						<h2>Religion</h2>
+						<p>{{religion}}</p>
+					{{/if}}
+				</div>
+				<div class="gradient-box"></div>
+				<div class="content-footer">
+					<p>
+						<span class="more-about">more about</span>
+						<p>See all content</p>
+						<span class="more-about">more about</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="like-column">
+			<div class="box-info">
+				<div class="content-top">
+					<h1 class="head likes-icon">Likes</h1>
+					{{#if enjoyPeople}}
+						<h2>People I enjoy</h2>
+						<p>{{enjoyPeople}}</p>
+					{{/if}}
+					{{#if movies}}
+						<h2>Movies, series, books, ...</h2>
+						<p>{{movies}}</p>
+					{{/if}}
+					{{#if otherPages}}
+						<h2>Web, Apps</h2>
+						<p>{{otherPages}}</p>
+					{{/if}}
+					{{#if sharing}}
+						<h2>Show, learn, share</h2>
+						<p>{{sharing}}</p>
+					{{/if}}
+					{{#if incredible}}
+						<h2>Amazing things done/seen</h2>
+						<p>{{incredible}}</p>
+					{{/if}}
+					{{#if inspiredBy}}
+						<h2>People who inspires you</h2>
+						<p>{{inspiredBy}}</p>
+					{{/if}}
+					{{#if quotes}}
+						<h2>Favourite quotes</h2>
+						<p>{{quotes}}</p>
+					{{/if}}
+					{{#if pwOpinion}}
+						<h2>Opinion about Peoplewings</h2>
+						<p>{{pwOpinion}}</p>
+					{{/if}}
+				</div>
+				<div class="gradient-box"></div>
+				<div class="content-footer">
+					<p>
+						<span class="more-about">more about</span>
+						<p>See all content</p>
+						<span class="more-about">more about</span>
+					</p>
+				</div>
+			</div>	
+		</div>
+		<div class="box-info maps">
+			<h1 class="head places-icon">Places</h1>
+			<img src="../img/map.png" alt="">
+			<div class="maps-footer">
+				<ul>
+					<li><a href="#" class="places-current-icon">Where I live</a></li>
+					<li><a href="#" class="places-lived-icon">Where I have lived</a></li>
+					<li><a href="#" class="places-home-icon">Where I am</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
