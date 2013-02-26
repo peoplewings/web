@@ -99,8 +99,7 @@ define(function(require){
 
 			this.map = new mapView({
 				el: "#user-map",
-				id: "mapcanvas",
-				styles: { marginLeft: "160px" }
+				id: "mapcanvas"
 			})
 		},
 
