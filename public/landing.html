@@ -13,7 +13,7 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
 		<link rel="stylesheet" href="css/landing.css">
-		<link href='http://fonts.googleapis.com/css?family=Exo:500,800,500italic,800italic' rel='stylesheet' type='text/css'>	
+		<link href='http://fonts.googleapis.com/css?family=Exo:500,800,500italic,800italic' rel='stylesheet' type='text/css'>
 	</head>
 
 	<body>
@@ -138,13 +138,15 @@
 				}
 
 				document.location =
-					'/#/search/?capacity=1&language=all&type=host&page=1&' +
+					'/#/search/?capacity=1&language=all&type=Host&gender=Both&page=1&' +
 					$('#accomodation-search-form [name]')
 						.toArray()
 						.map($)
 						.map(function(input) {
-							return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
+							if (input.val())
+								return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
 						})
+						.filter(Boolean)
 						.join('&');
 
 				return false;
