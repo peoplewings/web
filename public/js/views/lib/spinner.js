@@ -1,11 +1,13 @@
 define(function(require) {
 
+	var utils = require('utils');
+	var spinner = new Spinner(utils.getSpinOpts());
 	var spinners = [];
 	var timers = {};
 
 	function show(id) {
 		spinners.push(id);
-		$('#mini-spinner').show();
+		spinner.spin($('#mini-spinner').get(0));
 	}
 
 	function hide(id) {
@@ -15,7 +17,7 @@ define(function(require) {
 		});
 
 		if (!spinners.length) {
-			$('#mini-spinner').hide();
+			spinner.stop();
 		}
 	}
 
