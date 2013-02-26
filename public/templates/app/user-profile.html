@@ -12,9 +12,9 @@
 					<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
 				</h1>
 				<span class="age">[{{age}}]</span>
-				<span class="online">Online :
-					{{#if online}}
-						{{online}}
+				<span class="online">
+					{{#if lastLoginDate}}
+						{{lastLoginDate}}
 					{{/if}}
 				</span>
 				<h2 class="home-town">
