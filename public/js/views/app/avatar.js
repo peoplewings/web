@@ -19,12 +19,12 @@ define(function(require) {
 		},
 
 		render: function(url){
-			$('#main > .row').append(avatarTpl({ avatarUrl: url }));
+			$('#main .avatar').append(avatarTpl({ avatarUrl: url }));
 			this.initAvatarForm();
 		},
 
 		initAvatarForm: function(){
-			$('a#upload-avatar-link').click(function(e){
+			$('#upload-avatar').click(function(e){
 				e.preventDefault();
 				$('#upload').trigger('click');
 			});

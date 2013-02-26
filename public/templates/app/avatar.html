@@ -1,19 +1,13 @@
-<ul class="thumbnails">
-    <li class="span4">
-        <a href="" id="upload-avatar-link" class="thumbnail" style="width:246px; height: 246px">
-            <img id="avatar" src="{{avatarUrl}}" alt="avatar" width="246" height="246">
-            <div class="progress progress-striped"  style="margin-top:10px;display:none;">
-                <div class="bar" style="width: 0%;"></div>
-            </div>
-        </a>
-    </li>
-    <li hidden="true">
-        <form id="file-form" method="post" action="" enctype="multipart/form-data">
-            <input class="span4" type="file" id="upload" name="files[]" />
-            <!--<output id="list"></output>-->
-        </form>
-    </li>
-</ul>
+<div id="upload-avatar">
+    <img id="avatar" src="https://peoplewings-test-media.s3.amazonaws.com/avatar/crop-ab6d2987fccf4ac7b427e8b90864fe52-big_1.jpeg" alt="avatar">
+    <div class="progress progress-striped"  style="margin-top:10px;display:none;">
+        <div class="bar" style="width: 0%;"></div>
+    </div>
+
+</div>
+<form style="display: none" id="file-form" method="post" action="" enctype="multipart/form-data">
+    <input class="span4" type="file" id="upload" name="files[]" />
+</form>
 
 <div class="modal" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
     <div class="modal-header">
@@ -43,5 +37,4 @@
         <button id="cancel-crop" class="btn" data-dismiss="modal" aria-hidden="true">Dismiss</button>
         <button type="submit" id="submit-avatar" class="btn btn-primary" data-loading-text="Processing...">Crop it</button>
     </div>
-
 </div>
