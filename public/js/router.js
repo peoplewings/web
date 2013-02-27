@@ -30,23 +30,23 @@ define(function(require) {
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
 			"search/?:params": "search",
-		//Logged User patterns
-		"logout": "logout",
-		"settings":"settings",
+			//Logged User patterns
+			"logout": "logout",
+			"settings":"settings",
 
-		"profiles/:id/edit":"profile",
-		"profiles/:id/about":"previewProfile",
-		"profiles/:id/wings":"previewProfile",
+			"profiles/:id/edit":"profile",
+			"profiles/:id/about":"previewProfile",
+			"profiles/:id/wings":"previewProfile",
 
-		"wings": "wings",
-		"wings/:id": "wings",
+			"wings": "wings",
+			"wings/:id": "wings",
 
-		"messages/:id": "showThread",
-		"messages/filter/:filters": "showNotifications",
-		"messages": "showNotifications",
-		//Default action
-		"*actions": "defaultAction",
-	},
+			"messages/:id": "showThread",
+			"messages/filter/:filters": "showNotifications",
+			"messages": "showNotifications",
+			//Default action
+			"*actions": "defaultAction",
+		},
 
 		//Anonymous User hashs
 		register: function(){
@@ -167,6 +167,6 @@ define(function(require) {
 		}
 	});
 
-return Router;
+	return Router;
 
 });
