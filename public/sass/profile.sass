@@ -54,6 +54,13 @@ a, a:hover
 		padding-left: 25px
 		padding-right: 10px
 
+.button2.yellow
+	@include bg-gradient(#ffff00, #ffea00)
+	&:hover
+		background: #FFF
+	&:active
+		@include bg-gradient(#ffeb00, #fbfac5)
+
 .edit-icon
 	background: url(../img/edit-icon.png) no-repeat 18px center
 
@@ -251,20 +258,23 @@ a, a:hover
 
 		.content-footer
 			border-top: 1px solid #e5e5e5
-			padding: 0.8em
 			overflow: hidden
 
-			p, span
+			.see-more
 				float: left
+				margin: 0.7em
 
-			span.more-about
-				background: url(../img/arrow_about.png) no-repeat 15px center
-				text-indent: -9999px
+				p, span
+					float: left
 
-			p
-				font-size: 12px
-				text-align: center
-				text-transform: uppercase
+				span.more-about
+					background: url(../img/arrow_about.png) no-repeat 15px center
+					text-indent: -9999px
+
+				p
+					font-size: 12px
+					text-align: center
+					text-transform: uppercase
 
 .about-column
 	float: left
