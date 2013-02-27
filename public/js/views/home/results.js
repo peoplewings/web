@@ -37,10 +37,10 @@ define(function(require){
 				startResult: results.startResult,
 				endResult: results.endResult,
 				totalCount: results.count,
+				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId
 					result.replyTime = moment.duration(result.replyTime).humanize();
-
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
 					return result;
 				})

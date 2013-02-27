@@ -5,7 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var PreviewModel = require("models/ProfilePreview")
 	var mapView = require('views/app/map');
-	var previewTpl = require('tmpl!templates/app/preview.html');
+	var previewTpl = require('tmpl!templates/app/profile.html');
 	var phrases = require('phrases');
 
 	var previewView = Backbone.View.extend({

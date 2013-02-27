@@ -43,7 +43,7 @@
 							<a href="#/profiles/{{id}}/about">{{ firstName }} {{ lastName }}</a>
 						</h1>
 						<span class="age">[{{ age }}]</span>
-						<span class="online">Online</span>
+						<span class="online">{{online}}</span>
 						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
@@ -53,74 +53,100 @@
 						{{#if lastLogin}}
 								<p><b>Last in:</b> {{ lastLogin }}</p>
 						{{/if}}
-						-->
-						{{#if current.name }}
-						<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
-						<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>
-						{{/if}}
-						<h4 class="languages-tag">Languages</h4>
-						{{#if languages.length }}
-						<p class="languages">
-							{{#each languages }}
-								{{ name }} ({{ level }}),
-							{{/each}}
-						</p>
-						{{/if}}
-					</div>
-					<div class="main-bar">
-						<div class="info-bar">
-							<span class="">Replay time</span>
-							<span class="results">{{replyTime}}</span>
-							<span class="">Replay rate</span>
-							<span class="results">{{ replyRate }}%</span>
-						</div>
-						<div class="button-bar">
-							<ul>
-								<li><button class="button send-message-btn">MESSAGE</button></li>
-								<li><button class="button send-request-btn selected">REQUEST</button></li>
-								<li><button class="button send-invitation-btn">INVITE</button></li>
-							</ul>
-						</div>
-					</div>
+					-->
+					{{#if current.name }}
+					<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
+					<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>
+					{{/if}}
+					<h4 class="languages-tag">Languages</h4>
+					{{#if languages.length }}
+					<p class="languages">
+						{{#each languages }}
+						{{ name }} ({{ level }}),
+						{{/each}}
+					</p>
+					{{/if}}
 				</div>
-				<div class="content-bottom">
-					<div class="about-info">
-						<h1>About me !</h1>
-						<h2>Member until <span>May 2012</span></h2>
-						<p>{{ allAboutYou }}</p>
+				<div class="main-bar">
+					<div class="info-bar">
+						<span class="">Replay time</span>
+						<span class="results">{{replyTime}}</span>
+						<span class="">Replay rate</span>
+						<span class="results">{{ replyRate }}%</span>
 					</div>
-					<div class="about-footer">
-						<span class="more-about">more about</span>
-						<h1>SEE MORE ABOUT {{ firstName }} </h1>
-						<span class="more-about">more about</span>
+					<div class="button-bar">
+						<ul>
+							<li><button class="button send-message-btn">MESSAGE</button></li>
+							<li><button class="button send-request-btn selected">REQUEST</button></li>
+							<li><button class="button send-invitation-btn">INVITE</button></li>
+						</ul>
 					</div>
 				</div>
 			</div>
-			{{/each}}
-			<div class="pager-content">
-				<div class="pager pull-left">
-					<div class="adjust">
-						<span>{{ totalCount }}</span>
-						<p>result of accommodation in</p>
-						<a href="#" class="underline">Barcelona</a><!-- replace by location code -->
+			<!--
+				<span class="more-about">more about</span>
+				<h1>SEE MORE ABOUT {{ firstName }} </h1>
+				<span class="more-about">more about</span>
+			-->
+			<div class="accordion span8">
+				<div class="accordion-group">
+					<div id="collapse-{{@index}}" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<div class="content-bottom">
+                                <div class="about-info">
+                                        <h1>About me !</h1>
+                                        <h2>Member until <span>May 2012</span></h2>
+                                        <p>{{ allAboutYou }}</p>
+                                </div>
+								{{#if ../applicant}}
+								<div>
+									<h1>Looking for...</h1>
+									<p> City: <span>{{ wingCity }}</span></p>
+									<p> Capacity: <span>{{ wingCapacity }}</span></p>
+									<p> Start Date: <span>{{ wingStartDate }}</span></p>
+									<p> End date: <span>{{ wingEndDate }}</span></p>
+									<p> Type <span>{{ wingType }}</span></p>
+									<p> <span>{{ wingIntroduction }}</span></p>
+								</div>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					<div class="accordion-heading">
+						<div class="about-footer">
+							<a class="accordion-toggle" data-toggle="collapse" href="#collapse-{{@index}}">
+								<h1>SEE MORE ABOUT {{ firstName }} </h1>
+							</a>
+						</div>
 					</div>
 				</div>
-				<ul class="pager pull-right">
-					<li>
-						<div class="resultCounter adjust">
-							<span>{{ startResult }}</span>
-							<span>-</span>
-							<span>{{ endResult }}</span>
-							<span>of </span>
-							<span>{{ totalCount }}</span>
-						</div>
-					</li>
-					<li class="icon">
-						<a href="#" class="previousPage">previous page</a>
-					</li>
-					<li class="icon">
-						<a href="#" class="nextPage">next page</a>
-					</li>
-				</ul>
-			</div><!-- EOF pager content -->
+			</div>
 		</div>
+		{{/each}}
+		<div class="pager-content">
+			<div class="pager pull-left">
+				<div class="adjust">
+					<span>{{ totalCount }}</span>
+					<p>result of accommodation in</p>
+					<a href="#" class="underline">Barcelona</a><!-- replace by location code -->
+				</div>
+			</div>
+			<ul class="pager pull-right">
+				<li>
+					<div class="resultCounter adjust">
+						<span>{{ startResult }}</span>
+						<span>-</span>
+						<span>{{ endResult }}</span>
+						<span>of </span>
+						<span>{{ totalCount }}</span>
+					</div>
+				</li>
+				<li class="icon">
+					<a href="#" class="previousPage">previous page</a>
+				</li>
+				<li class="icon">
+					<a href="#" class="nextPage">next page</a>
+				</li>
+			</ul>
+		</div><!-- EOF pager content -->
+	</div>

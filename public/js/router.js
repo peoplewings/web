@@ -30,21 +30,21 @@ define(function(require) {
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
 			"search/?:params": "search",
-		//Logged User patterns
-			 "logout": "logout",
-			 "settings":"settings",
+			//Logged User patterns
+			"logout": "logout",
+			"settings":"settings",
 
-			 "profiles/:id/edit":"profile",
-			 "profiles/:id/about":"previewProfile",
-			 "profiles/:id/wings":"previewProfile",
+			"profiles/:id/edit":"profile",
+			"profiles/:id/about":"previewProfile",
+			"profiles/:id/wings":"previewProfile",
 
-			 "wings": "wings",
-			 "wings/:id": "wings",
+			"wings": "wings",
+			"wings/:id": "wings",
 
-			 "messages/:id": "showThread",
-			 "messages/filter/:filters": "showNotifications",
-			 "messages": "showNotifications",
-		//Default action
+			"messages/:id": "showThread",
+			"messages/filter/:filters": "showNotifications",
+			"messages": "showNotifications",
+			//Default action
 			"*actions": "defaultAction",
 		},
 
@@ -106,7 +106,7 @@ define(function(require) {
 				scope.userProfileView = new userProfileView(userId)
 				scope.userProfileView.render()
 			} else
-				this.userProfileView.render(userId)
+			this.userProfileView.render(userId)
 		},
 		previewProfile: function(id){
 			if (+id === api.getUserId()){
@@ -147,6 +147,11 @@ define(function(require) {
 			else
 				homeView.render();
 		},
+		_trackPageview: function() {
+			var url;
+			url = Backbone.history.getFragment();
+			return _gaq.push(['_trackPageview', "/" + url]);
+		},
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId())
 			Backbone.history.start();
@@ -158,6 +163,7 @@ define(function(require) {
 					this.header.render()
 				}
 			}
+			return this.bind('all', this._trackPageview);
 		}
 	});
 
