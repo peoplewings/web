@@ -4,60 +4,47 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api');
 	var utils = require('utils');
-	var modalTpl = require('text!templates/lib/modal.html');
-	var alertTpl = require('text!templates/lib/alert.html');
-	var contentTpl = require('text!templates/app/feedback.html');
+	var alerts = require('views/lib/alerts');
+	var contentTpl = require('tmpl!templates/app/feedback.html');
 	var UserModel = require('models/Account');
 
 	var feedbackView = Backbone.View.extend({
-		events: {
-			"click button#generic-modal-btn": "saveFeedback"
-		},
+
 		initialize: function(){
 			this.model = new UserModel({id: api.getUserId()})
 			this.model.fetch()
 			console.log(this.model.attributes)
 		},
+
 		render: function(){
-			this.el = "#generic-modal"
-			var content = _.template(contentTpl, { avatar: this.model.get("avatar")})
-			var tpl = _.template(modalTpl, { modalHeader: "New suggestion", acceptBtn: "Send"})
-			$("body section:last").append(tpl)
-			$(this.el + " div.modal-body").html(content)
-			$(this.el + " *").show()
-			$(this.el).modal('show')
-			this.bindings()
-		},
-		bindings: function(){
-			var scope = this
-			$("#generic-modal-btn").bind("click", this.saveFeedback(this))
+			var content = contentTpl({ avatar: this.model.get("avatar")})
+			this.modal = utils.showModal("New suggestion", "Send", content, this.saveFeedback.bind(this));
+			this.modal.on('hidden', this.close.bind(this));
 			$("#feedback-form").validate()
-			$(this.el).on('hidden', function () {
-				scope.close()
-			})
 		},
+
 		saveFeedback: function(scope){
-			return function(evt){
-				var data = utils.serializeForm("feedback-form")
-				if ($("#feedback-form").valid()) {
-					console.log(data)
-					api.post(api.getApiVersion() + "/feedback", data, function(response){
-						var tpl
-						if (response.status === true) {
-							tpl = _.template(alertTpl, {extraClass: 'alert-success', heading: response.msg})
-						} else {
-							tpl = _.template(alertTpl, {extraClass: 'alert-error', heading: response.msg})
-						}
-						$(scope.el + " div.modal-footer").hide()
-						$(scope.el + " div.modal-body").html(tpl).delay(800).fadeOut(300)
-						$(scope.el).modal('hide').delay(900)
-					})
-				}
+			var self = this;
+			var data = utils.serializeForm("feedback-form")
+			this.modal.find(".generic-modal-btn").button('loading');
+
+			if (this.modal.find("#feedback-form").valid()) {
+				console.log(data)
+				api.post(api.getApiVersion() + "/feedback", data, function(response){
+					self.modal.find(".generic-modal-btn").button('reset');
+
+					if (response.status === true)
+						alerts.success('Feedback received, thanks for your help.');
+					else
+						alerts.error(response.msg);
+
+					self.modal.modal('hide');
+				});
 			}
 		},
+
 		close: function(){
 			this.remove()
-			$(this.el).remove()
 			this.unbind()
 		},
 	});
