@@ -24,8 +24,13 @@
 				</h2>
 				<h3 class="current-location">Now in KCK, Western Wyandotte</h3>
 			</div>
-<!-- 			HELLO SERGI !
 			{{#if myProfile}}
+				<div class="button-bar">
+					<ul>
+						<li><button class="send-message-btn">Button test</button></li>
+					</ul>
+				</div>
+			{{else}}
 				<div class="button-bar">
 					<ul>
 						<li><button class="send-message-btn">Message</button></li>
@@ -33,19 +38,15 @@
 						<li><button class="send-invitation-btn">Invite</button></li>
 					</ul>
 				</div>
-			{{/if}} -->
-			<div class="button-bar">
-				<ul>
-					<li><button class="send-message-btn">Button test</button></li>
-				</ul>
-			</div>
+			{{/if}}
 		</div>
 	</div>
 	<div class="content-left">
 		<div class="profile-column">
-			<div class="avatar"></div>
+			<div class="avatar">
+				<img id="avatar" src="{{ avatar }}" alt="avatar">
+			</div>
 			<div class="info">
-<!-- 				HELLO SERGI !
 				{{#if myProfile}}
 					<button class="button1 edit-profile">
 						<p class="edit-icon">Edit profile</p>
@@ -54,15 +55,12 @@
 					<button class="button1 add-friend">
 						<p class="add-friend-icon">Add friend</p>
 					</button>
-				{{/if}} -->
-				<button class="button1 edit-profile"><!-- ELIMINAR ESTE BOTÓN -->
-					<p class="edit-icon">Edit profile</p>
-				</button>
+				{{/if}}
 			</div>
 			<div class="box rate-box">
-				<p class="rate-info font-rate">Replay rate</p>
+				<p class="rate-info font-rate">Reply rate</p>
 				<span class="rate-results">{{replyRate}}%</span>
-				<p class="rate-info font-rate">Replay time</p>
+				<p class="rate-info font-rate">Reply time</p>
 				<span class="rate-results">{{replyTime}}</span>
 			</div>
 			<div class="box basic-info" id="about">
@@ -98,11 +96,9 @@
 				<div class="content-top">
 					<div class="header-box">
 						<h1 class="head about-icon">About me</h1>
-<!-- 					HELLO SERGI !
 					{{#if myProfile}}
 						<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}} -->
-						<button class="button2"><span class="edit-icon">Edit</span></button><!-- ELIMINAR ESTE BOTÓN -->
+					{{/if}}
 					</div>
 					{{#if allAboutYou}}
 						<h2>Description</h2>
@@ -156,11 +152,9 @@
 				<div class="content-top">
 					<div class="header-box">
 						<h1 class="head likes-icon">Likes</h1>
-<!-- 					HELLO SERGI !
 					{{#if myProfile}}
 						<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}} -->
-						<button class="button2"><span class="edit-icon">Edit</span></button> <!-- ELIMINAR ESTE BOTÓN -->
+					{{/if}}
 					</div>
 					{{#if enjoyPeople}}
 						<h2>People I enjoy</h2>
@@ -208,7 +202,6 @@
 
 		<div class="box-info maps">
 			<h1 class="head places-icon">Places</h1>
-			<!-- <img src="../img/map.png" alt=""> -->
 			<div id="user-map">
 			</div>
 			<div class="maps-footer">
