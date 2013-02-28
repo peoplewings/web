@@ -72,10 +72,8 @@ define(function(require){
 			if (filters.search)
 				this.$('#search-query').val(filters.search);
 
-			if (filters.kind) {
-				this.$('.button.selected').removeClass('selected');
-				this.$('.button[data-filter="' + filters.kind + '"]').addClass('selected');
-			}
+			if (filters.kind)
+				this.selectTab(filters.kind);
 
 			if(filters.target)
 				this.$('#notification-sender [name="' + filters.target + '"]').attr('checked', 'checked');
@@ -204,16 +202,18 @@ define(function(require){
 			this.$('.button[data-filter="' + type + '"]').addClass('selected')
 
 			if (type === 'reqinv')
-				this.addFilters()
+				this.addFilters();
 			else
-				this.removeFilters()
+				this.removeFilters();
 
-			this.resetPager()
 			this.$('#search-query').val('');
 			this.filter();
 		},
 
 		addFilters: function(){
+			if (this.$('#ri-status').is(':visible'))
+				return;
+
 			this.$('#ri-status').show();
 			this.$("#ri-filters")
 			    .append('<option value="type">Wing Type</option>')
@@ -221,6 +221,9 @@ define(function(require){
 		},
 
 		removeFilters: function(){
+			if (!this.$('#ri-status').is(':visible'))
+				return;
+
 			this.$('#ri-status').hide();
 			this.$("#ri-filters")
 				.find('option[value=type], option[value=date-start]')
