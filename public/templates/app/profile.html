@@ -223,54 +223,20 @@
 			</div>
 		</div>
 
-		<div class="content-right tab-pane active" id="wings">
+		<div class="content-right tab-pane" id="wings">
 			<div class="about-column">
 				<div class="box-info">
 					<div class="content-top">
 						<div class="header-box">
-							<h1 class="head about-icon">Wings</h1>
+						{{#each wings}}
+							<h1 class="head house-icon">{{name}} (Accomodation)</h1>
+						{{/each}}
 	<!-- 					HELLO SERGI !
 						{{#if myProfile}}
 							<button class="button2"><span class="edit-icon">Edit</span></button>
 						{{/if}} -->
 							<button class="button2"><span class="edit-icon">Edit</span></button><!-- ELIMINAR ESTE BOTÓN -->
 						</div>
-						{{#if allAboutYou}}
-							<h2>Description</h2>
-							<p>{{allAboutYou}}</p>
-						{{/if}}
-						{{#if mainMission}}
-							<h2>Current mission</h2>
-							<p>{{mainMission}}</p>
-						{{/if}}
-						{{#if occupation}}
-							<h2>Occupation</h2>
-							<p>{{occupation}}</p>
-						{{/if}}
-						{{#if company}}
-							<h2>Company</h2>
-							<p>{{company}}</p>
-						{{/if}}
-						{{#if education.size}}
-							<h2>Education</h2>
-							<p>
-								{{#each education}}
-									{{degree}} at {{insitution}}
-								{{/each}}
-							</p>
-						{{/if}}
-						{{#if personalPhilosophy}}
-							<h2>Personal philosophy</h2>
-							<p>{{personalPhilosophy}}</p>
-						{{/if}}
-						{{#if politicalOpinion}}
-							<h2>Political views</h2>
-							<p>{{politicalOpinion}}</p>
-						{{/if}}
-						{{#if religion}}
-							<h2>Religion</h2>
-							<p>{{religion}}</p>
-						{{/if}}
 					</div>
 					<div class="gradient-box"></div>
 					<div class="content-footer">
@@ -350,19 +316,19 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="box-info maps">
-				<h1 class="head places-icon">Places</h1>
-				<div id="user-map"></div>
-				<div class="maps-footer">
-					<ul>
-						<li><a href="#" class="places-current-icon">Where I live</a></li>
-						<li><a href="#" class="places-lived-icon">Where I have lived</a></li>
-						<li><a href="#" class="places-home-icon">Where I am</a></li>
-					</ul>
-				</div>
-			</div>
-
 		</div>
 	</div>
+
+	<div class="box-info maps">
+		<h1 class="head places-icon">Places</h1>
+		<div id="user-map"></div>
+		<div class="maps-footer">
+			<ul>
+				<li><a href="#" class="places-current-icon">Where I live</a></li>
+				<li><a href="#" class="places-lived-icon">Where I have lived</a></li>
+				<li><a href="#" class="places-home-icon">Where I am</a></li>
+			</ul>
+		</div>
+	</div>
+
 </div>
