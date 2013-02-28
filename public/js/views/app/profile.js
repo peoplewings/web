@@ -93,6 +93,7 @@ define(function(require){
 		},
 
 		initialize: function(options) {
+			console.log('hola');
 			this.model = new ProfileModel({id: api.getUserId()})
 			this.model.on("change", this.render.bind(this));
 			this.model.fetch({success: this.render.bind(this) })
@@ -257,6 +258,7 @@ define(function(require){
 		},
 
 		submitProfile: function(e){
+			debugger;
 			e.preventDefault(e);
 			var data = this.collectData()
 

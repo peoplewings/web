@@ -341,7 +341,7 @@
 						<div class="box-info">
 							<div class="content-top">
 								<div class="header-box">
-									<h1 class="head house-icon">Something</h1>
+									<h1 class="head house-icon">About me</h1>
 	<!-- 					HELLO SERGI !
 						{{#if myProfile}}
 							<button class="button2"><span class="edit-icon">Edit</span></button>
@@ -349,67 +349,57 @@
 							<button class="button2"><span class="edit-icon">Edit</span></button> <!-- ELIMINAR ESTE BOTÓN -->
 						</div>
 						<div class="content-center">
-							{{#if allAboutYou}}
-							<h2>Description</h2>
-							<p>{{allAboutYou}}</p>
-							{{/if}}
-							{{#if mainMission}}
-							<h2>Current mission</h2>
-							<p>{{mainMission}}</p>
-							{{/if}}
-							{{#if occupation}}
-							<h2>Occupation</h2>
-							<p>{{occupation}}</p>
-							{{/if}}
-							{{#if company}}
-							<h2>Company</h2>
-							<p>{{company}}</p>
-							{{/if}}
-							{{#if education.size}}
-							<h2>Education</h2>
-							<p>
-								{{#each education}}
-								{{degree}} at {{insitution}}
-								{{/each}}
-							</p>
-							{{/if}}
-							{{#if personalPhilosophy}}
-							<h2>Personal philosophy</h2>
-							<p>{{personalPhilosophy}}</p>
-							{{/if}}
-							{{#if politicalOpinion}}
-							<h2>Political views</h2>
-							<p>{{politicalOpinion}}</p>
-							{{/if}}
-							{{#if religion}}
-							<h2>Religion</h2>
-							<p>{{religion}}</p>
-							{{/if}}
+							<form id="about-me-form">
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputAllAboutYou">All about you</label></label>
+									<div class="controls">
+										<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputMainMission">Current mission</label></label>
+									<div class="controls">
+										<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputCompany">Company</label></label>
+									<div class="controls">
+										<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="gradient-box"></div>
-					<div class="content-footer">
-						<div class="see-more">
-							<p>
-								<span class="more-about">more about</span>
-								<p>See all content</p>
-								<span class="more-about">more about</span>
-							</p>
-						</div>
+						<div class="content-footer">
+							<div class="see-more">
+								<p>
+									<span class="more-about">more about</span>
+									<p>See all content</p>
+									<span class="more-about">more about</span>
+								</p>
+							</div>
 	<!-- 					HELLO SERGI !
 						{{#if myProfile}}
 							<button class="button2 yellow">Save changes</button>
 							{{/if}} -->
-							<button class="button2 yellow">Save changes</button>
+							<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
 						</div>
-					</div>
+					</form>
 				</div>
+			</div>
 
-				<div class="like-column">
-					<div class="box-info">
-						<div class="content-top">
-							<div class="header-box">
-								<h1 class="head house-icon">Something</h1>
+
+			<div class="like-column">
+				<div class="box-info">
+					<div class="content-top">
+						<div class="header-box">
+							<h1 class="head house-icon">Something</h1>
 		<!-- 					HELLO SERGI !
 							{{#if myProfile}}
 								<button class="button2"><span class="edit-icon">Edit</span></button>
@@ -422,7 +412,7 @@
 								<p>{{allAboutYou}}</p>
 								{{/if}}
 								{{#if mainMission}}
-								<h2>Current mission</h2>
+								<h2>Current mission</h2>s
 								<p>{{mainMission}}</p>
 								{{/if}}
 								{{#if occupation}}
