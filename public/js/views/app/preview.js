@@ -23,8 +23,7 @@ define(function(require) {
 				id: "mapcanvas"
 			})
 			this.model.on("change", this.render.bind(this));
-			this.model.fetch()
-
+			this.model.fetch()			
 		},
 		render: function() {
 			var cs = {civilState: phrases.choices["civilState"][this.model.get("civilState")]}
