@@ -3,37 +3,42 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
-	var PreviewModel = require("models/ProfilePreview")
+	var PreviewModel = require("models/ProfileModel")
 	var mapView = require('views/app/map');
-	var previewTpl = require('tmpl!templates/app/profile.html');
+	var profileTpl = require('tmpl!templates/app/profile.html');
 	var phrases = require('phrases');
 
 	var previewView = Backbone.View.extend({
 
 		el: "#main",
 
-		initialize: function() {
-
-			this.getWingList()
-			this.model = new PreviewModel({
-				_id: "preview"
-			})
+		initialize: function(userId) {
 			this.map = new mapView({
 				el: "#user-map",
 				id: "mapcanvas"
-			})
-			this.model.on("change", this.render.bind(this));
-			this.model.fetch()
+			});
 
+			this.model = new PreviewModel({
+				id: userId,
+			});
+
+			this.model.on("change", this.refresh.bind(this));
 		},
-		render: function() {
-			var cs = {civilState: phrases.choices["civilState"][this.model.get("civilState")]}
-			var wings = {wings: this.wingsList}
+		render: function(userId) {
+			this.model.set("id", userId, {silent: true});
+			this.model.fetch();
+			this.getWingList(userId);
+		},
 
-			$(this.el).html(previewTpl(this.model.toJSON(), cs, wings))
+		refresh: function(){
+			
+			var myProfile = (this.model.get("id") === api.getUserId());
+
+			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList}, {myProfile: myProfile}));
 
 			this.map.render()
 			this.initMarkers()
+
 		},
 
 		initMarkers: function(){
@@ -67,12 +72,14 @@ define(function(require) {
 			}
 		},
 
-		getWingList: function() {
-			var sc = this
-			api.get(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/preview", {})
+		getWingList: function(userId) {
+			//Molaria hacer refactor i meterlo como Collection del Model
+
+			var self = this
+			api.get(api.getApiVersion() + "/profiles/" + userId + "/accomodations/preview")
 			.prop("data")
 			.then(function(data) {
-				sc.wingsList = data.map(function(wing) {
+				self.wingsList = data.map(function(wing) {
 					wing.smoking = phrases.choices["smoking"][wing.smoking]
 					wing.whereSleepingType = phrases.choices["whereSleepingType"][wing.whereSleepingType]
 					wing.status = phrases.choices["wingStatus"][wing.status]
@@ -80,9 +87,9 @@ define(function(require) {
 				})
 			})
 			.fin(function() {
-				sc.render()
+				self.refresh();
 			})
-		}
+		},
 
 	});
 
