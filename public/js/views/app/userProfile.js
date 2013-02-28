@@ -4,7 +4,7 @@ define(function(require) {
 	var Promise = require("promise");
 	var Backbone = require("backbone");
 	var api = require("api2");
-	var profileTpl = require("tmpl!templates/app/user-profile.html");
+	var profileTpl = require("tmpl!templates/app/profile.html");
 	var phrases = require('phrases');
 	var notifications = require('views/lib/notifications');
 

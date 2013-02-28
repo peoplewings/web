@@ -16,13 +16,14 @@ define(function(require) {
 			this.map = new mapView({
 				el: "#user-map",
 				id: "mapcanvas"
-			});
+			})
 
 			this.model = new PreviewModel({
 				id: userId,
 			});
 
 			this.model.on("change", this.refresh.bind(this));
+
 		},
 		render: function(userId) {
 			this.model.set("id", userId, {silent: true});

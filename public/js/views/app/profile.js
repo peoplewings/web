@@ -7,10 +7,10 @@ define(function(require){
 	var phrases = require('phrases');
 
 	var profileTpl = require('tmpl!templates/app/profile.html');
-	var basicTpl = require('tmpl!templates/app/basic-form.html');
-	var aboutTpl = require('tmpl!templates/app/about-form.html');
-	var likesTpl = require('tmpl!templates/app/likes-form.html');
-	var contactTpl = require('tmpl!templates/app/contact-form.html');
+	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
+	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile.form.contact.html');
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
@@ -93,14 +93,14 @@ define(function(require){
 		},
 
 		initialize: function(options) {
+			console.log('hola');
 			this.model = new ProfileModel({id: api.getUserId()})
 			this.model.on("change", this.render.bind(this));
 			this.model.fetch({success: this.render.bind(this) })
 
 			this.map = new mapView({
 				el: "#user-map",
-				id: "mapcanvas",
-				styles: { marginLeft: "160px" }
+				id: "mapcanvas"
 			})
 		},
 
@@ -258,6 +258,7 @@ define(function(require){
 		},
 
 		submitProfile: function(e){
+			debugger;
 			e.preventDefault(e);
 			var data = this.collectData()
 

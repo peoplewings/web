@@ -13,7 +13,7 @@ body
 div
 	line-height: 20px
 
-a
+a, a:hover
 	text-decoration: none
 
 /* --------------------------------------------------------------------------
@@ -54,6 +54,13 @@ a
 		padding-left: 25px
 		padding-right: 10px
 
+.button2.yellow
+	@include bg-gradient(#ffff00, #ffea00)
+	&:hover
+		background: #FFF
+	&:active
+		@include bg-gradient(#ffeb00, #fbfac5)
+
 .edit-icon
 	background: url(../img/edit-icon.png) no-repeat 18px center
 
@@ -67,7 +74,7 @@ a
 	overflow: hidden
 	margin-bottom: 4em
 
-	h2
+	h2, label
 		color: #999
 		font-size: 12px
 
@@ -229,19 +236,29 @@ a
 					weight: bold
 				text-shadow: 1px 1px white
 				padding: 12px 10px 10px 50px
+				width: 203px
+				overflow: hidden
+				text-overflow: ellipsis
+				white-space: nowrap
 			.about-icon
 				background: url(../img/about-icon.png) no-repeat 27px 14px
 			.likes-icon
 				background: url(../img/like-icon.png) no-repeat 27px 14px
 			h2
-				padding: 14px 10px 5px 27px
+				padding: 14px 10px 0 0
 
 			p
-				margin: 0px 27px
 				color: #000
 				font-size: 12px
 				padding-bottom: 20px
 				border-bottom: 1px solid #DDD
+
+		.wings1
+			p
+				padding-bottom: 12px
+			.something
+				float: none
+
 
 		.gradient-box
 			background: url(../img/gradient-transparent.png) repeat-x left top
@@ -251,20 +268,26 @@ a
 
 		.content-footer
 			border-top: 1px solid #e5e5e5
-			padding: 0.8em
 			overflow: hidden
 
-			p, span
+			.see-more
 				float: left
+				margin: 0.7em
 
-			span.more-about
-				background: url(../img/arrow_about.png) no-repeat 15px center
-				text-indent: -9999px
+				p, span
+					float: left
+					padding: 0
 
-			p
-				font-size: 12px
-				text-align: center
-				text-transform: uppercase
+				span.more-about
+					background: url(../img/arrow_about.png) no-repeat 15px center
+					text-indent: -9999px
+
+				p
+					font-size: 12px
+					text-align: center
+					text-transform: uppercase
+					margin: 0
+					border-bottom: 0
 
 .about-column
 	float: left
@@ -280,35 +303,44 @@ a
 
 .tabs
 	position: absolute
-	bottom: -5px
+	bottom: 25px
 	left: 200px
+
+	.nav-tabs
+		position: relative
+		left: 0
 
 	li
 		background: rgba(255, 255, 255, 0.5)
 		margin-right: 8px
 		@include border-radius(6px)
 
-	.selected
+		a
+			text-indent: 0
+			height: auto
+			text-align: center
+			display: block
+			padding: 15px 25px
+			text-transform: uppercase
+			font:
+				size: 13px
+				style: italic
+			text-shadow: 1px 1px #000
+			@include border-radius(6px)
+			color: #FFF
+			&:hover, &:active
+				background: #f5f5f0
+				color: $gray-link
+				text-shadow: none
+				font-weight: bold
+
+	.active
 		background: #f5f5f0
 		color: $gray-link
 		a
 			color: $gray-link
 			text-shadow: none
 			font-weight: bold
-
-	a
-		display: block
-		padding: 15px 25px
-		text-transform: uppercase
-		font:
-			size: 13px
-			style: italic
-		text-shadow: 1px 1px #000
-		@include border-radius(6px)
-		color: #FFF
-		&:hover, &:active
-			background: #f5f5f0
-			color: $gray-link
 
 .maps
 	clear: both
@@ -339,6 +371,15 @@ a
 	color: #808080
 	margin-bottom: 8px
 	border: 1px solid #d0cec7
+	.content-top.wings-kind
+		h2
+			float: left
+		.description
+			float: none
+			padding-bottom: 0
+		p
+			margin-top: 14px
+			padding-bottom: 14px
 
 .maps-footer
 	overflow: hidden
@@ -368,3 +409,28 @@ a
 	border-bottom: 1px solid #d0cec7
 	overflow: hidden
 
+.house-icon
+	background: url(../img/house-icon.png) no-repeat 22px center
+
+label
+	padding: 14px 10px 10px 5px
+	> label
+		padding: 0
+
+textarea
+	width: 300px !important
+	font-size: 12px
+	padding: 10px
+
+.content-center
+	padding: 0 25px
+
+.content-center.wings1
+	h2
+		float: left
+	p
+		padding: 13px 0
+
+input[type="text"]
+	font-size: 12px
+	width: 300px

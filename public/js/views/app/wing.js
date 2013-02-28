@@ -4,7 +4,7 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
-	var wingTpl = require("tmpl!templates/app/accomodation-form.html");
+	var wingTpl = require("tmpl!templates/app/profile.form.accomodation.html");
 	var alerts = require('views/lib/alerts');
 	var WingModel = require("models/Wing");
 
