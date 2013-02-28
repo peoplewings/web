@@ -374,6 +374,47 @@
 										<span class="help-inline"></span>
 									</div>
 								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputEducation">Education</label></label>
+									<div class="controls">
+										<div id="education-list">
+											{{#each education}}
+											<div id="education-{{@index}}">
+												<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
+												<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
+											</div>
+											{{/each}}
+											<div id="education-tpl">
+												<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead">
+												<input type="text" name="degree" class="span2">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputPersonalPhilosophy">Personal philosophy</label></label>
+									<div class="controls">
+										<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputPoliticalOpinion">Political views</label></label>
+									<div class="controls">
+										<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="religion-input" class="control-group">
+									<label class="control-label" for="textarea"><label for="inputReligion">Religion</label></label>
+									<div class="controls">
+										<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="content-footer">
@@ -412,7 +453,7 @@
 								<p>{{allAboutYou}}</p>
 								{{/if}}
 								{{#if mainMission}}
-								<h2>Current mission</h2>s
+								<h2>Current mission</h2>
 								<p>{{mainMission}}</p>
 								{{/if}}
 								{{#if occupation}}
