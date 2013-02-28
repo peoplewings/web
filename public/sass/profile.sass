@@ -74,7 +74,7 @@ a, a:hover
 	overflow: hidden
 	margin-bottom: 4em
 
-	h2
+	h2, label
 		color: #999
 		font-size: 12px
 
@@ -245,7 +245,7 @@ a, a:hover
 			.likes-icon
 				background: url(../img/like-icon.png) no-repeat 27px 14px
 			h2
-				padding: 14px 10px 5px 27px
+				padding: 14px 10px 5px 0
 
 			p
 				margin: 0px 27px
@@ -365,6 +365,15 @@ a, a:hover
 	color: #808080
 	margin-bottom: 8px
 	border: 1px solid #d0cec7
+	.content-top.wings-kind
+		h2
+			float: left
+		.description
+			float: none
+			padding-bottom: 0
+		p
+			margin-top: 14px
+			padding-bottom: 14px
 
 .maps-footer
 	overflow: hidden
@@ -396,3 +405,16 @@ a, a:hover
 
 .house-icon
 	background: url(../img/house-icon.png) no-repeat 22px center
+
+label
+	padding: 14px 10px 5px 0
+	> label
+		padding: 0
+
+textarea
+	width: 300px !important
+	font-size: 12px
+	padding: 10px
+
+.content-center
+	padding: 0 25px
