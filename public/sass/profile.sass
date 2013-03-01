@@ -130,6 +130,7 @@ a, a:hover
 				padding: 20px
 				border-bottom: 1px solid #d2d2d2
 				padding-bottom: 10px
+				margin-bottom: 20px
 
 				h1.name
 					font:
@@ -244,18 +245,17 @@ a, a:hover
 				background: url(../img/about-icon.png) no-repeat 27px 14px
 			.likes-icon
 				background: url(../img/like-icon.png) no-repeat 27px 14px
-			h2
-				padding: 14px 10px 0 0
-
 			p
 				color: #000
 				font-size: 12px
 				padding-bottom: 20px
+				margin-bottom: 20px
 				border-bottom: 1px solid #DDD
 
 		.wings1
 			p
 				padding-bottom: 12px
+				margin-bottom: 12px
 			.something
 				float: none
 
@@ -267,6 +267,7 @@ a, a:hover
 			margin: -100px 0 0 0
 
 		.content-footer
+			background: #FFF
 			border-top: 1px solid #e5e5e5
 			overflow: hidden
 
@@ -412,25 +413,56 @@ a, a:hover
 .house-icon
 	background: url(../img/house-icon.png) no-repeat 22px center
 
-label
-	padding: 14px 10px 10px 5px
-	> label
-		padding: 0
-
-textarea
-	width: 300px !important
-	font-size: 12px
-	padding: 10px
+.about-column
+	.content-center
+		.control-group
+			margin: 0
 
 .content-center
-	padding: 0 25px
+	padding: 25px
+
+	#religion-input
+		margin-bottom: 20px
+
+		.controls
+			line-height: 0
+
+	.help-block
+		margin: 0
+
+	label
+		padding: 14px 10px 10px 5px
+		> label
+			padding: 0
+
+	textarea
+		width: 300px !important
+		font-size: 12px
+		padding: 10px
+		margin: 0
+
+	input[type="text"]
+		font-size: 12px
+		width: 300px
+		margin: 0
+
+	#education-list
+		input[type="text"]
+			margin-bottom: 10px
 
 .content-center.wings1
 	h2
 		float: left
+		margin-right: 10px
 	p
-		padding: 13px 0
+		margin-bottom: 12px
 
-input[type="text"]
-	font-size: 12px
-	width: 300px
+#edit-wings
+	label
+		padding: 0 5px 5px 0
+
+.form-actions
+	padding: 0
+	margin: 0
+	border: none
+	background: none
