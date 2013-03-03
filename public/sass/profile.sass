@@ -39,10 +39,6 @@ a, a:hover
 	&:active
 		@include bg-gradient(#FFEB00 , #FBFAC5)
 
-.font-rate
-	color: #999
-	font-size: 12px
-
 .button2
 	border: none
 	border-left: 1px solid #d0cec7
@@ -61,8 +57,35 @@ a, a:hover
 	&:active
 		@include bg-gradient(#ffeb00, #fbfac5)
 
+
+/* --------------------------------------------------------------------------
+   Icons
+   -------------------------------------------------------------------------- */
+
+.about-icon
+	background: url(../img/about-icon.png) no-repeat 27px 14px
+
+.likes-icon
+	background: url(../img/like-icon.png) no-repeat 27px 14px
+
 .edit-icon
 	background: url(../img/edit-icon.png) no-repeat 18px center
+
+.add-friend-icon
+	background: url(../img/add-friend.png) no-repeat 18px center
+
+.house-icon
+	background: url(../img/house-icon.png) no-repeat 22px center
+
+.places-current-icon
+	background: url(../img/places-current-icon.png) no-repeat 12px center
+
+.places-lived-icon
+	background: url(../img/places-lived-icon.png) no-repeat 12px center
+
+.places-home-icon
+	background: url(../img/places-home-icon.png) no-repeat 12px center
+
 
 /* --------------------------------------------------------------------------
    Structure
@@ -85,6 +108,47 @@ a, a:hover
 		background: url(http://lorempixel.com/960/325/city/7) no-repeat center top
 		position: relative
 		margin-bottom: 8px
+
+		.tabs
+			position: absolute
+			bottom: 25px
+			left: 200px
+
+			.nav-tabs
+				position: relative
+				left: 0
+
+			li
+				background: rgba(255, 255, 255, 0.5)
+				margin-right: 8px
+				@include border-radius(6px)
+
+				a
+					text-indent: 0
+					height: auto
+					text-align: center
+					display: block
+					padding: 15px 25px
+					text-transform: uppercase
+					font:
+						size: 13px
+						style: italic
+					text-shadow: 1px 1px #000
+					@include border-radius(6px)
+					color: #FFF
+					&:hover, &:active
+						background: #f5f5f0
+						color: $gray-link
+						text-shadow: none
+						font-weight: bold
+
+			.active
+				background: #f5f5f0
+				color: $gray-link
+				a
+					color: $gray-link
+					text-shadow: none
+					font-weight: bold
 
 		.people, .stars
 			float: right
@@ -170,194 +234,144 @@ a, a:hover
 					overflow: hidden
 					line-height: 20px
 
-	.profile-column
-		float: left
-		background: #e1e0d9
-		height: 100%
-		width: 190px
-		border: 1px solid #d0cec7
+	.tab-content
+		background: red
 
-		.avatar
-			width: 172px
-			height: 172px
-			margin: 8px
-			margin-left: 9px
+		.content-left
+			float: left
+			background: #e1e0d9
+			width: 190px
+			border: 1px solid #d0cec7
 
-		.add-friend-icon
-			background: url(../img/add-friend.png) no-repeat 18px center
+			.avatar
+				width: 172px
+				height: 172px
+				margin: 8px
+				margin-left: 9px
 
-		.box
-			padding: 15px 20px
-			
-		.rate-box
-			border-bottom: 1px solid #D0CEC7
+			.box
+				padding: 15px 20px
+				border-bottom: 1px solid #D0CEC7
 
 			.rate-info
-				display: block
-				float: left
-				width: 75px
-
-			.rate-results
-				display: block
-				font:
-					size: 16px
-					weight: bold
-				margin-left: 20px
-
-		.basic-info
-			font-size: 12px
-			h1
-				color: #808080
-				font:
-					size: 16px
-					weight: bold
-				margin-bottom: 10px
-			p, li
-				color: #000
-				float: none
-
-			p, li:last-child
-				margin-bottom: 10px
-			li
-				text-transform: capitalize
-
-			form
-				select
-					padding: 0
-					padding-left: 10px
-					margin-left: 0
-					background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
-					width: 150px
-				input
-					height: 30px
-					width: 150px
-					font-size: 12px
-
-				button
-					width: 100%
-
-
-	.box-info
-		background: #FFF
-		color: #808080
-		margin-bottom: 8px
-		border: 1px solid #d0cec7
-
-		.content-top
-			overflow: hidden
-			//height: 450px
-			h1
-				float: left
-				font:
-					size: 14px
-					weight: bold
-				text-shadow: 1px 1px white
-				padding: 12px 10px 10px 50px
-				width: 203px
-				overflow: hidden
-				text-overflow: ellipsis
-				white-space: nowrap
-			.about-icon
-				background: url(../img/about-icon.png) no-repeat 27px 14px
-			.likes-icon
-				background: url(../img/like-icon.png) no-repeat 27px 14px
-			p
-				color: #000
-				font-size: 12px
-				padding-bottom: 20px
-				margin-bottom: 20px
-				border-bottom: 1px solid #DDD
-
-		.wings1
-			p
-				padding-bottom: 12px
-				margin-bottom: 12px
-			.something
-				float: none
-
-
-		.gradient-box
-			background: url(../img/gradient-transparent.png) repeat-x left top
-			height: 100px
-			position: relative
-			margin: -100px 0 0 0
-
-		.content-footer
-			background: #FFF
-			border-top: 1px solid #e5e5e5
-			overflow: hidden
-
-			.see-more
-				float: left
-				margin: 0.7em
-
-				p, span
+				h2
 					float: left
-					padding: 0
-
-				span.more-about
-					background: url(../img/arrow_about.png) no-repeat 15px center
-					text-indent: -9999px
+					width: 75px
 
 				p
+					display: block
+					font:
+						size: 16px
+						weight: bold
+					margin-left: 20px
+
+			.basic-info
+				font-size: 12px
+				h1
+					color: #808080
+					font:
+						size: 16px
+						weight: bold
+					margin-bottom: 10px
+				p, li
+					color: #000
+					float: none
+
+				p, li:last-child
+					margin-bottom: 10px
+				li
+					text-transform: capitalize
+
+				form
+					select
+						padding: 0
+						padding-left: 10px
+						margin-left: 0
+						background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+						width: 150px
+					input
+						height: 30px
+						width: 150px
+						font-size: 12px
+					button
+						width: 100%
+
+	/* box-standard */
+
+		.box-standard
+			float: left
+			background: #FFF
+			color: #808080
+			margin-bottom: 8px
+			border: 1px solid #d0cec7
+
+			background: green
+			overflow: hidden
+
+			.box-header
+				border-bottom: 1px solid #d0cec7
+				overflow: hidden
+
+			.box-content
+				float: left
+				overflow: hidden
+				//height: 450px
+				h1
+					float: left
+					font:
+						size: 14px
+						weight: bold
+					text-shadow: 1px 1px white
+					padding: 12px 10px 10px 50px
+					width: 203px
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+				p
+					color: #000
 					font-size: 12px
-					text-align: center
-					text-transform: uppercase
-					margin: 0
-					border-bottom: 0
+					padding-bottom: 20px
+					margin-bottom: 20px
+					border-bottom: 1px solid #DDD
 
-.about-column
-	float: left
-	height: 100%
-	width: 375px
-	margin-left: 8px
+			.wings1
+				p
+					padding-bottom: 12px
+					margin-bottom: 12px
+				.something
+					float: none
 
-.like-column
-	float: left
-	height: 100%
-	width: 375px
-	margin-left: 8px
+			.gradient-box
+				background: url(../img/gradient-transparent.png) repeat-x left top
+				height: 100px
+				position: relative
+				margin: -100px 0 0 0
 
-.tabs
-	position: absolute
-	bottom: 25px
-	left: 200px
+			.box-footer
+				background: #FFF
+				border-top: 1px solid #e5e5e5
+				overflow: hidden
 
-	.nav-tabs
-		position: relative
-		left: 0
+				.see-more
+					float: left
+					margin: 0.7em
 
-	li
-		background: rgba(255, 255, 255, 0.5)
-		margin-right: 8px
-		@include border-radius(6px)
+					p, span
+						float: left
+						padding: 0
 
-		a
-			text-indent: 0
-			height: auto
-			text-align: center
-			display: block
-			padding: 15px 25px
-			text-transform: uppercase
-			font:
-				size: 13px
-				style: italic
-			text-shadow: 1px 1px #000
-			@include border-radius(6px)
-			color: #FFF
-			&:hover, &:active
-				background: #f5f5f0
-				color: $gray-link
-				text-shadow: none
-				font-weight: bold
+					span.more-about
+						background: url(../img/arrow_about.png) no-repeat 15px center
+						text-indent: -9999px
 
-	.active
-		background: #f5f5f0
-		color: $gray-link
-		a
-			color: $gray-link
-			text-shadow: none
-			font-weight: bold
+					p
+						font-size: 12px
+						text-align: center
+						text-transform: uppercase
+						margin: 0
+						border-bottom: 0
+
+	/* EOF box-standard */
 
 .maps
 	clear: both
@@ -375,13 +389,6 @@ a, a:hover
 		border-bottom: 1px solid #D0CEC7
 	.places-icon
 		background: url(../img/places-icon.png) no-repeat 23px 11px
-
-.content-left
-	height: 100%
-	float: left
-
-.content-right
-	float: left
 
 .box-info
 	background: #FFF
@@ -413,28 +420,11 @@ a, a:hover
 			padding: 10px 0 10px 35px
 			&:hover
 				color: red
-		.places-current-icon
-			background: url(../img/places-current-icon.png) no-repeat 12px center
-		.places-lived-icon
-			background: url(../img/places-lived-icon.png) no-repeat 12px center
-		.places-home-icon
-			background: url(../img/places-home-icon.png) no-repeat 12px center
+
 
 @import _footer.sass
 
-.header-box
-	border-bottom: 1px solid #d0cec7
-	overflow: hidden
-
-.house-icon
-	background: url(../img/house-icon.png) no-repeat 22px center
-
-.about-column
-	.content-center
-		.control-group
-			margin: 0
-
-.content-center
+.box-content
 	padding: 25px
 
 	#religion-input
@@ -466,7 +456,7 @@ a, a:hover
 		input[type="text"]
 			margin-bottom: 10px
 
-.content-center.wings1
+.box-center.wings1
 	h2
 		float: left
 		margin-right: 10px
@@ -477,8 +467,15 @@ a, a:hover
 	label
 		padding: 0 5px 5px 0
 
+
+/* OVER Bootstrap */
+
 .form-actions
 	padding: 0
 	margin: 0
 	border: none
 	background: none
+
+.box-content
+	.control-group
+		margin: 0
