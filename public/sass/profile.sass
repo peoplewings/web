@@ -16,6 +16,14 @@ div
 a, a:hover
 	text-decoration: none
 
+select
+	font-size: 12px
+	color: gray
+	padding: 0
+	padding-left: 10px
+	margin-left: 0
+	background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+
 /* --------------------------------------------------------------------------
    Commons
    -------------------------------------------------------------------------- */
@@ -88,6 +96,9 @@ a, a:hover
 
 .places-home-icon
 	background: url(../img/places-home-icon.png) no-repeat 12px center
+
+.contact-icon
+	background: url(../img/contact-icon.png) no-repeat 12px center
 
 
 /* --------------------------------------------------------------------------
@@ -299,6 +310,7 @@ a, a:hover
 
 		.content-right
 			float: left
+			width: 768px
 
 			/* box-standard */
 
@@ -329,6 +341,7 @@ a, a:hover
 
 				.box-content
 					overflow: hidden
+					padding: 25px
 					//height: 450px
 					p
 						color: #000
@@ -343,6 +356,7 @@ a, a:hover
 						margin-bottom: 12px
 					.something
 						float: none
+
 
 				.gradient-box
 					background: url(../img/gradient-transparent.png) repeat-x left top
@@ -400,10 +414,44 @@ a, a:hover
 
 			/* EOF box-standard.maps */
 
+			.box-standard.contact-info
+				.guest-message
+					padding: 27px
+					background: #F5F5F0
+					h2
+						font-weight: bold
+					p
+						font-style: italic
+						color: gray
+						font-size: 12px
+
+				.box-content
+					.control-group
+						display: block
+						label
+							padding:
+								top: 0
+								left: 0
+
+						input[type="text"]
+							width: 140px
+							margin: 0
+
+						input[name="emails"]
+							width: 300px
+
+						select
+							float: left
+							width: 150px
+							margin: 0
+							margin-right: 8px
+
+					.block-group
+						margin-bottom: 19px
+
 @import _footer.sass
 
 .box-content
-	padding: 25px
 
 	#religion-input
 		margin-bottom: 20px
