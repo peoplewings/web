@@ -38,7 +38,7 @@
 				</ul>
 			</div>
 			{{/if}}
-		</div><!-- EOF personal-info -->
+		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
 	<div class="tab-content">
 		<div class="content-left">
@@ -86,7 +86,6 @@
 					{{/each}}
 				</ul>
 				{{/if}}
-
 				<form id="basic-info-form">
 					<div class="control-group">
 						<label class="control-label" for="textarea"><label for="inputGender">I am</label></label>
@@ -239,9 +238,6 @@
 					{{/if}}
 				</div>
 				<div class="box-content">
-
-					<!-- ABOUT -->
-
 					{{#if allAboutYou}}
 					<h2>Description</h2>
 					<p>{{allAboutYou}}</p>
@@ -291,9 +287,6 @@
 					{{#if myProfile}}
 					<button class="button2 yellow">Save changes</button>
 					{{/if}}
-
-					<!-- EOF ABOUT -->
-
 				</div>
 			</div><!-- EOF box-standard -->
 			<div class="box-standard">
@@ -351,20 +344,29 @@
 					{{/if}}
 				</div>
 			</div><!-- EOF box-standard -->
+			<div class="box-standard maps">
+				<h1 class="places-icon">Places</h1>
+				<div id="user-map"></div>
+				<div class="maps-footer">
+					<ul>
+						<li><a href="#" class="places-current-icon">Where I live</a></li>
+						<li><a href="#" class="places-lived-icon">Where I have lived</a></li>
+						<li><a href="#" class="places-home-icon">Where I am</a></li>
+					</ul>
+				</div>
+			</div> <!-- EOF box-standard maps -->
 		</div><!-- EOF content-right -->
-
 		<div class="content-right tab-pane" id="wings">
 			<div class="box-standard">
 				<div class="box-header">
-					<h1 class="house-icon">Loft en la Puerta del Sol, Madrid</h1>
+					<h1 class="house-icon">Accommodation Wing</h1>
 					{{#if myProfile}}
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
 				<div class="box-content wings1">
-
-					<!-- WINGS -->
-
+					<h2>Wings title</h2>
+					<p>Loft in the Barcelona</p>
 					<h2>Wings status</h2>
 					<p>Yes</p>
 					<h2>Are you sharing for one time</h2>
@@ -391,9 +393,6 @@
 					<p>Underground, bus, tram, train, others</p>
 					<h2 class="something">About your accommodation</h2>
 					<p>I live in Barcelona, Passeig de Gracia cross Catalunya square just in the city center. 30 minuts from airport by Bus directly. I can offer you to square just in the city center. 30 minuts from airport by Bus directly. I can offer you to sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.</p>
-
-					<!-- EOF WINGS -->
-
 				</div>
 				<div class="gradient-box"></div>
 				<div class="box-footer">
@@ -412,15 +411,14 @@
 
 			<div class="box-standard">
 				<div class="box-header">
-					<h1 class="house-icon">Loft en la Puerta del Sol, Madrid</h1>
+					<h1 class="house-icon">Accommodation Wing</h1>
 					{{#if myProfile}}
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
 				<div class="box-content wings1">
-
-					<!-- WINGS -->
-
+					<h2>Wings title</h2>
+					<p>Loft in the Barcelona</p>
 					<h2>Wings status</h2>
 					<p>Yes</p>
 					<h2>Are you sharing for one time</h2>
@@ -447,9 +445,6 @@
 					<p>Underground, bus, tram, train, others</p>
 					<h2 class="something">About your accommodation</h2>
 					<p>I live in Barcelona, Passeig de Gracia cross Catalunya square just in the city center. 30 minuts from airport by Bus directly. I can offer you to square just in the city center. 30 minuts from airport by Bus directly. I can offer you to sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.</p>
-
-					<!-- EOF WINGS -->
-
 				</div>
 				<div class="gradient-box"></div>
 				<div class="box-footer">
@@ -475,9 +470,6 @@
 					{{/if}}
 				</div>
 				<div class="box-content">
-
-					<!-- ABOUT ME FORM -->
-
 					<form id="about-me-form">
 						<div id="" class="control-group">
 							<label class="control-label" for="textarea"><label for="inputAllAboutYou">All about you</label></label>
@@ -561,9 +553,6 @@
 					{{/if}}
 				</div>
 			</div><!-- EOF box-standard -->
-
-			<!-- EOF ABOUT ME FORM -->
-
 			<div class="box-standard">
 				<div class="box-header">
 					<h1 class="likes-icon">Likes</h1>
@@ -572,9 +561,6 @@
 					{{/if}}
 				</div>
 				<div class="box-content likes">
-
-					<!-- LIKE FORM -->
-
 					<form id="likes-form">
 						<div class="control-group">
 							<label class="control-label" for="textarea"><label for="id_enjoy_people">People I enjoy</label></label>
@@ -656,21 +642,6 @@
 					{{/if}}
 				</div>
 			</div>
-
-			<!-- EOF LIKE FORM -->
-
-			<div class="box-standard maps">
-				<h1 class="places-icon">Places</h1>
-				<div id="user-map"></div>
-				<div class="maps-footer">
-					<ul>
-						<li><a href="#" class="places-current-icon">Where I live</a></li>
-						<li><a href="#" class="places-lived-icon">Where I have lived</a></li>
-						<li><a href="#" class="places-home-icon">Where I am</a></li>
-					</ul>
-				</div>
-			</div> <!-- EOF box-standard -->
 		</div> <!-- EOF content-right -->
 	</div> <!-- EOF tab-content -->
 </div> <!-- EOF container -->
-</div>
