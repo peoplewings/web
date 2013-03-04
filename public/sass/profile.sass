@@ -77,6 +77,9 @@ a, a:hover
 .house-icon
 	background: url(../img/house-icon.png) no-repeat 22px center
 
+.places-icon
+	background: url(../img/places-icon.png) no-repeat 23px 11px
+
 .places-current-icon
 	background: url(../img/places-current-icon.png) no-repeat 12px center
 
@@ -102,7 +105,6 @@ a, a:hover
 		font-size: 12px
 
 	.landscape
-		background: red
 		min-height: 270px
 		padding: 27px
 		background: url(http://lorempixel.com/960/325/city/7) no-repeat center top
@@ -298,6 +300,8 @@ a, a:hover
 		.content-right
 			float: left
 
+			/* box-standard */
+
 			.box-standard
 				float: left
 				width: 374px
@@ -370,53 +374,31 @@ a, a:hover
 							margin: 0
 							border-bottom: 0
 
-.box-standard.maps
-	clear: both
-	width: 748px
-	margin-left: 8px
-	overflow: hidden
+			/* EOF box-standard */
 
-	h1
-		font:
-			size: 14px
-			weight: bold
-		text-shadow: 1px 1px white
-		padding: 12px 10px 10px 50px
-		border-bottom: 1px solid #D0CEC7
-	.places-icon
-		background: url(../img/places-icon.png) no-repeat 23px 11px
+			/* box-standard.maps */
 
-.box-info
-	background: #FFF
-	color: #808080
-	margin-bottom: 8px
-	border: 1px solid #d0cec7
-	.content-top.wings-kind
-		h2
-			float: left
-		.description
-			float: none
-			padding-bottom: 0
-		p
-			margin-top: 14px
-			padding-bottom: 14px
+			.box-standard.maps
+				clear: both
+				width: 758px
+				margin-left: 8px
+				overflow: hidden
 
-.maps-footer
-	overflow: hidden
-	padding-left: 10px
-	img
-		width: 756px
-		height: 262px
-	li
-		display: inline
-		margin-right: 10px
-		a
-			display: block
-			font-size: 12px
-			padding: 10px 0 10px 35px
-			&:hover
-				color: red
+			.maps-footer
+				overflow: hidden
+				padding-left: 10px
+				border-top: 1px solid #D0CEC7
+				li
+					display: inline
+					margin-right: 10px
+					a
+						display: block
+						font-size: 12px
+						padding: 10px 0 10px 35px
+						&:hover
+							color: red
 
+			/* EOF box-standard.maps */
 
 @import _footer.sass
 
@@ -475,3 +457,5 @@ a, a:hover
 .box-content
 	.control-group
 		margin: 0
+
+/* EOF OVER Bootstrap */

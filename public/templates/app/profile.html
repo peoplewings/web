@@ -345,7 +345,12 @@
 				</div>
 			</div><!-- EOF box-standard -->
 			<div class="box-standard maps">
-				<h1 class="places-icon">Places</h1>
+				<div class="box-header">
+					<h1 class="places-icon">Places</h1>
+					{{#if myProfile}}
+					<button class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}}
+				</div>
 				<div id="user-map"></div>
 				<div class="maps-footer">
 					<ul>
@@ -354,7 +359,15 @@
 						<li><a href="#" class="places-home-icon">Where I am</a></li>
 					</ul>
 				</div>
-			</div> <!-- EOF box-standard maps -->
+				<div class="maps-footer-2">
+					<div class="control-group">
+						<h2 class="places-current-icon">Where I live</h2>
+						<input type="text" placeholder="something">
+					</div><!-- EOF control-group -->
+					<h2 class="places-lived-icon">Where I have lived</h2>
+					<h2 class="places-home-icon">Where I am</h2>
+				</div>
+			</div><!-- EOF box-standard maps -->
 		</div><!-- EOF content-right -->
 		<div class="content-right tab-pane" id="wings">
 			<div class="box-standard">
