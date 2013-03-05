@@ -29,10 +29,11 @@ define(function(require) {
 				$('#password-form').validate({
 					rules: {
 						newPassword: {
-							minlength: 6
+							minlength: 8,
+							validpassword: true,
 						},
 						newPassword2: {
-							minlength: 6,
+							minlength: 8,
 							equalTo: "#inputPassword"
 						}
 					}

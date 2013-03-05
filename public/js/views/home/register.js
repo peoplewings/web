@@ -30,6 +30,10 @@ define(function(require) {
 					minlength: 8,
 					validpassword: true
 				},
+				confirm_password: {
+					minlength: 8,
+					equalTo: "#pass",
+				},
 				birthdayYear: {
 					max: (new Date()).getFullYear() - 18,
 				},
