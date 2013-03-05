@@ -72,7 +72,6 @@ define(function(require) {
 				if (key != "repeatPassword" && key != "repeatEmail" && key != "current_password")
 					values[key] = value;
 			});
-			debugger
 
 			this.model.save(values, data.current_password)
 				.then(function(status) {
