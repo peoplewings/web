@@ -30,6 +30,13 @@ define(function(require) {
         M: "Maybe"
     };
 
+    var wingDaysChoices = {
+        A: "Any",
+        F: "From Monday to Friday",
+        T: "From Monday to Thursday",
+        W: "Weekend",
+    };
+
     var months = [
             { name: 'January'},
             { name: 'Feburary'},
@@ -51,6 +58,7 @@ define(function(require) {
             smoking: smoking,
             whereSleepingType: whereSleepingType,
             wingStatus: wingStatus,
+            wingDaysChoices: wingDaysChoices,
         },
         months: months,
     };
