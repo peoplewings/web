@@ -35,7 +35,7 @@ define(function(require) {
 			
 			var myProfile = (this.model.get("id") === api.getUserId());
 
-			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList}, {myProfile: myProfile}));
+			$(this.el).html(profileTpl(this.model.toJSON(), { wings: this.wingsList, myProfile: myProfile }));
 
 			this.map.render()
 			this.initMarkers()
@@ -81,9 +81,10 @@ define(function(require) {
 			.prop("data")
 			.then(function(data) {
 				self.wingsList = data.map(function(wing) {
-					wing.smoking = phrases.choices["smoking"][wing.smoking]
-					wing.whereSleepingType = phrases.choices["whereSleepingType"][wing.whereSleepingType]
-					wing.status = phrases.choices["wingStatus"][wing.status]
+					wing.bestDays = phrases.choices["wingDaysChoices"][wing.bestDays];
+					wing.smoking = phrases.choices["smoking"][wing.smoking];
+					wing.whereSleepingType = phrases.choices["whereSleepingType"][wing.whereSleepingType];
+					wing.status = phrases.choices["wingStatus"][wing.status];
 					return wing
 				})
 			})

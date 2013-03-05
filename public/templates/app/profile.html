@@ -342,6 +342,7 @@
 					{{/if}}
 				</div>
 			</div><!-- EOF box-standard -->
+
 			<div class="box-standard contact-info">
 				<div class="box-header">
 					<h1 class="contact-icon">Contact info</h1>
@@ -436,9 +437,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-actions">
-							<!-- <button id="save-profile-btn" type="submit" class="btn btn-primary" style="margin-left: 160px" data-loading-text="Saving...">Save</button> -->
-						</div>
 					</form>
 				</div>
 				<!-- <div class="gradient-box"></div> -->
@@ -455,6 +453,7 @@
 					{{/if}}
 				</div>
 			</div><!-- EOF box-standard -->
+
 			<div class="box-standard maps">
 				<div class="box-header">
 					<h1 class="places-icon">Places</h1>
@@ -497,42 +496,75 @@
 			</div><!-- EOF box-standard maps -->
 		</div><!-- EOF content-right -->
 		<div class="content-right tab-pane" id="wings">
+			{{#each wings}}
 			<div class="box-standard">
 				<div class="box-header">
 					<h1 class="house-icon">Accommodation Wing</h1>
-					{{#if myProfile}}
+					{{#if ../myProfile}}
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
 				<div class="box-content wings1">
 					<h2>Wings title</h2>
-					<p>Loft in the Barcelona</p>
+					<p>{{name}}</p>
+					<h2>City</h2>
+					<p>{{city.name}}, {{city.country}}</p>
 					<h2>Wings status</h2>
-					<p>Yes</p>
+					<p>{{status}}</p>
 					<h2>Are you sharing for one time</h2>
-					<p>11/01/2012 to 02/02/2013</p>
+					{{#if sharingOnce}}
+					<p>{{dateStart}} to {{dateEnd}}</p>
+					{{else}}
+					<p>No</p>
+					{{/if}}
 					<h2>Better days to host</h2>
-					<p>Any</p>
+					<p>{{bestDays}}</p>
 					<h2>Capacity</h2>
-					<p>1 person</p>
+					<p>{{capacity}} people</p>
+					{{#if preferredMale}}
 					<h2>Preferred gender</h2>
-					<p>Any</p>
+					<p>Male</p>
+					{{/if}}
+					{{#if preferredFemale}}
+					<h2>Preferred gender</h2>
+					<p>Female</p>
+					{{/if}}
 					<h2>Wheelchair accessible</h2>
-					<p>Yes</p>
+					<p>
+						{{#if weelchair}}Yes{{else}}No{{/if}}
+					</p>
 					<h2>Sleeping arrangements</h2>
-					<p>Common area</p>
+					<p>{{whereSleepingType}}</p>
 					<h2>Smoking</h2>
-					<p>No smoking allowed</p>
+					<p>{{smoking}}</p>
 					<h2>Pets</h2>
-					<p>I have pet and guests pets allowed</p>
+					<p>
+						{{#if petsAllowed}}
+						Guest pets allowed
+						{{else}}
+						No guest pets allowed
+						{{/if}}
+						{{#if iHavePet}}
+						and I have a pet
+						{{else}}
+						and I don't have any pet
+						{{/if}}
+					</p>
 					<h2>I have blankets</h2>
-					<p>Yes</p>
+					<p>{{#if blankets}}Yes{{else}}No{{/if}}</p>
 					<h2>I live in the city center</h2>
-					<p>Yes</p>
+					<p>{{#if liveCenter}}Yes{{else}}No{{/if}}</p>
 					<h2>Public transport</h2>
-					<p>Underground, bus, tram, train, others</p>
+					<p>
+						{{#if train}}Train, {{/if}}
+						{{#if underground}}Underground, {{/if}}
+						{{#if tram}}Tram, {{/if}}
+						{{#if bus}}Bus, {{/if}}
+						{{#if boat}}Boat, {{/if}}
+						{{#if others}}Others{{/if}}
+					</p>
 					<h2 class="something">About your accommodation</h2>
-					<p>I live in Barcelona, Passeig de Gracia cross Catalunya square just in the city center. 30 minuts from airport by Bus directly. I can offer you to square just in the city center. 30 minuts from airport by Bus directly. I can offer you to sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.</p>
+					<p>{{about}}</p>
 				</div>
 				<div class="gradient-box"></div>
 				<div class="box-footer">
@@ -543,62 +575,13 @@
 							<span class="more-about">more about</span>
 						</p>
 					</div>
-					{{#if myProfile}}
+					{{#if ../myProfile}}
 					<button class="button2 yellow">Save changes</button>
 					{{/if}}
 				</div>
 			</div>
-			<div class="box-standard">
-				<div class="box-header">
-					<h1 class="house-icon">Accommodation Wing</h1>
-					{{#if myProfile}}
-					<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}}
-				</div>
-				<div class="box-content wings1">
-					<h2>Wings title</h2>
-					<p>Loft in the Barcelona</p>
-					<h2>Wings status</h2>
-					<p>Yes</p>
-					<h2>Are you sharing for one time</h2>
-					<p>11/01/2012 to 02/02/2013</p>
-					<h2>Better days to host</h2>
-					<p>Any</p>
-					<h2>Capacity</h2>
-					<p>1 person</p>
-					<h2>Preferred gender</h2>
-					<p>Any</p>
-					<h2>Wheelchair accessible</h2>
-					<p>Yes</p>
-					<h2>Sleeping arrangements</h2>
-					<p>Common area</p>
-					<h2>Smoking</h2>
-					<p>No smoking allowed</p>
-					<h2>Pets</h2>
-					<p>I have pet and guests pets allowed</p>
-					<h2>I have blankets</h2>
-					<p>Yes</p>
-					<h2>I live in the city center</h2>
-					<p>Yes</p>
-					<h2>Public transport</h2>
-					<p>Underground, bus, tram, train, others</p>
-					<h2 class="something">About your accommodation</h2>
-					<p>I live in Barcelona, Passeig de Gracia cross Catalunya square just in the city center. 30 minuts from airport by Bus directly. I can offer you to square just in the city center. 30 minuts from airport by Bus directly. I can offer you to sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.sleep on my 2 beds and 1 couch. I have no pets and I don't square just in the city center. 30 minuts from airport by Bus smoke.</p>
-				</div>
-				<div class="gradient-box"></div>
-				<div class="box-footer">
-					<div class="see-more">
-						<p>
-							<span class="more-about">more about</span>
-							<p>See all content</p>
-							<span class="more-about">more about</span>
-						</p>
-					</div>
-					{{#if myProfile}}
-					<button class="button2 yellow">Save changes</button>
-					{{/if}}
-				</div>
-			</div>
+			{{/each}}
+			
 		</div><!-- EOF content-right -->
 		<div class="content-right tab-pane" id="edit-wings">
 			<div class="box-standard">
