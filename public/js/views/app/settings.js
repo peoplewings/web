@@ -16,7 +16,6 @@ define(function(require) {
 		events: {
 			"submit form#settings-form": "submitSettings",
 			"click a[href='#myModal']": function() {
-				$('.alert').remove()
 				$('#myModal').modal({
 					show: false
 				})
@@ -58,20 +57,20 @@ define(function(require) {
 		render: function() {
 			$(this.el).html(settingsTpl(this.model.toJSON()));
 
-			$('#settings-form').validate(this.validation)
+			this.$('#settings-form').validate(this.validation)
 
-			$('#delete-account-form').validate()
+			this.$('#delete-account-form').validate()
 		},
 
 		submitSettings: function(e) {
 			e.preventDefault();
 			this.$("#save-settings-btn").button('loading');
-			var data = utils.serializeForm('settings-form')
-			var values = {}
+			var data = utils.serializeForm('settings-form');
+			var values = {};
 
 			_.each(data, function(value, key) {
 				if (key != "repeatPassword" && key != "repeatEmail" && key != "current_password")
-				values[key] = value
+					values[key] = value;
 			});
 
 			this.model.save(values, data.current_password)
@@ -89,32 +88,14 @@ define(function(require) {
 		deleteAccount: function() {
 			if (!$('#delete-account-form').valid())
 				return;
+			
 			this.$("#delete-account-btn").button('loading');
+			
 			var data = utils.serializeForm('delete-account-form')
-			debugger
-			this.model.destroy(data);
-
-			/*
 			this.model.destroy(data)
-				.then(function() {
-					debugger
-					
-					if (status === true) {
-						$('#myModal').modal('hide')
-						logoutView.goodbye()
-					} else {
-						$('.alert').remove()
-						var tpl = alertTpl({
-							extraClass: 'alert-error',
-							heading: "Couldn't delete your account" + ": ",
-							message: 'Please retype your password'
-						})
-						$('#myModal > .modal-body').prepend(tpl)
-						$('#delete-account-form')[0].reset()
-					}
-					
-				});
-			*/
+			.then(function(status){
+				logoutView.goodbye();
+			})
 		}
 	});
 
