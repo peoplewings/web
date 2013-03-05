@@ -26,7 +26,12 @@ li
 	list-style: none
 	float: left
 
-input, select
+//input[type="text"],
+//input[type="password"],
+//input[type="email"],
+//input[type="submit"],
+input
+select
 	font-size: 1em
 	padding: 0.7em
 	margin: 0.5em
@@ -41,8 +46,11 @@ input, select
 input[type="submit"]
 	text-transform: uppercase
 
-input[type="checkbox"]
+input[type="checkbox"],
 	@include appearance(checkbox)
+
+input[type="radio"]
+	@include appearance(radio)
 
 button
 	display: block

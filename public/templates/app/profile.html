@@ -289,7 +289,7 @@
 			</div><!-- EOF box-standard -->
 			<div class="box-standard">
 				<div class="box-header">
-					<h1 class="contact-icon">Likes</h1>
+					<h1 class="likes-icon">Likes</h1>
 					{{#if myProfile}}
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
@@ -344,7 +344,7 @@
 			</div><!-- EOF box-standard -->
 			<div class="box-standard contact-info">
 				<div class="box-header">
-					<h1 class="about-icon">Contact info</h1>
+					<h1 class="contact-icon">Contact info</h1>
 					{{#if myProfile}}
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
@@ -359,6 +359,9 @@
 							<label class="control-label" for="textarea"><label for="id_form-0-emails">Email</label></label>
 							<div class="controls">
 								<input name="emails" id="id_form-0-emails" type="text" value="{{emails}}" maxlength="75">
+								<label for="" class="radio">
+									<input type="radio" name="optionsRadios" value="option1" checked>Primary Email
+								</label>
 								<span class="help-block"></span>
 								<span class="help-inline"></span>
 							</div>
@@ -371,6 +374,9 @@
 									<option value="" selected="selected">(+34) Spain</option>
 								</select>
 								<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
+								<label for="" class="radio">
+									<input type="radio" checked>Primary Number
+								</label>
 								<span class="help-block"></span>
 								<span class="help-inline"></span>
 							</div>
@@ -380,6 +386,9 @@
 							<div class="controls">
 								<div id="socialNetwork-list">
 									{{#each socialNetworks}}
+									<label for="" class="radio">
+										<input type="radio" checked>Primary Email
+									</label>
 									<div id="social-{{@index}}">
 										<select name="socialNetworks" id="socialNetwork-{{@index}}">
 											<option value="" selected="selected">Select Network</option>
