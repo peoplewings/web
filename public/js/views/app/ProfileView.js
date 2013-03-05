@@ -35,11 +35,7 @@ define(function(require) {
 			
 			var myProfile = (this.model.get("id") === api.getUserId());
 
-			var spread = _.groupBy(this.wingsList, function(val, index){ return index % 2; });
-
-			debugger
-
-			$(this.el).html(profileTpl(this.model.toJSON(), { wEvens:  spread[0], wPairs: spread[1], myProfile: myProfile }));
+			$(this.el).html(profileTpl(this.model.toJSON(), { wings: this.wingsList, myProfile: myProfile }));
 
 			this.map.render()
 			this.initMarkers()
