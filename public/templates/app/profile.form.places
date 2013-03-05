@@ -1,0 +1,55 @@
+<div id="" class="control-group">
+	<label class="control-label" for="textarea"><label for="hometown">Hometown</label></label>
+	<div id="hometown" class="controls">
+		{{#with hometown}}
+		<input id="hometownCity" name="hometown" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
+		<input name="hometown-city" type="hidden" value="{{name}}">
+		<input name="hometown-region" type="hidden" value="{{region}}">
+		<input name="hometown-country" type="hidden" value="{{country}}">
+		<input name="hometown-lat" type="hidden" value="{{lat}}">
+		<input name="hometown-lon" type="hidden" value="{{lon}}">
+		{{/with}}
+		<span class="help-block"></span>
+		<span class="help-inline"></span>
+	</div>
+</div>
+<div id="" class="control-group">
+	<label class="control-label" for="textarea"><label for="hometown">Current city</label></label>
+	<div id="current" class="controls">
+		{{#with current}}
+		<input id="currentCity" name="current" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
+		<input name="current-city" type="hidden" value="{{name}}">
+		<input name="current-region" type="hidden" value="{{region}}">
+		<input name="current-country" type="hidden" value="{{country}}">
+		<input name="current-lat" type="hidden" value="{{lat}}">
+		<input name="current-lon" type="hidden" value="{{lon}}">
+		{{/with}}
+		<span class="help-block"></span>
+		<span class="help-inline"></span>
+	</div>
+</div>
+<div id="otherLocations-group" class="control-group">
+	<label class="control-label" for="textarea"><label for="hometown">Places where I have lived</label></label>
+	<div class="controls">
+		<div id="otherLocations-list">
+			{{#each otherLocations}}
+			<div id="otherLocation-{{@index}}">
+				<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" value="{{name}}, {{region}}, {{country}}" disabled class="span5" autocomplete="off">
+				<input name="other-city" type="hidden" value="{{name}}">
+				<input name="other-region" type="hidden" value="{{region}}">
+				<input name="other-country" type="hidden" value="{{country}}">
+				<input name="other-lat" type="hidden" value="{{lat}}">
+				<input name="other-lon" type="hidden" value="{{lon}}">
+			</div>
+			{{/each}}
+			<div id="otherLocation-tpl">
+				<input name="otherLocations" type="text" data-provide="typeahead" class="span5" autocomplete="off">
+				<input name="other-city" type="hidden">
+				<input name="other-region" type="hidden">
+				<input name="other-country" type="hidden">
+				<input name="other-lat" type="hidden">
+				<input name="other-lon" type="hidden">
+			</div>
+		</div>
+	</div>
+</div>
