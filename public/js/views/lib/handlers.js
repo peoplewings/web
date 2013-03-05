@@ -1,7 +1,6 @@
 define(function(require) {
 
 	var $ = require('jquery');
-	var Backbone = require('backbone');
 	var api = require('api');
 	var utils = require('utils');
 
@@ -9,16 +8,16 @@ define(function(require) {
 
 	function submitForm(formId, resource, formData, view, viewData) {
 		var spinner = new Spinner(utils.getSpinOpts());
-		api.post(resource, formData, successHandler(view, viewData, spinner, formId))
+		api.post(resource, formData, successHandler(view, viewData, spinner, formId));
 		spinner.spin(document.getElementById('main'));
-	};
+	}
 
 	function successHandler(view, viewData, spin, formId) {
-		return function(response, textStatus) {
-			spin.stop()
+		return function(response) {
+			spin.stop();
 
 			if(response.status === true) {
-				$('#' + formId).remove()
+				$('#' + formId).remove();
 				viewData.extraData = "Code: " + response.code + " - " + response.msg;
 				view.render(viewData);
 				$("#main").html(view.el);
@@ -29,8 +28,8 @@ define(function(require) {
 					message: response.errors || response.error,
 				}));
 			}
-		}
-	};
+		};
+	}
 
 	return {
 		submitForm: submitForm,

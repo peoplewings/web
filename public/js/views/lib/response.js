@@ -4,12 +4,12 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var template = require('text!templates/lib/response.html');
 
-	var responseView = Backbone.View.extend({
+	var ResponseView = Backbone.View.extend({
 		render: function(data){
 			var html = _.template(template, data);
 			$(this.el).html(html);
 		}
 	});
 
-	return new responseView;
+	return new ResponseView;
 });

@@ -9,9 +9,7 @@ define(function(require) {
 	var mailTpl = require('text!templates/lib/mailform.html');
 	var passTpl = require('text!templates/lib/passform.html');
 
-	var spinner = new Spinner(utils.getSpinOpts());
-
-	var passwordView = Backbone.View.extend({
+	var PasswordView = Backbone.View.extend({
 		el: "#main",
 
 		events:{
@@ -24,7 +22,7 @@ define(function(require) {
 			$(this.el).html( tpl );
 
 			if (!token) {
-				$('#forgot-form').validate()
+				$('#forgot-form').validate();
 			} else {
 				$('#password-form').validate({
 					rules: {
@@ -37,12 +35,12 @@ define(function(require) {
 							equalTo: "#inputPassword"
 						}
 					}
-				})
+				});
 			}
 		},
 		submitForgot: function(e){
 			e.preventDefault(e);
-			var data = utils.serializeForm(e.target.id)
+			var data = utils.serializeForm(e.target.id);
 
 			handlersV.submitForm(e.target.id, api.getApiVersion() + '/forgot', data, responseView, {
 				legend: "Check your inbox for the reset link",
@@ -51,7 +49,7 @@ define(function(require) {
 		},
 		submitNewPwd: function(e){
 			e.preventDefault(e);
-			var data = utils.serializeForm(e.target.id)
+			var data = utils.serializeForm(e.target.id);
 
 			handlersV.submitForm(e.target.id, api.getApiVersion() + '/forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword}, responseView, {
 				legend: "Password changed",
@@ -60,5 +58,5 @@ define(function(require) {
 		}
 	});
 
-	return new passwordView;
+	return new PasswordView;
 });

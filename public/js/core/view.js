@@ -1,3 +1,5 @@
+//jshint eqeqeq:false
+
 define(function(require) {
 
 	var _ = require('underscore');
@@ -12,7 +14,7 @@ define(function(require) {
 	});
 
 	Handlebars.registerHelper('unless_equals', function(value, expected, options) {
-		return Handlebars.helpers['unless'].call(this, value == expected, options);
+		return Handlebars.helpers.unless.call(this, value == expected, options);
 	});
 
 	Handlebars.registerHelper('if_contains', function(value, expected, options) {
@@ -20,7 +22,7 @@ define(function(require) {
 	});
 
 	Handlebars.registerHelper('unless_contains', function(value, expected, options) {
-		return Handlebars.helpers['unless'].call(this, value && (value.indexOf(expected) !== -1), options);
+		return Handlebars.helpers.unless.call(this, value && (value.indexOf(expected) !== -1), options);
 	});
 
 	Handlebars.registerHelper('date', function(value, format) {
@@ -29,7 +31,7 @@ define(function(require) {
 		if (format === 'from now')
 			return date.fromNow();
 
-		return date.format(typeof format === 'string' ? format : 'L')
+		return date.format(typeof format === 'string' ? format : 'L');
 	});
 
 	Handlebars.registerHelper('enum', function(value, id) {
@@ -39,7 +41,7 @@ define(function(require) {
 			return window[id][value];
 	});
 
-	var originalEach = Handlebars.helpers['each'];
+	var originalEach = Handlebars.helpers.each;
 	Handlebars.registerHelper('each', function(context, options) {
 		if (context instanceof Array) {
 			context = context.map(function(item, index) {
@@ -51,7 +53,7 @@ define(function(require) {
 					first: index === 0,
 					last: index === context.length - 1,
 					secondLast: index === context.length - 2,
-				})
+				});
 			});
 		}
 
@@ -72,14 +74,14 @@ define(function(require) {
 		}
 
 		var checker = modificator > 0 ?
-			function(a) { return a <= end } :
-			function(a) { return a >= end };
-		
+			function(a) { return a <= end; } :
+			function(a) { return a >= end; };
+
 		var arr = [];
 		for (var i = start; checker(i); i += modificator)
 			arr.push(i);
 
-		return Handlebars.helpers['each'].call(this, arr, options);
+		return Handlebars.helpers.each.call(this, arr, options);
 	});
 
 	Handlebars.registerHelper('selected', function(option, value) {
@@ -103,7 +105,7 @@ define(function(require) {
 	 * ENUMS *
 	 *********/
 
-	function Enum(values) {
+	function enumerate(values) {
 		var inverse = _.object(_.values(values), _.keys(values));
 		var map = values;
 
@@ -114,19 +116,19 @@ define(function(require) {
 		}
 
 		map.fromValue = function(value) {
-			return inverse[value]
+			return inverse[value];
 		};
 		return map;
 	}
 
 	var enums = {
-		'notification-type': Enum({
+		'notification-type': enumerate({
 			Request: 'request',
 			Invitation: 'invite',
 			Message: 'message'
 		}),
 
-		'notification-state': Enum({
+		'notification-state': enumerate({
 			pending: 'P',
 			maybe: 'M',
 			accepted: 'A',
@@ -140,7 +142,7 @@ define(function(require) {
 	 * VIEW FUNCTION *
 	 *****************/
 
-	return function(text, callback) {
+	return function(text) {
 		var compiled = Handlebars.compile(text);
 
 		return function(data) {

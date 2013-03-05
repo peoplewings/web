@@ -1,47 +1,50 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	var $ = require('jquery');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 
 	var getCC = function(address_components){
-		var data = {}
-		var component
-		for (obj in address_components){
-			component = address_components[obj]
-			for ( type in component.types){
-				switch(component.types[type]){
+		var data = {};
+
+		_.each(address_components, function(component) {
+			_.each(component.types, function(type) {
+				switch (type) {
 					case "locality":
-						data.city = component.long_name
+						data.city = component.long_name;
 						break;
 					case "country":
-						data.country = component.long_name
+						data.country = component.long_name;
 						break;
 					case "administrative_area_level_1":
-						data.region = component.long_name
+						data.region = component.long_name;
 						break;
 				}
-			}
-		}
-		return data
+			});
+		});
+		return data;
 	};
 
 	var serialize = function(form_id){
-		var form = (form_id) ? 'form#' + form_id : 'form'
+		var form = (form_id) ? 'form#' + form_id : 'form';
 		var values = {};
 		$.each(jQuery(form).serializeArray(), function(i, field) {
-			if (field.value == "") return
+			if (!field.value) return;
 			var key = field.name;
 			var value = field.value;
 
-			if (!values.hasOwnProperty(key))
-				return values[key] = value;
+			if (!values.hasOwnProperty(key)) {
+				values[key] = value;
+				return value;
+			}
 
 			if (!(values[key] instanceof Array))
 				values[key] = [values[key]];
 
-			values[key].push(value)
+			values[key].push(value);
 		});
-		return values
+		return values;
 	};
 
 	var showModal = function(header, accept, content, callback) {
@@ -60,7 +63,7 @@ define(function(require) {
 		});
 
 		return modal;
-	}
+	};
 
 	var opts = {
 		lines: 13, // The number of lines to draw
@@ -78,7 +81,7 @@ define(function(require) {
 		zIndex: 2e9, // The z-index (defaults to 2000000000)
 		top: 'auto', // Top position relative to parent in px
 		left: 'auto' // Left position relative to parent in px
-	}
+	};
 
 	return {
 		serializeForm: serialize,
@@ -87,5 +90,5 @@ define(function(require) {
 		getSpinOpts: function(){
 			return opts;
 		},
-	}
+	};
 });

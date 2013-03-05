@@ -9,7 +9,7 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 
 
-	var userProfile = Backbone.View.extend({
+	var UserProfile = Backbone.View.extend({
 		el: "#main",
 
 		events: {
@@ -19,8 +19,8 @@ define(function(require) {
 		},
 
 		initialize: function(userId) {
-			this.userId = userId
-			this.refresh = this.refresh.bind(this)
+			this.userId = userId;
+			this.refresh = this.refresh.bind(this);
 		},
 
 		render: function(userId) {
@@ -33,34 +33,34 @@ define(function(require) {
 				api.get('/api/v1/profiles/' + this.userId + '/accomodations/preview')
 			).spread(function(profile, wings) {
 				profile.data.wings = wings.data.map(function(wing) {
-					wing.smoking = phrases.choices["smoking"][wing.smoking]
-					wing.whereSleepingType = phrases.choices["whereSleepingType"][wing.whereSleepingType]
-					wing.status = phrases.choices["wingStatus"][wing.status]
-					return wing
-				})
-				profile.data.civilState = phrases.choices["civilState"][profile.data.civilState]
+					wing.smoking = phrases.choices.smoking[wing.smoking];
+					wing.whereSleepingType = phrases.choices.whereSleepingType[wing.whereSleepingType];
+					wing.status = phrases.choices.wingStatus[wing.status];
+					return wing;
+				});
+				profile.data.civilState = phrases.choices.civilState[profile.data.civilState];
 				self.name = profile.data.firstName + " " + profile.data.lastName;
-				return profile.data
+				return profile.data;
 			}).then(this.refresh);
 
 		},
 
 		refresh: function(data) {
-			$(this.el).html(profileTpl(data))
+			$(this.el).html(profileTpl(data));
 		},
 
-		sendMessage: function(event) {
+		sendMessage: function() {
 			notifications.message(this.userId, this.name);
 		},
 
-		sendRequest: function(event) {
+		sendRequest: function() {
 			notifications.request(this.userId, this.name);
 		},
 
-		sendInvitation: function(event) {
+		sendInvitation: function() {
 			notifications.invitation(this.userId, this.name);
 		}
 	});
 
-	return userProfile;
+	return UserProfile;
 });

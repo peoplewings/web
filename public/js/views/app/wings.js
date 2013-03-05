@@ -3,25 +3,23 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
-	var utils = require("utils");
 	var Promise = require('promise');
 	var wingsTpl = require("tmpl!templates/app/wings.html");
 	var alerts = require('views/lib/alerts');
-	var wingView = require("views/app/wing");
+	var WingView = require("views/app/wing");
 	var ProfileModel = require("models/Profile");
-	var WingModel = require("models/Wing");
 
-	var wingsView = Backbone.View.extend({
+	var WingsView = Backbone.View.extend({
 
 		el: "#main",
 
 		events: {
 			"change [name=generalStatus]": "changeStatus",
-			"click #add-wing-btn": function(evt){
-				this.openWing({ update: false})
+			"click #add-wing-btn": function(){
+				this.openWing({ update: false});
 			},
 			"change #wings-list": function(evt){
-				var id = evt.target.value.split("accomodations/", 2)[1]
+				var id = evt.target.value.split("accomodations/", 2)[1];
 				router.navigate("/#/wings/" + id);
 			}
 		},
@@ -57,11 +55,11 @@ define(function(require) {
 		},
 
 		openWing: function(options){
-			this.wingView = new wingView({
-					papa: self,
-					id: options.id,
-					update: options.update,
-			})
+			this.wingView = new WingView({
+				papa: this,
+				id: options.id,
+				update: options.update,
+			});
 
 			this.wingView.render(options.update);
 		},
@@ -72,25 +70,24 @@ define(function(require) {
 			})
 			.then(function() {
 				alerts.success('Wings general status updated');
-			}, function(error) {
+			}, function() {
 				alerts.defaultError();
 			});
-			
+
 		},
 
 		addWingToList: function(wing) {
-			this.list.push(wing)
-			this.render()
+			this.list.push(wing);
+			this.render();
 		},
 
 		deleteWingFromList: function(uri) {
-			this.list = _.reject(this.list,
-			function(wing) {
-				return wing.uri == uri
-			})
-			this.render()
+			this.list = _.reject(this.list, function(wing) {
+				return wing.uri === uri;
+			});
+			this.render();
 		},
 	});
 
-	return wingsView;
+	return WingsView;
 });

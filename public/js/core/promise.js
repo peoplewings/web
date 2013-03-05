@@ -36,6 +36,8 @@ interface Future {
 
 */
 
+/*global define, module, window */
+
 ;(function(factory) {
 
 	if (typeof define !== 'undefined' && define.amd)
@@ -192,7 +194,7 @@ interface Future {
 			return this.then(function(value) {
 				return Promise.normalize(handler()).then(returner(value));
 			}, function(error) {
-				return Promise.normalize(handler()).then(function() { return Promise.rejected(error) });
+				return Promise.normalize(handler()).then(function() { return Promise.rejected(error); });
 			});
 		},
 
@@ -212,15 +214,15 @@ interface Future {
 		},
 
 		flat: function() {
-			return this.then(function(value) { return [].concat.apply([], value) });
+			return this.then(function(value) { return [].concat.apply([], value); });
 		},
 
 		prop: function(prop) {
-			return this.then(function(value) { return value[prop] });
+			return this.then(function(value) { return value[prop]; });
 		},
 
 		set: function(prop, value) {
-			return this.then(function(obj) { obj[prop] = value; return obj });
+			return this.then(function(obj) { obj[prop] = value; return obj; });
 		},
 
 		method: function(method/*, var_args*/) {
@@ -233,7 +235,7 @@ interface Future {
 
 		execute: function(/* var_args */) {
 			var args = slice.call(arguments);
-			return this.then(function(value) { return value.apply(null, args) });
+			return this.then(function(value) { return value.apply(null, args); });
 		}
 	};
 

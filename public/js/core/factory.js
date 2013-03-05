@@ -1,4 +1,4 @@
-define(function(require) {
+define(function() {
 
 	return function Factory(model) {
 		var store = {};
@@ -23,5 +23,5 @@ define(function(require) {
 
 		ModelFactory.prototype = Object.create(model.prototype);
 		return ModelFactory;
-	}
+	};
 });

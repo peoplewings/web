@@ -1,16 +1,15 @@
 define(function(require) {
 
+	require("jquery.Datepicker");
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
-	var mainTpl = require("tmpl!templates/home/main.html")
-	var accomodationTpl = require("tmpl!templates/home/search.accomodation.html")
-	var jDate = require("jquery.Datepicker")
+	var mainTpl = require("tmpl!templates/home/main.html");
+	var accomodationTpl = require("tmpl!templates/home/search.accomodation.html");
+	var ResultsView = require("views/home/results");
 
-	var ResultsView = require("views/home/results")
-
-	var mainHomeView = Backbone.View.extend({
+	var MainHomeView = Backbone.View.extend({
 
 		el: "#main",
 
@@ -27,12 +26,11 @@ define(function(require) {
 
 			this.$("#accomodation").html(accomodationTpl);
 
-			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
 
 			if (params)
-				this.unserializeParams(params)
-
+				this.unserializeParams(params);
 		},
 
 		unserializeParams: function(params){
@@ -44,11 +42,10 @@ define(function(require) {
 		},
 
 		renderResults: function(query, results) {
-
 			this.resultsView = new ResultsView({
 				logged: api.userIsLoggedIn(),
 				query: query,
-			})
+			});
 
 			this.resultsView.render(results);
 		},
@@ -79,5 +76,5 @@ define(function(require) {
 
 	});
 
-	return new mainHomeView;
+	return new MainHomeView;
 });

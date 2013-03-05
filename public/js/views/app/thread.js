@@ -12,7 +12,7 @@ define(function(require) {
 	var itemTpl = require("tmpl!templates/app/notification.html");
 	var openItemTpl = require("tmpl!templates/app/open-notification.html");
 
-	var threadView = Backbone.View.extend({
+	var ThreadView = Backbone.View.extend({
 		el: "#main",
 
 		events: {
@@ -69,14 +69,14 @@ define(function(require) {
 				var nextThread = threads[index + 1];
 
 				return Promise.all(
-					prevThread || notifList.previousPage().then(function(threads) { return threads && threads[threads.lenght - 1] }),
-					nextThread || notifList.    nextPage().then(function(threads) { return threads && threads[0] })
+					prevThread || notifList.previousPage().then(function(threads) { return threads && threads[threads.lenght - 1]; }),
+					nextThread || notifList.    nextPage().then(function(threads) { return threads && threads[0]; })
 				).spread(function(prevThread, nextThread) {
 					return api.get('/api/v1/notificationsthread/' + id)
 						.prop('data')
 						.then(function(data){
 							if (data.kind !== "message")
-								self.parseOptions(data.options, data.firstSender, data.wing.state)
+								self.parseOptions(data.options, data.firstSender, data.wing.state);
 
 							self.data = data;
 							return data;
@@ -91,18 +91,18 @@ define(function(require) {
 			var isMessage = data.kind === 'message';
 			var flagDirection = data.firstSender === api.getUserId();
 			var state = (isMessage) ? null : data.wing.state;
-			var parameters = null
+			var parameters = null;
 
 			if (!isMessage) {
-				parameters = data.wing.parameters
-				parameters['wingType'] = data.wing.type
-				parameters['numPeople'] = data.wing.parameters.capacity
+				parameters = data.wing.parameters;
+				parameters.wingType = data.wing.type;
+				parameters.numPeople = data.wing.parameters.capacity;
 			}
 
 			var items = data.items.map(function(item, index) {
 
 				if (!isMessage)
-					parameters['message'] = data.wing.parameters.wingName
+					parameters.message = data.wing.parameters.wingName;
 
 				return {
 					index: index,
@@ -171,7 +171,7 @@ define(function(require) {
 				self.back();
 			}, function(error) {
 				debugger;
-				alerts.defaultError();
+				alerts.defaultError(error);
 			});
 		},
 
@@ -187,20 +187,20 @@ define(function(require) {
 			document.location.hash = '#/messages/' + this.$('#next').data('id');
 		},
 
-		createNotification: function(event, type) {
+		createNotification: function() {
 		},
 
-		request: function(event) {
+		request: function() {
 			var inter = this.current.interlocutor;
 			notifications.request(inter.id, inter.name);
 		},
 
-		invite: function(event) {
+		invite: function() {
 			var inter = this.current.interlocutor;
 			notifications.invitation(inter.id, inter.name);
 		},
 
-		reply: function(event) {
+		reply: function() {
 			if (this.data.kind !== "message")
 				this.prevState = this.data.wing.state;
 
@@ -216,7 +216,7 @@ define(function(require) {
 			this.$('#write-response')
 				.hide()
 				.find('textarea')
-					.val('')
+					.val('');
 
 			this.$('#write-response > div.state-flag')
 					.hide();
@@ -227,10 +227,10 @@ define(function(require) {
 			if (this.prevState) {
 				var e = Handlebars.helpers['enum'];
 				this.$('.state-flag')
-				.removeClass(e(this.data.wing.state, "notification-state"))
-				.addClass(e(this.prevState, "notification-state"))
-				.find("span")
-				.text(e(this.prevState, "notification-state"));
+					.removeClass(e(this.data.wing.state, "notification-state"))
+					.addClass(e(this.prevState, "notification-state"))
+					.find("span")
+					.text(e(this.prevState, "notification-state"));
 
 				this.data.wing.state = this.prevState;
 			}
@@ -264,35 +264,35 @@ define(function(require) {
 			}, function() {
 				debugger;
 				alerts.defaultError();
-			})
+			});
 		},
 
 		optAccept: function() {
 			this.reply();
 			this.data.wing.state = "A";
 			this.$('#edit-wing-params').show();
-			this.handleOption(this.data.wing.state, this.prevState)
+			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optMaybe: function() {
 			this.reply();
 			this.data.wing.state = "M";
 			this.$('#edit-wing-params').show();
-			this.handleOption(this.data.wing.state, this.prevState)
+			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optReopen: function() {
 			this.reply();
 			this.data.wing.state = "P";
 			this.$('#edit-wing-params').show();
-			this.handleOption(this.data.wing.state, this.prevState)
+			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optDeny: function() {
 			this.reply();
 			this.data.wing.state = "D";
 			this.$('#write-response > .params-box').show();
-			this.handleOption(this.data.wing.state, this.prevState)
+			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		handleOption: function(option, prevState) {
@@ -324,14 +324,14 @@ define(function(require) {
 		},
 
 		parseOptions: function(options, firstSender, wingState){
-			if (api.getUserId() == firstSender)
+			if (api.getUserId() === firstSender)
 				options[options.indexOf("Deny")] = "Cancel";
-			if (wingState == "D")
+			if (wingState === "D")
 				options[options.indexOf("Pending")] = "Reopen";
 		},
 
 		getWingParameters: function(state){
-			if (state == 'M' || state == 'A' || state == 'P'){
+			if (state === 'M' || state === 'A' || state === 'P'){
 				this.data.wing.parameters.startDate = +new Date(this.$("input[name=startDate]").val())/1000;
 				this.data.wing.parameters.endDate = +new Date(this.$("input[name=endDate]").val())/1000;
 				this.data.wing.parameters.capacity = this.$("select[name=capacity]").val();
@@ -351,5 +351,5 @@ define(function(require) {
 		}
 	});
 
-	return new threadView;
+	return new ThreadView;
 });

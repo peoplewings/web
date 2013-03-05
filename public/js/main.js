@@ -1,5 +1,5 @@
 // Sets the require.js configuration for your application.
-require.config({
+requirejs.config({
 
 	urlArgs: "nocache=" +  Date.now(),
 
@@ -69,7 +69,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr', 'jquery', 'backbone', 'router', 'promise', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router, Promise) {
+requirejs(['modernizr', 'jquery', 'backbone', 'router', 'promise', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router, Promise) {
 	Promise.debug = true;
 	// Instantiates a new Router
 	window.router = new Router();

@@ -10,7 +10,7 @@ define(function(require) {
 	function logout() {
 		alerts.error('ERROR', 'Invalid session');
 		localStorage.removeItem("Peoplewings-Auth-Token");
-		document.location.hash = '/login'
+		document.location.hash = '/login';
 		document.location.reload(true);
 	}
 
@@ -39,26 +39,27 @@ define(function(require) {
 	function request(method, uri, body) {
 		var reqId = _.uniqueId('request');
 		var prom = new Promise();
-		var url = server + uri
-		var request = new XMLHttpRequest();
+		var url = server + uri;
+		var xhr = new XMLHttpRequest();
 		var requestBody = null;
 
 		spinner.show(reqId, 1000);
-		request.open(method, url, true);
+		xhr.open(method, url, true);
 
-		request.onreadystatechange = function(oEvent) {
-			if(request.readyState === 4) {
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState === 4) {
 				spinner.hide(reqId);
 
-				if (request.status == 401)
+				if (xhr.status === 401)
 					return logout();
 
 				pooling.restart();
 
+				var response;
 				try {
-					var response = JSON.parse(request.responseText);
+					response = JSON.parse(xhr.responseText);
 				} catch(err) {
-					console.error('Invalid JSON (', uri, '): ', request.responseText);
+					console.error('Invalid JSON (', uri, '): ', xhr.responseText);
 					return prom.reject(err);
 				}
 
@@ -128,16 +129,17 @@ define(function(require) {
 
 				prom.reject(response.errors);
 			}
-		}
+		};
+
 		if(body) {
 			requestBody = JSON.stringify(body);
-			request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 		}
 		if(loadAuthToken()) {
-			request.setRequestHeader("X-Auth-Token", JSON.parse(loadAuthToken()).auth)
+			xhr.setRequestHeader("X-Auth-Token", JSON.parse(loadAuthToken()).auth);
 		}
-		request.send(requestBody)
 
+		xhr.send(requestBody);
 		return prom.future;
 	}
 
@@ -148,7 +150,7 @@ define(function(require) {
 	}
 
 	function loadAuthToken() {
-		return localStorage.getItem("Peoplewings-Auth-Token")
+		return localStorage.getItem("Peoplewings-Auth-Token");
 	}
 
 	var pooling = {
@@ -198,25 +200,25 @@ define(function(require) {
 			return addParams("", params);
 		},
 		saveAuthToken: function(authToken) {
-			localStorage.setItem("Peoplewings-Auth-Token", authToken)
+			localStorage.setItem("Peoplewings-Auth-Token", authToken);
 		},
 		clearAuthToken: function() {
-			localStorage.removeItem("Peoplewings-Auth-Token")
+			localStorage.removeItem("Peoplewings-Auth-Token");
 		},
 		userIsLoggedIn: function() {
-			return loadAuthToken() != null
+			return loadAuthToken() != null;
 		},
 		getServerUrl: function() {
-			return server
+			return server;
 		},
 		getApiVersion: function() {
-			return apiVersion
+			return apiVersion;
 		},
 		getUserId: function() {
-			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).uid
+			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).uid;
 		},
 		getAuthToken: function() {
-			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).auth
+			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).auth;
 		}
     };
 

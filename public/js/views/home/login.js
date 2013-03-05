@@ -4,14 +4,13 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
-	var alerts = require('views/lib/alerts');
 	var UserModel = require('models/Account');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/login.html');
 
 	var spinner = new Spinner(utils.getSpinOpts());
 
-	var loginView = Backbone.View.extend({
+	var LoginView = Backbone.View.extend({
 
 		el: "#main",
 
@@ -22,29 +21,29 @@ define(function(require) {
 		render: function() {
 			$(this.el).html(loginTpl);
 			this.$('form').validate();
-			this.$inputEmail = this.$("#inputEmail")
-			this.$inputPassword = this.$("#inputPassword")
+			this.$inputEmail = this.$("#inputEmail");
+			this.$inputPassword = this.$("#inputPassword");
 		},
 
 		submitLogin: function(e) {
 			e.preventDefault(e);
 
-			if (this.$inputPassword.val() == '' || this.$inputEmail.val() == '')
+			if (this.$inputPassword.val() === '' || this.$inputEmail.val() === '')
 				return;
 
 			spinner.spin(document.getElementById('main'));
-			var self = this
-			var formData = utils.serializeForm()
+			var self = this;
+			var formData = utils.serializeForm();
 
 			api.post(api.getApiVersion() + '/auth/', formData)
-			.prop('data')
-			.then(function(data){
-				self.loginSuccess(data, formData.remember)
-			})
-			.fin(function(){
-				self.$inputPassword.val('');
-				spinner.stop();
-			})
+				.prop('data')
+				.then(function(data){
+					self.loginSuccess(data, formData.remember);
+				})
+				.fin(function(){
+					self.$inputPassword.val('');
+					spinner.stop();
+				});
 		},
 
 		loginSuccess: function(data, remember) {
@@ -58,19 +57,20 @@ define(function(require) {
 			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
 			.prop("data")
 			.then(function(data){
-				var user = new UserModel(data);
-
-				router.header = new Header
+				router.header = new Header;
 				router.header.render();
 
 				router.navigate("#/search");
+
+				// We instanciate the current user
+				return new UserModel(data);
 			})
 			.fin(function(){
-				self.$inputPassword.val("")
-				self.$inputEmail.val("")
+				self.$inputPassword.val("");
+				self.$inputEmail.val("");
 			});
 		}
 	});
 
-	return new loginView;
+	return new LoginView;
 });

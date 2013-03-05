@@ -6,7 +6,7 @@ define(function(require){
 	var headerTpl = require("tmpl!templates/app/header.html");
 	var UserModel = require("models/Account");
 
-	var appHeader = Backbone.View.extend({
+	var AppHeader = Backbone.View.extend({
 
 		el: 'header',
 
@@ -14,18 +14,18 @@ define(function(require){
 			this.model = new UserModel({id: api.getUserId()});
 			this.model.on("change", this.render.bind(this));
 			if (!this.model.get("firstName"))
-				this.model.fetch()
+				this.model.fetch();
 		},
 
 		render: function(){
 			$(this.el).html(headerTpl(this.model.toJSON()));
-	    },
+		},
 
 		destroy: function(){
-	  		this.remove();
-	  		this.unbind();
+			this.remove();
+			this.unbind();
 		}
-  	});
+	});
 
-	return appHeader;
+	return AppHeader;
 });

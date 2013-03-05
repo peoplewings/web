@@ -10,15 +10,13 @@ define(function(require) {
 		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/",
 
 		url: function(){
-			return this.urlRoot + this.id + "/preview"
+			return this.urlRoot + this.id + "/preview";
 		},
 
-		parse: function(resp, xhr){
-			
+		parse: function(resp){
 			resp.data.replyTime = moment.duration(resp.data.replyTime).humanize();
-			resp.data.civilState = phrases.choices["civilState"][resp.data.civilState];
-
-			return resp.data
+			resp.data.civilState = phrases.choices.civilState[resp.data.civilState];
+			return resp.data;
 		},
 
 	});

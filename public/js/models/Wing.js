@@ -7,10 +7,9 @@ define(function(require) {
 
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
 
-		parse: function(resp, xhr){
-			return resp.data
+		parse: function(resp){
+			return resp.data;
 		}
-
 	});
 
 	return WingModel;

@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	var $ = require("jquery");
@@ -16,25 +18,25 @@ define(function(require) {
 			"click #delete-wing-btn": "deleteWing",
 			"click #cancel-wing-btn": "close",
 			"click input#inputSharingOnce": function(evt) {
-				if (evt.target.checked) $("div#sharing-dates").show()
+				if (evt.target.checked) $("div#sharing-dates").show();
 				else {
-					$("div#sharing-dates").hide()
-					$("[name=dateStart]").val("")
-					$("[name=dateEnd]").val("")
+					$("div#sharing-dates").hide();
+					$("[name=dateStart]").val("");
+					$("[name=dateEnd]").val("");
 				}
 			}
 		},
 
 		initialize: function(options) {
-			this.papa = options.papa
-			this.update = options.update
+			this.papa = options.papa;
+			this.update = options.update;
 
 			this.model = new WingModel({
 					id: options.id
-			})
+			});
 
-			this.model.on("change", this.render.bind(this, false))
-			this.model.fetch()
+			this.model.on("change", this.render.bind(this, false));
+			this.model.fetch();
 		},
 
 		render: function(update) {
@@ -53,7 +55,7 @@ define(function(require) {
 			if (this.model.get("city") === undefined) return;
 
 			this.papa.$("select#wings-list option[value='/api/v1/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id") + "']")
-			.attr("selected", true);
+				.attr("selected", true);
 
 			this.$("#inputName").val(this.model.get("name"));
 			this.$("#wingStatus").val(this.model.get("status"));
@@ -126,7 +128,7 @@ define(function(require) {
 		close: function(e) {
 			if (e)
 				e.preventDefault();
-			
+
 			this.remove();
 			this.unbind();
 			router.navigate("#/wings");
@@ -135,98 +137,97 @@ define(function(require) {
 		},
 
 		initWing: function() {
-			var self = this
-			this.$("input[name=dateStart]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
-			this.$("input[name=dateEnd]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd")
+			var self = this;
+			this.$("input[name=dateStart]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			this.$("input[name=dateEnd]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
 
 			var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
 				types: ['(cities)']
 			});
-			google.maps.event.addListener(autoCity, 'place_changed', self.setAutocomplete(autoCity, "inputCity"));
+			google.maps.event.addListener(autoCity, 'place_changed', self.setAutocomplete(autoCity));
 			self.$("#inputCity").keypress(function(event) {
-				if (event.which == 13) event.preventDefault()
-			})
+				if (event.which === 13) event.preventDefault();
+			});
 
-			this.$('#accomodation-form').validate()
+			this.$('#accomodation-form').validate();
 		},
 
-		setAutocomplete: function(auto, field) {
-			var sc = this
+		setAutocomplete: function(auto) {
+			var sc = this;
 			return function() {
-				var place = auto.getPlace()
+				var place = auto.getPlace();
 				if (place.geometry) {
-					var cc = utils.getCityAndCountry(place.address_components)
-					cc.lat = place.geometry.location.lat() + ""
-					cc.lon = place.geometry.location.lng() + ""
-					cc.name = cc.city
-					delete cc.city
-					sc.cityObject = cc
+					var cc = utils.getCityAndCountry(place.address_components);
+					cc.lat = place.geometry.location.lat() + "";
+					cc.lon = place.geometry.location.lng() + "";
+					cc.name = cc.city;
+					delete cc.city;
+					sc.cityObject = cc;
 				}
-			  }
-			return data
+			};
 		},
 
 		submitWing: function(evt) {
-			evt.preventDefault()
+			evt.preventDefault();
 			this.$("#save-wing-btn").button('loading');
-			var data = utils.serializeForm(evt.target.id)
+			var data = utils.serializeForm(evt.target.id);
 
-			data.city = this.cityObject
-			if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
-				delete data.dateStart
-				delete data.dateEnd
+			data.city = this.cityObject;
+			if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == null) {
+				delete data.dateStart;
+				delete data.dateEnd;
 			}
 
 			var self = this;
 			api.post(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/list/", data)
-			.then(function() {
-				alerts.success('Wing created');
-				self.close();
-			}, function(error) {
-				alerts.defaultError();
-			})
-			.fin(function(){
-				self.$("#save-wing-btn").button('reset');
-			});
+				.then(function() {
+					alerts.success('Wing created');
+					self.close();
+				}, function() {
+					alerts.defaultError();
+				})
+				.fin(function(){
+					self.$("#save-wing-btn").button('reset');
+				});
 		},
 
 		updateWing: function(evt) {
-			evt.preventDefault()
-			$(evt.target).button('loading')
-			var data = utils.serializeForm("accomodation-form")
+			evt.preventDefault();
+			$(evt.target).button('loading');
+			var data = utils.serializeForm("accomodation-form");
 
-			data.city = this.cityObject
-			if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == undefined) {
-				delete data.dateStart
-				delete data.dateEnd
+			data.city = this.cityObject;
+			if ((data.dateStart === "" && data.dateEnd === "") && data.sharingOnce == null) {
+				delete data.dateStart;
+				delete data.dateEnd;
 			}
 
 			var self = this;
 			api.put(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + this.model.get("id"), data)
-			.then(function() {
-				alerts.success('Wing updated');
-				self.close();
-			}, function(error) {
-				alerts.defaultError();
-			})
-			.fin(function(){
-				$(evt.target).button('reset')
-			});
+				.then(function() {
+					alerts.success('Wing updated');
+					self.close();
+				}, function() {
+					alerts.defaultError();
+				})
+				.fin(function(){
+					$(evt.target).button('reset');
+				});
 		},
 
 		deleteWing: function(evt) {
 			evt.preventDefault();
-			var wingId = this.model.get("id")
+			var wingId = this.model.get("id");
 
 			var self = this;
 			if (confirm("Are you sure you want to delete this wing?")) {
 				api.delete(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + wingId)
-				.then(function() {
-					alerts.success('Wing deleted');
-					self.close();
-				}, function(error) {
-					alerts.defaultError();
-				});
+					.then(function() {
+						alerts.success('Wing deleted');
+						self.close();
+					}, function() {
+						alerts.defaultError();
+					});
 			}
 		},
 	});

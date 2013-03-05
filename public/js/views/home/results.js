@@ -2,9 +2,7 @@ define(function(require){
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var utils = require('utils');
 	var api = require('api2');
-	var UserAccount = require('models/Account');
 	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
 
@@ -22,9 +20,9 @@ define(function(require){
 
 		initialize: function(options){
 			this.namesById = {};
-			this.logged = options.logged
-			this.query = options.query
-			this.blurrStyle = (this.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : ""
+			this.logged = options.logged;
+			this.query = options.query;
+			this.blurrStyle = (this.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : "";
 		},
 		setQuery: function(query){
 			this.query = query;
@@ -39,7 +37,7 @@ define(function(require){
 				totalCount: results.count,
 				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
-					result.id = result.profileId
+					result.id = result.profileId;
 					result.replyTime = moment.duration(result.replyTime).humanize();
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
 					return result;
@@ -47,25 +45,25 @@ define(function(require){
 			}));
 
 		},
-		nextPage: function(evt){
-			var scope = this
-			this.query.page++
+		nextPage: function(){
+			var scope = this;
+			this.query.page++;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
-				scope.render(results.data)
-			})
-			return false
+				scope.render(results.data);
+			});
+			return false;
 		},
 		previousPage: function(){
-			var scope = this
-			this.query.page--
+			var scope = this;
+			this.query.page--;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
-				scope.render(results.data)
-			})
-			return false
+				scope.render(results.data);
+			});
+			return false;
 		},
 		close: function(){
-			this.remove()
-			this.unbind()
+			this.remove();
+			this.unbind();
 		},
 
 		sendMessage: function(event) {

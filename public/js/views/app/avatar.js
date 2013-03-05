@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	require("jquery.Jcrop");
@@ -10,7 +12,7 @@ define(function(require) {
 	var alerts = require("views/lib/alerts");
 
 
-	var avatarView = Backbone.View.extend({
+	var AvatarView = Backbone.View.extend({
 		originalAvatarId: "",
 
 		events: {},
@@ -24,31 +26,31 @@ define(function(require) {
 		},
 
 		initAvatarForm: function(){
+			var sc = this;
+			function handleFileSelect(evt) {
+				var files = evt.target.files; // FileList object
+				if (files.length > 0) sc.uploadFile(files[0]);
+			}
+
 			$('#upload-avatar').click(function(e){
 				e.preventDefault();
 				$('#upload').trigger('click');
 			});
-			var sc = this
 			if (window.File && window.FileReader && window.FileList && window.Blob) {
-				function handleFileSelect(evt) {
-					var files = evt.target.files; // FileList object
-					if (files.length > 0) sc.uploadFile(files[0])
-				}
 				document.getElementById('upload').addEventListener('change', handleFileSelect, false);
 			} else alert('The File APIs are not fully supported in this browser.');
 
-			$('#submit-avatar').click(function(evt){
-				sc.submitAvatar()
-			})
+			$('#submit-avatar').click(function(){
+				sc.submitAvatar();
+			});
 		},
 
 		uploadFile: function(file){
 			var fd = new FormData();
-			var profile = new ProfileModel({id: api.getUserId()})
+			var profile = new ProfileModel({id: api.getUserId()});
 			fd.append("image", file);
 			fd.append("owner", profile.get("id"));
-			$(".progress").show()
-			var sc = this
+			$(".progress").show();
 			$.ajax({
 				url: api.getServerUrl() + "/cropper/",
 				data: fd,
@@ -65,14 +67,6 @@ define(function(require) {
 							$('.progress > .bar').attr( { "style": "width:" + percentComplete.toString() + "%" });
 						}
 					}, false);
-					/*Download progress
-					xhr.addEventListener("progress", function(evt){
-						if (evt.lengthComputable) {
-							var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-							var inv = 100 - percentComplete
-							$('.progress > .bar').attr( { "style": "width:" + inv.toString() + "%" });
-						}
-					}, false);*/
 					return xhr;
 				},
 				success: this.uploadComplete(this)
@@ -82,26 +76,26 @@ define(function(require) {
 			return function(response){
 				//console.log("Complete!!!", response)
 				function showCoords(c){
-					var scale_x = scope.originalW / $("#cropbox").width()
-					var scale_y = scope.originalH / $("#cropbox").height()
-					$('#id_x').val(Math.floor(c.x*scale_x))
-					$('#id_y').val(Math.floor(c.y*scale_y))
-					$('#id_w').val(Math.floor(c.w*scale_x))
-					$('#id_h').val(Math.floor(c.h*scale_y))
+					var scale_x = scope.originalW / $("#cropbox").width();
+					var scale_y = scope.originalH / $("#cropbox").height();
+					$('#id_x').val(Math.floor(c.x*scale_x));
+					$('#id_y').val(Math.floor(c.y*scale_y));
+					$('#id_w').val(Math.floor(c.w*scale_x));
+					$('#id_h').val(Math.floor(c.h*scale_y));
 				}
-				function clearCoords(){ $('#coords input').val('') }
+				function clearCoords(){ $('#coords input').val(''); }
 
-				$(".progress").hide()
+				$(".progress").hide();
 
 				if (response.success){
-					var data = response.data
-					scope.originalAvatarId = data.id
-					scope.originalH = data.height
-					scope.originalW = data.width
+					var data = response.data;
+					scope.originalAvatarId = data.id;
+					scope.originalH = data.height;
+					scope.originalW = data.width;
 
-					$('#crop-modal .modal-body img').attr({ src: data.image })
+					$('#crop-modal .modal-body img').attr({ src: data.image });
 
-					$('#crop-modal').modal('show')
+					$('#crop-modal').modal('show');
 					$('#cropbox').Jcrop({
 						onChange:   showCoords,
 						onSelect:   showCoords,
@@ -112,7 +106,7 @@ define(function(require) {
 						//maxSize: [246, 284],
 					});
 				}
-			}
+			};
 		},
 		submitAvatar: function(){
 			var data = utils.serializeForm("crop-avatar-form");
@@ -126,7 +120,7 @@ define(function(require) {
 					$('#crop-modal').modal('hide');
 				}, function(error) {
 					debugger;
-					alerts.defaultError();
+					alerts.defaultError(error);
 				})
 				.fin(function(){
 					$("#submit-avatar").button('reset');
@@ -134,5 +128,5 @@ define(function(require) {
 		},
 	});
 
-	return new avatarView;
+	return new AvatarView;
 });

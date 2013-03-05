@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	var $ = require('jquery');
@@ -5,14 +7,14 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var phrases = require("phrases");
-	
+
 	var responseView = require('views/lib/response');
 
 	var registerTpl = require('tmpl!templates/home/register.html');
 	var termsTpl = require('tmpl!templates/home/terms.html');
 	var alertTpl = require('tmpl!templates/lib/alert.html');
 
-	var registerView = Backbone.View.extend({
+	var RegisterView = Backbone.View.extend({
 
 		el: "#main",
 
@@ -20,7 +22,7 @@ define(function(require) {
 			"submit form#register-form": "submitRegister",
 			"click a#terms-link": function(e){
 				e.preventDefault();
-				var modal = utils.showModal("Terms and conditions", null, termsTpl);
+				utils.showModal("Terms and conditions", null, termsTpl);
 			},
 		},
 
@@ -76,7 +78,7 @@ define(function(require) {
 			var spinner = new Spinner(utils.getSpinOpts());
 			var data = utils.serializeForm(e.target.id);
 
-			if (data.hasAcceptedTerms === "on") 
+			if (data.hasAcceptedTerms === "on")
 				data.hasAcceptedTerms = true;
 			else {
 				console.error("Hmm...");
@@ -91,7 +93,7 @@ define(function(require) {
 
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){
-				spinner.stop()
+				spinner.stop();
 				if(response.status === true) {
 
 					self.$('#register-form').remove();
@@ -100,7 +102,7 @@ define(function(require) {
 						legend: "Confirm your e-mail address",
 						msg: "A confirmation email has been sent to ",
 						extraInfo: data.email
-					})
+					});
 
 					$(self.el).html(responseView.el);
 
@@ -109,12 +111,12 @@ define(function(require) {
 						extraClass: 'alert-error',
 						heading: "Code: " + response.code + ". Error: ",
 						message: JSON.stringify(response.errors) || response.error,
-					}))
+					}));
 				}
 			});
 		},
 
 	});
 
-	return new registerView;
+	return new RegisterView;
 });

@@ -1,0 +1,73 @@
+{
+	// Maximum errors before stopping.
+	"maxerr": 50,
+
+	// Whether the standard browser globals should be predefined.
+	"browser": true,
+	// Whether jQuery globals should be predefined.
+	"jquery": true,
+	// For value examples, see https://github.com/jshint/jshint/blob/c047ea1b01097fcc220fcd1a55c41f67ae2e6e81/jshint.js#L556
+	"globals":  {
+		"requirejs": true,
+		"define": true,
+		"_": true,
+		"$": true,
+		"Backbone": true,
+		"Handlebars": true,
+
+		"Spinner": true,
+		"moment": true,
+		"router": true,
+		"google": true
+	},
+
+	// Whether debugger statements should be allowed.
+	"debug": true,
+	// Whether logging globals should be predefined (console, alert, etc.).
+	"devel": true,
+
+	// Whether ES5 syntax should be allowed.
+	"es5": true,
+	// Whether the "use strict"; pragma should be required.
+	//"strict": true,
+
+	// Whether `===` and `!==` should be required (instead of `==` and `!=`).
+	"eqeqeq": true,
+	// Whether `== null` comparisons should be allowed, even if `eqeqeq` is `true`.
+	"eqnull": true,
+	// Whether `for in` loops must filter with `hasOwnPrototype`.
+	"forin": true,
+	// Whether use before define should be forbidden.
+	"latedef": true,
+	// Whether arguments.caller and arguments.callee should be forbidden.
+	"noarg": true,
+	// Whether smarttabs should be allowed
+	// (http://www.emacswiki.org/emacs/SmartTabs).
+	"smarttabs": true,
+
+	// Whether constructor names must be capitalized.
+	"newcap": true,
+	// Whether empty blocks should be forbidden.
+	"noempty": true,
+	// Whether using `new` for side-effects should be forbidden.
+	"nonew": true,
+	// Whether trailing whitespace rules apply.
+	"trailing": true,
+	// Whether strict whitespace rules apply.
+	"white": false,
+	// Specify indentation.
+	//"indent": 4,
+
+	// Force all variable names to use either camelCase style or UPPER_CASE
+	// with underscores.
+	"camelcase": true,
+	// Enforce use of single quotation marks for strings.
+	//"quotmark": "single",
+	// Prohibit use of explicitly undeclared variables.
+	"undef": true,
+	// Warn when variables are defined but never used.
+	"unused": true,
+
+	//"-W033": true,
+	"-W058": true
+}

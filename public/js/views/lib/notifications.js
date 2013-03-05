@@ -1,3 +1,6 @@
+// W003 Function 'send' was used before it was defined.
+//jshint camelcase:false, -W003
+
 define(function(require) {
 
 	var $ = require('jquery');
@@ -41,7 +44,7 @@ define(function(require) {
 	};
 
 	function selectedWingType(container) {
-		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type')
+		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type');
 	}
 
 
@@ -87,11 +90,12 @@ define(function(require) {
 				});
 
 				modal.find('.autocompletePeople').typeahead({
-					source: contacts.map(function(c) { return c.fullname })
+					source: contacts.map(function(c) { return c.fullname; })
 				});
 			}
 
 			modal.find('form').validate(validation);
+
 
 			function send() {
 				if (!modal.find('form').valid())
@@ -101,16 +105,16 @@ define(function(require) {
 
 				if (!hasTarget) {
 					var selected = modal.find('.autocompletePeople').val();
-					targetId = contacts.filter(function(c) { return c.fullname === selected })['0'].id
+					targetId = contacts.filter(function(c) { return c.fullname === selected; })['0'].id;
 				}
 
 				$(".generic-modal-btn").button('loading');
-				
+
 				api.post('/api/v1/notificationslist', {
 					"idReceiver": targetId,
 					"kind": kind,
 					"data": data,
-				}).then(function() {					
+				}).then(function() {
 					alerts.success('Message Sent');
 					prom.resolve(true);
 				}, function(error) {

@@ -8,28 +8,28 @@ define(function(require) {
 	var contentTpl = require('tmpl!templates/app/feedback.html');
 	var UserModel = require('models/Account');
 
-	var feedbackView = Backbone.View.extend({
+	var FeedbackView = Backbone.View.extend({
 
 		initialize: function(){
-			this.model = new UserModel({id: api.getUserId()})
-			this.model.fetch()
-			console.log(this.model.attributes)
+			this.model = new UserModel({id: api.getUserId()});
+			this.model.fetch();
+			console.log(this.model.attributes);
 		},
 
 		render: function(){
-			var content = contentTpl({ avatar: this.model.get("avatar")})
+			var content = contentTpl({ avatar: this.model.get("avatar")});
 			this.modal = utils.showModal("New suggestion", "Send", content, this.saveFeedback.bind(this));
 			this.modal.on('hidden', this.close.bind(this));
-			$("#feedback-form").validate()
+			$("#feedback-form").validate();
 		},
 
-		saveFeedback: function(scope){
+		saveFeedback: function(){
 			var self = this;
-			var data = utils.serializeForm("feedback-form")
+			var data = utils.serializeForm("feedback-form");
 			this.modal.find(".generic-modal-btn").button('loading');
 
 			if (this.modal.find("#feedback-form").valid()) {
-				console.log(data)
+				console.log(data);
 				api.post(api.getApiVersion() + "/feedback", data, function(response){
 					self.modal.find(".generic-modal-btn").button('reset');
 
@@ -43,11 +43,11 @@ define(function(require) {
 			}
 		},
 
-		close: function(){
-			this.remove()
-			this.unbind()
+		close: function() {
+			this.remove();
+			this.unbind();
 		},
 	});
 
-	return new feedbackView;
+	return new FeedbackView;
 });

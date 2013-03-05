@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	var $ = require("jquery");
@@ -18,7 +20,7 @@ define(function(require) {
 			"click a[href='#myModal']": function() {
 				$('#myModal').modal({
 					show: false
-				})
+				});
 			},
 			"click button#delete-account-btn": "deleteAccount",
 		},
@@ -46,20 +48,17 @@ define(function(require) {
 			},
 		},
 
-		initialize: function(options) {
+		initialize: function() {
 			this.model = new UserModel({
 				id: api.getUserId()
-			})
+			});
 			this.model.on("change", this.render.bind(this));
-
 		},
 
 		render: function() {
 			$(this.el).html(settingsTpl(this.model.toJSON()));
-
-			this.$('#settings-form').validate(this.validation)
-
-			this.$('#delete-account-form').validate()
+			this.$('#settings-form').validate(this.validation);
+			this.$('#delete-account-form').validate();
 		},
 
 		submitSettings: function(e) {
@@ -69,12 +68,13 @@ define(function(require) {
 			var values = {};
 
 			_.each(data, function(value, key) {
-				if (key != "repeatPassword" && key != "repeatEmail" && key != "current_password")
+				if (key !== "repeatPassword" && key !== "repeatEmail" && key !== "current_password")
 					values[key] = value;
 			});
 
+			var self = this;
 			this.model.save(values, data.current_password)
-				.then(function(status) {
+				.then(function() {
 					alerts.success('Account updated');
 				}, function() {
 					alerts.defaultError();
@@ -88,14 +88,14 @@ define(function(require) {
 		deleteAccount: function() {
 			if (!$('#delete-account-form').valid())
 				return;
-			
+
 			this.$("#delete-account-btn").button('loading');
-			
-			var data = utils.serializeForm('delete-account-form')
+
+			var data = utils.serializeForm('delete-account-form');
 			this.model.destroy(data)
-			.then(function(status){
-				logoutView.goodbye();
-			})
+				.then(function(){
+					logoutView.goodbye();
+				});
 		}
 	});
 

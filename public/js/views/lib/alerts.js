@@ -24,7 +24,7 @@ define(function(require) {
 		$('#alerts-container').append(alert);
 
 		if (options.autoclose)
-			setTimeout(function() { alert.alert('close') }, options.autoclose);
+			setTimeout(function() { alert.alert('close'); }, options.autoclose);
 
 		alert.alert();
 		return alert;

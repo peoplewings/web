@@ -7,41 +7,39 @@ define(function(require) {
 	var UserModel = Backbone.Model.extend({
 
 		urlRoot: api.getServerUrl() + api.getApiVersion() + '/accounts/',
-		
-		/*
-		fetch: function(options) {
-            api.get(api.getApiVersion() + '/accounts/' + this.id, {}, this.parse)
-        },
-		*/
 
 		save: function(attributes, pwd) {
-			var sc = this
+			var self = this;
 			return api.put(api.getApiVersion() + '/accounts/' + this.id, { resource: attributes, currentPassword: pwd })
 				.prop('status')
 				.then(function(status){
-					if (status === true){
-						for (attr in attributes) 
-							sc.set(attr, attributes[attr]);
+					if (status) {
+						_.each(attributes, function(value, name) {
+							self.set(name, value);
+						});
 					}
 					return status;
-				})
+				});
 		},
 
-		parse: function(resp, xhr) {
-			return resp.data
+		parse: function(resp) {
+			return resp.data;
 		},
-		
+
 		destroy: function(data) {
-			var sc = this
+			var self = this;
 			return api.post(api.getApiVersion() + '/accounts/', data)
 					.prop('status')
 					.then(function(status){
-						if (status === true){
-							for (attr in sc.attributes) 
-								sc.unset(attr);
-							}
-							return status;
-						})
+						if (status) {
+
+							// BUG DETECTED BY JSHINT
+							_.each(attributes, function(value, name) {
+								self.unset(name, value);
+							});
+						}
+						return status;
+					});
 		}
 	});
 

@@ -3,7 +3,7 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 
-	var list = Backbone.View.extend({
+	var List = Backbone.View.extend({
 
 		initialize: function(options) {
 			this.el = options.el;
@@ -21,10 +21,10 @@ define(function(require) {
 
 			_.each($(this.el).children(), function(item, index) {
 				$(item).append('<button type="button" class="close" id="delete-' + self.key + '-' + index + '">×</button>');
-			})
+			});
 
 			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>');
-			if (this.length == 0)
+			if (!this.length)
 				this.addItem();
 		},
 
@@ -40,12 +40,12 @@ define(function(require) {
 		},
 
 		deleteItem: function(e) {
-			$(e.target).parent().remove()
+			$(e.target).parent().remove();
 			this.length--;
 		},
 
 	});
 
-	return list;
+	return List;
 
 });

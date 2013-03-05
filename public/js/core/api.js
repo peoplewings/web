@@ -2,7 +2,7 @@ define(function(require) {
 
 	var api = require('api2');
 
-	return window.API = {
+	window.API = {
 		delete: function(uri, body, callback, errorCallback) {
 			api.delete(uri, body).then(callback, errorCallback);
 		},
@@ -13,7 +13,7 @@ define(function(require) {
 			api.post(uri, body).then(callback, errorCallback);
 		},
 		get: function(uri, params, callback, errorCallback) {
-			api.get(uri, body).then(callback, errorCallback);
+			api.get(uri, params).then(callback, errorCallback);
 		},
 
 		encodeParams: api.urlEncode,
@@ -24,5 +24,7 @@ define(function(require) {
 		getApiVersion: api.getApiVersion,
 		getUserId: api.getUserId,
 		getAuthToken: api.getAuthToken
-	}
+	};
+
+	return window.API;
 });

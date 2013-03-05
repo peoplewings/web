@@ -13,7 +13,7 @@ define(function(require){
 			.html(count);
 	});
 
-	var notificationsView = Backbone.View.extend({
+	var NotificationsView = Backbone.View.extend({
 		el: "#main",
 
 		activePage: 1,
@@ -58,12 +58,12 @@ define(function(require){
 				this.unserializeFilters(filters);
 
 			var self = this;
-			this.$('#notification-type').delegate('li', 'click', function(e) {
+			this.$('#notification-type').delegate('li', 'click', function() {
 				self.selectTab($(this).data('filter'));
 			});
 
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
-			this.$('select#ri-filters').on('change', this.filter.bind(this))
+			this.$('select#ri-filters').on('change', this.filter.bind(this));
 			this.$('#ri-status').on('change', this.filter.bind(this)).hide();
 			return this.loadData(filters).then(this.refresh);
 		},
@@ -92,9 +92,9 @@ define(function(require){
 			var result = {};
 
 			if (this.activePage !== 1)
-				result.page = this.activePage
+				result.page = this.activePage;
 
-			var query = this.$('#search-query').val()
+			var query = this.$('#search-query').val();
 			if (query)
 				result.search = query;
 
@@ -106,7 +106,7 @@ define(function(require){
 			if (target.length === 1)
 				result.target = target.attr('name');
 
-			var status = this.$('#ri-status').val()
+			var status = this.$('#ri-status').val();
 			if (kind === 'reqinv' && status)
 				result.state = status;
 
@@ -117,7 +117,7 @@ define(function(require){
 			return Object.keys(result).length ? result : null;
 		},
 
-		filter: function(useQuery) {
+		filter: function() {
 			this.resetPager();
 			this.applyFilters();
 		},
@@ -144,25 +144,26 @@ define(function(require){
 			api.put('/api/v1/notificationslist', { threads: this.selection }).then(this.render.bind(this));
 		},
 
-		getThreads: function(data) {
+		getThreads: function() {
 			var self = this;
 			return this.threads ?
 				Promise.normalize(this.threads) :
 				this.loadData().then(function(data) {
-					return self.threads = data.items.map(function(item) {
+					self.threads = data.items.map(function(item) {
 						return item.reference;
 					});
+					return self.threads;
 				});
 		},
 
 		refresh: function(data) {
 			if (!this.lastPage)
-				this.lastPage = Math.ceil(data.count / data.items.length)
+				this.lastPage = Math.ceil(data.count / data.items.length);
 
 			var self = this;
 			this.$list.html(data.items.map(itemTpl).join(''));
 			this.$list.children()
-				.click(function(event) {
+				.click(function() {
 					var thread = $(this).data('thread');
 					self.lastFilters = self.serializeFilters();
 					document.location.hash = '#/messages/' + thread;
@@ -172,13 +173,13 @@ define(function(require){
 					$(this).prepend(check);
 					return check.get(0);
 				})
-				.click(function(e) {
+				.click(function() {
 					event.stopPropagation();
 				})
-				.on('change', function(event) {
+				.on('change', function() {
 					var thread = $(this).closest('.notification-item').data('thread');
 
-					self.selection = self.selection.filter(function(a) { return a !== thread });
+					self.selection = self.selection.filter(function(a) { return a !== thread; });
 					if ($(this).is(':checked'))
 						self.selection.push(thread);
 				});
@@ -199,7 +200,7 @@ define(function(require){
 
 		selectTab: function(type) {
 			this.$('.button.selected').removeClass('selected');
-			this.$('.button[data-filter="' + type + '"]').addClass('selected')
+			this.$('.button[data-filter="' + type + '"]').addClass('selected');
 
 			if (type === 'reqinv')
 				this.addFilters();
@@ -230,11 +231,11 @@ define(function(require){
 				.remove();
 		},
 
-		renderCounters: function(start, end, count){
-			var args = arguments
-			var spans = this.$(".resultCounter").find("span").wrap(function(span){
-				$(this).text(args[span])
-			})
+		renderCounters: function(){
+			var args = arguments;
+			this.$(".resultCounter").find("span").wrap(function(span){
+				$(this).text(args[span]);
+			});
 		},
 
 		nextPage: function(){
@@ -254,10 +255,10 @@ define(function(require){
 		},
 
 		resetPager: function(){
-			this.activePage = 1
-			this.lastPage = undefined
+			this.activePage = 1;
+			this.lastPage = null;
 		}
 	});
 
-	return new notificationsView;
+	return new NotificationsView;
 });
