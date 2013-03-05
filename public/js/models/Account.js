@@ -33,7 +33,7 @@ define(function(require) {
 		
 		destroy: function(data) {
 			var sc = this
-			return api.delete(api.getApiVersion() + '/accounts/' + this.id, data)
+			return api.post(api.getApiVersion() + '/accounts/', data)
 					.prop('status')
 					.then(function(status){
 						if (status === true){
