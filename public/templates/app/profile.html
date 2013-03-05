@@ -359,9 +359,6 @@
 							<label class="control-label" for="textarea"><label for="id_form-0-emails">Email</label></label>
 							<div class="controls">
 								<input name="emails" id="id_form-0-emails" type="text" value="{{emails}}" maxlength="75">
-								<label for="" class="radio">
-									<input type="radio" name="optionsRadios" value="option1" checked>Primary Email
-								</label>
 								<span class="help-block"></span>
 								<span class="help-inline"></span>
 							</div>
@@ -374,21 +371,16 @@
 									<option>Home</option>
 								</select>
 								<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
-								<label for="" class="radio">
-									<input type="radio" checked>Primary Number
-								</label>
+								<a href="#">+ Add Phone</a>
 								<span class="help-block"></span>
 								<span class="help-inline"></span>
 							</div>
 						</div>
-						<div id="" class="control-group block-group">
+						<div id="" class="control-group">
 							<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
 							<div class="controls">
 								<div id="socialNetwork-list">
 									{{#each socialNetworks}}
-									<label for="" class="radio">
-										<input type="radio" checked>Primary Email
-									</label>
 									<div id="social-{{@index}}">
 										<select name="socialNetworks" id="socialNetwork-{{@index}}">
 											<option value="" selected="selected">Select Network</option>
@@ -411,12 +403,13 @@
 											<option value="Coach Surfing">Couch Surfing</option>
 										</select>
 										<input type="text" name="snUsername">
+										<a href="#">+ Add Network</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div id="" class="control-group block-group">
-							<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
+						<div id="" class="control-group">
+							<label class="control-label" for="textarea"><label for="socialNetwork">Instant Message</label></label>
 							<div class="controls">
 								<div id="instantMessage-list">
 									{{#each instantMessages}}
@@ -438,6 +431,7 @@
 											<option value="Messenger">Messenger</option>
 										</select>
 										<input type="text" name="imUsername">
+										<a href="#">+ Add Instant Message Service</a>
 									</div>
 								</div>
 							</div>
