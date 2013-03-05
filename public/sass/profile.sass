@@ -65,6 +65,18 @@ select
 	&:active
 		@include bg-gradient(#ffeb00, #fbfac5)
 
+.another
+	display: block
+	font:
+		size: 12px
+		style: italic
+	float: right
+	margin: 12px 14px
+	margin-bottom: 0
+	&:hover
+		color: red
+		text-decoration: underline
+
 
 /* --------------------------------------------------------------------------
    Icons
@@ -75,6 +87,9 @@ select
 
 .likes-icon
 	background: url(../img/like-icon.png) no-repeat 27px 14px
+
+.contact-icon
+	background: url(../img/contact-icon.png) no-repeat 20px center
 
 .edit-icon
 	background: url(../img/edit-icon.png) no-repeat 18px center
@@ -96,9 +111,6 @@ select
 
 .places-home-icon
 	background: url(../img/places-home-icon.png) no-repeat 12px center
-
-.contact-icon
-	background: url(../img/contact-icon.png) no-repeat 12px center
 
 
 /* --------------------------------------------------------------------------
@@ -426,6 +438,13 @@ select
 					padding-left: 10px
 				.controls
 					margin-left: 150px
+				.controls.lived
+					label.radio
+						float: right
+						margin-right: 175px
+					a
+						float: none
+						margin: 0
 
 			/* EOF box-standard.maps */
 
@@ -466,18 +485,6 @@ select
 							width: 150px
 							margin: 0
 							margin-right: 8px
-
-						a
-							text-decoration: underline
-							display: block
-							font:
-								size: 12px
-								style: italic
-							float: right
-							margin: 12px 14px
-							margin-bottom: 0
-							&:hover
-								color: red
 
 					label.radio
 						color: #000
@@ -523,11 +530,6 @@ select
 		margin-right: 10px
 	p
 		margin-bottom: 12px
-
-#edit-wings
-	label
-		padding: 0 5px 5px 0
-
 
 /* OVER Bootstrap */
 
