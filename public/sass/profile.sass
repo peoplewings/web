@@ -23,6 +23,7 @@ select
 	padding-left: 10px
 	margin-left: 0
 	background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+	@include border-radius(3px)
 
 /* --------------------------------------------------------------------------
    Commons
@@ -112,6 +113,13 @@ select
 .places-home-icon
 	background: url(../img/places-home-icon.png) no-repeat 12px center
 
+.lock-icon
+	background: url(../img/lock-icon.png) no-repeat
+	width: 9px
+	height: 12px
+	float: left
+	margin: 10px
+	margin-top: 11px
 
 /* --------------------------------------------------------------------------
    Structure
@@ -310,15 +318,31 @@ select
 					select
 						padding: 0
 						padding-left: 10px
-						margin-left: 0
-						background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+						margin: 0
+						margin-top: 3px
+						background: url(../img/mini-arrow.png) no-repeat #FFF
+					.size-small
+						width: 57px
+						background-position: 40px
+					.size-medium
+						width: 90px
+						background-position: 70px
+					.size-large
 						width: 150px
+						background-position: 130px
+					.size-large.lock-info
+						width: 121px
+						background-position: 101px
 					input
 						height: 30px
 						width: 150px
 						font-size: 12px
-					button
-						width: 100%
+
+			.basic-info-footer
+				padding: 0
+				button
+					width: 100%
+					border-left: 0
 
 		.content-right
 			float: left
@@ -501,8 +525,8 @@ select
 		.controls
 			line-height: 0
 
-	.help-block
-		margin: 0
+			.help-block
+				margin: 0
 
 	label
 		padding: 14px 10px 10px 5px
@@ -543,5 +567,9 @@ select
 	.control-group
 		margin: 0
 		clear: both
+
+.help-block
+	margin: 0
+	display: inline
 
 /* EOF OVER Bootstrap */
