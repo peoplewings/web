@@ -1,79 +1,97 @@
-<form id="contact-form" class="form-horizontal">
-	<div id="" class="control-group">
-		<label class="control-label" for="textarea"><label for="id_form-0-emails">Email</label></label>
-		<div class="controls">
-			<input name="emails" id="id_form-0-emails" type="text" value="{{emails}}" maxlength="75">
-			<span class="help-block"></span>
-			<span class="help-inline"></span>
-		</div>
-	</div>
-	<div id="" class="control-group">
-		<label class="control-label" for="textarea"><label for="id_form-0-phone">Phone</label></label>
-		<div class="controls">
-			<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
-			<span class="help-block"></span>
-			<span class="help-inline"></span>
-		</div>
-	</div>
-	<div id="" class="control-group">
-		<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
-		<div class="controls">
-			<div id="socialNetwork-list">
-				{{#each socialNetworks}}
-					<div id="social-{{@index}}">
-						<select name="socialNetworks" id="socialNetwork-{{@index}}" class="span2">
-							<option value="" selected="selected">Select Network</option>
-							<option value="Facebook" {{selected socialNetwork 'Facebook'}}>Facebook</option>
-							<option value="Twitter" {{selected socialNetwork 'Twitter'}}>Twitter</option>
-							<option value="LinkedIn" {{selected socialNetwork 'LinkedIn'}}>LinkedIn</option>
-							<option value="Badoo" {{selected socialNetwork 'Badoo'}}>Badoo</option>
-							<option value="Couch Surfing" {{selected socialNetwork 'Couch Surfing'}}>Couch Surfing</option>
-						</select>
-						<input type="text" name="snUsername" id="snUsername-{{@index}}" value="{{snUsername}}" class="input-large">
-					</div>
-				{{/each}}
-				<div id="socialNetwork-tpl">
-						<select name="socialNetworks" class="span2">
-							<option value="" selected="selected">Select Network</option>
-							<option value="Facebook">Facebook</option>
-							<option value="Twitter">Twitter</option>
-							<option value="LinkedIn">LinkedIn</option>
-							<option value="Badoo">Badoo</option>
-							<option value="Coach Surfing">Couch Surfing</option>
-						</select>
-						<input type="text" name="snUsername" class="input-large">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="" class="control-group">
-		<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
-		<div class="controls">
-			<div id="instantMessage-list">
-				{{#each instantMessages}}
-					<div id="im-{{@index}}">
-						<select name="instantMessages" id="instantMessage-{{@index}}" class="span2">
-							<option value="" selected="selected">Select IM</option>
-							<option value="Skype" {{selected instantMessage 'Skype'}}>Skype</option>
-							<option value="Whatsapp" {{selected instantMessage 'Whatsapp'}}>Whatsapp</option>
-							<option value="Messenger" {{selected instantMessage 'Messenger'}}>Messenger</option>
-						</select>
-						<input type="text" name="imUsername" id="imUsername-{{@index}}" value="{{imUsername}}" class="input-large">
-					</div>
-				{{/each}}
-				<div id="im-tpl">
-						<select name="instantMessages" class="span2">
-							<option value="" selected="selected">Select IM</option>
-							<option value="Skype">Skype</option>
-							<option value="Whatsapp">Whatsapp</option>
-							<option value="Messenger">Messenger</option>
-						</select>
-						<input type="text" name="imUsername" class="input-large">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="form-actions">
-			<button id="save-profile-btn" type="submit" class="btn btn-primary" style="margin-left: 160px" data-loading-text="Saving...">Save</button>
-		</div>
-</form>
+					<form id="contact-form">
+						<div id="" class="control-group">
+							<label class="control-label" for="textarea"><label for="id_form-0-emails">Email</label></label>
+							<div class="controls">
+								<input name="emails" id="id_form-0-emails" type="text" value="{{emails}}" maxlength="75">
+								<span class="help-block"></span>
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div id="" class="control-group">
+							<label class="control-label" for="textarea"><label for="id_form-0-phone">Phone</label></label>
+							<div class="controls">
+								<select name="pre-phone" id="">
+									<option value="mobile" selected="selected">Mobile</option>
+									<option>Home</option>
+								</select>
+								<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
+								<a href="#" class="another">+ Add Phone</a>
+								<span class="help-block"></span>
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div id="" class="control-group">
+							<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
+							<div class="controls">
+								<div id="socialNetwork-list">
+									{{#each socialNetworks}}
+									<div id="social-{{@index}}">
+										<select name="socialNetworks" id="socialNetwork-{{@index}}">
+											<option value="" selected="selected">Select Network</option>
+											<option value="Facebook" {{selected socialNetwork 'Facebook'}}>Facebook</option>
+											<option value="Twitter" {{selected socialNetwork 'Twitter'}}>Twitter</option>
+											<option value="LinkedIn" {{selected socialNetwork 'LinkedIn'}}>LinkedIn</option>
+											<option value="Badoo" {{selected socialNetwork 'Badoo'}}>Badoo</option>
+											<option value="Couch Surfing" {{selected socialNetwork 'Couch Surfing'}}>Couch Surfing</option>
+										</select>
+										<input type="text" name="snUsername" id="snUsername-{{@index}}" value="{{snUsername}}">
+									</div>
+									{{/each}}
+									<div id="socialNetwork-tpl">
+										<select name="socialNetworks" class="span2">
+											<option value="" selected="selected">Select Network</option>
+											<option value="Facebook">Facebook</option>
+											<option value="Twitter">Twitter</option>
+											<option value="LinkedIn">LinkedIn</option>
+											<option value="Badoo">Badoo</option>
+											<option value="Coach Surfing">Couch Surfing</option>
+										</select>
+										<input type="text" name="snUsername">
+										<a href="#" class="another">+ Add Network</a>
+									</div>
+								</div>
+							</div>
+						</div><!-- EOF control-group -->
+						<div id="" class="control-group">
+							<label class="control-label" for="textarea"><label for="socialNetwork">Instant Message</label></label>
+							<div class="controls">
+								<div id="instantMessage-list">
+									{{#each instantMessages}}
+									<div id="im-{{@index}}">
+										<select name="instantMessages" id="instantMessage-{{@index}}" class="span2">
+											<option value="" selected="selected">Select IM</option>
+											<option value="Skype" {{selected instantMessage 'Skype'}}>Skype</option>
+											<option value="Whatsapp" {{selected instantMessage 'Whatsapp'}}>Whatsapp</option>
+											<option value="Messenger" {{selected instantMessage 'Messenger'}}>Messenger</option>
+										</select>
+										<input type="text" name="imUsername" id="imUsername-{{@index}}" value="{{imUsername}}">
+									</div>
+									{{/each}}
+									<div id="im-tpl">
+										<select name="instantMessages" class="span2">
+											<option value="" selected="selected">Select IM</option>
+											<option value="Skype">Skype</option>
+											<option value="Whatsapp">Whatsapp</option>
+											<option value="Messenger">Messenger</option>
+										</select>
+										<input type="text" name="imUsername">
+										<a href="#" class="another">+ Add Instant Message Service</a>
+									</div>
+								</div>
+							</div>
+						</div><!-- EOF control-group -->
+					</div><!-- EOF box-content -->
+					<!-- <div class="gradient-box"></div> -->
+					<div class="box-footer">
+						<div class="see-more">
+							<p>
+								<span class="more-about">more about</span>
+								<p>See all content</p>
+								<span class="more-about">more about</span>
+							</p>
+						</div>
+						{{#if myProfile}}
+						<button class="button2 yellow">Save changes</button>
+						{{/if}}
+					</div><!-- EOF box-footer -->
+				</form>
