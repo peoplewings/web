@@ -7,6 +7,7 @@ define(function(require) {
 	var PreviewModel = require("models/ProfileModel");
 	var MapView = require('views/app/map');
 	var notifications = require('views/lib/notifications');
+	var MyProfile = require('views/app/MyProfile');
 	var profileTpl = require('tmpl!templates/app/profile.html');
 
 	var ProfileView = Backbone.View.extend({
@@ -35,8 +36,12 @@ define(function(require) {
 		render: function(userId) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
+
 			this.model.fetch();
 			this.getWingList(userId);
+
+			if (this.model.get("id") === api.getUserId())
+				this.myProfile = new MyProfile(this.model);
 		},
 
 		refresh: function() {
