@@ -33,6 +33,7 @@ define(function(require) {
 		},
 
 		render: function(userId) {
+			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 			this.model.fetch();
 			this.getWingList(userId);
