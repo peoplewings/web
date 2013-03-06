@@ -214,14 +214,14 @@
 								</div>
 							</div>
 						</div>
-				</div><!-- EOF control-group -->
-			</div><!-- EOF basic-info -->
-			{{#if myProfile}}
-			<div class="basic-info-footer">
-				<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
-			</div>
-			{{/if}}
-					</form>
+					</div><!-- EOF control-group -->
+				</div><!-- EOF basic-info -->
+				{{#if myProfile}}
+				<div class="basic-info-footer">
+					<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
+				</div>
+				{{/if}}
+			</form>
 		</div><!-- EOF content-left -->
 		<div class="content-right tab-pane active" id="about">
 			<div class="box-standard">
@@ -485,86 +485,9 @@
 					{{/if}}
 				</div>
 				<div class="box-content">
-					<form id="about-me-form">
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputAllAboutYou">All about you</label></label>
-							<div class="controls">
-								<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputMainMission">Current mission</label></label>
-							<div class="controls">
-								<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputCompany">Company</label></label>
-							<div class="controls">
-								<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputEducation">Education</label></label>
-							<div class="controls">
-								<div id="education-list">
-									{{#each education}}
-									<div id="education-{{@index}}">
-										<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
-										<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
-									</div>
-									{{/each}}
-									<div id="education-tpl">
-										<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead">
-										<input type="text" name="degree" class="span2">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputPersonalPhilosophy">Personal philosophy</label></label>
-							<div class="controls">
-								<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputPoliticalOpinion">Political views</label></label>
-							<div class="controls">
-								<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="religion-input" class="control-group">
-							<label class="control-label" for="textarea"><label for="inputReligion">Religion</label></label>
-							<div class="controls">
-								<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-				</div><!-- EOF box-content -->
-				<div class="box-footer">
-					<div class="see-more">
-						<p>
-							<span class="more-about">more about</span>
-							<p>See all content</p>
-							<span class="more-about">more about</span>
-						</p>
-					</div>
-					{{#if myProfile}}
-						<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
-					{{/if}}
-				</div>
-					</form>
+
+<!-- FORM ABOUT HERE ! -->
+
 			</div><!-- EOF box-standard -->
 			<div class="box-standard">
 				<div class="box-header">
@@ -574,86 +497,10 @@
 					{{/if}}
 				</div>
 				<div class="box-content likes">
-					<form id="likes-form">
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_enjoy_people">People I enjoy</label></label>
-							<div class="controls">
-								<input name="enjoyPeople" id="id_enjoy_people" placeholder="What kind of people you like to know and learn from them" type="text" size="250" value="{{ enjoyPeople }}">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_movies">Likes</label></label>
-							<div class="controls">
-								<input name="movies" value="{{movies}}" id="id_movies" placeholder="Movies, series, books, games..." type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_sports">Sports</label></label>
-							<div class="controls">
-								<input name="sports" value="{{sports}}" id="id_sports" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_other_pages">Likes</label></label>
-							<div class="controls">
-								<input name="otherPages" value="{{otherPages}}" id="id_other_pages" placeholder="Other webpages and applications you like" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_sharing">Show, learn, share...</label></label>
-							<div class="controls">
-								<input name="sharing" value="{{sharing}}" id="id_sharing" placeholder="What do you like to teach, learn or share?" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_incredible">Amazing things done/seen</label></label>
-							<div class="controls">
-								<input name="incredible" value="{{incredible}}" id="id_incredible" placeholder="Any amazing thing you've seen or done in your life" type="text"  size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_inspired_by">People who inspires you</label></label>
-							<div class="controls">
-								<input name="inspiredBy" value="{{inspiredBy}}" id="id_inspired_by" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_quotes">Favorite quotations</label></label>
-							<div class="controls">
-								<textarea name="quotes" rows="4" id="id_quotes" size="250" cols="40" style="width:90%">{{quotes}}</textarea>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_pw_opinion">Your opinion please</label></label>
-							<div class="controls">
-								<input name="pwOpinion" value="{{pwOpinion}}" id="id_pw_opinion" placeholder="Your opinion about PEOPLEWINGS" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-				</div>
-				<div class="box-footer">
-					<div class="see-more">
-						<p>
-							<span class="more-about">more about</span>
-							<p>See all content</p>
-							<span class="more-about">more about</span>
-						</p>
-					</div>
-					{{#if myProfile}}
-						<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
-					{{/if}}
-				</div><!-- EOF box-footer -->
-					</form>
-			</div><!-- EOF box-standard -->
 
+<!-- FORM LIKES HERE -->
+
+			</div><!-- EOF box-standard -->
 			<div class="box-standard contact-info">
 				<div class="box-header">
 					<h1 class="contact-icon">Contact info</h1>
@@ -666,103 +513,9 @@
 					<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you.</p>
 				</div>
 				<div class="box-content">
-					<form id="contact-form">
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="id_form-0-emails">Email</label></label>
-							<div class="controls">
-								<input name="emails" id="id_form-0-emails" type="text" value="{{emails}}" maxlength="75">
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="id_form-0-phone">Phone</label></label>
-							<div class="controls">
-								<select name="pre-phone" id="">
-									<option value="mobile" selected="selected">Mobile</option>
-									<option>Home</option>
-								</select>
-								<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
-								<a href="#" class="another">+ Add Phone</a>
-								<span class="help-block"></span>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="socialNetwork">Social Network</label></label>
-							<div class="controls">
-								<div id="socialNetwork-list">
-									{{#each socialNetworks}}
-									<div id="social-{{@index}}">
-										<select name="socialNetworks" id="socialNetwork-{{@index}}">
-											<option value="" selected="selected">Select Network</option>
-											<option value="Facebook" {{selected socialNetwork 'Facebook'}}>Facebook</option>
-											<option value="Twitter" {{selected socialNetwork 'Twitter'}}>Twitter</option>
-											<option value="LinkedIn" {{selected socialNetwork 'LinkedIn'}}>LinkedIn</option>
-											<option value="Badoo" {{selected socialNetwork 'Badoo'}}>Badoo</option>
-											<option value="Couch Surfing" {{selected socialNetwork 'Couch Surfing'}}>Couch Surfing</option>
-										</select>
-										<input type="text" name="snUsername" id="snUsername-{{@index}}" value="{{snUsername}}">
-									</div>
-									{{/each}}
-									<div id="socialNetwork-tpl">
-										<select name="socialNetworks" class="span2">
-											<option value="" selected="selected">Select Network</option>
-											<option value="Facebook">Facebook</option>
-											<option value="Twitter">Twitter</option>
-											<option value="LinkedIn">LinkedIn</option>
-											<option value="Badoo">Badoo</option>
-											<option value="Coach Surfing">Couch Surfing</option>
-										</select>
-										<input type="text" name="snUsername">
-										<a href="#" class="another">+ Add Network</a>
-									</div>
-								</div>
-							</div>
-						</div><!-- EOF control-group -->
-						<div id="" class="control-group">
-							<label class="control-label" for="textarea"><label for="socialNetwork">Instant Message</label></label>
-							<div class="controls">
-								<div id="instantMessage-list">
-									{{#each instantMessages}}
-									<div id="im-{{@index}}">
-										<select name="instantMessages" id="instantMessage-{{@index}}" class="span2">
-											<option value="" selected="selected">Select IM</option>
-											<option value="Skype" {{selected instantMessage 'Skype'}}>Skype</option>
-											<option value="Whatsapp" {{selected instantMessage 'Whatsapp'}}>Whatsapp</option>
-											<option value="Messenger" {{selected instantMessage 'Messenger'}}>Messenger</option>
-										</select>
-										<input type="text" name="imUsername" id="imUsername-{{@index}}" value="{{imUsername}}">
-									</div>
-									{{/each}}
-									<div id="im-tpl">
-										<select name="instantMessages" class="span2">
-											<option value="" selected="selected">Select IM</option>
-											<option value="Skype">Skype</option>
-											<option value="Whatsapp">Whatsapp</option>
-											<option value="Messenger">Messenger</option>
-										</select>
-										<input type="text" name="imUsername">
-										<a href="#" class="another">+ Add Instant Message Service</a>
-									</div>
-								</div>
-							</div>
-						</div><!-- EOF control-group -->
-				</div><!-- EOF box-content -->
-				<!-- <div class="gradient-box"></div> -->
-				<div class="box-footer">
-					<div class="see-more">
-						<p>
-							<span class="more-about">more about</span>
-							<p>See all content</p>
-							<span class="more-about">more about</span>
-						</p>
-					</div>
-					{{#if myProfile}}
-					<button class="button2 yellow">Save changes</button>
-					{{/if}}
-				</div><!-- EOF box-footer -->
-					</form>
+
+<!-- FORM CONTACT HERE -->
+
 			</div><!-- EOF box-standard -->
 			<div class="box-standard maps">
 				<div class="box-header">
@@ -774,19 +527,19 @@
 				<div id="user-map"></div>
 				<div class="maps-footer-2">
 					<div class="control-group">
-						<label for="" class="places-current-icon">Hometown</label>
+						<label class="places-current-icon">Hometown</label>
 						<div class="controls">
 							<input type="text" placeholder="Barcelona">
 						</div>
 					</div><!-- EOF control-group -->
 					<div class="control-group">
-						<label for="" class="places-home-icon">Where I am</label>
+						<label class="places-home-icon">Where I am</label>
 						<div class="controls">
 							<input type="text" placeholder="Barcelona">
 						</div>
 					</div><!-- EOF control-group -->
 					<div class="control-group">
-						<label for="" class="places-lived-icon">Where I have lived</label>
+						<label class="places-lived-icon">Where I have lived</label>
 						<div class="controls lived">
 							<input type="text" placeholder="Barcelona">
 							<label class="radio">
