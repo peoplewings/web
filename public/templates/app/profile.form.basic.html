@@ -1,193 +1,127 @@
-<form id="basic-info-form" class="form-horizontal">
-	<div class="control-group">
-		<label class="control-label" for="textarea"><label for="inputGender">I am</label></label>
-		<div class="controls">
-			<select id="inputGender">
-				<option value="">---------</option>
-				<option value="Male" {{selected gender 'Male'}}>Male</option>
-				<option value="Female" {{selected gender 'Female'}}>Female</option>
-			</select>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="inputBirthday">Birthday</label>
-		<div class="controls">
-			<select id="id_birthday_month" name="birthMonth" class="input-small required">
-				<option value="">Month</option>
-				{{#each month}}
-					<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{name}}</option>
-				{{/each}}
-			</select>
-			<select id="id_birthday_day" name="birthDay" class="input-mini required">
-				<option value="">Day</option>
-				{{#range 1 31 1}}
-					<option value="{{self}}" {{selected ../birthDay self}}>{{self}}</option>
-				{{/range}}
-			</select>
-			<select id="id_birthday_year" name="birthYear" class="input-mini required">
-				<option value="">Year</option>
-				{{#range 2006 1900 '-1'}}
-					<option value="{{self}}" {{selected ../birthYear self}}>{{self}}</option>
-				{{/range}}
-			</select>
-			<span class="help-block"></span>
-			<span class="help-inline"></span>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="id_form-0-show_birthday"></label></label>
-			<div class="controls">
-				<select name="showBirthday">
-					<option value="F" {{selected showBirthday 'F'}}>Show full</option>
-					<option value="P" {{selected showBirthday 'P'}}>Show month and day</option>
-					<option value="N" {{selected showBirthday 'N'}}>Dont show</option>
-				</select>
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="id_form-0-interested_in_0">Interested in</label></label>
-			<div class="controls">
-				<ul>
-					<li>
-						<label for="inputInterestedIn">
-							<input type="checkbox" name="interestedInM" value="Male" {{checked interestedIn.0.gender 'Male'}}> Male
-						</label>
-					</li>
-					<li>
-						<label for="inputInterestedIn">
-							<input type="checkbox" name="interestedInF" value="Female" {{checked interestedIn.1.gender 'Female'}}> Female
-						</label>
-					</li>
-				</ul>
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="inputCivilState">Relationship status</label></label>
-			<div class="controls">
-				<select name="civilState">
-					<option value="">---------</option>
-					<option value="SI" {{selected civilState 'SI'}}>Single</option>
-					<option value="EN" {{selected civilState 'EN'}}>Engaged</option>
-					<option value="MA" {{selected civilState 'MA'}}>Married</option>
-					<option value="WI" {{selected civilState 'WI'}}>Widowed</option>
-					<option value="IR" {{selected civilState 'IR'}}>In a relationship</option>
-					<option value="IO" {{selected civilState 'IO'}}>In an open relationship</option>
-					<option value="IC" {{selected civilState 'IC'}}>Its complicated</option>
-					<option value="DI" {{selected civilState 'DI'}}>Divorced</option>
-					<option value="SE" {{selected civilState 'SE'}}>Separated</option>
-				</select>
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="inputLanguage">Language</label></label>
-			<div class="controls">
-				<div id="languages-list">
-					{{#each languages}}
-						<div id="language-{{@index}}">
-							<select name="languages" id="language-field-{{@index}}" class="span3">
-									<option value="" selected="selected">Select Language</option>
-									<option value="english" {{selected name 'english'}}>English</option>
-	            					<option value="french" {{selected name 'french'}}>French</option>
-	            					<option value="spanish" {{selected name 'spanish'}}>Spanish</option>
-									<option value="catalan" {{selected name 'catalan'}}>Catalan</option>
-									<option value="german" {{selected name 'german'}}>German</option>
-									<option value="japanese" {{selected name 'japanese'}}>Japanese</option>
-									<option value="armenian" {{selected name 'armenian'}}>Armenian</option>
-									<option value="chinese" {{selected name 'chinese'}}>Chinese</option>
-							</select>
-							<select name="levels" id="level-field-{{@index}}" class="span2">
-								<option value="" selected="selected">Select Level</option>
-								<option value="expert" {{selected level 'expert'}}>Expert</option>
-								<option value="intermediate" {{selected level 'intermediate'}}>Intermediate</option>
-								<option value="beginner" {{selected level 'beginner'}}>Beginner</option>
+				<form id="basic-info-form">
+					<div class="control-group">
+						<label class="control-label" for="textarea"><label for="inputGender">I am</label></label>
+						<div class="controls">
+							<select id="inputGender" class="size-large">
+								<option value="">---------</option>
+								<option value="Male" {{selected gender 'Male'}}>Male</option>
+								<option value="Female" {{selected gender 'Female'}}>Female</option>
 							</select>
 						</div>
-					{{/each}}
-					<div id="language-tpl">
-							<select name="languages" id="" class="span3">
-									<option value="" selected="selected">Select Language</option>
-									<option value="english">English</option>
-	            					<option value="french">French</option>
-	            					<option value="spanish">Spanish</option>
-									<option value="catalan">Catalan</option>
-									<option value="german">German</option>
-									<option value="japanese">Japanese</option>
-									<option value="armenian">Armenian</option>
-									<option value="chinese">Chinese</option>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputBirthday">Birthday</label>
+						<div class="controls">
+							<select id="id_birthday_month" name="birthMonth" class="size-large required">
+								<option value="">Month</option>
+								{{#each month}}
+								<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{name}}</option>
+								{{/each}}
 							</select>
-							<select name="levels" id="" class="span2">
-								<option value="" selected="selected">Select Level</option>
-								<option value="expert">Expert</option>
-								<option value="intermediate">Intermediate</option>
-								<option value="beginner">Beginner</option>
+							<span class="help-block"></span>
+							<select id="id_birthday_day" name="birthDay" class="size-small required">
+								<option value="">Day</option>
+								{{#range 1 31 1}}
+								<option value="{{self}}" {{selected ../birthDay self}}>{{self}}</option>
+								{{/range}}
 							</select>
+							<span class="help-block"></span>
+							<select id="id_birthday_year" name="birthYear" class="size-medium required">
+								<option value="">Year</option>
+								{{#range 2006 1900 '-1'}}
+								<option value="{{self}}" {{selected ../birthYear self}}>{{self}}</option>
+								{{/range}}
+							</select>
+							<span class="help-block"></span>
+							<span class="icon lock-icon"></span>
+							<select name="showBirthday" class="size-large lock-info">
+								<option value="F" {{selected showBirthday 'F'}}>Show full</option>
+								<option value="P" {{selected showBirthday 'P'}}>Show mm/dd</option>
+								<option value="N" {{selected showBirthday 'N'}}>Dont show</option>
+							</select>
+							<span class="help-block"></span>
+						</div>
 					</div>
+					<div id="" class="control-group">
+						<label class="control-label">Interested in</label>
+						<div class="controls">
+							<select name="interestedInM" class="size-large">
+								<option value="Female" {{selected interestedInM.1.gender 'Female'}}>Female</option>
+								<option value="Male" {{selected interestedInM.0.gender 'Male'}}>Male</option>
+							</select>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div id="" class="control-group">
+						<label class="control-label" for="inputCivilState">Relationship status</label>
+						<div class="controls">
+							<select name="civilState" class="size-large">
+								<option value="">---------</option>
+								<option value="SI" {{selected civilState 'SI'}}>Single</option>
+								<option value="EN" {{selected civilState 'EN'}}>Engaged</option>
+								<option value="MA" {{selected civilState 'MA'}}>Married</option>
+								<option value="WI" {{selected civilState 'WI'}}>Widowed</option>
+								<option value="IR" {{selected civilState 'IR'}}>In a relationship</option>
+								<option value="IO" {{selected civilState 'IO'}}>Open relationship</option>
+								<option value="IC" {{selected civilState 'IC'}}>Its complicated</option>
+								<option value="DI" {{selected civilState 'DI'}}>Divorced</option>
+								<option value="SE" {{selected civilState 'SE'}}>Separated</option>
+							</select>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div id="" class="control-group">
+						<label class="control-label" for="inputLanguage">Language</label>
+						<div class="controls">
+							<div id="languages-list">
+								{{#each languages}}
+								<div id="language-{{@index}}" class="separator">
+									<select name="languages" id="language-field-{{@index}}" class="size-large">
+										<option value="" selected="selected">Select Language</option>
+										<option value="english" {{selected name 'english'}}>English</option>
+										<option value="french" {{selected name 'french'}}>French</option>
+										<option value="spanish" {{selected name 'spanish'}}>Spanish</option>
+										<option value="catalan" {{selected name 'catalan'}}>Catalan</option>
+										<option value="german" {{selected name 'german'}}>German</option>
+										<option value="japanese" {{selected name 'japanese'}}>Japanese</option>
+										<option value="armenian" {{selected name 'armenian'}}>Armenian</option>
+										<option value="chinese" {{selected name 'chinese'}}>Chinese</option>
+									</select>
+									<select name="levels" id="level-field-{{@index}}" class="size-large">
+										<option value="" selected="selected">Select Level</option>
+										<option value="expert" {{selected level 'expert'}}>Expert</option>
+										<option value="intermediate" {{selected level 'intermediate'}}>Intermediate</option>
+										<option value="beginner" {{selected level 'beginner'}}>Beginner</option>
+									</select>
+								</div>
+								{{/each}}
+								<a href="#" class="another">+ Add Language</a>
+<!-- 								<div id="language-tpl">
+									<select name="languages" class="size-large">
+										<option value="" selected="selected">Select Language</option>
+										<option value="english">English</option>
+										<option value="french">French</option>
+										<option value="spanish">Spanish</option>
+										<option value="catalan">Catalan</option>
+										<option value="german">German</option>
+										<option value="japanese">Japanese</option>
+										<option value="armenian">Armenian</option>
+										<option value="chinese">Chinese</option>
+									</select>
+									<select name="levels" class="size-large">
+										<option value="" selected="selected">Select Level</option>
+										<option value="expert">Expert</option>
+										<option value="intermediate">Intermediate</option>
+										<option value="beginner">Beginner</option>
+									</select>
+								</div> -->
+							</div>
+						</div>
+					</div><!-- EOF control-group -->
+				</div><!-- EOF basic-info -->
+				{{#if myProfile}}
+				<div class="basic-info-footer">
+					<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
 				</div>
-			</div>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="hometown">Hometown</label></label>
-			<div id="hometown" class="controls">
-				{{#with hometown}}
-				<input id="hometownCity" name="hometown" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
-				<input name="hometown-city" type="hidden" value="{{name}}">
-				<input name="hometown-region" type="hidden" value="{{region}}">
-				<input name="hometown-country" type="hidden" value="{{country}}">
-				<input name="hometown-lat" type="hidden" value="{{lat}}">
-				<input name="hometown-lon" type="hidden" value="{{lon}}">
-				{{/with}}
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div id="" class="control-group">
-			<label class="control-label" for="textarea"><label for="hometown">Current city</label></label>
-			<div id="current" class="controls">
-				{{#with current}}
-				<input id="currentCity" name="current" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
-				<input name="current-city" type="hidden" value="{{name}}">
-				<input name="current-region" type="hidden" value="{{region}}">
-				<input name="current-country" type="hidden" value="{{country}}">
-				<input name="current-lat" type="hidden" value="{{lat}}">
-				<input name="current-lon" type="hidden" value="{{lon}}">
-				{{/with}}
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div id="otherLocations-group" class="control-group">
-			<label class="control-label" for="textarea"><label for="hometown">Places where I have lived</label></label>
-			<div class="controls">
-				<div id="otherLocations-list">
-					{{#each otherLocations}}
-					<div id="otherLocation-{{@index}}">
-						<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" value="{{name}}, {{region}}, {{country}}" disabled class="span5" autocomplete="off">
-						<input name="other-city" type="hidden" value="{{name}}">
-						<input name="other-region" type="hidden" value="{{region}}">
-						<input name="other-country" type="hidden" value="{{country}}">
-						<input name="other-lat" type="hidden" value="{{lat}}">
-						<input name="other-lon" type="hidden" value="{{lon}}">
-					</div>
-					{{/each}}
-					<div id="otherLocation-tpl">
-						<input name="otherLocations" type="text" data-provide="typeahead" class="span5" autocomplete="off">
-						<input name="other-city" type="hidden">
-						<input name="other-region" type="hidden">
-						<input name="other-country" type="hidden">
-						<input name="other-lat" type="hidden">
-						<input name="other-lon" type="hidden">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="user-map"></div>	
-		<div class="form-actions">
-			<button id="save-profile-btn" type="submit" class="btn btn-primary" style="margin-left: 160px" data-loading-text="Saving...">Save</button>
-		</div>
-	</div>
-</form>
+				{{/if}}
+			</form>
