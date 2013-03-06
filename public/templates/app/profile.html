@@ -4,7 +4,6 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#about" data-toggle="tab">Profile</a></li>
 				<li><a href="#wings" data-toggle="tab">Wings</a></li>
-				<li><a href="#edit-wings" data-toggle="tab">Edit</a></li>
 			</ul>
 		</div><!-- EOF tabs -->
 		<div class="personal-info">
@@ -36,7 +35,7 @@
 					<li><button class="send-request-btn selected">Request</button></li>
 					<li><button class="send-invitation-btn">Invite</button></li>
 				</ul>
-			</div>
+			</div> 
 			{{/if}}
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
@@ -88,10 +87,11 @@
 				</ul>
 				{{/if}}
 
+			</div><!-- EOF box basic-info -->
 		</div><!-- EOF content-left -->
 		<div class="content-right tab-pane active" id="about">
 			<div class="box-standard">
-				
+
 				<div class="box-header">
 					<h1 class="about-icon">About me</h1>
 					{{#if myProfile}}
@@ -258,6 +258,44 @@
 				</div>
 			</div><!-- EOF box-standard maps -->
 
+			<div class="box-standard maps">
+				<div class="box-header">
+					<h1 class="places-icon">Places</h1>
+					{{#if myProfile}}
+					<button class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}}
+				</div>
+				<div id="user-map"></div>
+				<div class="maps-footer-2">
+					<div class="control-group">
+						<label class="places-current-icon">Hometown</label>
+						<div class="controls">
+							<input type="text" placeholder="Barcelona">
+						</div>
+					</div><!-- EOF control-group -->
+					<div class="control-group">
+						<label class="places-home-icon">Where I am</label>
+						<div class="controls">
+							<input type="text" placeholder="Barcelona">
+						</div>
+					</div><!-- EOF control-group -->
+					<div class="control-group">
+						<label class="places-lived-icon">Where I have lived</label>
+						<div class="controls lived">
+							<input type="text" placeholder="Barcelona">
+							<label class="radio">
+								<input type="radio" name="current">Current place
+							</label>
+							<input type="text" placeholder="Praga">
+							<label class="radio">
+								<input type="radio" name="current">Current place
+							</label>
+							<a href="#" class="another">+ Add another</a>
+						</div>
+					</div><!-- EOF control-group -->
+				</div><!-- EOF maps-footer -->
+			</div><!-- EOF box-standard maps -->
+
 		</div><!-- EOF content-right -->
 		<div class="content-right tab-pane" id="wings">
 			{{#each wings}}
@@ -387,43 +425,7 @@
 							<!-- FORM CONTACT HERE -->
 
 						</div><!-- EOF box-standard -->
-						<div class="box-standard maps">
-							<div class="box-header">
-								<h1 class="places-icon">Places</h1>
-								{{#if myProfile}}
-								<button class="button2"><span class="edit-icon">Edit</span></button>
-								{{/if}}
-							</div>
-							<div id="user-map"></div>
-							<div class="maps-footer-2">
-								<div class="control-group">
-									<label class="places-current-icon">Hometown</label>
-									<div class="controls">
-										<input type="text" placeholder="Barcelona">
-									</div>
-								</div><!-- EOF control-group -->
-								<div class="control-group">
-									<label class="places-home-icon">Where I am</label>
-									<div class="controls">
-										<input type="text" placeholder="Barcelona">
-									</div>
-								</div><!-- EOF control-group -->
-								<div class="control-group">
-									<label class="places-lived-icon">Where I have lived</label>
-									<div class="controls lived">
-										<input type="text" placeholder="Barcelona">
-										<label class="radio">
-											<input type="radio" name="current">Current place
-										</label>
-										<input type="text" placeholder="Praga">
-										<label class="radio">
-											<input type="radio" name="current">Current place
-										</label>
-										<a href="#" class="another">+ Add another</a>
-									</div>
-								</div><!-- EOF control-group -->
-							</div><!-- EOF maps-footer -->
-						</div><!-- EOF box-standard maps -->
+
 					</div> <!-- EOF content-right -->
 				</div> <!-- EOF tab-content -->
 			</div> <!-- EOF container -->
