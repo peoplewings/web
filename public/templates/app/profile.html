@@ -348,13 +348,17 @@
 				</div>
 				<div class="box-content">
 					<h2>Email</h2>
-					<p>chonipichoni@gmail.com</p>
+					<p>{{emails}}</p>
 					<h2>Phone</h2>
-					<p>655050122</p>
+					<p>{{phone}}</p>
 					<h2>Social Network</h2>
-					<p>Facebook</p>
+					{{#each socialNetworks}}
+					<p>{{socialNetwork}}: {{snUsername}}</p>
+					{{/each}}
 					<h2>Instant Message</h2>
-					<p>Skype</p>
+					{{#each instantMessages}}
+					<p>{{instantMessage}}: {{imUsername}}</p>
+					{{/each}}
 				</div>
 				<div class="gradient-box"></div>
 				<div class="box-footer">
@@ -486,74 +490,74 @@
 				</div>
 				<div class="box-content">
 
-<!-- FORM ABOUT HERE ! -->
+					<!-- FORM ABOUT HERE ! -->
 
-			</div><!-- EOF box-standard -->
-			<div class="box-standard">
-				<div class="box-header">
-					<h1 class="likes-icon">Likes</h1>
-					{{#if myProfile}}
-					<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}}
-				</div>
-				<div class="box-content likes">
+				</div><!-- EOF box-standard -->
+				<div class="box-standard">
+					<div class="box-header">
+						<h1 class="likes-icon">Likes</h1>
+						{{#if myProfile}}
+						<button class="button2"><span class="edit-icon">Edit</span></button>
+						{{/if}}
+					</div>
+					<div class="box-content likes">
 
-<!-- FORM LIKES HERE -->
+						<!-- FORM LIKES HERE -->
 
-			</div><!-- EOF box-standard -->
-			<div class="box-standard contact-info">
-				<div class="box-header">
-					<h1 class="contact-icon">Contact info</h1>
-					{{#if myProfile}}
-					<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}}
-				</div>
-				<div class="guest-message">
-					<h2>Shown only to Confirmed Guests</h2>
-					<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you.</p>
-				</div>
-				<div class="box-content">
-
-<!-- FORM CONTACT HERE -->
-
-			</div><!-- EOF box-standard -->
-			<div class="box-standard maps">
-				<div class="box-header">
-					<h1 class="places-icon">Places</h1>
-					{{#if myProfile}}
-					<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}}
-				</div>
-				<div id="user-map"></div>
-				<div class="maps-footer-2">
-					<div class="control-group">
-						<label class="places-current-icon">Hometown</label>
-						<div class="controls">
-							<input type="text" placeholder="Barcelona">
+					</div><!-- EOF box-standard -->
+					<div class="box-standard contact-info">
+						<div class="box-header">
+							<h1 class="contact-icon">Contact info</h1>
+							{{#if myProfile}}
+							<button class="button2"><span class="edit-icon">Edit</span></button>
+							{{/if}}
 						</div>
-					</div><!-- EOF control-group -->
-					<div class="control-group">
-						<label class="places-home-icon">Where I am</label>
-						<div class="controls">
-							<input type="text" placeholder="Barcelona">
+						<div class="guest-message">
+							<h2>Shown only to Confirmed Guests</h2>
+							<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you.</p>
 						</div>
-					</div><!-- EOF control-group -->
-					<div class="control-group">
-						<label class="places-lived-icon">Where I have lived</label>
-						<div class="controls lived">
-							<input type="text" placeholder="Barcelona">
-							<label class="radio">
-								<input type="radio" name="current">Current place
-							</label>
-							<input type="text" placeholder="Praga">
-							<label class="radio">
-								<input type="radio" name="current">Current place
-							</label>
-							<a href="#" class="another">+ Add another</a>
-						</div>
-					</div><!-- EOF control-group -->
-				</div><!-- EOF maps-footer -->
-			</div><!-- EOF box-standard maps -->
-		</div> <!-- EOF content-right -->
-	</div> <!-- EOF tab-content -->
-</div> <!-- EOF container -->
+						<div class="box-content">
+
+							<!-- FORM CONTACT HERE -->
+
+						</div><!-- EOF box-standard -->
+						<div class="box-standard maps">
+							<div class="box-header">
+								<h1 class="places-icon">Places</h1>
+								{{#if myProfile}}
+								<button class="button2"><span class="edit-icon">Edit</span></button>
+								{{/if}}
+							</div>
+							<div id="user-map"></div>
+							<div class="maps-footer-2">
+								<div class="control-group">
+									<label class="places-current-icon">Hometown</label>
+									<div class="controls">
+										<input type="text" placeholder="Barcelona">
+									</div>
+								</div><!-- EOF control-group -->
+								<div class="control-group">
+									<label class="places-home-icon">Where I am</label>
+									<div class="controls">
+										<input type="text" placeholder="Barcelona">
+									</div>
+								</div><!-- EOF control-group -->
+								<div class="control-group">
+									<label class="places-lived-icon">Where I have lived</label>
+									<div class="controls lived">
+										<input type="text" placeholder="Barcelona">
+										<label class="radio">
+											<input type="radio" name="current">Current place
+										</label>
+										<input type="text" placeholder="Praga">
+										<label class="radio">
+											<input type="radio" name="current">Current place
+										</label>
+										<a href="#" class="another">+ Add another</a>
+									</div>
+								</div><!-- EOF control-group -->
+							</div><!-- EOF maps-footer -->
+						</div><!-- EOF box-standard maps -->
+					</div> <!-- EOF content-right -->
+				</div> <!-- EOF tab-content -->
+			</div> <!-- EOF container -->
