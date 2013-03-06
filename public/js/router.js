@@ -94,8 +94,8 @@ define(function(require) {
 		},
 		aboutProfile: function(userId){
 			if (!this.previewView)
-				this.previewView = new PreviewView(userId);
-			this.previewView.render(userId);
+				this.previewView = new PreviewView(+userId);
+			this.previewView.render(+userId);
 
 		},
 		profile: function(id){
