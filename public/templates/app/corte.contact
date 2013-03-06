@@ -1,0 +1,12 @@
+<h2>Email</h2>
+					<p>{{emails}}</p>
+					<h2>Phone</h2>
+					<p>{{phone}}</p>
+					<h2>Social Network</h2>
+					{{#each socialNetworks}}
+					<p>{{socialNetwork}}: {{snUsername}}</p>
+					{{/each}}
+					<h2>Instant Message</h2>
+					{{#each instantMessages}}
+					<p>{{instantMessage}}: {{imUsername}}</p>
+					{{/each}}
