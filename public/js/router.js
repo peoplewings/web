@@ -14,9 +14,7 @@ define(function(require) {
 	var passwordView = require("views/home/password");
 	var logoutView = require("views/app/logout");
 	var SettingsView = require("views/app/settings");
-	var ProfileView = require("views/app/profile");
-	var PreviewView = require("views/app/ProfileView");
-	var UserProfileView = require("views/app/userProfile");
+	var ProfileView = require("views/app/ProfileView");
 	var WingsView = require("views/app/wings");
 	var notificationsView = require("views/app/notifications");
 	var threadView = require("views/app/thread");
@@ -35,7 +33,6 @@ define(function(require) {
 			"logout": "logout",
 			"settings":"settings",
 
-			//"profiles/:id/edit":"profile",
 			"profiles/:id/about":"aboutProfile",
 			//"profiles/:id/wings":"previewProfile",
 
@@ -94,24 +91,9 @@ define(function(require) {
 		},
 		aboutProfile: function(userId){
 			if (!this.previewView)
-				this.previewView = new PreviewView(+userId);
+				this.previewView = new ProfileView(+userId);
 			this.previewView.render(+userId);
 
-		},
-		profile: function(id){
-			if (+id !== api.getUserId())
-				this.showUserProfile(id);
-
-			if (!this.profileView){
-				this.profileView = new ProfileView();
-			} else this.profileView.render();
-
-		},
-		showUserProfile: function(userId){
-			if (!this.userProfileView) {
-				this.userProfileView = new UserProfileView(userId);
-				this.userProfileView.render();
-			} else this.userProfileView.render(userId);
 		},
 
 		wings: function(wingId){
