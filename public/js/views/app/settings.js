@@ -22,6 +22,10 @@ define(function(require) {
 					show: false
 				});
 			},
+			"hidden div#myModal": function() {
+				this.$("input#currentPassword").val("");
+				this.$("#delete-account-btn").button('reset');
+			},
 			"click button#delete-account-btn": "deleteAccount",
 		},
 
