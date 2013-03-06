@@ -68,6 +68,7 @@ div.profile
 	border: 1px solid #ccccd3
 	margin-bottom: 2em
 	line-height: 20px
+	overflow: hidden
 
 	div.content-left
 		float: left
@@ -187,13 +188,13 @@ div.profile
 				button.selected
 					@include bg-gradient(#ffff00, #ffea00)
 					
-	div.content-bottom
+	div.accordion
 		clear: both
 		color: #808080
 		background: #FFF
 		font-size: 0.8em
 
-		div.about-info
+		div.accordion-inner
 			padding: 27px
 			overflow: hidden
 
@@ -214,11 +215,11 @@ div.profile
 				clear: both
 				line-height: 20px
 
-		div.about-footer
+		div.accordion-heading
 			border-top: 1px solid #e5e5e5
 			padding: 0.8em
 			overflow: hidden
-
+			cursor: pointer
 			h1, span
 				float: left
 				position: relative

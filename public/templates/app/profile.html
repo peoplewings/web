@@ -97,52 +97,60 @@
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
-				<div class="box-content">
-					{{#if allAboutYou}}
-					<h2>Description</h2>
-					<p>{{allAboutYou}}</p>
-					{{/if}}
-					{{#if mainMission}}
-					<h2>Current mission</h2>
-					<p>{{mainMission}}</p>
-					{{/if}}
-					{{#if occupation}}
-					<h2>Occupation</h2>
-					<p>{{occupation}}</p>
-					{{/if}}
-					{{#if company}}
-					<h2>Company</h2>
-					<p>{{company}}</p>
-					{{/if}}
-					{{#if education.size}}
-					<h2>Education</h2>
-					<p>
-						{{#each education}}
-						{{degree}} at {{insitution}}
-						{{/each}}
-					</p>
-					{{/if}}
-					{{#if personalPhilosophy}}
-					<h2>Personal philosophy</h2>
-					<p>{{personalPhilosophy}}</p>
-					{{/if}}
-					{{#if politicalOpinion}}
-					<h2>Political views</h2>
-					<p>{{politicalOpinion}}</p>
-					{{/if}}
-					{{#if religion}}
-					<h2>Religion</h2>
-					<p>{{religion}}</p>
-					{{/if}}
-				</div><!-- EOF box-content -->
-				<div class="gradient-box"></div>
-				<div class="box-footer">
-					<div class="see-more">
-						<span class="more-about">more about</span>
-						<p>See all content</p>
-						<span class="more-about">more about</span>
+				<div class="accordion">
+					<div class="accordion-group">
+						<div id="collapse-about" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<div class="box-content">
+									{{#if allAboutYou}}
+									<h2>Description</h2>
+									<p>{{allAboutYou}}</p>
+									{{/if}}
+									{{#if mainMission}}
+									<h2>Current mission</h2>
+									<p>{{mainMission}}</p>
+									{{/if}}
+									{{#if occupation}}
+									<h2>Occupation</h2>
+									<p>{{occupation}}</p>
+									{{/if}}
+									{{#if company}}
+									<h2>Company</h2>
+									<p>{{company}}</p>
+									{{/if}}
+									{{#if education.size}}
+									<h2>Education</h2>
+									<p>
+										{{#each education}}
+										{{degree}} at {{insitution}}
+										{{/each}}
+									</p>
+									{{/if}}
+									{{#if personalPhilosophy}}
+									<h2>Personal philosophy</h2>
+									<p>{{personalPhilosophy}}</p>
+									{{/if}}
+									{{#if politicalOpinion}}
+									<h2>Political views</h2>
+									<p>{{politicalOpinion}}</p>
+									{{/if}}
+									{{#if religion}}
+									<h2>Religion</h2>
+									<p>{{religion}}</p>
+									{{/if}}
+								</div><!-- EOF box-content -->
+							</div>
+						</div>
+						<!-- <div class="gradient-box"></div> -->
+						<div class="accordion-heading" data-toggle="collapse" href="#collapse-about">
+							<div class="see-more">
+								<span class="more-about">more about</span>
+								<p>See all content</p>
+								<span class="more-about">more about</span>
+							</div>
+						</div>
 					</div>
-				</div><!-- EOF box-footer -->
+				</div><!-- EOF accordion -->
 			</div><!-- EOF box-standard -->
 			<div class="box-standard">
 				<div class="box-header">
@@ -151,48 +159,57 @@
 					<button class="button2 editable-box-btn"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div><!-- EOF box-header -->
-				<div class="box-content">
-					{{#if enjoyPeople}}
-					<h2>People I enjoy</h2>
-					<p>{{enjoyPeople}}</p>
-					{{/if}}
-					{{#if movies}}
-					<h2>Movies, series, books, ...</h2>
-					<p>{{movies}}</p>
-					{{/if}}
-					{{#if otherPages}}
-					<h2>Web, Apps</h2>
-					<p>{{otherPages}}</p>
-					{{/if}}
-					{{#if sharing}}
-					<h2>Show, learn, share</h2>
-					<p>{{sharing}}</p>
-					{{/if}}
-					{{#if incredible}}
-					<h2>Amazing things done/seen</h2>
-					<p>{{incredible}}</p>
-					{{/if}}
-					{{#if inspiredBy}}
-					<h2>People who inspires you</h2>
-					<p>{{inspiredBy}}</p>
-					{{/if}}
-					{{#if quotes}}
-					<h2>Favourite quotes</h2>
-					<p>{{quotes}}</p>
-					{{/if}}
-					{{#if pwOpinion}}
-					<h2>Opinion about Peoplewings</h2>
-					<p>{{pwOpinion}}</p>
-					{{/if}}
-				</div><!-- EOF box-content -->
-				<div class="gradient-box"></div>
-				<div class="box-footer">
-					<div class="see-more">
-						<span class="more-about">more about</span>
-						<p>See all content</p>
-						<span class="more-about">more about</span>
+
+				<div class="accordion">
+					<div class="accordion-group">
+						<div id="collapse-likes" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<div class="box-content">
+									{{#if enjoyPeople}}
+									<h2>People I enjoy</h2>
+									<p>{{enjoyPeople}}</p>
+									{{/if}}
+									{{#if movies}}
+									<h2>Movies, series, books, ...</h2>
+									<p>{{movies}}</p>
+									{{/if}}
+									{{#if otherPages}}
+									<h2>Web, Apps</h2>
+									<p>{{otherPages}}</p>
+									{{/if}}
+									{{#if sharing}}
+									<h2>Show, learn, share</h2>
+									<p>{{sharing}}</p>
+									{{/if}}
+									{{#if incredible}}
+									<h2>Amazing things done/seen</h2>
+									<p>{{incredible}}</p>
+									{{/if}}
+									{{#if inspiredBy}}
+									<h2>People who inspires you</h2>
+									<p>{{inspiredBy}}</p>
+									{{/if}}
+									{{#if quotes}}
+									<h2>Favourite quotes</h2>
+									<p>{{quotes}}</p>
+									{{/if}}
+									{{#if pwOpinion}}
+									<h2>Opinion about Peoplewings</h2>
+									<p>{{pwOpinion}}</p>
+									{{/if}}
+								</div><!-- EOF box-content -->
+							</div>
+						</div>
+						<!-- <div class="gradient-box"></div> -->
+						<div class="accordion-heading" data-toggle="collapse" href="#collapse-likes">
+							<div class="see-more">
+								<span class="more-about">more about</span>
+								<p>See all content</p>
+								<span class="more-about">more about</span>
+							</div>
+						</div>
 					</div>
-				</div><!-- EOF box-footer -->
+				</div><!-- EOF accordion -->
 			</div><!-- EOF box-standard -->
 			<div class="box-standard">
 				<div class="box-header">
@@ -201,28 +218,35 @@
 					<button class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
-				<div class="box-content contact-info">
-					<h2>Email</h2>
-					<p>{{emails}}</p>
-					<h2>Phone</h2>
-					<p>{{phone}}</p>
-					<h2>Social Network</h2>
-					{{#each socialNetworks}}
-					<p>{{socialNetwork}}: {{snUsername}}</p>
-					{{/each}}
-					<h2>Instant Message</h2>
-					{{#each instantMessages}}
-					<p>{{instantMessage}}: {{imUsername}}</p>
-					{{/each}}
-				</div>
-				<div class="gradient-box"></div>
-				<div class="box-footer">
-					<div class="see-more">
-						<span class="more-about">more about</span>
-						<p>See all content</p>
-						<span class="more-about">more about</span>
+				<div class="accordion">
+					<div class="accordion-group">
+						<div id="collapse-contact" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<div class="box-content contact-info">
+									<h2>Email</h2>
+									<p>{{emails}}</p>
+									<h2>Phone</h2>
+									<p>{{phone}}</p>
+									<h2>Social Network</h2>
+									{{#each socialNetworks}}
+									<p>{{socialNetwork}} : {{snUsername}}</p>
+									{{/each}}
+									<h2>Instant Message</h2>
+									{{#each instantMessages}}
+									<p>{{instantMessage}} : {{imUsername}}</p>
+									{{/each}}
+								</div><!-- EOF box-content -->
+							</div>
+						</div>
+						<div class="accordion-heading" data-toggle="collapse" href="#collapse-contact">
+							<div class="see-more">
+								<span class="more-about">more about</span>
+								<p>See all content</p>
+								<span class="more-about">more about</span>
+							</div>
+						</div>
 					</div>
-				</div><!-- EOF box-footer -->
+				</div><!-- EOF accordion -->
 			</div><!-- EOF box-standard -->
 			<div class="box-standard maps">
 				<h1>insert maps here !</h1>
@@ -299,7 +323,7 @@
 					<h2 class="last-p">About your accommodation</h2>
 					<p>{{about}}</p>
 				</div>
-				<div class="gradient-box"></div>
+				<!-- <div class="gradient-box"></div> -->
 				<div class="box-footer">
 					<div class="see-more">
 						<span class="more-about">more about</span>
