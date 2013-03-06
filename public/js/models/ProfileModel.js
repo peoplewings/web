@@ -10,7 +10,7 @@ define(function(require) {
 		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/",
 
 		url: function(){
-			return this.urlRoot + this.id + "/preview";
+			return  (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
 		},
 
 		parse: function(resp){

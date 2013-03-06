@@ -3,14 +3,21 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
+	var phrases = require('phrases');
 	var PreviewModel = require("models/ProfileModel");
 	var MapView = require('views/app/map');
+	var notifications = require('views/lib/notifications');
 	var profileTpl = require('tmpl!templates/app/profile.html');
-	var phrases = require('phrases');
 
-	var PreviewView = Backbone.View.extend({
+	var ProfileView = Backbone.View.extend({
 
 		el: "#main",
+
+		events: {
+			"click button.send-message-btn": "sendMessage",
+			"click button.send-request-btn": "sendRequest",
+			"click button.send-invitation-btn": "sendInvitation",
+		},
 
 		initialize: function(userId) {
 			this.map = new MapView({
@@ -89,8 +96,20 @@ define(function(require) {
 				.fin(function() {
 					self.refresh();
 				});
+		},
+
+		sendMessage: function() {
+			notifications.message(this.model.get("id"), this.model.get("firstName") + " " + this.model.get("lastName"));
+		},
+
+		sendRequest: function() {
+			notifications.request(this.model.get("id"), this.model.get("firstName") + " " + this.model.get("lastName"));
+		},
+
+		sendInvitation: function() {
+			notifications.invitation(this.model.get("id"), this.model.get("firstName") + " " + this.model.get("lastName"));
 		}
 	});
 
-	return PreviewView;
+	return ProfileView;
 });
