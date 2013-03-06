@@ -27,19 +27,7 @@ define(function(require) {
 		},
 
 		destroy: function(data) {
-			var self = this;
-			return api.post(api.getApiVersion() + '/accounts/', data)
-					.prop('status')
-					.then(function(status){
-						if (status) {
-
-							// BUG DETECTED BY JSHINT
-							_.each(attributes, function(value, name) {
-								self.unset(name, value);
-							});
-						}
-						return status;
-					});
+			return api.post(api.getApiVersion() + '/accounts/', data);
 		}
 	});
 
