@@ -106,12 +106,14 @@
 								<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{name}}</option>
 								{{/each}}
 							</select>
+							<span class="help-block"></span>
 							<select id="id_birthday_day" name="birthDay" class="size-small required">
 								<option value="">Day</option>
 								{{#range 1 31 1}}
 								<option value="{{self}}" {{selected ../birthDay self}}>{{self}}</option>
 								{{/range}}
 							</select>
+							<span class="help-block"></span>
 							<select id="id_birthday_year" name="birthYear" class="size-medium required">
 								<option value="">Year</option>
 								{{#range 2006 1900 '-1'}}
@@ -119,19 +121,13 @@
 								{{/range}}
 							</select>
 							<span class="help-block"></span>
-							<span class="help-inline"></span>
-						</div>
-					</div>
-					<div id="" class="control-group">
-						<label class="control-label" for="textarea"><label for="id_form-0-show_birthday"></label></label>
-						<div class="controls">
-							<select name="showBirthday" class="size-large">
+							<span class="icon lock-icon"></span>
+							<select name="showBirthday" class="size-large lock-info">
 								<option value="F" {{selected showBirthday 'F'}}>Show full</option>
 								<option value="P" {{selected showBirthday 'P'}}>Show month and day</option>
 								<option value="N" {{selected showBirthday 'N'}}>Dont show</option>
 							</select>
 							<span class="help-block"></span>
-							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div id="" class="control-group">

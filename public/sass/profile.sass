@@ -113,6 +113,13 @@ select
 .places-home-icon
 	background: url(../img/places-home-icon.png) no-repeat 12px center
 
+.lock-icon
+	background: url(../img/lock-icon.png) no-repeat
+	width: 9px
+	height: 12px
+	float: left
+	margin: 10px
+	margin-top: 11px
 
 /* --------------------------------------------------------------------------
    Structure
@@ -323,6 +330,9 @@ select
 					.size-large
 						width: 150px
 						background-position: 130px
+					.size-large.lock-info
+						width: 121px
+						background-position: 101px
 					input
 						height: 30px
 						width: 150px
@@ -515,8 +525,8 @@ select
 		.controls
 			line-height: 0
 
-	.help-block
-		margin: 0
+			.help-block
+				margin: 0
 
 	label
 		padding: 14px 10px 10px 5px
@@ -557,5 +567,9 @@ select
 	.control-group
 		margin: 0
 		clear: both
+
+.help-block
+	margin: 0
+	display: inline
 
 /* EOF OVER Bootstrap */
