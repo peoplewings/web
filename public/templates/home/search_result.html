@@ -3,9 +3,13 @@
 			<div class="pager-content">
 				<div class="pager pull-left">
 					<div class="adjust">
-						<span>{{ totalCount }}</span>
+						<span>{{totalCount}}</span>
 						<p>result of accommodation in</p>
-						<span class="location">Barcelona</span><!-- replace by location code -->
+						{{#if location}}
+						<span class="location">the world</span>
+						{{else}}
+						<span class="location">{{location}}</span><!-- replace by location code -->
+						{{/if}}
 					</div>
 				</div>
 				<ul class="pager pull-right">
@@ -27,7 +31,7 @@
 				</ul>
 			</div><!-- EOF pager content -->
 
-			{{#each results }}
+			{{#each results}}
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
 					<div class="avatar">
