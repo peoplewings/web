@@ -1,0 +1,45 @@
+<div class="avatar">
+	<img id="avatar" src="{{avatar}}" alt="avatar">
+</div>
+<div class="info">
+	{{#if myProfile}}
+	<button class="button1 edit-profile edit-basic-btn">
+		<p class="edit-icon">Edit profile</p>
+	</button>
+	{{else}}
+	<button class="button1 add-friend">
+		<p class="add-friend-icon">Add friend</p>
+	</button>
+	{{/if}}
+</div>
+<div class="box rate-info">
+	<h2>Reply rate</h2>
+	<p>{{replyRate}}%</p>
+	<h2>Reply time</h2>
+	<p>{{replyTime}}</p>
+</div>
+<div class="box basic-info">
+	<h1>Basic info</h1>
+	<h2>Gender</h2>
+	<p>{{gender}}</p>
+	{{#if birthday}}
+	<h2>Birthday</h2>
+	<p>{{birthday}}</p>
+	{{/if}}
+	{{#if interestedIn.length}}
+	<h2>Interesed in</h2>
+	<p>{{gender}}</p>
+	{{/if}}
+	{{#if civilState}}
+	<h2>Relationship status</h2>
+	<p>{{civilState}}</p>
+	{{/if}}
+	{{#if languages.length}}
+	<h2>Languages</h2>
+	<ul>
+		{{#each languages}}
+		<li>{{name}} ({{level}})</li>
+		{{/each}}
+	</ul>
+	{{/if}}
+</div><!-- EOF box basic-info -->

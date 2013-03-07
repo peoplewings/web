@@ -1,85 +1,80 @@
-					<form id="about-me-form">
-						<div class="box-header">
-							<h1 class="about-icon">About me</h1>
-							{{#if myProfile}}
-							<button class="button2 edit-about-btn"><span class="edit-icon">Edit</span></button>
-							{{/if}}
-						</div>
-						<div class="box-content">
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputAllAboutYou">All about you</label></label>
-								<div class="controls">
-									<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
-								</div>
+					<div class="box-standard">
+						<form id="about-me-form">
+							<div class="box-header">
+								<h1 class="about-icon">About me</h1>
 							</div>
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputMainMission">Current mission</label></label>
-								<div class="controls">
-									<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
+							<div class="box-content">
+								<div id="" class="control-group">
+									<label class="control-label" for="inputAllAboutYou">All about you</label>
+									<div class="controls">
+										<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
 								</div>
-							</div>
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputCompany">Company</label></label>
-								<div class="controls">
-									<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
+								<div id="" class="control-group">
+									<label class="control-label" for="inputMainMission">Current mission</label>
+									<div class="controls">
+										<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
 								</div>
-							</div>
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputEducation">Education</label></label>
-								<div class="controls">
-									<div id="education-list">
-										{{#each education}}
-										<div id="education-{{@index}}">
-											<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
-											<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
-										</div>
-										{{/each}}
-										<div id="education-tpl">
-											<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead">
-											<input type="text" name="degree" class="span2">
+								<div id="" class="control-group">
+									<label class="control-label" for="inputCompany">Company</label>
+									<div class="controls">
+										<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="" class="control-group">
+									<label class="control-label" for="inputEducation">Education</label>
+									<div class="controls">
+										<div id="education-list">
+											{{#each education}}
+											<div id="education-{{@index}}">
+												<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead">
+												<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
+											</div>
+											{{/each}}
+											<div id="education-tpl">
+												<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead">
+												<input type="text" name="degree" class="span2">
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputPersonalPhilosophy">Personal philosophy</label></label>
-								<div class="controls">
-									<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
+								<div id="" class="control-group">
+									<label class="control-label" for="inputPersonalPhilosophy">Personal philosophy</label>
+									<div class="controls">
+										<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
 								</div>
-							</div>
-							<div id="" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputPoliticalOpinion">Political views</label></label>
-								<div class="controls">
-									<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
+								<div id="" class="control-group">
+									<label class="control-label" for="inputPoliticalOpinion">Political views</label>
+									<div class="controls">
+										<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
 								</div>
-							</div>
-							<div id="religion-input" class="control-group">
-								<label class="control-label" for="textarea"><label for="inputReligion">Religion</label></label>
-								<div class="controls">
-									<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
-									<span class="help-block"></span>
-									<span class="help-inline"></span>
+								<div id="religion-input" class="control-group">
+									<label class="control-label" for="inputReligion">Religion</label>
+									<div class="controls">
+										<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
 								</div>
+							</div><!-- EOF box-content -->
+							<div class="accordion-heading">
+								{{#if myProfile}}
+								<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
+								<button class="button2 cancel-edition-btn">Cancel</button>
+								{{/if}}
 							</div>
-						</div><!-- EOF box-content -->
-						<div class="box-footer">
-							<div class="see-more">
-								<span class="more-about">more about</span>
-								<p>See all content</p>
-								<span class="more-about">more about</span>
-							</div>
-							{{#if myProfile}}
-							<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
-							{{/if}}
-						</div>
-					</form>
+						</form>
+				</div><!-- EOF box-standard -->

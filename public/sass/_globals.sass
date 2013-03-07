@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
-   _Globals
-   -------------------------------------------------------------------------- */
+	 _Globals
+	 -------------------------------------------------------------------------- */
 
 @import _variables.sass
 @import _effects.sass
@@ -90,7 +90,7 @@ button
 	@include box-shadow(none)
 
 .navbar-inner
-	width: 960px
+	max-width: 960px
 	margin: 0 auto
 	padding: 0
 	background: none
@@ -129,7 +129,7 @@ button
 
 
 /* Backgrounds
-   -------------------------------------------------------------------------- */
+	 -------------------------------------------------------------------------- */
 
 .background-roller
 	width: 100%
@@ -163,7 +163,7 @@ button
 
 
 /* OVER Bootstrap
-   -------------------------------------------------------------------------- */
+	 -------------------------------------------------------------------------- */
 
 .alert-error
 	text-align: right
@@ -175,3 +175,23 @@ button
 		border: none
 		.accordion-inner
 			border: none
+
+@media (max-width: 665px)
+	ul.nav.pull-right, .btn-group.pull-right
+		display: none
+
+@media (max-width: 767px)
+	[class*="span"], .row-fluid [class*="span"]
+		float: left
+		width: 700px
+
+@media (max-width: 979px)
+	.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner
+		padding: 0
+	.navbar-fixed-top, .navbar-fixed-bottom
+		position: fixed
+	.input-large
+		min-height: 20px
+		box-sizing: inherit
+		-webkit-box-sizing: inherit
+		-moz-box-sizing: inherit
