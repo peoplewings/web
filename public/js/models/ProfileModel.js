@@ -24,12 +24,6 @@ define(function(require) {
 			var aux = [];
 
 			_.each(data, function(value, attr){
-				console.log(attr, value)
-				debugger
-				if (attr === "civilState"){
-					debugger
-					//self.set("civilState", )
-				}
 				if (attr === "interestedInF" || attr === "interestedInM"){
 					aux.push({ gender: value});
 					self.set('interestedIn', aux);
