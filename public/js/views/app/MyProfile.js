@@ -8,22 +8,19 @@ define(function(require){
 	var utils = require("utils");
 	var phrases = require('phrases');
 
-	var tmpl = require('tmpl');
 	var profileTpl = require('tmpl!templates/app/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
 	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile.form.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile.form.places.html');
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
 	var avatarView = require("views/app/avatar");
-	var MapView = require("views/app/map");
-	var ProfileModel = require("models/Profile");
 
 	var ProfileView = Backbone.View.extend({
 		el: "#main",
-
 		events:{
 			"click a#add-language-btn": function(e){
 				e.preventDefault();
@@ -89,18 +86,59 @@ define(function(require){
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 
-			"click button#edit-about-btn": "editAboutBox",
-			"click button.cancel-edition": "closeBox",
+			"click button.edit-box-btn" : "openForm",
+			"click button.cancel-edition-btn": "closeBox",
+		},
+
+		initialize: function(model, parent) {
+			this.model = model;
+			this.parentCtrl = parent;
 		},
 
 		closeBox: function(evt){
+			debugger;
 			this.parentCtrl.refresh();
 		},
 
-		editAboutBox: function(evt){
-			$(evt.target)
-				.parents(".box-standard")
-				.html(aboutTpl(this.model.toJSON()));
+		openForm: function(evt){
+
+			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
+			var box = document.getElementById(boxId);
+			var tpl = null;
+			var initMethod = null;
+
+			$(box).children().remove();
+
+			switch (boxId){
+				case "basic-box":
+					tpl = basicTpl(this.model.toJSON());
+					//initMethod = this.editBasicBox.bind(this);
+					break;
+				case "about-box":
+					tpl = aboutTpl(this.model.toJSON());
+					initMethod = this.editAboutBox.bind(this);
+					break;
+				case "likes-box":
+					tpl = likesTpl(this.model.toJSON());
+					//initMethod = this.editLikesBox;
+					break;
+				case "contact-box":
+					tpl = contactTpl(this.model.toJSON());
+					//initMethod = this.editContactBox.bind(this);
+					break;
+				case "places-box":
+					tpl = placesTpl(this.model.toJSON());
+					//initMethod = this.editPlacesBox.bind(this);
+					break;
+			}
+
+			$(box).html(tpl);
+			if (initMethod)
+				initMethod();
+
+		},
+
+		editAboutBox: function(){
 
 			this.educationsList = new List({
 				el: "#education-list",
@@ -110,11 +148,6 @@ define(function(require){
 			});
 
 			this.initStudyTypeahead();
-		},
-
-		initialize: function(model, parent) {
-			this.model = model;
-			this.parentCtrl = parent;
 		},
 
 		render: function(){
@@ -264,10 +297,9 @@ define(function(require){
 		},
 
 		submitProfile: function(e){
-			
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
-			debugger
+			debugger;
 			this.$("#save-profile-btn").button('loading');
 
 			var self = this;
@@ -282,7 +314,7 @@ define(function(require){
 
 		collectData: function(formId) {
 			var data = utils.serializeForm(formId);
-			debugger
+			debugger;
 			_.extend(data, utils.serializeForm('contact-form'));
 			_.extend(data, utils.serializeForm('about-me-form'));
 			_.extend(data, utils.serializeForm('likes-form'));
