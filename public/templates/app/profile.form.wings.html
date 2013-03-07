@@ -1,45 +1,50 @@
-<div class="row">
-	<div class="span8">
-		<form id="wings-status-form" class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label" for="textarea"><label for="generalStatus">General status</label></label>
-				<div class="controls">
-					<select name="generalStatus">
-						<option value="">--------</option>
-						<option value="W" {{selected generalStatus 'W'}}>By Wing</option>
-						<option value="Y" {{selected generalStatus 'Y'}}>Yes</option>
-						<option value="N" {{selected generalStatus 'N'}}>No</option>
-						<option value="M" {{selected generalStatus 'M'}}>Maybe</option>
-						<option value="T" {{selected generalStatus 'T'}}>Travelling</option>
-						<option value="C" {{selected generalStatus 'C'}}>Cofee or drink</option>
-					</select>
-				</div>
-			</div>
-		</form>
-		<div id="my-wings" class="control-group">
-			<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
-			<div class="controls" style="display: inline">
-				<select name="wingsList" id="wings-list" class="span3">
-					{{#if wings.length}}
-						<option value="">Select wing</option>
+					<div class="box-standard">
+						<div class="box-header">
+							<h1 class="house-icon">Add Wing</h1>
+							{{#if myProfile}}
+							<button class="button2"><span class="edit-icon">Edit</span></button>
+							{{/if}}
+						</div>
+						<div class="box-content wings-info">
+							<form id="wings-status-form">
+								<div class="control-group">
+									<label class="control-label" for="textarea"><label for="generalStatus">General status</label></label>
+									<div class="controls">
+										<select name="generalStatus">
+											<option value="">--------</option>
+											<option value="W" {{selected generalStatus 'W'}}>By Wing</option>
+											<option value="Y" {{selected generalStatus 'Y'}}>Yes</option>
+											<option value="N" {{selected generalStatus 'N'}}>No</option>
+											<option value="M" {{selected generalStatus 'M'}}>Maybe</option>
+											<option value="T" {{selected generalStatus 'T'}}>Travelling</option>
+											<option value="C" {{selected generalStatus 'C'}}>Cofee or drink</option>
+										</select>
+									</div>
+								</div>
+							</form>
+							<div id="my-wings" class="control-group">
+								<label class="control-label" for="textarea"><label for="generalStatus">My wings</label></label>
+								<div class="controls" style="display: inline">
+									<select name="wingsList" id="wings-list" class="span3">
+										{{#if wings.length}}
+										<option value="">Select wing</option>
 
-						{{#each wings}}
-							<option value="{{uri}}">{{name}} (Accomodation)</option>
-						{{/each}}
-					{{else}}
-						<option value="">No created wings</option>
-					{{/if}}
-				</select>
-				<div class="btn-group" style="display: block">
-					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Add wing<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a id="add-wing-btn">Accomodation</a></li>
-					</ul>
-				</div>
-				<!--<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>-->
-				<span class="help-block"></span>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-	</div>
-</div>
+										{{#each wings}}
+										<option value="{{uri}}">{{name}} (Accomodation)</option>
+										{{/each}}
+										{{else}}
+										<option value="">No created wings</option>
+										{{/if}}
+									</select>
+									<div class="btn-group" style="display: block">
+										<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Add wing<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a id="add-wing-btn">Accomodation</a></li>
+										</ul>
+									</div>
+									<!--<button id="add-wing-btn" class="btn btn-primary" style="margin-left: 60px">Add wing</button>-->
+									<span class="help-block"></span>
+								</div>
+							</div>
+						</div><!-- EOF box-content -->
+					</div><!-- EOF box-standard -->

@@ -40,13 +40,333 @@
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
 	<div class="tab-content">
-		<div class="tab-pane active" id="about">
+		<div class="tab-pane" id="about">
 			<div class="content-left"></div>
 			<div class="content-right"></div>
 		</div>
-		<div class="tab-pane" id="wings">
+		<div class="tab-pane active" id="wings">
 			<div class="content-left"></div>
-			<div class="content-right"></div>
-		</div>
-	</div><!-- EOF tab-content -->
-</div> <!-- EOF container -->
+			<div class="content-right">
+
+
+				<div class="box-standard">
+					<form id="accomodation-form">
+						<div class="box-header">
+							<h1 class="house-icon">Accommodation Wing</h1>
+						</div>
+						<div class="box-content wings-info">
+							{{#if update}}
+							<div class="btn-group pull-right">
+								<button class="btn btn-mini">Options</button>
+								<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+								</ul>
+							</div>
+							{{/if}}
+							<div class="control-group">
+								<label class="control-label" for="inputName">Wing name</label>
+								<div class="controls">
+									<input type="text" id="inputName" name="name" placeholder="Some name" class="input-medium required">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputStatus">Wing status</label>
+								<div class="controls">
+									<select name="status" id="wingStatus">
+										<option value="Y" selected="selected">Yes</option>
+										<option value="N">No</option>
+										<option value="M">Maybe</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
+								<div class="controls">
+									<label class="checkbox inline">
+										<input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
+									</label>
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div id="sharing-dates"class="control-group inline" style="display:none">
+								<label class="control-label" for="inputDate">
+									<div class="controls">
+										<input type="text" name="dateStart" placeholder="Start date" class="input-small">
+										<input type="text" name="dateEnd" placeholder="End date" class="input-small" style="margin-left:5pt">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputNewEmail">Best days to host</label>
+									<div class="controls">
+										<select name="bestDays" id="inputBestDays">
+											<option value="A" selected="selected">Any</option>
+											<option value="F">From Monday to Friday</option>
+											<option value="T">From Monday to Thursday</option>
+											<option value="W">Weekend</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputCapacity">Capacity</label>
+									<div class="controls">
+										<select name="capacity" class="input-small">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="m">+9</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputGender">Preferred gender</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="preferredMale" id="inlineCheckbox1" value="True"> Male
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="preferredFemale" id="inlineCheckbox2" value="True"> Female
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputWheelchair">Wheelchair accessible</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="wheelchair" id="inlineCheckbox1" value="True">
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
+									<div class="controls">
+										<select name="whereSleepingType" id="whereSleepingType">
+											<option value="C" selected="selected">Common area</option>
+											<option value="P">Private area</option>
+											<option value="S">Shared private area</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputNewEmail">Smoking</label>
+									<div class="controls">
+										<select name="smoking" id="smoking">
+											<option value="N" selected="selected">No smoking allowed</option>
+											<option value="S">I smoke</option>
+											<option value="D">I don't smoke but guests can smoke here</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputPets">Pets</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="iHavePet" id="inlineCheckbox1" value="True"> I have pet
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="petsAllowed" id="inlineCheckbox2" value="True"> Guests pets allowed
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputPets">I have blankets</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="blankets" id="inputBlankets" value="True">
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputCenter">I live in the center</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="liveCenter" id="inputLiveCenter" value="True">
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputPets">Transports</label>
+									<div class="controls">
+										<label class="checkbox inline">
+											<input type="checkbox" name="underground" id="checkboxMetro" value="True"> Underground
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="bus" id="checkboxBus" value="True"> Bus
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="tram" id="checkboxTram" value="True"> Tram
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="train" id="checkboxTrain" value="True"> Train
+										</label>
+										<label class="checkbox inline">
+											<input type="checkbox" name="others" id="checkboxOthers" value="True"> Others
+										</label>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputAbout">About your accomodation</label>
+									<div class="controls">
+										<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<legend><h3>Listing location</h3></legend>
+								<div class="well">
+									<h5>Show only to confirmed guests</h5>
+									<p>
+										Bla bla bla
+									</p>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="inputAddress">Street address</label>
+									<div class="controls">
+										<input type="text" name="address" id="inputAddress" class="required">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputNumber">Number</label>
+									<div class="controls">
+										<input type="number" name="number" id="inputNumber" class="input-mini required">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputAddress">Additional Information</label>
+									<div class="controls">
+										<input type="text" name="additionalInformation" id="inputAdditionalInfo">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputCity">City</label>
+									<div class="controls">
+										<input type="text" name="city" id="inputCity" class="required">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputCode">ZIP / Postal Code</label>
+									<div class="controls">
+										<input type="text" name="postalCode" id="inputPostalCode" class="required">
+										<span class="help-block"></span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-heading">
+								{{#if myProfile}}
+								<button id="save-wing-btn" type="submit" class="button2 yellow">Save changes</button>
+								<button id="cancel-wing-btn" class="button2 cancel-edition-btn">Cancel</button>
+								{{/if}}
+							</div><!-- EOF box-footer -->
+						</form>
+					</div><!-- EOF box-standard -->
+
+			{{#each wings}}
+			<div class="box-standard">
+				<div class="box-header">
+					<h1 class="house-icon">Accommodation Wing</h1>
+					{{#if ../myProfile}}
+					<button class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}}
+				</div>
+				<div class="box-content wings-info">
+					<h2>Wings title</h2>
+					<p>{{name}}</p>
+					<h2>City</h2>
+					<p>{{city.name}}, {{city.country}}</p>
+					<h2>Wings status</h2>
+					<p>{{status}}</p>
+					<h2>Are you sharing for one time</h2>
+					{{#if sharingOnce}}
+					<p>{{dateStart}} to {{dateEnd}}</p>
+					{{else}}
+					<p>No</p>
+					{{/if}}
+					<h2>Better days to host</h2>
+					<p>{{bestDays}}</p>
+					<h2>Capacity</h2>
+					<p>{{capacity}} people</p>
+					{{#if preferredMale}}
+					<h2>Preferred gender</h2>
+					<p>Male</p>
+					{{/if}}
+					{{#if preferredFemale}}
+					<h2>Preferred gender</h2>
+					<p>Female</p>
+					{{/if}}
+					<h2>Wheelchair accessible</h2>
+					<p>
+						{{#if weelchair}}Yes{{else}}No{{/if}}
+					</p>
+					<h2>Sleeping arrangements</h2>
+					<p>{{whereSleepingType}}</p>
+					<h2>Smoking</h2>
+					<p>{{smoking}}</p>
+					<h2>Pets</h2>
+					<p>
+						{{#if petsAllowed}}
+						Guest pets allowed
+						{{else}}
+						No guest pets allowed
+						{{/if}}
+						{{#if iHavePet}}
+						and I have a pet
+						{{else}}
+						and I don't have any pet
+						{{/if}}
+					</p>
+					<h2>I have blankets</h2>
+					<p>{{#if blankets}}Yes{{else}}No{{/if}}</p>
+					<h2>I live in the city center</h2>
+					<p>{{#if liveCenter}}Yes{{else}}No{{/if}}</p>
+					<h2>Public transport</h2>
+					<p>
+						{{#if train}}Train, {{/if}}
+						{{#if underground}}underground, {{/if}}
+						{{#if tram}}tram, {{/if}}
+						{{#if bus}}bus, {{/if}}
+						{{#if boat}}boat, {{/if}}
+						{{#if others}}others{{/if}}
+					</p>
+					<h2 class="last-p">About your accommodation</h2>
+					<p>{{about}}</p>
+				</div>
+				<!-- <div class="gradient-box"></div> -->
+				<div class="accordion-heading">
+					<div class="see-more">
+						<span class="more-about">more about</span>
+						<p>See all content</p>
+						<span class="more-about">more about</span>
+					</div>
+				</div>
+			</div><!-- EOF box-standard -->
+			{{/each}}
+
+
+				</div>
+			</div>
+		</div><!-- EOF tab-content -->
+	</div> <!-- EOF container -->
