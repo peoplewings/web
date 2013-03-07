@@ -41,8 +41,15 @@
 	</div><!-- EOF landscape -->
 	<div class="tab-content">
 		<div class="tab-pane active" id="about">
-			<div class="content-left"></div>
-			<div class="content-right"></div>
+			<div class="content-left" id="basic-box"></div>
+			<div class="content-right">
+				<div id="about-box"></div>
+				<div id="likes-box"></div>
+				{{#if myProfile}}
+				<div id="contact-box"></div>
+				{{/if}}
+				<div id="places-box"></div>
+			</div>
 		</div>
 		<div class="tab-pane" id="wings">
 			<div class="content-left"></div>
