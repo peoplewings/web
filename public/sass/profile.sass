@@ -274,6 +274,7 @@ select
 			background: #e1e0d9
 			width: 190px
 			border: 1px solid #d0cec7
+			border-bottom: none
 
 			.avatar
 				width: 172px
@@ -382,17 +383,16 @@ select
 					p
 						color: #000
 						font-size: 12px
-						padding-bottom: 20px
-						margin-bottom: 20px
-						border-bottom: 1px solid #DDD
-
-				.wings1
-					p
 						padding-bottom: 12px
 						margin-bottom: 12px
-					.something
-						float: none
+						border-bottom: 1px solid #DDD
 
+				.wings-info, .contact-info
+					h2
+						float: left
+						margin-right: 10px
+					.last-p
+						float: none
 
 				.gradient-box
 					background: url(../img/gradient-transparent.png) repeat-x left top
@@ -400,14 +400,19 @@ select
 					position: relative
 					margin: -100px 0 0 0
 
-				.box-footer
+				.accordion-body.collapse
+					height: 450px
+
+				.accordion-heading
 					background: #FFF
 					border-top: 1px solid #e5e5e5
 					overflow: hidden
+					cursor: pointer
 
 					.see-more
 						float: left
 						margin: 0.7em
+						margin-left: 88px
 
 						p, span
 							float: left
@@ -434,6 +439,29 @@ select
 				margin-left: 8px
 				overflow: hidden
 
+				.box-content
+					border-top: 1px solid #D0CEC7
+					label
+						padding: 5px 12px
+						padding-left: 24px
+						background-position: left
+						width: 100px
+						float: left
+					input
+						font-size: 12px
+						padding-left: 10px
+						margin-bottom: 10px
+						width: 210px
+					.controls
+						margin-left: 150px
+					.controls.lived
+						label.radio
+							float: right
+							margin-right: 175px
+						a
+							float: none
+							margin: 0
+
 			.maps-footer
 				overflow: hidden
 				padding-left: 10px
@@ -448,27 +476,6 @@ select
 						padding: 10px 0 10px 35px
 						&:hover
 							color: red
-
-			.maps-footer-2
-				padding: 24px
-				label
-					padding: 5px 12px
-					padding-left: 24px
-					background-position: left
-					width: 100px
-					float: left
-				input
-					font-size: 12px
-					padding-left: 10px
-				.controls
-					margin-left: 150px
-				.controls.lived
-					label.radio
-						float: right
-						margin-right: 175px
-					a
-						float: none
-						margin: 0
 
 			/* EOF box-standard.maps */
 
@@ -510,11 +517,6 @@ select
 							margin: 0
 							margin-right: 8px
 
-					label.radio
-						color: #000
-						margin-left: 223px
-						padding-top: 5px
-
 @import _footer.sass
 
 .box-content
@@ -554,6 +556,14 @@ select
 		margin-right: 10px
 	p
 		margin-bottom: 12px
+
+.separator
+	border-bottom: 1px solid #CECECE
+	padding-bottom: 10px
+	margin-bottom: 8px
+
+#languages-list
+	overflow: hidden
 
 /* OVER Bootstrap */
 

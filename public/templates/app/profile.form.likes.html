@@ -1,78 +1,83 @@
 					<form id="likes-form">
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_enjoy_people">People I enjoy</label></label>
-							<div class="controls">
-								<input name="enjoyPeople" id="id_enjoy_people" placeholder="What kind of people you like to know and learn from them" type="text" size="250" value="{{ enjoyPeople }}">
-								<span class="help-inline"></span>
+						<div class="box-header">
+							<h1 class="likes-icon">Likes</h1>
+							{{#if myProfile}}
+							<button class="button2 editable-likes-btn"><span class="edit-icon">Edit</span></button>
+							{{/if}}
+						</div><!-- EOF box-header -->
+						<div class="box-content">
+							<div class="control-group">
+								<label class="control-label" for="id_enjoy_people">People I enjoy</label>
+								<div class="controls">
+									<input name="enjoyPeople" id="id_enjoy_people" placeholder="What kind of people you like to know and learn from them" type="text" size="250" value="{{ enjoyPeople }}">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_movies">Likes</label>
+								<div class="controls">
+									<input name="movies" value="{{movies}}" id="id_movies" placeholder="Movies, series, books, games..." type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_sports">Sports</label>
+								<div class="controls">
+									<input name="sports" value="{{sports}}" id="id_sports" type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_other_pages">Likes</label>
+								<div class="controls">
+									<input name="otherPages" value="{{otherPages}}" id="id_other_pages" placeholder="Other webpages and applications you like" type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_sharing">Show, learn, share...</label>
+								<div class="controls">
+									<input name="sharing" value="{{sharing}}" id="id_sharing" placeholder="What do you like to teach, learn or share?" type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_incredible">Amazing things done/seen</label>
+								<div class="controls">
+									<input name="incredible" value="{{incredible}}" id="id_incredible" placeholder="Any amazing thing you've seen or done in your life" type="text"  size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_inspired_by">People who inspires you</label>
+								<div class="controls">
+									<input name="inspiredBy" value="{{inspiredBy}}" id="id_inspired_by" type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_quotes">Favorite quotations</label>
+								<div class="controls">
+									<textarea name="quotes" rows="4" id="id_quotes" size="250" cols="40" style="width:90%">{{quotes}}</textarea>
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="id_pw_opinion">Your opinion please</label>
+								<div class="controls">
+									<input name="pwOpinion" value="{{pwOpinion}}" id="id_pw_opinion" placeholder="Your opinion about PEOPLEWINGS" type="text" size="250">
+									<span class="help-inline"></span>
+								</div>
 							</div>
 						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_movies">Likes</label></label>
-							<div class="controls">
-								<input name="movies" value="{{movies}}" id="id_movies" placeholder="Movies, series, books, games..." type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_sports">Sports</label></label>
-							<div class="controls">
-								<input name="sports" value="{{sports}}" id="id_sports" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_other_pages">Likes</label></label>
-							<div class="controls">
-								<input name="otherPages" value="{{otherPages}}" id="id_other_pages" placeholder="Other webpages and applications you like" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_sharing">Show, learn, share...</label></label>
-							<div class="controls">
-								<input name="sharing" value="{{sharing}}" id="id_sharing" placeholder="What do you like to teach, learn or share?" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_incredible">Amazing things done/seen</label></label>
-							<div class="controls">
-								<input name="incredible" value="{{incredible}}" id="id_incredible" placeholder="Any amazing thing you've seen or done in your life" type="text"  size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_inspired_by">People who inspires you</label></label>
-							<div class="controls">
-								<input name="inspiredBy" value="{{inspiredBy}}" id="id_inspired_by" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_quotes">Favorite quotations</label></label>
-							<div class="controls">
-								<textarea name="quotes" rows="4" id="id_quotes" size="250" cols="40" style="width:90%">{{quotes}}</textarea>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="textarea"><label for="id_pw_opinion">Your opinion please</label></label>
-							<div class="controls">
-								<input name="pwOpinion" value="{{pwOpinion}}" id="id_pw_opinion" placeholder="Your opinion about PEOPLEWINGS" type="text" size="250">
-								<span class="help-inline"></span>
-							</div>
-						</div>
-					</div>
-					<div class="box-footer">
-						<div class="see-more">
-							<p>
+						<div class="box-footer">
+							<div class="see-more">
 								<span class="more-about">more about</span>
 								<p>See all content</p>
 								<span class="more-about">more about</span>
-							</p>
-						</div>
-						{{#if myProfile}}
-						<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
-						{{/if}}
-					</div><!-- EOF box-footer -->
-				</form>
+							</div><!-- box-footer -->
+							{{#if myProfile}}
+							<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
+							{{/if}}
+						</div><!-- EOF box-footer -->
+					</form>
