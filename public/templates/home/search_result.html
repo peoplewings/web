@@ -72,7 +72,7 @@
 						<span class="">Replay time</span>
 						<span class="results">{{replyTime}}</span>
 						<span class="">Replay rate</span>
-						<span class="results">{{ replyRate }}%</span>
+						<span class="results">{{replyRate}}%</span>
 					</div>
 					<div class="button-bar">
 						<ul>
@@ -80,47 +80,34 @@
 							<li><button class="button send-request-btn selected">REQUEST</button></li>
 							<li><button class="button send-invitation-btn">INVITE</button></li>
 						</ul>
-					</div>
-				</div>
-			</div>
-			<!--
-				<span class="more-about">more about</span>
-				<h1>SEE MORE ABOUT {{ firstName }} </h1>
-				<span class="more-about">more about</span>
-			-->
-			<div class="accordion span8">
+					</div><!-- EOF button-bar -->
+				</div><!-- EOF main-bar -->
+			</div><!-- EOF content-right -->
+			<div class="accordion">
 				<div class="accordion-group">
 					<div id="collapse-{{@index}}" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<div class="content-bottom">
-                                <div class="about-info">
-                                        <h1>About me !</h1>
-                                        <h2>Member until <span>May 2012</span></h2>
-                                        <p>{{ allAboutYou }}</p>
-                                </div>
-								{{#if ../applicant}}
-								<div>
-									<h1>Looking for...</h1>
-									<p> City: <span>{{ wingCity }}</span></p>
-									<p> Capacity: <span>{{ wingCapacity }}</span></p>
-									<p> Start Date: <span>{{ wingStartDate }}</span></p>
-									<p> End date: <span>{{ wingEndDate }}</span></p>
-									<p> Type <span>{{ wingType }}</span></p>
-									<p> <span>{{ wingIntroduction }}</span></p>
-								</div>
-								{{/if}}
-							</div>
+							<h1>About me !</h1>
+							<h2>Member until <span>May 2012</span></h2>
+							<p>{{ allAboutYou }}</p>
+							{{#if ../applicant}}
+							<h1>Looking for...</h1>
+							<p>City: <span>{{ wingCity }}</span></p>
+							<p>Capacity: <span>{{ wingCapacity }}</span></p>
+							<p>Start Date: <span>{{ wingStartDate }}</span></p>
+							<p>End date: <span>{{ wingEndDate }}</span></p>
+							<p>Type <span>{{ wingType }}</span></p>
+							<p><span>{{ wingIntroduction }}</span></p>
+							{{/if}}
 						</div>
 					</div>
-					<div class="accordion-heading">
-						<div class="about-footer">
-							<a class="accordion-toggle" data-toggle="collapse" href="#collapse-{{@index}}">
-								<h1>SEE MORE ABOUT {{ firstName }} </h1>
-							</a>
-						</div>
+					<div class="accordion-heading" data-toggle="collapse" href="#collapse-{{@index}}">
+						<span class="more-about">more about</span>
+						<h1>See more about {{firstName}} </h1>
+						<span class="more-about">more about</span>
 					</div>
 				</div>
-			</div>
+			</div><!-- EOF accordion -->
 		</div>
 		{{/each}}
 		<div class="pager-content">
