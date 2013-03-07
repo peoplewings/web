@@ -9,10 +9,19 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var MyProfile = require('views/app/MyProfile');
 	var profileTpl = require('tmpl!templates/app/profile.html');
+	var basicTpl = require('tmpl!templates/app/profile.view.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile.view.about.html');
+	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
+
 
 	var ProfileView = Backbone.View.extend({
 
 		el: "#main",
+
+
+		contentLeft: "#about div.content-left",
 
 		events: {
 			"click button.send-message-btn": "sendMessage",
@@ -46,11 +55,17 @@ define(function(require) {
 
 		refresh: function() {
 			var myProfile = (this.model.get("id") === api.getUserId());
+
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
+
+			$(this.contentLeft).html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.map.render();
 			this.initMarkers();
-
 		},
 
 		initMarkers: function(){
