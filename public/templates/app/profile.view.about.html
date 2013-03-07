@@ -1,0 +1,62 @@
+<div class="box-standard">
+	<div class="box-header">
+		<h1 class="about-icon">About me</h1>
+		{{#if myProfile}}
+		<button class="button2 edit-about-btn"><span class="edit-icon">Edit</span></button>
+		{{/if}}
+	</div>
+	<div class="accordion">
+		<div class="accordion-group">
+			<div id="collapse-about" minCollapse="450" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="box-content">
+						{{#if allAboutYou}}
+						<h2>Description</h2>
+						<p>{{allAboutYou}}</p>
+						{{/if}}
+						{{#if mainMission}}
+						<h2>Current mission</h2>
+						<p>{{mainMission}}</p>
+						{{/if}}
+						{{#if occupation}}
+						<h2>Occupation</h2>
+						<p>{{occupation}}</p>
+						{{/if}}
+						{{#if company}}
+						<h2>Company</h2>
+						<p>{{company}}</p>
+						{{/if}}
+						{{#if education.size}}
+						<h2>Education</h2>
+						<p>
+							{{#each education}}
+							{{degree}} at {{insitution}}
+							{{/each}}
+						</p>
+						{{/if}}
+						{{#if personalPhilosophy}}
+						<h2>Personal philosophy</h2>
+						<p>{{personalPhilosophy}}</p>
+						{{/if}}
+						{{#if politicalOpinion}}
+						<h2>Political views</h2>
+						<p>{{politicalOpinion}}</p>
+						{{/if}}
+						{{#if religion}}
+						<h2>Religion</h2>
+						<p>{{religion}}</p>
+						{{/if}}
+					</div><!-- EOF box-content -->
+				</div>
+			</div>
+			<!-- <div class="gradient-box"></div> -->
+			<div class="accordion-heading" data-toggle="collapse" href="#collapse-about">
+				<div class="see-more">
+					<span class="more-about">more about</span>
+					<p>See all content</p>
+					<span class="more-about">more about</span>
+				</div>
+			</div>
+		</div>
+	</div><!-- EOF accordion -->
+			</div><!-- EOF box-standard -->

@@ -1,0 +1,37 @@
+<div class="box-standard">
+	<div class="box-header">
+		<h1 class="contact-icon">Contact info</h1>
+		{{#if myProfile}}
+		<button class="button2"><span class="edit-icon">Edit</span></button>
+		{{/if}}
+	</div>
+	<div class="accordion">
+		<div class="accordion-group">
+			<div id="collapse-contact" minCollapse="450" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="box-content contact-info">
+						<h2>Email</h2>
+						<p>{{emails}}</p>
+						<h2>Phone</h2>
+						<p>{{phone}}</p>
+						<h2>Social Network</h2>
+						{{#each socialNetworks}}
+						<p>{{socialNetwork}} : {{snUsername}}</p>
+						{{/each}}
+						<h2>Instant Message</h2>
+						{{#each instantMessages}}
+						<p>{{instantMessage}} : {{imUsername}}</p>
+						{{/each}}
+					</div><!-- EOF box-content -->
+				</div>
+			</div>
+			<div class="accordion-heading" data-toggle="collapse" href="#collapse-contact">
+				<div class="see-more">
+					<span class="more-about">more about</span>
+					<p>See all content</p>
+					<span class="more-about">more about</span>
+				</div>
+			</div>
+		</div>
+	</div><!-- EOF accordion -->
+</div><!-- EOF box-standard -->
