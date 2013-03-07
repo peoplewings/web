@@ -19,6 +19,28 @@ define(function(require) {
 			return resp.data;
 		},
 
+		save: function(data){
+			var self = this;
+			var aux = [];
+
+			_.each(data, function(value, attr){
+				console.log(attr, value)
+				debugger
+				if (attr === "civilState"){
+					debugger
+					//self.set("civilState", )
+				}
+				if (attr === "interestedInF" || attr === "interestedInM"){
+					aux.push({ gender: value});
+					self.set('interestedIn', aux);
+				}
+				else
+					self.set(attr, value);
+			});
+			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes)
+					.prop('status');
+		}
+
 	});
 
     // Returns the Model singleton instance

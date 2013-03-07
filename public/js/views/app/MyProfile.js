@@ -8,6 +8,7 @@ define(function(require){
 	var utils = require("utils");
 	var phrases = require('phrases');
 
+	var tmpl = require('tmpl');
 	var profileTpl = require('tmpl!templates/app/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
@@ -37,7 +38,7 @@ define(function(require){
 				this.educationsList.addItem();
 				this.initStudyTypeahead();
 			},
-			"click button[id^=delete-education]": function(e){
+			"click button[id^=delete-edu]": function(e){
 				e.preventDefault();
 				this.educationsList.deleteItem(e);
 			},
@@ -87,17 +88,33 @@ define(function(require){
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
+
+			"click button#edit-about-btn": "editAboutBox",
+			"click button.cancel-edition": "closeBox",
 		},
 
-		initialize: function() {
-			this.model = new ProfileModel({id: api.getUserId()});
-			this.model.on("change", this.render.bind(this));
-			this.model.fetch({success: this.render.bind(this) });
+		closeBox: function(evt){
+			this.parentCtrl.refresh();
+		},
 
-			this.map = new MapView({
-				el: "#user-map",
-				id: "mapcanvas"
+		editAboutBox: function(evt){
+			$(evt.target)
+				.parents(".box-standard")
+				.html(aboutTpl(this.model.toJSON()));
+
+			this.educationsList = new List({
+				el: "#education-list",
+				store: this.model.get("education"),
+				key: "edu",
+				tpl: "#education-tpl",
 			});
+
+			this.initStudyTypeahead();
+		},
+
+		initialize: function(model, parent) {
+			this.model = model;
+			this.parentCtrl = parent;
 		},
 
 		render: function(){
@@ -124,13 +141,6 @@ define(function(require){
 				store: this.model.get("languages"),
 				key: "language",
 				tpl: "#language-tpl",
-			});
-
-			this.educationsList = new List({
-				el: "#education-list",
-				store: this.model.get("education"),
-				key: "edu",
-				tpl: "#education-tpl",
 			});
 
 			this.socialsList = new List({
@@ -254,9 +264,10 @@ define(function(require){
 		},
 
 		submitProfile: function(e){
+			
 			e.preventDefault(e);
-			var data = this.collectData();
-
+			var data = this.collectData(e.target.id);
+			debugger
 			this.$("#save-profile-btn").button('loading');
 
 			var self = this;
@@ -269,8 +280,9 @@ define(function(require){
 				});
 		},
 
-		collectData: function() {
-			var data = utils.serializeForm('basic-info-form');
+		collectData: function(formId) {
+			var data = utils.serializeForm(formId);
+			debugger
 			_.extend(data, utils.serializeForm('contact-form'));
 			_.extend(data, utils.serializeForm('about-me-form'));
 			_.extend(data, utils.serializeForm('likes-form'));

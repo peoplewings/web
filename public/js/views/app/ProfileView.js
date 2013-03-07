@@ -41,7 +41,7 @@ define(function(require) {
 			this.getWingList(userId);
 
 			if (this.model.get("id") === api.getUserId())
-				this.myProfile = new MyProfile(this.model);
+				this.myProfile = new MyProfile(this.model, this);
 		},
 
 		refresh: function() {
