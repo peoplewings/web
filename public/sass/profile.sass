@@ -78,6 +78,24 @@ select
 		color: red
 		text-decoration: underline
 
+.size-small
+	width: 57px !important
+	background-position: 40px
+
+.size-medium
+	width: 90px !important
+	background-position: 70px
+
+.size-large
+	width: 150px !important
+	background-position: 130px
+
+.size-extralarge
+	width: 227px !important
+
+.size-large.lock-info
+	width: 121px !important
+	background-position: 101px
 
 /* --------------------------------------------------------------------------
    Icons
@@ -576,54 +594,57 @@ select
 		font-size: 12px
 
 .box-content.wings-info
-	input[type="checkbox"],
-	input[type="radio"]
-		margin: 0
+	label
 		padding: 0
-	.icon
-		width: 56px
-		height: 42px
-	.control-label
-		padding: 0 0 12px 1px
-		text-align: left
-	input, select
-		margin-bottom: 12px
-	select
-		width: 150px
 		margin: 0
-		margin-bottom: 12px
-	input[type="checkbox"]
-		color: #000
-	.controls > label > input[type="checkbox"]
-		margin-left: 10px
-
-	.control-label
-		float: left
-		margin-right: 15px
-	.controls
-		margin-bottom: 10px
-		.radio
-			margin: 0
-			padding: 0
-			line-height: 16px
-			margin-right: 12px
-			input
-				margin: 0
-				margin-right: 9px
-
-		input.input-sdate
-			width: 90px
-			background: url(../img/start-date.png) no-repeat 75px center #FFF
-
-		input.input-edate
-			width: 90px
-			background: url(../img/end-date.png) no-repeat 75px center #FFF
-
+	input, select
+		margin: 0
 	.control-group
-		margin-bottom: 13px
-
-	.control-group.blocks
-
+		margin-bottom: 20px
+		.control-label
+			padding: 0 0 0 1px
+			margin-bottom: 12px
+		.controls
+			.input-sdate
+				width: 90px
+				background: url(../img/start-date.png) no-repeat 75px center #FFF
+			.input-edate
+				width: 90px
+				background: url(../img/end-date.png) no-repeat 75px center #FFF
+			.checkbox
+				float: left
+				margin: 8px 0 0 4px
+				margin: 0 0 0 0
+				padding: 0 0 0 0
+				line-height: 12px
+				input
+					margin-right: 10px
+		.controls.check
+			margin: 10px 0 5px 0
+			label.checkbox
+				float: none
+	.lined
+		margin-bottom: 10px
+		input[type="checkbox"]
+			margin-top: 8px
+		.control-label
+			float: left
+			padding: 5px 0 5px 1px
+			margin: 0 10px 0 0
+		.controls
+			margin-left: 80px
+	.blocked
+		display: block
+		float: left
+		clear: none
+		margin-right: 12px
+		.control-label
+			float: none
+			margin: 0 0 6px 0
+			.controls
+				margin: 0
+	.no-margin
+		margin-right: 0
 
 /* OVER Bootstrap */
 
