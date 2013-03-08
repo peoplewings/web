@@ -72,6 +72,22 @@
 									<input type="text" id="inputName" name="name" placeholder="Some name" class="input-medium required">
 								</div>
 							</div>
+
+							<div class="control-group">
+								<label for="inputStatus" class="control-label">Wing status</label>
+								<div class="controls">
+									<label for="radio" class="radio inline">
+										<input type="radio" name="status">Yes
+									</label>
+									<label for="radio" class="radio inline">
+										<input type="radio" name="status">No
+									</label>
+									<label for="radio" class="radio inline">
+										<input type="radio" name="status">Maybe
+									</label>
+								</div>
+							</div>
+
 							<div class="control-group">
 								<label class="control-label" for="inputStatus">Wing status</label>
 								<div class="controls">
@@ -82,6 +98,18 @@
 									</select>
 								</div>
 							</div>
+
+							<div class="control-group">
+								<label class="control-label" for="inputSharingOnce">Are you sharing one time ?</label>
+							</div>
+							<div id="sharing-dates"class="control-group inline">
+								<label class="control-label" for="inputDate">
+									<div class="controls">
+										<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
+										<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
+									</div>
+								</div>
+
 							<div class="control-group">
 								<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 								<div class="controls">
@@ -91,13 +119,14 @@
 									<span class="help-inline"></span>
 								</div>
 							</div>
-							<div id="sharing-dates"class="control-group inline" style="display:none">
+							<div id="sharing-dates"class="control-group inline">
 								<label class="control-label" for="inputDate">
 									<div class="controls">
 										<input type="text" name="dateStart" placeholder="Start date" class="input-small">
 										<input type="text" name="dateEnd" placeholder="End date" class="input-small" style="margin-left:5pt">
 									</div>
 								</div>
+
 								<div class="control-group">
 									<label class="control-label" for="inputNewEmail">Best days to host</label>
 									<div class="controls">
@@ -284,86 +313,86 @@
 						</form>
 					</div><!-- EOF box-standard -->
 
-			{{#each wings}}
-			<div class="box-standard">
-				<div class="box-header">
-					<h1 class="house-icon">Accommodation Wing</h1>
-					{{#if ../myProfile}}
-					<button class="button2"><span class="edit-icon">Edit</span></button>
-					{{/if}}
-				</div>
-				<div class="box-content wings-info">
-					<h2>Wings title</h2>
-					<p>{{name}}</p>
-					<h2>City</h2>
-					<p>{{city.name}}, {{city.country}}</p>
-					<h2>Wings status</h2>
-					<p>{{status}}</p>
-					<h2>Are you sharing for one time</h2>
-					{{#if sharingOnce}}
-					<p>{{dateStart}} to {{dateEnd}}</p>
-					{{else}}
-					<p>No</p>
-					{{/if}}
-					<h2>Better days to host</h2>
-					<p>{{bestDays}}</p>
-					<h2>Capacity</h2>
-					<p>{{capacity}} people</p>
-					{{#if preferredMale}}
-					<h2>Preferred gender</h2>
-					<p>Male</p>
-					{{/if}}
-					{{#if preferredFemale}}
-					<h2>Preferred gender</h2>
-					<p>Female</p>
-					{{/if}}
-					<h2>Wheelchair accessible</h2>
-					<p>
-						{{#if weelchair}}Yes{{else}}No{{/if}}
-					</p>
-					<h2>Sleeping arrangements</h2>
-					<p>{{whereSleepingType}}</p>
-					<h2>Smoking</h2>
-					<p>{{smoking}}</p>
-					<h2>Pets</h2>
-					<p>
-						{{#if petsAllowed}}
-						Guest pets allowed
-						{{else}}
-						No guest pets allowed
-						{{/if}}
-						{{#if iHavePet}}
-						and I have a pet
-						{{else}}
-						and I don't have any pet
-						{{/if}}
-					</p>
-					<h2>I have blankets</h2>
-					<p>{{#if blankets}}Yes{{else}}No{{/if}}</p>
-					<h2>I live in the city center</h2>
-					<p>{{#if liveCenter}}Yes{{else}}No{{/if}}</p>
-					<h2>Public transport</h2>
-					<p>
-						{{#if train}}Train, {{/if}}
-						{{#if underground}}underground, {{/if}}
-						{{#if tram}}tram, {{/if}}
-						{{#if bus}}bus, {{/if}}
-						{{#if boat}}boat, {{/if}}
-						{{#if others}}others{{/if}}
-					</p>
-					<h2 class="last-p">About your accommodation</h2>
-					<p>{{about}}</p>
-				</div>
-				<!-- <div class="gradient-box"></div> -->
-				<div class="accordion-heading">
-					<div class="see-more">
-						<span class="more-about">more about</span>
-						<p>See all content</p>
-						<span class="more-about">more about</span>
-					</div>
-				</div>
-			</div><!-- EOF box-standard -->
-			{{/each}}
+					{{#each wings}}
+					<div class="box-standard">
+						<div class="box-header">
+							<h1 class="house-icon">Accommodation Wing</h1>
+							{{#if ../myProfile}}
+							<button class="button2"><span class="edit-icon">Edit</span></button>
+							{{/if}}
+						</div>
+						<div class="box-content wings-info">
+							<h2>Wings title</h2>
+							<p>{{name}}</p>
+							<h2>City</h2>
+							<p>{{city.name}}, {{city.country}}</p>
+							<h2>Wings status</h2>
+							<p>{{status}}</p>
+							<h2>Are you sharing for one time</h2>
+							{{#if sharingOnce}}
+							<p>{{dateStart}} to {{dateEnd}}</p>
+							{{else}}
+							<p>No</p>
+							{{/if}}
+							<h2>Better days to host</h2>
+							<p>{{bestDays}}</p>
+							<h2>Capacity</h2>
+							<p>{{capacity}} people</p>
+							{{#if preferredMale}}
+							<h2>Preferred gender</h2>
+							<p>Male</p>
+							{{/if}}
+							{{#if preferredFemale}}
+							<h2>Preferred gender</h2>
+							<p>Female</p>
+							{{/if}}
+							<h2>Wheelchair accessible</h2>
+							<p>
+								{{#if weelchair}}Yes{{else}}No{{/if}}
+							</p>
+							<h2>Sleeping arrangements</h2>
+							<p>{{whereSleepingType}}</p>
+							<h2>Smoking</h2>
+							<p>{{smoking}}</p>
+							<h2>Pets</h2>
+							<p>
+								{{#if petsAllowed}}
+								Guest pets allowed
+								{{else}}
+								No guest pets allowed
+								{{/if}}
+								{{#if iHavePet}}
+								and I have a pet
+								{{else}}
+								and I don't have any pet
+								{{/if}}
+							</p>
+							<h2>I have blankets</h2>
+							<p>{{#if blankets}}Yes{{else}}No{{/if}}</p>
+							<h2>I live in the city center</h2>
+							<p>{{#if liveCenter}}Yes{{else}}No{{/if}}</p>
+							<h2>Public transport</h2>
+							<p>
+								{{#if train}}Train, {{/if}}
+								{{#if underground}}underground, {{/if}}
+								{{#if tram}}tram, {{/if}}
+								{{#if bus}}bus, {{/if}}
+								{{#if boat}}boat, {{/if}}
+								{{#if others}}others{{/if}}
+							</p>
+							<h2 class="last-p">About your accommodation</h2>
+							<p>{{about}}</p>
+						</div>
+						<!-- <div class="gradient-box"></div> -->
+						<div class="accordion-heading">
+							<div class="see-more">
+								<span class="more-about">more about</span>
+								<p>See all content</p>
+								<span class="more-about">more about</span>
+							</div>
+						</div>
+					</div><!-- EOF box-standard -->
+					{{/each}}
 
 
 				</div>

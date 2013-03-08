@@ -576,6 +576,10 @@ select
 		font-size: 12px
 
 .box-content.wings-info
+	input[type="checkbox"],
+	input[type="radio"]
+		margin: 0
+		padding: 0
 	.icon
 		width: 56px
 		height: 42px
@@ -592,6 +596,34 @@ select
 		color: #000
 	.controls > label > input[type="checkbox"]
 		margin-left: 10px
+
+	.control-label
+		float: left
+		margin-right: 15px
+	.controls
+		margin-bottom: 10px
+		.radio
+			margin: 0
+			padding: 0
+			line-height: 16px
+			margin-right: 12px
+			input
+				margin: 0
+				margin-right: 9px
+
+		input.input-sdate
+			width: 90px
+			background: url(../img/start-date.png) no-repeat 75px center #FFF
+
+		input.input-edate
+			width: 90px
+			background: url(../img/end-date.png) no-repeat 75px center #FFF
+
+	.control-group
+		margin-bottom: 13px
+
+	.control-group.blocks
+
 
 /* OVER Bootstrap */
 
