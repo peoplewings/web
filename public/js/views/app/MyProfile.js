@@ -13,16 +13,14 @@ define(function(require){
 	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
 	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile.form.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile.form.places.html');
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
-	var avatarView = require("views/app/avatar");
-	var MapView = require("views/app/map");
-	var ProfileModel = require("models/Profile");
+	var AvatarView = require("views/app/Avatar");
 
 	var ProfileView = Backbone.View.extend({
 		el: "#main",
-
 		events:{
 			"click a#add-language-btn": function(e){
 				e.preventDefault();
@@ -37,7 +35,7 @@ define(function(require){
 				this.educationsList.addItem();
 				this.initStudyTypeahead();
 			},
-			"click button[id^=delete-education]": function(e){
+			"click button[id^=delete-edu]": function(e){
 				e.preventDefault();
 				this.educationsList.deleteItem(e);
 			},
@@ -87,17 +85,83 @@ define(function(require){
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
+
+			"click button.edit-box-btn" : "openForm",
+			"click button.cancel-edition-btn": "closeBox",
 		},
 
-		initialize: function() {
-			this.model = new ProfileModel({id: api.getUserId()});
-			this.model.on("change", this.render.bind(this));
-			this.model.fetch({success: this.render.bind(this) });
+		initialize: function(model, parent) {
+			this.model = model;
+			this.parentCtrl = parent;
+		},
 
-			this.map = new MapView({
-				el: "#user-map",
-				id: "mapcanvas"
+		closeBox: function(evt){
+			evt.preventDefault();
+			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
+			this.parentCtrl.refreshBox(boxId);
+		},
+
+		openForm: function(evt){
+
+			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
+			var box = document.getElementById(boxId);
+			var tpl = null;
+			var initMethod = null;
+
+			$(box).children().remove();
+
+			switch (boxId){
+				case "basic-box":
+					tpl = basicTpl(this.model.toJSON());
+					initMethod = this.editBasicBox.bind(this);
+					break;
+				case "about-box":
+					tpl = aboutTpl(this.model.toJSON());
+					initMethod = this.editAboutBox.bind(this);
+					break;
+				case "likes-box":
+					tpl = likesTpl(this.model.toJSON());
+					//initMethod = this.editLikesBox;
+					break;
+				case "contact-box":
+					tpl = contactTpl(this.model.toJSON());
+					//initMethod = this.editContactBox.bind(this);
+					break;
+				case "places-box":
+					tpl = placesTpl(this.model.toJSON());
+					//initMethod = this.editPlacesBox.bind(this);
+					break;
+			}
+
+			$(box).html(tpl);
+			if (initMethod)
+				initMethod();
+
+		},
+
+		editBasicBox: function(){
+
+			this.languagesList = new List({
+				el: "#languages-list",
+				store: this.model.get("languages"),
+				key: "language",
+				tpl: "#language-tpl",
 			});
+
+			this.avatar = new AvatarView();
+
+		},
+
+		editAboutBox: function(){
+
+			this.educationsList = new List({
+				el: "#education-list",
+				store: this.model.get("education"),
+				key: "edu",
+				tpl: "#education-tpl",
+			});
+
+			this.initStudyTypeahead();
 		},
 
 		render: function(){
@@ -108,7 +172,6 @@ define(function(require){
 			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
 			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
 
-			avatarView.render(this.model.get("avatar"));
 			this.map.render();
 
 			this.initLists();
@@ -119,20 +182,6 @@ define(function(require){
 		},
 
 		initLists: function(){
-			this.languagesList = new List({
-				el: "#languages-list",
-				store: this.model.get("languages"),
-				key: "language",
-				tpl: "#language-tpl",
-			});
-
-			this.educationsList = new List({
-				el: "#education-list",
-				store: this.model.get("education"),
-				key: "edu",
-				tpl: "#education-tpl",
-			});
-
 			this.socialsList = new List({
 				el: "#socialNetwork-list",
 				store: this.model.get("socialNetworks"),
@@ -255,8 +304,8 @@ define(function(require){
 
 		submitProfile: function(e){
 			e.preventDefault(e);
-			var data = this.collectData();
-
+			var data = this.collectData(e.target.id);
+			debugger;
 			this.$("#save-profile-btn").button('loading');
 
 			var self = this;
@@ -269,8 +318,9 @@ define(function(require){
 				});
 		},
 
-		collectData: function() {
-			var data = utils.serializeForm('basic-info-form');
+		collectData: function(formId) {
+			var data = utils.serializeForm(formId);
+			debugger;
 			_.extend(data, utils.serializeForm('contact-form'));
 			_.extend(data, utils.serializeForm('about-me-form'));
 			_.extend(data, utils.serializeForm('likes-form'));

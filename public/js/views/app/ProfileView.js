@@ -7,7 +7,14 @@ define(function(require) {
 	var PreviewModel = require("models/ProfileModel");
 	var MapView = require('views/app/map');
 	var notifications = require('views/lib/notifications');
+	var MyProfile = require('views/app/MyProfile');
 	var profileTpl = require('tmpl!templates/app/profile.html');
+	var basicTpl = require('tmpl!templates/app/profile.view.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile.view.about.html');
+	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
+
 
 	var ProfileView = Backbone.View.extend({
 
@@ -33,18 +40,53 @@ define(function(require) {
 		},
 
 		render: function(userId) {
+			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
+
 			this.model.fetch();
 			this.getWingList(userId);
+
+			if (this.model.get("id") === api.getUserId())
+				this.myProfile = new MyProfile(this.model, this);
 		},
 
 		refresh: function() {
 			var myProfile = (this.model.get("id") === api.getUserId());
+
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
+
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.map.render();
 			this.initMarkers();
+		},
 
+		refreshBox: function(box){
+			var myProfile = (this.model.get("id") === api.getUserId());
+			var tpl = null;
+
+			switch (box){
+				case "basic-box":
+					tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "about-box":
+					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "likes-box":
+					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "contact-box":
+					tpl = contactTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "places-box":
+					tpl = placesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+			}
+			this.$("#" + box).html(tpl);
 		},
 
 		initMarkers: function(){
