@@ -20,9 +20,6 @@ define(function(require) {
 
 		el: "#main",
 
-
-		contentLeft: "#about div.content-left",
-
 		events: {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
@@ -58,7 +55,7 @@ define(function(require) {
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
 
-			$(this.contentLeft).html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -66,6 +63,30 @@ define(function(require) {
 
 			this.map.render();
 			this.initMarkers();
+		},
+
+		refreshBox: function(box){
+			var myProfile = (this.model.get("id") === api.getUserId());
+			var tpl = null;
+
+			switch (box){
+				case "basic-box":
+					tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "about-box":
+					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "likes-box":
+					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "contact-box":
+					tpl = contactTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "places-box":
+					tpl = placesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+			}
+			this.$("#" + box).html(tpl);
 		},
 
 		initMarkers: function(){
