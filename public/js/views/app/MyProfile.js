@@ -17,7 +17,7 @@ define(function(require){
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
-	var avatarView = require("views/app/avatar");
+	var AvatarView = require("views/app/Avatar");
 
 	var ProfileView = Backbone.View.extend({
 		el: "#main",
@@ -96,8 +96,9 @@ define(function(require){
 		},
 
 		closeBox: function(evt){
-			debugger;
-			this.parentCtrl.refresh();
+			evt.preventDefault();
+			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
+			this.parentCtrl.refreshBox(boxId);
 		},
 
 		openForm: function(evt){
@@ -112,7 +113,7 @@ define(function(require){
 			switch (boxId){
 				case "basic-box":
 					tpl = basicTpl(this.model.toJSON());
-					//initMethod = this.editBasicBox.bind(this);
+					initMethod = this.editBasicBox.bind(this);
 					break;
 				case "about-box":
 					tpl = aboutTpl(this.model.toJSON());
@@ -138,6 +139,19 @@ define(function(require){
 
 		},
 
+		editBasicBox: function(){
+
+			this.languagesList = new List({
+				el: "#languages-list",
+				store: this.model.get("languages"),
+				key: "language",
+				tpl: "#language-tpl",
+			});
+
+			this.avatar = new AvatarView();
+
+		},
+
 		editAboutBox: function(){
 
 			this.educationsList = new List({
@@ -158,7 +172,6 @@ define(function(require){
 			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
 			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
 
-			avatarView.render(this.model.get("avatar"));
 			this.map.render();
 
 			this.initLists();
@@ -169,13 +182,6 @@ define(function(require){
 		},
 
 		initLists: function(){
-			this.languagesList = new List({
-				el: "#languages-list",
-				store: this.model.get("languages"),
-				key: "language",
-				tpl: "#language-tpl",
-			});
-
 			this.socialsList = new List({
 				el: "#socialNetwork-list",
 				store: this.model.get("socialNetworks"),

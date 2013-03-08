@@ -7,45 +7,60 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api2');
 	var utils = require('utils');
-	var avatarTpl = require('tmpl!templates/app/avatar.html');
 	var ProfileModel = require('models/Profile');
 	var alerts = require("views/lib/alerts");
 
 
 	var AvatarView = Backbone.View.extend({
-		originalAvatarId: "",
+		el: "#basic-box",
 
-		events: {},
+		originalAvatarId: null,
+
+		spinOptions: {
+			lines: 11,
+			length: 15,
+			width: 6,
+			radius: 11,
+			corners: 1,
+			rotate: 12,
+			color: '#000',
+			speed: 0.8,
+			trail: 66,
+			shadow: false,
+			hwaccel: false,
+			className: 'spinner',
+			zIndex: 2e9,
+			top: 'auto',
+			left: 'auto'
+		},
+
+		events: {
+			"click #upload-avatar" : function(e){
+				e.preventDefault();
+				this.$('#upload').trigger('click');
+			},
+			"click #submit-avatar" : function(e){
+				e.preventDefault();
+				this.submitAvatar();
+			}
+		},
 
 		initialize: function(){
-		},
-
-		render: function(url){
-			$('#main .avatar').append(avatarTpl({ avatarUrl: url }));
-			this.initAvatarForm();
-		},
-
-		initAvatarForm: function(){
-			var sc = this;
+			this.spinner = new Spinner(this.spinOptions);
+			var self = this;
 			function handleFileSelect(evt) {
-				var files = evt.target.files; // FileList object
-				if (files.length > 0) sc.uploadFile(files[0]);
+				var files = evt.target.files;
+				if (files.length > 0)
+					self.uploadFile(files[0]);
 			}
 
-			$('#upload-avatar').click(function(e){
-				e.preventDefault();
-				$('#upload').trigger('click');
-			});
 			if (window.File && window.FileReader && window.FileList && window.Blob) {
 				document.getElementById('upload').addEventListener('change', handleFileSelect, false);
 			} else alert('The File APIs are not fully supported in this browser.');
-
-			$('#submit-avatar').click(function(){
-				sc.submitAvatar();
-			});
 		},
 
 		uploadFile: function(file){
+			var self = this;
 			var fd = new FormData();
 			var profile = new ProfileModel({id: api.getUserId()});
 			fd.append("image", file);
@@ -59,7 +74,10 @@ define(function(require) {
 				processData: false,
 				crossDomain: true,
 				type: 'POST',
-				xhr: function(){
+				beforeSend: function(){
+					self.spinner.spin(document.getElementById('upload-avatar'));
+				},
+				/*xhr: function(){
 					var xhr = new window.XMLHttpRequest();
 					xhr.upload.addEventListener("progress", function(evt){
 						if (evt.lengthComputable) {
@@ -68,13 +86,13 @@ define(function(require) {
 						}
 					}, false);
 					return xhr;
-				},
+				},*/
 				success: this.uploadComplete(this)
 			});
 		},
 		uploadComplete: function(scope){
 			return function(response){
-				//console.log("Complete!!!", response)
+				scope.spinner.stop();
 				function showCoords(c){
 					var scale_x = scope.originalW / $("#cropbox").width();
 					var scale_y = scope.originalH / $("#cropbox").height();
@@ -111,22 +129,22 @@ define(function(require) {
 		submitAvatar: function(){
 			var data = utils.serializeForm("crop-avatar-form");
 
-			$("#submit-avatar").button('loading');
+			this.$("#submit-avatar").button('loading');
 
 			api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, data)
-				.then(function(resp){
-					alerts.success("Avatar uploaded");
-					$('#avatar').attr("src", resp.data.url);
-					$('#crop-modal').modal('hide');
-				}, function(error) {
-					debugger;
-					alerts.defaultError(error);
-				})
-				.fin(function(){
-					$("#submit-avatar").button('reset');
-				});
+			.then(function(resp){
+				alerts.success("Avatar uploaded");
+				$('#avatar').attr("src", resp.data.url);
+				$('#crop-modal').modal('hide');
+			}, function(error) {
+				debugger;
+				alerts.defaultError(error);
+			})
+			.fin(function(){
+				$("#submit-avatar").button('reset');
+			});
 		},
 	});
 
-	return new AvatarView;
+return AvatarView;
 });
