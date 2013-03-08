@@ -123,7 +123,7 @@ define(function(require) {
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
-			return _gaq.push(['_trackPageview', "/" + url]);
+			return window._gaq.push(['_trackPageview', "/" + url]);
 		},
 		initialize: function(){
 			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId());

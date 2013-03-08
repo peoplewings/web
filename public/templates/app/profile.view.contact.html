@@ -1,9 +1,8 @@
+{{#if myProfile}}
 <div class="box-standard">
 	<div class="box-header">
 		<h1 class="contact-icon">Contact info</h1>
-		{{#if myProfile}}
-		<button class="button2"><span class="edit-icon">Edit</span></button>
-		{{/if}}
+		<button id="edit-contact-btn" class="button2 edit-box-btn" data-rel="contact-box"><span class="edit-icon">Edit</span></button>
 	</div>
 	<div class="accordion">
 		<div class="accordion-group">
@@ -39,3 +38,4 @@
 		</div>
 	</div><!-- EOF accordion -->
 </div><!-- EOF box-standard -->
+{{/if}}
