@@ -1,5 +1,5 @@
-				<div class="avatar">
-						<img id="avatar" src="{{avatar}}" alt="avatar">
+				<div id="upload-avatar" class="avatar">
+					<img id="avatar" src="{{avatar}}" alt="avatar">
 				</div>
 				<div class="box basic-info">
 					<form id="basic-info-form">
@@ -129,3 +129,35 @@
 				</div>
 			</form>
 		</div><!-- EOF box basic-info -->
+		<form id="file-form" style="display: none" method="post" action="" enctype="multipart/form-data">
+			<input id="upload" type="file" name="files[]" />
+		</form>
+
+		<div class="modal" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Crop image</h3>
+			</div>
+			<div class="modal-body" style="max-height: 500px">
+				<p>Crop the image you uploaded for your avatar</p>
+
+				<center>
+					<img id="cropbox" src="" alt="">
+					<div class="progress progress-striped" style="margin-top:10px;display:none;">
+						<div class="bar" style="width: 0%;"></div>
+					</div>
+				</center>
+				<form id="crop-avatar-form" class="coords" onsubmit="return false;" style="display: none">
+					<div>
+						<label>X1 <input type="text" size="4" id="id_x" name="x"></label>
+						<label>Y1 <input type="text" size="4" id="id_y" name="y"></label>
+						<label>W <input type="text" size="4" id="id_w" name="w"></label>
+						<label>H <input type="text" size="4" id="id_h" name="h"></label>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="cancel-crop" class="btn" data-dismiss="modal" aria-hidden="true">Dismiss</button>
+				<button type="submit" id="submit-avatar" class="btn btn-primary" data-loading-text="Processing...">Crop it</button>
+			</div>
+		</div>
