@@ -98,7 +98,6 @@
 								</div>
 							</div>
 							<div id="sharing-dates"class="control-group">
-								<label class="control-label" for="inputDate"></label>
 								<div class="controls">
 									<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
 									<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
@@ -132,7 +131,7 @@
 									</select>
 								</div>
 							</div>
-<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
+							<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
 
 <!-- 							<div class="control-group">
 								<label class="control-label" for="inputGender">Preferred gender</label>
@@ -220,20 +219,20 @@
 							<div class="control-group">
 								<label class="control-label" for="inputPets">Transports</label>
 								<div class="controls">
-									<label class="checkbox inline">
-										<input type="checkbox" name="underground" id="checkboxMetro" value="True"> Underground
+									<label class="checkbox">
+										<input type="checkbox" name="underground" id="checkboxMetro" value="True">Metro
 									</label>
-									<label class="checkbox inline">
-										<input type="checkbox" name="bus" id="checkboxBus" value="True"> Bus
+									<label class="checkbox">
+										<input type="checkbox" name="bus" id="checkboxBus" value="True">Bus
 									</label>
-									<label class="checkbox inline">
-										<input type="checkbox" name="tram" id="checkboxTram" value="True"> Tram
+									<label class="checkbox">
+										<input type="checkbox" name="tram" id="checkboxTram" value="True">Tram
 									</label>
-									<label class="checkbox inline">
-										<input type="checkbox" name="train" id="checkboxTrain" value="True"> Train
+									<label class="checkbox">
+										<input type="checkbox" name="train" id="checkboxTrain" value="True">Train
 									</label>
-									<label class="checkbox inline">
-										<input type="checkbox" name="others" id="checkboxOthers" value="True"> Others
+									<label class="checkbox">
+										<input type="checkbox" name="others" id="checkboxOthers" value="True">Others
 									</label>
 									<span class="help-inline"></span>
 								</div>
@@ -243,58 +242,54 @@
 								<div class="controls">
 									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-							<legend><h3>Listing location</h3></legend>
-							<div class="well">
-								<h5>Show only to confirmed guests</h5>
-								<p>
-									Bla bla bla
-								</p>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="inputAddress">Street address</label>
+						</div><!-- EOF box-content -->
+						<div class="box-header">
+							<h1 class="contact-icon">Listing location</h1>
+						</div>
+						<div class="guest-message">
+							<h2 class="lock-icon">Shown only to Confirmed Guests</h2>
+							<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
+						</div><!-- EOF guest-message -->
+						<div class="listing-location">
+							<div class="control-group blocked">
+								<label class="control-label lock-icon" for="inputAddress">Street address</label>
 								<div class="controls">
 									<input type="text" name="address" id="inputAddress" class="required">
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputNumber">Number</label>
+							<div class="control-group blocked">
+								<label class="control-label lock-icon" for="inputNumber">Number</label>
 								<div class="controls">
-									<input type="number" name="number" id="inputNumber" class="input-mini required">
+									<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
+									<input type="text" name="number" id="inputNumber" class="input-mini required">
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputAddress">Additional Information</label>
+							<div class="control-group blocked">
+								<label class="control-label lock-icon" for="inputAddress">Additional Information</label>
 								<div class="controls">
-									<input type="text" name="additionalInformation" id="inputAdditionalInfo">
+									<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard">
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputCity">City</label>
+							<div class="control-group blocked">
+								<label class="control-label lock-icon" for="inputCity">City</label>
 								<div class="controls">
 									<input type="text" name="city" id="inputCity" class="required">
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputCode">ZIP / Postal Code</label>
+							<div class="control-group blocked">
+								<label class="control-label lock-icon" for="inputCode">Postal</label>
 								<div class="controls">
-									<input type="text" name="postalCode" id="inputPostalCode" class="required">
+									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
 									<span class="help-block"></span>
-									<span class="help-inline"></span>
 								</div>
 							</div>
-						</div>
+						</div><!-- EOF listing-location -->
 						<div class="accordion-heading">
 							{{#if myProfile}}
 							<button id="save-wing-btn" type="submit" class="button2 yellow">Save changes</button>

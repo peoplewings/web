@@ -97,6 +97,9 @@ select
 	width: 121px !important
 	background-position: 101px
 
+.size-box-standard
+	width: 310px !important
+
 /* --------------------------------------------------------------------------
    Icons
    -------------------------------------------------------------------------- */
@@ -600,7 +603,8 @@ select
 	input, select
 		margin: 0
 	.control-group
-		margin-bottom: 20px
+		overflow: hidden
+		margin-bottom: 18px
 		.control-label
 			padding: 0 0 0 1px
 			margin-bottom: 12px
@@ -613,15 +617,13 @@ select
 				background: url(../img/end-date.png) no-repeat 75px center #FFF
 			.checkbox
 				float: left
-				margin: 8px 0 0 4px
-				margin: 0 0 0 0
-				padding: 0 0 0 0
+				margin: 0 10px 0 0
+				padding: 0
 				line-height: 12px
 				input
 					margin-right: 10px
 		.controls.check
-			margin: 10px 0 5px 0
-			label.checkbox
+			.checkbox
 				float: none
 	.lined
 		margin-bottom: 10px
@@ -645,6 +647,39 @@ select
 				margin: 0
 	.no-margin
 		margin-right: 0
+
+	div.control-group:last-child
+		margin-bottom: 0
+
+	div.control-group
+		.controls:last-child
+			line-height: 0
+
+h1.guest-message
+	border-top: 1px solid #D0CEC7
+
+.listing-location
+	padding: 25px
+	overflow: hidden
+
+	.blocked
+		display: block
+		float: left
+		clear: none
+		margin-right: 12px
+	.control-label
+		float: none
+		margin: 0 0 6px 0
+		.controls
+			margin: 0
+
+	label.lock-icon
+		background-position: center right
+		width: auto
+		height: auto
+
+.accordion-heading
+	clear: both
 
 /* OVER Bootstrap */
 
