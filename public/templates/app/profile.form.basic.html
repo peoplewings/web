@@ -6,7 +6,7 @@
 						<div class="control-group">
 							<label class="control-label" for="inputGender">I am</label>
 							<div class="controls">
-								<select id="inputGender" class="size-large">
+								<select name="gender" id="inputGender" class="size-large">
 									<option value="">---------</option>
 									<option value="Male" {{selected gender 'Male'}}>Male</option>
 									<option value="Female" {{selected gender 'Female'}}>Female</option>
@@ -18,7 +18,7 @@
 							<div class="controls">
 								<select id="id_birthday_month" name="birthMonth" class="size-large required">
 									<option value="">Month</option>
-									{{#each month}}
+									{{#each months}}
 									<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{name}}</option>
 									{{/each}}
 								</select>
@@ -49,9 +49,10 @@
 						<div id="" class="control-group">
 							<label class="control-label">Interested in</label>
 							<div class="controls">
-								<select name="interestedInM" class="size-large">
-									<option value="Female" {{selected interestedInM.1.gender 'Female'}}>Female</option>
-									<option value="Male" {{selected interestedInM.0.gender 'Male'}}>Male</option>
+								<select name="interestedIn" class="size-large">
+									<option value="Female" {{selected interestedIn.0.gender 'Female'}}>Female</option>
+									<option value="Male" {{selected interestedIn.0.gender 'Male'}}>Male</option>
+									<option value="Both" {{selected interestedIn.0.gender 'Both'}}>Both</option>
 								</select>
 								<span class="help-block"></span>
 							</div>
@@ -124,7 +125,7 @@
 					</div><!-- EOF control-group -->
 				</div><!-- EOF basic-info -->
 				<div class="basic-info-footer">
-					<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
+					<button form="basic-info-form" id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
 					<button class="button2 cancel-edition-btn" data-rel="basic-box">Cancel</button>
 				</div>
 			</form>
