@@ -7,7 +7,7 @@ define(function(require) {
 	var wingsTpl = require("tmpl!templates/app/wings.html");
 	var alerts = require('views/lib/alerts');
 	var WingView = require("views/app/wing");
-	var ProfileModel = require("models/Profile");
+	var ProfileModel = require("models/ProfileModel");
 
 	var WingsView = Backbone.View.extend({
 
