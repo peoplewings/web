@@ -112,7 +112,7 @@ define(function(require){
 
 			switch (boxId){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON());
+					tpl = basicTpl(this.model.toJSON(), {months: phrases.months});
 					initMethod = this.editBasicBox.bind(this);
 					break;
 				case "about-box":
@@ -305,7 +305,7 @@ define(function(require){
 		submitProfile: function(e){
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
-			debugger;
+			
 			this.$("#save-profile-btn").button('loading');
 
 			var self = this;
@@ -320,7 +320,6 @@ define(function(require){
 
 		collectData: function(formId) {
 			var data = utils.serializeForm(formId);
-			debugger;
 			_.extend(data, utils.serializeForm('contact-form'));
 			_.extend(data, utils.serializeForm('about-me-form'));
 			_.extend(data, utils.serializeForm('likes-form'));
