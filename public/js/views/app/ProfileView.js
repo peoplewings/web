@@ -35,15 +35,13 @@ define(function(require) {
 			this.model = new PreviewModel({
 				id: userId,
 			});
-
-			this.model.on("change", this.refresh.bind(this));
 		},
 
 		render: function(userId) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 
-			this.model.fetch();
+			this.model.fetch({success: this.refresh.bind(this)});
 			this.getWingList(userId);
 
 			if (this.model.get("id") === api.getUserId())
