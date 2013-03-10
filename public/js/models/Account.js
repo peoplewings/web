@@ -14,7 +14,9 @@ define(function(require) {
 				.then(function(resp){
 					self.attributes = resp.data;
 					self.trigger("change");
-				})
+						if (options.success)
+							options.success();
+				});
 		},
 
 		save: function(attributes, pwd) {

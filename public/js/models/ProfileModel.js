@@ -18,7 +18,7 @@ define(function(require) {
 				.then(function(resp){
 					self.attributes = resp.data;
 					options.success();
-				})
+				});
 		},
 
 		save: function(data){
