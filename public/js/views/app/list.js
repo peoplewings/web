@@ -42,6 +42,9 @@ define(function(require) {
 		deleteItem: function(e) {
 			$(e.target).parent().remove();
 			this.length--;
+
+			var index = +e.target.id.split(this.key + "-")[1];
+			this.store.splice(index, 1);
 		},
 
 	});
