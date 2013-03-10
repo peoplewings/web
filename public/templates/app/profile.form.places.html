@@ -1,5 +1,5 @@
 		<div class="box-standard maps">
-			<form id="places-me-form" data-rel="places-box">
+			<form id="places-form" data-rel="places-box">
 				<div class="box-header">
 					<h1 class="places-icon">Places</h1>
 				</div>
@@ -55,13 +55,12 @@
 									<input name="other-lat" type="hidden">
 									<input name="other-lon" type="hidden">
 								</div>
-								<a href="#" class="another">+ Add another</a>
 							</div><!-- EOF #otherLocations-list -->
 						</div><!-- EOF controls -->
 					</div><!-- EOF control-group -->
 				</div>
 				<div class="accordion-heading">
-					<button id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
+					<button form="places-form" id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
 					<button class="button2 cancel-edition-btn" data-rel="places-box">Cancel</button>
 				</div>
 			</form>
