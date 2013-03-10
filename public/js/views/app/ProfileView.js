@@ -37,6 +37,14 @@ define(function(require) {
 			});
 		},
 
+		initializeMap: function(){
+			this.map = new MapView({
+				el: "#user-map",
+				id: "mapcanvas"
+			});
+			this.map.render();
+		},
+
 		render: function(userId) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
@@ -53,8 +61,8 @@ define(function(require) {
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
 
-			this.$("#basic-box").html(basicTpl(this.model.toJSON(), { 
-				myProfile: myProfile, 
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {
+				myProfile: myProfile,
 				civilState: phrases.choices.civilState[this.model.get("civilState")],
 				replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
 			}));
@@ -73,8 +81,8 @@ define(function(require) {
 
 			switch (box){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON(), { 
-						myProfile: myProfile, 
+					tpl = basicTpl(this.model.toJSON(), {
+						myProfile: myProfile,
 						civilState: phrases.choices.civilState[this.model.get("civilState")],
 						replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
 					});
@@ -93,6 +101,8 @@ define(function(require) {
 					break;
 			}
 			this.$("#" + box).html(tpl);
+			if (box === "places-box")
+				this.initializeMap();
 		},
 
 		initMarkers: function(){
