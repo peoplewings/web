@@ -98,7 +98,7 @@ define(function(require){
 		closeBox: function(evt){
 			evt.preventDefault();
 			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
-			this.parentCtrl.refreshBox(boxId);
+			this.parentCtrl.renderBox(boxId);
 		},
 
 		openForm: function(evt){
