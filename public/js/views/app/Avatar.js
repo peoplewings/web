@@ -9,7 +9,6 @@ define(function(require) {
 	var utils = require('utils');
 	var ProfileModel = require('models/Profile');
 	var alerts = require("views/lib/alerts");
-	var header = require("views/app/header");
 
 
 	var AvatarView = Backbone.View.extend({
