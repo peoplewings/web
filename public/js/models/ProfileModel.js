@@ -25,7 +25,7 @@ define(function(require) {
 				if (attr === "interestedIn")
 					self.set(attr, [{gender: value}]);
 			});
-			console.log("SAVE: ", this.attributes.interestedIn)
+
 			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes);
 		}
 
