@@ -2,7 +2,6 @@ define(function(require) {
 
 	var Backbone = require('backbone');
 	var api = require('api2');
-	var phrases = require('phrases');
 	var factory = require('core/factory');
 
 	var Preview = Backbone.Model.extend({
@@ -14,25 +13,20 @@ define(function(require) {
 		},
 
 		parse: function(resp){
-			resp.data.replyTime = moment.duration(resp.data.replyTime).humanize();
-			resp.data.civilState = phrases.choices.civilState[resp.data.civilState];
 			return resp.data;
 		},
 
 		save: function(data){
 			var self = this;
-			var aux = [];
 
 			_.each(data, function(value, attr){
-				if (attr === "interestedInF" || attr === "interestedInM"){
-					aux.push({ gender: value});
-					self.set('interestedIn', aux);
-				}
-				else
-					self.set(attr, value);
+				self.set(attr, value);
+
+				if (attr === "interestedIn")
+					self.set(attr, [{gender: value}]);
 			});
-			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes)
-					.prop('status');
+			console.log("SAVE: ", this.attributes.interestedIn)
+			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes);
 		}
 
 	});

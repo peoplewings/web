@@ -55,7 +55,11 @@ define(function(require) {
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
 
-			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), { 
+				myProfile: myProfile, 
+				civilState: phrases.choices.civilState[this.model.get("civilState")],
+				replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
+			}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -71,7 +75,11 @@ define(function(require) {
 
 			switch (box){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+					tpl = basicTpl(this.model.toJSON(), { 
+						myProfile: myProfile, 
+						civilState: phrases.choices.civilState[this.model.get("civilState")],
+						replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
+					});
 					break;
 				case "about-box":
 					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
