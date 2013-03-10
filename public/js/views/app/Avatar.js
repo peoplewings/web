@@ -9,6 +9,7 @@ define(function(require) {
 	var utils = require('utils');
 	var ProfileModel = require('models/Profile');
 	var alerts = require("views/lib/alerts");
+	var header = require("views/app/header");
 
 
 	var AvatarView = Backbone.View.extend({
@@ -92,10 +93,11 @@ define(function(require) {
 			});
 		},
 		uploadComplete: function(response){
+				var self = this;
 				this.spinner.stop();
 				function showCoords(c){
-					var scale_x = this.originalW / $("#cropbox").width();
-					var scale_y = this.originalH / $("#cropbox").height();
+					var scale_x = self.originalW / $("#cropbox").width();
+					var scale_y = self.originalH / $("#cropbox").height();
 					$('#id_x').val(Math.floor(c.x*scale_x));
 					$('#id_y').val(Math.floor(c.y*scale_y));
 					$('#id_w').val(Math.floor(c.w*scale_x));
@@ -136,6 +138,8 @@ define(function(require) {
 				alerts.success("Avatar uploaded");
 				$('#avatar').attr("src", resp.data.url);
 				$('#crop-modal').modal('hide');
+				window.router.header.refresh();
+
 			}, function(error) {
 				debugger;
 				alerts.defaultError(error);
