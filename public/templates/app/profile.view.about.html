@@ -26,13 +26,11 @@
 						<h2>Company</h2>
 						<p>{{company}}</p>
 						{{/if}}
-						{{#if education.size}}
-						<h2>Education</h2>
-						<p>
+						{{#if education.length}}
+							<h2>Education</h2>
 							{{#each education}}
-							{{degree}} at {{insitution}}
+								<p>{{degree}} at {{institution}}</p>
 							{{/each}}
-						</p>
 						{{/if}}
 						{{#if personalPhilosophy}}
 						<h2>Personal philosophy</h2>
