@@ -78,6 +78,27 @@ select
 		color: red
 		text-decoration: underline
 
+.size-small
+	width: 57px !important
+	background-position: 40px
+
+.size-medium
+	width: 90px !important
+	background-position: 70px
+
+.size-large
+	width: 150px !important
+	background-position: 130px
+
+.size-extralarge
+	width: 227px !important
+
+.size-large.lock-info
+	width: 121px !important
+	background-position: 101px
+
+.size-box-standard
+	width: 310px !important
 
 /* --------------------------------------------------------------------------
    Icons
@@ -364,6 +385,7 @@ select
 				.box-header
 					border-bottom: 1px solid #d0cec7
 					overflow: hidden
+					max-height: 42px
 					h1
 						float: left
 						font:
@@ -573,6 +595,91 @@ select
 		font-style: italic
 		color: gray
 		font-size: 12px
+
+.box-content.wings-info
+	label
+		padding: 0
+		margin: 0
+	input, select
+		margin: 0
+	.control-group
+		overflow: hidden
+		margin-bottom: 18px
+		.control-label
+			padding: 0 0 0 1px
+			margin-bottom: 12px
+		.controls
+			.input-sdate
+				width: 90px
+				background: url(../img/start-date.png) no-repeat 75px center #FFF
+			.input-edate
+				width: 90px
+				background: url(../img/end-date.png) no-repeat 75px center #FFF
+			.checkbox
+				float: left
+				margin: 0 10px 0 0
+				padding: 0
+				line-height: 12px
+				input
+					margin-right: 10px
+		.controls.check
+			.checkbox
+				float: none
+	.lined
+		margin-bottom: 10px
+		input[type="checkbox"]
+			margin-top: 8px
+		.control-label
+			float: left
+			padding: 5px 0 5px 1px
+			margin: 0 10px 0 0
+		.controls
+			margin-left: 80px
+	.blocked
+		display: block
+		float: left
+		clear: none
+		margin-right: 12px
+		.control-label
+			float: none
+			margin: 0 0 6px 0
+			.controls
+				margin: 0
+	.no-margin
+		margin-right: 0
+
+	div.control-group:last-child
+		margin-bottom: 0
+
+	div.control-group
+		.controls:last-child
+			line-height: 0
+
+h1.guest-message
+	border-top: 1px solid #D0CEC7
+
+.listing-location
+	padding: 25px
+	overflow: hidden
+
+	.blocked
+		display: block
+		float: left
+		clear: none
+		margin-right: 12px
+	.control-label
+		float: none
+		margin: 0 0 6px 0
+		.controls
+			margin: 0
+
+	label.lock-icon
+		background-position: center right
+		width: auto
+		height: auto
+
+.accordion-heading
+	clear: both
 
 /* OVER Bootstrap */
 
