@@ -21,6 +21,10 @@ define(function(require){
 			$(this.el).html(headerTpl(this.model.toJSON()));
 		},
 
+		refresh: function(){
+			this.model.fetch();
+		},
+
 		destroy: function(){
 			this.remove();
 			this.unbind();

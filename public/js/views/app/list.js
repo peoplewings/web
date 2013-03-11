@@ -23,7 +23,7 @@ define(function(require) {
 				$(item).append('<button type="button" class="close" id="delete-' + self.key + '-' + index + '">×</button>');
 			});
 
-			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button">Add another</a>');
+			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button" class="another">+Add another</a>');
 			if (!this.length)
 				this.addItem();
 		},
@@ -42,6 +42,9 @@ define(function(require) {
 		deleteItem: function(e) {
 			$(e.target).parent().remove();
 			this.length--;
+
+			var index = +e.target.id.split(this.key + "-")[1];
+			this.store.splice(index, 1);
 		},
 
 	});

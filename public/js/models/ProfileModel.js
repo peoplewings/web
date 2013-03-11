@@ -2,41 +2,40 @@ define(function(require) {
 
 	var Backbone = require('backbone');
 	var api = require('api2');
-	var phrases = require('phrases');
 	var factory = require('core/factory');
 
 	var Preview = Backbone.Model.extend({
 
-		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/",
+		urlRoot: api.getApiVersion() + "/profiles/",
 
 		url: function(){
-			return  (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
+			return (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
 		},
 
-		parse: function(resp){
-			resp.data.replyTime = moment.duration(resp.data.replyTime).humanize();
-			resp.data.civilState = phrases.choices.civilState[resp.data.civilState];
-			return resp.data;
+		fetch: function(options) {
+			var self = this;
+			api.get(this.url())
+				.then(function(resp){
+					self.attributes = resp.data;
+					options.success();
+				});
 		},
 
 		save: function(data){
 			var self = this;
-			var aux = [];
 
 			_.each(data, function(value, attr){
-				if (attr === "interestedInF" || attr === "interestedInM"){
-					aux.push({ gender: value});
-					self.set('interestedIn', aux);
-				}
-				else
-					self.set(attr, value);
+				self.set(attr, value);
+
+				if (attr === "interestedIn")
+					self.set(attr, [{gender: value}]);
 			});
-			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes)
-					.prop('status');
+
+			return api.put(this.urlRoot + this.id, this.attributes);
 		}
 
 	});
 
-    // Returns the Model singleton instance
+	// Returns the Model singleton instance
 	return factory(Preview);
 });

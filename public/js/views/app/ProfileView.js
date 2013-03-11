@@ -35,15 +35,21 @@ define(function(require) {
 			this.model = new PreviewModel({
 				id: userId,
 			});
+		},
 
-			this.model.on("change", this.refresh.bind(this));
+		initializeMap: function(){
+			this.map = new MapView({
+				el: "#user-map",
+				id: "mapcanvas"
+			});
+			this.map.render();
 		},
 
 		render: function(userId) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 
-			this.model.fetch();
+			this.model.fetch({success: this.refresh.bind(this)});
 			this.getWingList(userId);
 
 			if (this.model.get("id") === api.getUserId())
@@ -55,7 +61,11 @@ define(function(require) {
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
 
-			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {
+				myProfile: myProfile,
+				civilState: phrases.choices.civilState[this.model.get("civilState")],
+				replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
+			}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -65,13 +75,21 @@ define(function(require) {
 			this.initMarkers();
 		},
 
+		renderBox: function(box){
+			this.model.fetch({success: this.refreshBox.bind(this, box)});
+		},
+
 		refreshBox: function(box){
 			var myProfile = (this.model.get("id") === api.getUserId());
 			var tpl = null;
 
 			switch (box){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+					tpl = basicTpl(this.model.toJSON(), {
+						myProfile: myProfile,
+						civilState: phrases.choices.civilState[this.model.get("civilState")],
+						replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
+					});
 					break;
 				case "about-box":
 					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
@@ -87,6 +105,8 @@ define(function(require) {
 					break;
 			}
 			this.$("#" + box).html(tpl);
+			if (box === "places-box")
+				this.initializeMap();
 		},
 
 		initMarkers: function(){

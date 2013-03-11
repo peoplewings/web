@@ -3,7 +3,7 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api2');
 	var UserModel = require('models/Account');
-	var ProfileModel = require('models/Profile');
+	var ProfileModel = require('models/ProfileModel');
 
 	var LogoutView = Backbone.View.extend({
 
