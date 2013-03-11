@@ -8,7 +8,6 @@ define(function(require){
 	var utils = require("utils");
 	var phrases = require('phrases');
 
-	var profileTpl = require('tmpl!templates/app/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
 	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
@@ -53,7 +52,7 @@ define(function(require){
 				e.preventDefault();
 				var id = e.target.id.split("delete-")[1];
 				this.otherLocationsList.deleteItem(e);
-				this.map.deleteMarker(id);
+				this.parentCtrl.map.deleteMarker(id);
 			},
 			"click a#add-social-btn": function(e){
 				e.preventDefault();
@@ -85,6 +84,7 @@ define(function(require){
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
+			"submit form#places-form": "submitProfile",
 
 			"click button.edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
@@ -112,7 +112,7 @@ define(function(require){
 
 			switch (boxId){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON());
+					tpl = basicTpl(this.model.toJSON(), {months: phrases.months});
 					initMethod = this.editBasicBox.bind(this);
 					break;
 				case "about-box":
@@ -121,15 +121,14 @@ define(function(require){
 					break;
 				case "likes-box":
 					tpl = likesTpl(this.model.toJSON());
-					//initMethod = this.editLikesBox;
 					break;
 				case "contact-box":
 					tpl = contactTpl(this.model.toJSON());
-					//initMethod = this.editContactBox.bind(this);
+					initMethod = this.editContactBox.bind(this);
 					break;
 				case "places-box":
 					tpl = placesTpl(this.model.toJSON());
-					//initMethod = this.editPlacesBox.bind(this);
+					initMethod = this.editPlacesBox.bind(this);
 					break;
 			}
 
@@ -140,7 +139,6 @@ define(function(require){
 		},
 
 		editBasicBox: function(){
-
 			this.languagesList = new List({
 				el: "#languages-list",
 				store: this.model.get("languages"),
@@ -149,11 +147,9 @@ define(function(require){
 			});
 
 			this.avatar = new AvatarView();
-
 		},
 
 		editAboutBox: function(){
-
 			this.educationsList = new List({
 				el: "#education-list",
 				store: this.model.get("education"),
@@ -164,24 +160,7 @@ define(function(require){
 			this.initStudyTypeahead();
 		},
 
-		render: function(){
-			$(this.el).html(profileTpl(this.model.toJSON()));
-
-			this.$('#basic-info').html(basicTpl(this.model.toJSON(), { month: phrases.months }));
-			this.$('#about-me').html(aboutTpl(this.model.toJSON()));
-			this.$('#likes-info').html(likesTpl(this.model.toJSON()));
-			this.$('#contact-info').html(contactTpl(this.model.toJSON()));
-
-			this.map.render();
-
-			this.initLists();
-			this.initLocationTypeahead();
-			this.initStudyTypeahead();
-			this.initMarkers();
-
-		},
-
-		initLists: function(){
+		editContactBox: function(){
 			this.socialsList = new List({
 				el: "#socialNetwork-list",
 				store: this.model.get("socialNetworks"),
@@ -195,13 +174,19 @@ define(function(require){
 				key: "im",
 				tpl: "#im-tpl",
 			});
+		},
 
+		editPlacesBox: function(){
 			this.otherLocationsList = new List({
 				el: "#otherLocations-list",
 				store: this.model.get("otherLocations"),
 				key: "otherLocation",
 				tpl: "#otherLocation-tpl",
 			});
+
+			this.parentCtrl.map.render();
+
+			this.initLocationTypeahead();
 		},
 
 		initStudyTypeahead: function(){
@@ -250,7 +235,7 @@ define(function(require){
 		},
 
 		updateMap: function(auto, field, id) {
-			var sc = this;
+			var sc = this.parentCtrl;
 			return function() {
 				var place = auto.getPlace();
 				if (place.geometry){
@@ -273,7 +258,7 @@ define(function(require){
 		},
 
 		initMarkers: function(){
-			var sc = this;
+			var sc = this.parentCtrl;
 
 			var city = this.model.get("current");
 			this.map.addMarker({
@@ -305,7 +290,7 @@ define(function(require){
 		submitProfile: function(e){
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
-			debugger;
+
 			this.$("#save-profile-btn").button('loading');
 
 			var self = this;
@@ -315,12 +300,12 @@ define(function(require){
 				})
 				.fin(function(){
 					self.$("#save-profile-btn").button('reset');
+					self.closeBox(e);
 				});
 		},
 
 		collectData: function(formId) {
 			var data = utils.serializeForm(formId);
-			debugger;
 			_.extend(data, utils.serializeForm('contact-form'));
 			_.extend(data, utils.serializeForm('about-me-form'));
 			_.extend(data, utils.serializeForm('likes-form'));
@@ -334,8 +319,7 @@ define(function(require){
 						return { name: item, level: data["levels"][index] };
 				});
 				delete data["levels"];
-			} else data["languages"] = [];
-
+			}
 			if (data["instantMessages"]){
 				if (!(data["instantMessages"] instanceof Array)) {
 					data["instantMessages"] = [data["instantMessages"]];
@@ -345,7 +329,7 @@ define(function(require){
 						return { instantMessage: item, imUsername: data["imUsername"][index] };
 				});
 				delete data["imUsername"];
-			} else data["instantMessages"] = [];
+			}
 
 			if (data["socialNetworks"]){
 				if (!(data["socialNetworks"] instanceof Array)) {
@@ -356,7 +340,7 @@ define(function(require){
 						return { socialNetwork: item, snUsername: data["snUsername"][index] };
 				});
 				delete data["snUsername"];
-			} else data["socialNetworks"] = [];
+			}
 
 			if (data["education"]){
 				if (!(data["education"] instanceof Array)) {
@@ -367,7 +351,7 @@ define(function(require){
 						return { institution: item, degree: data["degree"][index] };
 				});
 				delete data["degree"];
-			} else data["education"] = [];
+			}
 
 			if (data["other-city"]){
 				if (!(data["other-city"] instanceof Array)) {
@@ -424,7 +408,6 @@ define(function(require){
 				delete data["hometown-lat"];
 				delete data["hometown-lon"];
 			}
-
 			return data;
 		},
 	  });

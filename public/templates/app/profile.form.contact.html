@@ -1,5 +1,5 @@
 					<div class="box-standard">
-						<form id="contact-form">
+						<form id="contact-form" data-rel="contact-box">
 							<div class="box-header">
 								<h1 class="contact-icon">Contact info</h1>
 							</div>
@@ -19,12 +19,7 @@
 								<div id="" class="control-group">
 									<label class="control-label" for="textarea"><label for="id_form-0-phone">Phone</label></label>
 									<div class="controls">
-										<select name="pre-phone" id="">
-											<option value="mobile" selected="selected">Mobile</option>
-											<option>Home</option>
-										</select>
 										<input name="phone" id="id_form-0-phone" type="text" value="{{phone}}" maxlength="20">
-										<a href="#" class="another">+ Add Phone</a>
 										<span class="help-block"></span>
 										<span class="help-inline"></span>
 									</div>
@@ -56,7 +51,6 @@
 													<option value="Coach Surfing">Couch Surfing</option>
 												</select>
 												<input type="text" name="snUsername">
-												<a href="#" class="another">+ Add Network</a>
 											</div>
 										</div>
 									</div>
@@ -84,14 +78,13 @@
 													<option value="Messenger">Messenger</option>
 												</select>
 												<input type="text" name="imUsername">
-												<a href="#" class="another">+ Add Instant Message Service</a>
 											</div>
 										</div>
 									</div>
 								</div><!-- EOF control-group -->
 							</div><!-- EOF box-content -->
 							<div class="accordion-heading">
-								<button id="save-profile-btn" type="submit" class="button2 yellow">Save changes</button>
+								<button id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
 								<button class="button2 cancel-edition-btn" data-rel="contact-box">Cancel</button>
 							</div><!-- EOF box-footer -->
 						</form>

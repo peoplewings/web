@@ -9,6 +9,7 @@ define(function(require) {
 	var utils = require('utils');
 	var ProfileModel = require('models/Profile');
 	var alerts = require("views/lib/alerts");
+	var header = require("views/app/header");
 
 
 	var AvatarView = Backbone.View.extend({
@@ -87,15 +88,16 @@ define(function(require) {
 					}, false);
 					return xhr;
 				},*/
-				success: this.uploadComplete(this)
+				success: this.uploadComplete.bind(this),
+
 			});
 		},
-		uploadComplete: function(scope){
-			return function(response){
-				scope.spinner.stop();
+		uploadComplete: function(response){
+				var self = this;
+				this.spinner.stop();
 				function showCoords(c){
-					var scale_x = scope.originalW / $("#cropbox").width();
-					var scale_y = scope.originalH / $("#cropbox").height();
+					var scale_x = self.originalW / $("#cropbox").width();
+					var scale_y = self.originalH / $("#cropbox").height();
 					$('#id_x').val(Math.floor(c.x*scale_x));
 					$('#id_y').val(Math.floor(c.y*scale_y));
 					$('#id_w').val(Math.floor(c.w*scale_x));
@@ -107,9 +109,9 @@ define(function(require) {
 
 				if (response.success){
 					var data = response.data;
-					scope.originalAvatarId = data.id;
-					scope.originalH = data.height;
-					scope.originalW = data.width;
+					this.originalAvatarId = data.id;
+					this.originalH = data.height;
+					this.originalW = data.width;
 
 					$('#crop-modal .modal-body img').attr({ src: data.image });
 
@@ -123,8 +125,8 @@ define(function(require) {
 						minSize: [246, 246],
 						//maxSize: [246, 284],
 					});
-				}
-			};
+				} else
+					alerts.error(response.errors);
 		},
 		submitAvatar: function(){
 			var data = utils.serializeForm("crop-avatar-form");
@@ -136,6 +138,8 @@ define(function(require) {
 				alerts.success("Avatar uploaded");
 				$('#avatar').attr("src", resp.data.url);
 				$('#crop-modal').modal('hide');
+				window.router.header.refresh();
+
 			}, function(error) {
 				debugger;
 				alerts.defaultError(error);
