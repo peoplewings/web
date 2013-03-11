@@ -1,126 +1,87 @@
-<div class="container">
-	<div class="landscape">
-		<div class="tabs">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#about" data-toggle="tab">Profile</a></li>
-				<li><a href="#wings" data-toggle="tab">Wings</a></li>
-			</ul>
-		</div><!-- EOF tabs -->
-		<div class="personal-info">
-			<div class="content-top">
-				<h1 id="user-name-label" class="name">
-					<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
-				</h1>
-				<span class="age">[{{age}}]</span>
-				<span class="online">
-					{{#if lastLoginDate}}
-					{{lastLoginDate}}
+<div class="generic-modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="myModalLabel">Add Wing</h3>
+	</div>
+	<div class="modal-body">
+		
+		<div class="box-standard">
+			<form id="accomodation-form">
+				<div class="box-header">
+					<h1 class="house-icon">Accommodation Wing</h1>
+				</div>
+				<div class="box-content wings-info">
+					{{#if update}}
+					<div class="btn-group pull-right">
+						<button class="btn btn-mini">Options</button>
+						<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+						</ul>
+					</div>
 					{{/if}}
-				</span>
-				<h2 class="home-town">
-					{{#if hometown.name}}
-					{{hometown.name}}, {{hometown.country}}
-					{{/if}}
-				</h2>
-				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
-			</div>
-			{{#if myProfile}}
-			<div class="button-bar">
-				<h1>Im in my profile</h1>
-			</div>
-			{{else}}
-			<div class="button-bar">
-				<ul> 
-					<li><button class="send-message-btn">Message</button></li>
-					<li><button class="send-request-btn selected">Request</button></li>
-					<li><button class="send-invitation-btn">Invite</button></li>
-				</ul>
-			</div> 
-			{{/if}}
-		</div><!-- EOF personal -->
-	</div><!-- EOF landscape -->
-	<div class="tab-content">
-		<div class="tab-pane active" id="about">
-			<div class="content-left" id="basic-box"></div>
-			<div class="content-right">
-
-			<div class="box-standard">
-					<form id="accomodation-form">
-						<div class="box-header">
-							<h1 class="house-icon">Accommodation Wing</h1>
+					<div class="control-group lined">
+						<label class="control-label" for="inputName">Wing name</label>
+						<div class="controls">
+							<input type="text" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
 						</div>
-						<div class="box-content wings-info">
-							{{#if update}}
-							<div class="btn-group pull-right">
-								<button class="btn btn-mini">Options</button>
-								<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
-								</ul>
-							</div>
-							{{/if}}
-							<div class="control-group lined">
-								<label class="control-label" for="inputName">Wing name</label>
-								<div class="controls">
-									<input type="text" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
-								</div>
-							</div>
-							<div class="control-group lined">
-								<label class="control-label" for="inputStatus">Wing status</label>
-								<div class="controls">
-									<select name="status" id="wingStatus" class="size-medium">
-										<option value="Y" selected="selected">Yes</option>
-										<option value="N">No</option>
-										<option value="M">Maybe</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group lined">
-								<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
-								<div class="controls">
-									<label class="checkbox">
-										<input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
-									</label>
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div id="sharing-dates"class="control-group">
-								<div class="controls">
-									<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
-									<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputNewEmail">Best days to host</label>
-								<div class="controls">
-									<select name="bestDays" id="inputBestDays" class="size-large">
-										<option value="A" selected="selected">Any</option>
-										<option value="F">From Monday to Friday</option>
-										<option value="T">From Monday to Thursday</option>
-										<option value="W">Weekend</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputCapacity">Capacity</label>
-								<div class="controls">
-									<select name="capacity" class="size-small">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="m">+9</option>
-									</select>
-								</div>
-							</div>
-							<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
+					</div>
+					<div class="control-group lined">
+						<label class="control-label" for="inputStatus">Wing status</label>
+						<div class="controls">
+							<select name="status" id="wingStatus" class="size-medium">
+								<option value="Y" selected="selected">Yes</option>
+								<option value="N">No</option>
+								<option value="M">Maybe</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-group lined">
+						<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
+						<div class="controls">
+							<label class="checkbox">
+								<input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
+							</label>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div id="sharing-dates"class="control-group">
+						<div class="controls">
+							<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
+							<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label" for="inputNewEmail">Best days to host</label>
+						<div class="controls">
+							<select name="bestDays" id="inputBestDays" class="size-large">
+								<option value="A" selected="selected">Any</option>
+								<option value="F">From Monday to Friday</option>
+								<option value="T">From Monday to Thursday</option>
+								<option value="W">Weekend</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label" for="inputCapacity">Capacity</label>
+						<div class="controls">
+							<select name="capacity" class="size-small">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="m">+9</option>
+							</select>
+						</div>
+					</div>
+					<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
 
 <!-- 							<div class="control-group">
 								<label class="control-label" for="inputGender">Preferred gender</label>
@@ -245,7 +206,7 @@
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputAddress">Street address</label>
 								<div class="controls">
-									<input type="text" name="address" id="inputAddress" class="required">
+									<input type="text" name="address" id="inputAddress" class="input-medium required">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -267,7 +228,7 @@
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputCity">City</label>
 								<div class="controls">
-									<input type="text" name="city" id="inputCity" class="required">
+									<input type="text" name="city" id="inputCity" class="input-medium required">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -288,19 +249,11 @@
 					</form>
 				</div><!-- EOF box-standard -->
 
-
-				<div id="about-box"></div>
-				<div id="likes-box"></div>
-				{{#if myProfile}}
-				<div id="contact-box"></div>
+			</div>
+			<div class="modal-footer">
+				<button class="button1" data-dismiss="modal" aria-hidden="true">Close</button>
+				{{#if accept}}
+				<button class="generic-modal-btn button2 yellow" data-loading-text="Sending...">{{ accept }}</button>
 				{{/if}}
-				<div id="places-box"></div>
 			</div>
 		</div>
-		<div class="tab-pane" id="wings">
-			<div class="content-left"></div>
-			<div class="content-right">
-			</div>
-		</div>
-	</div><!-- EOF tab-content -->
-</div> <!-- EOF container -->
