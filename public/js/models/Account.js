@@ -14,7 +14,7 @@ define(function(require) {
 				.then(function(resp){
 					self.attributes = resp.data;
 					self.trigger("change");
-						if (options.success)
+						if (options && options.success)
 							options.success();
 				});
 		},
