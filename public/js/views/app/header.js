@@ -5,10 +5,19 @@ define(function(require){
 	var api = require("api2");
 	var headerTpl = require("tmpl!templates/app/header.html");
 	var UserModel = require("models/Account");
+	var notifications = require('views/lib/notifications');
+	var modal = require('tmpl!templates/lib/modal.form.wings.html');
 
 	var AppHeader = Backbone.View.extend({
 
 		el: 'header',
+
+		events: {
+			"click #modal-apanio": function(){
+				$('body').html(modal);
+				$('.generic-modal').modal();
+			}
+		},
 
 		initialize: function(){
 			this.model = new UserModel({id: api.getUserId()});
