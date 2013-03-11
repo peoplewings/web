@@ -6,11 +6,22 @@ define(function(require) {
 
 	var UserModel = Backbone.Model.extend({
 
-		urlRoot: api.getServerUrl() + api.getApiVersion() + '/accounts/',
+		urlRoot: api.getApiVersion() + '/accounts/',
+
+		fetch: function(options) {
+			var self = this;
+			api.get(this.url())
+				.then(function(resp){
+					self.attributes = resp.data;
+					self.trigger("change");
+						if (options.success)
+							options.success();
+				});
+		},
 
 		save: function(attributes, pwd) {
 			var self = this;
-			return api.put(api.getApiVersion() + '/accounts/' + this.id, { resource: attributes, currentPassword: pwd })
+			return api.put(this.urlRoot + this.id, { resource: attributes, currentPassword: pwd })
 				.prop('status')
 				.then(function(status){
 					if (status) {
@@ -20,10 +31,6 @@ define(function(require) {
 					}
 					return status;
 				});
-		},
-
-		parse: function(resp) {
-			return resp.data;
 		},
 
 		destroy: function(data) {

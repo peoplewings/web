@@ -6,14 +6,19 @@ define(function(require) {
 
 	var Preview = Backbone.Model.extend({
 
-		urlRoot: api.getServerUrl() + api.getApiVersion() + "/profiles/",
+		urlRoot: api.getApiVersion() + "/profiles/",
 
 		url: function(){
-			return  (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
+			return (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
 		},
 
-		parse: function(resp){
-			return resp.data;
+		fetch: function(options) {
+			var self = this;
+			api.get(this.url())
+				.then(function(resp){
+					self.attributes = resp.data;
+					options.success();
+				});
 		},
 
 		save: function(data){
@@ -26,11 +31,11 @@ define(function(require) {
 					self.set(attr, [{gender: value}]);
 			});
 
-			return api.put(api.getApiVersion() + '/profiles/' + this.id, this.attributes);
+			return api.put(this.urlRoot + this.id, this.attributes);
 		}
 
 	});
 
-    // Returns the Model singleton instance
+	// Returns the Model singleton instance
 	return factory(Preview);
 });

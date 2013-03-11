@@ -7,12 +7,11 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api2');
 	var utils = require('utils');
-	var ProfileModel = require('models/Profile');
 	var alerts = require("views/lib/alerts");
-	var header = require("views/app/header");
 
 
 	var AvatarView = Backbone.View.extend({
+
 		el: "#basic-box",
 
 		originalAvatarId: null,
@@ -63,10 +62,8 @@ define(function(require) {
 		uploadFile: function(file){
 			var self = this;
 			var fd = new FormData();
-			var profile = new ProfileModel({id: api.getUserId()});
 			fd.append("image", file);
-			fd.append("owner", profile.get("id"));
-			$(".progress").show();
+			fd.append("owner", api.getUserId());
 			$.ajax({
 				url: api.getServerUrl() + "/cropper/",
 				data: fd,
@@ -93,8 +90,9 @@ define(function(require) {
 			});
 		},
 		uploadComplete: function(response){
-				var self = this;
 				this.spinner.stop();
+
+				var self = this;
 				function showCoords(c){
 					var scale_x = self.originalW / $("#cropbox").width();
 					var scale_y = self.originalH / $("#cropbox").height();
@@ -103,9 +101,11 @@ define(function(require) {
 					$('#id_w').val(Math.floor(c.w*scale_x));
 					$('#id_h').val(Math.floor(c.h*scale_y));
 				}
-				function clearCoords(){ $('#coords input').val(''); }
 
-				$(".progress").hide();
+				function clearCoords(){
+					$('#coords input').val('');
+				}
+
 
 				if (response.success){
 					var data = response.data;
