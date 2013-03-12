@@ -149,53 +149,79 @@ select
    Structure
    -------------------------------------------------------------------------- */
 
-#search
-	float: right
-	input
-		font-size: 12px
-		margin: 0
-		padding-left: 30px
-	.button1
-		display: inline
-		width: auto
-		border: 1px solid #D0CEC7
-		padding: 4px 8px
-		margin: 0
-		@include border-radius(4px)
-	.search-icon
-		background-position: 8px center
-
-#notification-type
-	font-size: 12px
-	margin-top: 50px
-	padding-left: 10px
+.searchbar
 	overflow: hidden
-	li
-		padding: 10px 16px
-		background: #E1E0D9
-		margin-right: 4px
-		min-width: 40px
-		text-align: center
-		-webkit-border-radius: 4px 4px 0 0
-		text-transform: uppercase
-		font-style: italic
-		font-weight: bold
-		color: gray
-		&:hover
-			background: #FFF
-			color: #000
-	.button.selected
-		background: white
-		color: black
+	margin: 15px 0
+	#search
+		float: right
+		input
+			font-size: 12px
+			margin: 0
+			padding-left: 30px
+			width: 220px !important
+		.button1
+			display: inline
+			width: auto
+			border: 1px solid #D0CEC7
+			padding: 4px 8px
+			margin: 0
+			@include border-radius(4px)
+		.search-icon
+			background-position: 8px center
+
+.messages-header
+	overflow: hidden
+	width: 100%
+	.messages-tabs
+		overflow: hidden
+		float: left
+		#notification-type
+			font-size: 12px
+			margin-top: 0
+			padding-left: 10px
+			overflow: hidden
+			li
+				padding: 11px 16px
+				background: #E1E0D9
+				margin-right: 4px
+				min-width: 40px
+				text-align: center
+				-webkit-border-radius: 4px 4px 0 0
+				text-transform: uppercase
+				font-style: italic
+				font-weight: bold
+				color: gray
+				border-bottom: 1px solid #E1E0D9
+				&:hover
+					background: #FFF
+					border-bottom: 1px solid #FFF
+					color: #000
+			.button.selected
+				background: white
+				border-bottom: 1px solid #FFF
+				color: black
+	.button-bar
+		float: right
+		.button1
+			width: auto
+			border: 1px solid #D0CEC7
+			border-right: 1px solid #FFF
+			border-bottom: none
+			padding: 11px 25px
+		li:last-child
+			border-right: 1px solid #D0CEC7
 
 #notification-panel
 	font-size: 12px
 	background: none
 	margin-top: 0
 	border-top: 1px solid #D3D1CB
-	-webkit-border-radius: 0
+	padding: 0
+	padding-top: 7px
+	@include border-radius(0)
 	.floatality
 		background: white
+		overflow: hidden
 		padding: 6px
 		label#filter-title
 			float: left

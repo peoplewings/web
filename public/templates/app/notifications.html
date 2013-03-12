@@ -1,15 +1,27 @@
-<div id="search">
-	<input type="text" id="search-query" class="size-extralarge search-icon" placeholder="Search">
-	<button id="search-btn" class="button1">Go</button>
+<div class="searchbar">
+	<div id="search">
+		<input type="text" id="search-query" class="size-extralarge search-icon" placeholder="Search">
+		<button id="search-btn" class="button1">Go</button>
+	</div>
 </div>
 
-<div class="message-tabs">
-	<ul id="notification-type">
-		<li class="button selected" data-filter="">All</li>
-		<li class="button" data-filter="reqinv">Request & Invitations</li>
-		<li class="button" data-filter="msg">Messages</li>
-	</ul>
-</div>
+<div class="messages-header">
+	<div class="messages-tabs">
+		<ul id="notification-type">
+			<li class="button selected" data-filter="">All</li>
+			<li class="button" data-filter="reqinv">Request & Invitations</li>
+			<li class="button" data-filter="msg">Messages</li>
+		</ul>
+	</div>
+
+	<div class="button-bar">
+		<ul>
+			<li><button class="button1 send-message-btn">MESSAGE</button></li>
+			<li><button class="button1 send-request-btn selected">REQUEST</button></li>
+			<li><button class="button1 send-invitation-btn">INVITE</button></li>
+		</ul>
+	</div><!-- EOF button-bar -->
+</div><!-- EOF messages-header -->
 
 <div id="notification-panel">
 	<div class="floatality">
