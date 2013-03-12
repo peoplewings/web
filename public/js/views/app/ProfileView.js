@@ -61,7 +61,6 @@ define(function(require) {
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
-			debugger;
 
 			this.$("#wings .content-right").html(wingsTpl({wings: this.wingsList, myProfile: myProfile}));
 
