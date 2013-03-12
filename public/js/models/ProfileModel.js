@@ -17,7 +17,8 @@ define(function(require) {
 			api.get(this.url())
 				.then(function(resp){
 					self.attributes = resp.data;
-					options.success();
+					if (options && options.success)
+						options.success();
 				});
 		},
 
