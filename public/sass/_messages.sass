@@ -252,6 +252,11 @@ select
 			width: 12px
 		.messages-pager
 			float: right
+			.resultCounter
+				span:first-child:after
+					content: " - "
+				span:last-child:before
+					content: " of "
 			#notifications-pager
 				li
 					float: left
