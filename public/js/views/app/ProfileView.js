@@ -14,6 +14,7 @@ define(function(require) {
 	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
+	var wingsTpl = require('tmpl!templates/app/profile.view.wings.html');
 
 
 	var ProfileView = Backbone.View.extend({
@@ -53,13 +54,15 @@ define(function(require) {
 		refresh: function() {
 			var myProfile = (this.model.get("id") === api.getUserId());
 
-			$(this.el).html(profileTpl(this.model.toJSON(), {wings: this.wingsList, myProfile: myProfile}));
+			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
+
+			this.$("#wings .content-right").html(wingsTpl({wings: this.wingsList}));
 
 			this.map.render();
 			this.initMarkers();
