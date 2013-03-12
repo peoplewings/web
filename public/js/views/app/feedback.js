@@ -2,7 +2,7 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api');
+	var api = require('api2');
 	var utils = require('utils');
 	var alerts = require('views/lib/alerts');
 	var contentTpl = require('tmpl!templates/app/feedback.html');
@@ -11,9 +11,10 @@ define(function(require) {
 	var FeedbackView = Backbone.View.extend({
 
 		initialize: function(){
-			this.model = new UserModel({id: api.getUserId()});
-			this.model.fetch();
-			console.log(this.model.attributes);
+			if (api.userIsLoggedIn()){
+				this.model = new UserModel({id: api.getUserId()});
+				this.model.fetch();
+			}
 		},
 
 		render: function(){
@@ -29,7 +30,6 @@ define(function(require) {
 			this.modal.find(".generic-modal-btn").button('loading');
 
 			if (this.modal.find("#feedback-form").valid()) {
-				console.log(data);
 				api.post(api.getApiVersion() + "/feedback", data, function(response){
 					self.modal.find(".generic-modal-btn").button('reset');
 

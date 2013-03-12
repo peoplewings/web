@@ -291,7 +291,11 @@ define(function(require){
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
 
-			this.$("#save-profile-btn").button('loading');
+			$(e.target)
+				.parent()
+				.parent()
+				.find("#save-profile-btn")
+				.button('loading');
 
 			var self = this;
 			this.model.save(data)
