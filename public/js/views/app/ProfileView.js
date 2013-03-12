@@ -121,7 +121,7 @@ define(function(require) {
 					id: "current",
 					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
-					icon: 'img/blue-marker.png'
+					icon: 'img/places-current-marker.png'
 				});
 
 				city = this.model.get("hometown");
@@ -129,7 +129,7 @@ define(function(require) {
 					id: "hometown",
 					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
-					icon: 'img/green-marker.png'
+					icon: 'img/places-hometown-marker.png'
 				});
 
 				var others = this.model.get("otherLocations");
@@ -137,7 +137,8 @@ define(function(require) {
 					sc.map.addMarker({
 						id: "otherLocation-" + index,
 						location: new google.maps.LatLng(location.lat, location.lon),
-						title: location.name + ", " + location.country
+						title: location.name + ", " + location.country,
+						icon: 'img/places-marker.png'
 					});
 				});
 			}
