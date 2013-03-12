@@ -1,0 +1,71 @@
+@import _effects.sass
+
+.generic-modal
+	display: block
+	border: 1px solid #D3D1CA
+	@include border-radius(15px)
+	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
+	width: 790px
+	min-height: 375px
+
+	&:focus
+		outline: none
+
+	.modal-header
+		background: #e1e0d9
+		border: none
+		h3
+			padding: 7px
+			padding-left: 15px
+			font-size: 14px
+			font-weight: bold
+			text-shadow: 1px 1px white
+		.close:hover
+			@include opacity(1)
+			background: none
+
+	.modal-body
+		padding-bottom: 0
+		input
+			font-size: 12px
+			background: white
+			@include border-radius(2px)
+			box-shadow: inset 1px 1px #EEE
+			width: 635px
+			padding: 7px 15px
+		textarea
+			width: 637px
+			font-size: 12px
+			padding: 12px
+			padding-left: 15px
+			min-height: 250px
+
+		.control-group
+			label
+				width: 60px
+			.controls
+				margin-left: 70px
+
+	.modal-footer
+		background: #FFF
+		border: none
+		padding: 0
+		padding-right: 29px
+		@include border-radius(15px)
+		button
+			float: right
+			width: auto
+			margin: 0
+			padding: 15px 25px
+			line-height: 12px
+			border: 1px solid #D0CEC7
+			border-bottom: none
+			text-shadow: 1px 1px #FFF
+		.button2
+			border-right: none
+			color: #000
+
+.modal-backdrop.fade.in
+	@include opacity(0.1)
+
+

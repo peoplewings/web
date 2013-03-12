@@ -1,11 +1,13 @@
 <div class="generic-modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 class="myModalLabel">{{ header }}</h3>
-  </div>
-  <div class="modal-body">{{{ content }}}</div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    {{#if accept}}<button class="generic-modal-btn btn btn-primary" data-loading-text="Sending...">{{ accept }}</button>{{/if}}
-  </div>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="myModalLabel">{{ header }}</h3>
+	</div>
+	<div class="modal-body">{{{ content }}}</div>
+	<div class="modal-footer">
+		<button class="button1" data-dismiss="modal" aria-hidden="true">Close</button>
+		{{#if accept}}
+		<button class="generic-modal-btn button2 yellow" data-loading-text="Sending...">{{ accept }}</button>
+		{{/if}}
+	</div>
 </div>
