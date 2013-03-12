@@ -245,7 +245,8 @@ define(function(require){
 					sc.map.addMarker({
 						id: id,
 						location: place.geometry.location,
-						title: cc.city + ", " + cc.country
+						title: cc.city + ", " + cc.country,
+						icon: 'img/places-marker.png'
 					});
 
 					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city);
