@@ -220,28 +220,41 @@ select
 	padding-top: 7px
 	@include border-radius(0)
 	.floatality
+		margin-bottom: 7px
+		padding: 10px 10px 10px 20px
 		background: white
 		overflow: hidden
-		padding: 6px
-		label#filter-title
+		.btn-group
 			float: left
-			padding: 5px
-			margin-right: 10px
-		select#ri-filters
-			float: left
-			margin: 0
-			margin-right: 4px
-		select#ri-status
-			float: left
-			margin: 0
-			margin-right: 4px
-		li.checkbox
+			margin-right: 100px
+			padding-top: 5px
+			label
+				float: left
+				margin-right: 10px
+		.messages-filters
+			label#filter-title
+				float: left
+				padding: 5px
+				margin-right: 10px
+			select
+				float: left
+				margin: 0
+				margin-right: 4px
+			li.checkbox
+				float: left
+				display: block
+				margin: 0 0 0 30px
+				padding: 5px
+		.messages-dropdown
 			float: left
 			display: block
-			margin: 0 0 0 30px
-			padding: 5px
-
-
-
-
-
+			background: url(../img/mini-arrow.png) no-repeat center center
+			width: 12px
+		.messages-pager
+			float: right
+			#notifications-pager
+				li
+					float: left
+					&:first-child
+						margin-top: 3px
+						margin-right: 12px
