@@ -257,36 +257,6 @@ define(function(require){
 			};
 		},
 
-		initMarkers: function(){
-			var sc = this.parentCtrl;
-
-			var city = this.model.get("current");
-			this.map.addMarker({
-				id: "current",
-				location: new google.maps.LatLng(city.lat, city.lon),
-				title: city.name + ", " + city.country,
-				icon: 'img/blue-marker.png'
-			});
-
-			city = this.model.get("hometown");
-			this.map.addMarker({
-				id: "hometown",
-				location: new google.maps.LatLng(city.lat, city.lon),
-				title: city.name + ", " + city.country,
-				icon: 'img/green-marker.png'
-			});
-
-			var others = this.model.get("otherLocations");
-			_.each(others, function(location, index){
-				sc.map.addMarker({
-					id: "otherLocation-" + index,
-					location: new google.maps.LatLng(location.lat, location.lon),
-					title: location.name + ", " + location.country
-				});
-			});
-
-		},
-
 		submitProfile: function(e){
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
