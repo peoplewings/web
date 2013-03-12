@@ -3,7 +3,7 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
-	var phrases = require('phrases');
+
 	var PreviewModel = require("models/ProfileModel");
 	var MapView = require('views/app/map');
 	var notifications = require('views/lib/notifications');
@@ -52,11 +52,10 @@ define(function(require) {
 			this.model.set("id", userId, {silent: true});
 
 			this.model.fetch({success: this.refresh.bind(this)});
-			this.getWingList(userId);
 
 			if (this.model.get("id") === api.getUserId()){
 				this.myProfile = new MyProfile(this.model, this);
-				this.myWings = new MyWings();
+				this.myWings = new MyWings(this);
 			}
 		},
 
@@ -65,17 +64,13 @@ define(function(require) {
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
-			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {
-				myProfile: myProfile,
-				civilState: phrases.choices.civilState[this.model.get("civilState")],
-				replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
-			}));
+			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
-			this.$("#wings .content-right").html(wingsTpl({wings: this.wingsList, myProfile: myProfile}));
+			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
 
 			this.map.render();
 			this.initMarkers();
@@ -91,11 +86,7 @@ define(function(require) {
 
 			switch (box){
 				case "basic-box":
-					tpl = basicTpl(this.model.toJSON(), {
-						myProfile: myProfile,
-						civilState: phrases.choices.civilState[this.model.get("civilState")],
-						replyTime: moment.duration(+this.model.get("replyTime")).humanize(),
-					});
+					tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
 					break;
 				case "about-box":
 					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
@@ -145,26 +136,6 @@ define(function(require) {
 					});
 				});
 			}
-		},
-
-		getWingList: function(userId) {
-			//Molaria hacer refactor i meterlo como Collection del Model
-
-			var self = this;
-			api.get(api.getApiVersion() + "/profiles/" + userId + "/accomodations/preview")
-				.prop("data")
-				.then(function(data) {
-					self.wingsList = data.map(function(wing) {
-						wing.bestDays = phrases.choices.wingDaysChoices[wing.bestDays];
-						wing.smoking = phrases.choices.smoking[wing.smoking];
-						wing.whereSleepingType = phrases.choices.whereSleepingType[wing.whereSleepingType];
-						wing.status = phrases.choices.wingStatus[wing.status];
-						return wing;
-					});
-				})
-				.fin(function() {
-					self.refresh();
-				});
 		},
 
 		sendMessage: function() {
