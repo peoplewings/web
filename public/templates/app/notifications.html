@@ -1,18 +1,25 @@
-<ul id="notification-type">
-	<li class="button selected" data-filter="">All</li>
-	<li class="button" data-filter="reqinv">Request & Invitations</li>
-	<li class="button" data-filter="msg">Messages</li>
-</ul>
+<div id="search">
+	<input type="text" id="search-query" class="size-extralarge search-icon" placeholder="Search">
+	<button id="search-btn" class="button1">Go</button>
+</div>
+
+<div class="message-tabs">
+	<ul id="notification-type">
+		<li class="button selected" data-filter="">All</li>
+		<li class="button" data-filter="reqinv">Request & Invitations</li>
+		<li class="button" data-filter="msg">Messages</li>
+	</ul>
+</div>
 
 <div id="notification-panel">
 	<div class="floatality">
 		<label id="filter-title">Organized by</label>
-		<select id="ri-filters">
+		<select id="ri-filters" class="size-medium">
 			<option value="date">Date</option>
 			<option value="interlocutor">Contact name</option>
 			<option value="read">Read/Unread</option>
 		</select>
-		<select id="ri-status">
+		<select id="ri-status" class="size-medium">
 			<option value="">All</option>
 			<option value="P">Pending</option>
 			<option value="A">Accepted</option>
@@ -23,13 +30,6 @@
 			<li class="checkbox"><input type="checkbox" name="received"> Recived</li>
 			<li class="checkbox"><input type="checkbox" name="sent"> Applied</li>
 		</ul>
-
-		<div id="search">
-			<input type="text" id="search-query" class="input-medium" placeholder="Search">
-			<button id="search-btn" class="btn">
-				<span class="add-on"><i class="icon-search"></i></button>
-			</span>
-		</div>
 	</div>
 
 	<div class="row">
