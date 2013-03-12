@@ -8,6 +8,7 @@ define(function(require) {
 	var MapView = require('views/app/map');
 	var notifications = require('views/lib/notifications');
 	var MyProfile = require('views/app/MyProfile');
+	var MyWings = require('views/app/MyWings');
 	var profileTpl = require('tmpl!templates/app/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile.view.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile.view.about.html');
@@ -53,8 +54,10 @@ define(function(require) {
 			this.model.fetch({success: this.refresh.bind(this)});
 			this.getWingList(userId);
 
-			if (this.model.get("id") === api.getUserId())
+			if (this.model.get("id") === api.getUserId()){
 				this.myProfile = new MyProfile(this.model, this);
+				this.myWings = new MyWings();
+			}
 		},
 
 		refresh: function() {
