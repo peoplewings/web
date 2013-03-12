@@ -4,6 +4,7 @@
 	display: block
 	border: 1px solid #D3D1CA
 	@include border-radius(15px)
+	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
 	width: 790px
 	min-height: 375px
 
@@ -12,8 +13,7 @@
 
 	.modal-header
 		background: #e1e0d9
-		border: 1px solid #d3d1ca
-		border-bottom: 1px solid #d3d1ca
+		border: none
 		h3
 			padding: 7px
 			padding-left: 15px
@@ -64,3 +64,8 @@
 		.button2
 			border-right: none
 			color: #000
+
+.modal-backdrop.fade.in
+	@include opacity(0.1)
+
+

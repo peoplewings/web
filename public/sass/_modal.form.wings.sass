@@ -11,9 +11,8 @@
 	display: block
 	border: 1px solid #D3D1CA
 	@include border-radius(15px)
-	width: 790px
 	min-height: 375px
-	width: 440px
+	width: 389px
 
 	h2, label
 	color: #999
@@ -26,6 +25,7 @@
 		background: #e1e0d9
 		border: 1px solid #d3d1ca
 		border-bottom: 1px solid #d3d1ca
+		border: none
 		h3
 			padding: 7px
 			padding-left: 15px
@@ -33,13 +33,13 @@
 			font-weight: bold
 			text-shadow: 1px 1px white
 			color: #000
+			line-height: 20px
 		.close:hover
 			@include opacity(1)
 			background: none
 
 	.modal-body
-		padding: 25px
-		padding-left: 18px
+		padding: 0
 		min-height: 500px
 
 		/* box-standard */
@@ -48,10 +48,8 @@
 			width: 374px
 			background: #FFF
 			color: #808080
-			margin:
-				bottom: 8px
-				left: 8px
-			border: 1px solid #d0cec7
+			margin: 0
+			border: none
 			overflow: hidden
 
 			.box-header
@@ -152,10 +150,11 @@
 				margin-left: 0
 
 	.modal-footer
-		background: #FFF
+		background: none
 		border: none
 		border-top: 1px solid #D0CEC7
 		padding: 0
+		@include border-radius(0)
 		button
 			float: right
 			width: auto
@@ -167,6 +166,7 @@
 			text-shadow: 1px 1px #FFF
 		.button1
 			border-top: none
+			margin-right: 15px
 		.button2
 			border-right: none
 			color: #000
