@@ -1,5 +1,6 @@
 				<div id="upload-avatar" class="avatar">
 					<img id="avatar" src="{{avatar}}" alt="avatar">
+					<div class="edit-click">Change picture</div>
 				</div>
 				<div class="box basic-info">
 					<form id="basic-info-form" data-rel="basic-box">
@@ -76,11 +77,11 @@
 							</div>
 						</div>
 						<div id="" class="control-group">
-							<label class="control-label" for="inputLanguage">Language</label>
+							<label class="control-label" for="inputLanguage">Languages</label>
 							<div class="controls">
 								<div id="languages-list">
 									{{#each languages}}
-									<div id="language-{{@index}}" class="separator">
+									<div id="language-{{@index}}">
 										<select name="languages" id="language-field-{{@index}}" class="size-large">
 											<option value="" selected="selected">Select Language</option>
 											<option value="english" {{selected name 'english'}}>English</option>
@@ -124,7 +125,7 @@
 					</div><!-- EOF control-group -->
 				</div><!-- EOF basic-info -->
 				<div class="basic-info-footer">
-					<button form="basic-info-form" id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
+					<button form="basic-info-form" id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save</button>
 					<button class="button2 cancel-edition-btn" data-rel="basic-box">Cancel</button>
 				</div>
 			</form>

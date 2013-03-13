@@ -47,16 +47,17 @@ define(function(require) {
 		return values;
 	};
 
-	var showModal = function(header, accept, content, callback) {
+	var showModal = function(options) {
 		var modal = $(modalTpl({
-			header: header,
-			accept: accept,
-			content: content
+			header: options.header,
+			accept: options.accept,
+			content: options.content,
+			close: options.close || true,
 		}));
 		$("body section:last").append(modal);
 
 		modal.modal('show');
-		modal.find('.btn-primary').click(callback);
+		modal.find('.accept-modal-btn').click(options.callback);
 
 		modal.on('hidden', function() {
 			modal.remove();

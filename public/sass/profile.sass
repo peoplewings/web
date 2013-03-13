@@ -66,17 +66,24 @@ select
 	&:active
 		@include bg-gradient(#ffeb00, #fbfac5)
 
-.another
+a.another
 	display: block
 	font:
 		size: 12px
 		style: italic
-	float: right
-	margin: 12px 14px
+	text-align: right
+	margin: 10px 0
 	margin-bottom: 0
 	&:hover
-		color: red
 		text-decoration: underline
+		color: #000
+
+button.close
+	@include opacity(1)
+	background: none
+	color: #999
+	&:hover
+		@include opacity(1)
 
 .size-small
 	width: 57px !important
@@ -98,6 +105,17 @@ select
 	background-position: 101px
 
 .size-box-standard
+	width: 310px !important
+
+.size-13
+	width: 115px !important
+	background-position: 100px
+
+.size-23
+	width: 160px !important
+	background-position: 100px
+
+.size-33
 	width: 310px !important
 
 /* --------------------------------------------------------------------------
@@ -125,14 +143,23 @@ select
 .places-icon
 	background: url(../img/places-icon.png) no-repeat 23px 11px
 
+.places-hometown-icon
+	background: url(../img/places-hometown-marker.png) no-repeat 12px center
+
 .places-current-icon
-	background: url(../img/places-current-icon.png) no-repeat 12px center
+	background: url(../img/places-current-marker.png) no-repeat 12px center
 
 .places-lived-icon
-	background: url(../img/places-lived-icon.png) no-repeat 12px center
+	background: url(../img/places-marker.png) no-repeat 12px center
 
-.places-home-icon
-	background: url(../img/places-home-icon.png) no-repeat 12px center
+.places-hometown-icon-mini
+	background: url(../img/places-hometown-minimarker.png) no-repeat 12px center
+
+.places-current-icon-mini
+	background: url(../img/places-current-minimarker.png) no-repeat 12px center
+
+.places-lived-icon-mini
+	background: url(../img/places-lived-minimarker.png) no-repeat 12px center
 
 .lock-icon
 	background: url(../img/lock-icon.png) no-repeat
@@ -301,6 +328,7 @@ select
 				height: 172px
 				margin: 8px
 				margin-left: 9px
+				cursor: pointer
 
 			.box
 				padding: 15px 20px
@@ -359,11 +387,32 @@ select
 						width: 150px
 						font-size: 12px
 
+			div.edit-click
+				background: #FFF
+				@include transition(opacity, 0.25s)
+				@include opacity(0.6)
+				position: relative
+				bottom: 48px
+				text-transform: uppercase
+				font:
+					size: 12px
+					style: italic
+					weight: bold
+				text-transform: uppercase
+				text-shadow: 1px 1px #FFF
+				text-align: center
+				padding: 12px
+				&:hover
+					@include opacity(0)
+
 			.basic-info-footer
 				padding: 0
 				button
-					width: 100%
-					border-left: 0
+					width: 50%
+					border-left: none
+					border-bottom: 1px solid #d0cec7
+				.button2.yellow
+					border-left: 1px solid #d0cec7
 
 		.content-right
 			float: left
@@ -475,6 +524,7 @@ select
 						width: 210px
 					.controls
 						margin-left: 150px
+						margin-right: 308px
 					.controls.lived
 						label.radio
 							float: right
@@ -490,17 +540,12 @@ select
 				li
 					display: inline
 					margin-right: 10px
-					a
-						display: block
-						font-size: 12px
-						padding: 10px 0 10px 35px
-						&:hover
-							color: red
+					font-size: 12px
+					padding: 10px 0 10px 35px
 
 			/* EOF box-standard.maps */
 
 			.box-standard.contact-info
-
 
 				.box-content
 					.control-group
@@ -542,11 +587,6 @@ select
 			.help-block
 				margin: 0
 
-	label
-		padding: 14px 10px 10px 5px
-		> label
-			padding: 0
-
 	textarea
 		width: 300px !important
 		font-size: 12px
@@ -570,12 +610,13 @@ select
 		margin-bottom: 12px
 
 .separator
-	border-bottom: 1px solid #CECECE
-	padding-bottom: 10px
-	margin-bottom: 8px
+	//border-bottom: 1px solid #CECECE
+	//margin-bottom: 8px
 
 #languages-list
 	overflow: hidden
+	div
+		margin-bottom: 10px
 
 .guest-message
 	padding: 25px
@@ -697,5 +738,21 @@ h1.guest-message
 .help-block
 	margin: 0
 	display: inline
+
+.box-standard
+	form
+		.box-content
+			label
+				margin-bottom: 10px
+		.control-group
+			margin-bottom: 20px
+			.category-another
+				float: left
+
+.box-standard.maps
+	.control-group
+		margin-bottom: 0
+		label, input
+			margin: 0
 
 /* EOF OVER Bootstrap */
