@@ -16,6 +16,7 @@ define(function(require) {
 	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
 	var wingsTpl = require('tmpl!templates/app/profile.view.wings.html');
+	var wingsBarTpl = require('tmpl!templates/app/profile.form.add-wings.html');
 
 
 	var ProfileView = Backbone.View.extend({
@@ -70,6 +71,8 @@ define(function(require) {
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
+			
+			this.$("#wings .content-left").html(wingsBarTpl({avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}));
 			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
 
 			this.map.render();
