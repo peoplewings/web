@@ -5,9 +5,14 @@
 	</div>
 	<div class="modal-body">{{{ content }}}</div>
 	<div class="modal-footer">
+		{{#if close}}
 		<button class="button1" data-dismiss="modal" aria-hidden="true">Close</button>
+		{{/if}}
 		{{#if accept}}
-		<button class="generic-modal-btn button2 yellow" data-loading-text="Sending...">{{ accept }}</button>
+		<button class="generic-modal-btn button2 yellow accept-modal-btn" data-loading-text="Sending...">{{ accept }}</button>
+		{{/if}}
+		{{#if ok}}
+		<button class="generic-modal-btn button2 yellow" data-loading-text="Sending...">{{ ok }}</button>
 		{{/if}}
 	</div>
 </div>
