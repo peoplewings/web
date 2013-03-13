@@ -2,7 +2,7 @@
 					<img id="avatar" src="{{avatar}}" alt="avatar">
 				</div>
 				<div class="info">
-					<button class="button1" id="add-wing-btn">Add wing</button>
+					<button class="button1" id="add-new-wing-btn">Add wing</button>
 				</div>
 				<div class="box basic-info">
 					<form id="wings-status-form">
@@ -21,21 +21,5 @@
 							</div>
 						</div>
 					</form>
-					<div id="my-wings" class="control-group">
-						<label class="control-label" for="generalStatus">My wings</label>
-						<div class="controls">
-							<select name="wingsList" id="wings-list" class="size-large">
-								<!-- {{#if wings.length}} -->
-								<option value="">Select wing</option>
-								<!-- {{#each wings}} -->
-								<option value="{{uri}}">{{name}} (Accomodation)</option>
-								<!-- {{/each}} -->
-								<!-- {{else}} -->
-								<option value="">No created wings</option>
-								<!-- {{/if}} -->
-							</select>
-						</div>
-						<span class="help-block"></span>
-					</div>
 				</div>
 			</div><!-- EOF box basic-info -->
