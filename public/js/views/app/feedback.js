@@ -19,7 +19,13 @@ define(function(require) {
 
 		render: function(){
 			var content = contentTpl({ avatar: this.model.get("avatar")});
-			this.modal = utils.showModal("New suggestion", "Send", content, this.saveFeedback.bind(this));
+			this.modal = utils.showModal({
+				header: "New suggestion",
+				accept: "Send",
+				content: content,
+				callback: this.saveFeedback.bind(this)
+			});
+			
 			this.modal.on('hidden', this.close.bind(this));
 			$("#feedback-form").validate();
 		},
