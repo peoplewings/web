@@ -6,7 +6,7 @@
 				<div id="user-map"></div>
 				<div class="box-content">
 					<div class="control-group">
-						<label class="places-current-icon">Hometown</label>
+						<label class="places-hometown-icon-mini">Hometown</label>
 						<div id="hometown" class="controls">
 							{{#with hometown}}
 							<input id="hometownCity" name="hometown" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
@@ -20,7 +20,7 @@
 						</div>
 					</div><!-- EOF control-group -->
 					<div class="control-group">
-						<label class="places-home-icon">Current city</label>
+						<label class="places-current-icon-mini">Current city</label>
 						<div id="current" class="controls">
 							{{#with current}}
 							<input id="currentCity" name="current" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
@@ -34,7 +34,7 @@
 						</div>
 					</div><!-- EOF control-group -->
 					<div id="otherLocations-group" class="control-group">
-						<label class="places-lived-icon">Where I have lived</label>
+						<label class="places-lived-icon-mini">Where I have lived</label>
 						<div class="controls lived">
 							<div id="otherLocations-list">
 								{{#each otherLocations}}

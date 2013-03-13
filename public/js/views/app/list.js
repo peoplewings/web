@@ -20,10 +20,10 @@ define(function(require) {
 			this.$tpl.remove();
 
 			_.each($(this.el).children(), function(item, index) {
-				$(item).append('<button type="button" class="close" id="delete-' + self.key + '-' + index + '">×</button>');
+				$(item).prepend('<button type="button" class="close" id="delete-' + self.key + '-' + index + '">×</button>');
 			});
 
-			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button" class="another">+Add another</a>');
+			$(this.el).parent().append('<a href="#" id="add-' + this.key + '-btn" role="button" class="another">Add another</a>');
 			if (!this.length)
 				this.addItem();
 		},
@@ -34,7 +34,7 @@ define(function(require) {
 			return this.$tpl.clone()
 				.attr('id', this.key + "-" + this.length + "")
 				.appendTo(this.el)
-				.append('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
+				.prepend('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
 				.show()
 				.prop("id");
 		},
