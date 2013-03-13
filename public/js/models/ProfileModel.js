@@ -34,10 +34,10 @@ define(function(require) {
 					self.attributes = profile.data;
 
 					var parsed = wings.data.map(function(wing){
-						wing.bestDays = phrases.choices.wingDaysChoices[wing.bestDays];
-						wing.smoking = phrases.choices.smoking[wing.smoking];
-						wing.whereSleepingType = phrases.choices.whereSleepingType[wing.whereSleepingType];
-						wing.status = phrases.choices.wingStatus[wing.status];
+						wing.bestDays_verbose = phrases.choices.wingDaysChoices[wing.bestDays];
+						wing.smoking_verbose = phrases.choices.smoking[wing.smoking];
+						wing.whereSleepingType_verbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
+						wing.status_verbose = phrases.choices.wingStatus[wing.status];
 						return wing;
 					});
 					self.set("wingsCollection", parsed);
