@@ -22,7 +22,10 @@ define(function(require) {
 			"submit form#register-form": "submitRegister",
 			"click a#terms-link": function(e){
 				e.preventDefault();
-				utils.showModal("Terms and conditions", null, termsTpl);
+				utils.showModal({
+					header: "Terms and conditions",
+					content: termsTpl,
+				});
 			},
 		},
 
