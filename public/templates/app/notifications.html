@@ -1,55 +1,75 @@
-<ul id="notification-type">
-	<li class="button selected" data-filter="">All</li>
-	<li class="button" data-filter="reqinv">Request & Invitations</li>
-	<li class="button" data-filter="msg">Messages</li>
-</ul>
+<div class="searchbar">
+	<div id="search">
+		<input type="text" id="search-query" class="size-extralarge search-icon" placeholder="Search">
+		<button id="search-btn" class="button1">Go</button>
+	</div>
+</div>
+
+<div class="messages-header">
+	<div class="messages-tabs">
+		<ul id="notification-type">
+			<li class="button selected" data-filter="">All</li>
+			<li class="button" data-filter="reqinv">Request & Invitations</li>
+			<li class="button" data-filter="msg">Messages</li>
+		</ul>
+	</div>
+
+	<div class="button-bar">
+		<ul>
+			<li><button class="button1 send-message-btn">MESSAGE</button></li>
+			<li><button class="button1 send-request-btn selected">REQUEST</button></li>
+			<li><button class="button1 send-invitation-btn">INVITE</button></li>
+		</ul>
+	</div><!-- EOF button-bar -->
+</div><!-- EOF messages-header -->
 
 <div id="notification-panel">
 	<div class="floatality">
-		<label id="filter-title">Organized by</label>
-		<select id="ri-filters">
-			<option value="date">Date</option>
-			<option value="interlocutor">Contact name</option>
-			<option value="read">Read/Unread</option>
-		</select>
-		<select id="ri-status">
-			<option value="">All</option>
-			<option value="P">Pending</option>
-			<option value="A">Accepted</option>
-			<option value="D">Denyed</option>
-			<option value="M">Maybe</option>
-		</select>
-		<ul id="notification-sender">
-			<li class="checkbox"><input type="checkbox" name="received"> Recived</li>
-			<li class="checkbox"><input type="checkbox" name="sent"> Applied</li>
-		</ul>
-
-		<div id="search">
-			<input type="text" id="search-query" class="input-medium" placeholder="Search">
-			<button id="search-btn" class="btn">
-				<span class="add-on"><i class="icon-search"></i></button>
-			</span>
+		<div class="btn-group">
+			<label for="main-checker">
+				<input type="checkbox" id="main-checker">
+			</label>
+			<a class="messages-dropdown" data-toggle="dropdown" href="#">Something</a>
+			<ul class="dropdown-menu">
+				<li><a href="#" id="delete-all-selected">Delete</a></li>
+			</ul>
+		</div>
+		<div class="messages-filters">
+			<label id="filter-title">Organized by</label>
+			<select id="ri-filters" class="size-medium">
+				<option value="date">Date</option>
+				<option value="interlocutor">Contact name</option>
+				<option value="read">Read/Unread</option>
+			</select>
+			<select id="ri-status" class="size-medium">
+				<option value="">All</option>
+				<option value="P">Pending</option>
+				<option value="A">Accepted</option>
+				<option value="D">Denyed</option>
+				<option value="M">Maybe</option>
+			</select>
+			<ul id="notification-sender">
+				<li class="checkbox"><input type="checkbox" name="received"> Recived</li>
+				<li class="checkbox"><input type="checkbox" name="sent"> Applied</li>
+			</ul>
+		</div>
+		<div class="messages-pager">
+			<ul id="notifications-pager" class="pager pull-right">
+				<li>
+					<div class="resultCounter">
+						<span>{{startResult}}</span>
+						<span>{{endResult}}</span>
+						<span>{{totalCount}}</span>
+					</div>
+				</li>
+				<li class="icon">
+					<a href="#" class="previousPage">previous page</a>
+				</li>
+				<li class="icon">
+					<a href="#" class="nextPage">next page</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="span2">
-			<div class="btn-group">
-				<label for="main-checker" class="btn btn-primary"><input type="checkbox" id="main-checker"></label>
-				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" id="delete-all-selected">Delete</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="span3 offset7">
-			<div class="span1 resultCounter"><span> 0</span> - <span>0</span> of <span>0</span></div>
-			<div id="notifications-pager"class="span1 btn-group">
-				<button class="btn previousPage">«</button>
-				<button class="btn nextPage">»</button>
-			</div>
-		</div>
-	</div>
-	<legend></legend>
-	<ul id="notifications-list" class="unstyled"></ul>
+	<ul id="notifications-list"></ul>
 </div>

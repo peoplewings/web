@@ -72,7 +72,12 @@ define(function(require) {
 				}].concat(wings.items) : null,
 			});
 
-			var modal = utils.showModal(title, button, content, send);
+			var modal = utils.showModal({
+				header: title,
+				accept: button,
+				content: content,
+				callback: send
+			});
 
 			modal.on('hidden', function() {
 				if (!prom.future.isCompleted())

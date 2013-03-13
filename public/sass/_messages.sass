@@ -1,0 +1,265 @@
+@import _reset.sass
+@import _effects.sass
+@import _globals.sass
+
+/* --------------------------------------------------------------------------
+   Globals
+   -------------------------------------------------------------------------- */
+
+body
+	font-family: "Helvetica Neue", Arial
+	background: #f5f5f0
+
+div
+	line-height: 20px
+
+a, a:hover
+	text-decoration: none
+
+select
+	font-size: 12px
+	color: gray
+	padding: 0
+	padding-left: 10px
+	margin-left: 0
+	background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+	@include border-radius(3px)
+
+/* --------------------------------------------------------------------------
+   Commons
+   -------------------------------------------------------------------------- */
+
+.button1
+	@include appearance(none)
+	text-transform: uppercase
+	margin: 0
+	padding: 14px
+	width: 190px
+	border: none
+	border:
+		top: 1px solid #D0CEC7
+		bottom: 1px solid #D0CEC7
+	font-style: italic
+	text-shadow: 1px 1px #EEE
+	color: #848178
+	@include bg-gradient(#f5f5f0, #e1e0d9)
+	&:hover
+		background: #FFF
+	&:active
+		@include bg-gradient(#FFEB00 , #FBFAC5)
+
+.button2
+	border: none
+	border-left: 1px solid #d0cec7
+	float: right
+	@include bg-gradient(#FFF, #ecece5)
+	padding: 11px 25px
+	span
+		background-position: left
+		padding-left: 25px
+		padding-right: 10px
+
+.button2.yellow
+	@include bg-gradient(#ffff00, #ffea00)
+	&:hover
+		background: #FFF
+	&:active
+		@include bg-gradient(#ffeb00, #fbfac5)
+
+.another
+	display: block
+	font:
+		size: 12px
+		style: italic
+	float: right
+	margin: 12px 14px
+	margin-bottom: 0
+	&:hover
+		color: red
+		text-decoration: underline
+
+.size-small
+	width: 57px !important
+	background-position: 40px
+
+.size-medium
+	width: 90px !important
+	background-position: 70px
+
+.size-large
+	width: 150px !important
+	background-position: 130px
+
+.size-extralarge
+	width: 227px !important
+
+.size-large.lock-info
+	width: 121px !important
+	background-position: 101px
+
+.size-box-standard
+	width: 310px !important
+
+/* --------------------------------------------------------------------------
+   Icons
+   -------------------------------------------------------------------------- */
+
+.about-icon
+	background: url(../img/about-icon.png) no-repeat 27px 14px
+
+.likes-icon
+	background: url(../img/like-icon.png) no-repeat 27px 14px
+
+.contact-icon
+	background: url(../img/contact-icon.png) no-repeat 20px center
+
+.edit-icon
+	background: url(../img/edit-icon.png) no-repeat 18px center
+
+.add-friend-icon
+	background: url(../img/add-friend.png) no-repeat 18px center
+
+.house-icon
+	background: url(../img/house-icon.png) no-repeat 22px center
+
+.places-icon
+	background: url(../img/places-icon.png) no-repeat 23px 11px
+
+.places-current-icon
+	background: url(../img/places-current-icon.png) no-repeat 12px center
+
+.places-lived-icon
+	background: url(../img/places-lived-icon.png) no-repeat 12px center
+
+.places-home-icon
+	background: url(../img/places-home-icon.png) no-repeat 12px center
+
+.lock-icon
+	background: url(../img/lock-icon.png) no-repeat
+	width: 9px
+	height: 12px
+	float: left
+	margin: 10px
+	margin-top: 11px
+
+.search-icon
+	background: url(../img/icon-search.png) no-repeat
+
+/* --------------------------------------------------------------------------
+   Structure
+   -------------------------------------------------------------------------- */
+
+.searchbar
+	overflow: hidden
+	margin: 15px 0
+	#search
+		float: right
+		input
+			font-size: 12px
+			margin: 0
+			padding-left: 30px
+			width: 220px !important
+		.button1
+			display: inline
+			width: auto
+			border: 1px solid #D0CEC7
+			padding: 4px 8px
+			margin: 0
+			@include border-radius(4px)
+		.search-icon
+			background-position: 8px center
+
+.messages-header
+	overflow: hidden
+	width: 100%
+	.messages-tabs
+		overflow: hidden
+		float: left
+		#notification-type
+			font-size: 12px
+			margin-top: 0
+			padding-left: 10px
+			overflow: hidden
+			li
+				padding: 11px 16px
+				background: #E1E0D9
+				margin-right: 4px
+				min-width: 40px
+				text-align: center
+				-webkit-border-radius: 4px 4px 0 0
+				text-transform: uppercase
+				font-style: italic
+				font-weight: bold
+				color: gray
+				border-bottom: 1px solid #E1E0D9
+				&:hover
+					background: #FFF
+					border-bottom: 1px solid #FFF
+					color: #000
+			.button.selected
+				background: white
+				border-bottom: 1px solid #FFF
+				color: black
+	.button-bar
+		float: right
+		.button1
+			width: auto
+			border: 1px solid #D0CEC7
+			border-right: 1px solid #FFF
+			border-bottom: none
+			padding: 11px 25px
+		li:last-child
+			border-right: 1px solid #D0CEC7
+
+#notification-panel
+	font-size: 12px
+	background: none
+	margin-top: 0
+	border-top: 1px solid #D3D1CB
+	padding: 0
+	padding-top: 7px
+	@include border-radius(0)
+	.floatality
+		margin-bottom: 7px
+		padding: 10px 10px 10px 20px
+		background: white
+		overflow: hidden
+		.btn-group
+			float: left
+			margin-right: 100px
+			padding-top: 5px
+			label
+				float: left
+				margin-right: 10px
+		.messages-filters
+			label#filter-title
+				float: left
+				padding: 5px
+				margin-right: 10px
+			select
+				float: left
+				margin: 0
+				margin-right: 4px
+			li.checkbox
+				float: left
+				display: block
+				margin: 0 0 0 30px
+				padding: 5px
+		.messages-dropdown
+			float: left
+			display: block
+			background: url(../img/mini-arrow.png) no-repeat center center
+			width: 12px
+		.messages-pager
+			float: right
+			.resultCounter
+				span:first-child:after
+					content: "-"
+				span:last-child:before
+					content: " of "
+			#notifications-pager
+				li
+					float: left
+					&:first-child
+						margin-top: 3px
+						margin-right: 12px
