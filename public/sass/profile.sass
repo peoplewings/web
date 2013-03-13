@@ -66,17 +66,24 @@ select
 	&:active
 		@include bg-gradient(#ffeb00, #fbfac5)
 
-.another
+a.another
 	display: block
 	font:
 		size: 12px
 		style: italic
-	float: right
-	margin: 12px 14px
+	text-align: right
+	margin: 10px 0
 	margin-bottom: 0
 	&:hover
-		color: red
 		text-decoration: underline
+		color: #000
+
+button.close
+	@include opacity(1)
+	background: none
+	color: #999
+	&:hover
+		@include opacity(1)
 
 .size-small
 	width: 57px !important
@@ -301,6 +308,7 @@ select
 				height: 172px
 				margin: 8px
 				margin-left: 9px
+				cursor: pointer
 
 			.box
 				padding: 15px 20px
@@ -359,11 +367,32 @@ select
 						width: 150px
 						font-size: 12px
 
+			div.edit-click
+				background: #FFF
+				@include transition(opacity, 0.25s)
+				@include opacity(0.6)
+				position: relative
+				bottom: 48px
+				text-transform: uppercase
+				font:
+					size: 12px
+					style: italic
+					weight: bold
+				text-transform: uppercase
+				text-shadow: 1px 1px #FFF
+				text-align: center
+				padding: 12px
+				&:hover
+					@include opacity(0)
+
 			.basic-info-footer
 				padding: 0
 				button
-					width: 100%
-					border-left: 0
+					width: 50%
+					border-left: none
+					border-bottom: 1px solid #d0cec7
+				.button2.yellow
+					border-left: 1px solid #d0cec7
 
 		.content-right
 			float: left
@@ -501,7 +530,6 @@ select
 
 			.box-standard.contact-info
 
-
 				.box-content
 					.control-group
 						label
@@ -542,11 +570,6 @@ select
 			.help-block
 				margin: 0
 
-	label
-		padding: 14px 10px 10px 5px
-		> label
-			padding: 0
-
 	textarea
 		width: 300px !important
 		font-size: 12px
@@ -570,12 +593,13 @@ select
 		margin-bottom: 12px
 
 .separator
-	border-bottom: 1px solid #CECECE
-	padding-bottom: 10px
-	margin-bottom: 8px
+	//border-bottom: 1px solid #CECECE
+	//margin-bottom: 8px
 
 #languages-list
 	overflow: hidden
+	div
+		margin-bottom: 10px
 
 .guest-message
 	padding: 25px
