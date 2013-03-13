@@ -52,7 +52,6 @@ define(function(require) {
 			header: options.header,
 			accept: options.accept,
 			content: options.content,
-			ok: options.ok,
 			close: options.close || true,
 		}));
 		$("body section:last").append(modal);
