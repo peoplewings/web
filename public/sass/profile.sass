@@ -107,6 +107,17 @@ button.close
 .size-box-standard
 	width: 310px !important
 
+.size-13
+	width: 115px !important
+	background-position: 100px
+
+.size-23
+	width: 160px !important
+	background-position: 100px
+
+.size-33
+	width: 310px !important
+
 /* --------------------------------------------------------------------------
    Icons
    -------------------------------------------------------------------------- */
@@ -132,14 +143,23 @@ button.close
 .places-icon
 	background: url(../img/places-icon.png) no-repeat 23px 11px
 
+.places-hometown-icon
+	background: url(../img/places-hometown-marker.png) no-repeat 12px center
+
 .places-current-icon
-	background: url(../img/places-current-icon.png) no-repeat 12px center
+	background: url(../img/places-current-marker.png) no-repeat 12px center
 
 .places-lived-icon
-	background: url(../img/places-lived-icon.png) no-repeat 12px center
+	background: url(../img/places-marker.png) no-repeat 12px center
 
-.places-home-icon
-	background: url(../img/places-home-icon.png) no-repeat 12px center
+.places-hometown-icon-mini
+	background: url(../img/places-hometown-minimarker.png) no-repeat 12px center
+
+.places-current-icon-mini
+	background: url(../img/places-current-minimarker.png) no-repeat 12px center
+
+.places-lived-icon-mini
+	background: url(../img/places-lived-minimarker.png) no-repeat 12px center
 
 .lock-icon
 	background: url(../img/lock-icon.png) no-repeat
@@ -504,6 +524,7 @@ button.close
 						width: 210px
 					.controls
 						margin-left: 150px
+						margin-right: 308px
 					.controls.lived
 						label.radio
 							float: right
@@ -519,12 +540,8 @@ button.close
 				li
 					display: inline
 					margin-right: 10px
-					a
-						display: block
-						font-size: 12px
-						padding: 10px 0 10px 35px
-						&:hover
-							color: red
+					font-size: 12px
+					padding: 10px 0 10px 35px
 
 			/* EOF box-standard.maps */
 
@@ -721,5 +738,21 @@ h1.guest-message
 .help-block
 	margin: 0
 	display: inline
+
+.box-standard
+	form
+		.box-content
+			label
+				margin-bottom: 10px
+		.control-group
+			margin-bottom: 20px
+			.category-another
+				float: left
+
+.box-standard.maps
+	.control-group
+		margin-bottom: 0
+		label, input
+			margin: 0
 
 /* EOF OVER Bootstrap */
