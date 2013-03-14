@@ -23,19 +23,20 @@
 	</div><!-- EOF button-bar -->
 </div><!-- EOF messages-header -->
 
-<div class="message-msg">
-	<div class="something">
+<div class="messages-msg">
+	<div class="floatality">
 		<button id="back"><span class="icon-back">Back</span></button>
-		<input type="button" id="previous" value="<" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}>
-		<input type="button" id="next" value=">" data-id="{{next}}" {{#unless next}}disabled{{/unless}}>
-		<input type="button" id="delete-thread" value="Delete" class="pull-right">
+		<!-- <input type="button" id="previous" value="<" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}> -->
+		<!-- <input type="button" id="next" value=">" data-id="{{next}}" {{#unless next}}disabled{{/unless}}> -->
+		<!-- <input type="button" id="delete-thread" value="Delete" class="pull-right"> -->
+
 		<div class="messages-pager">
 			<ul id="notifications-pager" class="pager pull-right">
 				<li>
 					<div class="resultCounter">
-						<span>{{startResult}}</span>
-						<span>{{endResult}}</span>
-						<span>{{totalCount}}</span>
+						<span>1</span>
+						<span>10</span>
+						<span>50</span>
 					</div>
 				</li>
 				<li class="icon">
@@ -48,12 +49,11 @@
 		</div>
 	</div>
 
-	<ul id="notif-list" class="unstyled">
+	<ul id="notif-list">
 		{{{items}}}
-
-		<li class="row">
-			<img class="span1" src="{{me.avatar}}">
-			<div class="span11">
+		<li>
+			<img src="{{me.avatar}}">
+			<div>
 				<div id="response-options">
 					{{#if isMessage}}
 					Click to <span id="response-reply">Reply</span>

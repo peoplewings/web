@@ -1,50 +1,49 @@
-<li data-type="notification-item" data-rel="{{ id }}" data-user-id="{{ senderId }}" data-user-name="{{ senderName }}">
-	<div class="row">
-
-		<div class="span2" style="overflow: hidden"><img src="{{ senderMedAvatar }}"></div>
-
-		<div>
-			<div class="span5">
-					<span class="{{#if senderOnline }}online{{/if}}">{{ senderOnline }}</span>
-					<a href="#/users/{{interlocutorId}}">{{ senderName }}</a>, {{ senderAge }}
-					<div>{{ senderLocation }}</div>
-			</div>
-
-			<div class="span2">
-				{{date created "MMM Do, HH:mm" }}
-			</div>
+<li data-type="notification-item" data-rel="{{id}}" data-user-id="{{senderId}}" data-user-name="{{senderName}}">
+	<div class="msg-header">
+		<div class="msg-avatar">
+			<!-- <span class="{{#if senderOnline}}online{{/if}}">{{senderOnline}}</span> -->
+			<img src="{{senderMedAvatar}}">
 		</div>
-
-		<div class="span10">
-			{{#if isMessage }}
-				{{ content.message }}
-			{{else}}
-				<div class="row">
-					<div class="span1">
-						<div class="state-flag
-							{{#if flagDirection }}from-me{{else}}to-me{{/if}}
-							{{enum state 'notification-state'}}">
-							<span>
-								{{enum state 'notification-state'}}
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="params-box">
-					<label>Requested wing: <strong {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</strong></label>
-					<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>
-					<label>Deperture date: <strong {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate }}</strong></label>
-					<label>Number of surfers: <strong {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ parameters.capacity }}</strong></label>
-					<label>Arriving via: {{ parameters.arrivingVia }}</label>
-				</div>
-
-				<div>
-					{{ content.message }}
-				</div>
-			{{/if}}
+		<div class="msg-header-content-left">
+			<h1>Request from</h1>
+			<h2>
+				<a href="#/users/{{interlocutorId}}">{{senderName}}</a>
+			</h2>
+			<span>[{{senderAge}}]</span>
+			<h3>{{senderLocation}}</h3>
+			<h4>To me (static html)</h4>
+		</div>
+		<div class="msg-header-content-right">
+			<h1>{{date created "MMM Do, HH:mm"}}</h1>
+			<h2>Request Maybe (static html)</h2>
 		</div>
 	</div>
+
+	<div class="msg-content">
+		{{#if isMessage}}
+		{{content.message}}
+		{{else}}
+		<div class="state-flag
+		{{#if flagDirection }}from-me{{else}}to-me{{/if}}
+		{{enum state 'notification-state'}}">
+		<span>
+			{{enum state 'notification-state'}}
+		</span>
+	</div>
+
+	<div class="params-box">
+		<label>Requested wing: <strong {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</strong></label>
+		<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>
+		<label>Deperture date: <strong {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate }}</strong></label>
+		<label>Number of surfers: <strong {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ parameters.capacity }}</strong></label>
+		<label>Arriving via: {{ parameters.arrivingVia }}</label>
+	</div>
+
+	<div>
+		{{content.message}}
+	</div>
+	{{/if}}
+</div>
 </li>
 
 	<!--
