@@ -17,16 +17,16 @@
 							<div class="control-group lined">
 								<label class="control-label" for="inputName">Wing name</label>
 								<div class="controls">
-									<input type="text" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
+									<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
 								</div>
 							</div>
 							<div class="control-group lined">
 								<label class="control-label" for="inputStatus">Wing status</label>
 								<div class="controls">
 									<select name="status" id="wingStatus" class="size-medium">
-										<option value="Y" selected="selected">Yes</option>
-										<option value="N">No</option>
-										<option value="M">Maybe</option>
+										<option value="Y" {{selected status 'Y'}}>Yes</option>
+										<option value="N" {{selected status 'N'}}>No</option>
+										<option value="M" {{selected status 'M'}}>Maybe</option>
 									</select>
 								</div>
 							</div>
@@ -34,25 +34,25 @@
 								<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 								<div class="controls">
 									<label class="checkbox">
-										<input type="checkbox" name="sharingOnce" id="inputSharingOnce" value="True">
+										<input type="checkbox" name="sharingOnce" id="inputSharingOnce" {{checked sharingOnce true}}>
 									</label>
 									<span class="help-inline"></span>
 								</div>
 							</div>
 							<div id="sharing-dates"class="control-group">
 								<div class="controls">
-									<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
-									<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
+									<input type="text" name="dateStart" class="input-sdate" placeholder="Start date" value="{{dateStart}}">
+									<input type="text" name="dateEnd" class="input-edate" placeholder="End date" value="{{dateEnd}}">
 								</div>
 							</div>
 							<div class="control-group blocked">
 								<label class="control-label" for="inputNewEmail">Best days to host</label>
 								<div class="controls">
 									<select name="bestDays" id="inputBestDays" class="size-large">
-										<option value="A" selected="selected">Any</option>
-										<option value="F">From Monday to Friday</option>
-										<option value="T">From Monday to Thursday</option>
-										<option value="W">Weekend</option>
+										<option value="A" {{selected bestDays 'A'}}>Any</option>
+										<option value="F" {{selected bestDays 'F'}}>From Monday to Friday</option>
+										<option value="T" {{selected bestDays 'T'}}>From Monday to Thursday</option>
+										<option value="W" {{selected bestDays 'W'}}>Weekend</option>
 									</select>
 								</div>
 							</div>
@@ -60,16 +60,16 @@
 								<label class="control-label" for="inputCapacity">Capacity</label>
 								<div class="controls">
 									<select name="capacity" class="size-small">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="m">+9</option>
+										<option value="1" {{selected capacity '1'}}>1</option>
+										<option value="2" {{selected capacity '2'}}>2</option>
+										<option value="3" {{selected capacity '3'}}>3</option>
+										<option value="4" {{selected capacity '4'}}>4</option>
+										<option value="5" {{selected capacity '5'}}>5</option>
+										<option value="6" {{selected capacity '6'}}>6</option>
+										<option value="7" {{selected capacity '7'}}>7</option>
+										<option value="8" {{selected capacity '8'}}>8</option>
+										<option value="9" {{selected capacity '9'}}>9</option>
+										<option value="m" {{selected capacity 'm'}}>+9</option>
 									</select>
 								</div>
 							</div>
@@ -79,10 +79,10 @@
 								<label class="control-label" for="inputGender">Preferred gender</label>
 								<div class="controls">
 									<label class="checkbox inline">
-										<input type="checkbox" name="preferredMale" id="inlineCheckbox1" value="True"> Male
+										<input type="checkbox" name="preferredMale" id="inlineCheckbox1"> Male
 									</label>
 									<label class="checkbox inline">
-										<input type="checkbox" name="preferredFemale" id="inlineCheckbox2" value="True"> Female
+										<input type="checkbox" name="preferredFemale" id="inlineCheckbox2"> Female
 									</label>
 									<span class="help-inline"></span>
 								</div>
@@ -91,9 +91,9 @@
 								<label class="control-label" for="inputGender">Prefered gender</label>
 								<div class="controls">
 									<select name="preferredGender" class="size-medium">
-										<option value="Male">Male</option>
-										<option value="Female">Female</option>
-										<option value="Both">Both</option>
+										<option value="Male" {{selected preferredGender 'Male'}}>Male</option>
+										<option value="Female" {{selected preferredGender 'Female'}}>Female</option>
+										<option value="Both" {{selected preferredGender 'Both'}}>Both</option>
 									</select>
 									<span class="help-block"></span>
 								</div>
@@ -102,9 +102,9 @@
 								<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
 								<div class="controls">
 									<select name="whereSleepingType" id="whereSleepingType" class="size-large">
-										<option value="C" selected="selected">Common area</option>
-										<option value="P">Private area</option>
-										<option value="S">Shared private area</option>
+										<option value="C" {{selected whereSleepingType 'C'}}>Common area</option>
+										<option value="P" {{selected whereSleepingType 'P'}}>Private area</option>
+										<option value="S" {{selected whereSleepingType 'S'}}>Shared private area</option>
 									</select>
 								</div>
 							</div>
@@ -112,16 +112,16 @@
 								<label class="control-label" for="inputNewEmail">Smoking</label>
 								<div class="controls">
 									<select name="smoking" id="smoking" class="size-large">
-										<option value="N" selected="selected">No smoking allowed</option>
-										<option value="S">I smoke</option>
-										<option value="D">I don't smoke but guests can smoke here</option>
+										<option value="N" {{selected smoking 'N'}}>No smoking allowed</option>
+										<option value="S" {{selected smoking 'S'}}>I smoke</option>
+										<option value="D" {{selected smoking 'D'}}>I don't smoke but guests can smoke here</option>
 									</select>
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls check">
 									<label class="checkbox">
-										<input type="checkbox" name="wheelchair" id="inlineCheckbox1" value="True">Wheelchair accessible
+										<input type="checkbox" name="wheelchair" id="inlineCheckbox1" {{checked wheelchair true}}>Wheelchair accessible
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -129,7 +129,7 @@
 							<div class="control-group">
 								<div class="controls check">
 									<label class="checkbox">
-										<input type="checkbox" name="iHavePet" id="inlineCheckbox1" value="True">I have pet
+										<input type="checkbox" name="iHavePet" id="inlineCheckbox1" {{checked iHavePet true}}>I have pet
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -137,7 +137,7 @@
 							<div class="control-group">
 								<div class="controls check">
 									<label class="checkbox">
-										<input type="checkbox" name="petsAllowed" id="inlineCheckbox2" value="True">Guests pets allowed
+										<input type="checkbox" name="petsAllowed" id="inlineCheckbox2" {{checked petsAllowed true}}>Guests pets allowed
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -145,7 +145,7 @@
 							<div class="control-group">
 								<div class="controls check">
 									<label class="checkbox">
-										<input type="checkbox" name="blankets" id="inputBlankets" value="True">I have blankets
+										<input type="checkbox" name="blankets" id="inputBlankets" {{checked blankeys true}}>I have blankets
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -153,7 +153,7 @@
 							<div class="control-group">
 								<div class="controls check">
 									<label class="checkbox">
-										<input type="checkbox" name="liveCenter" id="inputLiveCenter" value="True">I live in the center
+										<input type="checkbox" name="liveCenter" id="inputLiveCenter" {{checked liveCenter true}}>I live in the center
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -162,19 +162,19 @@
 								<label class="control-label" for="inputPets">Transports</label>
 								<div class="controls">
 									<label class="checkbox">
-										<input type="checkbox" name="underground" id="checkboxMetro" value="True">Metro
+										<input type="checkbox" name="underground" id="checkboxMetro" {{checked underground true}}>Metro
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="bus" id="checkboxBus" value="True">Bus
+										<input type="checkbox" name="bus" id="checkboxBus" {{checked bus true}}>Bus
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="tram" id="checkboxTram" value="True">Tram
+										<input type="checkbox" name="tram" id="checkboxTram" {{checked tram true}}>Tram
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="train" id="checkboxTrain" value="True">Train
+										<input type="checkbox" name="train" id="checkboxTrain" {{checked train true}}>Train
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="others" id="checkboxOthers" value="True">Others
+										<input type="checkbox" name="others" id="checkboxOthers" {{checked others true}}>Others
 									</label>
 									<span class="help-inline"></span>
 								</div>
@@ -182,7 +182,7 @@
 							<div class="control-group">
 								<label class="control-label" for="inputAbout">About your accomodation</label>
 								<div class="controls">
-									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
+									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda">{{about}}</textarea>
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -198,7 +198,7 @@
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputAddress">Street address</label>
 								<div class="controls">
-									<input type="text" name="address" id="inputAddress" class="required">
+									<input type="text" name="address" id="inputAddress" class="required" value="{{address}}">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -206,7 +206,7 @@
 								<label class="control-label lock-icon" for="inputNumber">Number</label>
 								<div class="controls">
 									<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
-									<input type="text" name="number" id="inputNumber" class="input-mini required">
+									<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -233,9 +233,7 @@
 							</div>
 						</div><!-- EOF listing-location -->
 						<div class="accordion-heading">
-							{{#if myProfile}}
-							<button id="save-wing-btn" type="submit" class="button2 yellow">Save changes</button>
-							<button id="cancel-wing-btn" class="button2 cancel-edition-btn">Cancel</button>
-							{{/if}}
+							<button type="submit" class="button2 yellow save-wing-btn">Save changes</button>
+							<button id="cancel-wing-{{id}}"class="button2 cancel-wing-btn">Cancel</button>
 						</div><!-- EOF box-footer -->
 					</form>
