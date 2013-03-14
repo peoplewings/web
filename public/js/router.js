@@ -15,7 +15,6 @@ define(function(require) {
 	var logoutView = require("views/app/logout");
 	var SettingsView = require("views/app/settings");
 	var ProfileView = require("views/app/ProfileView");
-	var WingsView = require("views/app/wings");
 	var notificationsView = require("views/app/notifications");
 	var threadView = require("views/app/thread");
 	var Header = require("views/app/header");
@@ -97,10 +96,12 @@ define(function(require) {
 		},
 
 		wings: function(wingId){
-			if (!this.wingsView) {
+		/*if (!this.wingsView) {
 				this.wingsView = new WingsView;
 				this.wingsView.render(wingId);
 			} else this.wingsView.render(wingId);
+			*/
+			alert('TODO: Handler to open profile in wings tab');
 		},
 
 		showNotifications: function(filters){
@@ -131,7 +132,6 @@ define(function(require) {
 			if (api.userIsLoggedIn()){
 				if (!this.header){
 					this.header = new Header;
-					this.header.render();
 				} else {
 					this.header.render();
 				}

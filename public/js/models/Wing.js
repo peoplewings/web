@@ -5,11 +5,18 @@ define(function(require) {
 
 	var WingModel = Backbone.Model.extend({
 
-		urlRoot: api.getServerUrl() + api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
+		urlRoot: api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
 
-		parse: function(resp){
-			return resp.data;
-		}
+		fetch: function(options){
+			var self = this;
+			api.get(this.url())
+				.then(function(resp){
+					self.attributes = resp.data;
+					self.trigger("change");
+					if (options && options.success)
+						options.success();
+				});
+		},
 	});
 
 	return WingModel;

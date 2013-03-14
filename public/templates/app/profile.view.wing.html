@@ -1,8 +1,6 @@
-			{{#each wings}}
-			<div id="wing-box-{{id}}" class="box-standard">
 				<div class="box-header">
 					<h1 class="house-icon">Accommodation Wing</h1>
-					{{#if ../myProfile}}
+					{{#if myProfile}}
 					<button id="edit-wing-{{id}}"class="button2"><span class="edit-icon">Edit</span></button>
 					{{/if}}
 				</div>
@@ -68,7 +66,7 @@
 					<h2 class="last-p">About your accommodation</h2>
 					<p>{{about}}</p>
 				</div>
-				<div class="gradient-box"></div>
+				<!-- <div class="gradient-box"></div> -->
 				<div class="accordion-heading">
 					<div class="see-more">
 						<span class="more-about">more about</span>
@@ -76,5 +74,3 @@
 						<span class="more-about">more about</span>
 					</div>
 				</div>
-			</div><!-- EOF box-standard -->
-			{{/each}}
