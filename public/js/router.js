@@ -96,7 +96,7 @@ define(function(require) {
 		},
 
 		wings: function(wingId){
-			/*if (!this.wingsView) {
+		/*if (!this.wingsView) {
 				this.wingsView = new WingsView;
 				this.wingsView.render(wingId);
 			} else this.wingsView.render(wingId);

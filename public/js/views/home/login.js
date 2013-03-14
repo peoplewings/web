@@ -4,7 +4,6 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
-	var UserModel = require('models/Account');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/login.html');
 
@@ -54,7 +53,7 @@ define(function(require) {
 
 			this.$inputPassword.val("");
 			this.$inputEmail.val("");
-			
+
 			router.header = new Header;
 			router.navigate("#/search");
 

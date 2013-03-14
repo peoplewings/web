@@ -11,11 +11,8 @@ define(function(require) {
 	var FeedbackView = Backbone.View.extend({
 
 		initialize: function(){
-			if (api.userIsLoggedIn()){
+			if (api.userIsLoggedIn())
 				this.model = new UserModel({id: api.getUserId()});
-				if (!this.model.get("firstName")
-					this.model.fetch();
-			}
 		},
 
 		render: function(){

@@ -14,7 +14,6 @@ define(function(require){
 			this.model = new UserModel({id: api.getUserId()});
 			this.model.on("change", this.render.bind(this));
 			this.model.fetch();
-			debugger;
 		},
 
 		render: function(){
@@ -22,7 +21,6 @@ define(function(require){
 		},
 
 		refresh: function(){
-			debugger;
 			this.model.fetch();
 		},
 
