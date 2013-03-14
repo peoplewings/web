@@ -16,19 +16,21 @@
 	<h2>Reply rate</h2>
 	<p>{{replyRate}}%</p>
 	<h2>Reply time</h2>
-	<p>{{replyTime}}</p>
+	<p>{{replyTimeVerbose}}</p>
 </div>
 <div class="box basic-info">
 	<h1>Basic info</h1>
 	<h2>Gender</h2>
 	<p>{{gender}}</p>
-	{{#if birthday}}
 	<h2>Birthday</h2>
 	{{#if myProfile}}
 	<p>{{birthdayVerbose}}</p>
 	{{else}}
-	<p>{{birthday}}</p>
-	{{/if}}
+		{{#if birthday}}
+			<p>{{birthday}}</p>
+		{{else}}
+			<p>-</p>
+		{{/if}}
 	{{/if}}
 	{{#if interestedIn.length}}
 	<h2>Interesed in</h2>
@@ -36,7 +38,7 @@
 	{{/if}}
 	{{#if civilState}}
 	<h2>Relationship status</h2>
-	<p>{{civilState}}</p>
+	<p>{{civilStateVerbose}}</p>
 	{{/if}}
 	{{#if languages.length}}
 	<h2>Languages</h2>
