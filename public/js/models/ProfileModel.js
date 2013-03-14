@@ -37,8 +37,8 @@ define(function(require) {
 		},
 
 		parse: function(profile, wings){
-			profile.civilState = phrases.choices.civilState[profile.civilState];
-			profile.replyTime = moment.duration(+profile.replyTime).humanize();
+			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
+			profile.replyTimeVerbose = moment.duration(+profile.replyTime).humanize();
 
 			profile.birthdayVerbose = this.parseBirthday({
 				day: profile.birthDay,
@@ -76,12 +76,13 @@ define(function(require) {
 
 			_.each(data, function(value, attr){
 				self.set(attr, value);
-
 				if (attr === "interestedIn")
 					self.set(attr, [{gender: value}]);
 			});
 
-			return api.put(this.urlRoot + this.id, this.attributes);
+			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose"]);
+
+			return api.put(this.urlRoot + this.id, copy);
 		}
 
 	});

@@ -13,8 +13,8 @@ define(function(require){
 		initialize: function(){
 			this.model = new UserModel({id: api.getUserId()});
 			this.model.on("change", this.render.bind(this));
-			if (!this.model.get("firstName"))
-				this.model.fetch();
+			this.model.fetch();
+			debugger;
 		},
 
 		render: function(){
@@ -22,6 +22,7 @@ define(function(require){
 		},
 
 		refresh: function(){
+			debugger;
 			this.model.fetch();
 		},
 

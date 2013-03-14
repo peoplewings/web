@@ -47,28 +47,17 @@ define(function(require) {
 		},
 
 		loginSuccess: function(data, remember) {
-			var self = this;
-
 			api.saveAuthToken(JSON.stringify({
 				auth: data.xAuthToken,
 				uid: data.idAccount
 			}));
 
-			api.get(api.getApiVersion() + '/accounts/' + api.getUserId(), {})
-			.prop("data")
-			.then(function(data){
-				router.header = new Header;
-				router.header.render();
+			this.$inputPassword.val("");
+			this.$inputEmail.val("");
+			
+			router.header = new Header;
+			router.navigate("#/search");
 
-				router.navigate("#/search");
-
-				// We instanciate the current user
-				return new UserModel(data);
-			})
-			.fin(function(){
-				self.$inputPassword.val("");
-				self.$inputEmail.val("");
-			});
 		}
 	});
 

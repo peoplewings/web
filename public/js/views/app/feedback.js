@@ -13,7 +13,8 @@ define(function(require) {
 		initialize: function(){
 			if (api.userIsLoggedIn()){
 				this.model = new UserModel({id: api.getUserId()});
-				this.model.fetch();
+				if (!this.model.get("firstName")
+					this.model.fetch();
 			}
 		},
 
