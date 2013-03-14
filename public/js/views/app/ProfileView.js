@@ -64,7 +64,7 @@ define(function(require) {
 			var myProfile = (this.model.get("id") === api.getUserId());
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
-
+			console.log(this.model.toJSON())
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -76,6 +76,10 @@ define(function(require) {
 
 			this.map.render();
 			this.initMarkers();
+		},
+
+		renderBox: function(box){
+			this.model.fetch({success: this.refreshBox.bind(this, box)});
 		},
 
 		refreshBox: function(box){
