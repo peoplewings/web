@@ -169,7 +169,7 @@ define(function(require){
 					document.location.hash = '#/messages/' + thread;
 				})
 				.map(function() {
-					var check = $('<input type="checkbox">');
+					var check = $('<div class="messages-check"><input type="checkbox"></div>');
 					$(this).prepend(check);
 					return check.get(0);
 				})

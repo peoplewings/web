@@ -218,7 +218,7 @@ define(function(require) {
 				.find('textarea')
 					.val('');
 
-			this.$('#write-response > div.state-flag')
+			this.$('#write-response > span.state-flag')
 					.hide();
 
 			this.$('#edit-wing-params')
