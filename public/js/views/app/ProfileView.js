@@ -79,10 +79,6 @@ define(function(require) {
 			this.initMarkers();
 		},
 
-		renderBox: function(box){
-			this.model.fetch({success: this.refreshBox.bind(this, box)});
-		},
-
 		refreshBox: function(box){
 			var myProfile = (this.model.get("id") === api.getUserId());
 			var tpl = null;

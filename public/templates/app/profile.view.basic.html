@@ -24,7 +24,11 @@
 	<p>{{gender}}</p>
 	{{#if birthday}}
 	<h2>Birthday</h2>
+	{{#if myProfile}}
+	<p>{{birthdayVerbose}}</p>
+	{{else}}
 	<p>{{birthday}}</p>
+	{{/if}}
 	{{/if}}
 	{{#if interestedIn.length}}
 	<h2>Interesed in</h2>

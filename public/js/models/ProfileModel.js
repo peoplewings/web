@@ -9,42 +9,67 @@ define(function(require) {
 
 	var Preview = Backbone.Model.extend({
 
+		me: function(){
+			return api.getUserId() === this.id;
+		},
+
 		urlRoot: api.getApiVersion() + "/profiles/",
 
 		url: function(){
-			return (api.getUserId() === this.id) ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
+			return this.me() ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
+		},
+
+		urlWings: function(){
+			return  this.me() ? this.urlRoot + this.id + "/accomodations": this.urlRoot + this.id + "/accomodations/preview";
 		},
 
 		fetch: function(options) {
 			var self = this;
-			/*Promise.parallel(
-			api.get(this.url())
-				.then(function(resp){
-					self.attributes = resp.data;
-					if (options && options.success)
-						options.success();
-				});*/
-
 			Promise.parallel(
 				api.get(this.url()),
-				api.get(api.getApiVersion() + "/profiles/" + self.id + "/accomodations/preview")
+				api.get(this.urlWings())
 				).spread(function(profile, wings) {
-					profile.data.civilState = phrases.choices.civilState[profile.data.civilState];
-					profile.data.replyTime = moment.duration(+profile.data.replyTime).humanize();
-					self.attributes = profile.data;
-
-					var parsed = wings.data.map(function(wing){
-						wing.bestDays_verbose = phrases.choices.wingDaysChoices[wing.bestDays];
-						wing.smoking_verbose = phrases.choices.smoking[wing.smoking];
-						wing.whereSleepingType_verbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
-						wing.status_verbose = phrases.choices.wingStatus[wing.status];
-						return wing;
-					});
-					self.set("wingsCollection", parsed);
+					self.parse(profile.data, wings.data);
 
 					if (options && options.success)
 						options.success();
 				});
+		},
+
+		parse: function(profile, wings){
+			profile.civilState = phrases.choices.civilState[profile.civilState];
+			profile.replyTime = moment.duration(+profile.replyTime).humanize();
+			
+			profile.birthdayVerbose = this.parseBirthday({
+				day: profile.birthDay,
+				month: profile.birthMonth,
+				year: profile.birthYear,
+				privacy: profile.showBirthday,
+			});
+
+			this.attributes = profile;
+
+			var parsed = wings.map(function(wing){
+				wing.bestDays_verbose = phrases.choices.wingDaysChoices[wing.bestDays];
+				wing.smoking_verbose = phrases.choices.smoking[wing.smoking];
+				wing.whereSleepingType_verbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
+				wing.status_verbose = phrases.choices.wingStatus[wing.status];
+				return wing;
+			});
+
+			this.set("wingsCollection", parsed);
+		},
+
+		parseBirthday: function(options){
+			debugger;
+			switch (options.privacy){
+				case "F":
+					return options.month + "-" + options.day + "-" + options.year;
+				case "P":
+					return options.month + "-" + options.day;
+				case "N":
+					return "";
+			}
 		},
 
 		save: function(data){
