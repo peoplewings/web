@@ -25,7 +25,6 @@ define(function(require) {
 				content: content,
 				callback: this.saveFeedback.bind(this)
 			});
-			
 			this.modal.on('hidden', this.close.bind(this));
 			$("#feedback-form").validate();
 		},

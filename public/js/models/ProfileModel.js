@@ -39,7 +39,7 @@ define(function(require) {
 		parse: function(profile, wings){
 			profile.civilState = phrases.choices.civilState[profile.civilState];
 			profile.replyTime = moment.duration(+profile.replyTime).humanize();
-			
+
 			profile.birthdayVerbose = this.parseBirthday({
 				day: profile.birthDay,
 				month: profile.birthMonth,
@@ -50,10 +50,10 @@ define(function(require) {
 			this.attributes = profile;
 
 			var parsed = wings.map(function(wing){
-				wing.bestDays_verbose = phrases.choices.wingDaysChoices[wing.bestDays];
-				wing.smoking_verbose = phrases.choices.smoking[wing.smoking];
-				wing.whereSleepingType_verbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
-				wing.status_verbose = phrases.choices.wingStatus[wing.status];
+				wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
+				wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
+				wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
+				wing.statusVerbose = phrases.choices.wingStatus[wing.status];
 				return wing;
 			});
 
@@ -61,7 +61,6 @@ define(function(require) {
 		},
 
 		parseBirthday: function(options){
-			debugger;
 			switch (options.privacy){
 				case "F":
 					return options.month + "-" + options.day + "-" + options.year;

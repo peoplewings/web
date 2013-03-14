@@ -71,7 +71,6 @@ define(function(require) {
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
-			
 			this.$("#wings .content-left").html(wingsBarTpl({avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}));
 			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
 
