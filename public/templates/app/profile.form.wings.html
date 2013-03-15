@@ -1,6 +1,7 @@
-					<form id="accomodation-form" data-rel="{{id}}">
+					<form id="accomodation-form-{{id}}" data-rel="{{id}}">
 						<div class="box-header">
 							<h1 class="house-icon">Accommodation Wing</h1>
+							<button type="button" class="yellow delete-wing-btn" wing-id="{{id}}">Delete WING</button>
 						</div>
 						<div class="box-content wings-info">
 							{{#if update}}
@@ -205,7 +206,6 @@
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputNumber">Number</label>
 								<div class="controls">
-									<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
 									<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required">
 									<span class="help-block"></span>
 								</div>
@@ -220,14 +220,16 @@
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputCity">City</label>
 								<div class="controls">
-									<input type="text" name="city" id="inputCity" class="required">
+									{{#with city}}
+									<input type="text" name="city" id="inputCity" class="required" value="{{name}}, {{region}}, {{country}}">
 									<span class="help-block"></span>
+									{{/with}}
 								</div>
 							</div>
 							<div class="control-group blocked">
 								<label class="control-label lock-icon" for="inputCode">Postal</label>
 								<div class="controls">
-									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
+									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required" value="{{postalCode}}">
 									<span class="help-block"></span>
 								</div>
 							</div>
