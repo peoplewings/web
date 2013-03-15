@@ -26,19 +26,17 @@ define(function(require) {
 		return data;
 	};
 
-	var setAutocomplete = function(autocomplete) {
-		debugger;
+	var setAutocomplete = function(autocomplete, wing) {
 		var place = autocomplete.getPlace();
 		if (place.geometry) {
-			debugger;
 			var cc = getCC(place.address_components);
 			cc.lat = place.geometry.location.lat() + "";
 			cc.lon = place.geometry.location.lng() + "";
 			cc.name = cc.city;
 			cc = _.omit(cc, "city");
-		}
-		debugger;
-		this.cityObject = cc;
+			wing.city = cc;
+		} else 
+			return;
 	};
 
 	var serialize = function(form_id){
