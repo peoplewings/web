@@ -11,6 +11,7 @@ define(function(require) {
 		alerts.error('Your session has expired');
 		localStorage.removeItem("Peoplewings-Auth-Token");
 		document.location.hash = '/login';
+		document.location.reload();
 		// jsHint se queja de que se asigne un valor a una función
 		//jshint -W021
 		logout = function() { };
