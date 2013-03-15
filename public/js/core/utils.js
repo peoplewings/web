@@ -5,10 +5,10 @@ define(function(require) {
 	var $ = require('jquery');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 
-	var getCC = function(address_components){
+	function getCC(addressComponents){
 		var data = {};
 
-		_.each(address_components, function(component) {
+		_.each(addressComponents, function(component) {
 			_.each(component.types, function(type) {
 				switch (type) {
 					case "locality":
@@ -24,6 +24,21 @@ define(function(require) {
 			});
 		});
 		return data;
+	};
+
+	var setAutocomplete = function(autocomplete) {
+		debugger;
+		var place = autocomplete.getPlace();
+		if (place.geometry) {
+			debugger;
+			var cc = getCC(place.address_components);
+			cc.lat = place.geometry.location.lat() + "";
+			cc.lon = place.geometry.location.lng() + "";
+			cc.name = cc.city;
+			cc = _.omit(cc, "city");
+		}
+		debugger;
+		this.cityObject = cc;
 	};
 
 	var serialize = function(form_id){
@@ -86,8 +101,11 @@ define(function(require) {
 
 	return {
 		serializeForm: serialize,
-		getCityAndCountry: getCC,
 		showModal: showModal,
+		setAutocomplete: setAutocomplete,
+		getCityAndCountry: function(addressComponents){
+			return getCC(addressComponents);
+		},		
 		getSpinOpts: function(){
 			return opts;
 		},
