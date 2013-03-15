@@ -36,7 +36,21 @@ define(function(require) {
 				});
 		},
 
+		fetchWing: function(options){
+			if (!options)
+				return;
+
+			var self = this;
+			api.get(this.urlWings() + "/" + options.wingId)
+				.then(function(resp){
+					self.trigger("change");
+						if (options.success)
+							options.success();
+				});
+		},
+
 		parse: function(profile, wings){
+			
 			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
 			profile.replyTimeVerbose = moment.duration(+profile.replyTime).humanize();
 
@@ -48,16 +62,17 @@ define(function(require) {
 			});
 
 			this.attributes = profile;
-
-			var parsed = wings.map(function(wing){
-				wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
-				wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
-				wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
-				wing.statusVerbose = phrases.choices.wingStatus[wing.status];
-				return wing;
-			});
-
-			this.set("wingsCollection", parsed);
+			
+			this.set("wingsCollection", wings.map(this.parseWing));
+			
+		},
+		parseWing: function(wing){
+			wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
+			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
+			wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
+			wing.statusVerbose = phrases.choices.wingStatus[wing.status];
+				
+			return wing;
 		},
 
 		parseBirthday: function(options){
@@ -83,7 +98,24 @@ define(function(require) {
 			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose"]);
 
 			return api.put(this.urlRoot + this.id, copy);
-		}
+		},
+
+		findWingById: function(id){
+			return _.find(this.get("wingsCollection"), function(wing){
+				return wing.id === id;
+			});
+		},
+
+		deleteWingById: function(id){
+			var wing = this.findWingById(id);
+			var collection = this.get("wingsCollection");
+
+			this.set("wingsCollection", _.omit(collection, wing));
+
+			console.log(this.get("wingsCollection"));
+
+			debugger;
+		},
 
 	});
 
