@@ -34,7 +34,7 @@ define(function(require) {
 					if (options && options.success)
 						options.success();
 				});
-		},
+			},
 
 		fetchWing: function(options){
 			if (!options)
@@ -42,15 +42,15 @@ define(function(require) {
 
 			var self = this;
 			api.get(this.urlWings() + "/" + options.wingId)
-				.then(function(resp){
-					self.trigger("change");
-						if (options.success)
-							options.success();
-				});
+			.then(function(resp){
+				self.trigger("change");
+				if (options.success)
+					options.success();
+			});
 		},
 
 		parse: function(profile, wings){
-			
+
 			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
 			profile.replyTimeVerbose = moment.duration(+profile.replyTime).humanize();
 
@@ -62,27 +62,27 @@ define(function(require) {
 			});
 
 			this.attributes = profile;
-			
+
 			this.set("wingsCollection", wings.map(this.parseWing));
-			
+
 		},
 		parseWing: function(wing){
 			wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
 			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
 			wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
 			wing.statusVerbose = phrases.choices.wingStatus[wing.status];
-				
+			
 			return wing;
 		},
 
 		parseBirthday: function(options){
 			switch (options.privacy){
 				case "F":
-					return options.month + "-" + options.day + "-" + options.year;
+				return options.month + "-" + options.day + "-" + options.year;
 				case "P":
-					return options.month + "-" + options.day;
+				return options.month + "-" + options.day;
 				case "N":
-					return "";
+				return "";
 			}
 		},
 

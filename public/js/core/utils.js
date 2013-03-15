@@ -101,9 +101,7 @@ define(function(require) {
 		serializeForm: serialize,
 		showModal: showModal,
 		setAutocomplete: setAutocomplete,
-		getCityAndCountry: function(addressComponents){
-			return getCC(addressComponents);
-		},		
+		getCityAndCountry: getCC,		
 		getSpinOpts: function(){
 			return opts;
 		},
