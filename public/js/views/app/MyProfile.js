@@ -101,6 +101,12 @@ define(function(require){
 			this.parentCtrl.refreshBox(boxId);
 		},
 
+		reloadBox: function(evt){
+			evt.preventDefault();
+			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
+			this.parentCtrl.renderBox(boxId);
+		},
+
 		openForm: function(evt){
 
 			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
@@ -275,7 +281,7 @@ define(function(require){
 				})
 				.fin(function(){
 					self.$("#save-profile-btn").button('reset');
-					self.closeBox(e);
+					self.reloadBox(e);
 				});
 		},
 
