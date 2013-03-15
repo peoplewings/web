@@ -93,6 +93,12 @@ define(function(require) {
 	});
 
 	Handlebars.registerHelper('checked', function(option, value) {
+		if (typeof value === 'string'){
+			if (value.toUpperCase() === 'TRUE')
+				value = true;
+			else if (value.toUpperCase() === 'FALSE')
+				value = false;
+		}
 		if (option == value) {
 			return new Handlebars.SafeString(' checked="checked"');
 		} else {

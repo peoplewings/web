@@ -11,10 +11,8 @@ define(function(require) {
 	var FeedbackView = Backbone.View.extend({
 
 		initialize: function(){
-			if (api.userIsLoggedIn()){
+			if (api.userIsLoggedIn())
 				this.model = new UserModel({id: api.getUserId()});
-				this.model.fetch();
-			}
 		},
 
 		render: function(){
@@ -25,7 +23,6 @@ define(function(require) {
 				content: content,
 				callback: this.saveFeedback.bind(this)
 			});
-			
 			this.modal.on('hidden', this.close.bind(this));
 			$("#feedback-form").validate();
 		},
