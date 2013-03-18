@@ -13,16 +13,20 @@ define(function(require) {
 
 		el: "#main",
 
+		newCityObject: {},
+
 		events: {
 			"change [name=generalStatus]": "changeStatus",
 			"click button#add-wing-btn": function(e){
 				e.preventDefault();
-				utils.showModal({
+				this.wingModal = utils.showModal({
 					header: "Add Wing",
 					accept: "Save",
 					content: wingModalTpl,
 					send: this.submitWing,
+					form: "accomodation-form",
 				});
+				this.initNewWing();
 			},
 			"click input#inputSharingOnce": function(evt) {
 				if (evt.target.checked)
@@ -35,6 +39,7 @@ define(function(require) {
 			},
 			"click button[id^=edit-wing-]": "editWing",
 			"click button.cancel-wing-btn": "cancelEdition",
+			"submit form#accomodation-form": "createWing",
 			"submit form[id^=accomodation-form-]": "submitWing",
 			"click button.delete-wing-btn": "deleteWing",
 			
@@ -70,14 +75,42 @@ define(function(require) {
 
 			var self = this;
 			api.put(this.parentCtrl.model.urlWings() + "/" + wingId, data)
-				.then(function(){
-					alerts.success('Wing saved');
-					self.parentCtrl.model.fetchWing({wingId: wingId});
-				})
-				.fin(function(){
-					$(evt.target).find("button.save-wing-btn").button('reset');
-					self.refreshWing(wingId, wingViewTpl);
-				});
+			.then(function(){
+
+				alerts.success('Wing saved');
+				self.parentCtrl.model.fetchWing({wingId: wingId});
+			})
+			.fin(function(){
+				$(evt.target).find("button.save-wing-btn").button('reset');
+				self.refreshWing(wingId, wingViewTpl);
+			});
+		},
+
+		createWing: function(evt){
+			evt.preventDefault();
+			
+			
+			var data = utils.serializeForm(evt.target.id);
+			_.each(data, function(value, attr){ 
+				if (value === "on")
+					data[attr] = true; 
+			});
+			
+			data.city = this.newCityObject.city;
+			this.newCityObject = null;
+
+			var self = this;
+			api.post(this.parentCtrl.model.urlWings(), data)
+			.then(function(){
+				self.wingModal.modal('hide');
+				alerts.success('Wing saved');
+				self.parentCtrl.model.fetchWings({ success: self.parentCtrl.refreshWings.bind(self.parentCtrl, true)});
+			})
+			.fin(function(){
+				$(evt.target).find("button.save-wing-btn").button('reset');
+				debugger;
+
+			});
 		},
 
 		editWing: function(evt){
@@ -114,13 +147,13 @@ define(function(require) {
 				this.$("div#sharing-dates").hide();
 
 			this.$("input[name=dateStart]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.val(wing.dateStart);
+			.datepicker()
+			.datepicker("option", "dateFormat", "yy-mm-dd")
+			.val(wing.dateStart);
 			this.$("input[name=dateEnd]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.val(wing.dateEnd);
+			.datepicker()
+			.datepicker("option", "dateFormat", "yy-mm-dd")
+			.val(wing.dateEnd);
 
 			var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
 				types: ['(cities)']
@@ -138,31 +171,53 @@ define(function(require) {
 				check all fields in tpl
 				use exact same tpl in modal than in edition,
 				get rid of view.wings.html o view.wing.html
-			*/
+				*/
 
-		},
+			},
+			initNewWing: function(){
+				this.$("div#sharing-dates").hide();
 
-		deleteWing: function(evt){
-			var wingId = $(evt.target).attr("wing-id");
-			console.log("DELETE WING with ID:", wingId);
+				this.$("input[name=dateStart]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd")
+				.val("");
+				this.$("input[name=dateEnd]")
+				.datepicker()
+				.datepicker("option", "dateFormat", "yy-mm-dd")
+				.val("");
+
+				var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
+					types: ['(cities)']
+				});
 
 
-			var self = this;
-			if (confirm("Are you sure you want to delete this wing?")) {
-				api.delete(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + wingId)
+				google.maps.event.addListener(autoCity, 'place_changed', utils.setAutocomplete.bind(this, autoCity, this.newCityObject));
+
+				self.$("#inputCity").keypress(function(event) {
+					if (event.which === 13) event.preventDefault();
+				});
+
+				this.$('#accomodation-form').validate();
+
+			},
+
+			deleteWing: function(evt){
+				var wingId = $(evt.target).attr("wing-id");
+
+				var self = this;
+				if (confirm("Are you sure you want to delete this wing?")) {
+					api.delete(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + wingId)
 					.then(function() {
 						self.parentCtrl.model.fetch({success: function(){
-							debugger;
 							self.parentCtrl.refreshWings.bind(self.parentCtrl, true);
 							alerts.success('Wing deleted');
 						}});
 					}, function() {
 						alerts.defaultError();
 					});
+				}
 			}
-			debugger;
-		}
-	});
+		});
 
-	return WingsView;
+return WingsView;
 });
