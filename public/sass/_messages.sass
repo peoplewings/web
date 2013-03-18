@@ -146,7 +146,7 @@ select
 	background: url(../img/icon-search.png) no-repeat
 
 .icon-back
-	background: url(../img/icon-back.png) no-repeat
+	background: url(../img/icon-back.png) no-repeat 1px 2px
 
 /* --------------------------------------------------------------------------
    Structure
@@ -584,6 +584,28 @@ li.notification-item
 		margin-top: 25px
 		padding-top: 25px
 
+li.wing-item
+	div.messages-state
+		padding: 15px 20px
+		h2
+			display: inline
+			color: black
+			font-size: 14px
+		h3
+			display: inline
+			font-style: italic
+			padding-left: 10px
+			font-size: 14px
+	div.messages-dates
+		div.messages-dates-info
+			padding: 15px 20px
+			dt
+				padding-left: 5px
+			dd:last-child
+				padding-left: 10px
+				font-weight: bold
+				font-style: normal
+
 li.response-item
 	div.msg-avatar
 		width: 65px
@@ -596,6 +618,8 @@ li.response-item
 			display: inline
 		span
 			font-weight: bold
+			color: #000
+			cursor: pointer
 	div#write-response
 		float: right
 		div.response-wrapper
@@ -645,3 +669,44 @@ li.response-item
 			button.button1
 				padding: 10px 25px
 				border-left: 1px solid #D0CEC7
+
+div.floatality
+	button#back
+		padding-bottom: 3px
+		&:hover 
+			background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+	button#delete-thread
+		border-left: none
+		padding-bottom: 3px
+		&:hover 
+			background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+
+div.resultCounter
+	float: left
+	padding: 5px
+	padding-right: 10px
+
+div.pager-btngroup
+	float: right
+	ul.pager-buttons
+		li:last-child
+			button.button-pager
+				border-left: none
+		button.button-pager
+			padding: 0
+			.icon1
+				display: block
+				width: 25px
+				height: 25px
+			.next-page
+				background: url(../img/pager-next.png) no-repeat 10px 8px
+			.prev-page
+				background: url(../img/pager-prev.png) no-repeat 8px 8px
+			&:hover 
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
