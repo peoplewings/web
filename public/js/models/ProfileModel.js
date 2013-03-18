@@ -20,7 +20,7 @@ define(function(require) {
 		},
 
 		urlWings: function(){
-			return  this.me() ? this.urlRoot + this.id + "/accomodations": this.urlRoot + this.id + "/accomodations/preview";
+			return  this.me() ? this.urlRoot + this.id + "/accomodations" : this.urlRoot + this.id + "/accomodations/preview";
 		},
 
 		fetch: function(options) {
@@ -49,6 +49,19 @@ define(function(require) {
 			});
 		},
 
+		fetchWings: function(options){
+			var self = this;
+			api.get(this.urlWings())
+			.then(function(resp){
+				self.set("wingsCollection", resp.data.map(self.parseWing));
+				self.trigger("change:wingsCollection");
+
+				if (options.success)
+					options.success();
+			});
+
+		},
+
 		parse: function(profile, wings){
 
 			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
@@ -64,8 +77,8 @@ define(function(require) {
 			this.attributes = profile;
 
 			this.set("wingsCollection", wings.map(this.parseWing));
-
 		},
+
 		parseWing: function(wing){
 			wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
 			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
