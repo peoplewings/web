@@ -83,7 +83,11 @@ define(function(require) {
 		},
 
 		refreshWings: function(myProfile){
-			this.$("#wings .content-left").html(wingsBarTpl({avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}));
+			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}); 
+			if (myProfile === false)
+				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+
+			this.$("#wings .content-left").html(tpl);
 			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
 		},
 
