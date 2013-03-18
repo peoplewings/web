@@ -1,4 +1,4 @@
-<li data-type="notification-item" data-rel="{{id}}" data-user-id="{{senderId}}" data-user-name="{{senderName}}">
+<li class="notification-item" data-type="notification-item" data-rel="{{id}}" data-user-id="{{senderId}}" data-user-name="{{senderName}}">
 	<div class="msg-header">
 		<div class="msg-avatar">
 			<!-- <span class="{{#if senderOnline}}online{{/if}}">{{senderOnline}}</span> -->
@@ -45,22 +45,3 @@
 	{{/if}}
 </div>
 </li>
-
-	<!--
-		<div class="{{#unless read }}unread{{/unless}}">
-				{{#if isMessage }}
-					<div class="span5 offset1">{{ content }}</div>
-				{{else}}
-					<div class="span3 offset1">
-							<div>{{enum kind 'notification-type' }}</div>
-							<div>{{ message }}</div>
-					</div>
-					<div class="span1">{{ numPeople }} people</div>
-					<div class="span1">
-							<div>{{date startDate }}</div>
-							<div>{{date endDate }}</div>
-					</div>
-				{{/if}}
-				<div class="span1">{{date created "MMM Do" }}</div>
-		</div>
-	-->
