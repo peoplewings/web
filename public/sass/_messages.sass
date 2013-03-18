@@ -520,7 +520,6 @@ li.response-item
 
 #write-response
 	font-size: 12px
-	width: 883px
 	h1
 		text-transform: capitalize
 		font-weight: bold
@@ -562,18 +561,6 @@ li.response-item
 				select
 					margin: 0
 					background: url(../img/mini-arrow.png) no-repeat 40px #FFF
-	textarea
-		border-top-left-radius: 0px
-		border-top-right-radius: 0px
-		border-bottom-right-radius: 2px
-		border-bottom-left-radius: 2px
-		border-top-style: none
-		border-left-style: none
-		border-bottom-style: none
-		width: 871px
-		margin: 0px
-		height: 72px
-		max-width: 871px
 	.button-footer
 		float: right
 		clear: both
@@ -604,8 +591,24 @@ li.response-item
 		font-size: 12px
 	div#write-response
 		float: right
-		form#wing-params-form
-			border: 1px solid #d3d1ca
+		div.response-wrapper
+			margin: 10px
+			margin-left: 0
+			border: 1px solid #D0CEC7
+			form#wing-params-form
+				border-bottom: 1px solid #d3d1ca
+				input
+					margin-bottom: 0
+			textarea
+				border-top-left-radius: 0px
+				border-top-right-radius: 0px
+				border-bottom-right-radius: 2px
+				border-bottom-left-radius: 2px
+				border: none
+				width: 871px
+				margin: 0px
+				height: 72px
+				max-width: 859px
 		div.button-footer
 			button.button1
 				padding: 10px 25px
