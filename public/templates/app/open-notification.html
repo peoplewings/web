@@ -15,7 +15,7 @@
 		</div>
 		<div class="msg-header-content-right">
 			<h1>{{date created "MMM Do, HH:mm"}}</h1>
-			<h2>Request Maybe (static html)</h2>
+			<h2>Request {{enum state 'notification-state'}}</h2>
 		</div>
 	</div>
 
@@ -23,20 +23,15 @@
 		{{#if isMessage}}
 		{{content.message}}
 		{{else}}
-		<div class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}">
-			<span>
-				{{enum state 'notification-state'}}
-			</span>
-		</div>
 
 		<div class="msg-params-box">
 			<dl>
 				<dt>Requested wing : </dt>
-				<dd {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{parameters.wingName}} ({{type}} in {{parameters.wingCity}})</dd>
+				<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} ({{type}} in {{parameters.wingCity}})</dd>
 			</dl>
 			<dl>
 				<dt>Arrival date : </dt>
-				<dd {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
+				<dd {{#if_contains parameters.modified "startDate"}}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
 			</dl>
 			<dl>
 				<dt>Deperture date : </dt>

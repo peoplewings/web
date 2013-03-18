@@ -59,9 +59,10 @@
 
 			<div id="response-options" class="msg-header-content-left">
 				{{#if isMessage}}
-				Click to <span id="response-reply">Reply</span>
+				<h1>Click to</h1>
+				<span id="response-reply">Reply</span>
 				{{else}}
-				Click to
+				<h1>Click to</h1>
 
 				{{#each options}}
 				<span class="response-option option-{{self}}">
@@ -104,7 +105,7 @@
 							<form id="wing-params-form">
 								<div class="response-header">
 									<div class="response-header-dates">
-										<h2>{{type}} in {{parameters.wingCity}} <span>{{parameters.wingName}}</span></h2>
+										<h2>{{type}} in {{parameters.wingCity}}<span>{{parameters.wingName}}</span></h2>
 										<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate}}">
 										<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate}}">
 										<select name="capacity" class="input-mini required">
@@ -120,7 +121,7 @@
 						</div>
 
 						{{/unless}}
-						<textarea></textarea>
+						<textarea placeholder="Write your message"></textarea>
 					</div><!-- EOF response-wrapper -->
 					<div class="button-footer">
 						<button id="cancel-response" class="button1">Cancel</button>

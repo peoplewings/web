@@ -585,28 +585,60 @@ li.notification-item
 		padding-top: 25px
 
 li.response-item
+	div.msg-avatar
+		width: 65px
+		height: 65px
 	div#response-options
 		float: left
 		padding: 10px 12px 0 12px
 		font-size: 12px
+		h1
+			display: inline
+		span
+			font-weight: bold
 	div#write-response
 		float: right
 		div.response-wrapper
 			margin: 10px
 			margin-left: 0
 			border: 1px solid #D0CEC7
+			div.accepted h1
+				color: #85c333
+				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
+			div.maybe h1
+				color: #fa9e03
+				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
+			div.pending h1
+				color: #ee4040
+				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
+			div.denied h1
+				color: #7e7b71
+				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
 			form#wing-params-form
 				border-bottom: 1px solid #d3d1ca
 				input
 					margin-bottom: 0
+				div.response-header-dates
+					h2
+						font-weight: bold
+						margin-right: 10px
+						span
+							font:
+								weight: normal
+								style: italic
 			textarea
 				border-top-left-radius: 0px
 				border-top-right-radius: 0px
 				border-bottom-right-radius: 2px
 				border-bottom-left-radius: 2px
 				border: none
-				width: 871px
+				width: 843px
 				margin: 0px
+				padding: 15px
+				padding-top: 10px
+				font:
+					size: 12px
+					style: italic
 				height: 72px
 				max-width: 859px
 		div.button-footer
