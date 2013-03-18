@@ -72,61 +72,59 @@
 
 				<div id="write-response" style="display: none">
 					{{#unless isMessage}}
-					<div class="state-flag
-					{{#if iStarted }}from-me{{else}}to-me{{/if}}
-					{{enum state 'notification-state'}}" style="display: none">
-					<h1>{{enum state 'notification-state'}}</h1>
-				</div>
+					<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}" style="display: none">
+						<h1>{{enum state 'notification-state'}}</h1>
+					</div>
 
-				<div class="msg-params-box" style="display: none;">
-					<dl>
-						<dt>Requested wing :</dt>
-						<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} <span>({{type}} in {{parameters.wingCity}})</span></dd>
-					</dl>
-					<dl>
-						<dt>Arrival date :</dt>
-						<dd {{#if_contains parameters.modified "startDate"}}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
-					</dl>	
-					<dl>	
-						<dt>Deperture date :</dt>
-						<dd {{#if_contains parameters.modified "endDate"}}class="modified"{{/if_contains}}>{{date parameters.endDate}}</dd>
-					</dl>
-					<dl>
-						<dt>Number of surfers :</dt>
-						<dd {{#if_contains parameters.modified "capacity"}}class="modified"{{/if_contains}}>{{parameters.capacity}}</dd>
-					</dl>
-					<dl>	
-						<dt>Arriving via :</dt>
-						<dd>{{parameters.arrivingVia}}</dd>
-					</dl>
-				</div>
+					<div class="msg-params-box" style="display: none;">
+						<dl>
+							<dt>Requested wing :</dt>
+							<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} <span>({{type}} in {{parameters.wingCity}})</span></dd>
+						</dl>
+						<dl>
+							<dt>Arrival date :</dt>
+							<dd {{#if_contains parameters.modified "startDate"}}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
+						</dl>	
+						<dl>	
+							<dt>Deperture date :</dt>
+							<dd {{#if_contains parameters.modified "endDate"}}class="modified"{{/if_contains}}>{{date parameters.endDate}}</dd>
+						</dl>
+						<dl>
+							<dt>Number of surfers :</dt>
+							<dd {{#if_contains parameters.modified "capacity"}}class="modified"{{/if_contains}}>{{parameters.capacity}}</dd>
+						</dl>
+						<dl>	
+							<dt>Arriving via :</dt>
+							<dd>{{parameters.arrivingVia}}</dd>
+						</dl>
+					</div>
 
-				<div id="edit-wing-params" style="display: none">
-					<form id="wing-params-form">
-						<div class="response-header">
-							<div class="response-header-dates">
-								<h2>{{type}} in {{parameters.wingCity}} <span>{{parameters.wingName}}</span></h2>
-								<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate}}">
-								<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate}}">
-								<select name="capacity" class="input-mini required">
-									{{#range 9}}
-									<option value="{{indexPlusOne}}" {{selected capacity indexPlusOne}}>{{indexPlusOne}}</option>
-									{{/range}}
-									<option value="+9" {{selected capacity '+9'}}>+9</option>
-								</select>
-								<span class="help-block"></span>
-							</div><!-- EOF response-header-dates -->
-						</div><!-- EOF response-header -->
-					</form>
-				</div>
+					<div id="edit-wing-params" style="display: none">
+						<form id="wing-params-form">
+							<div class="response-header">
+								<div class="response-header-dates">
+									<h2>{{type}} in {{parameters.wingCity}} <span>{{parameters.wingName}}</span></h2>
+									<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate}}">
+									<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate}}">
+									<select name="capacity" class="input-mini required">
+										{{#range 9}}
+										<option value="{{indexPlusOne}}" {{selected capacity indexPlusOne}}>{{indexPlusOne}}</option>
+										{{/range}}
+										<option value="+9" {{selected capacity '+9'}}>+9</option>
+									</select>
+									<span class="help-block"></span>
+								</div><!-- EOF response-header-dates -->
+							</div><!-- EOF response-header -->
+						</form>
+					</div>
 
-				{{/unless}}
-				<textarea></textarea>
-				<div class="button-footer">
-					<button id="cancel-response" class="button1">Cancel</button>
-					<button id="send-response" class="button1" data-loading-text="Sending...">Send</button>
+					{{/unless}}
+					<textarea></textarea>
+					<div class="button-footer">
+						<button id="cancel-response" class="button1">Cancel</button>
+						<button id="send-response" class="button1" data-loading-text="Sending...">Send</button>
+					</div>
 				</div>
-			</div>
-		</li>
-	</ul>
-</div><!-- EOF message-msg -->
+			</li>
+		</ul>
+	</div><!-- EOF message-msg -->

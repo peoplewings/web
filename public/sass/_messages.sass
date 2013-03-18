@@ -520,10 +520,7 @@ li.response-item
 
 #write-response
 	font-size: 12px
-	float: left
 	width: 883px
-	border: 1px solid #d3d1ca
-	margin: 5px
 	h1
 		text-transform: capitalize
 		font-weight: bold
@@ -588,3 +585,28 @@ li.response-item
 			float: left
 			border-right: none
 			border-bottom: none
+
+li.notification-item
+	.msg-content.msg-response
+		float: none
+		div
+			float: none
+			cursor: auto
+	.msg-text
+		border-top: 1px solid #d0cec7
+		margin-top: 25px
+		padding-top: 25px
+
+li.response-item
+	div#response-options
+		float: left
+		padding: 10px 12px 0 12px
+		font-size: 12px
+	div#write-response
+		float: right
+		form#wing-params-form
+			border: 1px solid #d3d1ca
+		div.button-footer
+			button.button1
+				padding: 10px 25px
+				border-left: 1px solid #D0CEC7

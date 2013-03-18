@@ -19,29 +19,42 @@
 		</div>
 	</div>
 
-	<div class="msg-content">
+	<div class="msg-content msg-response">
 		{{#if isMessage}}
 		{{content.message}}
 		{{else}}
-		<div class="state-flag
-		{{#if flagDirection }}from-me{{else}}to-me{{/if}}
-		{{enum state 'notification-state'}}">
-		<span>
-			{{enum state 'notification-state'}}
-		</span>
-	</div>
+		<div class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}">
+			<span>
+				{{enum state 'notification-state'}}
+			</span>
+		</div>
 
-	<div class="params-box">
-		<label>Requested wing: <strong {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</strong></label>
-		<label>Arrival date: <strong {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate }}</strong></label>
-		<label>Deperture date: <strong {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate }}</strong></label>
-		<label>Number of surfers: <strong {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ parameters.capacity }}</strong></label>
-		<label>Arriving via: {{ parameters.arrivingVia }}</label>
-	</div>
+		<div class="msg-params-box">
+			<dl>
+				<dt>Requested wing : </dt>
+				<dd {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{parameters.wingName}} ({{type}} in {{parameters.wingCity}})</dd>
+			</dl>
+			<dl>
+				<dt>Arrival date : </dt>
+				<dd {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
+			</dl>
+			<dl>
+				<dt>Deperture date : </dt>
+				<dd {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{date parameters.endDate}}</dd>
+			</dl>
+			<dl>
+				<dt>Number of surfers : </dt>
+				<dd {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{parameters.capacity}}</dd>
+			</dl>
+			<dl>
+				<dt>Arriving via : </dt>
+				<dd>{{parameters.arrivingVia}}</dd>
+			</dl>
+		</div>
 
-	<div>
-		{{content.message}}
+		<div class="msg-text">
+			{{content.message}}
+		</div>
+		{{/if}}
 	</div>
-	{{/if}}
-</div>
 </li>
