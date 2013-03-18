@@ -70,7 +70,11 @@ define(function(require) {
 		$("body section:last").append(modal);
 
 		modal.modal('show');
-		modal.find('.accept-modal-btn').click(options.callback);
+		var acceptBtn = modal.find('.accept-modal-btn');
+		acceptBtn.click(options.callback);
+		
+		if (options.form)
+			acceptBtn.attr('form', options.form);
 
 		modal.on('hidden', function() {
 			modal.remove();
