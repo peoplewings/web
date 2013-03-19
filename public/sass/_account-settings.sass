@@ -9,13 +9,6 @@ form#account-settings-form
 	@include border-radius(12px)
 	width: 460px
 	border: 1px solid #d0cec7
-	padding: 0 27px 27px 14px
-
-	//div.form-wrapper
-	//	padding: 0 27px 27px 14px
-
-	.help-block
-		margin: 0
 
 	input, select
 		margin: 0
@@ -45,16 +38,6 @@ form#account-settings-form
 	input[type="checkbox"]
 		margin: 10px 17px 10px 0
 
-	span.signal
-		float: left
-		text-indent: -9999px
-		height: 16px
-		width: 15px
-		background: url(../img/icon-direction.png) no-repeat
-		position: relative
-		bottom: 16px
-		left: 50px
-
 	legend
 		float: right
 		position: relative
@@ -65,27 +48,7 @@ form#account-settings-form
 		text-indent: -9999px
 		background: url(../img/account-settings.png) no-repeat
 
-	.clear
-		clear: both
-
-	div.control-group
-		margin: 0
-		margin-bottom: 5px
-		&:last-child
-			margin-top: 15px
-			padding-top: 8px
-			background: #f5f5f0
-			p
-				padding: 18px 50px
-	.control-group.delete-account
-		margin-top: 25px
-		padding-top: 18px
-		border-top: 1px solid #e5e5e5
-
-	.control-group:after, .control-group:before
-		display: block
-
-	.control-label
+	label.control-label
 		float: left
 		color: #999
 		width: 100px
@@ -93,74 +56,109 @@ form#account-settings-form
 		font-size: 12px
 		text-align: left
 
-	.checkbox
-		padding-left: 0
+	label.error
+		background: #FFBDBD
+		width: 289px
+		padding: 15px
+		margin: 5px 0
+		color: #FF0000
+		text-shadow: 1px 1px #CCC
+		font-size: 13px
 
-	.controls
-		margin-left: 122px
+	label.checkbox
+		padding-left: 0	
 
-		h1
-			padding: 11px
-			font-size: 13px
-			color: #000
+	div.form-wrapper
+		padding: 0 27px 27px 14px
 
-		input[type="text"]
-			width: 149px
+		div.help-block
+			margin: 0
 
-		input[type="email"],
-		input[type="password"]
-			width: 95%
+		span.signal
+			float: left
+			text-indent: -9999px
+			height: 16px
+			width: 15px
+			background: url(../img/icon-direction.png) no-repeat
+			position: relative
+			bottom: 16px
+			left: 50px
 
-		input[type="password"].password-line
-			min-width: 95%
+		div.clear
+			clear: both
+		
+		div.control-group:after, .control-group:before
+			display: block
 
-		input[type="submit"]
-			font-size: 18px
-
-		input.input-margin
+		div.control-group
+			margin: 0
 			margin-bottom: 5px
+			
+			&:last-child
+				margin-top: 25px
+				padding-top: 18px
+				border-top: 1px solid #e5e5e5
+				p
+					font-style: italic
+					color: #999
+					font-size: 12px
 
-		select
-			background: url(../img/mini-arrow.png) no-repeat 82px center white
-			width: 110px
-			color: $gray-link
+		div.controls
+			margin-left: 122px
 
-		.select-mini
-			width: 97px
+			h1
+				padding: 11px
+				font-size: 13px
+				color: #000
 
-		.select-medium
-			width: 120px
-			background-position: 94px center
+			input[type="text"]
+				width: 149px
 
-		.terms
-			margin-left: 117px
+			input[type="email"],
+			input[type="password"]
+				width: 95%
 
-	.accepts
-		margin-left: 98px
-		margin-bottom: 2em
+			input[type="password"].password-line
+				min-width: 95%
 
-	.terms
-		color: #999
-		font-size: 12px
+			input[type="submit"]
+				font-size: 18px
+
+			input.input-margin
+				margin-bottom: 5px
+
+	div.control-group.confirm-changes
+		padding: 8px 0
+		padding-bottom: 15px
+		background: #f5f5f0
 		line-height: 18px
+		border-bottom: 1px solid #D7CEC0
+		margin-bottom: 15px
+		label.control-label
+			padding-left: 25px
 		p
+			padding: 18px 50px
 			font-style: italic
-		a
-			color: #FFFF00
+			color: #999
+			font-size: 12px
+
+	div.footer-content
+		float: right
+		button:last-child
+			border-right: 1px solid #DDD
+			margin-right: 15px
+		.button1
+			float: left
+			width: auto
+			border: 1px solid #DDD
+			border-right: 1px solid #FFF
+			border-bottom: none
+			padding: 11px 25px
+			@include bg-gradient(#FFF, #ECECE5)
 			&:hover
-				text-decoration: underline
-				cursor: pointer
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+		.yellow
+			@include bg-gradient(#FFFF00, #FFEA00)
 
-label.error
-	background: #FFBDBD
-	width: 289px
-	padding: 15px
-	margin: 5px 0
-	color: #FF0000
-	text-shadow: 1px 1px #CCC
-	font-size: 13px
-
-.btn-peoplewings
-	font-size: 18px
-	float: right
-	margin-top: 20px

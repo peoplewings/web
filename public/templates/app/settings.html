@@ -96,9 +96,10 @@
 
 
 <form id="account-settings-form" class="form-horizontal pull-right navbar-inner">
-	<span class="signal">account signal</span>
-	<legend>Account settings</legend>
-	<div class="control-group clear">
+	<div class="form-wrapper">
+		<span class="signal">account signal</span>
+		<legend>Account settings</legend>
+		<div class="control-group clear">
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
 				<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required">
@@ -139,7 +140,7 @@
 				<span class="help-block"></span>
 			</div>
 		</div>
-		<div class="control-group delete-account">
+		<div class="control-group">
 			<label class="control-label"for="inputDelete">Delete entire account</label>
 			<div class="controls terms">
 				<label class="checkbox">
@@ -149,7 +150,8 @@
 				</label>
 			</div>
 		</div>
-		<div class="control-group terms">
+	</div>
+	<div class="control-group confirm-changes">
 		<p>To save these settings, please enter your PEOPLEWINGS password</p>
 		<label class="control-label"for="inputPassWrite">Current password</label>
 		<div class="controls terms">
@@ -157,4 +159,8 @@
 			<span class="help-block"></span>
 		</div>
 	</div><!-- EOF control-group terms -->
+	<div class="footer-content">
+		<button class="button1 yellow">Save</button>
+		<button class="button1">Cancel</button>
+	</div>
 </form>
