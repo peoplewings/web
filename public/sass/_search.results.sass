@@ -23,11 +23,12 @@
 		display: inline
 	li
 		float: left
+		&:last-child
+			border-left: none
 	.icon
 		width: 25px
 		height: 25px
 		border: 1px solid #D8D6D0
-		@include border-radius(2px)
 		@include bg-gradient(#FFF, #ecece5)
 		&:hover
 			background: #FFF
