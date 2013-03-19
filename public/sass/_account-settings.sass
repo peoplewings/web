@@ -1,0 +1,166 @@
+/* --------------------------------------------------------------------------
+	 _Account Settings
+	 -------------------------------------------------------------------------- */
+
+form#account-settings-form
+	margin: 0 auto
+	background: #FFF
+	margin: 27px
+	@include border-radius(12px)
+	width: 460px
+	border: 1px solid #d0cec7
+	padding: 0 27px 27px 14px
+
+	//div.form-wrapper
+	//	padding: 0 27px 27px 14px
+
+	.help-block
+		margin: 0
+
+	input, select
+		margin: 0
+		min-height: 22px
+
+	select
+		height: 40px
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select
+		font-size: 13px
+		padding: 8px
+		@include border-radius(4px)
+		@include appearance(none)
+		border: 1px solid #d0cec7
+		color: #000
+		line-height: 15px
+		&::-webkit-input-placeholder  /* WebKit browsers */
+			color: #000
+
+	input[type="text"],
+	input[type="password"]
+		max-width: 149px
+
+	input[type="checkbox"]
+		margin: 10px 17px 10px 0
+
+	span.signal
+		float: left
+		text-indent: -9999px
+		height: 16px
+		width: 15px
+		background: url(../img/icon-direction.png) no-repeat
+		position: relative
+		bottom: 16px
+		left: 50px
+
+	legend
+		float: right
+		position: relative
+		right: 10px
+		bottom: 13px
+		width: 186px
+		height: 28px
+		text-indent: -9999px
+		background: url(../img/account-settings.png) no-repeat
+
+	.clear
+		clear: both
+
+	div.control-group
+		margin: 0
+		margin-bottom: 5px
+		&:last-child
+			margin-top: 15px
+			padding-top: 8px
+			background: #f5f5f0
+			p
+				padding: 18px 50px
+	.control-group.delete-account
+		margin-top: 25px
+		padding-top: 18px
+		border-top: 1px solid #e5e5e5
+
+	.control-group:after, .control-group:before
+		display: block
+
+	.control-label
+		float: left
+		color: #999
+		width: 100px
+		padding: 11px
+		font-size: 12px
+		text-align: left
+
+	.checkbox
+		padding-left: 0
+
+	.controls
+		margin-left: 122px
+
+		h1
+			padding: 11px
+			font-size: 13px
+			color: #000
+
+		input[type="text"]
+			width: 149px
+
+		input[type="email"],
+		input[type="password"]
+			width: 95%
+
+		input[type="password"].password-line
+			min-width: 95%
+
+		input[type="submit"]
+			font-size: 18px
+
+		input.input-margin
+			margin-bottom: 5px
+
+		select
+			background: url(../img/mini-arrow.png) no-repeat 82px center white
+			width: 110px
+			color: $gray-link
+
+		.select-mini
+			width: 97px
+
+		.select-medium
+			width: 120px
+			background-position: 94px center
+
+		.terms
+			margin-left: 117px
+
+	.accepts
+		margin-left: 98px
+		margin-bottom: 2em
+
+	.terms
+		color: #999
+		font-size: 12px
+		line-height: 18px
+		p
+			font-style: italic
+		a
+			color: #FFFF00
+			&:hover
+				text-decoration: underline
+				cursor: pointer
+
+label.error
+	background: #FFBDBD
+	width: 289px
+	padding: 15px
+	margin: 5px 0
+	color: #FF0000
+	text-shadow: 1px 1px #CCC
+	font-size: 13px
+
+.btn-peoplewings
+	font-size: 18px
+	float: right
+	margin-top: 20px
