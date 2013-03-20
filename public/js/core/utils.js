@@ -24,7 +24,7 @@ define(function(require) {
 			});
 		});
 		return data;
-	};
+	}
 
 	var setAutocomplete = function(autocomplete, wing) {
 		var place = autocomplete.getPlace();
@@ -35,7 +35,7 @@ define(function(require) {
 			cc.name = cc.city;
 			cc = _.omit(cc, "city");
 			wing.city = cc;
-		} else 
+		} else
 			return;
 	};
 
@@ -72,7 +72,7 @@ define(function(require) {
 		modal.modal('show');
 		var acceptBtn = modal.find('.accept-modal-btn');
 		acceptBtn.click(options.callback);
-		
+
 		if (options.form)
 			acceptBtn.attr('form', options.form);
 
@@ -105,7 +105,7 @@ define(function(require) {
 		serializeForm: serialize,
 		showModal: showModal,
 		setAutocomplete: setAutocomplete,
-		getCityAndCountry: getCC,		
+		getCityAndCountry: getCC,
 		getSpinOpts: function(){
 			return opts;
 		},
