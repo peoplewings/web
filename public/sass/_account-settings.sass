@@ -3,9 +3,8 @@
 	 -------------------------------------------------------------------------- */
 
 form#settings-form
-	margin: 0 auto
+	margin: 40px auto
 	background: #FFF
-	margin: 27px
 	@include border-radius(12px)
 	width: 501px
 	border: 1px solid #d0cec7
@@ -57,13 +56,17 @@ form#settings-form
 		text-align: left
 
 	label.error
-		background: #FFBDBD
-		width: 289px
-		padding: 15px
-		margin: 5px 0
+		//background: #FFBDBD
+		background: none
+		display: block
 		color: #FF0000
-		text-shadow: 1px 1px #CCC
 		font-size: 13px
+		text-align: right
+		margin: 0px
+		padding: 0
+		text-shadow: none
+		margin-bottom: 10px
+		width: auto
 
 	label.checkbox
 		padding-left: 0	
@@ -143,7 +146,7 @@ form#settings-form
 		div.controls
 			margin-left: 122px
 			input
-				min-width: 282px
+				min-width: 320px
 		label.control-label
 			padding-left: 25px
 		p
