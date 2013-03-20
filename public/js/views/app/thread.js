@@ -9,7 +9,7 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
-	var itemTpl = require("tmpl!templates/app/notification.html");
+	var itemTpl = require("tmpl!templates/app/thread-closed.html");
 	var openItemTpl = require("tmpl!templates/app/open-notification.html");
 
 	var ThreadView = Backbone.View.extend({
