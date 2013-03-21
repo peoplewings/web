@@ -1,0 +1,258 @@
+@import _reset.sass
+@import _effects.sass
+@import _globals.sass
+
+/* --------------------------------------------------------------------------
+	 Icons
+	 -------------------------------------------------------------------------- */
+
+.search-icon
+	background: url(../img/icon-search.png) no-repeat
+
+.icon-back
+	background: url(../img/icon-back.png) no-repeat 1px 2px
+
+
+/* --------------------------------------------------------------------------
+	 Thread
+	 -------------------------------------------------------------------------- */
+
+// First message and manage, navigation bar
+
+.messages-msg
+	font-size: 12px
+	color: gray
+	background: none
+	margin-top: 0
+	border-top: 1px solid #D3D1CB
+	padding: 0
+	padding-top: 7px
+	@include border-radius(0)
+	div.floatality
+		margin-bottom: 7px
+		padding: 9px
+		background: white
+		min-height: 27px
+		button
+			margin: 0
+			padding: 0
+			padding: 2px 12px
+			border: 1px solid #d0cec7
+			@include bg-gradient(#FFF, #ECECE5)
+			float: left
+		button#back
+			padding-bottom: 3px
+			&:hover 
+				background: #FFF
+				&:active
+					@include bg-gradient(#FFEB00, #FBFAC5)
+		button#delete-thread
+			border-left: none
+			padding-bottom: 3px
+			&:hover 
+				background: #FFF
+				&:active
+					@include bg-gradient(#FFEB00, #FBFAC5)
+		span.icon-back
+			text-indent: -9999px
+			padding: 1px 1px
+		.messages-pager
+			float: right
+			div.resultCounter
+				font-size: 12px
+				float: left
+				padding: 5px
+				padding-right: 10px
+				span:first-child:after
+					content: " - "
+				span:last-child:before
+					content: " of "
+		div.pager-btngroup
+			float: right
+			ul.pager-buttons
+				li:last-child
+					button.button-pager
+						border-left: none
+				button.button-pager
+					padding: 0
+					.icon1
+						display: block
+						width: 25px
+						height: 25px
+					.next-page
+						background: url(../img/pager-next.png) no-repeat 10px 8px
+					.prev-page
+						background: url(../img/pager-prev.png) no-repeat 8px 8px
+					&:hover 
+						background: #FFF
+					&:active
+						@include bg-gradient(#FFEB00, #FBFAC5)
+
+// Wing static description
+
+li.wing-item
+	div.messages-state
+		padding: 15px 20px
+		h2
+			display: inline
+			color: black
+			font-size: 14px
+		h3
+			display: inline
+			font-style: italic
+			padding-left: 10px
+			font-size: 14px
+	div.messages-dates
+		div.messages-dates-info
+			padding: 15px 20px
+			dt
+				padding-left: 5px
+			dd:last-child
+				padding-left: 10px
+				font-weight: bold
+				font-style: normal
+
+// Response
+
+li.response-item
+	background: #FFF
+	border: 1px solid #D0CEC7
+	width: 100%
+	margin-bottom: 5px
+	div.msg-header
+		overflow: hidden
+		border-bottom: 1px solid #D0CEC7
+		width: 100%
+		div.msg-avatar
+			float: left
+			width: 65px
+			height: 65px
+			img
+				width: 65px
+				height: 65px
+		div.msg-header-content-left
+			float: left
+			padding: 10px 12px 0 12px
+			line-height: 16px
+			h1
+				display: block
+				font-weight: bold
+			h2
+				display: inline
+				a
+					color: #000
+					font-weight: bold
+					&:hover
+						color: #000
+						text-decoration: underline
+			h3
+				display: inline
+			h4
+				font-style: italic
+		div.msg-header-content-right
+			float: right
+			font-weight: bold
+			padding: 10px 12px 0 12px
+			text-align: right
+			h1
+				color: #000
+			h2
+				text-transform: capitalize
+				&.accepted
+					color: #85c333
+				&.maybe
+					color: #fa9e03
+				&.pending
+					color: #ee4040
+				&.declined
+					color: #7e7b71
+	div.response-options
+		float: left
+		padding: 10px 12px 0 12px
+		font-size: 12px
+		h1
+			display: inline
+		span
+			font-weight: bold
+			color: #000
+			cursor: pointer
+	div#write-response
+		float: right
+		font-size: 12px
+		div.response-wrapper
+			margin: 10px
+			margin-left: 0
+			border: 1px solid #D0CEC7
+			h1
+				text-transform: capitalize
+				font-weight: bold
+				background: #f5f5f0
+				padding: 10px 10px 10px 15px
+				padding-left: 45px
+			div.accepted h1
+				color: #85c333
+				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
+			div.maybe h1
+				color: #fa9e03
+				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
+			div.pending h1
+				color: #ee4040
+				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
+			div.denied h1
+				color: #7e7b71
+				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
+			form#wing-params-form
+				border-bottom: 1px solid #d3d1ca
+				input
+					margin-bottom: 0
+				div.response-header-dates
+					h2
+						font-weight: bold
+						margin-right: 10px
+						span
+							font:
+								weight: normal
+								style: italic
+			textarea
+				border-top-left-radius: 0px
+				border-top-right-radius: 0px
+				border-bottom-right-radius: 2px
+				border-bottom-left-radius: 2px
+				border: none
+				width: 843px
+				margin: 0px
+				padding: 15px
+				padding-top: 10px
+				font:
+					size: 12px
+					style: italic
+				height: 72px
+				max-width: 859px 
+	div.msg-params-box
+		dt, dd
+			display: inline
+			margin-right: 5px
+		dd
+			color: black
+			font-weight: bold
+			span
+				font-weight: normal
+	div.msg-content
+		padding: 24px
+		padding-left: 79px
+	div.msg-message
+		border-top: 1px solid #D0CEC7
+		margin-top: 15px
+		padding-top: 15px
+		color: #000
+	div.button-footer
+		button.button1
+			padding: 10px 25px
+			border-left: 1px solid #D0CEC7
+			margin: 0
+			padding: 0
+			width: auto
+			background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, #ecece5 100%)
+			float: left
+			border-right: none
+			border-bottom: none

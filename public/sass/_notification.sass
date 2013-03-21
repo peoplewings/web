@@ -1,0 +1,169 @@
+@import _reset.sass
+@import _effects.sass
+@import _globals.sass
+
+/* --------------------------------------------------------------------------
+   Notification
+   -------------------------------------------------------------------------- */
+
+// Panel de filtros
+
+#notification-panel
+	font-size: 12px
+	color: gray
+	background: none
+	margin-top: 0
+	border-top: 1px solid #D3D1CB
+	padding: 0
+	padding-top: 7px
+	@include border-radius(0)
+	.floatality
+		margin-bottom: 7px
+		padding: 9px
+		background: white
+		min-height: 27px
+		.btn-group
+			float: left
+			margin-right: 100px
+			padding-top: 5px
+			label
+				float: left
+				margin-right: 10px
+		.messages-filters
+			label#filter-title
+				float: left
+				padding: 5px
+				margin-right: 10px
+			select
+				float: left
+				margin: 0
+				margin-right: 4px
+			li.checkbox
+				float: left
+				display: block
+				margin: 0 0 0 30px
+				padding: 5px
+		.messages-dropdown
+			float: left
+			display: block
+			background: url(../img/mini-arrow.png) no-repeat center center
+			width: 12px
+		.messages-pager
+			float: right
+			.resultCounter
+				font-size: 12px
+				span:first-child:after
+					content: " - "
+				span:last-child:before
+					content: " of "
+			#notifications-pager
+				li
+					float: left
+					&:first-child
+						margin-top: 4px
+						margin-right: 12px
+
+
+// Lista de elementos
+
+ul#notifications-list
+	margin-bottom: 50px
+
+li.notification-item
+	font-size: 12px
+	overflow: hidden
+	float: none
+	border: 1px solid #D0CEC7
+	border-bottom: none
+	background: #FFF
+	cursor: pointer
+	&:last-child
+		border-bottom: 1px solid #D0CEC7
+	div
+		float: left
+		overflow: hidden
+	div.messages-check
+		padding: 10px 6px
+		padding-top: 20px
+	div.messages-avatar
+		width: 65px
+		height: 65px
+		img
+			width: 65px
+			height: 65px
+	div.messages-sender
+		padding: 15px 15px 0 20px
+		line-height: 16px
+		h1
+			display: inline
+			a
+				color: #000
+				font-weight: bold
+				&:hover
+					color: #000
+					text-decoration: underline
+		span, h2
+			color: #999
+	div.messages-flag
+		span
+			display: block
+			width: 62px
+			height: 65px
+			float: left
+			text-indent: -9999px
+		.from-me
+			background: url(../img/states/icon-left.png) no-repeat 0 top
+		.to-me
+			background: url(../img/states/icon-right.png) no-repeat 24px top
+		.from-me.accepted
+			background: url(../img/states/icon-accepted-left.png) no-repeat left top
+		.to-me.accepted
+			background: url(../img/states/icon-accepted-right.png) no-repeat right top
+		.from-me.maybe
+			background: url(../img/states/icon-maybe-left.png) no-repeat left top
+		.to-me.maybe
+			background: url(../img/states/icon-maybe-right.png) no-repeat right top
+		.from-me.pending
+			background: url(../img/states/icon-pending-left.png) no-repeat left top
+		.to-me.pending
+			background: url(../img/states/icon-pending-right.png) no-repeat right top
+		.from-me.denied
+			background: url(../img/states/icon-declined-left.png) no-repeat left top
+		.to-me.denied
+			background: url(../img/states/icon-declined-right.png) no-repeat right top
+	div.messages-state
+		padding: 8px 15px
+		line-height: 16px
+		h1.messages-name
+			color: #000
+			font-weight: bold
+			&.accepted
+				color: #85c333
+			&.maybe
+				color: #fa9e03
+			&.pending
+				color: #ee4040
+			&.declined
+				color: #7e7b71
+		h2
+			text-transform: capitalize
+			font-weight: bold
+	div.messages-dates
+		float: right
+		div.messages-dates-info
+			padding: 8px 15px
+			line-height: 16px
+			font-style: italic
+			color: gray
+			dl
+				text-align: right
+				dt
+					font-weight: bold
+					margin-right: 5px
+				dt, dd
+					display: inline
+		div.messages-date-msg
+			border-left: 1px solid #D0CEC7
+			padding: 22px 20px
+			padding-bottom: 23px
+			font-weight: bold
