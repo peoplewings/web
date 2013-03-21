@@ -12,7 +12,7 @@
 		<h3>From me</h3>
 	</div>
 	<div class="messages-date-msg">
-		{{date created "MMM Do"}}
-		<h1>Request {{name}}</h1>
+		<h1>{{date created "MMM Do, HH:mm"}}</h1>
+		<h2 class="{{enum state 'notification-state'}}">Request {{enum state 'notification-state'}}</h2>
 	</div>
 </li>
