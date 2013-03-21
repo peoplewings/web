@@ -229,7 +229,7 @@ define(function(require) {
 				this.$('.state-flag')
 					.removeClass(e(this.data.wing.state, "notification-state"))
 					.addClass(e(this.prevState, "notification-state"))
-					.find("h2")
+					.find("span")
 					.text(e(this.prevState, "notification-state"));
 
 				this.data.wing.state = this.prevState;
@@ -301,7 +301,7 @@ define(function(require) {
 				.show()
 				.removeClass(e(prevState, "notification-state"))
 				.addClass(e(option, "notification-state"))
-				.find("h1")
+				.find("span")
 				.text(e(option, "notification-state"));
 
 			this.$("#wing-params-form")
