@@ -66,6 +66,28 @@ define(function(require) {
 		return modal;
 	};
 
+	var weekMs = moment(0).add('weeks', 1).valueOf();
+	var dayMs = moment(0).add('days', 1).valueOf();
+	var hourMs = moment(0).add('hours', 1).valueOf();
+	var minuteMs = moment(0).add('minutes', 1).valueOf();
+
+	function formatReplyTime(time) {
+		var weeks = Math.floor(time / weekMs);
+		if (weeks > 4) return '+4w';
+		if (weeks > 0) return weeks + 'w';
+
+		var days = Math.floor(time / dayMs);
+		if (days > 0) return days + 'd';
+
+		var hours = Math.floor(time / hourMs);
+		if (hours > 0) return hours + 'h';
+
+		var minutes = Math.floor(time / minuteMs);
+		if (minutes > 5) return minutes + 'm';
+
+		return '5m';
+	}
+
 	var opts = {
 		lines: 13, // The number of lines to draw
 		length: 3, // The length of each line
@@ -88,6 +110,7 @@ define(function(require) {
 		serializeForm: serialize,
 		getCityAndCountry: getCC,
 		showModal: showModal,
+		formatReplyTime: formatReplyTime,
 		getSpinOpts: function(){
 			return opts;
 		},

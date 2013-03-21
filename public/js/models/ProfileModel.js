@@ -2,9 +2,9 @@ define(function(require) {
 
 	var Backbone = require('backbone');
 	var api = require('api2');
+	var utils = require('utils');
 	var Promise = require('promise');
 	var phrases = require('phrases');
-
 	var factory = require('core/factory');
 
 	var Preview = Backbone.Model.extend({
@@ -38,7 +38,7 @@ define(function(require) {
 
 		parse: function(profile, wings){
 			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
-			profile.replyTimeVerbose = moment.duration(+profile.replyTime).humanize();
+			profile.replyTimeVerbose = utils.formatReplyTime(profile.replyTime);
 
 			profile.birthdayVerbose = this.parseBirthday({
 				day: profile.birthDay,
