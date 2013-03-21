@@ -27,7 +27,6 @@
 	<div class="floatality">
 		<button id="back"><span class="icon-back">Back</span></button>
 		<button id="delete-thread" value="Delete">Delete</button>
-
 		<div class="messages-pager">
 			<div class="resultCounter">
 				<span>1</span>
@@ -42,16 +41,15 @@
 			</div>
 		</div>
 	</div>
-
 	<ul id="notif-list">
 		{{{items}}}
+		<div class="msg-arrow"></div>
 		<li class="response-item">
-			<div class="msg-avatar">
+			<div class="messages-avatar">
 				<!-- <span class="{{#if senderOnline}}online{{/if}}">{{senderOnline}}</span> -->
 				<img src="{{me.avatar}}">
 			</div>
-
-			<div id="response-options" class="msg-header-content-left">
+			<div id="response-options">
 				{{#if isMessage}}
 				<h1>Click to</h1>
 				<span id="response-reply">Reply</span>
@@ -64,15 +62,13 @@
 					{{/each}}
 					{{/if}}
 				</div>
-
 				<div id="write-response" style="display: none">
 					<div class="response-wrapper">
 						{{#unless isMessage}}
 						<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}" style="display: none">
 							<h1>{{enum state 'notification-state'}}</h1>
 						</div>
-
-						<div class="msg-params-box" style="display: none;">
+						<div class="messages-params-box" style="display: none;">
 							<dl>
 								<dt>Requested wing :</dt>
 								<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} <span>({{type}} in {{parameters.wingCity}})</span></dd>
@@ -94,7 +90,6 @@
 								<dd>{{parameters.arrivingVia}}</dd>
 							</dl>
 						</div>
-
 						<div id="edit-wing-params" style="display: none">
 							<form id="wing-params-form">
 								<div class="response-header">
@@ -113,13 +108,12 @@
 								</div><!-- EOF response-header -->
 							</form>
 						</div>
-
 						{{/unless}}
 						<textarea placeholder="Write your message"></textarea>
 					</div><!-- EOF response-wrapper -->
 					<div class="button-footer">
+						<button id="send-response" class="button1 yellow" data-loading-text="Sending...">Send</button>
 						<button id="cancel-response" class="button1">Cancel</button>
-						<button id="send-response" class="button1" data-loading-text="Sending...">Send</button>
 					</div>
 				</div><!-- EOF write-response -->
 			</li>

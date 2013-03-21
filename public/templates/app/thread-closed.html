@@ -1,18 +1,20 @@
 <div class="msg-arrow"></div>
 <li class="thread-item" data-type="notification-item" data-rel="{{id}}" data-thread="{{reference}}" data-index="{{index}}">
-	<div class="messages-avatar">
-		<img src="{{avatar}}">
-	</div>
-	<div class="messages-sender {{#unless read}}unread{{/unless}}">
-		<legend>Request form</legend>
-		<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{name}}</a></h1>
-		<span class="messages-age">[{{age}}]</span>
-		<span class="{{#if online}}online{{/if}}">{{connected}}</span>
-		<h2>{{location}}</h2>
-		<h3>From me</h3>
-	</div>
-	<div class="messages-date-msg">
-		<h1>{{date created "MMM Do, HH:mm"}}</h1>
-		<h2 class="{{enum state 'notification-state'}}">Request {{enum state 'notification-state'}}</h2>
+	<div class="messages-header">
+		<div class="messages-avatar">
+			<img src="{{avatar}}">
+		</div>
+		<div class="messages-sender {{#unless read}}unread{{/unless}}">
+			<legend>Request form</legend>
+			<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{name}}</a></h1>
+			<span class="messages-age">[{{age}}]</span>
+			<span class="{{#if online}}online{{/if}}">{{connected}}</span>
+			<h2>{{location}}</h2>
+			<h3>From me</h3>
+		</div>
+		<div class="messages-date-msg">
+			<h1>{{date created "MMM Do, HH:mm"}}</h1>
+			<h2 class="{{enum state 'notification-state'}}">Request {{enum state 'notification-state'}}</h2>
+		</div>
 	</div>
 </li>

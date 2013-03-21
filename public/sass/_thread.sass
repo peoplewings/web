@@ -17,6 +17,16 @@
 	 Thread
 	 -------------------------------------------------------------------------- */
 
+// Arrow up
+
+div.msg-arrow
+	width: 12px
+	height: 11px
+	background: url(../img/icon-pick.png) no-repeat
+	position: relative
+	bottom: -1px
+	left: 77px
+
 // Wing static description
 
 li.wing-item
@@ -114,6 +124,9 @@ div.messages-msg
 
 // Thread item
 
+ul#notif-list
+	margin-bottom: 50px
+
 li.thread-item
 	font-size: 12px
 	overflow: hidden
@@ -122,90 +135,25 @@ li.thread-item
 	border-bottom: none
 	background: #FFF
 	cursor: pointer
-	&:last-child
-		border-bottom: 1px solid #D0CEC7
+	margin-bottom: -7px
 	div
 		float: left
 		overflow: hidden
-	div.messages-check
-		padding: 10px 6px
-		padding-top: 20px
-	div.messages-avatar
-		width: 65px
-		height: 65px
-		img
-			width: 65px
-			height: 65px
-	div.messages-sender
-		padding: 10px 15px 0 20px
-		line-height: 16px
-		legend
-			font-weight: bold
-			color: #999
-		h1
-			display: inline
-			a
-				color: #000
-				font-weight: bold
-				&:hover
-					color: #000
-					text-decoration: underline
-		span, h2
-			color: #999
-			display: inline
-		h3
-			font-style: italic
-	div.messages-state
-		padding: 8px 15px
-		line-height: 16px
-		h1.messages-name
-			color: #000
-			font-weight: bold
-			&.accepted
-				color: #85c333
-			&.maybe
-				color: #fa9e03
-			&.pending
-				color: #ee4040
-			&.declined
-				color: #7e7b71
-		h2
-			text-transform: capitalize
-			font-weight: bold
-
-	div.messages-date-msg
-		float: right
-		padding: 12px 15px 12px 20px
-		font-weight: bold
-		color: #000
-		text-align: right
-
-// Response
-
-li.thread-item, li.response-item
-	background: #FFF
-	border: 1px solid #D0CEC7
-	width: 100%
-	margin-bottom: 5px
-	div.msg-header
-		overflow: hidden
+	div.messages-header
 		border-bottom: 1px solid #D0CEC7
-		width: 100%
-		div.msg-avatar
-			float: left
+		div.messages-avatar
 			width: 65px
 			height: 65px
 			img
 				width: 65px
 				height: 65px
-		div.msg-header-content-left
-			float: left
-			padding: 10px 12px 0 12px
+		div.messages-sender
+			padding: 10px 15px 0 20px
 			line-height: 16px
-			h1
-				display: block
+			legend
 				font-weight: bold
-			h2
+				color: #999
+			h1
 				display: inline
 				a
 					color: #000
@@ -213,19 +161,17 @@ li.thread-item, li.response-item
 					&:hover
 						color: #000
 						text-decoration: underline
-			h3
+			span, h2
+				color: #999
 				display: inline
-			h4
+			h3
 				font-style: italic
-		div.msg-header-content-right
-			float: right
-			font-weight: bold
-			padding: 10px 12px 0 12px
-			text-align: right
-			h1
+		div.messages-state
+			padding: 8px 15px
+			line-height: 16px
+			h1.messages-name
 				color: #000
-			h2
-				text-transform: capitalize
+				font-weight: bold
 				&.accepted
 					color: #85c333
 				&.maybe
@@ -234,7 +180,53 @@ li.thread-item, li.response-item
 					color: #ee4040
 				&.declined
 					color: #7e7b71
-	div.response-options
+			h2
+				text-transform: capitalize
+				font-weight: bold
+		div.messages-date-msg
+			float: right
+			padding: 12px 15px 12px 20px
+			font-weight: bold
+			color: #000
+			text-align: right
+	div.messages-content
+		padding: 24px
+		padding-left: 84px
+		float: none
+		border-bottom: 1px solid #D0CEC7
+		div.messages-params-box
+			float: none
+			dt, dd
+				display: inline
+				margin-right: 5px
+			dd
+				color: black
+				font-weight: bold
+				span
+					font-weight: normal
+		div.messages-msg
+			border-top: 1px solid #D0CEC7
+			margin-top: 15px
+			padding-top: 15px
+			color: #000
+
+// Response item
+
+li.response-item
+	font-size: 12px
+	overflow: hidden
+	float: none
+	border: 1px solid #D0CEC7
+	background: #FFF
+	margin-bottom: -7px
+	div.messages-avatar
+		float: left
+		width: 65px
+		height: 65px
+		img
+			width: 65px
+			height: 65px
+	div#response-options
 		float: left
 		padding: 10px 12px 0 12px
 		font-size: 12px
@@ -246,7 +238,6 @@ li.thread-item, li.response-item
 			cursor: pointer
 	div#write-response
 		float: right
-		font-size: 12px
 		div.response-wrapper
 			margin: 10px
 			margin-left: 0
@@ -295,32 +286,45 @@ li.thread-item, li.response-item
 					size: 12px
 					style: italic
 				height: 72px
-				max-width: 859px 
-	div.msg-params-box
-		dt, dd
-			display: inline
-			margin-right: 5px
-		dd
-			color: black
-			font-weight: bold
-			span
-				font-weight: normal
-	div.msg-content
-		padding: 24px
-		padding-left: 79px
-	div.msg-message
-		border-top: 1px solid #D0CEC7
-		margin-top: 15px
-		padding-top: 15px
-		color: #000
-	div.button-footer
-		button.button1
-			padding: 10px 25px
-			border-left: 1px solid #D0CEC7
-			margin: 0
-			padding: 0
-			width: auto
-			background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, #ecece5 100%)
-			float: left
-			border-right: none
-			border-bottom: none
+				max-width: 859px
+			div#edit-wing-params
+				background: #e1e0d9
+				.response-header
+					.response-header-dates
+						padding: 14px
+						h2
+							padding-left: 3px
+							margin-bottom: 4px
+							span
+								margin-right: 10px
+						input
+							font-size: 12px
+						input.input-sdate
+							width: 97px
+							background: url(../img/start-date.png) no-repeat 83px 6px white
+							padding-left: 10px
+						input.input-edate
+							width: 97px
+							background: url(../img/start-date.png) no-repeat 83px 6px white
+							padding-left: 10px
+						select
+							margin: 0
+							background: url(../img/mini-arrow.png) no-repeat 40px #FFF
+div.button-footer
+	float: right
+	clear: both
+	button.button1
+		margin: 0
+		padding: 10px 25px
+		border-left: 1px solid #D0CEC7
+		width: auto
+		background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, #ecece5 100%)
+		float: left
+		border-right: none
+		border-bottom: none
+		&:hover
+			background: #FFF
+		&:active
+			@include bg-gradient(#FFEB00, #FBFAC5)
+	.button1.yellow
+		@include bg-gradient(#FFFF00, #FFEA00)

@@ -1,26 +1,27 @@
+<div class="msg-arrow"></div>
 <li class="thread-item" data-type="notification-item" data-rel="{{id}}" data-user-id="{{senderId}}" data-user-name="{{senderName}}">
-	<div class="messages-avatar">
-		<img src="{{senderMedAvatar}}">
+	<div class="messages-header">
+		<div class="messages-avatar">
+			<img src="{{senderMedAvatar}}">
+		</div>
+		<div class="messages-sender {{#unless read}}unread{{/unless}}">
+			<legend>Request form</legend>
+			<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{senderName}}</a></h1>
+			<span class="messages-age">[{{senderAge}}]</span>
+			<span class="{{#if online}}online{{/if}}">{{connected}}</span>
+			<h2>{{senderLocation}}</h2>
+			<h3>From me</h3>
+		</div>
+		<div class="messages-date-msg">
+			<h1>{{date created "MMM Do, HH:mm"}}</h1>
+			<h2 class="{{enum state 'notification-state'}}">Request {{enum state 'notification-state'}}</h2>
+		</div>
 	</div>
-	<div class="messages-sender {{#unless read}}unread{{/unless}}">
-		<legend>Request form</legend>
-		<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{senderName}}</a></h1>
-		<span class="messages-age">[{{senderAge}}]</span>
-		<span class="{{#if online}}online{{/if}}">{{connected}}</span>
-		<h2>{{senderLocation}}</h2>
-		<h3>From me</h3>
-	</div>
-	<div class="messages-date-msg">
-		<h1>{{date created "MMM Do, HH:mm"}}</h1>
-		<h2 class="{{enum state 'notification-state'}}">Request {{enum state 'notification-state'}}</h2>
-	</div>
-
-	<div class="msg-content msg-response">
+	<div class="messages-content">
 		{{#if isMessage}}
 		{{content.message}}
 		{{else}}
-
-		<div class="msg-params-box">
+		<div class="messages-params-box">
 			<dl>
 				<dt>Requested wing : </dt>
 				<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} ({{type}} in {{parameters.wingCity}})</dd>
@@ -42,8 +43,7 @@
 				<dd>{{parameters.arrivingVia}}</dd>
 			</dl>
 		</div>
-
-		<div class="msg-text">
+		<div class="messages-msg">
 			{{content.message}}
 		</div>
 		{{/if}}
