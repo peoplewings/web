@@ -172,14 +172,6 @@ li.thread-item
 			h1.messages-name
 				color: #000
 				font-weight: bold
-				&.accepted
-					color: #85c333
-				&.maybe
-					color: #fa9e03
-				&.pending
-					color: #ee4040
-				&.declined
-					color: #7e7b71
 			h2
 				text-transform: capitalize
 				font-weight: bold
@@ -189,6 +181,16 @@ li.thread-item
 			font-weight: bold
 			color: #000
 			text-align: right
+			&.accepted h2
+				color: #85c333
+			&.maybe h2
+				color: #fa9e03
+			&.pending h2
+				color: #ee4040
+			&.denied h2
+				color: #7e7b71
+			span
+				text-transform: capitalize
 	div.messages-content
 		padding: 24px
 		padding-left: 84px
@@ -213,12 +215,13 @@ li.thread-item
 // Response item
 
 li.response-item
-	font-size: 12px
 	overflow: hidden
 	float: none
 	border: 1px solid #D0CEC7
 	background: #FFF
 	margin-bottom: -7px
+	div, input, select, textarea
+		font-size: 12px
 	div.messages-avatar
 		float: left
 		width: 65px
@@ -229,7 +232,6 @@ li.response-item
 	div#response-options
 		float: left
 		padding: 10px 12px 0 12px
-		font-size: 12px
 		h1
 			display: inline
 		span
@@ -273,20 +275,13 @@ li.response-item
 								weight: normal
 								style: italic
 			textarea
-				border-top-left-radius: 0px
-				border-top-right-radius: 0px
-				border-bottom-right-radius: 2px
-				border-bottom-left-radius: 2px
 				border: none
+				height: 72px
 				width: 843px
 				margin: 0px
 				padding: 15px
 				padding-top: 10px
-				font:
-					size: 12px
-					style: italic
-				height: 72px
-				max-width: 859px
+				color: #000
 			div#edit-wing-params
 				background: #e1e0d9
 				.response-header
@@ -295,10 +290,8 @@ li.response-item
 						h2
 							padding-left: 3px
 							margin-bottom: 4px
-							span
-								margin-right: 10px
-						input
-							font-size: 12px
+						span
+							margin-left: 10px
 						input.input-sdate
 							width: 97px
 							background: url(../img/start-date.png) no-repeat 83px 6px white
