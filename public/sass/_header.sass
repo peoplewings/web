@@ -72,18 +72,12 @@ input#header-search
 div.nav-menu
 	ul.nav.pull-right
 		text-transform: uppercase
-		margin-top: 8px
+		margin-top: 5px
 		margin-right: 0
 		li
-			padding: 12px 0
-			&:last-child
-				padding: 0
+			padding: 15px 0
 			a
 				display: inline-block
-			a.profile-box
-				padding: 12px 0 0 0
-				&:hover
-					background: #D0CEC7
 			span#notif-count
 				float: left
 				padding-right: 10px
@@ -101,6 +95,15 @@ div.nav-menu
 				height: 35px
 				margin: -13px 0 0 10px
 				border: 2px solid #FFF
+		li.logged
+			padding: 0
+			&:after
+				margin-right: 0px
+			a
+				padding: 15px 2px 2px 0px
+				&:hover
+					background: #D0CEC7
+					text-decoration: none
 
 div.btn-group.pull-right
 	margin-top: 20px
