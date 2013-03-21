@@ -1,51 +1,18 @@
 <div class="msg-arrow"></div>
-<li class="notification-item" data-type="notification-item" data-rel="{{id}}" data-thread="{{reference}}" data-index="{{index}}">
+<li class="thread-item" data-type="notification-item" data-rel="{{id}}" data-thread="{{reference}}" data-index="{{index}}">
 	<div class="messages-avatar">
 		<img src="{{avatar}}">
 	</div>
-	<div class="messages-sender">
-		<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{name}},</a></h1>
+	<div class="messages-sender {{#unless read}}unread{{/unless}}">
+		<legend>Request form</legend>
+		<h1 class="messages-name"><a href="#/users/{{interlocutorId}}">{{name}}</a></h1>
 		<span class="messages-age">[{{age}}]</span>
 		<span class="{{#if online}}online{{/if}}">{{connected}}</span>
 		<h2>{{location}}</h2>
+		<h3>From me</h3>
 	</div>
-	<div class="messages-flag">
-		<span class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}">state flag</span>
-	</div>
-	<div class="messages-state {{#unless read}}unread{{/unless}}">
-		{{#if isMessage }}
-		<h1 class="messages-name">{{content}}</h1>
-	</div>
-	<div class="messages-dates">
-		{{else}}
-		<h1 class="messages-name">{{enum kind 'notification-type'}}</h1>
-		{{#with wingParameters}}
-		<h2>{{wingType}} {{wingCity}}</h2>
-		<h3>{{message}}</h3>
-	</div>
-	<div class="messages-dates">
-		<div class="messages-dates-info">
-			<dl>
-				<dt>From</dt>
-				<dd {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>
-					{{date startDate}}
-				</dd>
-			</dl>
-			<dl>
-				<dt>To</dt>
-				<dd {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>
-					{{date endDate}}
-				</dd>
-			</dl>
-			<dl>
-				<dd {{#if_contains parameters.modified "numPeople" }}class="modified"{{/if_contains}}>
-					{{numPeople}}
-					<span>people</span>
-				</dd>
-			</dl>
-		</div>
-		{{/with}}
-		{{/if}}
-		<div class="messages-date-msg">{{date created "MMM Do"}}</div>
+	<div class="messages-date-msg">
+		{{date created "MMM Do"}}
+		<h1>Request {{name}}</h1>
 	</div>
 </li>
