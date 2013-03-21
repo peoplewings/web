@@ -47,18 +47,14 @@ define(function(require) {
 
 		//Anonymous User hashs
 		register: function(){
-			if (api.userIsLoggedIn()){
-				this.defaultAction();
-			} else {
-				registerView.render();
-			}
+			if (api.userIsLoggedIn())
+				return this.defaultAction();
+			registerView.render();
 		},
 		login: function(){
-			if (api.userIsLoggedIn()){
-				this.defaultAction();
-			} else {
-				loginView.render();
-			}
+			if (api.userIsLoggedIn())
+				return this.defaultAction();
+			loginView.render();
 		},
 		activate: function(id){
 			activateView.render(id);
@@ -66,6 +62,10 @@ define(function(require) {
 		forgotPassword: function(id){
 			passwordView.render(id);
 		},
+		landing: function() {
+			document.location = '/landing.html';
+		},
+
 		search: function(params){
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
@@ -81,18 +81,20 @@ define(function(require) {
 			logoutView.logout();
 		},
 		settings: function(){
-			if (api.userIsLoggedIn()){
-				if (!this.settingsView)
-					this.settingsView = new SettingsView;
-				this.settingsView.render();
-			} else this.login();
+			if (!api.userIsLoggedIn())
+				return this.landing();
 
+			if (!this.settingsView)
+				this.settingsView = new SettingsView;
+			this.settingsView.render();
 		},
 		aboutProfile: function(userId){
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
 			this.previewView.render(+userId);
-
 		},
 
 		wings: function(wingId){
@@ -105,37 +107,39 @@ define(function(require) {
 		},
 
 		showNotifications: function(filters){
-			if (!this.notificationsView){
-				notificationsView.render(JSON.parse(filters || '{}'));
-			} else this.notificationsView.render();
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			notificationsView.render(JSON.parse(filters || '{}'));
 		},
 		showThread: function(id) {
-			if (!this.threadView){
-				this.threadView = threadView;
-				threadView.render(id);
-			} else this.threadView.render(id);
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			threadView.render(id);
 		},
 		defaultAction: function(){
 			console.log('router.js: defaultAction()');
-			if (api.userIsLoggedIn())
-				appHomeView.render();
-			else
-				homeView.render();
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			return appHomeView.render();
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
 			return window._gaq.push(['_trackPageview', "/" + url]);
 		},
 		initialize: function(){
-			console.log('router.js: initialize()  ', api.getAuthToken(), api.getUserId());
+			console.log('router.js: initialize() ', api.getAuthToken(), api.getUserId());
 			Backbone.history.start();
+
 			if (api.userIsLoggedIn()){
-				if (!this.header){
+				if (!this.header)
 					this.header = new Header;
-				} else {
+				else
 					this.header.render();
-				}
 			}
+
 			return this.bind('all', this._trackPageview);
 		}
 	});
