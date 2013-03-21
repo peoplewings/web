@@ -307,17 +307,23 @@ define(function(require) {
 			this.$("#wing-params-form")
 				.validate(this.responseValidation);
 
-			this.$("input[name=startDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd");
+			$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
 
-			this.$("input[name=endDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.rules("add", {
-					greatThan: this.$("input[name=startDate]") ,
 
-				});
+			this.$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
+
+			this.$("input[name=endDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			}).rules("add", {
+				greatThan: this.$("input[name=startDate]"),
+			});
 
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);
