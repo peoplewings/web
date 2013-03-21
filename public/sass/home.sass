@@ -21,6 +21,26 @@ body
 
 @import _header.sass
 
+input#header-search
+	float: left
+	margin-top: 16px
+	border: 1px solid #D0CEC7
+	@include border-radius(13px)
+	//@include box-shadow(inset, 1px, 1px, 2px, 0px, #DDD)
+	margin:
+		top: 15px
+		left: 20px
+	width: 175px
+	background: url(../img/icon-search.png) no-repeat 10px 5px #FFF
+	padding:
+		top: 2px
+		left: 30px
+	font-size: 12px
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:active, &:focus
+		outline: none
+		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
+
 @import _register.sass
 @import _login.sass
 @import _search.accommodation.sass
