@@ -9,7 +9,7 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
-	var itemTpl = require("tmpl!templates/app/notification.html");
+	var itemTpl = require("tmpl!templates/app/thread-closed.html");
 	var openItemTpl = require("tmpl!templates/app/open-notification.html");
 
 	var ThreadView = Backbone.View.extend({
@@ -307,17 +307,23 @@ define(function(require) {
 			this.$("#wing-params-form")
 				.validate(this.responseValidation);
 
-			this.$("input[name=startDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd");
+			$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
 
-			this.$("input[name=endDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.rules("add", {
-					greatThan: this.$("input[name=startDate]") ,
 
-				});
+			this.$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
+
+			this.$("input[name=endDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			}).rules("add", {
+				greatThan: this.$("input[name=startDate]"),
+			});
 
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);
