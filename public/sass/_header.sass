@@ -5,6 +5,26 @@
 header
 	height: 53px
 
+input#header-search
+	float: left
+	margin-top: 16px
+	border: 1px solid #D0CEC7
+	@include border-radius(13px)
+	//@include box-shadow(inset, 1px, 1px, 2px, 0px, #DDD)
+	margin:
+		top: 15px
+		left: 20px
+	width: 175px
+	background: url(../img/icon-search.png) no-repeat 10px 5px #FFF
+	padding:
+		top: 2px
+		left: 30px
+	font-size: 12px
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:active, &:focus
+		outline: none
+		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
+
 .navbar.nav.navbar-fixed-top
 	background: $gray-clear
 	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.4))
@@ -49,19 +69,43 @@ header
 					color: $blue_corp
 					text-decoration: underline
 
-.nav.pull-right
-	text-transform: uppercase
-	span#notif-count
-		float: left
-		padding-right: 10px
-	img
-		float: right
-		width: 24px
-		height: 24px
-		position: relative
-		top: -6px
-		right: 7px
+div.nav-menu
+	ul.nav.pull-right
+		text-transform: uppercase
+		margin-top: 8px
+		margin-right: 0
+		li
+			padding: 12px 0
+			&:last-child
+				padding: 0
+			a
+				display: inline-block
+			a.profile-box
+				padding: 12px 0 0 0
+				&:hover
+					background: #D0CEC7
+			span#notif-count
+				float: left
+				padding-right: 10px
+				display: block
+				width: 14px
+				height: 14px
+				color: #FFF
+				font-weight: bold
+				background: url(../img/icon-messages-received.png) no-repeat left center
+				&:hover
+					background: url(../img/icon-messages-received-selected.png) no-repeat left center
+			img
+				float: right
+				width: 35px
+				height: 35px
+				margin: -13px 0 0 10px
+				border: 2px solid #FFF
 
-.btn-group.pull-right
+div.btn-group.pull-right
 	margin-top: 20px
-
+	span.config
+		display: block
+		height: 14px
+		width: 15px
+		background: url(../img/config.png) no-repeat left top
