@@ -9,7 +9,7 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
-	var itemTpl = require("tmpl!templates/app/notification.html");
+	var itemTpl = require("tmpl!templates/app/thread-closed.html");
 	var openItemTpl = require("tmpl!templates/app/open-notification.html");
 
 	var ThreadView = Backbone.View.extend({
@@ -218,7 +218,7 @@ define(function(require) {
 				.find('textarea')
 					.val('');
 
-			this.$('#write-response > div.state-flag')
+			this.$('#write-response > span.state-flag')
 					.hide();
 
 			this.$('#edit-wing-params')
@@ -229,7 +229,7 @@ define(function(require) {
 				this.$('.state-flag')
 					.removeClass(e(this.data.wing.state, "notification-state"))
 					.addClass(e(this.prevState, "notification-state"))
-					.find("span")
+					.find("h2")
 					.text(e(this.prevState, "notification-state"));
 
 				this.data.wing.state = this.prevState;
@@ -301,7 +301,7 @@ define(function(require) {
 				.show()
 				.removeClass(e(prevState, "notification-state"))
 				.addClass(e(option, "notification-state"))
-				.find("span")
+				.find("h1")
 				.text(e(option, "notification-state"));
 
 			this.$("#wing-params-form")

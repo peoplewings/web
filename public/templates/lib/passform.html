@@ -1,22 +1,22 @@
 <legend>Reset password</legend>
 <p>Please enter a new password for your account</p>
-<form id="password-form" class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">New password</label>
-    <div class="controls">
-      <input type="password" id="inputPassword" name="newPassword" placeholder="Password" class="span3 required">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword2">Re-type password</label>
-    <div class="controls">
-      <input type="password" id="inputPassword2" name="newPassword2" placeholder="Password" class="span3 required">
-	  <input type="hidden" id="forgotToken" name="forgotToken" value="<%- token %>">
-    </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn">Submit</button>
-    </div>
-  </div>
+<form id="password-form">
+	<div class="control-group">
+		<label class="control-label" for="inputPassword">New password</label>
+		<div class="controls">
+			<input type="password" id="inputPassword" name="newPassword" placeholder="Password" class="required">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputPassword2">Re-type password</label>
+		<div class="controls">
+			<input type="password" id="inputPassword2" name="newPassword2" placeholder="Password" class="required">
+			<input type="hidden" id="forgotToken" name="forgotToken" value="<%- token %>">
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn">Submit</button>
+		</div>
+	</div>
 </form>

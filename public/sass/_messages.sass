@@ -42,11 +42,11 @@ select
 	font-style: italic
 	text-shadow: 1px 1px #EEE
 	color: #848178
-	@include bg-gradient(#f5f5f0, #e1e0d9)
+	@include bg-gradient(#FFF, #ECECE5)
 	&:hover
 		background: #FFF
 	&:active
-		@include bg-gradient(#FFEB00 , #FBFAC5)
+		@include bg-gradient(#FFEB00, #FBFAC5)
 
 .button2
 	border: none
@@ -145,29 +145,37 @@ select
 .search-icon
 	background: url(../img/icon-search.png) no-repeat
 
+.icon-back
+	background: url(../img/icon-back.png) no-repeat 1px 2px
+
 /* --------------------------------------------------------------------------
    Structure
    -------------------------------------------------------------------------- */
 
 .searchbar
 	overflow: hidden
-	margin: 15px 0
+	margin: 12px 0
+	margin-bottom: 10px
 	#search
 		float: right
 		input
 			font-size: 12px
 			margin: 0
-			padding-left: 30px
-			width: 220px !important
+			width: 249px !important
+			border-right: 0
+			border-radius: 2px 0 0 2px
+			-webkit-border-radius: 2px 0 0 2px
+			-moz-border-radius: 2px 0 0 2px
+			background-color: #FFF
 		.button1
 			display: inline
 			width: auto
 			border: 1px solid #D0CEC7
+			border-radius: 0px 2px 2px 0px
+			-webkit-border-radius: 0px 2px 2px 0px
+			-moz-border-radius: 0px 2px 2px 0px
 			padding: 4px 8px
 			margin: 0
-			@include border-radius(4px)
-		.search-icon
-			background-position: 8px center
 
 .messages-header
 	overflow: hidden
@@ -175,8 +183,9 @@ select
 	.messages-tabs
 		overflow: hidden
 		float: left
+		cursor: pointer
 		#notification-type
-			font-size: 12px
+			font-size: 11px
 			margin-top: 0
 			padding-left: 10px
 			overflow: hidden
@@ -190,7 +199,7 @@ select
 				text-transform: uppercase
 				font-style: italic
 				font-weight: bold
-				color: gray
+				color: #000
 				border-bottom: 1px solid #E1E0D9
 				&:hover
 					background: #FFF
@@ -202,17 +211,23 @@ select
 				color: black
 	.button-bar
 		float: right
+		li:last-child
+			border-right: 1px solid #DDD
 		.button1
 			width: auto
-			border: 1px solid #D0CEC7
+			border: 1px solid #DDD
 			border-right: 1px solid #FFF
 			border-bottom: none
 			padding: 11px 25px
-		li:last-child
-			border-right: 1px solid #D0CEC7
+			@include bg-gradient(#FFF, #ECECE5)
+			&:hover
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
 
 #notification-panel
 	font-size: 12px
+	color: gray
 	background: none
 	margin-top: 0
 	border-top: 1px solid #D3D1CB
@@ -221,9 +236,9 @@ select
 	@include border-radius(0)
 	.floatality
 		margin-bottom: 7px
-		padding: 10px 10px 10px 20px
+		padding: 9px
 		background: white
-		overflow: hidden
+		min-height: 27px
 		.btn-group
 			float: left
 			margin-right: 100px
@@ -253,13 +268,453 @@ select
 		.messages-pager
 			float: right
 			.resultCounter
+				font-size: 12px
 				span:first-child:after
-					content: "-"
+					content: " - "
 				span:last-child:before
 					content: " of "
 			#notifications-pager
 				li
 					float: left
 					&:first-child
-						margin-top: 3px
+						margin-top: 4px
 						margin-right: 12px
+
+li.notification-item
+	font-size: 12px
+	overflow: hidden
+	float: none
+	border: 1px solid #D0CEC7
+	border-bottom: none
+	background: #FFF
+	cursor: pointer
+	&:last-child
+		border-bottom: 1px solid #D0CEC7
+	div
+		float: left
+		overflow: hidden
+	div.messages-check
+		padding: 10px 6px
+		padding-top: 20px
+	div.messages-avatar
+		width: 65px
+		height: 65px
+		img
+			width: 65px
+			height: 65px
+	div.messages-sender
+		padding: 15px 15px 0 20px
+		line-height: 16px
+		h1
+			display: inline
+			a
+				color: #000
+				font-weight: bold
+				&:hover
+					color: #000
+					text-decoration: underline
+		span, h2
+			color: #999
+	div.messages-flag
+		span
+			display: block
+			width: 62px
+			height: 65px
+			float: left
+			text-indent: -9999px
+		.from-me
+			background: url(../img/states/icon-left.png) no-repeat 0 top
+		.to-me
+			background: url(../img/states/icon-right.png) no-repeat 24px top
+		.from-me.accepted
+			background: url(../img/states/icon-accepted-left.png) no-repeat left top
+		.to-me.accepted
+			background: url(../img/states/icon-accepted-right.png) no-repeat right top
+		.from-me.maybe
+			background: url(../img/states/icon-maybe-left.png) no-repeat left top
+		.to-me.maybe
+			background: url(../img/states/icon-maybe-right.png) no-repeat right top
+		.from-me.pending
+			background: url(../img/states/icon-pending-left.png) no-repeat left top
+		.to-me.pending
+			background: url(../img/states/icon-pending-right.png) no-repeat right top
+		.from-me.denied
+			background: url(../img/states/icon-declined-left.png) no-repeat left top
+		.to-me.denied
+			background: url(../img/states/icon-declined-right.png) no-repeat right top
+	div.messages-state
+		padding: 8px 15px
+		line-height: 16px
+		h1.messages-name
+			color: #000
+			font-weight: bold
+			&.accepted
+				color: #85c333
+			&.maybe
+				color: #fa9e03
+			&.pending
+				color: #ee4040
+			&.declined
+				color: #7e7b71
+		h2
+			text-transform: capitalize
+			font-weight: bold
+	div.messages-dates
+		float: right
+		div.messages-dates-info
+			padding: 8px 15px
+			line-height: 16px
+			font-style: italic
+			color: gray
+			dl
+				text-align: right
+				dt
+					font-weight: bold
+					margin-right: 5px
+				dt, dd
+					display: inline
+		div.messages-date-msg
+			border-left: 1px solid #D0CEC7
+			padding: 22px 20px
+			padding-bottom: 23px
+			font-weight: bold
+
+.messages-msg
+	font-size: 12px
+	color: gray
+	background: none
+	margin-top: 0
+	border-top: 1px solid #D3D1CB
+	padding: 0
+	padding-top: 7px
+	@include border-radius(0)
+	.floatality
+		margin-bottom: 7px
+		padding: 9px
+		background: white
+		min-height: 27px
+		button
+			margin: 0
+			padding: 0
+			padding: 2px 12px
+			border: 1px solid #d0cec7
+			@include bg-gradient(#FFF, #ECECE5)
+			float: left
+		span.icon-back
+			text-indent: -9999px
+			padding: 1px 1px
+		.messages-pager
+			float: right
+			.resultCounter
+				font-size: 12px
+				span:first-child:after
+					content: " - "
+				span:last-child:before
+					content: " of "
+			#notifications-pager
+				li
+					float: left
+					&:first-child
+						margin-top: 4px
+						margin-right: 12px
+
+li.notification-item, li.response-item
+	background: #FFF
+	border: 1px solid #D0CEC7
+	width: 100%
+	margin-bottom: -7px
+	div.msg-header
+		overflow: hidden
+		border-bottom: 1px solid #D0CEC7
+		width: 100%
+		div.msg-avatar
+			float: left
+			width: 65px
+			height: 65px
+			img
+				width: 65px
+				height: 65px
+		div.msg-header-content-left
+			float: left
+			padding: 10px 12px 0 12px
+			line-height: 16px
+			h1
+				display: block
+				font-weight: bold
+			h2
+				display: inline
+				a
+					color: #000
+					font-weight: bold
+					&:hover
+						color: #000
+						text-decoration: underline
+			h3
+				display: inline
+			h4
+				font-style: italic
+		div.msg-header-content-right
+			float: right
+			font-weight: bold
+			padding: 10px 12px 0 12px
+			text-align: right
+			h1
+				color: #000
+			h2
+				text-transform: capitalize
+				&.accepted
+					color: #85c333
+				&.maybe
+					color: #fa9e03
+				&.pending
+					color: #ee4040
+				&.declined
+					color: #7e7b71
+
+	div.msg-params-box
+		dt, dd
+			display: inline
+			margin-right: 5px
+		dd
+			color: black
+			font-weight: bold
+			span
+				font-weight: normal
+
+	div.msg-content
+		padding: 24px
+		padding-left: 79px
+
+	div.msg-message
+		border-top: 1px solid #D0CEC7
+		margin-top: 15px
+		padding-top: 15px
+		color: #000
+
+
+li.response-item
+	overflow: visible
+
+.response-header-dates
+	input
+		font-size: 12px
+	input.input-sdate
+		width: 100px
+		background: url(../img/start-date.png) no-repeat 75px center #FFF
+
+	input.input-edate
+		width: 100px
+		background: url(../img/end-date.png) no-repeat 75px center #FFF
+
+.response-header
+	width: 100%
+
+// --
+
+.msg-avatar
+	float: left
+	img
+		width: 65px
+		height: 65px
+
+#write-response
+	font-size: 12px
+	h1
+		text-transform: capitalize
+		font-weight: bold
+		background: #f5f5f0
+		padding: 10px 10px 10px 15px
+		padding-left: 45px
+		&.accepted
+			color: #85c333
+			background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
+		&.maybe
+			color: #fa9e03
+			background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
+		&.pending
+			color: #ee4040
+			background: url(../img/states/icon-pending.png) 11px 8px no-repeat
+		&.declined
+			color: #7e7b71
+			background: url(../img/states/icon-declined.png) 11px 8px no-repeat
+
+	#edit-wing-params
+		background: #e1e0d9
+		.response-header
+			width: 100%
+			.response-header-dates
+				padding: 14px
+				h2
+					padding-left: 3px
+					margin-bottom: 4px
+				input
+					font-size: 12px
+				input.input-sdate
+					width: 97px
+					background: url(../img/start-date.png) no-repeat 83px 6px white
+					padding-left: 10px
+				input.input-edate
+					width: 97px
+					background: url(../img/start-date.png) no-repeat 83px 6px white
+					padding-left: 10px
+				select
+					margin: 0
+					background: url(../img/mini-arrow.png) no-repeat 40px #FFF
+	.button-footer
+		float: right
+		clear: both
+		.button1
+			margin: 0
+			padding: 0
+			width: auto
+			background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, #ecece5 100%)
+			float: left
+			border-right: none
+			border-bottom: none
+
+li.notification-item
+	.msg-content.msg-response
+		float: none
+		div
+			float: none
+			cursor: auto
+	.msg-text
+		border-top: 1px solid #d0cec7
+		margin-top: 25px
+		padding-top: 25px
+
+li.wing-item
+	div.messages-state
+		padding: 15px 20px
+		h2
+			display: inline
+			color: black
+			font-size: 14px
+		h3
+			display: inline
+			font-style: italic
+			padding-left: 10px
+			font-size: 14px
+	div.messages-dates
+		div.messages-dates-info
+			padding: 15px 20px
+			dt
+				padding-left: 5px
+			dd:last-child
+				padding-left: 10px
+				font-weight: bold
+				font-style: normal
+
+li.response-item
+	div.msg-avatar
+		width: 65px
+		height: 65px
+	div#response-options
+		float: left
+		padding: 10px 12px 0 12px
+		font-size: 12px
+		h1
+			display: inline
+		span
+			font-weight: bold
+			color: #000
+			cursor: pointer
+	div#write-response
+		float: right
+		div.response-wrapper
+			margin: 10px
+			margin-left: 0
+			border: 1px solid #D0CEC7
+			div.accepted h1
+				color: #85c333
+				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
+			div.maybe h1
+				color: #fa9e03
+				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
+			div.pending h1
+				color: #ee4040
+				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
+			div.denied h1
+				color: #7e7b71
+				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
+			form#wing-params-form
+				border-bottom: 1px solid #d3d1ca
+				input
+					margin-bottom: 0
+				div.response-header-dates
+					h2
+						font-weight: bold
+						margin-right: 10px
+						span
+							font:
+								weight: normal
+								style: italic
+			textarea
+				border-top-left-radius: 0px
+				border-top-right-radius: 0px
+				border-bottom-right-radius: 2px
+				border-bottom-left-radius: 2px
+				border: none
+				width: 843px
+				margin: 0px
+				padding: 15px
+				padding-top: 10px
+				font:
+					size: 12px
+					style: italic
+				height: 72px
+				max-width: 859px
+		div.button-footer
+			button.button1
+				padding: 10px 25px
+				border-left: 1px solid #D0CEC7
+
+div.floatality
+	button#back
+		padding-bottom: 3px
+		&:hover 
+			background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+	button#delete-thread
+		border-left: none
+		padding-bottom: 3px
+		&:hover 
+			background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+
+div.resultCounter
+	float: left
+	padding: 5px
+	padding-right: 10px
+
+div.pager-btngroup
+	float: right
+	ul.pager-buttons
+		li:last-child
+			button.button-pager
+				border-left: none
+		button.button-pager
+			padding: 0
+			.icon1
+				display: block
+				width: 25px
+				height: 25px
+			.next-page
+				background: url(../img/pager-next.png) no-repeat 10px 8px
+			.prev-page
+				background: url(../img/pager-prev.png) no-repeat 8px 8px
+			&:hover 
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+
+div.msg-arrow
+	width: 12px
+	height: 11px
+	background: url(../img/icon-pick.png) no-repeat
+	position: relative
+	bottom: -1px
+	left: 77px
+
