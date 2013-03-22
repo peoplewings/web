@@ -30,12 +30,12 @@ define(function(require){
 		},
 		render: function(results){
 			var self = this;
-
 			this.$el.html(resultsTpl({
 				blurrStyle: this.blurrStyle,
 				startResult: results.startResult,
 				endResult: results.endResult,
 				totalCount: results.count,
+				locationSearch: self.query.wings,
 				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId;
