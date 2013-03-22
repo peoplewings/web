@@ -15,7 +15,7 @@ define(function(require) {
 	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
-	var wingsTpl = require('tmpl!templates/app/profile.view.wings.html');
+	var wingTpl = require('tmpl!templates/app/profile.view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile.form.add-wings.html');
 
 
@@ -65,7 +65,6 @@ define(function(require) {
 
 			this.refreshProfile(myProfile);
 			this.refreshWings(myProfile);
-			
 		},
 
 		refreshProfile: function(myProfile){
@@ -83,12 +82,18 @@ define(function(require) {
 		},
 
 		refreshWings: function(myProfile){
-			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}); 
+			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")});
 			if (myProfile === false)
 				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
 
 			this.$("#wings .content-left").html(tpl);
-			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
+
+			var self = this;
+			this.model.get("wingsCollection")
+			.map(function(wing){
+				self.$('#wings #wing-box-' + wing.id)
+				.html(wingTpl(wing));
+			});
 		},
 
 		renderBox: function(box){

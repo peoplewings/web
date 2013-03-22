@@ -34,7 +34,7 @@ define(function(require) {
 					if (options && options.success)
 						options.success();
 				});
-			},
+		},
 
 		fetchWing: function(options){
 			if (!options)
@@ -43,7 +43,7 @@ define(function(require) {
 			var self = this;
 			api.get(this.urlWings() + "/" + options.wingId)
 			.then(function(resp){
-				self.trigger("change");
+				self.setWing(options.wingId, self.parseWing(resp.data));
 				if (options.success)
 					options.success();
 			});
@@ -76,7 +76,7 @@ define(function(require) {
 
 			this.attributes = profile;
 
-			this.set("wingsCollection", wings.map(this.parseWing));
+			this.set("wingsCollection", wings.map(this.parseWing.bind(this)));
 		},
 
 		parseWing: function(wing){
@@ -84,7 +84,7 @@ define(function(require) {
 			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
 			wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
 			wing.statusVerbose = phrases.choices.wingStatus[wing.status];
-			
+			wing.myProfile = this.me();
 			return wing;
 		},
 
@@ -108,15 +108,33 @@ define(function(require) {
 					self.set(attr, [{gender: value}]);
 			});
 
-			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose"]);
+			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose", "wingsCollection"]);
 
 			return api.put(this.urlRoot + this.id, copy);
+		},
+
+		setWing: function(id, update){
+			var index = this.findIndexByWingId(id);
+			this.attributes.wingsCollection[index] = update;
+			this.trigger("change:wingsCollection");
 		},
 
 		findWingById: function(id){
 			return _.find(this.get("wingsCollection"), function(wing){
 				return wing.id === id;
 			});
+		},
+
+		findIndexByWingId: function(id){
+			var index = null;
+			_.find(this.get("wingsCollection"), function(wing, idx){
+				if (wing.id === id){
+					index = idx;
+				}
+				return wing.id === id;
+			});
+
+			return index;
 		},
 
 		deleteWingById: function(id){

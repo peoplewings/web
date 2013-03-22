@@ -35,9 +35,6 @@ define(function(require) {
 			"profiles/:id/about":"aboutProfile",
 			//"profiles/:id/wings":"previewProfile",
 
-			"wings": "wings",
-			"wings/:id": "wings",
-
 			"messages/:id": "showThread",
 			"messages/filter/:filters": "showNotifications",
 			"messages": "showNotifications",
@@ -92,16 +89,6 @@ define(function(require) {
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
 			this.previewView.render(+userId);
-
-		},
-
-		wings: function(wingId){
-		/*if (!this.wingsView) {
-				this.wingsView = new WingsView;
-				this.wingsView.render(wingId);
-			} else this.wingsView.render(wingId);
-			*/
-			alert('TODO: Handler to open profile in wings tab');
 		},
 
 		showNotifications: function(filters){
