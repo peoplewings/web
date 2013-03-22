@@ -5,21 +5,21 @@
 					<div class="adjust">
 						<span>{{totalCount}}</span>
 						<p>result of accommodation in</p>
-						{{#if location}}
-						<span class="location">the world</span>
+						{{#if locationSearch}}
+						<span class="location">{{locationSearch}}</span>
 						{{else}}
-						<span class="location">{{location}}</span><!-- replace by location code -->
+						<span class="location">the world</span>
 						{{/if}}
 					</div>
 				</div>
 				<ul class="pager pull-right">
 					<li>
 						<div class="resultCounter adjust">
-							<span>{{ startResult }}</span>
+							<span>{{startResult}}</span>
 							<span>-</span>
-							<span>{{ endResult }}</span>
+							<span>{{endResult}}</span>
 							<span>of </span>
-							<span>{{ totalCount }}</span>
+							<span>{{totalCount}}</span>
 						</div>
 					</li>
 					<li class="icon">
@@ -117,19 +117,23 @@
 		<div class="pager-content">
 			<div class="pager pull-left">
 				<div class="adjust">
-					<span>{{ totalCount }}</span>
+					<span>{{totalCount}}</span>
 					<p>result of accommodation in</p>
-					<a href="#" class="underline">Barcelona</a><!-- replace by location code -->
+					{{#if locationSearch}}
+					<span class="location">{{locationSearch}}</span>
+					{{else}}
+					<span class="location">the world</span>
+					{{/if}}
 				</div>
 			</div>
 			<ul class="pager pull-right">
 				<li>
 					<div class="resultCounter adjust">
-						<span>{{ startResult }}</span>
+						<span>{{startResult}}</span>
 						<span>-</span>
-						<span>{{ endResult }}</span>
+						<span>{{endResult}}</span>
 						<span>of </span>
-						<span>{{ totalCount }}</span>
+						<span>{{totalCount}}</span>
 					</div>
 				</li>
 				<li class="icon">
