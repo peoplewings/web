@@ -33,10 +33,7 @@ define(function(require) {
 			"settings":"settings",
 
 			"profiles/:id/about":"aboutProfile",
-			//"profiles/:id/wings":"previewProfile",
-
-			"wings": "wings",
-			"wings/:id": "wings",
+			"profiles/:id/wings":"wingsProfile",
 
 			"messages/:id": "showThread",
 			"messages/filter/:filters": "showNotifications",
@@ -91,17 +88,13 @@ define(function(require) {
 		aboutProfile: function(userId){
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
-			this.previewView.render(+userId);
+			this.previewView.render(+userId, "about");
 
 		},
-
-		wings: function(wingId){
-		/*if (!this.wingsView) {
-				this.wingsView = new WingsView;
-				this.wingsView.render(wingId);
-			} else this.wingsView.render(wingId);
-			*/
-			alert('TODO: Handler to open profile in wings tab');
+		wingsProfile: function(userId){
+			if (!this.previewView)
+				this.previewView = new ProfileView(+userId);
+			this.previewView.render(+userId, "wings");
 		},
 
 		showNotifications: function(filters){

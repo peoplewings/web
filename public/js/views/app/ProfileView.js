@@ -27,6 +27,7 @@ define(function(require) {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
 			"click button.send-invitation-btn": "sendInvitation",
+			//"click ul.nav-tabs li a": "tabHandler",
 		},
 
 		initialize: function(userId) {
@@ -48,11 +49,12 @@ define(function(require) {
 			this.map.render();
 		},
 
-		render: function(userId) {
+		render: function(userId, tabId) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 
-			this.model.fetch({success: this.refresh.bind(this)});
+			var tab = '#' + tabId || '#about';
+			this.model.fetch({success: this.refresh.bind(this, tab)});
 
 			if (this.model.get("id") === api.getUserId()){
 				this.myProfile = new MyProfile(this.model, this);
@@ -60,12 +62,14 @@ define(function(require) {
 			}
 		},
 
-		refresh: function() {
+		refresh: function(tab) {
 			var myProfile = (this.model.get("id") === api.getUserId());
 
 			this.refreshProfile(myProfile);
 			this.refreshWings(myProfile);
-			
+
+			if (tab)
+				this.selectTab(tab);
 		},
 
 		refreshProfile: function(myProfile){
@@ -83,8 +87,8 @@ define(function(require) {
 		},
 
 		refreshWings: function(myProfile){
-			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}); 
-			if (myProfile === false)
+			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")});
+			if (!myProfile)
 				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
 
 			this.$("#wings .content-left").html(tpl);
@@ -152,6 +156,28 @@ define(function(require) {
 				});
 			}
 		},
+
+		selectTab: function(tabId) {
+			this.$('.tab-content .tab-pane').removeClass('active');
+			$(tabId).addClass('active');
+			debugger;
+			$(".tabs ul li").removeClass("active");
+
+			$('.tabs ul li a[href=' + tabId + ']')
+			.parent()
+			.addClass("active");
+		},
+
+		/*
+		Waiting to update Backbone lib to avoid trigger false bug
+		http://stackoverflow.com/questions/11205623/backbone-router-failing-to-respect-trigger-false-option
+		tabHandler: function(evt){
+			
+			var tabId = evt.target.href.split(evt.target.baseURI)[1];
+			window.router.navigate('#/profiles/' + this.model.get('id') + '/' + tabId.split('#')[1], {trigger: false});
+
+		},
+		*/
 
 		sendMessage: function() {
 			notifications.message(this.model.get("id"), this.model.get("firstName") + " " + this.model.get("lastName"));
