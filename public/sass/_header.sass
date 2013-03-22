@@ -121,3 +121,14 @@ div.btn-group.pull-right
 			height: 13px
 			width: 13px
 			background: url(../img/icon-config.png) no-repeat left top
+	ul.dropdown-menu
+		padding: 15px
+		@include border-radius(0)
+		@include box-shadow(1px, 1px, 2px, #CCC)
+		li
+			float: none
+			a
+				font-size: 12px
+				color: #999
+				&:hover, &:focus
+					@include bg-gradient(#FFFF00, #FFEA00)
