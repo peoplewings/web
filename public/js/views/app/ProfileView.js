@@ -15,7 +15,7 @@ define(function(require) {
 	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
-	var wingsTpl = require('tmpl!templates/app/profile.view.wings.html');
+	var wingTpl = require('tmpl!templates/app/profile.view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile.form.add-wings.html');
 
 
@@ -63,6 +63,12 @@ define(function(require) {
 		refresh: function() {
 			var myProfile = (this.model.get("id") === api.getUserId());
 
+			this.refreshProfile(myProfile);
+			this.refreshWings(myProfile);
+		},
+
+		refreshProfile: function(myProfile){
+
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -71,11 +77,27 @@ define(function(require) {
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
-			this.$("#wings .content-left").html(wingsBarTpl({avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")}));
-			this.$("#wings .content-right").html(wingsTpl({wings: this.model.get("wingsCollection"), myProfile: myProfile}));
-
 			this.map.render();
 			this.initMarkers();
+		},
+
+		refreshWings: function(myProfile){
+			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")});
+			if (myProfile === false)
+				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
+
+			this.$("#wings .content-left").html(tpl);
+
+			var self = this;
+			this.model.get("wingsCollection")
+			.map(function(wing){
+				self.$('#wings #wing-box-' + wing.id)
+				.html(wingTpl(wing));
+			});
+		},
+
+		renderBox: function(box){
+			this.model.fetch({success: this.refreshBox.bind(this, box)});
 		},
 
 		refreshBox: function(box){

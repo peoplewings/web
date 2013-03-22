@@ -20,7 +20,7 @@ define(function(require) {
 		},
 
 		urlWings: function(){
-			return  this.me() ? this.urlRoot + this.id + "/accomodations": this.urlRoot + this.id + "/accomodations/preview";
+			return  this.me() ? this.urlRoot + this.id + "/accomodations" : this.urlRoot + this.id + "/accomodations/preview";
 		},
 
 		fetch: function(options) {
@@ -36,7 +36,34 @@ define(function(require) {
 				});
 		},
 
+		fetchWing: function(options){
+			if (!options)
+				return;
+
+			var self = this;
+			api.get(this.urlWings() + "/" + options.wingId)
+			.then(function(resp){
+				self.setWing(options.wingId, self.parseWing(resp.data));
+				if (options.success)
+					options.success();
+			});
+		},
+
+		fetchWings: function(options){
+			var self = this;
+			api.get(this.urlWings())
+			.then(function(resp){
+				self.set("wingsCollection", resp.data.map(self.parseWing));
+				self.trigger("change:wingsCollection");
+
+				if (options.success)
+					options.success();
+			});
+
+		},
+
 		parse: function(profile, wings){
+
 			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
 			profile.replyTimeVerbose = utils.formatReplyTime(profile.replyTime);
 
@@ -49,25 +76,26 @@ define(function(require) {
 
 			this.attributes = profile;
 
-			var parsed = wings.map(function(wing){
-				wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
-				wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
-				wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
-				wing.statusVerbose = phrases.choices.wingStatus[wing.status];
-				return wing;
-			});
+			this.set("wingsCollection", wings.map(this.parseWing.bind(this)));
+		},
 
-			this.set("wingsCollection", parsed);
+		parseWing: function(wing){
+			wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
+			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
+			wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
+			wing.statusVerbose = phrases.choices.wingStatus[wing.status];
+			wing.myProfile = this.me();
+			return wing;
 		},
 
 		parseBirthday: function(options){
 			switch (options.privacy){
 				case "F":
-					return options.month + "-" + options.day + "-" + options.year;
+				return options.month + "-" + options.day + "-" + options.year;
 				case "P":
-					return options.month + "-" + options.day;
+				return options.month + "-" + options.day;
 				case "N":
-					return "";
+				return "";
 			}
 		},
 
@@ -80,10 +108,45 @@ define(function(require) {
 					self.set(attr, [{gender: value}]);
 			});
 
-			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose"]);
+			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose", "wingsCollection"]);
 
 			return api.put(this.urlRoot + this.id, copy);
-		}
+		},
+
+		setWing: function(id, update){
+			var index = this.findIndexByWingId(id);
+			this.attributes.wingsCollection[index] = update;
+			this.trigger("change:wingsCollection");
+		},
+
+		findWingById: function(id){
+			return _.find(this.get("wingsCollection"), function(wing){
+				return wing.id === id;
+			});
+		},
+
+		findIndexByWingId: function(id){
+			var index = null;
+			_.find(this.get("wingsCollection"), function(wing, idx){
+				if (wing.id === id){
+					index = idx;
+				}
+				return wing.id === id;
+			});
+
+			return index;
+		},
+
+		deleteWingById: function(id){
+			var wing = this.findWingById(id);
+			var collection = this.get("wingsCollection");
+
+			this.set("wingsCollection", _.omit(collection, wing));
+
+			console.log(this.get("wingsCollection"));
+
+			debugger;
+		},
 
 	});
 

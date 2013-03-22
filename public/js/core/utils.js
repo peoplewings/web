@@ -5,10 +5,10 @@ define(function(require) {
 	var $ = require('jquery');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 
-	var getCC = function(address_components){
+	function getCC(addressComponents){
 		var data = {};
 
-		_.each(address_components, function(component) {
+		_.each(addressComponents, function(component) {
 			_.each(component.types, function(type) {
 				switch (type) {
 					case "locality":
@@ -24,6 +24,19 @@ define(function(require) {
 			});
 		});
 		return data;
+	}
+
+	var setAutocomplete = function(autocomplete, wing) {
+		var place = autocomplete.getPlace();
+		if (place.geometry) {
+			var cc = getCC(place.address_components);
+			cc.lat = place.geometry.location.lat() + "";
+			cc.lon = place.geometry.location.lng() + "";
+			cc.name = cc.city;
+			cc = _.omit(cc, "city");
+			wing.city = cc;
+		} else
+			return;
 	};
 
 	var serialize = function(form_id){
@@ -57,7 +70,11 @@ define(function(require) {
 		$("body section:last").append(modal);
 
 		modal.modal('show');
-		modal.find('.accept-modal-btn').click(options.callback);
+		var acceptBtn = modal.find('.accept-modal-btn');
+		acceptBtn.click(options.callback);
+
+		if (options.form)
+			acceptBtn.attr('form', options.form);
 
 		modal.on('hidden', function() {
 			modal.remove();
@@ -108,8 +125,9 @@ define(function(require) {
 
 	return {
 		serializeForm: serialize,
-		getCityAndCountry: getCC,
 		showModal: showModal,
+		setAutocomplete: setAutocomplete,
+		getCityAndCountry: getCC,
 		formatReplyTime: formatReplyTime,
 		getSpinOpts: function(){
 			return opts;

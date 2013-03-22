@@ -53,7 +53,12 @@
 		</div>
 		<div class="tab-pane" id="wings">
 			<div class="content-left"></div>
-			<div class="content-right"></div>
+			<div class="content-right">
+				{{#each wingsCollection}}
+				<div id="wing-box-{{id}}" class="box-standard">
+				</div><!-- EOF box-standard -->
+				{{/each}}
+			</div>
 		</div>
 	</div><!-- EOF tab-content -->
 </div> <!-- EOF container -->
