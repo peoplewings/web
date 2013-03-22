@@ -44,19 +44,23 @@ define(function(require) {
 
 		//Anonymous User hashs
 		register: function(){
+			this.showHeaderSearch(false);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			registerView.render();
 		},
 		login: function(){
+			this.showHeaderSearch(false);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			loginView.render();
 		},
 		activate: function(id){
+			this.showHeaderSearch(false);
 			activateView.render(id);
 		},
 		forgotPassword: function(id){
+			this.showHeaderSearch(false);
 			passwordView.render(id);
 		},
 		landing: function() {
@@ -64,6 +68,7 @@ define(function(require) {
 		},
 
 		search: function(params){
+			this.showHeaderSearch(false);
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
 
@@ -75,9 +80,11 @@ define(function(require) {
 		},
 		//Logged User hashs
 		logout: function() {
+			this.showHeaderSearch(false);
 			logoutView.logout();
 		},
 		settings: function(){
+			this.showHeaderSearch(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -86,6 +93,7 @@ define(function(require) {
 			this.settingsView.render();
 		},
 		aboutProfile: function(userId){
+			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -95,18 +103,21 @@ define(function(require) {
 		},
 
 		showNotifications: function(filters){
+			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
 			notificationsView.render(JSON.parse(filters || '{}'));
 		},
 		showThread: function(id) {
+			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
 			threadView.render(id);
 		},
 		defaultAction: function(){
+			this.showHeaderSearch(false);
 			console.log('router.js: defaultAction()');
 			if (!api.userIsLoggedIn())
 				return this.landing();
@@ -119,7 +130,6 @@ define(function(require) {
 		},
 		initialize: function(){
 			console.log('router.js: initialize() ', api.getAuthToken(), api.getUserId());
-			Backbone.history.start();
 
 			if (api.userIsLoggedIn()){
 				if (!this.header)
@@ -128,7 +138,13 @@ define(function(require) {
 					this.header.render();
 			}
 
+			Backbone.history.start();
 			return this.bind('all', this._trackPageview);
+		},
+
+		showHeaderSearch: function(state) {
+			if (this.header)
+				this.header.showSearch(state);
 		}
 	});
 
