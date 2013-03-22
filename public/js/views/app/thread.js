@@ -229,7 +229,7 @@ define(function(require) {
 				this.$('.state-flag')
 					.removeClass(e(this.data.wing.state, "notification-state"))
 					.addClass(e(this.prevState, "notification-state"))
-					.find("h2")
+					.find("span")
 					.text(e(this.prevState, "notification-state"));
 
 				this.data.wing.state = this.prevState;
@@ -301,23 +301,29 @@ define(function(require) {
 				.show()
 				.removeClass(e(prevState, "notification-state"))
 				.addClass(e(option, "notification-state"))
-				.find("h1")
+				.find("span")
 				.text(e(option, "notification-state"));
 
 			this.$("#wing-params-form")
 				.validate(this.responseValidation);
 
-			this.$("input[name=startDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd");
+			$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
 
-			this.$("input[name=endDate]")
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")
-				.rules("add", {
-					greatThan: this.$("input[name=startDate]") ,
 
-				});
+			this.$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
+
+			this.$("input[name=endDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			}).rules("add", {
+				greatThan: this.$("input[name=startDate]"),
+			});
 
 			this.$('select[name=capacity]')
 				.val(this.data.wing.parameters.capacity);

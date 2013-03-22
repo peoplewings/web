@@ -26,8 +26,14 @@ define(function(require) {
 
 			this.$("#accomodation").html(accomodationTpl);
 
-			$("input[name=startDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-			$("input[name=endDate]").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+			$("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
+			$("input[name=endDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
 
 			if (params)
 				this.unserializeParams(params);
