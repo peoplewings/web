@@ -136,18 +136,6 @@ define(function(require) {
 
 			return index;
 		},
-
-		deleteWingById: function(id){
-			var wing = this.findWingById(id);
-			var collection = this.get("wingsCollection");
-
-			this.set("wingsCollection", _.omit(collection, wing));
-
-			console.log(this.get("wingsCollection"));
-
-			debugger;
-		},
-
 	});
 
 	// Returns the Model singleton instance

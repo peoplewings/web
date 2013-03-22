@@ -166,9 +166,8 @@ define(function(require) {
 		selectTab: function(tabId) {
 			this.$('.tab-content .tab-pane').removeClass('active');
 			$(tabId).addClass('active');
-			debugger;
-			$(".tabs ul li").removeClass("active");
 
+			$(".tabs ul li").removeClass("active");
 			$('.tabs ul li a[href=' + tabId + ']')
 			.parent()
 			.addClass("active");
