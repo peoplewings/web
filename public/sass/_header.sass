@@ -5,6 +5,26 @@
 header
 	height: 53px
 
+input#header-search
+	float: left
+	margin-top: 16px
+	border: 1px solid #D0CEC7
+	@include border-radius(13px)
+	//@include box-shadow(inset, 1px, 1px, 2px, 0px, #DDD)
+	margin:
+		top: 15px
+		left: 20px
+	width: 175px
+	background: url(../img/icon-search.png) no-repeat 10px 5px #FFF
+	padding:
+		top: 2px
+		left: 30px
+	font-size: 12px
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:active, &:focus
+		outline: none
+		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
+
 .navbar.nav.navbar-fixed-top
 	background: $gray-clear
 	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.4))
@@ -18,7 +38,6 @@ header
 		width: 237px
 		height: 60px
 		margin-top: 17px
-
 		padding: 0
 		margin-left: 0
 	.nav
@@ -32,8 +51,8 @@ header
 			line-height: inherit
 			&:after
 				content: "|"
-				margin-left: 10px
-				margin-right: 10px
+				margin-left: 4px
+				margin-right: 4px
 				color: $gray-link
 			&:last-child:after
 				content: ''
@@ -49,19 +68,56 @@ header
 					color: $blue_corp
 					text-decoration: underline
 
-.nav.pull-right
-	text-transform: uppercase
-	span#notif-count
-		float: left
-		padding-right: 10px
-	img
-		float: right
-		width: 24px
-		height: 24px
-		position: relative
-		top: -6px
-		right: 7px
+div.nav-menu
+	ul.nav.pull-right
+		text-transform: uppercase
+		margin-top: 5px
+		margin-right: 0
+		li
+			padding: 0
+			a
+				display: inline-block
+				padding: 15px 6px
+				&:hover
+					background: #D0CEC7
+					text-decoration: none
+			span#notif-count
+				float: left
+				padding-right: 10px
+				display: block
+				width: 14px
+				height: 14px
+				color: #FFF
+				font-weight: bold
+				background: url(../img/icon-messages-received.png) no-repeat 1px 1px
+				font-size: 10px
+				font-weight: normal
+				text-align: right
+				&:hover
+					background: url(../img/icon-messages-received-selected.png) no-repeat 1px 1px
+			img
+				float: right
+				width: 35px
+				height: 35px
+				margin: -13px 0 0 10px
+				border: 2px solid #FFF
+		li.logged
+			padding: 0
+			&:after
+				margin-right: 0px
+			a
+				padding: 15px 2px 2px 6px
 
-.btn-group.pull-right
-	margin-top: 20px
-
+div.btn-group.pull-right
+	margin-top: 16px
+	a
+		display: block
+		padding: 5px
+		@include border-radius(0)
+		&:hover
+			background-color: #D0CEC7
+		span.config
+			display: block
+			height: 13px
+			width: 13px
+			background: url(../img/icon-config.png) no-repeat left top

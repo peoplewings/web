@@ -67,7 +67,7 @@ define(function(require) {
 			passwordView.render(id);
 		},
 		landing: function() {
-			document.location = '/landing.html';
+			document.location = 'landing.html';
 		},
 
 		search: function(params){

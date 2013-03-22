@@ -1,0 +1,80 @@
+@import _reset.sass
+@import _effects.sass
+@import _globals.sass
+
+/* --------------------------------------------------------------------------
+   Notification Header
+   -------------------------------------------------------------------------- */
+
+.searchbar
+	overflow: hidden
+	margin: 12px 0
+	margin-bottom: 10px
+	#search
+		float: right
+		input
+			font-size: 12px
+			margin: 0
+			width: 249px !important
+			border-right: 0
+			border-radius: 2px 0 0 2px
+			-webkit-border-radius: 2px 0 0 2px
+			-moz-border-radius: 2px 0 0 2px
+			background-color: #FFF
+		.button1
+			display: inline
+			width: auto
+			border: 1px solid #D0CEC7
+			border-radius: 0px 2px 2px 0px
+			-webkit-border-radius: 0px 2px 2px 0px
+			-moz-border-radius: 0px 2px 2px 0px
+			padding: 4px 8px
+			margin: 0
+
+.messages-header
+	overflow: hidden
+	width: 100%
+	.messages-tabs
+		overflow: hidden
+		float: left
+		cursor: pointer
+		#notification-type
+			font-size: 11px
+			margin-top: 0
+			padding-left: 10px
+			overflow: hidden
+			li
+				padding: 11px 16px
+				background: #E1E0D9
+				margin-right: 4px
+				min-width: 40px
+				text-align: center
+				-webkit-border-radius: 4px 4px 0 0
+				text-transform: uppercase
+				font-style: italic
+				font-weight: bold
+				color: #000
+				border-bottom: 1px solid #E1E0D9
+				&:hover
+					background: #FFF
+					border-bottom: 1px solid #FFF
+					color: #000
+			.button.selected
+				background: white
+				border-bottom: 1px solid #FFF
+				color: black
+	.button-bar
+		float: right
+		li:last-child
+			border-right: 1px solid #DDD
+		.button1
+			width: auto
+			border: 1px solid #DDD
+			border-right: 1px solid #FFF
+			border-bottom: none
+			padding: 11px 25px
+			@include bg-gradient(#FFF, #ECECE5)
+			&:hover
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
