@@ -57,9 +57,13 @@ define(function(require){
 			if (Object.keys(filters || {}).length)
 				this.unserializeFilters(filters);
 
+			this.selectTab(filters && filters.kind);
 			var self = this;
 			this.$('#notification-type').delegate('li', 'click', function() {
-				self.selectTab($(this).data('filter'));
+				self.$('.button.selected').removeClass('selected');
+				self.$('.button[data-filter="' + $(this).data('filter') + '"]').addClass('selected');
+				self.$('#search-query').val('');
+				self.filter();
 			});
 
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
@@ -71,9 +75,6 @@ define(function(require){
 		unserializeFilters: function(filters) {
 			if (filters.search)
 				this.$('#search-query').val(filters.search);
-
-			if (filters.kind)
-				this.selectTab(filters.kind);
 
 			if(filters.target)
 				this.$('#notification-sender [name="' + filters.target + '"]').attr('checked', 'checked');
@@ -199,6 +200,7 @@ define(function(require){
 		},
 
 		selectTab: function(type) {
+			type = type || '';
 			this.$('.button.selected').removeClass('selected');
 			this.$('.button[data-filter="' + type + '"]').addClass('selected');
 
@@ -206,9 +208,6 @@ define(function(require){
 				this.addFilters();
 			else
 				this.removeFilters();
-
-			this.$('#search-query').val('');
-			this.filter();
 		},
 
 		addFilters: function(){

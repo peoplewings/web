@@ -12,7 +12,6 @@ define(function(require) {
 
 	var sendNotificationTpl = require('tmpl!templates/lib/send-notification.html');
 	var accomodationTpl = require('tmpl!templates/lib/wing.accomodation.html');
-	var notificationsModule = this;
 
 	var wingsParams = {
 		'none': function(parent) {
@@ -21,11 +20,15 @@ define(function(require) {
 		'accomodation': function(parent, params) {
 			parent.html(accomodationTpl(params));
 			parent.parents("form").validate(validation);
-			var endDate = parent.find('[name="start-date"], [name="end-date"]')
-				.datepicker()
-				.datepicker("option", "dateFormat", "yy-mm-dd")[1];
 
-			$(endDate).rules("add", { greatThan: notificationsModule.$("[name=start-date]") });
+			parent.find("input[name=startDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
+			parent.find("input[name=endDate]").datepicker({
+				minDate: new Date(),
+				dateFormat: "yy-mm-dd",
+			});
 		},
 	};
 

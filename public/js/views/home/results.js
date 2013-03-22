@@ -3,6 +3,7 @@ define(function(require){
 	var $ = require('jquery');
 	var Backbone = require('backbone');
 	var api = require('api2');
+	var utils = require('utils');
 	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
 
@@ -38,7 +39,7 @@ define(function(require){
 				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId;
-					result.replyTime = moment.duration(result.replyTime).humanize();
+					result.replyTime = utils.formatReplyTime(+result.replyTime);
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;
 					return result;
 				})

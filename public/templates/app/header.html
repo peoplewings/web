@@ -1,9 +1,10 @@
 <div class="navbar nav navbar-fixed-top">
 	<div class="navbar-inner">
 			<a class="brand" href="#">Peoplewings</a>
+			<input type="input" id="header-search" placeholder="Where do you need wings ?">
 			<div class="btn-group pull-right">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					<span class="caret"></span>
+					<span class="config"></span>
 				</a>
 				<ul class="dropdown-menu">
 					<li><a href="#/settings">Account settings</a></li>
@@ -13,12 +14,9 @@
 			<div class="nav-menu">
 				<ul class="nav pull-right">
 					<li><a href="#/search/">Search</a></li>
-					<li><span id="notif-count"></span><a href="#/messages">Messages</a></li>
+					<li><a href="#/messages"><span id="notif-count"></span>Messages</a></li>
 					<li><a href="#/profiles/{{id}}/wings">Your Wings</a></li>
-					<li>
-						<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
-						<img src="{{ avatar }}">
-					</li>
+					<li class="logged"><a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}<img src="{{avatar}}"></a></li>
 				</ul>
 			</div>
 			<div id="mini-spinner"></div>
