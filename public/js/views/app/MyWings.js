@@ -110,6 +110,7 @@ define(function(require) {
 			})
 			.fin(function(){
 				$(evt.target).find("button.save-wing-btn").button('reset');
+				self.el = '#main';
 			});
 		},
 
