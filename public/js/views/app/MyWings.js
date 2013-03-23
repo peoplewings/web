@@ -51,11 +51,11 @@ define(function(require) {
 					this.$("[name=dateEnd]").val("");
 				}
 			},
-			"click button[id^=edit-wing-]": "editWing",
+			"click a.edit-wing-btn": "editWing",
+			"click a.delete-wing-btn": "deleteWing",
 			"click button.cancel-wing-btn": "cancelEdition",
 			"submit form#accomodation-form": "createWing",
 			"submit form[id^=accomodation-form-]": "submitWing",
-			"click button.delete-wing-btn": "deleteWing",
 		},
 
 		initialize: function(parent) {
@@ -130,27 +130,26 @@ define(function(require) {
 
 		editWing: function(evt){
 			evt.preventDefault();
-			var nodeId = $(evt.target).parent().attr("id") || evt.target.id;
-			var wingId = +nodeId.split("wing-")[1];
-			this.el = nodeId;
+			var wingId = +evt.target.attributes['wing-id'].value;
+			this.el = '#wing-box-' + wingId;
 
-			var wing = this.refreshWing(wingId, wingFormTpl);
-			this.initWing(wing);
+			this.initWing(this.refreshWing(wingId, wingFormTpl));
 		},
 
 		cancelEdition: function(evt){
 			evt.preventDefault();
 
-			var wingId = +evt.target.id.split("wing-")[1];
+			var wingId = +evt.target.attributes['wing-id'].value;
 			this.$("#accomodation-form-" + wingId)[0].reset();
 
 			this.refreshWing(wingId, wingViewTpl);
+
+			this.el = '#main';
 		},
 
 		refreshWing: function(wingId, tpl){
 			var wing = this.parentCtrl.model.findWingById(wingId);
-			var box = this.$("#wing-box-" + wingId);
-			$(box).html(tpl(wing, {myProfile: true}));
+			$(this.el).html(tpl(wing, {myProfile: true}));
 
 			return wing;
 		},
@@ -195,7 +194,8 @@ define(function(require) {
 		},
 
 		deleteWing: function(evt){
-			var wingId = $(evt.target).attr("wing-id");
+			evt.preventDefault();
+			var wingId = evt.target.attributes['wing-id'].value;
 
 			var self = this;
 			if (confirm("Are you sure you want to delete this wing?")) {
