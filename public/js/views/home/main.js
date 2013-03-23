@@ -26,17 +26,25 @@ define(function(require) {
 
 			this.$("#accomodation").html(accomodationTpl);
 
-			$("input[name=startDate]").datepicker({
+			this.$("input[name=startDate]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});
-			$("input[name=endDate]").datepicker({
+			this.$("input[name=endDate]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});
 
+			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
+			
+			/*
+			* BUG: Do search is never reached
+			* google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
+			*/
+			
 			if (params)
 				this.unserializeParams(params);
+
 		},
 
 		unserializeParams: function(params){
@@ -65,6 +73,9 @@ define(function(require) {
 		submitSearch: function(e) {
 			var errors = [];
 			e.preventDefault();
+			
+			var crc = self.$('#inputWings').val()
+			self.$('#inputWings').val(crc.split(',')[0]);
 
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
 				errors.push('DATE IS WRONG MODAFOKA!!!');
@@ -77,6 +88,7 @@ define(function(require) {
 
 			var formData = utils.serializeForm(e.target.id);
 			formData.page = 1;
+			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
 		},
 
