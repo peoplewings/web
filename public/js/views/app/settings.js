@@ -6,10 +6,9 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
-	var logoutView = require("views/app/logout");
 	var settingsTpl = require("tmpl!templates/app/settings.html");
 	var alerts = require('views/lib/alerts');
-	var UserModel = require("models/Account");
+	var AccountModel = require("models/Account");
 
 	var settingsView = Backbone.View.extend({
 
@@ -17,16 +16,6 @@ define(function(require) {
 
 		events: {
 			"submit form#settings-form": "submitSettings",
-			"click a[href='#myModal']": function() {
-				$('#myModal').modal({
-					show: false
-				});
-			},
-			"hidden div#myModal": function() {
-				this.$("input#currentPassword").val("");
-				this.$("#delete-account-btn").button('reset');
-			},
-			"click button#delete-account-btn": "deleteAccount",
 		},
 
 		validation: {
@@ -53,7 +42,7 @@ define(function(require) {
 		},
 
 		initialize: function() {
-			this.model = new UserModel({
+			this.model = new AccountModel({
 				id: api.getUserId()
 			});
 			this.model.on("change", this.render.bind(this));
@@ -62,7 +51,6 @@ define(function(require) {
 		render: function() {
 			$(this.el).html(settingsTpl(this.model.toJSON()));
 			this.$('#settings-form').validate(this.validation);
-			this.$('#delete-account-form').validate();
 		},
 
 		submitSettings: function(e) {
@@ -84,23 +72,10 @@ define(function(require) {
 					alerts.defaultError();
 				})
 				.fin(function() {
-					$('#settings-form')[0].reset();
+					self.$('#settings-form')[0].reset();
 					self.$("#save-settings-btn").button('reset');
 				});
 		},
-
-		deleteAccount: function() {
-			if (!$('#delete-account-form').valid())
-				return;
-
-			this.$("#delete-account-btn").button('loading');
-
-			var data = utils.serializeForm('delete-account-form');
-			this.model.destroy(data)
-				.then(function(){
-					logoutView.goodbye();
-				});
-		}
 	});
 
 	return settingsView;
