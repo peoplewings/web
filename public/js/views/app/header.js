@@ -3,25 +3,13 @@ define(function(require){
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
+	var utils = require("utils");
 	var headerTpl = require("tmpl!templates/app/header.html");
 	var UserModel = require("models/Account");
 
 	var AppHeader = Backbone.View.extend({
 
 		el: 'header',
-
-		events: {
-			'keyup #header-search': function(event) {
-				if (event.keyCode !== 13)
-					return;
-
-				var $target = $(event.target);
-				var filter = $target.val() ? '&wings=' + $target.val().split(',')[0] : '';
-				$target.val('');
-				$target.blur();
-				document.location.hash = '/search/?capacity=1&language=all&type=Host&gender=Both&page=1&startAge=18&endAge=98' + filter;
-			}
-		},
 
 		initialize: function(){
 			this.model = new UserModel({id: api.getUserId()});
@@ -32,6 +20,9 @@ define(function(require){
 
 		render: function(){
 			$(this.el).html(headerTpl(this.model.toJSON()));
+			
+			this.search = new google.maps.places.Autocomplete(document.getElementById("header-search"), { types: ['(cities)'] });
+			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
 			this.showSearch(this.searchVisible);
 		},
 
@@ -47,10 +38,21 @@ define(function(require){
 		showSearch: function(state) {
 			this.searchVisible = state;
 			this.$('#header-search')[ state ? 'show' : 'hide' ]();
-			
-			if (state && this.$('#header-search')[0])
-				this.search = new google.maps.places.Autocomplete(document.getElementById("header-search"), { types: ['(cities)'] });
+			this.$('#header-search').val('');
 		},
+
+		doSearch: function(evt){
+			var $header = this.$('#header-search');
+			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
+			
+			if (!cc)
+				return;
+
+			var filter = $header.val() ? '&wings=' + cc.city : '';
+			$header.val('');
+			$header.blur();
+			document.location.hash = '/search/?capacity=1&language=all&type=Host&gender=Both&page=1&startAge=18&endAge=98' + filter;
+		}
 	});
 
 	return AppHeader;
