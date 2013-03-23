@@ -37,16 +37,16 @@ define(function(require) {
 			var data = utils.serializeForm(evt.target.id);
 			var self = this;
 			this.model.destroy(data)
-				.then(function() {
-					alerts.success('Account deleted, you will be redirected to home.');
-					setTimeout(logoutView.goodbye, 500);
-				}, function() {
-					alerts.defaultError();
-				})
-				.fin(function(){
-					self.$("#delete-account-btn").button('reset');
-					self.$('#' + evt.target.id)[0].reset();
-				});
+			.then(function() {
+				alerts.success('Account deleted, you will be redirected to home.');
+				setTimeout(logoutView.goodbye, 500);
+			}, function() {
+				alerts.defaultError();
+			})
+			.fin(function(){
+				self.$("#delete-account-btn").button('reset');
+				self.$('#' + evt.target.id)[0].reset();
+			});
 
 		},
 	});

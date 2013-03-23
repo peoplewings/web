@@ -66,18 +66,18 @@ define(function(require) {
 
 			var self = this;
 			this.model.save(values, data.current_password)
-				.then(function() {
-					alerts.success('Account updated');
-				}, function() {
-					alerts.defaultError();
-				})
-				.fin(function() {
-					self.$('#settings-form')[0].reset();
-					self.$("#save-settings-btn").button('reset');
-				});
+			.then(function() {
+				alerts.success('Account updated');
+			}, function() {
+				alerts.defaultError();
+			})
+			.fin(function() {
+				self.$('#settings-form')[0].reset();
+				self.$("#save-settings-btn").button('reset');
+			});
 		},
 	});
 
-	return settingsView;
+return settingsView;
 
 });
