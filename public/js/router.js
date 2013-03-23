@@ -95,6 +95,7 @@ define(function(require) {
 
 		},
 		wingsProfile: function(userId){
+			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
