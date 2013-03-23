@@ -16,7 +16,7 @@ define(function(require){
 					return;
 
 				var $target = $(event.target);
-				var filter = $target.val() ? '&wings=' + $target.val() : '';
+				var filter = $target.val() ? '&wings=' + $target.val().split(',')[0] : '';
 				$target.val('');
 				$target.blur();
 				document.location.hash = '/search/?capacity=1&language=all&type=Host&gender=Both&page=1&startAge=18&endAge=98' + filter;
@@ -47,7 +47,10 @@ define(function(require){
 		showSearch: function(state) {
 			this.searchVisible = state;
 			this.$('#header-search')[ state ? 'show' : 'hide' ]();
-		}
+			
+			if (state && this.$('#header-search')[0])
+				this.search = new google.maps.places.Autocomplete(document.getElementById("header-search"), { types: ['(cities)'] });
+		},
 	});
 
 	return AppHeader;
