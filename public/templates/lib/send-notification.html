@@ -1,53 +1,53 @@
-<div class="form-horizontal" data-reciver-id="{{ to.id }}">
+<div class="form-horizontal" data-reciver-id="{{to.id}}">
 	<div class="control-group">
 		<label class="control-label" for="reciver-name">For:</label>
 		<div class="controls">
-			<input type="text" id="reciver-name" class="autocompletePeople" placeholder="Name" value="{{ to.fullname }}" data-provide="typeahead" {{#if to.id }}readonly="readonly"{{/if}}>
+			<input type="text" id="reciver-name" class="autocompletePeople" placeholder="Name" value="{{to.fullname}}" data-provide="typeahead" {{#if to.id}}readonly="readonly"{{/if}}>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="message-content">
-			<img src="{{ avatar }}">
+			<img src="{{avatar}}">
 		</label>
-		<form>
-			<div class="controls">
-
-				{{#unless_equals kind 'message' }}
-					<div id="new-invitation-content">
-						<div class="status-pending-from-me">Pending</div>
+		<div class="controls">
+			{{#unless_equals kind 'message'}}
+			<div id="new-invitation-content">
+				<form>
+					<div class="response-wrapper">
+						<div class="status-pending-from-me accepted">
+							<h1>Pending</h1>
+						</div>
 						<div id="wing-data">
-							WINGS
-							<select id="wings" class="required">
-								{{#each wings }}
-									<option value="{{ idWing }}" data-type="{{ wingType }}">
-										{{ wingName }} ({{ wingType }})
-									</option>
+							<h2>Accommodation in Barcelona</h2>
+							<select id="wings" class="required size-extralarge">
+								{{#each wings}}
+								<option value="{{idWing}}" data-type="{{wingType}}">
+									{{ wingName}} ({{ wingType }})
+								</option>
 								{{/each}}
 							</select>
 							<span class="help-block"></span>
 							<div id="wing-parameters"></div>
 						</div>
-					</div>
-				{{/unless_equals}}
-
-				{{#equals kind 'request' }}
-					Introduce
-					<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
-					<span class="help-block"></span><br>
-					<input type="checkbox" id="public-request" checked>
-					<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
-
-					Personal message to host
-				{{/equals}}
-
-				<textarea name="privateMessage" id="message-content" class="required"
-					{{#equals kind 'request' }}
+						{{/unless_equals}}
+						{{#equals kind 'request'}}
+						Introduce
+						<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
+						<span class="help-block"></span><br>
+						<input type="checkbox" id="public-request" checked>
+						<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
+						Personal message to host
+						{{/equals}}
+						<textarea name="privateMessage" id="message-content" class="required"
+						{{#equals kind 'request'}}
 						placeholder="Tell your host why you'd like to meet them..."
-					{{else}}
+						{{else}}
 						placeholder="Write a message"
-					{{/equals}}
-				></textarea>
-				<span class="help-block"></span>
+						{{/equals}}
+						></textarea>
+						<span class="help-block"></span>
+					</div><!-- EOF response-wrapper -->
+				</div><!-- EOF new-invitation-content -->
 			</div>
 		</form>
 	</div>
