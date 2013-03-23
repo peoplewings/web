@@ -66,6 +66,7 @@ define(function(require) {
 			accept: options.accept,
 			content: options.content,
 			close: options.close || true,
+			thinModal: options.thin,
 		}));
 		$("body section:last").append(modal);
 

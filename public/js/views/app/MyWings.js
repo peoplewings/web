@@ -39,6 +39,7 @@ define(function(require) {
 					content: wingModalTpl,
 					send: this.submitWing,
 					form: "accomodation-form",
+					thin: true,
 				});
 				this.initWing();
 			},
