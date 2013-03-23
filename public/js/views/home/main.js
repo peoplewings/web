@@ -36,12 +36,12 @@ define(function(require) {
 			});
 
 			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
-			
+
 			/*
 			* BUG: Do search is never reached
 			* google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
 			*/
-			
+
 			if (params)
 				this.unserializeParams(params);
 
@@ -73,9 +73,9 @@ define(function(require) {
 		submitSearch: function(e) {
 			var errors = [];
 			e.preventDefault();
-			
-			var crc = self.$('#inputWings').val()
-			self.$('#inputWings').val(crc.split(',')[0]);
+
+			var crc = this.$('#inputWings').val();
+			this.$('#inputWings').val(crc.split(',')[0]);
 
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
 				errors.push('DATE IS WRONG MODAFOKA!!!');
