@@ -47,86 +47,60 @@ define(function(require) {
 
 		initialize: function(){
 			this.spinner = new Spinner(this.spinOptions);
-			var self = this;
-			function handleFileSelect(evt) {
-				var files = evt.target.files;
-				if (files.length > 0)
-					self.uploadFile(files[0]);
-			}
 
-			if (window.File && window.FileReader && window.FileList && window.Blob) {
-				document.getElementById('upload').addEventListener('change', handleFileSelect, false);
-			} else alert('The File APIs are not fully supported in this browser.');
+			if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+				return alert('The File APIs are not fully supported in this browser.');
+
+			$('#upload').on('change', this.uploadFile.bind(this));
 		},
 
-		uploadFile: function(file){
-			var self = this;
-			var fd = new FormData();
-			fd.append("image", file);
-			fd.append("owner", api.getUserId());
-			$.ajax({
-				url: api.getServerUrl() + "/cropper/",
-				data: fd,
-				cache: false,
-				contentType: false,
-				processData: false,
-				crossDomain: true,
-				type: 'POST',
-				beforeSend: function(){
-					self.spinner.spin(document.getElementById('upload-avatar'));
-				},
-				/*xhr: function(){
-					var xhr = new window.XMLHttpRequest();
-					xhr.upload.addEventListener("progress", function(evt){
-						if (evt.lengthComputable) {
-							var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-							$('.progress > .bar').attr( { "style": "width:" + percentComplete.toString() + "%" });
-						}
-					}, false);
-					return xhr;
-				},*/
-				success: this.uploadComplete.bind(this),
+		uploadFile: function(event) {
+			var files = event.target.files;
+			if (!files.length)
+				return;
 
-			});
+			this.spinner.spin(document.getElementById('upload-avatar'));
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete.bind(this));
 		},
 		uploadComplete: function(response){
-				this.spinner.stop();
+			return;
 
-				var self = this;
-				function showCoords(c){
-					var scale_x = self.originalW / $("#cropbox").width();
-					var scale_y = self.originalH / $("#cropbox").height();
-					$('#id_x').val(Math.floor(c.x*scale_x));
-					$('#id_y').val(Math.floor(c.y*scale_y));
-					$('#id_w').val(Math.floor(c.w*scale_x));
-					$('#id_h').val(Math.floor(c.h*scale_y));
-				}
+			this.spinner.stop();
+			var data = response.data;
+			var original = {
+				avatarId: data.id,
+				width: data.width,
+				height: data.height,
+			};
 
-				function clearCoords(){
-					$('#coords input').val('');
-				}
+			function showCoords(coords){
+				var scale_x = original.width / $("#cropbox").width();
+				var scale_y = original.height / $("#cropbox").height();
+				$('#id_x').val(Math.floor(coords.x * scale_x));
+				$('#id_y').val(Math.floor(coords.y * scale_y));
+				$('#id_w').val(Math.floor(coords.w * scale_x));
+				$('#id_h').val(Math.floor(coords.h * scale_y));
+			}
 
+			function clearCoords(){
+				$('#coords input').val('');
+			}
 
-				if (response.success){
-					var data = response.data;
-					this.originalAvatarId = data.id;
-					this.originalH = data.height;
-					this.originalW = data.width;
+			if (false) {
+				$('#crop-modal .modal-body img').attr({ src: data.image });
 
-					$('#crop-modal .modal-body img').attr({ src: data.image });
-
-					$('#crop-modal').modal('show');
-					$('#cropbox').Jcrop({
-						onChange:   showCoords,
-						onSelect:   showCoords,
-						onRelease:  clearCoords,
-						aspectRatio: 1,
-						setSelect:   [ 50, 50, 296, 296],
-						minSize: [246, 246],
-						//maxSize: [246, 284],
-					});
-				} else
-					alerts.error(response.errors);
+				$('#crop-modal').modal('show');
+				$('#cropbox').Jcrop({
+					onChange:   showCoords,
+					onSelect:   showCoords,
+					onRelease:  clearCoords,
+					aspectRatio: 1,
+					setSelect:   [ 50, 50, 296, 296],
+					minSize: [246, 246],
+					//maxSize: [246, 284],
+				});
+			} else
+				alerts.error(response.errors);
 		},
 		submitAvatar: function(){
 			var data = utils.serializeForm("crop-avatar-form");

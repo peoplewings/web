@@ -38,6 +38,24 @@ define(function(require) {
 		updateListeners[type].push(callback);
 	}
 
+	function simpleRequest(method, url, headers, body) {
+		var prom = new Promise();
+		var xhr = new XMLHttpRequest();
+		xhr.open(method, url, true);
+
+		_.each(headers, function(value, key) {
+			xhr.setRequestHeader(key, value);
+		});
+
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState === 4)
+				prom.resolve(xhr);
+		};
+
+		xhr.send(body);
+		return prom.future;
+	}
+
 
 	function request(method, uri, body) {
 		var reqId = _.uniqueId('request');
@@ -184,6 +202,8 @@ define(function(require) {
 
 
     return {
+    	request: simpleRequest,
+
 		delete: function(uri, body) {
 			return request('DELETE', uri, body);
 		},
