@@ -2,20 +2,8 @@
 					<form id="accomodation-form-{{id}}" data-rel="{{id}}">
 						<div class="box-header">
 							<h1 class="house-icon">Accommodation Wing</h1>
-							<button type="button" class="yellow delete-wing-btn" wing-id="{{id}}">Delete WING</button>
 						</div>
 						<div class="box-content wings-info">
-							{{#if update}}
-							<div class="btn-group pull-right">
-								<button class="btn btn-mini">Options</button>
-								<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
-								</ul>
-							</div>
-							{{/if}}
 							<div class="control-group lined">
 								<label class="control-label" for="inputName">Wing name</label>
 								<div class="controls">
@@ -237,6 +225,6 @@
 						</div><!-- EOF listing-location -->
 						<div class="accordion-heading">
 							<button type="submit" class="button2 yellow save-wing-btn" data-loading-text="Saving...">Save changes</button>
-							<button id="cancel-wing-{{id}}"class="button2 cancel-wing-btn">Cancel</button>
+							<button class="button2 cancel-wing-btn" wing-id="{{id}}">Cancel</button>
 						</div><!-- EOF box-footer -->
 					</form>
