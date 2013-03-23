@@ -68,4 +68,176 @@
 .modal-backdrop.fade.in
 	@include opacity(0.1)
 
+@import _effects.sass
+
+.modal.fade.in
+	top: 39%
+
+@media (max-width: 767px)
+	.modal.fade.in
+		top: auto
+
+.generic-modal.thin-modal
+	display: block
+	border: 1px solid #D3D1CA
+	@include border-radius(15px)
+	min-height: 375px
+	width: 389px
+
+	h2, label
+	color: #999
+	font-size: 12px
+
+	&:focus
+		outline: none
+
+	.modal-header
+		background: #e1e0d9
+		border: 1px solid #d3d1ca
+		border-bottom: 1px solid #d3d1ca
+		border: none
+		h3
+			padding: 7px
+			padding-left: 15px
+			font-size: 14px
+			font-weight: bold
+			text-shadow: 1px 1px white
+			color: #000
+			line-height: 20px
+		.close:hover
+			@include opacity(1)
+			background: none
+
+	.modal-body
+		padding: 0
+		min-height: 500px
+
+		/* box-standard */
+
+		.box-standard
+			width: 374px
+			background: #FFF
+			color: #808080
+			margin: 0
+			border: none
+			overflow: hidden
+
+			.box-header
+				border-bottom: 1px solid #d0cec7
+				overflow: hidden
+				max-height: 42px
+				h1
+					float: left
+					font:
+						size: 14px
+						weight: bold
+					text-shadow: 1px 1px white
+					padding: 12px 10px 10px 50px
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+
+			.box-content
+				overflow: hidden
+				padding: 25px
+				//height: 450px
+				p
+					color: #000
+					font-size: 12px
+					padding-bottom: 12px
+					margin-bottom: 12px
+					border-bottom: 1px solid #DDD
+
+				input
+					padding: 4px 6px
+
+				label
+					width: auto
+
+				input[type="checkbox"]
+					width: auto
+
+				.controls
+					margin-left: 0
+
+					textarea
+						width: 300px !important
+						padding: 10px
+						min-height: auto
+
+
+			.wings-info, .contact-info
+				h2
+					float: left
+					margin-right: 10px
+				.last-p
+					float: none
+
+			.accordion-body.collapse
+				height: 450px
+
+			.accordion-heading
+				background: #FFF
+				border-top: 1px solid #e5e5e5
+				overflow: hidden
+				cursor: pointer
+
+				.see-more
+					float: left
+					margin: 0.7em
+					margin-left: 88px
+
+					p, span
+						float: left
+						padding: 0
+
+					span.more-about
+						background: url(../img/arrow_about.png) no-repeat 15px center
+						text-indent: -9999px
+
+					p
+						font-size: 12px
+						text-align: center
+						text-transform: uppercase
+						margin: 0
+						border-bottom: 0
+
+		/* EOF box-standard */
+
+		.listing-location
+			input
+				padding: 4px 6px
+				width: auto
+			.input-medium
+				width: 210px
+			.input-mini
+				width: 60px
+			.size-box-standard
+				width: 310px !important
+			label
+				width: auto
+			.controls
+				margin-left: 0
+
+	.modal-footer
+		background: none
+		border: none
+		border-top: 1px solid #D0CEC7
+		padding: 0
+		@include border-radius(0)
+		button
+			float: right
+			width: auto
+			margin: 0
+			padding: 15px 25px
+			line-height: 12px
+			border: 1px solid #D0CEC7
+			border-bottom: none
+			text-shadow: 1px 1px #FFF
+		.button1
+			border-top: none
+			margin-right: 15px
+		.button2
+			border-right: none
+			color: #000
 
