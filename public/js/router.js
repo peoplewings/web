@@ -33,7 +33,7 @@ define(function(require) {
 			"settings":"settings",
 
 			"profiles/:id/about":"aboutProfile",
-			//"profiles/:id/wings":"previewProfile",
+			"profiles/:id/wings":"wingsProfile",
 
 			"messages/:id": "showThread",
 			"messages/filter/:filters": "showNotifications",
@@ -99,7 +99,17 @@ define(function(require) {
 
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
-			this.previewView.render(+userId);
+			this.previewView.render(+userId, "about");
+
+		},
+		wingsProfile: function(userId){
+			this.showHeaderSearch(true);
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			if (!this.previewView)
+				this.previewView = new ProfileView(+userId);
+			this.previewView.render(+userId, "wings");
 		},
 
 		showNotifications: function(filters){
