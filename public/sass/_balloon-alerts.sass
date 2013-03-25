@@ -1,0 +1,44 @@
+@import _effects.sass
+
+/* --------------------------------------------------------------------------
+ * Balloon Alerts
+ * -------------------------------------------------------------------------- */
+
+span.signal
+	float: left
+	text-indent: -9999px
+	height: 16px
+	width: 15px
+	background: url(../img/icon-direction.png) no-repeat
+	position: relative
+	bottom: 15px
+	left: 120px
+
+span.ribbon
+	display: block
+	height: 19px
+	background: url(../img/pattern.png) center
+	-webkit-border-radius: 12px 12px 0 0
+
+div.balloon-alert
+	background: #FFF
+	margin: 50px auto
+	border: 1px solid #D0CEC7
+	width: 756px
+	height: 415px
+	@include border-radius(12px)
+	@include box-shadow(2px, 2px, 2px, 0, #DDD)
+	h1, h2
+		display: block
+		font-family: "Exo", Tahoma, Sans-Serif
+		font-style: italic
+		font-weight: 800
+		line-height: normal
+		text-transform: uppercase
+	h1
+		font-size: 81px
+		color: #D0CEC7
+	h2
+		font-size: 27px
+	div.cinta
+		width: 100%
