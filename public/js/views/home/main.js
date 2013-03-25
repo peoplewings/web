@@ -95,9 +95,7 @@ define(function(require) {
 				return this.displayErrors(errors);
 
 			var formData = utils.serializeForm(e.target.id);
-			debugger;
 			formData.wings = (this.cityField) ? this.cityField : formData.wings;
-
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
