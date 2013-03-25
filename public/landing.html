@@ -147,6 +147,8 @@
 							.map(function(input) {
 								if ('inputWings' === input.attr('id') && parsedCity)
 									input.val(parsedCity);
+								else
+									input.val(input.val().split(',')[0]);
 								if (input.val())
 									return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
 
