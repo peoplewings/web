@@ -38,13 +38,21 @@ define(function(require) {
 			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
 
 			/*
-			* BUG: Do search is never reached
-			* google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
+			* BUG: Do search is never reached if user selects city by pressing Enter
 			*/
+			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
 
 			if (params)
 				this.unserializeParams(params);
 
+		},
+
+		doSearch: function(){
+			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
+			if (!cc)
+				return;
+			else
+				this.cityField = cc.city;
 		},
 
 		unserializeParams: function(params){
@@ -87,6 +95,9 @@ define(function(require) {
 				return this.displayErrors(errors);
 
 			var formData = utils.serializeForm(e.target.id);
+			debugger;
+			formData.wings = (this.cityField) ? this.cityField : formData.wings;
+
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
