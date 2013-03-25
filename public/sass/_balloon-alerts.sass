@@ -14,19 +14,15 @@ span.signal
 	bottom: 15px
 	left: 120px
 
-span.ribbon
-	display: block
-	height: 19px
-	background: url(../img/pattern.png) center
-	-webkit-border-radius: 12px 12px 0 0
-
 div.balloon-alert
 	background: #FFF
-	margin: 50px auto
+	padding: 45px
+	margin: 50px auto 0 auto
 	border: 1px solid #D0CEC7
-	width: 756px
-	height: 415px
-	@include border-radius(12px)
+	border-bottom: none
+	width: 666px
+	height: 370px
+	-webkit-border-radius: 12px 12px 0 0
 	@include box-shadow(2px, 2px, 2px, 0, #DDD)
 	h1, h2
 		display: block
@@ -40,5 +36,15 @@ div.balloon-alert
 		color: #D0CEC7
 	h2
 		font-size: 27px
-	div.cinta
-		width: 100%
+
+span.ribbon
+	display: block
+	height: 19px
+	width: 756px
+	margin: 0 auto
+	border: 1px solid #D0CEC7
+	border-top: none
+	background: url(../img/pattern.png) center
+	background-color: #FFF
+	-webkit-border-radius: 0 0 12px 12px
+	@include box-shadow(2px, 2px, 2px, 0, #DDD)
