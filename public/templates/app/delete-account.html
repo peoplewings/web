@@ -21,3 +21,29 @@
 	</div>
 </form>
 
+<form id="delete-account-form" cnovalidate="novalidate">
+	<div class="balloon-wrapper">
+		<span class="signal">account signal</span>
+		<div class="balloon-header">
+			<h1>Delete your Peoplewings account !!</h1>
+		</div>
+		<div class="balloon-content">
+			<p>Please provide your password to confirm you fully understand that you'll no longer be able to use of this product and all information associated with them, and that your account will be lost</p>
+			<div class="control-group">
+				<label class="control-label" for="inputCurrentPassword">Password</label>
+				<div class="controls">
+					<input type="password" id="currentPassword" name="currentPassword" maxlength="20" placeholder="Your password" class="required">
+				</div>
+			</div>
+		</div>
+		<div class="balloon-footer">
+			<div class="control-group">
+				<div class="controls">
+					<button id="delete-account-btn" type="submit" class="button1 yellow" data-loading-text="Deleting..." role="button">Delete account</button>
+					<button type="submit" class="button-highlight">Send</button>
+					<a href="#/settings" class="button1">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</div><!-- EOF static-balloon -->
+</form>

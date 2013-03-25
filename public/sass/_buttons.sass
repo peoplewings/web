@@ -1,0 +1,79 @@
+@import _effects.sass
+
+/* --------------------------------------------------------------------------
+	Auxiliar
+	-------------------------------------------------------------------------- */
+
+body
+	font-family: 'Helvetica', Arial, sans-serif
+
+div
+	margin-bottom: 10px
+
+
+/* --------------------------------------------------------------------------
+	Buttons
+	-------------------------------------------------------------------------- */
+
+button
+	font-family: inherit
+	
+.button
+	display: inline-block
+	*display: inline
+	/* IE7 inline-block hack */
+	*zoom: 1
+	padding: 11px 25px
+	min-width: 90px
+	margin: 0
+	font:
+		size: 11px
+		style: italic
+	color: #000
+	line-height: normal
+	text-shadow: 1px 1px 1px #FFF
+	text-transform: uppercase
+	border: 1px solid #D0CEC7
+	cursor: pointer
+	@include bg-gradient(#FFF, #ECECE5)
+	&:hover, &:active, &:focus
+		background: #FFF
+		color: #000
+	&:active
+		@include bg-gradient(#FFEB00, #FBFAC5)
+
+.button-highlight
+	@extend .button
+	@include bg-gradient(#FFFF00, #FFEB00)
+
+.button-pager-previous
+	@extend .button
+	padding: 0
+	text-indent: -9999px
+
+.button-pager-next
+	@extend .button
+	padding: 0
+	text-indent: -9999px
+
+
+/* --------------------------------------------------------------------------
+	Icons
+	-------------------------------------------------------------------------- */
+
+.icon
+	display: block
+	background: url(../img/peoplewings-sprite.png) no-repeat
+
+.icon-pager
+	@extend .icon
+	width: 25px
+	height: 25px
+
+.icon-pager-previous
+	@extend .icon-pager
+	background-position: 8px 8px
+
+.icon-pager-next
+	@extend .icon-pager
+	background-position: -42px 8px
