@@ -24,11 +24,12 @@ button
 	/* IE7 inline-block hack */
 	*zoom: 1
 	padding: 11px 25px
+	min-width: 90px
 	margin: 0
 	font:
 		size: 11px
 		style: italic
-	color: #999
+	color: #000
 	line-height: normal
 	text-shadow: 1px 1px 1px #FFF
 	text-transform: uppercase
@@ -43,7 +44,7 @@ button
 
 .button-highlight
 	@extend .button
-	@include bg-gradient(#FFEB00, #FFFF00)
+	@include bg-gradient(#FFFF00, #FFEB00)
 
 .button-pager-previous
 	@extend .button
