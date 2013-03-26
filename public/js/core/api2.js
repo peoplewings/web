@@ -201,8 +201,8 @@ define(function(require) {
 	pooling.start();
 
 
-    return {
-    	request: simpleRequest,
+	return {
+		request: simpleRequest,
 
 		delete: function(uri, body) {
 			return request('DELETE', uri, body);
@@ -243,6 +243,6 @@ define(function(require) {
 		getAuthToken: function() {
 			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).auth;
 		}
-    };
+	};
 
 });

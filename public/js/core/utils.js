@@ -1,4 +1,5 @@
 //jshint camelcase:false
+/*globals Base64, b64_hmac_sha1 */
 
 define(function(require) {
 

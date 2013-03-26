@@ -1,4 +1,5 @@
 //jshint camelcase:false
+/*globals Blitline */
 
 define(function(require) {
 
