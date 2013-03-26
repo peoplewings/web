@@ -1,15 +1,5 @@
 @import _effects.sass
-
-/* --------------------------------------------------------------------------
-	Auxiliar
-	-------------------------------------------------------------------------- */
-
-body
-	font-family: 'Helvetica', Arial, sans-serif
-
-div
-	margin-bottom: 10px
-
+@import _icons.sass
 
 /* --------------------------------------------------------------------------
 	Buttons
@@ -35,6 +25,7 @@ button
 	text-align: center
 	border: 1px solid #D0CEC7
 	cursor: pointer
+	-webkit-appearance: none
 	@include bg-gradient(#FFF, #ECECE5)
 	&:hover, &:active, &:focus
 		background: #FFF
@@ -56,24 +47,22 @@ button
 	padding: 0
 	text-indent: -9999px
 
-
-/* --------------------------------------------------------------------------
-	Icons
-	-------------------------------------------------------------------------- */
-
-.icon
-	display: block
-	background: url(../img/peoplewings-sprite.png) no-repeat
-
-.icon-pager
-	@extend .icon
-	width: 25px
-	height: 25px
-
-.icon-pager-previous
-	@extend .icon-pager
-	background-position: 8px 8px
-
-.icon-pager-next
-	@extend .icon-pager
-	background-position: -42px 8px
+.button-close
+	@extend .button
+	float: right
+	border: none
+	margin: 0
+	padding: 0
+	background: transparent
+	line-height: 15px
+	font:
+		size: 20px
+		style: normal
+		weight: bold
+	color: #000
+	text-shadow: 0 1px 0 #FFF
+	cursor: pointer
+	@include opacity(0.2)
+	&:hover
+		@include opacity(1)
+		background: none

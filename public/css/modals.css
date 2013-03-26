@@ -1,0 +1,195 @@
+/* --------------------------------------------------------------------------
+ * _Reset : Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * 					http://cssreset.com
+ * -------------------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* --------------------------------------------------------------------------
+ * _Effects
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * _Effects
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * Icons
+ * -------------------------------------------------------------------------- */
+.icon, .icon-pager, .icon-pager-previous, .icon-pager-next {
+  display: block;
+  background: url(../img/peoplewings-sprite.png) no-repeat; }
+
+.icon-pager, .icon-pager-previous, .icon-pager-next {
+  width: 25px;
+  height: 25px; }
+
+.icon-pager-previous {
+  background-position: 8px 8px; }
+
+.icon-pager-next {
+  background-position: -42px 8px; }
+
+/* --------------------------------------------------------------------------
+ * Buttons
+ * -------------------------------------------------------------------------- */
+button {
+  font-family: inherit; }
+
+.button, .button-highlight, .button-pager-previous, .button-pager-next, .button-close {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+  *zoom: 1;
+  padding: 15px 25px;
+  margin: 0;
+  font-size: 11px;
+  font-style: italic;
+  color: black;
+  line-height: normal;
+  text-shadow: 1px 1px 1px white;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1px solid #d0cec7;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+  background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+  background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
+  .button:hover, .button-highlight:hover, .button-pager-previous:hover, .button-pager-next:hover, .button-close:hover, .button:active, .button-highlight:active, .button-pager-previous:active, .button-pager-next:active, .button-close:active, .button:focus, .button-highlight:focus, .button-pager-previous:focus, .button-pager-next:focus, .button-close:focus {
+    background: white;
+    color: black; }
+  .button:active, .button-highlight:active, .button-pager-previous:active, .button-pager-next:active, .button-close:active {
+    background: #ffeb00;
+    background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+    background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
+
+.button-highlight {
+  background: yellow;
+  background: -moz-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffeb00));
+  background: -webkit-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -o-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -ms-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: linear-gradient(to bottom, yellow 0%, #ffeb00 100%); }
+
+.button-pager-previous {
+  padding: 0;
+  text-indent: -9999px; }
+
+.button-pager-next {
+  padding: 0;
+  text-indent: -9999px; }
+
+.button-close {
+  float: right;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  line-height: 15px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  color: black;
+  text-shadow: 0 1px 0 white;
+  cursor: pointer;
+  opacity: 0.2;
+  filter: alpha(opacity=20); }
+  .button-close:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background: none; }
+
+/* --------------------------------------------------------------------------
+ * Auxiliar
+ * -------------------------------------------------------------------------- */
+body {
+  font-family: "Helvetica", Arial, sans-serif;
+  background: black;
+  padding: 25px; }
+
+/* --------------------------------------------------------------------------
+ * Modals
+ * -------------------------------------------------------------------------- */
+div.generic-modal {
+  display: block;
+  background: #e1e0d9;
+  border: 1px solid #d3d1ca;
+  width: 790px;
+  min-height: 375px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  box-shadow: 5px 4px 10px 0px #cccccc;
+  -moz-box-shadow: 5px 4px 0px 10px #cccccc;
+  -webkit-box-shadow: 5px 4px 10px 0px #cccccc; }
+  div.generic-modal div.modal-header {
+    background: #e1e0d9;
+    border: none;
+    padding: 25px 30px;
+    border-bottom: 1px solid #d3d1ca;
+    border-radius: 15px 15px 0 0;
+    -webkit-border-radius: 15px 15px 0 0;
+    -moz-border-radius: 15px 15px 0 0; }
+    div.generic-modal div.modal-header h1 {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px white; }
+  div.generic-modal div.modal-body {
+    padding: 25px;
+    background: white; }
+    div.generic-modal div.modal-body textarea {
+      width: 647px;
+      font-size: 12px;
+      padding: 12px;
+      padding-left: 15px;
+      min-height: 250px; }
+  div.generic-modal div.modal-footer {
+    padding: 0;
+    overflow: hidden; }
+    div.generic-modal div.modal-footer button {
+      border-bottom: none; }
+      div.generic-modal div.modal-footer button.button:last-child, div.generic-modal div.modal-footer button.button-highlight:last-child, div.generic-modal div.modal-footer button.button-pager-previous:last-child, div.generic-modal div.modal-footer button.button-pager-next:last-child, div.generic-modal div.modal-footer button.button-close:last-child {
+        border-left: none; }
+    div.generic-modal div.modal-footer .button-group {
+      float: right;
+      margin-top: 20px;
+      margin-right: 20px; }

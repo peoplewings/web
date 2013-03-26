@@ -1,0 +1,63 @@
+@import _reset.sass
+@import _effects.sass
+@import _buttons.sass
+
+/* --------------------------------------------------------------------------
+	Auxiliar
+	-------------------------------------------------------------------------- */
+
+body
+	font-family: 'Helvetica', Arial, sans-serif
+	background: black
+	padding: 25px
+
+
+/* --------------------------------------------------------------------------
+	Modals
+	-------------------------------------------------------------------------- */
+
+div.generic-modal
+	display: block
+	background: #e1e0d9
+	border: 1px solid #D3D1CA
+	width: 790px
+	min-height: 375px
+	@include border-radius(15px)
+	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
+
+	div.modal-header
+		background: #e1e0d9
+		border: none
+		padding: 25px 30px
+		border-bottom: 1px solid #D3D1CA
+		border-radius: 15px 15px 0 0
+		-webkit-border-radius: 15px 15px 0 0
+		-moz-border-radius: 15px 15px 0 0
+		h1
+			display: inline-block
+			font:
+				size: 15px
+				weight: bold
+			text-shadow: 1px 1px 1px #FFF
+
+	div.modal-body
+		padding: 25px
+		background: #FFF
+		textarea
+			width: 80%
+			font-size: 12px
+			padding: 12px
+			padding-left: 15px
+			min-height: 250px
+
+	div.modal-footer
+		padding: 0
+		overflow: hidden
+		button
+			border-bottom: none
+			&.button:last-child
+				border-left: none
+		.button-group
+			float: right
+			margin-top: 20px
+			margin-right: 20px
