@@ -46,7 +46,9 @@ define(function(require) {
 		var xhr = new XMLHttpRequest();
 		var requestBody = null;
 
-		spinner.show(reqId, 1000);
+		var resource = /\/api\/v1\/(\w+)/.exec(uri)[1];
+		if (resource !== 'control')
+			spinner.show(reqId, 1000);
 		xhr.open(method, url, true);
 
 		xhr.onreadystatechange = function() {

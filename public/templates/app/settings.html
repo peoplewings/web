@@ -14,32 +14,30 @@
 			<label class="control-label" for="inputEmail">Current email</label>
 			<div class="controls">
 				<h1>{{email}}</h1>
-				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">Change email</label>
 			<div class="controls">
-				<input type="email" name="repeatEmail" id="inputEmail" placeholder="You new email address" class="required input-margin">
+				<input type="email" name="email" id="inputEmail" placeholder="You new email address" class="input-margin">
 				<span class="help-block"></span>
-				<input type="email" name="repeatEmail" id="repeatEmail" placeholder="Rewrite your email address" class="required">
+				<input type="email" name="repeatEmail" id="repeatEmail" placeholder="Rewrite your email address" class="">
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">Change your password</label>
 			<div class="controls">
-				<input type="password" name="password" id="pass" placeholder="You new password" class="required input-margin password-line">
+				<input type="password" name="password" id="pass" placeholder="You new password" class="input-margin password-line">
 				<span class="help-block"></span>
-				<input type="password" name="confirm_password" id="pass2" placeholder="Rewrite your new password" class="required password-line">
+				<input type="password" name="repeatPassword" id="pass2" placeholder="Rewrite your new password" class="password-line">
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"for="inputDelete">Delete entire account</label>
 			<div class="controls terms">
-				<p>If you want to delete your account and all services and info associated witht it, click <a href="#myModal" role="button" data-toggle="modal">here</a></p>
-				<span class="help-block"></span>
+				<p>If you want to delete your account and all services and info associated witht it, click <a href="#/settings/delete">here</a></p>
 			</div>
 		</div>
 	</div>
@@ -54,27 +52,8 @@
 
 	<div class="footer-content">
 		<div class="buttons-group">
-			<button id="save-settings-btn" class="button1 yellow">Save</button>
-			<button id="cancel-settings-btn" class="button1">Cancel</button>
+			<button type="submit" id="save-settings-btn" class="button1 yellow" data-loading-text="Saving...">Save</button>
+			<button type="button" id="cancel-settings-btn" class="button1">Cancel</button>
 		</div>
 	</div>
 </form>
-
-<!-- MODAL -->
-
-<div class="modal-body" style="display: none;">
-	<p>Are you sure? In order to complete please type your acount password</p>
-	<form id="delete-account-form" class="form-horizontal">
-		<div class="control-group">
-			<label class="control-label" for="textarea"><label for="inputCurrentPassword">Password</label></label>
-			<div class="controls">
-				<input type="password" id="currentPassword" name="currentPassword" maxlength="20" placeholder="Your password" class="input-medium required">
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<button id="delete-account-btn" class="btn btn-primary" data-loading-text="Deleting...">Delete account</button>
-		</div>
-	</form>
-</div>

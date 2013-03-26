@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	require("jquery.Datepicker");
@@ -26,17 +28,33 @@ define(function(require) {
 
 			this.$("#accomodation").html(accomodationTpl);
 
-			$("input[name=startDate]").datepicker({
+			this.$("input[name=startDate]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});
-			$("input[name=endDate]").datepicker({
+			this.$("input[name=endDate]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});
 
+			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
+
+			/*
+			* BUG: Do search is never reached if user selects city by pressing Enter
+			*/
+			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
+
 			if (params)
 				this.unserializeParams(params);
+
+		},
+
+		doSearch: function(){
+			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
+			if (!cc)
+				return;
+			else
+				this.cityField = cc.city;
 		},
 
 		unserializeParams: function(params){
@@ -66,6 +84,9 @@ define(function(require) {
 			var errors = [];
 			e.preventDefault();
 
+			var crc = this.$('#inputWings').val();
+			this.$('#inputWings').val(crc.split(',')[0]);
+
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
 				errors.push('DATE IS WRONG MODAFOKA!!!');
 
@@ -76,7 +97,10 @@ define(function(require) {
 				return this.displayErrors(errors);
 
 			var formData = utils.serializeForm(e.target.id);
+			if (this.cityField)
+				formData.wings = this.cityField;
 			formData.page = 1;
+			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
 		},
 

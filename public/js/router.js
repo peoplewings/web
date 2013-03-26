@@ -14,6 +14,7 @@ define(function(require) {
 	var passwordView = require("views/home/password");
 	var logoutView = require("views/app/logout");
 	var SettingsView = require("views/app/settings");
+	var deleteAccount = require("views/app/deleteAccount");
 	var ProfileView = require("views/app/ProfileView");
 	var notificationsView = require("views/app/notifications");
 	var threadView = require("views/app/thread");
@@ -31,9 +32,10 @@ define(function(require) {
 			//Logged User patterns
 			"logout": "logout",
 			"settings":"settings",
+			"settings/delete":"deleteAccount",
 
 			"profiles/:id/about":"aboutProfile",
-			//"profiles/:id/wings":"previewProfile",
+			"profiles/:id/wings":"wingsProfile",
 
 			"messages/:id": "showThread",
 			"messages/filter/:filters": "showNotifications",
@@ -84,7 +86,7 @@ define(function(require) {
 			logoutView.logout();
 		},
 		settings: function(){
-			this.showHeaderSearch(false);
+			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -92,6 +94,15 @@ define(function(require) {
 				this.settingsView = new SettingsView;
 			this.settingsView.render();
 		},
+
+		deleteAccount: function(){
+			this.showHeaderSearch(true);
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			deleteAccount.render();
+		},
+
 		aboutProfile: function(userId){
 			this.showHeaderSearch(true);
 			if (!api.userIsLoggedIn())
@@ -99,7 +110,17 @@ define(function(require) {
 
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
-			this.previewView.render(+userId);
+			this.previewView.render(+userId, "about");
+
+		},
+		wingsProfile: function(userId){
+			this.showHeaderSearch(true);
+			if (!api.userIsLoggedIn())
+				return this.landing();
+
+			if (!this.previewView)
+				this.previewView = new ProfileView(+userId);
+			this.previewView.render(+userId, "wings");
 		},
 
 		showNotifications: function(filters){

@@ -53,7 +53,7 @@ define(function(require) {
 			var self = this;
 			api.get(this.urlWings())
 			.then(function(resp){
-				self.set("wingsCollection", resp.data.map(self.parseWing));
+				self.set("wingsCollection", resp.data.map(self.parseWing.bind(self)));
 				self.trigger("change:wingsCollection");
 
 				if (options.success)
@@ -136,18 +136,6 @@ define(function(require) {
 
 			return index;
 		},
-
-		deleteWingById: function(id){
-			var wing = this.findWingById(id);
-			var collection = this.get("wingsCollection");
-
-			this.set("wingsCollection", _.omit(collection, wing));
-
-			console.log(this.get("wingsCollection"));
-
-			debugger;
-		},
-
 	});
 
 	// Returns the Model singleton instance

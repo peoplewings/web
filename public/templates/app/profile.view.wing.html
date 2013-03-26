@@ -1,8 +1,20 @@
 				<div class="box-header">
 					<h1 class="house-icon">Accommodation</h1>
 					{{#if myProfile}}
-					<button id="edit-wing-{{id}}"class="button2"><span class="edit-icon">Edit</span></button>
+					<div class="btn-group pull-right">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<span class="config"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#" class="edit-wing-btn" wing-id="{{id}}">Edit wing</a></li>
+							<li><a href="#" class="delete-wing-btn" wing-id="{{id}}">Delete wing</a></li>
+						</ul>
+					</div>
 					{{/if}}
+					<!--
+					{{#if myProfile}}
+					<button id="edit-wing-{{id}}" class="button2"><span class="edit-icon">Edit</span></button>
+					{{/if}}-->
 				</div>
 				<div class="box-content wings-info">
 					<h2>Wings name</h2>

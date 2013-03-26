@@ -121,35 +121,74 @@
 					</div>
 			</div>
 		</footer>
-
+		
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en"></script>
 		<script type="text/javascript" src="js/lib/jquery.js"></script>
 		<script type="text/javascript">
+			$(function() {
 
-			$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
-				var num = 18 + index * 2;
-				return '<option value="' + num + '">' + num + '</option>';
-			}).join(''));
-			$('[name="endAge"]').val(98);
+				$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
+					var num = 18 + index * 2;
+					return '<option value="' + num + '">' + num + '</option>';
+				}).join(''));
+				$('[name="endAge"]').val(98);
 
-			$('#accomodation-search-form').on('submit', function() {
-				if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
-					$('.form-errors').html('The start age is bigger than end age');
+				$('#accomodation-search-form').on('submit', function() {
+					if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
+						$('.form-errors').html('The start age is bigger than end age');
+						return false;
+					}
+
+					document.location =
+						'index.html#/search/?capacity=1&language=all&type=Host&gender=Both&page=1&' +
+						$('#accomodation-search-form [name]')
+							.toArray()
+							.map($)
+							.map(function(input) {
+								if ('inputWings' === input.attr('id') && parsedCity)
+									input.val(parsedCity);
+								else
+									input.val(input.val().split(',')[0]);
+								if (input.val())
+									return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
+
+							})
+							.filter(Boolean)
+							.join('&');
+
 					return false;
+				});
+
+				var search = new google.maps.places.Autocomplete(document.getElementById('inputWings'), { types: ['(cities)'] });
+
+				var parsedCity = null;
+
+				var parsePlace = function(){
+					function getCC(addressComponents){
+						var data = {};
+						for (component in addressComponents){
+							for (type in addressComponents[component].types){
+								switch (addressComponents[component].types[type]) {
+									case "locality":
+									data.city = addressComponents[component].long_name;
+									break;
+									case "country":
+									data.country = addressComponents[component].long_name;
+									break;
+									case "administrative_area_level_1":
+									data.region = addressComponents[component].long_name;
+									break;
+								}
+							}
+						}
+						return data;
+					}
+					parsedCity = getCC(search.getPlace().address_components).city;
 				}
+				
+				google.maps.event.addListener(search, 'place_changed', parsePlace);
 
-				document.location =
-					'index.html#/search/?capacity=1&language=all&type=Host&gender=Both&page=1&' +
-					$('#accomodation-search-form [name]')
-						.toArray()
-						.map($)
-						.map(function(input) {
-							if (input.val())
-								return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
-						})
-						.filter(Boolean)
-						.join('&');
 
-				return false;
 			});
 
 		</script>
