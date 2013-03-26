@@ -49,7 +49,6 @@ define(function(require) {
 		var resource = /\/api\/v1\/(\w+)/.exec(uri)[1];
 		if (resource !== 'control')
 			spinner.show(reqId, 1000);
-		
 		xhr.open(method, url, true);
 
 		xhr.onreadystatechange = function() {

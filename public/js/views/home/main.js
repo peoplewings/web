@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	require("jquery.Datepicker");
@@ -48,7 +50,6 @@ define(function(require) {
 		},
 
 		doSearch: function(){
-			debugger;
 			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
 			if (!cc)
 				return;
@@ -82,9 +83,8 @@ define(function(require) {
 		submitSearch: function(e) {
 			var errors = [];
 			e.preventDefault();
-			debugger;
+
 			var crc = this.$('#inputWings').val();
-			console.log("CRC: ", "-",crc)
 			this.$('#inputWings').val(crc.split(',')[0]);
 
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
@@ -99,7 +99,6 @@ define(function(require) {
 			var formData = utils.serializeForm(e.target.id);
 			if (this.cityField)
 				formData.wings = this.cityField;
-			
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
