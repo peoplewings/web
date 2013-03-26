@@ -53,7 +53,7 @@ define(function(require) {
 			var self = this;
 			api.get(this.urlWings())
 			.then(function(resp){
-				self.set("wingsCollection", resp.data.map(self.parseWing));
+				self.set("wingsCollection", resp.data.map(self.parseWing.bind(self)));
 				self.trigger("change:wingsCollection");
 
 				if (options.success)

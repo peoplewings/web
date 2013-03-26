@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require){
 
 	var $ = require("jquery");
