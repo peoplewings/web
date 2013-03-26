@@ -102,7 +102,6 @@ define(function(require) {
 					w: Math.floor(coords.w * scale_x),
 					h: Math.floor(coords.h * scale_y),
 				};
-				console.log(self.params);
 			}
 
 			function clearCoords(){
