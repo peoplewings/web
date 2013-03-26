@@ -160,11 +160,13 @@ define(function(require) {
 			var dS = "";
 			var dE = "";
 
-			if (wing && !wing.sharingOnce)
-				this.$("div#sharing-dates").hide();
-			else {
+			if (wing && wing.sharingOnce){
+				this.$("div#sharing-dates").show();
 				dS = wing.dateStart;
-				dE = wing.dateEnd; }
+				dE = wing.dateEnd; 
+			}
+
+			this.$("div#sharing-dates").hide();
 
 			this.$('#accomodation-form').validate();
 			this.$("input[name=dateStart]")
