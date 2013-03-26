@@ -10,11 +10,15 @@ define(function(require) {
 	var alerts = require("views/lib/alerts");
 
 
+	var blitline = new Blitline();
+
+
 	var AvatarView = Backbone.View.extend({
 
 		el: "#basic-box",
 
 		originalAvatarId: null,
+		size: 600,
 
 		spinOptions: {
 			lines: 11,
@@ -46,12 +50,13 @@ define(function(require) {
 		},
 
 		initialize: function(){
+			_.bindAll(this, 'uploadFile', 'uploadComplete', 'resizeComplete');
 			this.spinner = new Spinner(this.spinOptions);
 
-			if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+			if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
 				return alert('The File APIs are not fully supported in this browser.');
 
-			$('#upload').on('change', this.uploadFile.bind(this));
+			$('#upload').on('change', this.uploadFile);
 		},
 
 		uploadFile: function(event) {
@@ -60,67 +65,81 @@ define(function(require) {
 				return;
 
 			this.spinner.spin(document.getElementById('upload-avatar'));
-			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete.bind(this));
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
 		},
-		uploadComplete: function(response){
-			return;
 
-			this.spinner.stop();
-			var data = response.data;
-			var original = {
-				avatarId: data.id,
-				width: data.width,
-				height: data.height,
-			};
+		uploadComplete: function(url) {
+			var jobs = [{
+				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+				"src": url,
+				"functions": [{
+					"name": "resize_to_fit",
+					"params" : { "width" : this.size, "height" : this.size },
+					"save" : { "image_identifier" : "external_sample_1" }
+				}]
+			}];
 
-			function showCoords(coords){
-				var scale_x = original.width / $("#cropbox").width();
-				var scale_y = original.height / $("#cropbox").height();
-				$('#id_x').val(Math.floor(coords.x * scale_x));
-				$('#id_y').val(Math.floor(coords.y * scale_y));
-				$('#id_w').val(Math.floor(coords.w * scale_x));
-				$('#id_h').val(Math.floor(coords.h * scale_y));
+			blitline.submit(jobs, {
+				completed : this.resizeComplete
+				//submitted : function(jobIds, images) {
+				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
+				//}
+			});
+		},
+
+		resizeComplete: function(images, error) {
+			var self = this;
+			this.params = { x: 0, y: 0, w: 0, h: 0 };
+
+			function showCoords(coords) {
+				var scale_x = self.size / $("#cropbox").width();
+				var scale_y = self.size / $("#cropbox").height();
+				self.params = {
+					img: images[0].s3_url,
+					x: Math.floor(coords.x * scale_x),
+					y: Math.floor(coords.y * scale_y),
+					w: Math.floor(coords.w * scale_x),
+					h: Math.floor(coords.h * scale_y),
+				};
+				console.log(self.params);
 			}
 
 			function clearCoords(){
 				$('#coords input').val('');
 			}
 
-			if (false) {
-				$('#crop-modal .modal-body img').attr({ src: data.image });
+			if (error)
+				return console.error('Error processing image ' + error + ' Blitline dashboard can provide more info.');
 
-				$('#crop-modal').modal('show');
-				$('#cropbox').Jcrop({
-					onChange:   showCoords,
-					onSelect:   showCoords,
-					onRelease:  clearCoords,
-					aspectRatio: 1,
-					setSelect:   [ 50, 50, 296, 296],
-					minSize: [246, 246],
-					//maxSize: [246, 284],
-				});
-			} else
-				alerts.error(response.errors);
+			this.spinner.stop();
+			$('#crop-modal .modal-body img').attr('src', images[0].s3_url);
+			$('#crop-modal').modal('show');
+			$('#cropbox').Jcrop({
+				onChange: showCoords,
+				onSelect: showCoords,
+				onRelease: clearCoords,
+				aspectRatio: 1,
+				setSelect: [ 50, 50, 296, 296],
+				minSize: [246, 246],
+			});
 		},
-		submitAvatar: function(){
-			var data = utils.serializeForm("crop-avatar-form");
 
+		submitAvatar: function() {
 			this.$("#submit-avatar").button('loading');
 
-			api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, data)
-			.then(function(resp){
-				alerts.success("Avatar uploaded");
-				$('#avatar').attr("src", resp.data.url);
-				$('#crop-modal').modal('hide');
-				window.router.header.refresh();
-
-			}, function(error) {
-				debugger;
-				alerts.defaultError(error);
-			})
-			.fin(function(){
-				$("#submit-avatar").button('reset');
-			});
+			api.post(api.getApiVersion() + "/cropped/", this.params)
+				.then(function(resp){
+					alerts.success("Avatar uploaded. You will be able to see you avatar in a few minutes.");
+					$('#avatar').attr("src", resp.data.url);
+					$('#crop-modal').modal('hide');
+					window.router.header.refresh();
+				}, function(error) {
+					debugger;
+					alerts.defaultError(error);
+				})
+				.fin(function(){
+					$("#submit-avatar").button('reset');
+				});
 		},
 	});
 
