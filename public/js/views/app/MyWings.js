@@ -163,7 +163,7 @@ define(function(require) {
 			if (wing && wing.sharingOnce){
 				this.$("div#sharing-dates").show();
 				dS = wing.dateStart;
-				dE = wing.dateEnd; 
+				dE = wing.dateEnd;
 			}
 
 			this.$("div#sharing-dates").hide();
