@@ -171,7 +171,6 @@ div.profile
 			div.info-bar
 				padding: 10px 10px 10px 24px
 				overflow: hidden
-				width: 240px
 
 				span
 					float: left
@@ -185,10 +184,12 @@ div.profile
 
 			div.button-bar
 				float: right
+				button
+					border-right: none
+					border-top: none
+					padding: 15px
+					min-width: 90px
 
-				button.selected
-					@include bg-gradient(#ffff00, #ffea00)
-					
 	div.accordion
 		clear: both
 		color: #808080
