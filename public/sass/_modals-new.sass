@@ -1,21 +1,19 @@
+@import _reset.sass
+@import _effects.sass
+@import _buttons.sass
+
 /* --------------------------------------------------------------------------
-	Enviroment
+	Auxiliar
 	-------------------------------------------------------------------------- */
 
-.modal-backdrop.fade.in
-	@include opacity(0.1)
-
-.modal.fade.in
-	//top: 39%
-	//left: 38%
-
-@media (max-width: 767px)
-	.modal.fade.in
-		top: auto
+body
+	font-family: 'Helvetica', Arial, sans-serif
+	background: black
+	padding: 25px
 
 
 /* --------------------------------------------------------------------------
-	Modal Generic
+	Modals
 	-------------------------------------------------------------------------- */
 
 div.generic-modal
@@ -27,12 +25,6 @@ div.generic-modal
 	width: 790px
 	@include border-radius(15px)
 	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
-
-	&:focus
-		outline: none
-
-	div, h1, form, label, input
-		line-height: inherit
 
 	div.modal-header
 		background: #e1e0d9
@@ -53,30 +45,16 @@ div.generic-modal
 	div.modal-body
 		padding: 15px 25px
 		background: #FFF
-
 		div.control-group
 			margin-bottom: 15px
 			&:last-child
 				margin-bottom: 0
 			label.control-label
 				float: left
-				width: 60px
 				font-weight: bold
-				text-align: right
-				margin: 8px -5px
-
+				margin: 5px 0
 			div.controls
 				margin-left: 70px
-				input[type="text"]
-					width: 96%
-					padding: 7px 14px
-					margin: 0
-					color: #000
-					font-size: inherit
-					font-weight: bold
-					background: #EEE
-					@include border-radius(2px)
-					@include box-shadow(1px, 1px, 1px, #EEE, inset)
 				textarea
 					display: inline-block
 					height: 173px
@@ -84,9 +62,10 @@ div.generic-modal
 					padding: 12px
 					padding-left: 15px
 					margin: 0
-					color: inherit
 					font-family: inherit
 					font-size: inherit
+					line-height: 20px
+					color: #555
 					background-color: #FFF
 					border: 1px solid #CCC
 					@include border-radius(3px)
@@ -94,22 +73,16 @@ div.generic-modal
 				label
 					padding: 5px 0
 					padding-left: 30px
-					display: inline
 					input
-						margin-top: -3px
 						margin-right: 10px
-
-			div.controls.radios
-				min-height: 25px
-				padding-top: 8px
-
 				label.radio-like-up
-					background: url(../img/icon-like-up.png) no-repeat 10px 5px
+					background: url(../img/icon-like-up.png) no-repeat 10px 6px
 					margin-right: 10px
 				label.radio-like-down
-					background: url(../img/icon-like-down.png) no-repeat 10px 5px
+					background: url(../img/icon-like-down.png) no-repeat 10px 6px
 
-		div.control-group.avatar-message
+		div.control-group-message
+			@extend .control-group
 			label.control-label
 				margin-top: 0
 
@@ -117,7 +90,6 @@ div.generic-modal
 		padding: 0
 		overflow: hidden
 		background: #FFF
-		border: none
 		border-radius: 0 0 15px 15px
 		-webkit-border-radius: 0 0 15px 15px
 		-moz-border-radius: 0 0 15px 15px
@@ -125,21 +97,8 @@ div.generic-modal
 			border-bottom: none
 			&.button:last-child
 				border-left: none
-		div.button-group
+		.button-group
 			float: right
 			margin-right: 20px
 			button
 				min-width: 90px
-				&:first-child
-					margin-right: -3px
-
-
-/* --------------------------------------------------------------------------
-	Modal Wings
-	-------------------------------------------------------------------------- */
-
-div.wing-modal
-	@extend .generic-modal
-
-	div.modal-footer
-		border-top: 1px solid #D0CEC7
