@@ -127,11 +127,12 @@ define(function(require) {
 						case 'EMAIL_IN_USE':
 							alerts.error('The gicen email is already in use', errorOptions);
 							break;
-
+						case 'INCORRECT_PASSWORD':
+							alerts.error('Incorrect password', errorOptions);
+							break;
 						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
 						case 'FORBIDDEN':
-						case 'INCORRECT_PASSWORD':
 						case 'INTERNAL_ERROR':
 						case 'INVALID':
 						case 'INVALID_FIELD':
