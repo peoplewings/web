@@ -1,8 +1,10 @@
 //jshint camelcase:false
+/*globals Base64, b64_hmac_sha1 */
 
 define(function(require) {
 
 	var $ = require('jquery');
+	var api = require('api2');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 
 	function getCC(addressComponents){
@@ -106,23 +108,44 @@ define(function(require) {
 		return '5m';
 	}
 
-	var opts = {
-		lines: 13, // The number of lines to draw
-		length: 3, // The length of each line
-		width: 1, // The line thickness
-		radius: 7, // The radius of the inner circle
-		corners: 1, // Corner roundness (0..1)
-		rotate: 0, // The rotation offset
-		color: '#000', // #rgb or #rrggbb
-		speed: 1, // Rounds per second
-		trail: 60, // Afterglow percentage
-		shadow: false, // Whether to render a shadow
-		hwaccel: false, // Whether to use hardware acceleration
-		className: 'spinner', // The CSS class to assign to the spinner
-		zIndex: 2e9, // The z-index (defaults to 2000000000)
-		top: 'auto', // Top position relative to parent in px
-		left: 'auto' // Left position relative to parent in px
-	};
+	function uploadAmazon(file, folder, filename) {
+		filename = filename || file.name;
+		folder = folder ? folder + '/' : '';
+
+		var AWSSecretKeyId = 'BTgUM/6/4QqS5n8jPZl5+lJhjJpvy0wVy668nb75';
+		var contentType = 'image/';
+		var bucket = 'peoplewings-test-media';
+		var acl = 'public-read';
+		var key = folder + filename;
+
+		var policyJson = {
+			"expiration": "2013-12-12T12:00:00.000Z",
+			"conditions": [
+				[ "eq", "$bucket", bucket ],
+				[ "starts-with", "$key", key ],
+				{ "acl": acl },
+				{ "x-amz-meta-filename": filename },
+				[ "starts-with", "$Content-Type", contentType ]
+			]
+		};
+
+		var policy = Base64.encode(JSON.stringify(policyJson));
+		var signature = b64_hmac_sha1(AWSSecretKeyId, policy);
+
+		var fd = new FormData();
+		fd.append('AWSAccessKeyId', 'AKIAI5TSJI7DYXGRQDYA');
+		fd.append('acl', acl);
+		fd.append('Policy', policy);
+		fd.append('Signature', signature);
+		fd.append('Content-Type', contentType);
+		fd.append('x-amz-meta-filename', filename);
+		fd.append('key', key);
+		fd.append('file', file);
+
+		return api.request('POST', 'http://peoplewings-test-media.s3.amazonaws.com', {}, fd).then(function() {
+			return 'https://s3-eu-west-1.amazonaws.com/' + bucket + '/' + key;
+		});
+	}
 
 	return {
 		serializeForm: serialize,
@@ -130,8 +153,6 @@ define(function(require) {
 		setAutocomplete: setAutocomplete,
 		getCityAndCountry: getCC,
 		formatReplyTime: formatReplyTime,
-		getSpinOpts: function(){
-			return opts;
-		},
+		uploadAmazon: uploadAmazon,
 	};
 });

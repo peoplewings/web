@@ -1,4 +1,5 @@
 //jshint camelcase:false
+/*globals Blitline */
 
 define(function(require) {
 
@@ -10,11 +11,15 @@ define(function(require) {
 	var alerts = require("views/lib/alerts");
 
 
+	var blitline = new Blitline();
+
+
 	var AvatarView = Backbone.View.extend({
 
 		el: "#basic-box",
 
 		originalAvatarId: null,
+		size: 600,
 
 		spinOptions: {
 			lines: 11,
@@ -46,107 +51,95 @@ define(function(require) {
 		},
 
 		initialize: function(){
+			_.bindAll(this, 'uploadFile', 'uploadComplete', 'resizeComplete');
 			this.spinner = new Spinner(this.spinOptions);
+
+			if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
+				return alert('The File APIs are not fully supported in this browser.');
+
+			$('#upload').on('change', this.uploadFile);
+		},
+
+		uploadFile: function(event) {
+			var files = event.target.files;
+			if (!files.length)
+				return;
+
+			this.spinner.spin(document.getElementById('upload-avatar'));
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+		},
+
+		uploadComplete: function(url) {
+			var jobs = [{
+				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+				"src": url,
+				"functions": [{
+					"name": "resize_to_fit",
+					"params" : { "width" : this.size, "height" : this.size },
+					"save" : { "image_identifier" : "external_sample_1" }
+				}]
+			}];
+
+			blitline.submit(jobs, {
+				completed : this.resizeComplete
+				//submitted : function(jobIds, images) {
+				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
+				//}
+			});
+		},
+
+		resizeComplete: function(images, error) {
 			var self = this;
-			function handleFileSelect(evt) {
-				var files = evt.target.files;
-				if (files.length > 0)
-					self.uploadFile(files[0]);
+			this.params = { x: 0, y: 0, w: 0, h: 0 };
+
+			function showCoords(coords) {
+				var scale_x = self.size / $("#cropbox").width();
+				var scale_y = self.size / $("#cropbox").height();
+				self.params = {
+					img: images[0].s3_url,
+					x: Math.floor(coords.x * scale_x),
+					y: Math.floor(coords.y * scale_y),
+					w: Math.floor(coords.w * scale_x),
+					h: Math.floor(coords.h * scale_y),
+				};
 			}
 
-			if (window.File && window.FileReader && window.FileList && window.Blob) {
-				document.getElementById('upload').addEventListener('change', handleFileSelect, false);
-			} else alert('The File APIs are not fully supported in this browser.');
-		},
+			function clearCoords(){
+				$('#coords input').val('');
+			}
 
-		uploadFile: function(file){
-			var self = this;
-			var fd = new FormData();
-			fd.append("image", file);
-			fd.append("owner", api.getUserId());
-			$.ajax({
-				url: api.getServerUrl() + "/cropper/",
-				data: fd,
-				cache: false,
-				contentType: false,
-				processData: false,
-				crossDomain: true,
-				type: 'POST',
-				beforeSend: function(){
-					self.spinner.spin(document.getElementById('upload-avatar'));
-				},
-				/*xhr: function(){
-					var xhr = new window.XMLHttpRequest();
-					xhr.upload.addEventListener("progress", function(evt){
-						if (evt.lengthComputable) {
-							var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-							$('.progress > .bar').attr( { "style": "width:" + percentComplete.toString() + "%" });
-						}
-					}, false);
-					return xhr;
-				},*/
-				success: this.uploadComplete.bind(this),
+			if (error)
+				return console.error('Error processing image ' + error + ' Blitline dashboard can provide more info.');
 
+			this.spinner.stop();
+			$('#crop-modal .modal-body img').attr('src', images[0].s3_url);
+			$('#crop-modal').modal('show');
+			$('#cropbox').Jcrop({
+				onChange: showCoords,
+				onSelect: showCoords,
+				onRelease: clearCoords,
+				aspectRatio: 1,
+				setSelect: [ 50, 50, 296, 296],
+				minSize: [246, 246],
 			});
 		},
-		uploadComplete: function(response){
-				this.spinner.stop();
 
-				var self = this;
-				function showCoords(c){
-					var scale_x = self.originalW / $("#cropbox").width();
-					var scale_y = self.originalH / $("#cropbox").height();
-					$('#id_x').val(Math.floor(c.x*scale_x));
-					$('#id_y').val(Math.floor(c.y*scale_y));
-					$('#id_w').val(Math.floor(c.w*scale_x));
-					$('#id_h').val(Math.floor(c.h*scale_y));
-				}
-
-				function clearCoords(){
-					$('#coords input').val('');
-				}
-
-
-				if (response.success){
-					var data = response.data;
-					this.originalAvatarId = data.id;
-					this.originalH = data.height;
-					this.originalW = data.width;
-
-					$('#crop-modal .modal-body img').attr({ src: data.image });
-
-					$('#crop-modal').modal('show');
-					$('#cropbox').Jcrop({
-						onChange:   showCoords,
-						onSelect:   showCoords,
-						onRelease:  clearCoords,
-						aspectRatio: 1,
-						setSelect:   [ 50, 50, 296, 296],
-						minSize: [246, 246],
-						//maxSize: [246, 284],
-					});
-				} else
-					alerts.error(response.errors);
-		},
-		submitAvatar: function(){
-			var data = utils.serializeForm("crop-avatar-form");
-
+		submitAvatar: function() {
 			this.$("#submit-avatar").button('loading');
 
-			api.post(api.getApiVersion() + "/cropped/" + this.originalAvatarId, data)
-			.then(function(resp){
-				alerts.success("Avatar uploaded");
-				$('#avatar').attr("src", resp.data.url);
-				$('#crop-modal').modal('hide');
-				window.router.header.refresh();
-
-			}, function(error) {
-				debugger;
-				alerts.defaultError(error);
-			})
-			.fin(function(){
-				$("#submit-avatar").button('reset');
-			});
+			api.post(api.getApiVersion() + "/cropped/", this.params)
+				.then(function(resp){
+					alerts.success("Avatar uploaded. You will be able to see you avatar in a few minutes.");
+					$('#avatar').attr("src", resp.data.url);
+					$('#crop-modal').modal('hide');
+					window.router.header.refresh();
+				}, function(error) {
+					debugger;
+					alerts.defaultError(error);
+				})
+				.fin(function(){
+					$("#submit-avatar").button('reset');
+				});
 		},
 	});
 
