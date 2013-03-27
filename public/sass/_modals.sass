@@ -13,9 +13,10 @@
 	.modal.fade.in
 		top: auto
 
+$width-elements-modal: 640px
 
 /* --------------------------------------------------------------------------
-	Modal Generic
+	Modal Basic
 	-------------------------------------------------------------------------- */
 
 div.generic-modal
@@ -53,6 +54,7 @@ div.generic-modal
 	div.modal-body
 		padding: 15px 25px
 		background: #FFF
+		max-height: 100%
 
 		div.control-group
 			margin-bottom: 15px
@@ -68,7 +70,7 @@ div.generic-modal
 			div.controls
 				margin-left: 70px
 				input[type="text"]
-					width: 96%
+					width: $width-elements-modal
 					padding: 7px 14px
 					margin: 0
 					color: #000
@@ -80,16 +82,17 @@ div.generic-modal
 				textarea
 					display: inline-block
 					height: 173px
-					width: 96%
-					padding: 12px
+					width: $width-elements-modal
+					max-width: $width-elements-modal
+					padding: 13px
 					padding-left: 15px
 					margin: 0
-					color: inherit
+					color: #000
 					font-family: inherit
 					font-size: inherit
 					background-color: #FFF
 					border: 1px solid #CCC
-					@include border-radius(3px)
+					@include border-radius(0)
 					@include box-shadow(1px, 1px, 1px, #EEE, inset)
 				label
 					padding: 5px 0
@@ -132,7 +135,6 @@ div.generic-modal
 				min-width: 90px
 				&:first-child
 					margin-right: -3px
-
 
 /* --------------------------------------------------------------------------
 	Modal Wings
