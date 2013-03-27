@@ -177,19 +177,19 @@ div.generic-modal {
     padding: 25px;
     background: white; }
     div.generic-modal div.modal-body textarea {
-      width: 647px;
+      width: 80%;
       font-size: 12px;
       padding: 12px;
       padding-left: 15px;
       min-height: 250px; }
   div.generic-modal div.modal-footer {
     padding: 0;
-    overflow: hidden; }
+    overflow: hidden;
+    background: white; }
     div.generic-modal div.modal-footer button {
       border-bottom: none; }
       div.generic-modal div.modal-footer button.button:last-child, div.generic-modal div.modal-footer button.button-highlight:last-child, div.generic-modal div.modal-footer button.button-pager-previous:last-child, div.generic-modal div.modal-footer button.button-pager-next:last-child, div.generic-modal div.modal-footer button.button-close:last-child {
         border-left: none; }
     div.generic-modal div.modal-footer .button-group {
       float: right;
-      margin-top: 20px;
       margin-right: 20px; }

@@ -1,0 +1,343 @@
+ @import _effects.sass
+
+.generic-modal
+	display: block
+	border: 1px solid #D3D1CA
+	@include border-radius(15px)
+	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
+	width: 790px
+	min-height: 375px
+
+	&:focus
+		outline: none
+
+	.modal-header
+		background: #e1e0d9
+		border: none
+		h3
+			padding: 7px
+			padding-left: 15px
+			font-size: 14px
+			font-weight: bold
+			text-shadow: 1px 1px white
+		.close:hover
+			@include opacity(1)
+			background: none
+
+	.modal-body
+		padding-bottom: 0
+		max-height: 500px
+		input
+			font-size: 12px
+			background: white
+			@include border-radius(2px)
+			-webkit-box-shadow: inset 1px 1px #EEE
+			width: 644px
+			padding: 7px 15px
+		textarea
+			width: 647px
+			font-size: 12px
+			padding: 12px
+			padding-left: 15px
+			min-height: 250px
+
+		.control-group
+			.control-label
+				font:
+					size: 12px
+					weight: bold
+				color: #999
+			label
+				width: 60px
+			.controls
+				margin-left: 70px
+
+		div#new-invitation-content
+			div.response-wrapper
+				margin: 10px
+				margin-left: 0
+				border: 1px solid #D0CEC7
+				h1
+					text-transform: capitalize
+					font-weight: bold
+					padding: 10px 10px 10px 15px
+					padding-left: 45px
+					font-size: 12px
+				div.accepted h1
+					color: #85c333
+					background: url(../img/states/icon-accepted.png) 11px 8px no-repeat #f5f5f0
+				div.maybe h1
+					color: #fa9e03
+					background: url(../img/states/icon-maybe.png) 11px 8px no-repeat #f5f5f0
+				div.pending h1
+					color: #ee4040
+					background: url(../img/states/icon-pending.png) 11px 8px no-repeat #f5f5f0
+				div.denied h1
+					color: #7e7b71
+					background: url(../img/states/icon-declined.png) 11px 8px no-repeat #f5f5f0
+				div#wing-data
+					background: #e1e0d9
+					border: 1px solid #d3d1ca
+					border:
+						left: none
+						right: none
+					padding: 14px
+					h2
+						font:
+							size: 12px
+							weight: bold
+						padding-left: 3px
+						margin-bottom: 4px
+					span
+						margin-left: 10px
+					div#wing-accomodation-params
+						div.control-group
+							margin: 0
+							margin-top: 10px
+						div.controls
+							margin: 0
+							input
+								margin: 0
+								padding:
+									top: 4px
+									right: 6px
+									bottom: 4px
+									left: 10px
+								&.input-sdate
+									width: 97px
+									background: url(../img/start-date.png) no-repeat 83px 6px white
+								&.input-edate
+									width: 97px
+									background: url(../img/end-date.png) no-repeat 83px 6px white
+							span
+								margin: 0
+						div.control-group.flexible-dates
+							margin: 0
+							label.checkbox
+								display: inline-block
+								font-size: 12px
+								line-height: normal
+								width: 115px
+								padding: 6px 0
+								padding-top: 8px
+								input[type="checkbox"]
+									float: none
+									width: auto
+									padding: 0
+									margin-right: 10px
+									margin-top: -2px
+				select
+					margin: 0
+					background: url(../img/mini-arrow.png) no-repeat #FFF
+				.size-extralarge
+					background-position: 206px 13px
+				.size-medium
+					background-position: 70px 13px
+
+				textarea
+					border: none
+					height: 97px
+					width: 647px
+					margin: 0px
+					padding: 15px
+					padding-top: 10px
+					color: #000
+					min-height: auto
+
+	.modal-footer
+		background: #FFF
+		border: none
+		padding: 0
+		padding-right: 29px
+		@include border-radius(15px)
+		button
+			float: right
+			width: auto
+			margin: 0
+			padding: 15px 25px
+			line-height: 12px
+			border: 1px solid #D0CEC7
+			border-bottom: none
+			text-shadow: 1px 1px #FFF
+		.button2
+			border-right: none
+			color: #000
+
+.modal-backdrop.fade.in
+	@include opacity(0.1)
+
+@import _effects.sass
+
+.modal.fade.in
+	top: 39%
+	left: 37%
+
+@media (max-width: 767px)
+	.modal.fade.in
+		top: auto
+
+.generic-modal.thin-modal
+	display: block
+	border: 1px solid #D3D1CA
+	@include border-radius(15px)
+	min-height: 375px
+	width: 389px
+
+	h2, label
+	color: #999
+	font-size: 12px
+
+	&:focus
+		outline: none
+
+	.modal-header
+		background: #e1e0d9
+		border: 1px solid #d3d1ca
+		border-bottom: 1px solid #d3d1ca
+		border: none
+		h3
+			padding: 7px
+			padding-left: 15px
+			font-size: 14px
+			font-weight: bold
+			text-shadow: 1px 1px white
+			color: #000
+			line-height: 20px
+		.close:hover
+			@include opacity(1)
+			background: none
+
+	.modal-body
+		padding: 0
+		min-height: 500px
+
+		/* box-standard */
+
+		.box-standard
+			width: 374px
+			background: #FFF
+			color: #808080
+			margin: 0
+			border: none
+			overflow: hidden
+
+			.box-header
+				border-bottom: 1px solid #d0cec7
+				overflow: hidden
+				max-height: 42px
+				h1
+					float: left
+					font:
+						size: 14px
+						weight: bold
+					text-shadow: 1px 1px white
+					padding: 12px 10px 10px 50px
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+
+			.box-content
+				overflow: hidden
+				padding: 25px
+				//height: 450px
+				p
+					color: #000
+					font-size: 12px
+					padding-bottom: 12px
+					margin-bottom: 12px
+					border-bottom: 1px solid #DDD
+
+				input
+					padding: 4px 6px
+
+				label
+					width: auto
+
+				input[type="checkbox"]
+					width: auto
+
+				.controls
+					margin-left: 0
+
+					textarea
+						width: 300px !important
+						padding: 10px
+						min-height: auto
+
+
+			.wings-info, .contact-info
+				h2
+					float: left
+					margin-right: 10px
+				.last-p
+					float: none
+
+			.accordion-body.collapse
+				height: 450px
+
+			.accordion-heading
+				background: #FFF
+				border-top: 1px solid #e5e5e5
+				overflow: hidden
+				cursor: pointer
+
+				.see-more
+					float: left
+					margin: 0.7em
+					margin-left: 88px
+
+					p, span
+						float: left
+						padding: 0
+
+					span.more-about
+						background: url(../img/arrow_about.png) no-repeat 15px center
+						text-indent: -9999px
+
+					p
+						font-size: 12px
+						text-align: center
+						text-transform: uppercase
+						margin: 0
+						border-bottom: 0
+
+		/* EOF box-standard */
+
+		.listing-location
+			input
+				padding: 4px 6px
+				width: auto
+			.input-medium
+				width: 210px
+			.input-mini
+				width: 60px
+			.size-box-standard
+				width: 310px !important
+			label
+				width: auto
+			.controls
+				margin-left: 0
+
+	.modal-footer
+		background: none
+		border: none
+		border-top: 1px solid #D0CEC7
+		padding: 0
+		@include border-radius(0)
+		button
+			float: right
+			width: auto
+			margin: 0
+			padding: 15px 25px
+			line-height: 12px
+			border: 1px solid #D0CEC7
+			border-bottom: none
+			text-shadow: 1px 1px #FFF
+		.button1
+			border-top: none
+			margin-right: 15px
+		.button2
+			border-right: none
+			color: #000
+
+
