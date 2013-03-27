@@ -1,25 +1,24 @@
 <form id="feedback-form">
 	<div class="control-group">
 		<label class="control-label" for="inputHost">Typology</label>
-		<div class="controls inline">
-			<label class="radio">
-				<input type="radio" name="ftype" id="optionsType" value="Positive" checked>Cool
+		<div class="controls radios">
+			<label class="radio-like-up">
+				<input type="radio" name="ftype" id="optionsType" value="Positive" checked="">Cool
 			</label>
-			<label class="radio">
+			<label class="radio-like-down">
 				<input type="radio" name="ftype" id="optionsRadios2" value="Negative">Sucks
 			</label>
 		</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label" for="textarea"><label for="inputOccupation">
-			<a href="" class="thumbnail pull-right">
-				<img id="avatar" src="{{ avatar }}" alt="avatar">
+	<div class="control-group avatar-message">
+		<label class="control-label" for="avatarImg">
+			<a href="">
+				<img id="avatar" src="{{avatar}}" alt="avatar">
 			</a>
-		</label></label>
+		</label>
 		<div class="controls">
 			<textarea rows="3" maxsize="500" name="text" placeholder="Write a message..." class="required"></textarea>
 			<span class="help-block"></span>
-			<span class="help-inline"></span>
 		</div>
 	</div>
 </form>

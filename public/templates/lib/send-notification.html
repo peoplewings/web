@@ -1,11 +1,11 @@
-<div class="form-horizontal" data-reciver-id="{{to.id}}">
+<div data-reciver-id="{{to.id}}">
 	<div class="control-group">
-		<label class="control-label" for="reciver-name">For:</label>
+		<label class="control-label" for="reciver-name">For</label>
 		<div class="controls">
 			<input type="text" id="reciver-name" class="autocompletePeople" placeholder="Name" value="{{to.fullname}}" data-provide="typeahead" {{#if to.id}}readonly="readonly"{{/if}}>
 		</div>
 	</div>
-	<div class="control-group">
+	<div class="control-group avatar-message">
 		<label class="control-label" for="message-content">
 			<img src="{{avatar}}">
 		</label>
@@ -30,24 +30,27 @@
 							<div id="wing-parameters"></div>
 						</div>
 					</div><!-- EOF response-wrapper -->
-			</div><!-- EOF new-invitation-content -->
-			{{/unless_equals}}
-						{{#equals kind 'request'}}
-						Introduce
-						<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
-						<span class="help-block"></span><br>
-						<input type="checkbox" id="public-request" checked>
-						<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
-						Personal message to host
-						{{/equals}}
-						<textarea name="privateMessage" id="message-content" class="required"
-						{{#equals kind 'request'}}
-						placeholder="Tell your host why you'd like to meet them..."
-						{{else}}
-						placeholder="Write a message"
-						{{/equals}}
-						></textarea>
-						<span class="help-block"></span>
+				</div><!-- EOF new-invitation-content -->
+				{{/unless_equals}}
+
+				{{#equals kind 'request'}}
+				Introduce
+				<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
+				<span class="help-block"></span><br>
+				<input type="checkbox" id="public-request" checked>
+				<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
+				Personal message to host
+				{{/equals}}
+				
+				<textarea name="privateMessage" id="message-content" class="required"
+				{{#equals kind 'request'}}
+				placeholder="Tell your host why you'd like to meet them..."
+				{{else}}
+				placeholder="Write a message"
+				{{/equals}}
+				></textarea>
+				<span class="help-block"></span>
+
 			</div>
 		</form>
 	</div>
