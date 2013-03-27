@@ -155,7 +155,6 @@ div.generic-modal {
   background: #e1e0d9;
   border: 1px solid #d3d1ca;
   width: 790px;
-  min-height: 375px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -165,21 +164,24 @@ div.generic-modal {
   div.generic-modal div.modal-header {
     background: #e1e0d9;
     border: none;
-    padding: 25px 30px;
+    padding: 18px 30px;
     border-bottom: 1px solid #d3d1ca;
     border-radius: 15px 15px 0 0;
     -webkit-border-radius: 15px 15px 0 0;
     -moz-border-radius: 15px 15px 0 0; }
     div.generic-modal div.modal-header h1 {
       display: inline-block;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: bold;
-      text-shadow: 1px 1px 1px white; }
+      text-shadow: 1px 1px 1px white;
+      color: black; }
   div.generic-modal div.modal-body {
     padding: 15px 25px;
     background: white; }
     div.generic-modal div.modal-body div.control-group, div.generic-modal div.modal-body div.control-group-message {
       margin-bottom: 15px; }
+      div.generic-modal div.modal-body div.control-group:last-child, div.generic-modal div.modal-body div.control-group-message:last-child {
+        margin-bottom: 0; }
       div.generic-modal div.modal-body div.control-group label.control-label, div.generic-modal div.modal-body div.control-group-message label.control-label {
         float: left;
         font-weight: bold;
@@ -188,7 +190,7 @@ div.generic-modal {
         margin-left: 70px; }
         div.generic-modal div.modal-body div.control-group div.controls textarea, div.generic-modal div.modal-body div.control-group-message div.controls textarea {
           display: inline-block;
-          height: auto;
+          height: 173px;
           width: 96%;
           padding: 12px;
           padding-left: 15px;
@@ -205,22 +207,25 @@ div.generic-modal {
           box-shadow: 1px 1px 1px #eeeeee inset;
           -moz-box-shadow: 1px 1px #eeeeee 1px inset;
           -webkit-box-shadow: 1px 1px 1px #eeeeee inset; }
-        div.generic-modal div.modal-body div.control-group div.controls label.radio-like, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like, div.generic-modal div.modal-body div.control-group div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-down {
+        div.generic-modal div.modal-body div.control-group div.controls label, div.generic-modal div.modal-body div.control-group-message div.controls label {
           padding: 5px 0;
-          padding-left: 40px;
-          width: 40px; }
-          div.generic-modal div.modal-body div.control-group div.controls label.radio-like input, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like input, div.generic-modal div.modal-body div.control-group div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-up input, div.generic-modal div.modal-body div.control-group div.controls label.radio-like-down input, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-down input, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-down input, div.generic-modal div.modal-body div.control-group div.control-group-message div.controls label.radio-like-down input, div.generic-modal div.modal-body div.control-group-message div.control-group div.controls label.radio-like-down input, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-down input {
+          padding-left: 30px; }
+          div.generic-modal div.modal-body div.control-group div.controls label input, div.generic-modal div.modal-body div.control-group-message div.controls label input {
             margin-right: 10px; }
         div.generic-modal div.modal-body div.control-group div.controls label.radio-like-up, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-up {
-          background: url(../img/icon-like-up.png) no-repeat left 8px; }
+          background: url(../img/icon-like-up.png) no-repeat 10px 6px;
+          margin-right: 10px; }
         div.generic-modal div.modal-body div.control-group div.controls label.radio-like-down, div.generic-modal div.modal-body div.control-group-message div.controls label.radio-like-down {
-          background: url(../img/icon-like-down.png) no-repeat left 8px; }
+          background: url(../img/icon-like-down.png) no-repeat 10px 6px; }
     div.generic-modal div.modal-body div.control-group-message label.control-label {
       margin-top: 0; }
   div.generic-modal div.modal-footer {
     padding: 0;
     overflow: hidden;
-    background: white; }
+    background: white;
+    border-radius: 0 0 15px 15px;
+    -webkit-border-radius: 0 0 15px 15px;
+    -moz-border-radius: 0 0 15px 15px; }
     div.generic-modal div.modal-footer button {
       border-bottom: none; }
       div.generic-modal div.modal-footer button.button:last-child, div.generic-modal div.modal-footer button.button-highlight:last-child, div.generic-modal div.modal-footer button.button-pager-previous:last-child, div.generic-modal div.modal-footer button.button-pager-next:last-child, div.generic-modal div.modal-footer button.button-close:last-child {
@@ -228,3 +233,5 @@ div.generic-modal {
     div.generic-modal div.modal-footer .button-group {
       float: right;
       margin-right: 20px; }
+      div.generic-modal div.modal-footer .button-group button {
+        min-width: 90px; }

@@ -23,14 +23,13 @@ div.generic-modal
 	background: #e1e0d9
 	border: 1px solid #D3D1CA
 	width: 790px
-	min-height: 375px
 	@include border-radius(15px)
 	@include box-shadow(5px, 4px, 10px, 0px, #CCC)
 
 	div.modal-header
 		background: #e1e0d9
 		border: none
-		padding: 25px 30px
+		padding: 18px 30px
 		border-bottom: 1px solid #D3D1CA
 		border-radius: 15px 15px 0 0
 		-webkit-border-radius: 15px 15px 0 0
@@ -38,15 +37,18 @@ div.generic-modal
 		h1
 			display: inline-block
 			font:
-				size: 15px
+				size: 14px
 				weight: bold
 			text-shadow: 1px 1px 1px #FFF
+			color: #000
 
 	div.modal-body
 		padding: 15px 25px
 		background: #FFF
 		div.control-group
 			margin-bottom: 15px
+			&:last-child
+				margin-bottom: 0
 			label.control-label
 				float: left
 				font-weight: bold
@@ -55,7 +57,7 @@ div.generic-modal
 				margin-left: 70px
 				textarea
 					display: inline-block
-					height: auto
+					height: 173px
 					width: 96%
 					padding: 12px
 					padding-left: 15px
@@ -68,18 +70,16 @@ div.generic-modal
 					border: 1px solid #CCC
 					@include border-radius(3px)
 					@include box-shadow(1px, 1px, 1px, #EEE, inset)
-				label.radio-like
+				label
 					padding: 5px 0
-					padding-left: 40px
-					width: 40px
+					padding-left: 30px
 					input
 						margin-right: 10px
 				label.radio-like-up
-					@extend .radio-like
-					background: url(../img/icon-like-up.png) no-repeat left 8px
+					background: url(../img/icon-like-up.png) no-repeat 10px 6px
+					margin-right: 10px
 				label.radio-like-down
-					@extend .radio-like
-					background: url(../img/icon-like-down.png) no-repeat left 8px
+					background: url(../img/icon-like-down.png) no-repeat 10px 6px
 
 		div.control-group-message
 			@extend .control-group
@@ -90,6 +90,9 @@ div.generic-modal
 		padding: 0
 		overflow: hidden
 		background: #FFF
+		border-radius: 0 0 15px 15px
+		-webkit-border-radius: 0 0 15px 15px
+		-moz-border-radius: 0 0 15px 15px
 		button
 			border-bottom: none
 			&.button:last-child
@@ -97,3 +100,5 @@ div.generic-modal
 		.button-group
 			float: right
 			margin-right: 20px
+			button
+				min-width: 90px
