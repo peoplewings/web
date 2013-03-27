@@ -11,6 +11,14 @@
 				{{/range}}
 				<option value="+9">+9</option>
 			</select>
+			{{#unless_equals kind 'invite' }}
+			<select name="via" class="size-large">
+				<option value="">Choose transport</option>
+				<option value="plane">Plane</option>
+				<option value="train">Train</option>
+				<option value="car">Car</option>
+			</select>
+			{{/unless_equals}}
 		</div>
 	</div>
 	<div class="control-group flexible-dates">
@@ -23,17 +31,4 @@
 			</label>
 		</div>
 	</div>
-	{{#unless_equals kind 'invite' }}
-	<div class="control-group span8">
-		<div class="controls">
-			<label for="via">Arriving via</label>
-			<select name="via">
-				<option value="">Choose transport</option>
-				<option value="plane">Plane</option>
-				<option value="train">Train</option>
-				<option value="car">Car</option>
-			</select>
-		</div>
-	</div>	
-	{{/unless_equals}}
 </div>
