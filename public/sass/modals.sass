@@ -18,6 +18,8 @@ body
 
 div.generic-modal
 	display: block
+	font-size: 12px
+	color: #999
 	background: #e1e0d9
 	border: 1px solid #D3D1CA
 	width: 790px
@@ -41,14 +43,48 @@ div.generic-modal
 			text-shadow: 1px 1px 1px #FFF
 
 	div.modal-body
-		padding: 25px
+		padding: 15px 25px
 		background: #FFF
-		textarea
-			width: 80%
-			font-size: 12px
-			padding: 12px
-			padding-left: 15px
-			min-height: 250px
+		div.control-group
+			margin-bottom: 15px
+			label.control-label
+				float: left
+				font-weight: bold
+				margin: 5px 0
+			div.controls
+				margin-left: 70px
+				textarea
+					display: inline-block
+					height: auto
+					width: 96%
+					padding: 12px
+					padding-left: 15px
+					margin: 0
+					font-family: inherit
+					font-size: inherit
+					line-height: 20px
+					color: #555
+					background-color: #FFF
+					border: 1px solid #CCC
+					@include border-radius(3px)
+					@include box-shadow(1px, 1px, 1px, #EEE, inset)
+				label.radio-like
+					padding: 5px 0
+					padding-left: 40px
+					width: 40px
+					input
+						margin-right: 10px
+				label.radio-like-up
+					@extend .radio-like
+					background: url(../img/icon-like-up.png) no-repeat left 8px
+				label.radio-like-down
+					@extend .radio-like
+					background: url(../img/icon-like-down.png) no-repeat left 8px
+
+		div.control-group-message
+			@extend .control-group
+			label.control-label
+				margin-top: 0
 
 	div.modal-footer
 		padding: 0
