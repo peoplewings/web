@@ -6,8 +6,9 @@ define(function(require) {
 	var api = require('api2');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/login.html');
+	var spinnerOptions = require('views/lib/spinner').options;
 
-	var spinner = new Spinner(utils.getSpinOpts());
+	var spinner = new Spinner(spinnerOptions);
 
 	var LoginView = Backbone.View.extend({
 

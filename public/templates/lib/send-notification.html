@@ -9,10 +9,10 @@
 		<label class="control-label" for="message-content">
 			<img src="{{avatar}}">
 		</label>
+		<form>
 		<div class="controls">
 			{{#unless_equals kind 'message'}}
 			<div id="new-invitation-content">
-				<form>
 					<div class="response-wrapper">
 						<div class="status-pending-from-me accepted">
 							<h1>Pending</h1>
@@ -29,7 +29,9 @@
 							<span class="help-block"></span>
 							<div id="wing-parameters"></div>
 						</div>
-						{{/unless_equals}}
+					</div><!-- EOF response-wrapper -->
+			</div><!-- EOF new-invitation-content -->
+			{{/unless_equals}}
 						{{#equals kind 'request'}}
 						Introduce
 						<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
@@ -46,8 +48,6 @@
 						{{/equals}}
 						></textarea>
 						<span class="help-block"></span>
-					</div><!-- EOF response-wrapper -->
-				</div><!-- EOF new-invitation-content -->
 			</div>
 		</form>
 	</div>
