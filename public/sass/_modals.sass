@@ -153,8 +153,117 @@ div.generic-modal
 	Modal Wings
 	-------------------------------------------------------------------------- */
 
-div.wing-modal
-	@extend .generic-modal
+div.generic-modal.thin-modal
+	width: 389px
 
-	div.modal-footer
-		border-top: 1px solid #D0CEC7
+	input
+		font-size: 12px
+		background: white
+		@include border-radius(2px)
+		-webkit-box-shadow: inset 1px 1px #EEE
+		width: 644px
+		padding: 7px 15px
+	textarea
+		width: 647px
+		font-size: 12px
+		padding: 12px
+		padding-left: 15px
+		min-height: 250px
+
+		/* box-standard */
+
+	div.modal-body
+		padding: 0
+		max-height: 500px
+
+		div.box-standard
+			width: 374px
+			background: #FFF
+			color: #808080
+			margin: 0
+			border: none
+			overflow: hidden
+
+			div.box-header
+				border-bottom: 1px solid #d0cec7
+				overflow: hidden
+				max-height: 42px
+				h1
+					float: left
+					font-size: 14px
+					font-weight: bold
+					text-shadow: 1px 1px #FFF
+					padding: 12px 10px 10px 50px
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+
+			div.box-content
+				overflow: hidden
+				padding: 25px
+				//height: 450px
+				p
+					color: #000
+					font-size: 12px
+					padding-bottom: 12px
+					margin-bottom: 12px
+					border-bottom: 1px solid #DDD
+
+				input
+					padding: 4px 6px
+
+				label.control-label
+					width: auto
+					font-weight: normal
+					margin: 0 10px 0 0
+					text-align: left
+
+				input[type="checkbox"]
+					width: auto
+					margin-top: 0
+
+				input[type="text"]
+					line-height: 20px
+					font-weight: normal
+					padding-left: 10px
+
+				div.controls
+					margin-left: 0
+
+					textarea
+						width: 300px !important
+						padding: 10px
+						min-height: auto
+
+			.wings-info, .contact-info
+				h2
+					float: left
+					margin-right: 10px
+				.last-p
+					float: none
+
+		/* EOF box-standard */
+
+div.generic-modal
+	div.modal-body
+		div.listing-location
+			div.control-group.blocked
+				label
+					width: auto
+				label.control-label
+					width: auto
+					font-weight: normal
+					text-align: left
+					margin: 0 0 6px 0
+					padding-right: 20px
+				div.controls
+					margin-left: 0
+					input
+						padding: 4px 6px
+						width: auto
+					.input-medium
+						width: 210px
+					.input-mini
+						width: 60px
+					.size-box-standard
+						width: 310px !important
