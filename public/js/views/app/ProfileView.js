@@ -88,7 +88,6 @@ define(function(require) {
 		},
 
 		refreshWings: function(myProfile){
-			debugger;
 			var tpl = wingsBarTpl({ avatar: this.model.get("avatar"), generalStatus: this.model.get("pwState")});
 			if (!myProfile)
 				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
