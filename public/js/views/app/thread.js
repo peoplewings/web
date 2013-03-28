@@ -9,8 +9,7 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var notifList = require("views/app/notifications");
 	var threadTpl = require("tmpl!templates/app/thread.html");
-	var itemTpl = require("tmpl!templates/app/thread-closed.html");
-	var openItemTpl = require("tmpl!templates/app/open-notification.html");
+	var itemTpl = require("tmpl!templates/app/thread-item.html");
 
 	var ThreadView = Backbone.View.extend({
 		el: "#main",
@@ -38,6 +37,8 @@ define(function(require) {
 			'click .option-Reopen': 'optReopen',
 			'click .option-Deny': 'optDeny',
 			'click .option-Cancel': 'optDeny',
+
+			'click li.thread-item': 'toggleContent',
 		},
 
 		responseValidation: {
@@ -87,79 +88,33 @@ define(function(require) {
 		},
 
 		refresh: function(prevThread, nextThread, data) {
-			var last = data.items.pop();
 			var isMessage = data.kind === 'message';
-			var flagDirection = data.firstSender === api.getUserId();
-			var state = (isMessage) ? null : data.wing.state;
-			var parameters = null;
-
-			if (!isMessage) {
-				parameters = data.wing.parameters;
-				parameters.wingType = data.wing.type;
-				parameters.numPeople = data.wing.parameters.capacity;
-			}
+			var me = api.getUserId();
+			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
 			var items = data.items.map(function(item, index) {
-
-				if (!isMessage)
-					parameters.message = data.wing.parameters.wingName;
-
-				return {
+				return _.extend(item, {
 					index: index,
+					fromMe: item.senderId === me,
+					reference: data.reference,
 					isMessage: isMessage,
-					created: item.created,
-					interlocutorId: item.senderId,
-					age: item.senderAge,
-					name: item.senderName,
-					location: item.senderLocation,
-					verified: item.senderVerified,
-					avatar: item.senderSmallAvatar,
-					connected: item.senderConnected,
-					content: item.content.message,
-					state: state,
-					flagDirection: flagDirection,
-					wingParameters: parameters
-				};
+
+					id: null,
+					read: null,
+					online: null,
+				});
 			});
 
-			var self = this;
-			function openTpl(item) {
-				return openItemTpl(item, data.wing, {
-					isMessage: isMessage,
-					options: data.options,
-					flagDirection: flagDirection,
-				});
-			}
-
-			this.current.interlocutor = {
-				id: last.senderId,
-				name: last.senderName,
-			};
-
-			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 			this.$el.html(threadTpl(data, {
 				isMessage: isMessage,
-				iStarted: flagDirection,
 				options: data.options,
 				previous: prevThread,
 				next: nextThread,
-				parameters: parameters,
-				state: state,
 				me: { avatar: avatar },
-				items: items.map(itemTpl).join('') + openTpl(last),
+				items: items.map(itemTpl).join(''),
 			}));
 
-			var allButLast = Array.prototype.slice.call(self.$('#notif-list').children(), 0, -2);
-			$(allButLast).click(function openItem() {
-				var closed = $(this);
-				var open = $(openTpl(data.items[$(this).data('index')]));
-
-				$(this).replaceWith(open);
-				open.click(function closeItem() {
-					$(this).replaceWith(closed);
-					closed.click(openItem);
-				});
-			});
+			this.$('li .messages-content').hide().last().show();
 		},
 
 		remove: function() {
@@ -173,6 +128,12 @@ define(function(require) {
 				debugger;
 				alerts.defaultError(error);
 			});
+		},
+
+		toggleContent: function(event) {
+			var item = $(event.target).closest('li.thread-item')
+			if (!item.next().is('.response-item'))
+				item.find('.messages-content').toggle();
 		},
 
 		back: function() {
