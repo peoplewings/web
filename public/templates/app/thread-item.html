@@ -1,5 +1,7 @@
 <li class="thread-item" data-type="notification-item" data-rel="{{ id }}" data-user-id="{{ senderId }}" data-user-name="{{ senderName }}">
-	<span class="msg-arrow">message arrow</span>
+	<div class="message-arrow">
+		<span>message arrow</span>
+	</div>
 	<div class="messages-header">
 		<div class="messages-avatar">
 			<img src="{{ senderSmallAvatar }}">
@@ -7,9 +9,9 @@
 		<div class="messages-sender {{#unless read }}unread{{/unless}}">
 			<legend>
 				{{#if isMessage }}
-					Message form
+					Message from
 				{{else}}
-					Request form
+					Request from
 				{{/if}}
 			</legend>
 			<h1 class="messages-name">

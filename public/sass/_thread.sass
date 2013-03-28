@@ -19,16 +19,21 @@
 
 // Arrow up
 
-span.msg-arrow
-	display: block
-	float: right
-	width: 12px
-	height: 11px
-	background: url(../img/icon-pick.png) no-repeat
-	position: relative
-	bottom: 11px
-	right: 856px
-	text-indent: -9999px
+div.message-arrow
+	background: none
+	border-bottom: 1px solid #D0CEC7
+	width: 100%
+	overflow: visible
+	height: 4px
+	span
+		display: block
+		width: 12px
+		height: 11px
+		background: url(../img/icon-pick.png) no-repeat
+		text-indent: -9999px
+		position: relative
+		top: -6px
+		left: 85px
 
 // Wing static description
 
@@ -131,20 +136,15 @@ ul#notif-list
 	margin-bottom: 50px
 
 li.thread-item
-	font-size: 12px
-	overflow: hidden
-	float: none
-	border: 1px solid #D0CEC7
-	border-bottom: none
-	background: #FFF
 	cursor: pointer
-	margin-bottom: 5px
-	div
-		float: left
-		overflow: hidden
+	float: none
 	div.messages-header
-		border-bottom: 1px solid #D0CEC7
+		border: 1px solid #D0CEC7
+		border-top: none
+		background: #FFF
+		z-index: -1
 		div.messages-avatar
+			float: left
 			width: 65px
 			height: 65px
 			img
@@ -153,6 +153,7 @@ li.thread-item
 		div.messages-sender
 			padding: 10px 15px 0 20px
 			line-height: 16px
+			float: left
 			legend
 				font-weight: bold
 				color: #999
@@ -197,8 +198,9 @@ li.thread-item
 	div.messages-content
 		padding: 24px
 		padding-left: 84px
-		float: none
-		border-bottom: 1px solid #D0CEC7
+		border: 1px solid #D0CEC7
+		border-top: none
+		background: #FFF
 		div.messages-params-box
 			float: none
 			dt, dd
@@ -214,6 +216,7 @@ li.thread-item
 			margin-top: 15px
 			padding-top: 15px
 			color: #000
+			float: none
 
 // Response item
 
