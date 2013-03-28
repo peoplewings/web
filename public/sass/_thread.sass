@@ -19,13 +19,16 @@
 
 // Arrow up
 
-div.msg-arrow
+span.msg-arrow
+	display: block
+	float: right
 	width: 12px
 	height: 11px
 	background: url(../img/icon-pick.png) no-repeat
 	position: relative
-	bottom: -1px
-	left: 77px
+	bottom: 11px
+	right: 856px
+	text-indent: -9999px
 
 // Wing static description
 
@@ -135,7 +138,7 @@ li.thread-item
 	border-bottom: none
 	background: #FFF
 	cursor: pointer
-	margin-bottom: -7px
+	margin-bottom: 5px
 	div
 		float: left
 		overflow: hidden
@@ -215,11 +218,10 @@ li.thread-item
 // Response item
 
 li.response-item
-	overflow: hidden
+	min-height: 65px
 	float: none
 	border: 1px solid #D0CEC7
 	background: #FFF
-	margin-bottom: -7px
 	div, input, select, textarea
 		font-size: 12px
 	div.messages-avatar
