@@ -43,8 +43,8 @@
 	</div>
 	<ul id="notif-list">
 		{{{items}}}
-		<div class="msg-arrow"></div>
 		<li class="response-item">
+			<div class="msg-arrow"></div>
 			<div class="messages-avatar">
 				<!-- <span class="{{#if senderOnline}}online{{/if}}">{{senderOnline}}</span> -->
 				<img src="{{me.avatar}}">
@@ -76,8 +76,8 @@
 							<dl>
 								<dt>Arrival date :</dt>
 								<dd {{#if_contains parameters.modified "startDate"}}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
-							</dl>	
-							<dl>	
+							</dl>
+							<dl>
 								<dt>Deperture date :</dt>
 								<dd {{#if_contains parameters.modified "endDate"}}class="modified"{{/if_contains}}>{{date parameters.endDate}}</dd>
 							</dl>
@@ -85,7 +85,7 @@
 								<dt>Number of surfers :</dt>
 								<dd {{#if_contains parameters.modified "capacity"}}class="modified"{{/if_contains}}>{{parameters.capacity}}</dd>
 							</dl>
-							<dl>	
+							<dl>
 								<dt>Arriving via :</dt>
 								<dd>{{parameters.arrivingVia}}</dd>
 							</dl>

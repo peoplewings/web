@@ -50,13 +50,14 @@ define(function(require) {
 		},
 
 		render: function(userId, tabId) {
+			var myProfile = this.model.get("id") === api.getUserId();
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 
 			var tab = '#' + tabId || '#about';
 			this.model.fetch({success: this.refresh.bind(this, tab)});
 
-			if (this.model.get("id") === api.getUserId()){
+			if (myProfile){
 				this.myProfile = new MyProfile(this.model, this);
 				this.myWings = new MyWings(this);
 			}
@@ -92,12 +93,16 @@ define(function(require) {
 				tpl = basicTpl(this.model.toJSON(), {myProfile: myProfile});
 
 			this.$("#wings .content-left").html(tpl);
+			this.$("#wings .content-right").empty();
 
 			var self = this;
 			this.model.get("wingsCollection")
 			.map(function(wing){
-				self.$('#wings #wing-box-' + wing.id)
-				.html(wingTpl(wing));
+				var box = $(document.createElement('div'))
+					.attr('id', '#wing-box-' + wing.id)
+					.addClass('box-standard');
+				self.$("#wings .content-right").append(box);
+				$(box).html(wingTpl(wing));
 			});
 		},
 

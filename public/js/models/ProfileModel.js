@@ -55,11 +55,9 @@ define(function(require) {
 			.then(function(resp){
 				self.set("wingsCollection", resp.data.map(self.parseWing.bind(self)));
 				self.trigger("change:wingsCollection");
-
 				if (options.success)
 					options.success();
 			});
-
 		},
 
 		parse: function(profile, wings){
