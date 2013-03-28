@@ -68,8 +68,14 @@ define(function(require) {
 			this.model.save(values, data.current_password)
 			.then(function() {
 				alerts.success('Account updated');
-			}, function() {
-				alerts.defaultError();
+			}, function(errors) {
+				var l = errors.length;
+				for (var i = 0; i < l; i++){
+					if (errors[i].type === 'INCORRECT_PASSWORD')
+						self.$('#inputPassword').val();
+					else
+						alerts.defaultError();
+				}
 			})
 			.fin(function() {
 				self.$('#settings-form')[0].reset();
