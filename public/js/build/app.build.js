@@ -3,6 +3,7 @@
   mainConfigFile: "../main.js",
 
   wrap: true,
+  urlArgs: null,
 
   //All the built layers will use almond.
   name: "build/almond",
