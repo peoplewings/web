@@ -131,7 +131,7 @@ define(function(require) {
 		},
 
 		toggleContent: function(event) {
-			var item = $(event.target).closest('li.thread-item')
+			var item = $(event.target).closest('li.thread-item');
 			if (!item.next().is('.response-item'))
 				item.find('.messages-content').toggle();
 		},

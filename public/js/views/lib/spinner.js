@@ -1,4 +1,4 @@
-define(function(require) {
+define(function() {
 
 	var options = {
 		lines: 13, // The number of lines to draw

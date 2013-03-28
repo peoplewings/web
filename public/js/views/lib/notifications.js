@@ -1,5 +1,5 @@
 // W003 Function 'send' was used before it was defined.
-//jshint camelcase:false, -W003
+//jshint camelcase:false, maxparams:7, -W003
 
 define(function(require) {
 

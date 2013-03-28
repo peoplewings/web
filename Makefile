@@ -4,6 +4,6 @@ build:
 
 update.repo:
 	git checkout public/index.html
-	git pull origin development
+	git pull origin master
 
 update: update.repo build
