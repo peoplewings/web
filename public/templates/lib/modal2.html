@@ -7,10 +7,10 @@
 	<div class="modal-footer">
 		<div class="button-group">
 			{{#if accept}}
-			<button class="button-highlight">{{accept}}</button>
+			<button class="button" data-dismiss="modal" aria-hidden="true">Close</button>
 			{{/if}}
 			{{#if close}}
-			<button class="button" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="button-highlight">{{accept}}</button>
 			{{/if}}
 		</div>
 	</div>

@@ -10,36 +10,31 @@
 			<img src="{{avatar}}">
 		</label>
 		<form>
-		<div class="controls">
-			{{#unless_equals kind 'message'}}
-			<div id="new-invitation-content">
-					<div class="response-wrapper">
-						<div class="status-pending-from-me accepted">
-							<h1>Pending</h1>
-						</div>
-						<div id="wing-data">
-							<h2>Accommodation in Barcelona</h2>
-							<select id="wings" class="required size-extralarge">
-								{{#each wings}}
-								<option value="{{idWing}}" data-type="{{wingType}}">
-									{{ wingName}} ({{ wingType }})
-								</option>
-								{{/each}}
-							</select>
-							<span class="help-block"></span>
-							<div id="wing-parameters"></div>
-						</div>
-					</div><!-- EOF response-wrapper -->
+			<div class="controls">
+				{{#unless_equals kind 'message'}}
+				<div id="new-invitation-content" class="request-options">
+					<div id="wing-data">
+						<h2>Accommodation in Barcelona</h2>
+						<select id="wings" class="required size-extralarge">
+							{{#each wings}}
+							<option value="{{idWing}}" data-type="{{wingType}}">
+								{{ wingName}} ({{ wingType }})
+							</option>
+							{{/each}}
+						</select>
+						<span class="help-block"></span>
+						<div id="wing-parameters"></div>
+					</div>
 				</div><!-- EOF new-invitation-content -->
 				{{/unless_equals}}
 
 				{{#equals kind 'request'}}
-				Introduce
 				<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
-				<span class="help-block"></span><br>
-				<input type="checkbox" id="public-request" checked>
-				<label for="public-request">Let other hosts send me invitations (this text will be visible to all hosts)</label>
-				Personal message to host
+				<span class="help-block"></span>
+				<label class="checkbox" for="public-request">
+					<input type="checkbox" id="public-request" checked>Let other hosts send me invitations (this text will be visible to all hosts)
+				</label>
+				<h3>Personal message to host</h3>
 				{{/equals}}
 				
 				<textarea name="privateMessage" id="message-content" class="required"
@@ -51,7 +46,7 @@
 				></textarea>
 				<span class="help-block"></span>
 
-			</div>
+			</div><!-- EOF controls -->
 		</form>
 	</div>
 </div>
