@@ -112,8 +112,10 @@ define(function(require) {
 		filename = filename || file.name;
 		folder = folder ? folder + '/' : '';
 
+		debugger;
+
 		var AWSSecretKeyId = 'BTgUM/6/4QqS5n8jPZl5+lJhjJpvy0wVy668nb75';
-		var contentType = 'image/';
+		var contentType = file.type || 'image/jpeg';
 		var bucket = 'peoplewings-test-media';
 		var acl = 'public-read';
 		var key = folder + filename;
