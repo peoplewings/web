@@ -3,11 +3,12 @@ define(function(require) {
 	var $ = require('jquery');
 	var api = require('api');
 	var utils = require('utils');
+	var spinnerOptions = require('views/lib/spinner').options;
 
 	var alertTpl = require('tmpl!templates/lib/alert.html');
 
 	function submitForm(formId, resource, formData, view, viewData) {
-		var spinner = new Spinner(utils.getSpinOpts());
+		var spinner = new Spinner(spinnerOptions);
 		api.post(resource, formData, successHandler(view, viewData, spinner, formId));
 		spinner.spin(document.getElementById('main'));
 	}

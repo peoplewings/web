@@ -7,6 +7,7 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var phrases = require("phrases");
+	var spinnerOptions = require('views/lib/spinner').options;
 
 	var responseView = require('views/lib/response');
 
@@ -78,7 +79,7 @@ define(function(require) {
 			e.preventDefault(e);
 
 			var self = this;
-			var spinner = new Spinner(utils.getSpinOpts());
+			var spinner = new Spinner(spinnerOptions);
 			var data = utils.serializeForm(e.target.id);
 
 			if (data.hasAcceptedTerms === "on")
