@@ -37,6 +37,8 @@ div.balloon-alert
 		h2
 			font-size: 27px
 		p
+			&:last-child
+				margin-bottom: 20px
 			&.description
 				color: #999
 				font-size: 12px
@@ -44,8 +46,8 @@ div.balloon-alert
 				color: #000
 				font-weight: bold
 				text-decoration: underline
-			&:last-child
-				margin-bottom: 20px
+			strong
+				font-weight: bold
 	div.balloon-footer
 		padding-left: 45px
 		text-transform: uppercase
