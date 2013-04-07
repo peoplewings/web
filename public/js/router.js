@@ -10,6 +10,7 @@ define(function(require) {
 
 	var registerView = require("views/home/register");
 	var loginView = require("views/home/login");
+	var helpCenter = require("views/home/help");
 	var activateView = require("views/home/activate");
 	var passwordView = require("views/home/password");
 	var logoutView = require("views/app/logout");
@@ -25,6 +26,7 @@ define(function(require) {
 		routes: {
 			"register": "register",
 			"login": "login",
+			"help": "help",
 			"activate/:token": "activate",
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
@@ -56,6 +58,12 @@ define(function(require) {
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			loginView.render();
+		},
+		help: function(){
+			this.showHeaderSearch(false);
+			if (api.userIsLoggedIn())
+				return this.defaultAction();
+			helpCenter.render();
 		},
 		activate: function(id){
 			this.showHeaderSearch(false);
