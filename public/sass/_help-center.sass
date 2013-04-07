@@ -1,0 +1,71 @@
+/* --------------------------------------------------------------------------
+ * Help Center
+ * --------------------------------------------------------------------------
+
+div.sidebar
+	float: left
+	margin-top: 45px
+	margin-left: 10px
+	width: 200px
+	overflow: hidden
+	li
+		float: none
+		background: #E1E0D9
+		border: 1px solid #D0CEC7
+		border-bottom: none
+		&:last-child
+			border: 1px solid #D0CEC7
+		a
+			display: block
+			text-transform: uppercase
+			font-size: 11px
+			font-style: italic
+			text-shadow: 1px 1px 1px #FFF
+			padding: 10px
+			&:hover, &:active, &:focus
+				background: #FFF
+				color: #000
+			&:active
+				@include bg-gradient(#FFEB00, #FBFAC5)
+		a.active
+			color: #848178
+			background: #edede6
+
+div#help-center.tab-content
+	float: left
+	background: #FFF
+	width: 67%
+	margin: 45px 10px
+	border: 1px solid #D0CEC7
+	padding: 38px
+	overflow: visible
+	legend
+		float: right
+		position: relative
+		right: -40px
+		bottom: 49px
+		width: 186px
+		height: 28px
+		text-indent: -9999px
+		background: url(../img/help-center.png) no-repeat
+	div.help-center-content
+		h1:first-child
+			margin: 0
+			margin-bottom: 12px
+		h1, h2, p
+			color: #79776b
+		h1
+			font-size: 19px
+			font-weight: bold
+			margin-bottom: 12px
+			margin-top: 40px
+		h2
+			font-size: 14px
+			font-weight: bold
+		p
+			font-size: 12px
+
+
+@media (max-width: 960px)
+	div#help-center.tab-content
+		width: auto
