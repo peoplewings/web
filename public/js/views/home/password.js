@@ -6,7 +6,7 @@ define(function(require) {
 	var api = require('api2');
 	var handlersV = require('views/lib/handlers');
 	var responseView = require('views/lib/response');
-	var mailTpl = require('text!templates/lib/mailform.html');
+	var mailTpl = require('text!templates/lib/forgot.mailform.html');
 	var passTpl = require('text!templates/lib/passform.html');
 
 	var PasswordView = Backbone.View.extend({
