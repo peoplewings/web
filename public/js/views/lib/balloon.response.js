@@ -6,6 +6,8 @@ define(function(require) {
 
 	var BalloonView = Backbone.View.extend({
 
+		el: '#main',
+
 		render: function(options){
 			$(this.el).html(balloonTpl({options: options}));
 		}
