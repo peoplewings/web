@@ -63,3 +63,21 @@ button
 	&:hover
 		@include opacity(1)
 		background: none
+
+.button-peoplewings
+	@extend .button
+	padding: 3px 15px
+	background: #18183F
+	color: #FFFF00
+	font:
+		size: 16px
+		weight: bold
+	text-shadow: none
+	border: 2px solid #FFFF00
+	@include border-radius(18px)
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:focus, &:active
+		color: #FFFF00
+		background: #18183F
+		outline: 0
+		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
