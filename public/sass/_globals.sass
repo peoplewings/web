@@ -30,7 +30,7 @@ li
 //input[type="password"],
 //input[type="email"],
 //input[type="submit"],
-input
+input,
 select
 	font-size: 1em
 	padding: 0.7em
@@ -104,6 +104,13 @@ button
 	top: 27px
 	left: 10px
 
+.spinner
+	position: relative
+	width: 0px
+	z-index: 2000000000
+	left: 585px !important
+	top: -27px !important
+
 //require(['views/lib/spinner'], function(a) { a.show('hola') })
 
 /* Buttons
@@ -175,6 +182,18 @@ button
 
 .background-10
 	background: url(../img/bg_city.jpg) no-repeat top center
+
+
+/* Others
+ * --------------------------------------------------------------------------
+
+label.error
+	background: #D34836
+	color: #FFF
+	font-size: 11px
+	padding: 0px
+	padding-left: 15px
+	margin-top: 5px
 
 
 /* Others
