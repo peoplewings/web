@@ -5,7 +5,7 @@ define(function(require) {
 	var utils = require('utils');
 	var api = require('api2');
 	var Header = require('views/app/header');
-	var loginTpl = require('text!templates/home/login.html');
+	var loginTpl = require('text!templates/home/forms/login.html');
 	var spinnerOptions = require('views/lib/spinner').options;
 
 	var spinner = new Spinner(spinnerOptions);
