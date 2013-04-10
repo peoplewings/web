@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
-	 _Globals
-	 -------------------------------------------------------------------------- */
+ * _Globals
+ * --------------------------------------------------------------------------
 
 @import _variables.sass
 @import _effects.sass
@@ -30,7 +30,7 @@ li
 //input[type="password"],
 //input[type="email"],
 //input[type="submit"],
-input
+input,
 select
 	font-size: 1em
 	padding: 0.7em
@@ -79,7 +79,8 @@ button
 	min-height: 100%
 	height: auto !important
 	height: 100%
-	margin: 0 auto (-1) * $footer-size + $footer-unit
+	margin: 0 auto -56px
+	//margin: 0 auto (-1) * $footer-size + $footer-unit
 
 .push
 	height: $footer-size + $footer-unit
@@ -103,10 +104,17 @@ button
 	top: 27px
 	left: 10px
 
+.spinner
+	position: relative
+	width: 0px
+	z-index: 2000000000
+	left: 585px !important
+	top: -27px !important
+
 //require(['views/lib/spinner'], function(a) { a.show('hola') })
 
 /* Buttons
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .btn-peoplewings
 	text-transform: uppercase
@@ -127,7 +135,7 @@ button
 
 
 /* Icons
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .icon
 	float: left
@@ -137,7 +145,7 @@ button
 
 
 /* Backgrounds
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .background-roller
 	width: 100%
@@ -170,8 +178,20 @@ button
 	background: url(../img/bg_city.png) no-repeat top center
 
 
+/* Others
+ * --------------------------------------------------------------------------
+
+label.error
+	background: #D34836
+	color: #FFF
+	font-size: 11px
+	padding: 0px
+	padding-left: 15px
+	margin-top: 5px
+
+
 /* OVER Bootstrap
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .alert-error
 	text-align: right

@@ -7,6 +7,7 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var phrases = require("phrases");
+	var spinnerOptions = require('views/lib/spinner').options;
 
 	var responseView = require('views/lib/balloon.response');
 

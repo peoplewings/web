@@ -30,6 +30,7 @@ define(function(require){
 		},
 		render: function(results){
 			var self = this;
+
 			this.$el.html(resultsTpl({
 				blurrStyle: this.blurrStyle,
 				startResult: results.startResult,
@@ -45,9 +46,13 @@ define(function(require){
 				})
 			}));
 
+			this.lastPage = results.count/results.endResult;
+
 		},
 		nextPage: function(){
 			var scope = this;
+			if (+this.query.page == this.lastPage)
+				return false;	
 			this.query.page++;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
 				scope.render(results.data);
@@ -56,6 +61,8 @@ define(function(require){
 		},
 		previousPage: function(){
 			var scope = this;
+			if (+this.query.page == 1)
+				return false;
 			this.query.page--;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
 				scope.render(results.data);

@@ -14,6 +14,7 @@ define(function(require) {
 
 	var spinnerOptions = require('views/lib/spinner').options;
 
+
 	var PasswordView = Backbone.View.extend({
 		el: "#main",
 
