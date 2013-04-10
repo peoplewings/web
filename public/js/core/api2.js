@@ -130,6 +130,9 @@ define(function(require) {
 						case 'INCORRECT_PASSWORD':
 							alerts.error('Incorrect password', errorOptions);
 							break;
+						case 'UNDERAGE':
+							prom.resolve({"errors": [{"type": "UNDERAGE"}], "status": false});
+							break;
 						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
 						case 'FORBIDDEN':
