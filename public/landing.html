@@ -188,6 +188,19 @@
 				
 				google.maps.event.addListener(search, 'place_changed', parsePlace);
 
+				$('ul#options li span').hide();
+
+				$('ul#options li a').hover(function(e){
+					e.preventDefault();
+					var tip = e.target.parentNode.getElementsByTagName('span');
+					$(tip).show();
+				},
+				function(e){
+					e.preventDefault();
+					var tip = e.target.parentNode.getElementsByTagName('span');
+					$(tip).hide();
+				});
+
 
 			});
 
