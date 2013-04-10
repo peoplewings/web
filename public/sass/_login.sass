@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
-	 _Login
-	 -------------------------------------------------------------------------- */
+ * Login
+ * --------------------------------------------------------------------------
 
 form#login-form
 	float: right
@@ -15,33 +15,28 @@ form#login-form
 
 	input, select
 		margin: 0
-		min-height: 22px
-
-	select
-		height: 40px
 
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
 	select
+		width: 95%
 		font-size: 13px
-		padding: 8px
+		padding: 10px 8px
 		@include border-radius(4px)
 		@include appearance(none)
 		border: 1px solid #79766c
 		color: #000
 		line-height: 15px
 
-	input[type="checkbox"]
-		float: left
-		margin:
-			top: 2px
-			right: 15px
-			left: 0
-
 	label.checkbox
-		display: inline
-		margin-right: 1em
+		padding-left: 0
+		margin-bottom: 15px
+		input
+			margin:
+				top: 2px
+				left: 0
+				right: 15px
 
 	span.signal
 		float: left
@@ -83,59 +78,27 @@ form#login-form
 		font-size: 14px
 		text-align: left
 
-	.checkbox
-		padding-left: 0
-
 	.controls
 		margin-left: 122px
 
-		input[type="text"]
-			width: 140px
-
-		input[type="email"],
-		input[type="password"]
-			width: 95%
-
-		input[type="submit"]
-			font-size: 18px
-
-		select
-			background: url(../img/mini-arrow.png) no-repeat 82px center white
-			width: 104px
-			color: $gray-link
-
-		.select-mini
-			width: 97px
-
-		.select-medium
-			width: 120px
-			background-position: 94px center
-
-		.terms
-			margin-left: 117px
-
-	.accepts
-		margin-left: 98px
-		margin-bottom: 2em
-
-	.terms
+	div.terms
 		color: #FFF
 		font-size: 12px
 		line-height: 18px
-		margin-top: 14px
-		p
-			margin: 15px 0px
+		margin-top: 12px
 		a
 			color: #FFFF00
 			float: right
+			position: relative
+			bottom: 33px
 			&:hover
 				text-decoration: underline
 				cursor: pointer
 
-button.btn-peoplewings
-	font-size: 18px
-	float: right
-	margin-top: 20px
-	&:hover
-		background: #18183F
-		color: #FFFF00
+@media (max-width: 767px)
+	form#login-form
+		input[type="password"],
+		input[type="email"]
+			width: 100%
+			line-height: 20px
+			height: auto
