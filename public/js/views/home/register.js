@@ -12,8 +12,8 @@ define(function(require) {
 
 	var registerTpl = require('tmpl!templates/home/forms/register.html');
 	var termsTpl = require('tmpl!templates/home/terms.html');
-	var alertTpl = require('tmpl!templates/lib/alert.html');
 	var confirmTpl = require('tmpl!templates/lib/responses/register.check-email.html');
+	var underageTpl = require('tmpl!templates/lib/responses/register.underage.html');
 
 	var spinnerOptions = require('views/lib/spinner').options;
 
@@ -106,9 +106,8 @@ define(function(require) {
 						content: confirmTpl({email: response.data.email})
 					});
 				} else {
-					debugger;
 					responseView.render({
-						content: confirmTpl({email: response.data.email})
+						content: underageTpl
 					});
 				}
 			});
