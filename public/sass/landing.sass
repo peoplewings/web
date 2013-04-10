@@ -22,9 +22,9 @@
 				color: $yellow-corp
 				text-decoration: none
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
  * Content
- * --------------------------------------------------------------------------
+ * ==========================================================================
 
 #main
 	margin-bottom: 7em
@@ -99,6 +99,22 @@
 			color: #AAA
 		input[type="submit"]
 			margin-left: 0.4em
+		.btn-peoplewings
+			text-transform: uppercase
+			padding: 0.2em 1em
+			margin: 0
+			color: $yellow_corp
+			background: $blue-corp
+			font:
+				family: $ffamily-corp
+				size: 1.2em
+				weight: 500
+				style: italic
+			border: 2px solid $yellow_corp
+			@include border-radius(1em)
+			&:hover, &:focus, &:active
+				outline: 0
+				@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
 
 #middle
 	overflow: hidden
@@ -145,4 +161,3 @@
 	background: url(../img/icon_tw.png) no-repeat !important
 .youtube
 	background: url(../img/icon_yt.png) no-repeat !important
-
