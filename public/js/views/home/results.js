@@ -51,8 +51,8 @@ define(function(require){
 		},
 		nextPage: function(){
 			var scope = this;
-			if (+this.query.page == this.lastPage)
-				return false;	
+			if (+this.query.page === this.lastPage)
+				return false;
 			this.query.page++;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){
 				scope.render(results.data);
@@ -61,7 +61,7 @@ define(function(require){
 		},
 		previousPage: function(){
 			var scope = this;
-			if (+this.query.page == 1)
+			if (+this.query.page === 1)
 				return false;
 			this.query.page--;
 			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results){

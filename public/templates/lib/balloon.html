@@ -1,9 +1,9 @@
 <div class="balloon-alert">
 	<span class="ribbon"></span>
 	<div class="balloon-content">
-		<h1>Perfect!</h1>
-		<h2>Password changed</h2>
-		<p>You can now log in with your new password</p>
+		{{#with options}}
+			{{{content}}}
+		{{/with}}
 	</div>
 </div>
 <span class="signal-bottom"></span>

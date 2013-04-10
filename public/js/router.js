@@ -50,12 +50,14 @@ define(function(require) {
 		//Anonymous User hashs
 		register: function(){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(true);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			registerView.render();
 		},
 		login: function(){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(true);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			loginView.render();
@@ -63,16 +65,19 @@ define(function(require) {
 		help: function(tabId){
 			var tab = tabId || null;
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			helpCenter.render(tab);
 		},
 		activate: function(id){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			activateView.render(id);
 		},
 		forgotPassword: function(id){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			passwordView.render(id);
 		},
 		landing: function() {
@@ -81,6 +86,7 @@ define(function(require) {
 
 		search: function(params){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			var unserialized = $.deparam(params);
 			homeView.render(unserialized);
 
@@ -93,10 +99,12 @@ define(function(require) {
 		//Logged User hashs
 		logout: function() {
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			logoutView.logout();
 		},
 		settings: function(){
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -107,6 +115,7 @@ define(function(require) {
 
 		deleteAccount: function(){
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -115,6 +124,7 @@ define(function(require) {
 
 		aboutProfile: function(userId){
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -125,6 +135,7 @@ define(function(require) {
 		},
 		wingsProfile: function(userId){
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -135,6 +146,7 @@ define(function(require) {
 
 		showNotifications: function(filters){
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -142,6 +154,7 @@ define(function(require) {
 		},
 		showThread: function(id) {
 			this.showHeaderSearch(true);
+			this.showBackgroundImage(false);
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
@@ -149,6 +162,7 @@ define(function(require) {
 		},
 		defaultAction: function(){
 			this.showHeaderSearch(false);
+			this.showBackgroundImage(false);
 			console.log('router.js: defaultAction()');
 			if (!api.userIsLoggedIn())
 				return this.landing();
@@ -176,6 +190,13 @@ define(function(require) {
 		showHeaderSearch: function(state) {
 			if (this.header)
 				this.header.showSearch(state);
+		},
+
+		showBackgroundImage: function(state) {
+			if (state)
+				$('div.background-roller').addClass('background-10');
+			else
+				$('div.background-roller').removeClass('background-10');
 		}
 	});
 

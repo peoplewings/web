@@ -9,11 +9,12 @@ define(function(require) {
 	var phrases = require("phrases");
 	var spinnerOptions = require('views/lib/spinner').options;
 
-	var responseView = require('views/lib/response');
+	var responseView = require('views/lib/balloon.response');
 
-	var registerTpl = require('tmpl!templates/home/register.html');
+	var registerTpl = require('tmpl!templates/home/forms/register.html');
 	var termsTpl = require('tmpl!templates/home/terms.html');
-	var alertTpl = require('tmpl!templates/lib/alert.html');
+	var confirmTpl = require('tmpl!templates/lib/responses/register.check-email.html');
+	var underageTpl = require('tmpl!templates/lib/responses/register.underage.html');
 
 	var RegisterView = Backbone.View.extend({
 
@@ -33,9 +34,9 @@ define(function(require) {
 					minlength: 8,
 					equalTo: "#pass",
 				},
-				birthdayYear: {
+				/*birthdayYear: {
 					max: (new Date()).getFullYear() - 18,
-				},
+				},*/
 				email: {
 					email: true
 				},
@@ -91,24 +92,15 @@ define(function(require) {
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){
 				spinner.stop();
+				self.$('#register-form').remove();
 				if(response.status === true) {
-
-					self.$('#register-form').remove();
-					responseView.extraData = "Code: " + response.code + " - " + response.msg;
 					responseView.render({
-						legend: "Confirm your e-mail address",
-						msg: "A confirmation email has been sent to ",
-						extraInfo: data.email
+						content: confirmTpl({email: response.data.email})
 					});
-
-					$(self.el).html(responseView.el);
-
 				} else {
-					$(self.el).prepend(alertTpl( {
-						extraClass: 'alert-error',
-						heading: "Code: " + response.code + ". Error: ",
-						message: JSON.stringify(response.errors) || response.error,
-					}));
+					responseView.render({
+						content: underageTpl
+					});
 				}
 			});
 		},
