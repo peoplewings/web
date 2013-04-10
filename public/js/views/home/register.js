@@ -16,8 +16,6 @@ define(function(require) {
 	var confirmTpl = require('tmpl!templates/lib/responses/register.check-email.html');
 	var underageTpl = require('tmpl!templates/lib/responses/register.underage.html');
 
-	var spinnerOptions = require('views/lib/spinner').options;
-
 	var RegisterView = Backbone.View.extend({
 
 		el: "#main",
