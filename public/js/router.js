@@ -196,7 +196,6 @@ define(function(require) {
 			else
 				$('div.background-roller').removeClass('background-10');
 		}
-		
 	});
 
 	return Router;
