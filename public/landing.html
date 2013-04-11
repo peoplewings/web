@@ -61,7 +61,6 @@
 								<option value="18">Age 18</option>
 							</select>
 							<select name="endAge">
-								<option value="99">Age 99</option>
 							</select>
 						</div>
 					</div>
@@ -110,11 +109,13 @@
 	<script type="text/javascript">
 	$(function() {
 
-		$('[name="startAge"],[name="endAge"]').html(Array(41).join().split(',').map(function(_, index) {
-			var num = 18 + index * 2;
+		$('[name="startAge"],[name="endAge"]').append(Array(41).join().split(',').map(function(_, index) {
+			var num = 20 + index * 2;
 			return '<option value="' + num + '">' + num + '</option>';
 		}).join(''));
-		$('[name="endAge"]').val(98);
+		var options = $('[name="endAge"] option').get();
+		options.pop();
+		$('[name="endAge"]').html(options.reverse());
 
 		$('#accomodation-search-form').on('submit', function() {
 			if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
