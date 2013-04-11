@@ -43,10 +43,10 @@
 				</section>
 				<section id="categories" class="navbar-inner">
 					<ul id="options">
-						<li><a href="#" class="icon all">All</a></li>
-						<li><a href="#" class="icon accommodation selected">Acommodation</a></li>
-						<li><a href="#" class="icon transport">Transport</a></li>
-						<li><a href="#" class="icon travel">Travel</a></li>
+						<li><a href="#" class="icon all">All</a><span>coming soon!</span></li>
+						<li><a href="#" class="icon accommodation selected">Acommodation</a><span class="span-accommodation">accommodation!</span></li>
+						<li><a href="#" class="icon transport">Transport</a><span class="span-transport">coming soon!</span></li>
+						<li><a href="#" class="icon travel">Travel</a><span class="span-travel">coming soon!</span></li>
 					</ul>
 				</section>
 				<section id="landing-form" class="navbar-inner">
@@ -185,6 +185,19 @@
 				}
 				
 				google.maps.event.addListener(search, 'place_changed', parsePlace);
+
+				$('ul#options li span').hide();
+
+				$('ul#options li a').hover(function(e){
+					e.preventDefault();
+					var tip = e.target.parentNode.getElementsByTagName('span');
+					$(tip).show();
+				},
+				function(e){
+					e.preventDefault();
+					var tip = e.target.parentNode.getElementsByTagName('span');
+					$(tip).hide();
+				});
 
 
 			});

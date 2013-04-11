@@ -22,12 +22,13 @@
 				color: $yellow-corp
 				text-decoration: none
 
-/* ==========================================================================
+/* --------------------------------------------------------------------------
  * Content
- * ==========================================================================
+ * --------------------------------------------------------------------------
 
 #main
 	margin-bottom: 7em
+	position: relative
 	#sharing
 		margin-top: 7em
 		h1
@@ -50,28 +51,48 @@
 				bottom: 0.3em
 
 #categories
+	margin-top: 35px
 	overflow: hidden
-	position: relative
-	top: 11px
 	ul
 		li
-			float: left
+			float: none
 	.all
-	background: url(../img/icon_all.png) no-repeat
-	&:hover
-		background: url(../img/icon_all_pre.png) no-repeat
+		background: url(../img/icon_all.png) no-repeat
+		&:hover
+			background: url(../img/icon_all_pre.png) no-repeat
+			cursor: default
 	.transport
 		background: url(../img/icon_transport.png) no-repeat
 		&:hover
 			background: url(../img/icon_transport_pre.png) no-repeat
+			cursor: default
 	.accommodation.selected
 		background: url(../img/icon_accommodation_selected.png) no-repeat
 	.travel
 		background: url(../img/icon_trip.png) no-repeat
+		cursor: default
 		&:hover
 			background: url(../img/icon_trip_pre.png) no-repeat
+	span
+		background: #FFF
+		padding: 5px
+		color: #58586E
+		@include border-radius(2px)
+		position: absolute
+		top: 209px
+		left: 3px
+		text-transform: uppercase
+		font-size: 10px
+	span.span-accommodation
+		left: 70px
+	span.span-transport
+		left: 134px
+	span.span-travel
+		left: 200px
+
 
 #landing-form
+	margin-top: -12px
 	padding: 0.6em
 	background: rgba(25, 25, 44, 0.5) // #19192c 0.5
 	overflow: hidden
