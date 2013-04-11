@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
-	 _Register
-	 -------------------------------------------------------------------------- */
+ * Register
+ * --------------------------------------------------------------------------
 
 form#register-form
 	float: right
@@ -15,7 +15,6 @@ form#register-form
 
 	input, select
 		margin: 0
-		min-height: 22px
 
 	select
 		height: 40px
@@ -25,7 +24,7 @@ form#register-form
 	input[type="email"],
 	select
 		font-size: 13px
-		padding: 8px
+		padding: 10px 8px
 		@include border-radius(4px)
 		@include appearance(none)
 		border: 1px solid #79766c
@@ -36,12 +35,14 @@ form#register-form
 	input[type="password"]
 		max-width: 149px
 
-	input[type="checkbox"]
-		float: left
-		margin:
-			top: 2px
-			right: 15px
-			left: 0
+	label.checkbox
+		padding-left: 0
+		margin-bottom: 15px
+		input
+			margin:
+				top: 2px
+				left: 0
+				right: 15px
 
 	span.signal
 		float: left
@@ -83,9 +84,6 @@ form#register-form
 		font-size: 14px
 		text-align: left
 
-	.checkbox
-		padding-left: 0
-
 	.controls
 		margin-left: 122px
 
@@ -95,9 +93,6 @@ form#register-form
 		input[type="email"],
 		input[type="password"]
 			width: 95%
-
-		input[type="submit"]
-			font-size: 18px
 
 		select
 			background: url(../img/mini-arrow.png) no-repeat 82px center white
@@ -129,20 +124,3 @@ form#register-form
 			&:hover
 				text-decoration: underline
 				cursor: pointer
-
-label.error
-	background: #FFBDBD
-	width: 289px
-	padding: 15px
-	margin: 5px 0
-	color: #FF0000
-	text-shadow: 1px 1px #CCC
-	font-size: 13px
-
-button.btn-peoplewings
-	font-size: 18px
-	float: right
-	margin-top: 20px
-	&:hover
-		background: #18183F
-		color: #FFFF00
