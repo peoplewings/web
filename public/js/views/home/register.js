@@ -83,12 +83,8 @@ define(function(require) {
 			var spinner = new Spinner(spinnerOptions);
 			var data = utils.serializeForm(e.target.id);
 
-			if (data.hasAcceptedTerms === "on")
-				data.hasAcceptedTerms = true;
-			else {
-				console.error("Hmm...");
-				return;
-			}
+			
+			data.hasAcceptedTerms = true;
 
 			data.birthdayYear = +data.birthdayYear;
 			data.birthdayMonth = +data.birthdayMonth;
