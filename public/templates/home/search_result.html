@@ -44,7 +44,7 @@
 				<div class="content-right">
 					<div class="personal-info">
 						<h1 id="user-name-label" class="name">
-							<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
+							<a href="#/profiles/{{id}}/about" {{#if ../notlogged}}style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"{{/if}}>{{firstName}} {{lastName}}</a>
 						</h1>
 						<span class="age">[{{age}}]</span>
 						<span class="online">{{online}}</span>
