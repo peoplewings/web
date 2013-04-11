@@ -30,8 +30,6 @@ define(function(require){
 		render: function(results){
 			var self = this;
 
-			debugger;
-
 			this.$el.html(resultsTpl({
 				notlogged: !self.logged,
 				startResult: results.startResult,
