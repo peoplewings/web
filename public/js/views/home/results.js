@@ -49,6 +49,14 @@ define(function(require){
 
 			this.lastPage = results.count/results.endResult;
 
+			$('[id^=collapse]').on('hide', function () {
+  				self.toggleCollapsibleText(this, 'less', 'more');
+			});
+
+			$('[id^=collapse]').on('show', function () {
+  				self.toggleCollapsibleText(this, 'more', 'less');
+			});
+
 		},
 		nextPage: function(){
 			var scope = this;
@@ -91,6 +99,13 @@ define(function(require){
 			var id = $(event.target).parents('.search-result').data('profile-id');
 			var name = this.namesById[id];
 			notifications.invitation(id, name);
+		},
+
+		toggleCollapsibleText: function(target, targetText, replaceText){
+			var heading = $(target).next('.accordion-heading').find('h1');
+			var re = new RegExp('(' + targetText+ ')');
+			var changed = heading.html().replace(re, replaceText);
+			heading.html(changed);
 		}
 	});
 	return resultsView;
