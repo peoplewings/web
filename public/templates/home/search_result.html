@@ -4,7 +4,7 @@
 				<div class="pager pull-left">
 					<div class="adjust">
 						<span>{{totalCount}}</span>
-						<p>result of accommodation in</p>
+						<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
 						{{#if locationSearch}}
 						<span class="location">{{locationSearch}}</span>
 						{{else}}
