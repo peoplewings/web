@@ -23,7 +23,6 @@ define(function(require){
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
-			this.blurrStyle = (this.logged === false) ? 'style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.5)"' : "";
 		},
 		setQuery: function(query){
 			this.query = query;
@@ -32,13 +31,15 @@ define(function(require){
 			var self = this;
 
 			this.$el.html(resultsTpl({
-				blurrStyle: this.blurrStyle,
+				notlogged: !self.logged,
 				startResult: results.startResult,
 				endResult: results.endResult,
 				totalCount: results.count,
 				locationSearch: self.query.wings,
 				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
+					result.live = (result.online === 'ON') ? true : false;
+					result.online = (result.online === 'ON') ? 'Online' : false;
 					result.id = result.profileId;
 					result.replyTime = utils.formatReplyTime(+result.replyTime);
 					self.namesById[result.id] = result.firstName + ' ' + result.lastName;

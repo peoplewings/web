@@ -29,12 +29,12 @@
 		<label class="control-label" for="inputAge">Age</label>
 		<select name="startAge" class="input-age1">
 			<option value="18">Age 18</option>
-			{{#range 19 99 1}}
+			{{#range 20 98 2}}
 			<option value="{{self}}">{{self}}</option>
 			{{/range}}
 		</select>
 		<select name="endAge" class="input-age2">
-			{{#range 99 18 '-1'}}
+			{{#range 98 18 '-2'}}
 			<option value="{{self}}">{{self}}</option>
 			{{/range}}
 		</select>

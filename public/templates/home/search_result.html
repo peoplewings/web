@@ -35,7 +35,7 @@
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
 					<div class="avatar">
-						<span class="online-dot">online dot</span>
+						{{#if live}}<span class="online-dot">online dot</span>{{/if}}
 						<a href="#/profiles/{{id}}/about">
 							<img id="avatar" src="{{ avatar }}" alt="avatar">
 						</a>
@@ -44,10 +44,10 @@
 				<div class="content-right">
 					<div class="personal-info">
 						<h1 id="user-name-label" class="name">
-							<a href="#/profiles/{{id}}/about">{{firstName}} {{lastName}}</a>
+							<a href="#/profiles/{{id}}/about" {{#if ../notlogged}}style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"{{/if}}>{{firstName}} {{lastName}}</a>
 						</h1>
 						<span class="age">[{{age}}]</span>
-						<span class="online">{{online}}</span>
+						{{#if live}}<span class="online">{{online}}</span>{{/if}}
 						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>

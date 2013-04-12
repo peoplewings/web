@@ -4,6 +4,7 @@
 
 @import _reset.sass
 @import _globals.sass
+@import _buttons.sass
 
 /* ==========================================================================
  * HTML STRUCTURE
@@ -22,12 +23,13 @@
 				color: $yellow-corp
 				text-decoration: none
 
-/* ==========================================================================
+/* --------------------------------------------------------------------------
  * Content
- * ==========================================================================
+ * --------------------------------------------------------------------------
 
 #main
 	margin-bottom: 7em
+	position: relative
 	#sharing
 		margin-top: 7em
 		h1
@@ -50,108 +52,93 @@
 				bottom: 0.3em
 
 #categories
+	margin-top: 35px
 	overflow: hidden
-	position: relative
-	top: 11px
 	ul
 		li
-			float: left
+			float: none
 	.all
-	background: url(../img/icon_all.png) no-repeat
-	&:hover
-		background: url(../img/icon_all_pre.png) no-repeat
+		background: url(../img/icon_all.png) no-repeat
+		&:hover
+			background: url(../img/icon_all_pre.png) no-repeat
+			cursor: default
 	.transport
 		background: url(../img/icon_transport.png) no-repeat
 		&:hover
 			background: url(../img/icon_transport_pre.png) no-repeat
+			cursor: default
 	.accommodation.selected
 		background: url(../img/icon_accommodation_selected.png) no-repeat
 	.travel
 		background: url(../img/icon_trip.png) no-repeat
+		cursor: default
 		&:hover
 			background: url(../img/icon_trip_pre.png) no-repeat
+	span
+		background: #FFF
+		padding: 5px
+		color: #58586E
+		@include border-radius(2px)
+		position: absolute
+		top: 209px
+		left: 3px
+		text-transform: uppercase
+		font-size: 10px
+	span.span-accommodation
+		left: 70px
+	span.span-transport
+		left: 134px
+	span.span-travel
+		left: 200px
 
 #landing-form
-	padding: 0.6em
+	margin-top: -12px
+	padding: 6px
 	background: rgba(25, 25, 44, 0.5) // #19192c 0.5
 	overflow: hidden
 	@include border-radius(14px)
 	form
-		.control-group
+		div.control-group
 			float: left
-		.control-label
-			float: left
-			width: 67px
-			height: 20px
-			margin: 19px 8px
-			text-indent: -9999px
-		.people_text
-			width: 75px
-			background: url(../img/people_text.png) no-repeat
-		input[type="text"]
-			width: 15em
-		.wings_text
-			background: url(../img/wings_text.png) no-repeat
-		select
-			background: url(../img/arrow.png) no-repeat 4.9em 1.1em #FFF
-			min-width: 6.5em
-			margin: 0.5em 0.2em
-			color: #AAA
-		input[type="submit"]
-			margin-left: 0.4em
-		.btn-peoplewings
-			text-transform: uppercase
-			padding: 0.2em 1em
-			margin: 0
-			color: $yellow_corp
-			background: $blue-corp
-			font:
-				family: $ffamily-corp
-				size: 1.2em
-				weight: 500
-				style: italic
-			border: 2px solid $yellow_corp
-			@include border-radius(1em)
-			&:hover, &:focus, &:active
-				outline: 0
-				@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+			label.control-label
+				float: left
+				width: 67px
+				height: 20px
+				margin: 19px 8px
+				text-indent: -9999px
+			label.people_text
+				width: 75px
+				background: url(../img/people_text.png) no-repeat
+			label.wings_text
+				background: url(../img/wings_text.png) no-repeat
+			input, select
+				padding: 9px
+				@include border-radius(3px)
+			input
+				width: 216px
+				margin: 10px 5px
+			div.controls
+				width: 315px
+				select
+					background: url(../img/arrow.png) no-repeat 4.9em 1.1em #FFF
+					min-width: 100px
+					color: #AAA
+					margin: 9px 5px
+		button.button-peoplewings
+			font-size: 21.75px
+			padding: 3px 17px
+			margin-left: 10px
+			margin-top: 10px
 
 #middle
 	overflow: hidden
-	.navbar-inner
+	div
 		overflow: hidden
-		margin:
-			top: 3em
-			bottom: 3em
-		div
-			width: 230px
-			height: 133px
-			float: left
-			p
-				font:
-					family: $ffamily-corp
-					size: 1.4em
-					style: italic
-					weight: 500
-				color: $blue_corp
-				margin-bottom: 0.8em
-				span
-					font-weight: 800
-			a
-				font-size: 1em
-		.spot
-			text-indent: -9999px
-			margin-right: 0.7em
-		.house
-			background: url(../img/spot_car.png) no-repeat
-		.car
-			background: url(../img/spot_house.png) no-repeat
-		.trip
-			background: url(../img/spot_trip.png) no-repeat
-		.offer
-			margin-left: 0.5em
-			text-indent: 0
-			width: 200px !important
+		margin: 2em auto
+		width: 720px
+		li
+			display: inline
+			margin-right: 10px
 
 @import _footer.sass
 
