@@ -69,6 +69,7 @@ define(function(require) {
 			content: options.content,
 			close: options.close || true,
 			thinModal: options.thin,
+			formRel: 'form="' + options.form + '"',
 		}));
 		$("body section:last").append(modal);
 
