@@ -41,6 +41,10 @@ define(function(require) {
 			return window[id][value];
 	});
 
+	Handlebars.registerHelper('rate', function(rate) {
+		return (rate === -1) ? new Handlebars.SafeString('-') : new Handlebars.SafeString(rate + '%');
+	});
+
 	var originalEach = Handlebars.helpers.each;
 	Handlebars.registerHelper('each', function(context, options) {
 		if (context instanceof Array) {
