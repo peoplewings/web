@@ -83,9 +83,6 @@ define(function(require) {
 			var spinner = new Spinner(spinnerOptions);
 			var data = utils.serializeForm(e.target.id);
 
-			
-			data.hasAcceptedTerms = true;
-
 			data.birthdayYear = +data.birthdayYear;
 			data.birthdayMonth = +data.birthdayMonth;
 			data.birthdayDay = +data.birthdayDay;
