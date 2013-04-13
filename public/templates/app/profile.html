@@ -24,19 +24,15 @@
 				</h2>
 				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
 			</div>
-			{{#if myProfile}}
+			{{#unless myProfile}}
 			<div class="button-bar">
-				<h1>Im in my profile</h1>
-			</div>
-			{{else}}
-			<div class="button-bar">
-				<ul> 
+				<ul>
 					<li><button class="send-message-btn">Message</button></li>
 					<li><button class="send-request-btn selected">Request</button></li>
 					<li><button class="send-invitation-btn">Invite</button></li>
 				</ul>
-			</div> 
-			{{/if}}
+			</div>
+			{{/unless}}
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
 	<div class="tab-content">
