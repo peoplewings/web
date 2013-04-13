@@ -19,7 +19,9 @@ define(function(require) {
 			"click a.previousPage": "previousPage"
 		},
 
-		initialize: function(options) {
+		reset: function(options) {
+			this.$el = $('#search-results');
+			this.el = this.$el[0];
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
