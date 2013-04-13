@@ -81,22 +81,23 @@ define(function(require) {
 			this.unbind();
 		},
 
+		_sendNotification: function(event, type) {
+			if (!this.logged)
+				return router.navigate('#/register');
+
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications[type](id, name);
+		},
+
 		sendMessage: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.message(id, name);
+			this._sendNotification(event, 'message');
 		},
-
 		sendRequest: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.request(id, name);
+			this._sendNotification(event, 'request');
 		},
-
 		sendInvitation: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.invitation(id, name);
+			this._sendNotification(event, 'invitation');
 		},
 
 		toggleCollapsibleText: function(target, targetText, replaceText) {
