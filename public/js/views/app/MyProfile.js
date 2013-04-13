@@ -18,6 +18,15 @@ define(function(require){
 	var List = require('views/app/list');
 	var AvatarView = require("views/app/Avatar");
 
+	function extract(source, props) {
+		var target = {};
+		_.each(props, function(value, key) {
+			target[value] = source[key];
+		});
+		return target;
+	}
+
+
 	var ProfileView = Backbone.View.extend({
 		el: "#main",
 		events:{
@@ -360,35 +369,26 @@ define(function(require){
 				delete data["other-lon"];
 			} else data["otherLocations"] = [];
 
-			if (data["current"]){
-				data["current"] =  {
-					name: data["current-city"],
-					country: data["current-country"],
-					region:  data["current-region"],
-					lat:  data["current-lat"],
-					lon:  data["current-lon"]
-				};
-				delete data["current-city"];
-				delete data["current-country"];
-				delete data["current-region"];
-				delete data["current-lat"];
-				delete data["current-lon"];
-			}
+			var currentProps = {
+				'current-city': 'name',
+				'current-country': 'country',
+				'current-region': 'region',
+				'current-lat': 'lat',
+				'current-lon': 'lon'
+			};
+			data.current = data.current ? extract(data, currentProps) : {};
+			data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
 
-			if (data["hometown"]){
-				data["hometown"] = {
-					name: data["hometown-city"],
-					country: data["hometown-country"],
-					region:  data["hometown-region"],
-					lat:  data["hometown-lat"],
-					lon:  data["hometown-lon"]
-				};
-				delete data["hometown-city"];
-				delete data["hometown-country"];
-				delete data["hometown-region"];
-				delete data["hometown-lat"];
-				delete data["hometown-lon"];
-			}
+			var hometownProps = {
+				'hometown-city': 'name',
+				'hometown-country': 'country',
+				'hometown-region': 'region',
+				'hometown-lat': 'lat',
+				'hometown-lon': 'lon'
+			};
+			data.hometown = data.hometown ? extract(data, hometownProps) : {};
+			data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+
 			return data;
 		},
 	  });
