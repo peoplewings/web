@@ -4,7 +4,7 @@
 				<div class="pager pull-left">
 					<div class="adjust">
 						<span>{{totalCount}}</span>
-						<p>result of accommodation in</p>
+						<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
 						{{#if locationSearch}}
 						<span class="location">{{locationSearch}}</span>
 						{{else}}
@@ -76,7 +76,7 @@
 						<span class="">Reply time</span>
 						<span class="results">{{replyTime}}</span>
 						<span class="">Reply rate</span>
-						<span class="results">{{replyRate}}%</span>
+						<span class="results">{{rate replyRate}}</span>
 					</div>
 					<div class="button-bar">
 						<ul>
@@ -107,7 +107,7 @@
 					</div>
 					<div class="accordion-heading" data-toggle="collapse" href="#collapse-{{@index}}">
 						<span class="more-about">more about</span>
-						<h1>See more about {{firstName}} </h1>
+						<h1>See more</h1>
 						<span class="more-about">more about</span>
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 			<div class="pager pull-left">
 				<div class="adjust">
 					<span>{{totalCount}}</span>
-					<p>result of accommodation in</p>
+					<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
 					{{#if locationSearch}}
 					<span class="location">{{locationSearch}}</span>
 					{{else}}

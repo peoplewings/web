@@ -14,7 +14,7 @@
 		<div class="controls">
 			<input id="pass" type="password" name="password" placeholder="Password" class="required">
 			<input type="password" name="confirm_password" placeholder="Repeat Password" class="required">
-		<span class="help-block"></span>
+			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="control-group">
@@ -36,23 +36,22 @@
 			<select id="id_birthday_month" name="birthdayMonth" class="input-small required">
 				<option value="">Month</option>
 				{{#each month}}
-					<option value="{{indexPlusOne}}">{{name}}</option>
+				<option value="{{indexPlusOne}}">{{name}}</option>
 				{{/each}}
 			</select>
 			<select id="id_birthday_day" name="birthdayDay" class="input-mini required">
 				<option value="">Day</option>
 				{{#range 1 31 1}}
-					<option value="{{self}}">{{self}}</option>
+				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
 			<select id="id_birthday_year" name="birthdayYear" class="input-mini required">
 				<option value="">Year</option>
 				{{#range 2006 1900 '-1'}}
-					<option value="{{self}}">{{self}}</option>
+				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
 			<span class="help-block"></span>
-		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputGender">Gender</label>
@@ -67,11 +66,7 @@
 	</div>
 	<div class="control-group">
 		<div class="controls terms">
-			<p>By continuing, you're confirming that you've read and agree to our the <a href="/#/help#terms-of-service">Terms and Conditions</a>, <a href="/#/help#privacy-policy">Privacy Policy and Cookie Policy</a>, and that you're 18 or older.</p>
-			<label class="checkbox">
-				<input type="checkbox" name="hasAcceptedTerms" class="required">I'm agree with this terms
-				<span class="help-block"></span>
-			</label>
+			<p>By continuing, you're confirming that you've read and agree to our the <a id="terms-link" href="/#/terms">Terms and Conditions</a>, Privacy Policy and Cookie Policy, and that you're 18 or older.</p>
 			<button type="submit" class="button-peoplewings">Sign up!</button>
 		</div>
 	</div>

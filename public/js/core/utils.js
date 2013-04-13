@@ -69,6 +69,7 @@ define(function(require) {
 			content: options.content,
 			close: options.close || true,
 			thinModal: options.thin,
+			formRel: 'form="' + options.form + '"',
 		}));
 		$("body section:last").append(modal);
 
@@ -92,6 +93,9 @@ define(function(require) {
 	var minuteMs = moment(0).add('minutes', 1).valueOf();
 
 	function formatReplyTime(time) {
+		if (time === -1)
+			return '-';
+
 		var weeks = Math.floor(time / weekMs);
 		if (weeks > 4) return '+4w';
 		if (weeks > 0) return weeks + 'w';
