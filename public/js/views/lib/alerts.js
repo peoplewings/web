@@ -2,6 +2,8 @@ define(function(require) {
 
 	var template = require('tmpl!templates/lib/alert2.html');
 
+	var lastAlert;
+
 	function showAlert(type, content, options) {
 		var title;
 		if (typeof options === 'string') {
@@ -12,7 +14,7 @@ define(function(require) {
 
 		options = options || {};
 		if (!('autoclose' in options))
-			options.autoclose = 5000;
+			options.autoclose = 60000;
 
 		var alert = $(template({
 			type: type,
@@ -20,6 +22,11 @@ define(function(require) {
 			content: content,
 			options: options,
 		}));
+
+		if (lastAlert)
+			lastAlert.alert('close');
+
+		lastAlert = alert;
 
 		$('#alerts-container').append(alert);
 
