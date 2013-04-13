@@ -46,7 +46,7 @@ define(function(require) {
 				});
 		},
 
-		loginSuccess: function(data, remember) {
+		loginSuccess: function(data) { //, remember) {
 			api.saveAuthToken(JSON.stringify({
 				auth: data.xAuthToken,
 				uid: data.idAccount
