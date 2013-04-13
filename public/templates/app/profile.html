@@ -22,9 +22,11 @@
 					{{hometown.name}}, {{hometown.country}}
 					{{/if}}
 				</h2>
+			{{#if myProfile}}
+			</div>
+			{{else}}
 				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
 			</div>
-			{{#unless myProfile}}
 			<div class="button-bar">
 				<ul>
 					<li><button class="send-message-btn">Message</button></li>
@@ -32,7 +34,7 @@
 					<li><button class="send-invitation-btn">Invite</button></li>
 				</ul>
 			</div>
-			{{/unless}}
+			{{/if}}
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
 	<div class="tab-content">
