@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
-	 _Header
-	 -------------------------------------------------------------------------- */
+ * Header
+ * --------------------------------------------------------------------------
 
 header
-	height: 53px
+	min-height: 53px
 
 input#header-search
 	float: left
-	margin-top: 16px
+	margin-top: 20px
 	border: 1px solid #D0CEC7
 	@include border-radius(13px)
 	//@include box-shadow(inset, 1px, 1px, 2px, 0px, #DDD)
@@ -42,7 +42,7 @@ input#header-search
 		margin-left: 0
 	.nav
 		float: right
-		font-size: 12px
+		font-size: 11px
 		margin-right: 10px
 		margin-top: 23px
 		line-height: 12px
@@ -58,7 +58,7 @@ input#header-search
 				content: ''
 			a
 				display: inline
-				font-size: 11px
+				font-size: inherit
 				font-family: $ffamily
 				text-shadow: none
 				padding: 0
@@ -110,17 +110,18 @@ div.nav-menu
 
 div.btn-group.pull-right
 	margin-top: 16px
-	a
-		display: block
-		padding: 5px
-		@include border-radius(0)
-		&:hover
-			background-color: #D0CEC7
-		span.config
+	ul li
+		a
 			display: block
-			height: 13px
-			width: 13px
-			background: url(../img/icon-config.png) no-repeat left top
+			padding: 5px
+			@include border-radius(0)
+			&:hover
+				background-color: #D0CEC7
+			span.config
+				display: block
+				height: 13px
+				width: 13px
+				background: url(../img/icon-config.png) no-repeat left top
 	ul.dropdown-menu
 		padding: 15px
 		@include border-radius(0)
