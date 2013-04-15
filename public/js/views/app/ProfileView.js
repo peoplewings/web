@@ -18,7 +18,6 @@ define(function(require) {
 	var wingTpl = require('tmpl!templates/app/profile.view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile.form.add-wings.html');
 
-
 	var ProfileView = Backbone.View.extend({
 
 		el: "#main",
@@ -57,7 +56,7 @@ define(function(require) {
 			var tab = '#' + tabId || '#about';
 			this.model.fetch({success: this.refresh.bind(this, tab)});
 
-			if (myProfile){
+			if (myProfile && !this.myProfile) {
 				this.myProfile = new MyProfile(this.model, this);
 				this.myWings = new MyWings(this);
 			}
@@ -182,7 +181,7 @@ define(function(require) {
 		Waiting to update Backbone lib to avoid trigger false bug
 		http://stackoverflow.com/questions/11205623/backbone-router-failing-to-respect-trigger-false-option
 		tabHandler: function(evt){
-			
+
 			var tabId = evt.target.href.split(evt.target.baseURI)[1];
 			window.router.navigate('#/profiles/' + this.model.get('id') + '/' + tabId.split('#')[1], {trigger: false});
 

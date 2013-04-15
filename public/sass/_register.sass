@@ -5,35 +5,24 @@
 form#register-form
 	float: right
 	background: $blue_sign
-	padding: 0 27px 27px 14px
-	margin: 27px
+	padding: 0 28px 28px 14px
+	margin: 27px 12px
 	@include border-radius(12px)
-	width: 460px
+	width: 469px
 
-	.help-block
+	input, select, .help-block
 		margin: 0
-
-	input, select
-		margin: 0
-
-	select
-		height: 40px
 
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
-	select
 		font-size: 13px
-		padding: 10px 8px
-		@include border-radius(4px)
-		@include appearance(none)
+		padding: 8px
 		border: 1px solid #79766c
 		color: #000
-		line-height: 15px
-
-	input[type="text"],
-	input[type="password"]
-		max-width: 149px
+		line-height: 16px
+		@include appearance(none)
+		@include border-radius(4px)
 
 	label.checkbox
 		padding-left: 0
@@ -52,7 +41,7 @@ form#register-form
 		background: url(../img/signal.png) no-repeat
 		position: relative
 		bottom: 16px
-		left: 220px
+		left: 233px
 		@include opacity(0.7)
 
 	legend
@@ -68,59 +57,50 @@ form#register-form
 	.clear
 		clear: both
 
-	.control-group
-		margin: 0
-		margin-bottom: 5px
-
 	.control-group:after, .control-group:before
 		display: block
 
-	.control-label
-		float: left
-		color: #FFF
-		width: 100px
-		padding: 11px
-		text-shadow: 1px 1px 1px #000
-		font-size: 14px
-		text-align: left
+	.control-group
+		margin: 0
 
-	.controls
-		margin-left: 122px
+		.control-label
+			float: left
+			font-size: 14px
+			color: #FFF
+			padding-left: 10px
+			width: 100px
+			text-shadow: 1px 1px 1px #000
+			text-align: left
 
-		input[type="text"]
-			width: 149px
+		.controls
+			margin-left: 122px
+			margin-bottom: 4px
 
-		input[type="email"],
-		input[type="password"]
-			width: 95%
+			input[type="text"],
+			input[type="password"],
+			input[type="email"]
+				width: 94.8%
 
-		select
-			background: url(../img/mini-arrow.png) no-repeat 82px center white
-			width: 110px
-			color: $gray-link
+			select
+				width: 32.5%
+				min-height: 36px
+				background: url(../img/mini-arrow.png) no-repeat 88px center #FFF
 
-		.select-mini
-			width: 97px
+		.controls.two-elements
+			input[type="text"],
+			input[type="password"]
+				width: 44.2%
 
-		.select-medium
-			width: 120px
-			background-position: 94px center
+		.controls.terms
+			color: #FFF
+			font-size: 12px
+			line-height: 18px
+			p
+				margin: 15px 0px
+			a
+				color: #FFFF00
+				&:hover
+					text-decoration: underline
+					cursor: pointer
 
-		.terms
-			margin-left: 117px
 
-	.accepts
-		margin-left: 98px
-		margin-bottom: 2em
-
-	.terms
-		color: #FFF
-		font-size: 12px
-		line-height: 18px
-		p
-			margin: 15px 0px
-		a
-			color: #FFFF00
-			&:hover
-				text-decoration: underline
-				cursor: pointer
