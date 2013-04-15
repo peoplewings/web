@@ -21,8 +21,8 @@ define(function(require){
 
 		events: {
 			'click #search-btn': 'filter',
-			'click #notifications-pager > button.nextPage': 'nextPage',
-			'click #notifications-pager > button.previousPage': 'previousPage',
+			'click #notifications-pager button.nextPage': 'nextPage',
+			'click #notifications-pager button.previousPage': 'previousPage',
 			'click #delete-all-selected': function(e) {
 				e.preventDefault();
 				this.removeSelection();
@@ -242,7 +242,7 @@ define(function(require){
 				return Promise.resolved(false);
 
 			++this.activePage;
-			return this.filter();
+			return this.applyFilters();
 		},
 
 		previousPage: function(){
@@ -250,7 +250,7 @@ define(function(require){
 				return Promise.resolved(false);
 
 			--this.activePage;
-			return this.filter();
+			return this.applyFilters();
 		},
 
 		resetPager: function(){
