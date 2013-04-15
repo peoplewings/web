@@ -163,7 +163,7 @@ button
 	background: url(../img/bg_city.jpg) no-repeat top center
 
 
-/* Others
+/* Alerts and Errors
  * --------------------------------------------------------------------------
 
 label.error
@@ -175,11 +175,49 @@ label.error
 	margin-top: 5px
 
 
+div#alerts-container
+	position: fixed
+	z-index: 10000000
+	width: 100%
+	top: 45px
+	.alert
+		text-align: center
+		width: 450px
+		margin: 0 auto
+		background: #FFF
+		font:
+			size: 10px
+			weight: bold
+			style: italic
+		@include border-radius(12px)
+		.close
+			position: relative
+			top: -7px
+			right: -24px
+			line-height: 20px
+			font-size: 16px
+	.alert-error
+		border: 1px solid #E30417
+		color: #E30417
+		background: url(../img/alert-red.jpg) no-repeat left #FFF
+		.close
+			color: #E30417
+	.alert-warning
+		border: 1px solid #fc8200
+		color: #fc8200
+		background: url(../img/alert-orange.jpg) no-repeat left #FFF
+		.close
+			color: #fc8200
+	.alert-success
+		border: 1px solid #6daf19
+		color: #6daf19
+		background: url(../img/alert-green.jpg) no-repeat left #FFF
+		.close
+			color: #6daf19
+
+
 /* OVER Bootstrap
  * --------------------------------------------------------------------------
-
-.alert-error
-	text-align: right
 
 .accordion
 	margin: 0
