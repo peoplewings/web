@@ -9,11 +9,20 @@ define(function(require) {
 
 		el: "#main",
 
-		render: function() {
+		render: function(tab) {
 
-			$(this.el).html(helpTpl({
-			}));
+			$(this.el).html(helpTpl);
 
+			if (tab) this.selectTab('#' + tab);
+		},
+		selectTab: function(tabId) {
+			this.$('.tab-content .tab-pane').removeClass('active');
+			$(tabId).addClass('active');
+
+			$(".tabs ul li").removeClass("active");
+			$('.tabs ul li a[href=' + tabId + ']')
+			.parent()
+			.addClass("active");
 		},
 
 	});

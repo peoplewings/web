@@ -22,13 +22,6 @@ define(function(require) {
 
 		events: {
 			"submit form#register-form": "submitRegister",
-			"click a#terms-link": function(e){
-				e.preventDefault();
-				utils.showModal({
-					header: "Terms and conditions",
-					content: termsTpl,
-				});
-			},
 		},
 
 		validation: {

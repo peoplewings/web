@@ -27,6 +27,7 @@ define(function(require) {
 			"register": "register",
 			"login": "login",
 			"help": "help",
+			"help#:tab": "help",
 			"activate/:token": "activate",
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
@@ -61,12 +62,13 @@ define(function(require) {
 				return this.defaultAction();
 			loginView.render();
 		},
-		help: function(){
+		help: function(tabId){
+			var tab = tabId || null;
 			this.showHeaderSearch(false);
 			this.showBackgroundImage(false);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
-			helpCenter.render();
+			helpCenter.render(tab);
 		},
 		activate: function(id){
 			this.showHeaderSearch(false);
