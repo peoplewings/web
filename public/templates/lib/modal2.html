@@ -6,11 +6,11 @@
 	<div class="modal-body">{{{content}}}</div>
 	<div class="modal-footer">
 		<div class="button-group">
-			{{#if accept}}
+			{{#if close}}
 			<button class="button" data-dismiss="modal" aria-hidden="true">Close</button>
 			{{/if}}
-			{{#if close}}
-			<button {{{formRel}}} class="button-highlight">{{accept}}</button>
+			{{#if accept}}
+			<button {{{formRel}}} class="button-highlight accept-modal-btn">{{accept}}</button>
 			{{/if}}
 		</div>
 	</div>
