@@ -66,8 +66,6 @@ define(function(require) {
 			var tab = tabId || null;
 			this.showHeaderSearch(false);
 			this.showBackgroundImage(false);
-			if (api.userIsLoggedIn())
-				return this.defaultAction();
 			helpCenter.render(tab);
 		},
 		activate: function(id){
