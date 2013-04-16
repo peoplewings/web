@@ -16,6 +16,7 @@ body
 	margin-bottom: 80px
 	z-index: 10000
 
+
 /* ==========================================================================
  * HTML STRUCTURE
  * ==========================================================================
@@ -71,6 +72,7 @@ body
 		background: url(../img/icon_accommodation.png) no-repeat center top
 		&:hover
 			background: url(../img/icon_accommodation_pre.png) no-repeat center top
+			cursor: pointer
 	.transport
 		background: url(../img/icon_transport.png) no-repeat center top
 		&:hover
@@ -79,6 +81,10 @@ body
 		background: url(../img/icon_trip.png) no-repeat center top
 		&:hover
 			background: url(../img/icon_trip_pre.png) no-repeat center top
+
+	.all, .transport, .trip
+		&:hover
+			cursor: default
 
 	.active
 		a
