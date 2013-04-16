@@ -7,7 +7,7 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var phrases = require("phrases");
-	var spinnerOptions = require('views/lib/spinner').options;
+	var spinner = require('views/lib/spinner');
 
 	var responseView = require('views/lib/balloon.response');
 
@@ -80,18 +80,17 @@ define(function(require) {
 			e.preventDefault(e);
 
 			var self = this;
-			var spinner = new Spinner(spinnerOptions);
 			var data = utils.serializeForm(e.target.id);
 
 			data.birthdayYear = +data.birthdayYear;
 			data.birthdayMonth = +data.birthdayMonth;
 			data.birthdayDay = +data.birthdayDay;
 
-			spinner.spin(document.getElementById('main'));
+			spinner.show('register');
 
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){
-				spinner.stop();
+				spinner.hide('register');
 				self.$('#register-form').remove();
 				if(response.status === true) {
 					responseView.render({
