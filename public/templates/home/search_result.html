@@ -34,12 +34,10 @@
 			{{#each results}}
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
-					<div class="avatar">
-						{{#if live}}<span class="online-dot">online dot</span>{{/if}}
-						<a href="#/profiles/{{id}}/about">
-							<img id="avatar" src="{{ avatar }}" alt="avatar">
-						</a>
-					</div>
+					<span class="dot {{#if live}}online{{/if}}">online dot</span>
+					<a href="#/profiles/{{id}}/about">
+						<img src="{{ avatar }}" alt="avatar">
+					</a>
 				</div>
 				<div class="content-right">
 					<div class="personal-info">
