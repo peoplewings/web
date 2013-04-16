@@ -6,6 +6,7 @@ define(function(require) {
 	var spinner = require('views/lib/spinner');
 	var server = 'http://peoplewings-backend.herokuapp.com';
 	//var server = 'http://0.0.0.0:5000';
+	//var server = 'http://peoplewings-backend-stable.herokuapp.com'
 	var apiVersion = '/api/v1';
 
 	function logout() {
