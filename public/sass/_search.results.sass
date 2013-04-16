@@ -1,9 +1,9 @@
 /* --------------------------------------------------------------------------
-	 _Search Results
-	 -------------------------------------------------------------------------- */
+ * Search Results
+ * --------------------------------------------------------------------------
 
 /* Pager Counter
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .pager
 	list-style: none
@@ -101,53 +101,58 @@ div.profile
 			min-height: 94px
 			min-width: 482px
 
-			h1.name
-				font:
-					size: 21px
-					weight: bold
-				display: inline
-				a
-					text-decoration: none
+			div.first-info
+				min-height: 74px
+
+				h1.name
+					font:
+						size: 21px
+						weight: bold
+					display: inline
+					a
+						text-decoration: none
+						color: #000
+						&:hover
+							color: #01A6DA
+
+				span
+					margin-left: 0.2em
+
+				span.age
+					font-size: 14px
+
+				span.online
+					color: #808080
+					font:
+						style: italic
+						size: 13px
+				
+				h2.home-town
+					font-size: 16px
+
+				h3.current-location
+					color: #808080
+					font-size: 14px
+					margin-bottom: 0.8em
+
+			dl
+
+				dt.languages-tag
+					float: left
+					font-size: 13px
+					color: #808080
+					margin-right: 10px
+
+				dd
+					font-size: 13px
+					white-space: nowrap
+					text-overflow: ellipsis
+					overflow: hidden
+					line-height: 20px
+
+				dd.languages
 					color: #000
-					&:hover
-						color: #01A6DA
-
-			span
-				margin-left: 0.2em
-
-			span.age
-				font-size: 14px
-
-			span.online
-				color: #808080
-				font:
-					style: italic
-					size: 13px
-			
-			h2.home-town
-				font-size: 16px
-
-			h3.current-location
-				color: #808080
-				font-size: 14px
-				margin-bottom: 0.8em
-
-			h4.languages-tag
-				float: left
-				font-size: 13px
-				color: #808080
-				margin-right: 10px
-
-			p
-				font-size: 13px
-				white-space: nowrap
-				text-overflow: ellipsis
-				overflow: hidden
-				line-height: 20px
-
-			p.languages
-				color: #000
-				text-transform: capitalize
+					text-transform: capitalize
 
 		div.main-bar
 			font-size: 11px

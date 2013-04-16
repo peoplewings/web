@@ -41,18 +41,19 @@
 				</div>
 				<div class="content-right">
 					<div class="personal-info">
-						<h1 id="user-name-label" class="name">
-							<a
+						<div class="first-info">
+							<h1 id="user-name-label" class="name">
+								<a
 								{{#if ../notlogged}}
-									href="#/register"
-									style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"
+								href="#/register"
+								style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"
 								{{else}}
-									href="#/profiles/{{id}}/about"
+								href="#/profiles/{{id}}/about"
 								{{/if}}
-							>{{firstName}} {{lastName}}</a>
-						</h1>
-						<span class="age">[{{age}}]</span>
-						{{#if live}}<span class="online">{{online}}</span>{{/if}}
+								>{{firstName}} {{lastName}}</a>
+							</h1>
+							<span class="age">[{{age}}]</span>
+							{{#if live}}<span class="online">{{online}}</span>{{/if}}
 						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
@@ -67,14 +68,17 @@
 					<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
 					<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
 					{{/if}}
-					<h4 class="languages-tag">Languages</h4>
-					{{#if languages.length }}
-					<p class="languages">
-						{{#each languages }}
-						{{ name }} ({{ level }}),
-						{{/each}}
-					</p>
-					{{/if}}
+						</div>
+					<dl>
+						<dt class="languages-tag">Languages</dt>
+						{{#if languages.length }}
+						<dd class="languages">
+							{{#each languages }}
+							{{ name }} ({{ level }}),
+							{{/each}}
+						</dd>
+						{{/if}}
+					</dl>
 				</div>
 				<div class="main-bar">
 					<div class="info-bar">
