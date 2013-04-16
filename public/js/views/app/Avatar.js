@@ -9,6 +9,7 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var alerts = require("views/lib/alerts");
+	var spinner = require("views/lib/spinner");
 
 
 	var blitline = new Blitline();
@@ -20,24 +21,6 @@ define(function(require) {
 
 		originalAvatarId: null,
 		size: 600,
-
-		spinOptions: {
-			lines: 11,
-			length: 15,
-			width: 6,
-			radius: 11,
-			corners: 1,
-			rotate: 12,
-			color: '#000',
-			speed: 0.8,
-			trail: 66,
-			shadow: false,
-			hwaccel: false,
-			className: 'spinner',
-			zIndex: 2e9,
-			top: 'auto',
-			left: 'auto'
-		},
 
 		events: {
 			"click #upload-avatar" : function(e){
@@ -52,7 +35,6 @@ define(function(require) {
 
 		initialize: function(){
 			_.bindAll(this, 'uploadFile', 'uploadComplete', 'resizeComplete');
-			this.spinner = new Spinner(this.spinOptions);
 
 			if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
 				return alert('The File APIs are not fully supported in this browser.');
@@ -65,7 +47,7 @@ define(function(require) {
 			if (!files.length)
 				return;
 
-			this.spinner.spin(document.getElementById('upload-avatar'));
+			spinner.show('avatar');
 			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
 		},
 
@@ -111,7 +93,7 @@ define(function(require) {
 			if (error)
 				return console.error('Error processing image ' + error + ' Blitline dashboard can provide more info.');
 
-			this.spinner.stop();
+			spinner.hide('avatar');
 			$('#crop-modal .modal-body img').attr('src', images[0].s3_url);
 			$('#crop-modal').modal('show');
 			$('#cropbox').Jcrop({

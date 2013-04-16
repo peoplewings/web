@@ -13,9 +13,11 @@
 				</h1>
 				<span class="age">[{{age}}]</span>
 				<span class="online">
-					{{#if lastLoginDate}}
-					{{lastLoginDate}}
-					{{/if}}
+					{{#equals lastLoginDate 'ON' }}
+						Online
+					{{else}}
+						{{date lastLoginDate 'YYYY-MM-DD' }}
+					{{/equals}}
 				</span>
 				<h2 class="home-town">
 					{{#if hometown.name}}

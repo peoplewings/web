@@ -17,7 +17,7 @@ define(function() {
 		top: 'auto', // Top position relative to parent in px
 		left: 'auto' // Left position relative to parent in px
 	};
-	var spinner = new Spinner();
+	var spinner = new Spinner(options);
 	var spinners = [];
 	var timers = {};
 
