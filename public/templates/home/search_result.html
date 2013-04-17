@@ -68,88 +68,86 @@
 					<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
 					<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
 					{{/if}}
-						</div>
-					<dl>
-						<dt class="languages-tag">Languages</dt>
-						{{#if languages.length }}
-						<dd class="languages">
-							{{#each languages }}
-							{{ name }} ({{ level }}),
-							{{/each}}
-						</dd>
-						{{/if}}
-					</dl>
 				</div>
-				<div class="main-bar">
-					<div class="info-bar">
-						<span class="">Reply time</span>
-						<span class="results">{{replyTime}}</span>
-						<span class="">Reply rate</span>
-						<span class="results">{{rate replyRate}}</span>
-					</div>
-					<div class="button-bar">
-						<ul>
-							<li><button class="button send-message-btn">MESSAGE</button></li>
-							<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
-							<li><button class="button send-invitation-btn">INVITE</button></li>
-						</ul>
-					</div><!-- EOF button-bar -->
-				</div><!-- EOF main-bar -->
-			</div><!-- EOF content-right -->
-			<div class="accordion">
-				<div class="accordion-group">
-					<div id="collapse-{{@index}}" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<h1>About me !</h1>
-							<p>{{ allAboutYou }}</p>
-							{{#if ../applicant}}
-							<h1>Looking for...</h1>
-							<p>City: <span>{{ wingCity }}</span></p>
-							<p>Capacity: <span>{{ wingCapacity }}</span></p>
-							<p>Start Date: <span>{{ wingStartDate }}</span></p>
-							<p>End date: <span>{{ wingEndDate }}</span></p>
-							<p>Type <span>{{ wingType }}</span></p>
-							<p><span>{{ wingIntroduction }}</span></p>
-							{{/if}}
-						</div>
-					</div>
-					<div class="accordion-heading" data-toggle="collapse" href="#collapse-{{@index}}">
-						<span class="more-about">more about</span>
-						<h1>See more</h1>
-						<span class="more-about">more about</span>
-					</div>
-				</div>
-			</div><!-- EOF accordion -->
-		</div>
-		{{/each}}
-		<div class="pager-content">
-			<div class="pager pull-left">
-				<div class="adjust">
-					<span>{{totalCount}}</span>
-					<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
-					{{#if locationSearch}}
-					<span class="location">{{locationSearch}}</span>
-					{{else}}
-					<span class="location">the world</span>
+				<dl>
+					<dt class="languages-tag">Languages</dt>
+					{{#if languages.length }}
+					<dd class="languages">
+						{{#each languages }}
+						{{ name }} ({{ level }}),
+						{{/each}}
+					</dd>
 					{{/if}}
+				</dl>
+			</div>
+			<div class="main-bar">
+				<div class="info-bar">
+					<span class="">Reply time</span>
+					<span class="results">{{replyTime}}</span>
+					<span class="">Reply rate</span>
+					<span class="results">{{rate replyRate}}</span>
+				</div>
+				<div class="button-bar">
+					<ul>
+						<li><button class="button send-message-btn">MESSAGE</button></li>
+						<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
+						<li><button class="button send-invitation-btn">INVITE</button></li>
+					</ul>
+				</div><!-- EOF button-bar -->
+			</div><!-- EOF main-bar -->
+		</div><!-- EOF content-right -->
+		<div class="accordion">
+			<div class="accordion-group">
+				<div id="collapse-{{@index}}" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<h1>About me !</h1>
+						<p>{{ allAboutYou }}</p>
+						{{#if ../applicant}}
+						<h1>Looking for...</h1>
+						<p>City: <span>{{ wingCity }}</span></p>
+						<p>Capacity: <span>{{ wingCapacity }}</span></p>
+						<p>Start Date: <span>{{ wingStartDate }}</span></p>
+						<p>End date: <span>{{ wingEndDate }}</span></p>
+						<p>Type <span>{{ wingType }}</span></p>
+						<p><span>{{ wingIntroduction }}</span></p>
+						{{/if}}
+					</div>
+				</div>
+				<div class="accordion-heading" data-toggle="collapse" href="#collapse-{{@index}}">
+					<span>See more</span>
 				</div>
 			</div>
-			<ul class="pager pull-right">
-				<li>
-					<div class="resultCounter adjust">
-						<span>{{startResult}}</span>
-						<span>-</span>
-						<span>{{endResult}}</span>
-						<span>of </span>
-						<span>{{totalCount}}</span>
-					</div>
-				</li>
-				<li class="icon">
-					<a href="#" class="previousPage">previous page</a>
-				</li>
-				<li class="icon">
-					<a href="#" class="nextPage">next page</a>
-				</li>
-			</ul>
-		</div><!-- EOF pager content -->
+		</div><!-- EOF accordion -->
 	</div>
+	{{/each}}
+	<div class="pager-content">
+		<div class="pager pull-left">
+			<div class="adjust">
+				<span>{{totalCount}}</span>
+				<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
+				{{#if locationSearch}}
+				<span class="location">{{locationSearch}}</span>
+				{{else}}
+				<span class="location">the world</span>
+				{{/if}}
+			</div>
+		</div>
+		<ul class="pager pull-right">
+			<li>
+				<div class="resultCounter adjust">
+					<span>{{startResult}}</span>
+					<span>-</span>
+					<span>{{endResult}}</span>
+					<span>of </span>
+					<span>{{totalCount}}</span>
+				</div>
+			</li>
+			<li class="icon">
+				<a href="#" class="previousPage">previous page</a>
+			</li>
+			<li class="icon">
+				<a href="#" class="nextPage">next page</a>
+			</li>
+		</ul>
+	</div><!-- EOF pager content -->
+</div>

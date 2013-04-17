@@ -98,11 +98,10 @@ div.profile
 		div.personal-info
 			margin: 24px
 			margin-bottom: 14px
-			min-height: 94px
 			min-width: 482px
 
 			div.first-info
-				min-height: 74px
+				min-height: 72px
 
 				h1.name
 					font:
@@ -159,15 +158,13 @@ div.profile
 			color: #808080
 			@include bg-gradient(#ffffff, #ecece5)
 			border-top: 1px solid #e5e5e5
-			border-bottom: 1px solid #d0cec7
 			overflow: hidden
-			max-height: 41px
 
 			div
 				float: left
 
 			div.info-bar
-				padding: 10px 24px
+				padding: 12px 24px
 				padding-right: 0
 
 				span
@@ -185,8 +182,10 @@ div.profile
 			div.button-bar
 				float: right
 				button
-					border-right: none
-					border-top: none
+					border:
+						top: none
+						right: none
+						bottom: none
 					padding: 15px
 					min-width: 90px
 
@@ -202,6 +201,7 @@ div.profile
 			div.accordion-inner
 				padding: 27px
 				overflow: hidden
+				border-top: 1px solid #D0CEC7
 
 				h1
 					font-size: 17px
@@ -221,21 +221,16 @@ div.profile
 					line-height: 20px
 
 			div.accordion-heading
-				border-top: 1px solid #e5e5e5
-				padding: 0.8em
+				border-top: 1px solid #D0CEC7
+				padding: 9px
 				overflow: hidden
 				cursor: pointer
-				h1, span
-					float: left
-					position: relative
-					left: 230px
-
-				span.more-about
-					font-size: 13px
-					background: url(../img/arrow_about.png) no-repeat 12px center
-					text-indent: -9999px
-
-				h1
-					font-size: 13px
-					text-align: center
+				span
+					background: url(../img/see_more.png) no-repeat 12px center
 					text-transform: uppercase
+					font-weight: bold
+					text-align: center
+					padding: 0 34px
+					display: block
+					width: 74px
+					margin: 0 auto
