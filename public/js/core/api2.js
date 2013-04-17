@@ -102,7 +102,7 @@ define(function(require) {
 					return;
 				}
 
-				var errorOptions = {autoclose:5000};
+				var errorOptions = {autoclose:60000};
 
 				response.errors.forEach(function(error) {
 					switch (error.type) {
