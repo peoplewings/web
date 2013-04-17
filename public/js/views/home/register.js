@@ -12,7 +12,6 @@ define(function(require) {
 	var responseView = require('views/lib/balloon.response');
 
 	var registerTpl = require('tmpl!templates/home/forms/register.html');
-	var termsTpl = require('tmpl!templates/home/terms.html');
 	var confirmTpl = require('tmpl!templates/lib/responses/register.check-email.html');
 	var underageTpl = require('tmpl!templates/lib/responses/register.underage.html');
 
