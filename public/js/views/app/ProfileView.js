@@ -98,7 +98,7 @@ define(function(require) {
 			this.model.get("wingsCollection")
 			.map(function(wing){
 				var box = $(document.createElement('div'))
-					.attr('id', '#wing-box-' + wing.id)
+					.attr('id', 'wing-box-' + wing.id)
 					.addClass('box-standard');
 				self.$("#wings .content-right").append(box);
 				$(box).html(wingTpl(wing));
