@@ -3,10 +3,11 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api2');
 	var utils = require('utils');
-	var alerts = require('views/lib/alerts');
 	var logoutView = require("views/app/logout");
 	var deleteTpl = require('tmpl!templates/app/delete-account.html');
+	var responseTpl = require('tmpl!templates/lib/responses/account.deleted.html');
 	var AccountModel = require("models/Account");
+	var responseView = require('views/lib/balloon.response');
 
 	var DeleteAccount = Backbone.View.extend({
 
@@ -36,14 +37,14 @@ define(function(require) {
 
 			var data = utils.serializeForm(evt.target.id);
 			var self = this;
+
 			this.model.destroy(data)
 			.then(function() {
-				alerts.success('Account deleted, you will be redirected to home.');
-				setTimeout(logoutView.goodbye, 500);
-			}, function() {
-				alerts.defaultError();
-			})
-			.fin(function(){
+				responseView.render({
+						content: responseTpl
+				});
+				setTimeout(logoutView.goodbye, 5000);
+			}, function(){
 				self.$("#delete-account-btn").button('reset');
 				self.$('#' + evt.target.id)[0].reset();
 			});
