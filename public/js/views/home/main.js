@@ -77,9 +77,10 @@ define(function(require) {
 			this.resultsView.render(results);
 		},
 
+		/* HELLO SERGI ! */
 		displayErrors: function(errors) {
 			this.$('.form-errors').html(errors.map(function(error) {
-				return '<li>' + error + '</li>';
+				return '<label class="error">' + error + '</label>';
 			}));
 		},
 
@@ -91,10 +92,10 @@ define(function(require) {
 			this.$('#inputWings').val(crc.split(',')[0]);
 
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
-				errors.push('DATE IS WRONG MODAFOKA!!!');
+				errors.push('Invalid dates');
 
 			if (+$("select[name=endAge]").val() < +$("select[name=startAge]").val())
-				errors.push('AGE IS WRONG MODAFOKA!!!');
+				errors.push('Invalid age');
 
 			if (errors.length)
 				return this.displayErrors(errors);
