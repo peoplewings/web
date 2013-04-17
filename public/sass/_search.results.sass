@@ -1,9 +1,9 @@
 /* --------------------------------------------------------------------------
-	 _Search Results
-	 -------------------------------------------------------------------------- */
+ * Search Results
+ * --------------------------------------------------------------------------
 
 /* Pager Counter
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 .pager
 	list-style: none
@@ -63,38 +63,32 @@
 
 
 /* Profile Card
-	 -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 div.profile
 	border: 1px solid #ccccd3
-	margin-bottom: 2em
+	margin-bottom: 8px
 	line-height: 20px
-	overflow: hidden
+	position: relative
 
 	div.content-left
 		float: left
+		width: 175px
+		height: 175px
 
-		div.avatar
-			width: 175px
-			height: 175px
-
-			img
-				width: 175px
-				height: 175px
-				position: relative
-				top: -18px
-
-		span.online-dot
+		span.dot
 			float: left
 			width: 18px
 			height: 18px
-			background: #00FF00
-			background: url(../img/online-corner.png) no-repeat left top
+			background: transparent
 			text-indent: -9999px
-			position: relative
+			position: absolute
 			top: -1px
 			left: -1px
 			z-index: 1
+		.dot.online
+			background: #00FF00
+			background: url(../img/online-corner.png) no-repeat left top
 
 	div.content-right
 		float: left
@@ -104,57 +98,61 @@ div.profile
 		div.personal-info
 			margin: 24px
 			margin-bottom: 14px
-			max-height: 95px
-			min-width: 477px
-			overflow: hidden
+			min-height: 94px
+			min-width: 482px
 
-			h1.name
-				font:
-					size: 21px
-					weight: bold
-				display: inline
-				a
-					text-decoration: none
+			div.first-info
+				min-height: 74px
+
+				h1.name
+					font:
+						size: 21px
+						weight: bold
+					display: inline
+					a
+						text-decoration: none
+						color: #000
+						&:hover
+							color: #01A6DA
+
+				span
+					margin-left: 0.2em
+
+				span.age
+					font-size: 14px
+
+				span.online
+					color: #808080
+					font:
+						style: italic
+						size: 13px
+				
+				h2.home-town
+					font-size: 16px
+
+				h3.current-location
+					color: #808080
+					font-size: 14px
+					margin-bottom: 0.8em
+
+			dl
+
+				dt.languages-tag
+					float: left
+					font-size: 13px
+					color: #808080
+					margin-right: 10px
+
+				dd
+					font-size: 13px
+					white-space: nowrap
+					text-overflow: ellipsis
+					overflow: hidden
+					line-height: 20px
+
+				dd.languages
 					color: #000
-					&:hover
-						color: #01A6DA
-
-			span
-				margin-left: 0.2em
-
-			span.age
-				font-size: 14px
-
-			span.online
-				color: #808080
-				font:
-					style: italic
-					size: 13px
-			
-			h2.home-town
-				font-size: 16px
-
-			h3.current-location
-				color: #808080
-				font-size: 14px
-				margin-bottom: 0.8em
-
-			h4.languages-tag
-				float: left
-				font-size: 13px
-				color: #808080
-				margin-right: 10px
-
-			p
-				font-size: 13px
-				white-space: nowrap
-				text-overflow: ellipsis
-				overflow: hidden
-				line-height: 20px
-
-			p.languages
-				color: #000
-				text-transform: capitalize
+					text-transform: capitalize
 
 		div.main-bar
 			font-size: 11px
@@ -198,43 +196,46 @@ div.profile
 		background: #FFF
 		font-size: 0.8em
 
-		div.accordion-inner
-			padding: 27px
-			overflow: hidden
+		div.accordion-group
+			margin: 0
 
-			h1
-				font-size: 17px
-				margin-bottom: 0.6em
-				float: left
+			div.accordion-inner
+				padding: 27px
+				overflow: hidden
 
-			h2
-				font:
-					size: 12px
-					style: italic
-				float: right
-			
-			p
-				font-size: 13px
-				color: #AAA
-				clear: both
-				line-height: 20px
+				h1
+					font-size: 17px
+					margin-bottom: 0.6em
+					float: left
 
-		div.accordion-heading
-			border-top: 1px solid #e5e5e5
-			padding: 0.8em
-			overflow: hidden
-			cursor: pointer
-			h1, span
-				float: left
-				position: relative
-				left: 230px
+				h2
+					font:
+						size: 12px
+						style: italic
+					float: right
+				
+				p
+					font-size: 13px
+					color: #AAA
+					clear: both
+					line-height: 20px
 
-			span.more-about
-				font-size: 13px
-				background: url(../img/arrow_about.png) no-repeat 12px center
-				text-indent: -9999px
+			div.accordion-heading
+				border-top: 1px solid #e5e5e5
+				padding: 0.8em
+				overflow: hidden
+				cursor: pointer
+				h1, span
+					float: left
+					position: relative
+					left: 230px
 
-			h1
-				font-size: 13px
-				text-align: center
-				text-transform: uppercase
+				span.more-about
+					font-size: 13px
+					background: url(../img/arrow_about.png) no-repeat 12px center
+					text-indent: -9999px
+
+				h1
+					font-size: 13px
+					text-align: center
+					text-transform: uppercase
