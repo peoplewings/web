@@ -103,7 +103,7 @@ define(function(require) {
 		},
 
 		toggleCollapsibleText: function(target, targetText, replaceText) {
-			var heading = $(target).next('.accordion-heading').find('h1');
+			var heading = $(target).next('.accordion-heading').find('span');
 			var re = new RegExp('(' + targetText + ')');
 			var changed = heading.html().replace(re, replaceText);
 			heading.html(changed);
