@@ -40,14 +40,6 @@ define(function(require) {
 			});
 		},
 
-		initializeMap: function(){
-			this.map = new MapView({
-				el: "#user-map",
-				id: "mapcanvas"
-			});
-			this.map.render();
-		},
-
 		render: function(userId, tabId) {
 			var myProfile = this.model.get("id") === api.getUserId();
 			this.model.clear({silent: true});
@@ -131,37 +123,49 @@ define(function(require) {
 					break;
 			}
 			this.$("#" + box).html(tpl);
-			if (box === "places-box")
+			if (box === "places-box"){
 				this.initializeMap();
+			}
 		},
 
-		initMarkers: function(){
+		initializeMap: function(){
+			this.map = new MapView({
+				el: "#user-map",
+				id: "mapcanvas"
+			});
+			this.map.render();
+			this.initMarkers();
+		},
+
+		initMarkers: function() {
 			var sc = this;
 
 			var city = this.model.get("current");
-			if (city){
+			if (!_.isEmpty(city)) {
 				this.map.addMarker({
 					id: "current",
 					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
 					icon: 'img/places-current-marker.png'
 				});
-
-				city = this.model.get("hometown");
+			} else this.map.deleteMarker('current');
+			city = this.model.get("hometown");
+			if (!_.isEmpty(city)) {
 				this.map.addMarker({
 					id: "hometown",
 					location: new google.maps.LatLng(city.lat, city.lon),
 					title: city.name + ", " + city.country,
 					icon: 'img/places-hometown-marker.png'
 				});
-
-				var others = this.model.get("otherLocations");
-				_.each(others, function(location, index){
+			} else this.map.deleteMarker('hometown');
+			var others = this.model.get("otherLocations");
+			if (others.length) {
+				_.each(others, function(location, index) {
 					sc.map.addMarker({
 						id: "otherLocation-" + index,
 						location: new google.maps.LatLng(location.lat, location.lon),
 						title: location.name + ", " + location.country,
-						icon: 'img/places-marker.png'
+						icon: 'img/places-other-marker.png'
 					});
 				});
 			}
