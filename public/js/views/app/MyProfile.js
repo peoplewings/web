@@ -261,7 +261,7 @@ define(function(require){
 						id: id,
 						location: place.geometry.location,
 						title: cc.city + ", " + cc.country,
-						icon: 'img/places-marker.png'
+						icon: 'img/places-' + field + '-marker.png'
 					});
 
 					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city);
