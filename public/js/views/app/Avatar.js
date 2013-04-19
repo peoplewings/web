@@ -110,17 +110,13 @@ define(function(require) {
 			this.$("#submit-avatar").button('loading');
 
 			api.post(api.getApiVersion() + "/cropped/", this.params)
-				.then(function(resp){
-					alerts.success("Avatar uploaded. You will be able to see you avatar in a few minutes.");
-					$('#avatar').attr("src", resp.data.url);
+				.then(function(){
+					alerts.success('Keep calm, your profile picture will be updated soon');
 					$('#crop-modal').modal('hide');
-					window.router.header.refresh();
+					$("#submit-avatar").button('reset');
 				}, function(error) {
 					debugger;
 					alerts.defaultError(error);
-				})
-				.fin(function(){
-					$("#submit-avatar").button('reset');
 				});
 		},
 	});

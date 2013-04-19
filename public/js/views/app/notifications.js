@@ -6,11 +6,31 @@ define(function(require){
 	var Promise = require("promise");
 	var notificationsTpl = require("tmpl!templates/app/notifications.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
+	var alerts = require("views/lib/alerts");
+
+	var AccountModel = require("models/Account");
+	var ProfileModel = require("models/ProfileModel");
 
 	api.listenUpdate('notifs', function(count) {
 		$('#notif-count')
 			.css('display', count ? 'block' : 'hidden')
 			.html(count);
+	});
+
+
+	api.listenUpdate('avatar', function(state) {
+		if (state === true){
+			var account = new AccountModel({
+					id: api.getUserId()
+			});
+			account.fetch();
+
+			var profile = new ProfileModel({
+					id: api.getUserId()
+			});
+			profile.fetch(router.previewView.refreshBox("basic-box"));
+			alerts.success('Your profile picture has been updated');
+		}
 	});
 
 	var NotificationsView = Backbone.View.extend({
