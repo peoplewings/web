@@ -42,19 +42,23 @@ define(function(require) {
 			/*
 			* BUG: Do search is never reached if user selects city by pressing Enter
 			*/
-			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
+			google.maps.event.addListener(this.search, 'place_changed', this.setCityField.bind(this));
 
 			if (params)
 				this.unserializeParams(params);
 
 		},
 
-		doSearch: function(){
-			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
+		setCityField: function(){
+			var place = this.search.getPlace();
+			var cc = null;
+
+			if (place)
+				cc = utils.getCityAndCountry(place.address_components);
 			if (!cc)
 				return;
-			else
-				this.cityField = cc.city;
+
+			this.cityField = cc.city;
 		},
 
 		unserializeParams: function(params){
@@ -103,8 +107,11 @@ define(function(require) {
 				return this.displayErrors(errors);
 
 			var formData = utils.serializeForm(e.target.id);
-			if (this.cityField)
+			if (this.cityField){
 				formData.wings = this.cityField;
+				this.cityField = null;
+			}
+
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
