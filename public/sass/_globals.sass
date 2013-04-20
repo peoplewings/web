@@ -187,24 +187,24 @@ button
 div#alerts-container
 	position: fixed
 	z-index: 10000000
-	width: 100%
 	top: 45px
 	.alert
-		text-align: center
-		width: 450px
-		margin: 0 auto
-		background: #FFF
-		font:
-			size: 10px
-			weight: bold
-			style: italic
+		overflow: hidden
+		max-width: 630px
+		margin-left: 570px
+		padding-left: 35px
 		@include border-radius(12px)
 		.close
-			position: relative
-			top: -7px
-			right: -24px
+			float: right
 			line-height: 20px
 			font-size: 16px
+		p
+			float: left
+			text-align: left
+			background: #FFF
+			font:
+				size: 11px
+				style: italic
 	.alert-error
 		border: 1px solid #E30417
 		color: #E30417
