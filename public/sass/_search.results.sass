@@ -5,61 +5,70 @@
 /* Pager Counter
  * --------------------------------------------------------------------------
 
-.pager
-	list-style: none
-	text-align: center
-	margin: 0
-	font-size: 0.9em
-	a
-		display: inline
-		border: none
-		padding: 0
-		&:hover
-			background: none
-			text-decoration: underline
-	p
-		margin: 0
-		margin-top: 0.2em
-		display: inline
-	li
-		float: left
-		&:last-child
-			border-left: none
-	.icon
-		width: 25px
-		height: 25px
-		border: 1px solid #D8D6D0
-		@include bg-gradient(#FFF, #ecece5)
-		&:hover
-			background: #FFF
-		&:active
-			@include bg-gradient(#FFF, #d0cec7)
-		a
-			float: left
-			display: block
-			width: 25px
-			height: 25px
-			text-indent: -9999px
-			@include border-radius(0px)
-		.previousPage
-			background: url(../img/pager-prev.png) no-repeat 8px 8px
-		.nextPage
-			background: url(../img/pager-next.png) no-repeat 10px 8px
-
 .pager-content
 	background: #FFF
-	border: 1px solid #ccccd3
+	font-size: 13px
 	overflow: hidden
-	padding: 14px
+	padding: 5px
 	padding-left: 18px
 	margin:
-		top: 27px
-		bottom: 27px
+		top: 35px
+		bottom: 13px
 
-	.adjust
-		margin:
-			top: 7px
-			right: 14px
+	.pager-left
+		float: left
+		padding: 3px 0
+		span
+			&:first-child
+				font-weight: bold
+
+	.pager-right
+		float: right
+
+		.resultCounter
+			float: left
+			margin-right: 15px
+			padding: 3px 0
+
+	.pager
+		color: #999
+		margin: 0
+		text-align: left
+		a
+			display: inline
+			border: none
+			padding: 0
+			&:hover
+				background: none
+				text-decoration: underline
+		p
+			margin: 0
+			margin-top: 0.2em
+			display: inline
+		li
+			float: left
+			&:last-child
+				border-left: none
+		.icon
+			width: 25px
+			height: 25px
+			border: 1px solid #D8D6D0
+			@include bg-gradient(#FFF, #ecece5)
+			&:hover
+				background: #FFF
+			&:active
+				@include bg-gradient(#FFF, #d0cec7)
+			a
+				float: left
+				display: block
+				width: 25px
+				height: 25px
+				text-indent: -9999px
+				@include border-radius(0px)
+			.previousPage
+				background: url(../img/pager-prev.png) no-repeat 8px 8px
+			.nextPage
+				background: url(../img/pager-next.png) no-repeat 10px 8px
 
 
 /* Profile Card

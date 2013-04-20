@@ -1,0 +1,87 @@
+@import _effects.sass
+
+/* --------------------------------------------------------------------------
+ * Buttons
+ * --------------------------------------------------------------------------
+
+
+button
+  font-family: Arial
+  
+.button
+  display: inline-block
+  *display: inline
+  /* IE7 inline-block hack */
+  *zoom: 1
+  padding: 15px 25px
+  margin: 0
+  font:
+    size: 11px
+    style: italic
+  color: #000
+  line-height: normal
+  text-shadow: 1px 1px 1px #FFF
+  text-transform: uppercase
+  text-align: center
+  border: 1px solid #D0CEC7
+  cursor: pointer
+  -webkit-appearance: none
+  @include bg-gradient(#FFF, #ECECE5)
+  &:hover, &:active, &:focus
+    background: #FFF
+    color: #000
+  &:active
+    @include bg-gradient(#FFEB00, #FBFAC5)
+
+.button-highlight
+  @extend .button
+  @include bg-gradient(#FFFF00, #FFEB00)
+
+.button-pager-previous
+  @extend .button
+  padding: 0
+  text-indent: -9999px
+
+.button-pager-next
+  @extend .button
+  padding: 0
+  text-indent: -9999px
+
+.button-close
+  @extend .button
+  float: right
+  border: none
+  margin: 0
+  padding: 0
+  background: transparent
+  line-height: 15px
+  font:
+    size: 20px
+    style: normal
+    weight: bold
+  color: #000
+  text-shadow: 0 1px 0 #FFF
+  cursor: pointer
+  @include opacity(0.2)
+  &:hover
+    @include opacity(1)
+    background: none
+
+.button-peoplewings
+  @extend .button
+  padding: 3px 15px
+  background: #18183F
+  color: #FFFF00
+  font:
+    family: 'Exo', Tahoma, Sans-Serif
+    size: 16px
+    weight: bold
+  text-shadow: none
+  border: 2px solid #FFFF00
+  @include border-radius(18px)
+  @include transition(box-shadow, 0.5s)
+  &:hover, &:focus, &:active
+    color: #FFFF00
+    background: #18183F
+    outline: 0
+    @include box-shadow(0, 0, 8px, 3px, #FFFF00)

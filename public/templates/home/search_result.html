@@ -1,34 +1,27 @@
 	<div class="row">
 		<div class="span8">
+
 			<div class="pager-content">
-				<div class="pager pull-left">
-					<div class="adjust">
-						<span>{{totalCount}}</span>
-						<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
-						{{#if locationSearch}}
-						<span class="location">{{locationSearch}}</span>
-						{{else}}
-						<span class="location">the world</span>
-						{{/if}}
-					</div>
+				<div class="pager pager-left">
+					<span>{{totalCount}}</span>
+					<p>results of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
+					{{#if locationSearch}}
+					<span class="location">{{locationSearch}}</span>
+					{{else}}
+					<span class="location">the world</span>
+					{{/if}}
 				</div>
-				<ul class="pager pull-right">
-					<li>
-						<div class="resultCounter adjust">
-							<span>{{startResult}}</span>
-							<span>-</span>
-							<span>{{endResult}}</span>
-							<span>of </span>
-							<span>{{totalCount}}</span>
-						</div>
-					</li>
-					<li class="icon">
-						<a href="#" class="previousPage">previous page</a>
-					</li>
-					<li class="icon">
-						<a href="#" class="nextPage">next page</a>
-					</li>
-				</ul>
+				<div class="pager pager-right">
+					<div class="resultCounter">
+						<span>{{startResult}}</span>
+						<span>-</span>
+						<span>{{endResult}}</span>
+						<span>of </span>
+						<span>{{totalCount}}</span>
+					</div>
+					<button class="button-pager-previous previousPage">hola</button>
+					<button class="button-pager-previous nextPage"></button>
+				</div>
 			</div><!-- EOF pager content -->
 
 			{{#each results}}
@@ -124,7 +117,7 @@
 		<div class="pager pull-left">
 			<div class="adjust">
 				<span>{{totalCount}}</span>
-				<p>result of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
+				<p>results of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
 				{{#if locationSearch}}
 				<span class="location">{{locationSearch}}</span>
 				{{else}}
