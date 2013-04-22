@@ -25,20 +25,24 @@
 			&:first-child
 				font-weight: bold
 
-	.pager-right
-		float: right
+.pager-right
+	float: right
 
-		.resultCounter
-			float: left
-			margin-right: 15px
-			padding: 4px 0
+	.resultCounter
+		float: left
+		margin-right: 15px
+		padding: 4px 0
+		span:first-child:after
+			content: " - "
+		span:last-child:before
+			content: " of "
 
-		.button-group
-			float: left
-			line-height: 0
-			a:last-child
-				border-left: none
-				margin-left: -4px
+	.button-group
+		float: left
+		line-height: 0
+		a:last-child
+			border-left: none
+			margin-left: -4px
 
 /* Profile Card
  * --------------------------------------------------------------------------
