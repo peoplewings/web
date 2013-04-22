@@ -24,6 +24,7 @@ define(function() {
 	function show(id) {
 		spinners.push(id);
 		spinner.spin($('#mini-spinner').get(0));
+		$('#mini-spinner span').show();
 	}
 
 	function hide(id) {
@@ -34,6 +35,7 @@ define(function() {
 
 		if (!spinners.length) {
 			spinner.stop();
+			$('#mini-spinner span').hide();
 		}
 	}
 
