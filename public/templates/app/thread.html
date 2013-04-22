@@ -54,10 +54,10 @@
 				</div>
 				<div id="response-options">
 					{{#if isMessage}}
-					<h1>Click to</h1>
+					<span>Click to</span>
 					<span id="response-reply">Reply</span>
 					{{else}}
-					<h1>Click to</h1>
+					<span>Click to</span>
 
 					{{#each options}}
 					<span class="response-option option-{{self}}">
@@ -69,7 +69,7 @@
 						<div class="response-wrapper">
 							{{#unless isMessage}}
 							<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}" style="display: none">
-								<h1>{{enum state 'notification-state'}}</h1>
+								<span>{{enum state 'notification-state'}}</span>
 							</div>
 							<div class="messages-params-box" style="display: none;">
 								<dl>
@@ -97,7 +97,7 @@
 								<form id="wing-params-form">
 									<div class="response-header">
 										<div class="response-header-dates">
-											<h2>{{type}} in {{parameters.wingCity}}<span>{{parameters.wingName}}</span></h2>
+											<span>{{type}} in {{parameters.wingCity}}{{parameters.wingName}}</span>
 											<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate}}">
 											<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate}}">
 											<select name="capacity" class="input-mini required">
