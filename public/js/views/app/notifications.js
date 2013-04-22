@@ -47,6 +47,10 @@ define(function(require){
 				e.preventDefault();
 				this.removeSelection();
 			},
+			'change .messages-check': function(e){
+				var threadId = $(e.target).parent().parent().attr('data-thread');
+				this.selection.push(threadId);
+			},
 			'change #main-checker': function(e) {
 				var a = this.$list.find('input[type="checkbox"]');
 				if ($(e.target).is(':checked')) {
@@ -162,7 +166,13 @@ define(function(require){
 		},
 
 		removeSelection: function() {
-			api.put('/api/v1/notificationslist', { threads: this.selection }).then(this.render.bind(this));
+			var self = this;
+			api.put('/api/v1/notificationslist', { threads: this.selection })
+			.then(this.render.bind(this))
+			.then(function(){
+				alerts.success('Threads successfully deleted');
+				self.selection.length = 0;
+			});
 		},
 
 		getThreads: function() {
