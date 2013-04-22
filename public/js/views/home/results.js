@@ -108,9 +108,9 @@ define(function(require) {
 			var changed = heading.html().replace(re, replaceText);
 			heading.html(changed);
 			if (targetText === 'more')
-				$(heading).css('background-image', 'url(../img/see_more_up.png)')
+				$(heading).css('background-image', 'url(../img/see_more_up.png)');
 			else
-				$(heading).css('background-image', 'url(../img/see_more.png)')
+				$(heading).css('background-image', 'url(../img/see_more.png)');
 		}
 	});
 	return resultsView;
