@@ -85,18 +85,19 @@ li.notification-item
 		line-height: 16px
 		min-width: 173px
 		h1
-			display: inline
+			display: inline-block
+			max-width: 150px
+			white-space: nowrap
+			text-overflow: ellipsis
+			overflow: hidden
 			a
 				font-weight: bold
 				color: #000
-				display: inline-block
-				max-width: 150px
-				white-space: nowrap
-				text-overflow: ellipsis
-				overflow: hidden
 				&:hover
 					color: #000
 					text-decoration: underline
+			span
+				margin-left: 5px
 		span, h2
 			color: #999
 	div.messages-flag
