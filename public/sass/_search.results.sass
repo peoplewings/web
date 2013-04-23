@@ -75,12 +75,14 @@ div.profile
 	div.content-right
 		float: left
 		background: #FFF
-		max-width: 523px
+		width: 523px
+		height: 175px
+		position: absolute
+		right: 0
 
 		div.personal-info
 			margin: 24px
 			margin-bottom: 14px
-			min-width: 482px
 
 			div.first-info
 				min-height: 72px
@@ -141,6 +143,9 @@ div.profile
 			@include bg-gradient(#ffffff, #ecece5)
 			border-top: 1px solid #e5e5e5
 			overflow: hidden
+			position: absolute
+			bottom: 0
+			width: 100%
 
 			div
 				float: left
