@@ -50,9 +50,9 @@
 							<label class="control-label">Interested in</label>
 							<div class="controls">
 								<select name="interestedIn" class="size-large">
+									<option value="Both" {{selected interestedIn.0.gender 'Both'}}>Both</option>								
 									<option value="Female" {{selected interestedIn.0.gender 'Female'}}>Female</option>
 									<option value="Male" {{selected interestedIn.0.gender 'Male'}}>Male</option>
-									<option value="Both" {{selected interestedIn.0.gender 'Both'}}>Both</option>
 								</select>
 								<span class="help-block"></span>
 							</div>
