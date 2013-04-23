@@ -268,7 +268,7 @@ define(function(require){
 		},
 
 		nextPage: function(e){
-			e.preventDefault();
+			if (e) e.preventDefault();
 			if (this.activePage + 1 > this.lastPage)
 				return Promise.resolved(false);
 
@@ -277,7 +277,7 @@ define(function(require){
 		},
 
 		previousPage: function(e){
-			e.preventDefault();
+			if (e) e.preventDefault();
 			if (this.activePage - 1 < 1)
 				return Promise.resolved(false);
 
