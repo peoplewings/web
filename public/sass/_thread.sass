@@ -1,15 +1,4 @@
 /* --------------------------------------------------------------------------
- * Icons
- * --------------------------------------------------------------------------
-
-.search-icon
-	background: url(../img/icon-search.png) no-repeat
-
-.icon-back
-	background: url(../img/icon-back.png) no-repeat 1px 2px
-
-
-/* --------------------------------------------------------------------------
  * Thread
  * --------------------------------------------------------------------------
 
@@ -139,6 +128,7 @@ li.thread-item
 		border-top: none
 		background: #FFF
 		z-index: -1
+		width: auto
 		div.messages-avatar
 			float: left
 			width: 65px
@@ -213,54 +203,40 @@ li.thread-item
 			padding-top: 15px
 			color: #000
 			float: none
-
-// Response item
-
-li.response-item
-	min-height: 65px
-	float: none
-	border: 1px solid #D0CEC7
-	background: #FFF
-	div, input, select, textarea
-		font-size: 12px
-	div.messages-avatar
-		float: left
-		width: 65px
-		height: 65px
-		img
-			width: 65px
-			height: 65px
 	div#response-options
-		float: left
-		padding: 10px 12px 0 12px
-		h1
-			display: inline
+		padding: 10px 0 12px 18px
+		margin-left: 65px
 		span
+			display: inline
 			font-weight: bold
 			color: #000
 			cursor: pointer
 	div#write-response
 		float: right
+		input, select, textarea
+			font-size: 12px
 		div.response-wrapper
 			margin: 10px
 			margin-left: 0
 			border: 1px solid #D0CEC7
-			h1
-				text-transform: capitalize
-				font-weight: bold
-				background: #f5f5f0
-				padding: 10px 10px 10px 15px
-				padding-left: 45px
-			div.accepted h1
+			div.state-flag
+				span
+					display: block
+					text-transform: capitalize
+					font-weight: bold
+					background: #f5f5f0
+					padding: 10px 10px 10px 15px
+					padding-left: 45px
+			div.accepted span
 				color: #85c333
 				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
-			div.maybe h1
+			div.maybe span
 				color: #fa9e03
 				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
-			div.pending h1
+			div.pending span
 				color: #ee4040
 				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
-			div.denied h1
+			div.denied span
 				color: #7e7b71
 				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
 			form#wing-params-form
@@ -268,13 +244,10 @@ li.response-item
 				input
 					margin-bottom: 0
 				div.response-header-dates
-					h2
+					span
+						display: block
 						font-weight: bold
 						margin-right: 10px
-						span
-							font:
-								weight: normal
-								style: italic
 			textarea
 				border: none
 				height: 72px
@@ -283,42 +256,44 @@ li.response-item
 				padding: 15px
 				padding-top: 10px
 				color: #000
-			div#edit-wing-params
-				background: #e1e0d9
-				.response-header
-					.response-header-dates
-						padding: 14px
-						h2
-							padding-left: 3px
-							margin-bottom: 4px
-						span
-							margin-left: 10px
-						input.input-sdate
-							width: 97px
-							background: url(../img/start-date.png) no-repeat 83px 6px white
-							padding-left: 10px
-						input.input-edate
-							width: 97px
-							background: url(../img/start-date.png) no-repeat 83px 6px white
-							padding-left: 10px
-						select
-							margin: 0
-							background: url(../img/mini-arrow.png) no-repeat 40px #FFF
-div.button-footer
-	float: right
-	clear: both
-	button.button1
-		margin: 0
-		padding: 10px 25px
-		border-left: 1px solid #D0CEC7
-		width: auto
-		background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, #ecece5 100%)
-		float: left
-		border-right: none
-		border-bottom: none
-		&:hover
-			background: #FFF
-		&:active
-			@include bg-gradient(#FFEB00, #FBFAC5)
-	.button1.yellow
-		@include bg-gradient(#FFFF00, #FFEA00)
+		div#edit-wing-params
+			background: #e1e0d9
+			.response-header
+				.response-header-dates
+					padding: 14px
+					h2
+						padding-left: 3px
+						margin-bottom: 4px
+					span
+						margin-left: 10px
+					input.input-sdate
+						width: 97px
+						background: url(../img/start-date.png) no-repeat 83px 6px white
+						padding-left: 10px
+					input.input-edate
+						width: 97px
+						background: url(../img/start-date.png) no-repeat 83px 6px white
+						padding-left: 10px
+					select
+						margin: 0
+						margin-top: 6px
+						background: url(../img/mini-arrow.png) no-repeat 40px #FFF
+	div.response-item
+		background: #fff
+		overflow: hidden
+		border: 1px solid #D0CEC7
+		border-top: none
+		div.messages-avatar
+			float: left
+			line-height: 0
+		div.button-group
+			float: right
+			margin-right: 10px
+			button
+				border-bottom: none
+				min-width: 90px
+				&:first-child
+					margin-right: -3px
+					border-right: none
+
+// @TODO : refactor thread-item and notificacion-item common elements
