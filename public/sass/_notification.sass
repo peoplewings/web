@@ -81,13 +81,19 @@ li.notification-item
 			width: 65px
 			height: 65px
 	div.messages-sender
-		padding: 15px 15px 0 20px
+		padding: 15px 0 0 20px
 		line-height: 16px
+		min-width: 173px
 		h1
 			display: inline
 			a
-				color: #000
 				font-weight: bold
+				color: #000
+				display: inline-block
+				max-width: 150px
+				white-space: nowrap
+				text-overflow: ellipsis
+				overflow: hidden
 				&:hover
 					color: #000
 					text-decoration: underline
