@@ -41,8 +41,8 @@ define(function(require){
 
 		events: {
 			'click #search-btn': 'filter',
-			'click #notifications-pager button.nextPage': 'nextPage',
-			'click #notifications-pager button.previousPage': 'previousPage',
+			'click #notifications-pager a.button-pager-next': 'nextPage',
+			'click #notifications-pager a.button-pager-previous': 'previousPage',
 			'click #delete-all-selected': function(e) {
 				e.preventDefault();
 				this.removeSelection();
@@ -267,7 +267,8 @@ define(function(require){
 			});
 		},
 
-		nextPage: function(){
+		nextPage: function(e){
+			e.preventDefault();
 			if (this.activePage + 1 > this.lastPage)
 				return Promise.resolved(false);
 
@@ -275,7 +276,8 @@ define(function(require){
 			return this.applyFilters();
 		},
 
-		previousPage: function(){
+		previousPage: function(e){
+			e.preventDefault();
 			if (this.activePage - 1 < 1)
 				return Promise.resolved(false);
 
