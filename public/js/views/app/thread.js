@@ -79,6 +79,12 @@ define(function(require) {
 							if (data.kind !== "message")
 								self.parseOptions(data.options, data.firstSender, data.wing.state);
 
+							data.items = data.items.map(function(item){
+								if (item.senderLocation.indexOf('Not specified') === 0)
+									item.senderLocation = null;
+								return item;
+							});
+
 							self.data = data;
 							return data;
 						})
@@ -131,6 +137,8 @@ define(function(require) {
 		},
 
 		toggleContent: function(event) {
+			if ($(event.target).attr('href'))
+				return;
 			var item = $(event.target).closest('li.thread-item');
 			if (!item.next().is('.response-item'))
 				item.find('.messages-content').toggle();
