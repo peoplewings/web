@@ -10,9 +10,17 @@ define(function(require) {
 
 	var FeedbackView = Backbone.View.extend({
 
-		initialize: function(){
-			if (api.userIsLoggedIn())
-				this.model = new UserModel({id: api.getUserId()});
+		validation: {
+			rules: {
+				text: {
+					required: true,
+					maxlength: 1000,
+				},
+			}
+		},
+
+		initialize: function(userId){
+			this.model = new UserModel({id: userId});
 		},
 
 		render: function(){
@@ -20,28 +28,30 @@ define(function(require) {
 			this.modal = utils.showModal({
 				header: "New suggestion",
 				accept: "Send",
+				loadingText: 'Sending...',
 				content: content,
-				callback: this.saveFeedback.bind(this)
+				form: 'feedback-form'
 			});
 			this.modal.on('hidden', this.close.bind(this));
-			$("#feedback-form").validate();
+			$("#feedback-form").on('submit', this.submitFeedback.bind(this));
+			$("#feedback-form").validate(this.validation);
 		},
 
-		saveFeedback: function(){
+		submitFeedback: function(evt){
+			evt.preventDefault();
 			var self = this;
 			var data = utils.serializeForm("feedback-form");
-			this.modal.find(".generic-modal-btn").button('loading');
 
 			if (this.modal.find("#feedback-form").valid()) {
-				api.post(api.getApiVersion() + "/feedback", data, function(response){
-					self.modal.find(".generic-modal-btn").button('reset');
+				this.modal.find(".accept-modal-btn").button('loading');
+
+				api.post(api.getApiVersion() + "/feedback", data)
+				.then(function(response){
+					self.modal.find(".accept-modal-btn").button('reset');
+					self.modal.modal('hide');
 
 					if (response.status === true)
 						alerts.success('Feedback received, thanks for your help.');
-					else
-						alerts.error(response.msg);
-
-					self.modal.modal('hide');
 				});
 			}
 		},
@@ -52,5 +62,5 @@ define(function(require) {
 		},
 	});
 
-	return new FeedbackView;
+return FeedbackView;
 });
