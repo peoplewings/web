@@ -268,11 +268,6 @@ define(function(require) {
 			this.$("#wing-params-form")
 				.validate(this.responseValidation);
 
-			$("input[name=startDate]").datepicker({
-				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
-			});
-
 
 			this.$("input[name=startDate]").datepicker({
 				minDate: new Date(),
@@ -283,7 +278,7 @@ define(function(require) {
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			}).rules("add", {
-				greatThan: this.$("input[name=startDate]"),
+				gte: this.$("input[name=startDate]"),
 			});
 
 			this.$('select[name=capacity]')
