@@ -66,16 +66,16 @@
 					<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
 					{{/if}}
 				</div>
+				{{#if languages.length }}
 				<dl>
 					<dt class="languages-tag">Languages</dt>
-					{{#if languages.length }}
 					<dd class="languages">
 						{{#each languages }}
 						{{ name }} ({{ level }}),
 						{{/each}}
 					</dd>
-					{{/if}}
 				</dl>
+				{{/if}}
 			</div>
 			<div class="main-bar">
 				<div class="info-bar">
