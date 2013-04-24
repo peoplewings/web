@@ -22,6 +22,8 @@ define(function(require) {
 			this.$('form').validate();
 			this.$inputEmail = this.$("#inputEmail");
 			this.$inputPassword = this.$("#inputPassword");
+
+			$("#feedback-btn").hide();
 		},
 
 		submitLogin: function(e) {

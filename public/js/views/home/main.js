@@ -47,6 +47,9 @@ define(function(require) {
 			if (params)
 				this.unserializeParams(params);
 
+			if (!api.userIsLoggedIn())
+				$("#feedback-btn").hide();
+
 		},
 
 		setCityField: function(){

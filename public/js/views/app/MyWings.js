@@ -36,6 +36,7 @@ define(function(require) {
 				this.wingModal = utils.showModal({
 					header: "Add Wing",
 					accept: "Save",
+					loadingText: 'Saving...',
 					content: wingModalTpl,
 					send: this.submitWing,
 					form: "accomodation-form",
