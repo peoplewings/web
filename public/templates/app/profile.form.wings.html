@@ -149,7 +149,7 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="inputPets">Transports</label>
+								<label class="control-label">Transports</label>
 								<div class="controls">
 									<label class="checkbox">
 										<input type="checkbox" name="underground" id="checkboxMetro" {{checked underground true}}>Metro
@@ -170,7 +170,7 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="inputAbout">About your accomodation</label>
+								<label class="control-label">About your accomodation</label>
 								<div class="controls">
 									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda">{{about}}</textarea>
 									<span class="help-block"></span>
@@ -181,33 +181,38 @@
 							<h1 class="contact-icon">Listing location</h1>
 						</div>
 						<div class="guest-message">
-							<h2 class="lock-icon">Shown only to Confirmed Guests</h2>
+							<h2>Shown only to Confirmed Guests</h2>
+							<i class="icon-lock">icon lock</i>
 							<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
 						</div><!-- EOF guest-message -->
 						<div class="listing-location">
 							<div class="control-group blocked">
-								<label class="control-label lock-icon" for="inputAddress">Street address</label>
+								<label class="control-label">Street address</label>
+								<i class="icon-lock">icon lock</i>
 								<div class="controls">
 									<input type="text" name="address" id="inputAddress" class="required" value="{{address}}">
 									<span class="help-block"></span>
 								</div>
 							</div>
 							<div class="control-group blocked">
-								<label class="control-label lock-icon" for="inputNumber">Number</label>
+								<label class="control-label">Number</label>
+								<i class="icon-lock">icon lock</i>
 								<div class="controls">
 									<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required">
 									<span class="help-block"></span>
 								</div>
 							</div>
 							<div class="control-group blocked">
-								<label class="control-label lock-icon" for="inputAddress">Additional Information</label>
+								<label class="control-label">Additional Information</label>
+								<i class="icon-lock">icon lock</i>
 								<div class="controls">
 									<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard" value="{{additionalInformation}}">
 									<span class="help-block"></span>
 								</div>
 							</div>
 							<div class="control-group blocked">
-								<label class="control-label lock-icon" for="inputCity">City</label>
+								<label class="control-label">City</label>
+								<i class="icon-lock-open">icon lock</i>
 								<div class="controls">
 									{{#with city}}
 									<input type="text" name="city" id="inputCity" class="required" value="{{name}}, {{region}}, {{country}}">
@@ -216,7 +221,8 @@
 								</div>
 							</div>
 							<div class="control-group blocked">
-								<label class="control-label lock-icon" for="inputCode">Postal</label>
+								<label class="control-label">Postal</label>
+								<i class="icon-lock">icon lock</i>
 								<div class="controls">
 									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required" value="{{postalCode}}">
 									<span class="help-block"></span>
