@@ -135,16 +135,16 @@ define(function(require) {
 						case 'UNDERAGE':
 							prom.resolve({"errors": [{"type": "UNDERAGE"}], "status": false});
 							break;
-						case 'BAD_REQUEST':
-						case 'FIELD_REQUIRED':
-						case 'FORBIDDEN':
-						case 'INTERNAL_ERROR':
 						case 'INVALID':
 							if (error.extras.length === 1)
 								alerts.error('Invalid field ' + error.extras[0], errorOptions);
 							else
 								debugger;
 							break;
+						case 'BAD_REQUEST':
+						case 'FIELD_REQUIRED':
+						case 'FORBIDDEN':
+						case 'INTERNAL_ERROR':
 						case 'INVALID_FIELD':
 						case 'JSON_ERROR':
 						case 'METHOD_NOT_ALLOWED':
