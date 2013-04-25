@@ -56,6 +56,8 @@ define(function(require) {
 				$('#password-form')
 				.validate(_.extend(this.validation, this.errorPlacement));
 			}
+
+			$("#feedback-btn").hide();
 		},
 
 		submitForgot: function(e){

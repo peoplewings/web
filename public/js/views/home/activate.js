@@ -12,6 +12,8 @@ define(function(require) {
 				alerts.success('Account activation complete. You can now login with your credentials');
 				router.navigate('#/login');
 			});
+
+			$("#feedback-btn").hide();
 		},
 	});
 

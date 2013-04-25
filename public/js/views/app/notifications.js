@@ -158,6 +158,8 @@ define(function(require){
 				.prop('data')
 				.then(function(data) {
 					data.items.forEach(function(item) {
+						if (item.location.indexOf('Not specified') === 0)
+							item.location = null;
 						item.isMessage = item.kind === 'message';
 					});
 
@@ -194,7 +196,9 @@ define(function(require){
 			var self = this;
 			this.$list.html(data.items.map(itemTpl).join(''));
 			this.$list.children()
-				.click(function() {
+				.click(function(evt) {
+					if ($(evt.target).attr('href'))
+						return;
 					var thread = $(this).data('thread');
 					self.lastFilters = self.serializeFilters();
 					document.location.hash = '#/messages/' + thread;

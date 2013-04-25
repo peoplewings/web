@@ -66,6 +66,8 @@ define(function(require) {
 
 			this.$('#register-form').validate(this.validation);
 
+			$("#feedback-btn").hide();
+
 		},
 
 		submitRegister: function(e) {

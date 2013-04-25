@@ -59,6 +59,9 @@ define(function(require) {
 				self.toggleCollapsibleText(this, 'more', 'less');
 			});
 
+			if (!self.logged)
+				$("#feedback-btn").hide();
+
 		},
 		nextPage: function() {
 			var scope = this;

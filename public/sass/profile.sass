@@ -163,13 +163,6 @@ button.close
 .places-lived-icon-mini
 	background: url(../img/places-lived-minimarker.png) no-repeat 12px center
 
-.lock-icon
-	background: url(../img/lock-icon.png) no-repeat
-	width: 9px
-	height: 12px
-	float: left
-	margin: 10px
-	margin-top: 11px
 
 /* --------------------------------------------------------------------------
  * Structure
@@ -328,9 +321,13 @@ button.close
 			.avatar
 				width: 172px
 				height: 172px
-				margin: 8px
-				margin-left: 9px
+				padding: 8px
+				padding-left: 9px
 				cursor: pointer
+				border-bottom: 1px solid #D0CEC7
+
+			#edit-basic-btn
+				border-top: none
 
 			.box
 				padding: 15px 20px
@@ -628,19 +625,22 @@ button.close
 	background: #F5F5F0
 	border-bottom: 1px solid #CCC
 	h2
+		float: left
 		font-weight: bold
 		width: auto
 		height: auto
 		margin: 0
 		padding: 0
 		background-position: 195px 4px
-		padding-right: 25px
 		margin-bottom: 7px
-		float: none
+	i
+		margin-left: 10px
+		margin-top: 4px
 	p
 		font-style: italic
 		color: gray
 		font-size: 12px
+		clear: both
 
 .box-content.wings-info
 	label
@@ -712,21 +712,30 @@ h1.guest-message
 		font-size: 12px
 		color: #999
 
+	label
+		float: left
+		margin-left: 2px
+
+	i
+		margin-left: 10px
+		margin-top: 4px
+
+	.icon-lock-open
+		margin-top: 2px
+
+	input
+		margin: 0
+
 	.blocked
 		display: block
 		float: left
 		clear: none
 		margin-right: 12px
+
 	.control-label
-		float: none
 		margin: 0 0 6px 0
 		.controls
 			margin: 0
-
-	label.lock-icon
-		background-position: center right
-		width: auto
-		height: auto
 
 .accordion-heading
 	clear: both

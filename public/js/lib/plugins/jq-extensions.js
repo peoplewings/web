@@ -16,6 +16,13 @@ define(function(require) {
 	},
 	"Check your dates: invalid lapse of time");
 
+	$.validator.addMethod("gte", function(small, element, big) {
+		var a = new Date(small) > new Date(big.val());
+		var b = new Date(small).valueOf() === new Date(big.val()).valueOf();
+		return (a || b);
+	},
+	"Check your dates: invalid lapse of time");
+
 	$.deparam  = function( params, coerce ) {
 		var obj = {};
 
