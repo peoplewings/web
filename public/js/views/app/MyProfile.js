@@ -222,13 +222,12 @@ define(function(require){
 								name: query,
 						};
 					},
-					onselect: function(){
+					/*onselect: function(){
 						console.log(arguments);
-					},
+					},*/
 					preProcess: function (data) {
-						if (data.code !== 200) {
+						if (!!!data.status)
 							return false;
-						}
 						return data.data.map(function(uni){ return uni.name; });
 					}
 				}
