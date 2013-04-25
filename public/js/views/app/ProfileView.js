@@ -93,6 +93,8 @@ define(function(require) {
 					.attr('id', 'wing-box-' + wing.id)
 					.addClass('box-standard');
 				self.$("#wings .content-right").append(box);
+
+				wing.transports = wing.metro || wing.tram || wing.train || wing.bus || wing.plane || wing.others;
 				$(box).html(wingTpl(wing));
 			});
 		},

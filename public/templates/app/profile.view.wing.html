@@ -66,6 +66,7 @@
 					<p>{{#if blankets}}Yes{{else}}No{{/if}}</p>
 					<h2>I live in the city center</h2>
 					<p>{{#if liveCenter}}Yes{{else}}No{{/if}}</p>
+					{{#if transports}}
 					<h2>Public transport</h2>
 					<p>
 						{{#if train}}Train, {{/if}}
@@ -75,6 +76,7 @@
 						{{#if boat}}boat, {{/if}}
 						{{#if others}}others{{/if}}
 					</p>
+					{{/if}}
 					<h2 class="last-p">About your accommodation</h2>
 					<p>{{about}}</p>
 				</div>
