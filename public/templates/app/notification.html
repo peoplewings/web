@@ -12,11 +12,11 @@
 	</div>
 	<div class="messages-state {{#unless read}}unread{{/unless}}">
 		{{#if isMessage }}
-		<h1 class="messages-name">{{content}}</h1>
+		<p class="messages-name">{{content}}</p>
 	</div>
 	<div class="messages-dates">
 		{{else}}
-		<h1 class="messages-name">{{enum kind 'notification-type'}}</h1>
+		<p class="messages-name">{{enum kind 'notification-type'}}</p>
 		{{#with wingParameters}}
 		<h2>{{wingType}} {{wingCity}}</h2>
 		<h3>{{message}}</h3>
