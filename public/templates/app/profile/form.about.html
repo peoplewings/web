@@ -1,72 +1,72 @@
-					<div class="box-standard">
-						<form id="about-me-form" data-rel="about-box">
-							<div class="box-header">
-								<h1 class="about-icon">About me</h1>
-							</div>
-							<div class="box-content">
-								<div class="control-group">
-									<label class="control-label" for="inputAllAboutYou">All about you</label>
-									<div class="controls">
-										<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything">{{allAboutYou}}</textarea>
-										<span class="help-block"></span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputMainMission">Current mission</label>
-									<div class="controls">
-										<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be">{{mainMission}}</textarea>
-										<span class="help-block"></span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputCompany">Company</label>
-									<div class="controls">
-										<input name="company" type="text" value="{{company}}" maxlength="20" placeholder="Where have you worked?" id="id_form-0-company" size="20">
-										<span class="help-block"></span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label category-another" for="inputEducation">Education</label>
-									<div class="controls">
-										<div id="education-list">
-											{{#each education}}
-											<div id="education-{{@index}}">
-												<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead" autocomplete="off">
-												<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2">
-											</div>
-											{{/each}}
-											<div id="education-tpl">
-												<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead" autocomplete="off">
-												<input type="text" name="degree" class="span2">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputPersonalPhilosophy">Personal philosophy</label>
-									<div class="controls">
-										<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?">{{personalPhilosophy}}</textarea>
-										<span class="help-block"></span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputPoliticalOpinion">Political views</label>
-									<div class="controls">
-										<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="20" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="20">
-										<span class="help-block"></span>
-									</div>
-								</div>
-								<div id="religion-input" class="control-group">
-									<label class="control-label" for="inputReligion">Religion</label>
-									<div class="controls">
-										<input name="religion" type="text" value="{{religion}}" maxlength="20" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
-										<span class="help-block"></span>
-									</div>
-								</div>
-							</div><!-- EOF box-content -->
-							<div class="accordion-heading">
-								<button id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
-								<button class="button2 cancel-edition-btn" data-rel="about-box">Cancel</button>
-							</div>
-						</form>
-				</div><!-- EOF box-standard -->
+<div class="box-standard">
+	<form id="about-me-form" data-rel="about-box">
+		<div class="box-header">
+			<h1 class="about-icon">About me</h1>
+		</div>
+		<div class="box-content">
+			<div class="control-group">
+				<label class="control-label" for="inputAllAboutYou">All about you</label>
+				<div class="controls">
+					<textarea name="allAboutYou" rows="5" class="span6" placeholder="A description about you, can be anything" maxlength="500">{{allAboutYou}}</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputMainMission">Current mission</label>
+				<div class="controls">
+					<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be" maxlength="100">{{mainMission}}</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputCompany">Company</label>
+				<div class="controls">
+					<input name="company" type="text" value="{{company}}" maxlength="100" placeholder="Where have you worked?" id="id_form-0-company" size="20">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label category-another" for="inputEducation">Education</label>
+				<div class="controls">
+					<div id="education-list">
+						{{#each education}}
+						<div id="education-{{@index}}">
+							<input type="text" name="education" value="{{institution}}" id="institution-field-{{@index}}" class="span4 autocompleteStudy" data-provide="typeahead" autocomplete="off"maxlength="100">
+							<input type="text" name="degree" value="{{degree}}" id="degree-field-{{@index}}" class="span2" maxlength="100">
+						</div>
+						{{/each}}
+						<div id="education-tpl">
+							<input type="text"  name="education" class="span4 autocompleteStudy" data-provide="typeahead" autocomplete="off" maxlength="100">
+							<input type="text" name="degree" class="span2" maxlength="100">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPersonalPhilosophy">Personal philosophy</label>
+				<div class="controls">
+					<textarea name="personalPhilosophy" rows="8" class="span6" placeholder="What is your personal phylosophy? Why live your life? Feelings? Thoughts?" maxlength="1000">{{personalPhilosophy}}</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPoliticalOpinion">Political views</label>
+				<div class="controls">
+					<input name="politicalOpinion" type="text" value="{{politicalOpinion}}" maxlength="500" placeholder="What are your politics?" id="id_f2-0-political_opinion" size="500">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div id="religion-input" class="control-group">
+				<label class="control-label" for="inputReligion">Religion</label>
+				<div class="controls">
+					<input name="religion" type="text" value="{{religion}}" maxlength="500" placeholder="What are your religious beliefs" id="id_f2-0-religion" size="20">
+					<span class="help-block"></span>
+				</div>
+			</div>
+		</div><!-- EOF box-content -->
+		<div class="accordion-heading">
+			<button id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
+			<button class="button2 cancel-edition-btn" data-rel="about-box">Cancel</button>
+		</div>
+	</form>
+</div><!-- EOF box-standard -->
