@@ -70,9 +70,6 @@ define(function(require){
 			this.$('select#ri-filters').on('change', this.filter.bind(this));
 			// this.$('#ri-status').on('change', this.filter.bind(this)).hide(); Sergi, here !
 
-			if (filters.target.indexOf(',') !== -1)
-				filters.target = null;
-
 			return this.loadData(filters).then(this.refresh);
 		},
 
@@ -137,6 +134,9 @@ define(function(require){
 		},
 
 		loadData: function(params) {
+			if (params && params.target && params.target.indexOf(',') !== -1)
+				params.target = null;
+
 			return api.get('/api/v1/notificationslist', params)
 				.prop('data')
 				.then(function(data) {
