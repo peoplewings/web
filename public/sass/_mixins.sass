@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------
- * Effects
+ * Mixins
  * --------------------------------------------------------------------------
 
 =transition($property, $time)
@@ -17,10 +17,10 @@
 	background: -ms-linear-gradient(top,  $color_from 0%,$color_to 100%) /* IE10+ */
 	background: linear-gradient(to bottom,  $color_from 0%,$color_to 100%) /* W3C */
 
-=border-radius($value)
-	border-radius: $value
-	-webkit-border-radius: $value
-	-moz-border-radius: $value
+=border-radius($cornerLT, $cornerRT:null, $cornerLB:null, $cornerRB:null)
+	border-radius: $cornerLT $cornerRT $cornerLB $cornerRB
+	-webkit-border-radius: $cornerLT $cornerRT $cornerLB $cornerRB
+	-moz-border-radius: $cornerLT $cornerRT $cornerLB $cornerRB
 
 =box-shadow($hor:null, $ver:null, $blur:null, $spr:null, $color:null, $ins:null)
 	box-shadow: $hor $ver $blur $spr $color $ins
