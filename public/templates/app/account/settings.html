@@ -5,8 +5,8 @@
 		<div class="control-group clear">
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
-				<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required" value="{{firstName}}">
-				<input type="text" id="lastName" name="lastName" placeholder="Last Name" class="input-small required" value="{{lastName}}">
+				<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required" value="{{firstName}}" maxlength="14">
+				<input type="text" id="lastName" name="lastName" placeholder="Last Name" class="input-small required" value="{{lastName}}" maxlength="30">
 				<span class="help-block"></span>
 			</div>
 		</div>
@@ -19,18 +19,18 @@
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">Change email</label>
 			<div class="controls">
-				<input type="email" name="email" id="inputEmail" placeholder="You new email address" class="input-margin">
+				<input type="email" name="email" id="inputEmail" placeholder="You new email address" class="input-margin" maxlength="50">
 				<span class="help-block"></span>
-				<input type="email" name="repeatEmail" id="repeatEmail" placeholder="Rewrite your email address" class="">
+				<input type="email" name="repeatEmail" id="repeatEmail" placeholder="Rewrite your email address" class="" maxlength="50">
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">Change your password</label>
 			<div class="controls">
-				<input type="password" name="password" id="pass" placeholder="You new password" class="input-margin password-line">
+				<input type="password" name="password" id="pass" placeholder="You new password" class="input-margin password-line" maxlength="20">
 				<span class="help-block"></span>
-				<input type="password" name="repeatPassword" id="pass2" placeholder="Rewrite your new password" class="password-line">
+				<input type="password" name="repeatPassword" id="pass2" placeholder="Rewrite your new password" class="password-line" maxlength="20">
 				<span class="help-block"></span>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 		<p>To save these settings, please enter your PEOPLEWINGS password</p>
 		<label class="control-label"for="inputPassWrite">Current password</label>
 		<div class="controls">
-			<input type="password" id="inputPasword" name="current_password" class="required password-line">
+			<input type="password" id="inputPasword" name="current_password" class="required password-line" maxlength="20">
 			<span class="help-block"></span>
 		</div>
 	</div><!-- EOF control-group terms -->
