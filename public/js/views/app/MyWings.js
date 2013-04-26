@@ -16,6 +16,8 @@ define(function(require) {
 		newCityObject: {},
 
 		wingDefaultData: {
+			about: "",
+			additionalInformation: "",
 			tram: false,
 			bus: false,
 			metro: false,
