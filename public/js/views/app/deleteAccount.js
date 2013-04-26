@@ -4,7 +4,7 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var logoutView = require("views/app/logout");
-	var deleteTpl = require('tmpl!templates/app/delete-account.html');
+	var deleteTpl = require('tmpl!templates/app/account/delete-account.html');
 	var responseTpl = require('tmpl!templates/lib/responses/account.deleted.html');
 	var AccountModel = require("models/Account");
 	var responseView = require('views/lib/balloon.response');

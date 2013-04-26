@@ -9,14 +9,14 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var MyProfile = require('views/app/MyProfile');
 	var MyWings = require('views/app/MyWings');
-	var profileTpl = require('tmpl!templates/app/profile.html');
-	var basicTpl = require('tmpl!templates/app/profile.view.basic.html');
-	var aboutTpl = require('tmpl!templates/app/profile.view.about.html');
-	var likesTpl = require('tmpl!templates/app/profile.view.likes.html');
-	var contactTpl = require('tmpl!templates/app/profile.view.contact.html');
-	var placesTpl = require('tmpl!templates/app/profile.view.places.html');
-	var wingTpl = require('tmpl!templates/app/profile.view.wing.html');
-	var wingsBarTpl = require('tmpl!templates/app/profile.form.add-wings.html');
+	var profileTpl = require('tmpl!templates/app/profile/profile.html');
+	var basicTpl = require('tmpl!templates/app/profile/view.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile/view.about.html');
+	var likesTpl = require('tmpl!templates/app/profile/view.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile/view.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile/view.places.html');
+	var wingTpl = require('tmpl!templates/app/profile/view.wing.html');
+	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
 
 	var ProfileView = Backbone.View.extend({
 

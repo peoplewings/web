@@ -8,11 +8,11 @@ define(function(require){
 	var utils = require("utils");
 	var phrases = require('phrases');
 
-	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
-	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
-	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
-	var contactTpl = require('tmpl!templates/app/profile.form.contact.html');
-	var placesTpl = require('tmpl!templates/app/profile.form.places.html');
+	var basicTpl = require('tmpl!templates/app/profile/form.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile/form.about.html');
+	var likesTpl = require('tmpl!templates/app/profile/form.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile/form.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile/form.places.html');
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
