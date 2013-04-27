@@ -3,9 +3,7 @@
 </div>
 <div class="info">
 	{{#if myProfile}}
-	<button id="edit-basic-btn" class="button-basic-info edit-profile edit-box-btn" data-rel="basic-box">
-		<p class="edit-icon">Edit profile</p>
-	</button>
+	<a id="edit-basic-btn" class="button-basic-info edit-profile edit-box-btn" data-rel="basic-box"><i class="icon-edit">Icon edit</i>Edit profile</a>
 	{{/if}}
 </div>
 <div class="box rate-info">
@@ -22,11 +20,11 @@
 	{{#if myProfile}}
 	<p>{{birthdayVerbose}}</p>
 	{{else}}
-		{{#if birthday}}
-			<p>{{birthday}}</p>
-		{{else}}
-			<p>-</p>
-		{{/if}}
+	{{#if birthday}}
+	<p>{{birthday}}</p>
+	{{else}}
+	<p>-</p>
+	{{/if}}
 	{{/if}}
 	{{#if interestedIn.length}}
 	<h2>Interesed in</h2>
