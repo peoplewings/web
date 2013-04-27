@@ -92,7 +92,8 @@ define(function(require){
 
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
 			this.$('select#ri-filters').on('change', this.filter.bind(this));
-			// this.$('#ri-status').on('change', this.filter.bind(this)).hide(); Sergi, here !
+			this.$('#ri-status').on('change', this.filter.bind(this));
+
 			return this.loadData(filters).then(this.refresh);
 		},
 
