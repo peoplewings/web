@@ -3,24 +3,24 @@
 	<legend>Sign up</legend>
 	<div class="control-group clear">
 		<label class="control-label" for="inputName">Name</label>
-		<div class="controls">
-			<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required">
-			<input type="text" name="lastName" placeholder="Last Name" class="input-small required">
+		<div class="controls two-elements">
+			<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required" maxlength="14">
+			<input type="text" name="lastName" placeholder="Last Name" class="input-small required" maxlength="30">
 			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputPassword">Password</label>
-		<div class="controls">
-			<input id="pass" type="password" name="password" placeholder="Password" class="required">
+		<div class="controls two-elements">
+			<input id="pass" type="password" name="password" placeholder="Password" class="required" maxlength="20">
 			<input type="password" name="confirm_password" placeholder="Repeat Password" class="required">
-		<span class="help-block"></span>
+			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputEmail">Your email</label>
 		<div class="controls">
-			<input id="email" type="email" name="email" placeholder="Your current email address" class="required">
+			<input id="email" type="email" name="email" placeholder="Your current email address" class="required" maxlength="50">
 			<span class="help-block"></span>
 		</div>
 	</div>
@@ -36,23 +36,22 @@
 			<select id="id_birthday_month" name="birthdayMonth" class="input-small required">
 				<option value="">Month</option>
 				{{#each month}}
-					<option value="{{indexPlusOne}}">{{name}}</option>
+				<option value="{{indexPlusOne}}">{{name}}</option>
 				{{/each}}
 			</select>
 			<select id="id_birthday_day" name="birthdayDay" class="input-mini required">
 				<option value="">Day</option>
 				{{#range 1 31 1}}
-					<option value="{{self}}">{{self}}</option>
+				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
 			<select id="id_birthday_year" name="birthdayYear" class="input-mini required">
 				<option value="">Year</option>
 				{{#range 2006 1900 '-1'}}
-					<option value="{{self}}">{{self}}</option>
+				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
 			<span class="help-block"></span>
-		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputGender">Gender</label>
@@ -67,7 +66,7 @@
 	</div>
 	<div class="control-group">
 		<div class="controls terms">
-			<p>By continuing, you're confirming that you've read and agree to our the <a id="terms-link" href="/#/terms">Terms and Conditions</a>, Privacy Policy and Cookie Policy, and that you're 18 or older.</p>
+			<p>By continuing, you're confirming that you've read and agree to our the <a id="terms-link" href="#/help#terms-of-service" target="_blank">Terms and Conditions</a>, <a id="terms-link" href="#/help#privacy-policy" target="_blank">Privacy Policy and Cookie Policy</a>, and that you're 18 or older.</p>
 			<button type="submit" class="button-peoplewings">Sign up!</button>
 		</div>
 	</div>

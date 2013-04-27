@@ -13,6 +13,8 @@ define(function(require) {
 			api.get(this.url())
 				.then(function(resp){
 					self.attributes = resp.data;
+					if (resp.updates)
+						self.attributes.notifs = resp.updates.notifs;
 					self.trigger("change");
 						if (options && options.success)
 							options.success();

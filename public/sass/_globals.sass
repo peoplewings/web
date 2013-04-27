@@ -99,17 +99,20 @@ button
 	@include box-shadow(none)
 
 #mini-spinner
-	position: relative
-	margin: 0 auto
-	top: 27px
-	left: 10px
-
-.spinner
-	position: relative
-	width: 0px
-	z-index: 2000000000
-	left: 585px !important
-	top: -27px !important
+	float: left
+	display: block
+	height: 30px
+	width: 30px
+	margin-top: 14px
+	margin-left: 14px
+	span
+		font:
+			size: 11px
+			style: italic
+		text-transform: uppercase
+		position: relative
+		top: 4px
+		left: 35px
 
 //require(['views/lib/spinner'], function(a) { a.show('hola') })
 
@@ -163,10 +166,10 @@ button
 	background: url(../img/bg_city.jpg) no-repeat top center
 
 
-/* Others
+/* Alerts and Errors
  * --------------------------------------------------------------------------
 
-label.error
+.error
 	background: #D34836
 	color: #FFF
 	font-size: 11px
@@ -174,12 +177,66 @@ label.error
 	padding-left: 15px
 	margin-top: 5px
 
+.form-errors
+	min-height: 20px
+	label
+		margin: 0
+
+.date-error
+	margin-bottom: 5px
+	margin-left: 322px
+	max-width: 218px
+
+.age-error
+	float: left
+	margin-top: 1px
+	margin-left: 89px
+	width: 136px
+
+
+div#alerts-container
+	position: fixed
+	z-index: 10000000
+	top: 45px
+	.alert
+		overflow: hidden
+		max-width: 630px
+		margin-left: 570px
+		padding-left: 35px
+		@include border-radius(12px)
+		.close
+			float: right
+			line-height: 20px
+			font-size: 16px
+		p
+			float: left
+			text-align: left
+			background: #FFF
+			font:
+				size: 11px
+				style: italic
+	.alert-error
+		border: 1px solid #E30417
+		color: #E30417
+		background: url(../img/alert-red.jpg) no-repeat left #FFF
+		.close
+			color: #E30417
+	.alert-warning
+		border: 1px solid #fc8200
+		color: #fc8200
+		background: url(../img/alert-orange.jpg) no-repeat left #FFF
+		.close
+			color: #fc8200
+	.alert-success
+		border: 1px solid #6daf19
+		color: #6daf19
+		background: url(../img/alert-green.jpg) no-repeat left #FFF
+		.close
+			color: #6daf19
+
 
 /* OVER Bootstrap
  * --------------------------------------------------------------------------
-
-.alert-error
-	text-align: right
 
 .accordion
 	margin: 0

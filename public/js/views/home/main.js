@@ -42,19 +42,26 @@ define(function(require) {
 			/*
 			* BUG: Do search is never reached if user selects city by pressing Enter
 			*/
-			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
+			google.maps.event.addListener(this.search, 'place_changed', this.setCityField.bind(this));
 
 			if (params)
 				this.unserializeParams(params);
 
+			if (!api.userIsLoggedIn())
+				$("#feedback-btn").hide();
+
 		},
 
-		doSearch: function(){
-			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
+		setCityField: function(){
+			var place = this.search.getPlace();
+			var cc = null;
+
+			if (place)
+				cc = utils.getCityAndCountry(place.address_components);
 			if (!cc)
 				return;
-			else
-				this.cityField = cc.city;
+
+			this.cityField = cc.city;
 		},
 
 		unserializeParams: function(params){
@@ -66,7 +73,10 @@ define(function(require) {
 		},
 
 		renderResults: function(query, results) {
-			this.resultsView = new ResultsView({
+			if (!this.resultsView)
+				this.resultsView = new ResultsView();
+
+			this.resultsView.reset({
 				logged: api.userIsLoggedIn(),
 				query: query,
 			});
@@ -75,9 +85,12 @@ define(function(require) {
 		},
 
 		displayErrors: function(errors) {
-			this.$('.form-errors').html(errors.map(function(error) {
-				return '<li>' + error + '</li>';
-			}));
+			var self = this;
+
+			errors.map(function(error){
+				self.$('.form-errors.' + error.css)
+				.html('<label class="error">' + error.text + '</label>');
+			});
 		},
 
 		submitSearch: function(e) {
@@ -88,17 +101,20 @@ define(function(require) {
 			this.$('#inputWings').val(crc.split(',')[0]);
 
 			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
-				errors.push('DATE IS WRONG MODAFOKA!!!');
+				errors.push({css: 'date-error', text: 'Invalid dates'});
 
 			if (+$("select[name=endAge]").val() < +$("select[name=startAge]").val())
-				errors.push('AGE IS WRONG MODAFOKA!!!');
+				errors.push({css: 'age-error', text: 'Invalid age'});
 
 			if (errors.length)
 				return this.displayErrors(errors);
 
 			var formData = utils.serializeForm(e.target.id);
-			if (this.cityField)
+			if (this.cityField){
 				formData.wings = this.cityField;
+				this.cityField = null;
+			}
+
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});

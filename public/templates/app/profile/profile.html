@@ -13,29 +13,29 @@
 				</h1>
 				<span class="age">[{{age}}]</span>
 				<span class="online">
-					{{#if lastLoginDate}}
-					{{lastLoginDate}}
-					{{/if}}
+					{{#equals lastLoginDate 'ON' }}
+						Online
+					{{else}}
+						{{date lastLoginDate 'YYYY-MM-DD' }}
+					{{/equals}}
 				</span>
 				<h2 class="home-town">
 					{{#if hometown.name}}
 					{{hometown.name}}, {{hometown.country}}
 					{{/if}}
 				</h2>
-				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
-			</div>
 			{{#if myProfile}}
-			<div class="button-bar">
-				<h1>Im in my profile</h1>
 			</div>
 			{{else}}
+				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
+			</div>
 			<div class="button-bar">
-				<ul> 
+				<ul>
 					<li><button class="send-message-btn">Message</button></li>
 					<li><button class="send-request-btn selected">Request</button></li>
 					<li><button class="send-invitation-btn">Invite</button></li>
 				</ul>
-			</div> 
+			</div>
 			{{/if}}
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->

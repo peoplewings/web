@@ -9,7 +9,7 @@
 						<label class="places-hometown-icon-mini">Hometown</label>
 						<div id="hometown" class="controls">
 							{{#with hometown}}
-							<input id="hometownCity" name="hometown" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
+							<input id="hometownCity" name="hometown" type="text" data-provide="typeahead" class="hometown span5" {{#if name}}value="{{name}}, {{region}}, {{country}}"{{/if}}autocomplete="off">
 							<input name="hometown-city" type="hidden" value="{{name}}">
 							<input name="hometown-region" type="hidden" value="{{region}}">
 							<input name="hometown-country" type="hidden" value="{{country}}">
@@ -23,7 +23,7 @@
 						<label class="places-current-icon-mini">Current city</label>
 						<div id="current" class="controls">
 							{{#with current}}
-							<input id="currentCity" name="current" type="text" data-provide="typeahead" class="hometown span5" value="{{name}}, {{region}}, {{country}}" autocomplete="off">
+							<input id="currentCity" name="current" type="text" data-provide="typeahead" class="hometown span5" {{#if name}}value="{{name}}, {{region}}, {{country}}"{{/if}} autocomplete="off">
 							<input name="current-city" type="hidden" value="{{name}}">
 							<input name="current-region" type="hidden" value="{{region}}">
 							<input name="current-country" type="hidden" value="{{country}}">
@@ -39,7 +39,7 @@
 							<div id="otherLocations-list">
 								{{#each otherLocations}}
 								<div id="otherLocation-{{@index}}">
-									<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" value="{{name}}, {{region}}, {{country}}" disabled class="span5" autocomplete="off">
+									<input name="otherLocations" id="otherLocation-{{@index}}" type="text" data-provide="typeahead" {{#if name}}value="{{name}}, {{region}}, {{country}}"{{/if}} disabled class="span5" autocomplete="off">
 									<input name="other-city" type="hidden" value="{{name}}">
 									<input name="other-region" type="hidden" value="{{region}}">
 									<input name="other-country" type="hidden" value="{{country}}">

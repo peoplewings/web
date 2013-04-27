@@ -5,29 +5,24 @@
 form#login-form
 	float: right
 	background: $blue_sign
-	padding: 0 27px 27px 14px
-	margin: 27px
+	padding: 0 28px 28px 14px
+	margin: 27px 12px
 	@include border-radius(12px)
-	width: 460px
+	width: 469px
 
-	.help-block
-		margin: 0
-
-	input, select
+	input, select, .help-block
 		margin: 0
 
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
-	select
-		width: 95%
 		font-size: 13px
-		padding: 10px 8px
-		@include border-radius(4px)
-		@include appearance(none)
+		padding: 8px
 		border: 1px solid #79766c
 		color: #000
-		line-height: 15px
+		line-height: 16px
+		@include appearance(none)
+		@include border-radius(4px)
 
 	label.checkbox
 		padding-left: 0
@@ -64,24 +59,29 @@ form#login-form
 
 	.control-group
 		margin: 0
-		margin-bottom: 5px
+		margin-bottom: 4px
 
 	.control-group:after, .control-group:before
 		display: block
 
 	.control-label
 		float: left
-		color: #FFF
-		width: 100px
-		padding: 11px
-		text-shadow: 1px 1px 1px #000
 		font-size: 14px
+		color: #FFF
+		padding-left: 10px
+		width: 100px
+		text-shadow: 1px 1px 1px #000
 		text-align: left
 
 	.controls
 		margin-left: 122px
 
-	div.terms
+		input[type="text"],
+		input[type="password"],
+		input[type="email"]
+			width: 94.8%
+
+	.controls.terms
 		color: #FFF
 		font-size: 12px
 		line-height: 18px

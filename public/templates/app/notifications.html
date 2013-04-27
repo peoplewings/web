@@ -1,8 +1,8 @@
 <div class="searchbar">
 	<div id="search">
 		<input type="text" id="search-query" class="size-extralarge"><!--
- --><button id="search-btn" class="button1"><span class="icon-search"></span></button>
-	</div>
+	--><button id="search-btn" class="button1"><span class="icon-search"></span></button>
+</div>
 </div>
 
 <div class="messages-header">
@@ -48,27 +48,29 @@
 				<option value="D">Denyed</option>
 				<option value="M">Maybe</option>
 			</select>
-			<ul id="notification-sender">
-				<li class="checkbox"><input type="checkbox" name="received">Received</li>
-				<li class="checkbox"><input type="checkbox" name="sent">Applied</li>
-			</ul>
+			<div id="notification-sender">
+				<label for="checkbox">
+					<input type="checkbox" name="received">Received
+				</label>
+				<label for="checkbox">
+					<input type="checkbox" name="sent">Applied
+				</label>
+			</div>
 		</div>
-		<div class="messages-pager">
-			<ul id="notifications-pager" class="pager pull-right">
-				<li>
-					<div class="resultCounter">
-						<span>{{startResult}}</span>
-						<span>{{endResult}}</span>
-						<span>{{totalCount}}</span>
-					</div>
-				</li>
-				<li class="icon">
-					<a href="#" class="previousPage">previous page</a>
-				</li>
-				<li class="icon">
-					<a href="#" class="nextPage">next page</a>
-				</li>
-			</ul>
+		<div id="notifications-pager" class="pager-right">
+			<div class="resultCounter">
+				<span>{{startResult}}</span>
+				<span>{{endResult}}</span>
+				<span>{{totalCount}}</span>
+			</div>
+			<div class="button-group">
+				<a href="" class="button-pager-previous">
+					<i class="icon-pager-previous">button previous</i>
+				</a>
+				<a href="" class="button-pager-next">
+					<i class="icon-pager-next">button next</i>
+				</a>
+			</div>
 		</div>
 	</div>
 	<ul id="notifications-list"></ul>

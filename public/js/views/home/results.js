@@ -19,7 +19,9 @@ define(function(require) {
 			"click a.previousPage": "previousPage"
 		},
 
-		initialize: function(options) {
+		reset: function(options) {
+			this.$el = $('#search-results');
+			this.el = this.$el[0];
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
@@ -57,6 +59,9 @@ define(function(require) {
 				self.toggleCollapsibleText(this, 'more', 'less');
 			});
 
+			if (!self.logged)
+				$("#feedback-btn").hide();
+
 		},
 		nextPage: function() {
 			var scope = this;
@@ -81,29 +86,34 @@ define(function(require) {
 			this.unbind();
 		},
 
+		_sendNotification: function(event, type) {
+			if (!this.logged)
+				return router.navigate('#/register');
+
+			var id = $(event.target).parents('.search-result').data('profile-id');
+			var name = this.namesById[id];
+			notifications[type](id, name);
+		},
+
 		sendMessage: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.message(id, name);
+			this._sendNotification(event, 'message');
 		},
-
 		sendRequest: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.request(id, name);
+			this._sendNotification(event, 'request');
 		},
-
 		sendInvitation: function(event) {
-			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications.invitation(id, name);
+			this._sendNotification(event, 'invitation');
 		},
 
 		toggleCollapsibleText: function(target, targetText, replaceText) {
-			var heading = $(target).next('.accordion-heading').find('h1');
+			var heading = $(target).next('.accordion-heading').find('span');
 			var re = new RegExp('(' + targetText + ')');
 			var changed = heading.html().replace(re, replaceText);
 			heading.html(changed);
+			if (targetText === 'more')
+				$(heading).css('background-image', 'url(../img/see_more_up.png)');
+			else
+				$(heading).css('background-image', 'url(../img/see_more.png)');
 		}
 	});
 	return resultsView;

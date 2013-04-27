@@ -6,9 +6,8 @@ define(function(require) {
 	var api = require('api2');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
-	var spinnerOptions = require('views/lib/spinner').options;
 
-	var spinner = new Spinner(spinnerOptions);
+	var spinner = require('views/lib/spinner');
 
 	var LoginView = Backbone.View.extend({
 
@@ -23,6 +22,8 @@ define(function(require) {
 			this.$('form').validate();
 			this.$inputEmail = this.$("#inputEmail");
 			this.$inputPassword = this.$("#inputPassword");
+
+			$("#feedback-btn").hide();
 		},
 
 		submitLogin: function(e) {
@@ -31,7 +32,7 @@ define(function(require) {
 			if (this.$inputPassword.val() === '' || this.$inputEmail.val() === '')
 				return;
 
-			spinner.spin(document.getElementById('main'));
+			spinner.show('login');
 			var self = this;
 			var formData = utils.serializeForm();
 
@@ -42,11 +43,11 @@ define(function(require) {
 				})
 				.fin(function(){
 					self.$inputPassword.val('');
-					spinner.stop();
+					spinner.hide('login');
 				});
 		},
 
-		loginSuccess: function(data) { //, remember) {
+		loginSuccess: function(data) {
 			api.saveAuthToken(JSON.stringify({
 				auth: data.xAuthToken,
 				uid: data.idAccount

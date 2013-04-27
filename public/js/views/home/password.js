@@ -12,7 +12,7 @@ define(function(require) {
 	var mailTpl = require('tmpl!templates/home/forms/forgot-password.html');
 	var passTpl = require('tmpl!templates/home/forms/change-password.html');
 
-	var spinnerOptions = require('views/lib/spinner').options;
+	var spinner = require('views/lib/spinner');
 
 
 	var PasswordView = Backbone.View.extend({
@@ -41,7 +41,6 @@ define(function(require) {
 		},
 
 		initialize: function(){
-			this.spinner = new Spinner(spinnerOptions);
 		},
 
 		render: function(token){
@@ -57,11 +56,13 @@ define(function(require) {
 				$('#password-form')
 				.validate(_.extend(this.validation, this.errorPlacement));
 			}
+
+			$("#feedback-btn").hide();
 		},
 
 		submitForgot: function(e){
 			e.preventDefault(e);
-			this.spinner.spin(document.getElementById('main'));
+			spinner.show('password');
 			$(e.target).find('button[type=submit]').button('loading');
 			var data = utils.serializeForm(e.target.id);
 
@@ -69,7 +70,7 @@ define(function(require) {
 			api.post(api.getApiVersion() + '/forgot', data)
 			.then(function(){
 				$(e.target).find('button[type=submit]').button('reset');
-				self.spinner.stop();
+				spinner.hide('password');
 				self.$('#forgot-form').remove();
 				responseView.render({
 					content: confirmTpl({
@@ -81,7 +82,7 @@ define(function(require) {
 
 		submitNewPwd: function(e){
 			e.preventDefault(e);
-			this.spinner.spin(document.getElementById('main'));
+			spinner.show('password');
 			$(e.target).find('button[type=submit]').button('loading');
 			var data = utils.serializeForm(e.target.id);
 
@@ -89,7 +90,7 @@ define(function(require) {
 			api.post(api.getApiVersion() + '/forgot', {forgotToken: data.forgotToken, newPassword: data.newPassword})
 			.then(function(){
 				$(e.target).find('button[type=submit]').button('reset');
-				self.spinner.stop();
+				spinner.hide('password');
 				self.$('#password-form').remove();
 				responseView.render({
 					content: pwdTpl

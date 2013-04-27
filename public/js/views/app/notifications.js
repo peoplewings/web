@@ -6,11 +6,31 @@ define(function(require){
 	var Promise = require("promise");
 	var notificationsTpl = require("tmpl!templates/app/notifications.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
+	var alerts = require("views/lib/alerts");
+
+	var AccountModel = require("models/Account");
+	var ProfileModel = require("models/ProfileModel");
 
 	api.listenUpdate('notifs', function(count) {
 		$('#notif-count')
 			.css('display', count ? 'block' : 'hidden')
 			.html(count);
+	});
+
+
+	api.listenUpdate('avatar', function(state) {
+		if (state === true){
+			var account = new AccountModel({
+					id: api.getUserId()
+			});
+			account.fetch();
+
+			var profile = new ProfileModel({
+					id: api.getUserId()
+			});
+			profile.fetch(router.previewView.refreshBox("basic-box"));
+			alerts.success('Your profile picture has been updated');
+		}
 	});
 
 	var NotificationsView = Backbone.View.extend({
@@ -21,11 +41,15 @@ define(function(require){
 
 		events: {
 			'click #search-btn': 'filter',
-			'click #notifications-pager > button.nextPage': 'nextPage',
-			'click #notifications-pager > button.previousPage': 'previousPage',
+			'click #notifications-pager a.button-pager-next': 'nextPage',
+			'click #notifications-pager a.button-pager-previous': 'previousPage',
 			'click #delete-all-selected': function(e) {
 				e.preventDefault();
 				this.removeSelection();
+			},
+			'change .messages-check': function(e){
+				var threadId = $(e.target).parent().parent().attr('data-thread');
+				this.selection.push(threadId);
 			},
 			'change #main-checker': function(e) {
 				var a = this.$list.find('input[type="checkbox"]');
@@ -134,6 +158,8 @@ define(function(require){
 				.prop('data')
 				.then(function(data) {
 					data.items.forEach(function(item) {
+						if (item.location.indexOf('Not specified') === 0)
+							item.location = null;
 						item.isMessage = item.kind === 'message';
 					});
 
@@ -142,7 +168,13 @@ define(function(require){
 		},
 
 		removeSelection: function() {
-			api.put('/api/v1/notificationslist', { threads: this.selection }).then(this.render.bind(this));
+			var self = this;
+			api.put('/api/v1/notificationslist', { threads: this.selection })
+			.then(this.render.bind(this))
+			.then(function(){
+				alerts.success('Threads successfully deleted');
+				self.selection.length = 0;
+			});
 		},
 
 		getThreads: function() {
@@ -164,7 +196,9 @@ define(function(require){
 			var self = this;
 			this.$list.html(data.items.map(itemTpl).join(''));
 			this.$list.children()
-				.click(function() {
+				.click(function(evt) {
+					if ($(evt.target).attr('href'))
+						return;
 					var thread = $(this).data('thread');
 					self.lastFilters = self.serializeFilters();
 					document.location.hash = '#/messages/' + thread;
@@ -237,20 +271,22 @@ define(function(require){
 			});
 		},
 
-		nextPage: function(){
+		nextPage: function(e){
+			if (e) e.preventDefault();
 			if (this.activePage + 1 > this.lastPage)
 				return Promise.resolved(false);
 
 			++this.activePage;
-			return this.filter();
+			return this.applyFilters();
 		},
 
-		previousPage: function(){
+		previousPage: function(e){
+			if (e) e.preventDefault();
 			if (this.activePage - 1 < 1)
 				return Promise.resolved(false);
 
 			--this.activePage;
-			return this.filter();
+			return this.applyFilters();
 		},
 
 		resetPager: function(){

@@ -16,6 +16,7 @@ body
 	margin-bottom: 80px
 	z-index: 10000
 
+
 /* ==========================================================================
  * HTML STRUCTURE
  * ==========================================================================
@@ -53,43 +54,48 @@ body
 	border: none
 	position: relative
 	top: 35px
-	left: 25px
+	left: 20px
 	li
 		a
-			width: 65px
-			height: 78px
+			width: 43px
+			height: 59px
 			text-indent: -9999px
 			padding: 0
 			margin: 0
 			border: none
 
 	.all
-		background: url(../img/icon_all.png) no-repeat center top
+		background: url(../img/icon_all_mini.png) no-repeat center top
 		&:hover
-			background: url(../img/icon_all_pre.png) no-repeat center top
+			background: url(../img/icon_all_pre_mini.png) no-repeat center top
 	.accommodation
-		background: url(../img/icon_accommodation.png) no-repeat center top
+		background: url(../img/icon_accommodation_mini.png) no-repeat center top
 		&:hover
-			background: url(../img/icon_accommodation_pre.png) no-repeat center top
+			background: url(../img/icon_accommodation_pre_mini.png) no-repeat center top
+			cursor: pointer
 	.transport
-		background: url(../img/icon_transport.png) no-repeat center top
+		background: url(../img/icon_transport_mini.png) no-repeat center top
 		&:hover
-			background: url(../img/icon_transport_pre.png) no-repeat center top
+			background: url(../img/icon_transport_pre_mini.png) no-repeat center top
 	.travel
-		background: url(../img/icon_trip.png) no-repeat center top
+		background: url(../img/icon_trip_mini.png) no-repeat center top
 		&:hover
-			background: url(../img/icon_trip_pre.png) no-repeat center top
+			background: url(../img/icon_trip_pre_mini.png) no-repeat center top
+
+	.all, .transport, .trip
+		&:hover
+			cursor: default
 
 	.active
 		a
 		.all
-			background: url(../img/icon_all_selected.png) no-repeat center top
+			background: url(../img/icon_all_selected_mini.png) no-repeat center top
 		.accommodation
-			background: url(../img/icon_accommodation_selected.png) no-repeat center top
+			background: url(../img/icon_accommodation_selected_mini.png) no-repeat center top
 		.transport
-			background: url(../img/icon_transport_selected.png) no-repeat center top
+			background: url(../img/icon_transport_selected_mini.png) no-repeat center top
 		.travel
-			background: url(../img/icon_trip_selected.png) no-repeat center top
+			background: url(../img/icon_trip_selected_mini.png) no-repeat center top
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover
 	border: none

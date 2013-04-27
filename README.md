@@ -1,5 +1,7 @@
 # Peoplewings Frontend
 
+The PW social network frontend app :-)
+
 ## Set up
 
 In order to see how to set up a project like this one, please visit:

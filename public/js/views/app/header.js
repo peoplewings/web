@@ -21,7 +21,7 @@ define(function(require){
 		},
 
 		render: function(){
-			$(this.el).html(headerTpl(this.model.toJSON()));
+			$(this.el).html(headerTpl(this.model.toJSON(), {lastName: this.model.get('lastName')[0] + '.'}));
 
 			this.search = new google.maps.places.Autocomplete(document.getElementById("header-search"), { types: ['(cities)'] });
 			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));

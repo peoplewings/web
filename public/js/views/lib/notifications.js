@@ -21,11 +21,11 @@ define(function(require) {
 			parent.html(accomodationTpl(params));
 			parent.parents("form").validate(validation);
 
-			parent.find("input[name=startDate]").datepicker({
+			parent.find("input[name=start-date]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});
-			parent.find("input[name=endDate]").datepicker({
+			parent.find("input[name=end-date]").datepicker({
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			});

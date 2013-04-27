@@ -17,13 +17,14 @@ define(function() {
 		top: 'auto', // Top position relative to parent in px
 		left: 'auto' // Left position relative to parent in px
 	};
-	var spinner = new Spinner();
+	var spinner = new Spinner(options);
 	var spinners = [];
 	var timers = {};
 
 	function show(id) {
 		spinners.push(id);
 		spinner.spin($('#mini-spinner').get(0));
+		$('#mini-spinner span').show();
 	}
 
 	function hide(id) {
@@ -34,6 +35,7 @@ define(function() {
 
 		if (!spinners.length) {
 			spinner.stop();
+			$('#mini-spinner span').hide();
 		}
 	}
 

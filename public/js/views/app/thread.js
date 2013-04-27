@@ -79,6 +79,12 @@ define(function(require) {
 							if (data.kind !== "message")
 								self.parseOptions(data.options, data.firstSender, data.wing.state);
 
+							data.items = data.items.map(function(item){
+								if (item.senderLocation.indexOf('Not specified') === 0)
+									item.senderLocation = null;
+								return item;
+							});
+
 							self.data = data;
 							return data;
 						})
@@ -131,6 +137,8 @@ define(function(require) {
 		},
 
 		toggleContent: function(event) {
+			if ($(event.target).attr('href'))
+				return;
 			var item = $(event.target).closest('li.thread-item');
 			if (!item.next().is('.response-item'))
 				item.find('.messages-content').toggle();
@@ -268,11 +276,6 @@ define(function(require) {
 			this.$("#wing-params-form")
 				.validate(this.responseValidation);
 
-			$("input[name=startDate]").datepicker({
-				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
-			});
-
 
 			this.$("input[name=startDate]").datepicker({
 				minDate: new Date(),
@@ -283,7 +286,7 @@ define(function(require) {
 				minDate: new Date(),
 				dateFormat: "yy-mm-dd",
 			}).rules("add", {
-				greatThan: this.$("input[name=startDate]"),
+				gte: this.$("input[name=startDate]"),
 			});
 
 			this.$('select[name=capacity]')

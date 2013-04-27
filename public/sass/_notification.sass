@@ -6,7 +6,7 @@
 
 #notification-panel
 	font-size: 12px
-	color: gray
+	color: #999
 	background: none
 	margin-top: 0
 	border-top: 1px solid #D3D1CB
@@ -16,12 +16,11 @@
 	.floatality
 		margin-bottom: 7px
 		padding: 9px
-		background: white
+		background: #fff
 		min-height: 27px
 		.btn-group
 			float: left
 			margin-right: 100px
-			padding-top: 5px
 			label
 				float: left
 				margin-right: 10px
@@ -34,30 +33,24 @@
 				float: left
 				margin: 0
 				margin-right: 4px
-			li.checkbox
+				line-height: 15px
+			div#notification-sender
 				float: left
-				display: block
-				margin: 0 0 0 30px
-				padding: 5px
+				padding: 5px 0
+				label
+					display: inline
+					margin-left: 15px
+					input
+						margin-right: 8px
+						margin-top: -3px
 		.messages-dropdown
 			float: left
 			display: block
 			background: url(../img/mini-arrow.png) no-repeat center center
 			width: 12px
-		.messages-pager
-			float: right
-			.resultCounter
-				font-size: 12px
-				span:first-child:after
-					content: " - "
-				span:last-child:before
-					content: " of "
-			#notifications-pager
-				li
-					float: left
-					&:first-child
-						margin-top: 4px
-						margin-right: 12px
+		.pager-right
+			a.button-pager-next
+				margin-left: -3px
 
 
 // Lista de elementos
@@ -88,16 +81,23 @@ li.notification-item
 			width: 65px
 			height: 65px
 	div.messages-sender
-		padding: 15px 15px 0 20px
+		padding: 15px 0 0 20px
 		line-height: 16px
+		min-width: 173px
 		h1
-			display: inline
+			display: inline-block
+			max-width: 150px
+			white-space: nowrap
+			text-overflow: ellipsis
+			overflow: hidden
 			a
-				color: #000
 				font-weight: bold
+				color: #000
 				&:hover
 					color: #000
 					text-decoration: underline
+			span
+				margin-left: 5px
 		span, h2
 			color: #999
 	div.messages-flag

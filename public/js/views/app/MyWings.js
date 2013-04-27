@@ -5,9 +5,9 @@ define(function(require) {
 	var api = require("api2");
 	var utils = require("utils");
 	var alerts = require('views/lib/alerts');
-	var wingFormTpl = require("tmpl!templates/app/profile.form.wings.html");
+	var wingFormTpl = require("tmpl!templates/app/profile/form.wings.html");
 	var wingModalTpl = require("tmpl!templates/lib/modal.form.wings.html");
-	var wingViewTpl = require("tmpl!templates/app/profile.view.wing.html");
+	var wingViewTpl = require("tmpl!templates/app/profile/view.wing.html");
 
 	var WingsView = Backbone.View.extend({
 
@@ -16,6 +16,8 @@ define(function(require) {
 		newCityObject: {},
 
 		wingDefaultData: {
+			about: "",
+			additionalInformation: "",
 			tram: false,
 			bus: false,
 			metro: false,
@@ -36,6 +38,7 @@ define(function(require) {
 				this.wingModal = utils.showModal({
 					header: "Add Wing",
 					accept: "Save",
+					loadingText: 'Saving...',
 					content: wingModalTpl,
 					send: this.submitWing,
 					form: "accomodation-form",

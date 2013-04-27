@@ -5,6 +5,8 @@ define(function(require) {
 	var alerts = require('views/lib/alerts');
 	var spinner = require('views/lib/spinner');
 	var server = 'http://peoplewings-backend.herokuapp.com';
+	//var server = 'http://0.0.0.0:5000';
+	//var server = 'http://peoplewings-backend-stable.herokuapp.com'
 	var apiVersion = '/api/v1';
 
 	function logout() {
@@ -100,7 +102,7 @@ define(function(require) {
 					return;
 				}
 
-				var errorOptions = {autoclose:5000};
+				var errorOptions = {autoclose:60000};
 
 				response.errors.forEach(function(error) {
 					switch (error.type) {
@@ -133,11 +135,16 @@ define(function(require) {
 						case 'UNDERAGE':
 							prom.resolve({"errors": [{"type": "UNDERAGE"}], "status": false});
 							break;
+						case 'INVALID':
+							if (error.extras.length === 1)
+								alerts.error('Invalid field ' + error.extras[0], errorOptions);
+							else
+								debugger;
+							break;
 						case 'BAD_REQUEST':
 						case 'FIELD_REQUIRED':
 						case 'FORBIDDEN':
 						case 'INTERNAL_ERROR':
-						case 'INVALID':
 						case 'INVALID_FIELD':
 						case 'JSON_ERROR':
 						case 'METHOD_NOT_ALLOWED':

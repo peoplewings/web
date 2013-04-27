@@ -7,12 +7,11 @@ define(function(require) {
 	var api = require('api2');
 	var utils = require('utils');
 	var phrases = require("phrases");
-	var spinnerOptions = require('views/lib/spinner').options;
+	var spinner = require('views/lib/spinner');
 
 	var responseView = require('views/lib/balloon.response');
 
 	var registerTpl = require('tmpl!templates/home/forms/register.html');
-	var termsTpl = require('tmpl!templates/home/terms.html');
 	var confirmTpl = require('tmpl!templates/lib/responses/register.check-email.html');
 	var underageTpl = require('tmpl!templates/lib/responses/register.underage.html');
 
@@ -22,13 +21,6 @@ define(function(require) {
 
 		events: {
 			"submit form#register-form": "submitRegister",
-			"click a#terms-link": function(e){
-				e.preventDefault();
-				utils.showModal({
-					header: "Terms and conditions",
-					content: termsTpl,
-				});
-			},
 		},
 
 		validation: {
@@ -74,24 +66,25 @@ define(function(require) {
 
 			this.$('#register-form').validate(this.validation);
 
+			$("#feedback-btn").hide();
+
 		},
 
 		submitRegister: function(e) {
 			e.preventDefault(e);
 
 			var self = this;
-			var spinner = new Spinner(spinnerOptions);
 			var data = utils.serializeForm(e.target.id);
 
 			data.birthdayYear = +data.birthdayYear;
 			data.birthdayMonth = +data.birthdayMonth;
 			data.birthdayDay = +data.birthdayDay;
 
-			spinner.spin(document.getElementById('main'));
+			spinner.show('register');
 
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){
-				spinner.stop();
+				spinner.hide('register');
 				self.$('#register-form').remove();
 				if(response.status === true) {
 					responseView.render({
