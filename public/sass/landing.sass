@@ -64,21 +64,28 @@
 			float: none
 	.all
 		background: url(../img/peoplewings-sprite.png) no-repeat
+		background-position: -220px -520px
 		&:hover
 			background: url(../img/peoplewings-sprite.png) no-repeat
-			cursor: default
-	.transport
-		background: url(../img/peoplewings-sprite.png) no-repeat
-		&:hover
-			background: url(../img/peoplewings-sprite.png) no-repeat
+			background-position: -120px -520px
 			cursor: default
 	.accommodation.selected
 		background: url(../img/peoplewings-sprite.png) no-repeat
+		background-position: -20px -620px
+	.transport
+		background: url(../img/peoplewings-sprite.png) no-repeat
+		background-position: -220px -720px
+		&:hover
+			background: url(../img/peoplewings-sprite.png) no-repeat
+			background-position: -120px -720px
+			cursor: default
 	.travel
 		background: url(../img/peoplewings-sprite.png) no-repeat
+		background-position: -220px -820px
 		cursor: default
 		&:hover
 			background: url(../img/peoplewings-sprite.png) no-repeat
+			background-position: -120px -820px
 	span
 		background: #FFF
 		padding: 5px
@@ -111,11 +118,13 @@
 				height: 20px
 				margin: 19px 8px
 				text-indent: -9999px
+			label.wings_text
+				background: url(../img/peoplewings-sprite.png) no-repeat
+				background-position: -1013px -263px
 			label.people_text
 				width: 75px
 				background: url(../img/peoplewings-sprite.png) no-repeat
-			label.wings_text
-				background: url(../img/peoplewings-sprite.png) no-repeat
+				background-position: -1009px -215px
 			input, select
 				padding: 9px
 				@include border-radius(3px)
