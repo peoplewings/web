@@ -14,7 +14,8 @@ div.message-arrow
 		display: block
 		width: 12px
 		height: 11px
-		background: url(../img/icon-pick.png) no-repeat
+		background: $sprite
+		background-position: 1px 1px
 		text-indent: -9999px
 		position: relative
 		top: -6px
@@ -94,26 +95,11 @@ div.messages-msg
 					content: " - "
 				span:last-child:before
 					content: " of "
-		div.pager-btngroup
+		div.button-group
 			float: right
-			ul.pager-buttons
-				li:last-child
-					button.button-pager
-						border-left: none
-				button.button-pager
-					padding: 0
-					.icon1
-						display: block
-						width: 25px
-						height: 25px
-					.next-page
-						background: url(../img/pager-next.png) no-repeat 10px 8px
-					.prev-page
-						background: url(../img/pager-prev.png) no-repeat 8px 8px
-					&:hover 
-						background: #FFF
-					&:active
-						@include bg-gradient(#FFEB00, #FBFAC5)
+			a:first-child
+				margin-right: -3px
+				border-right: none
 
 // Thread item
 
@@ -228,16 +214,20 @@ li.thread-item
 					padding-left: 45px
 			div.accepted span
 				color: #85c333
-				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
+				background: $sprite
+				background-position: 1px 1px
 			div.maybe span
 				color: #fa9e03
-				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
+				background: $sprite
+				background-position: 1px 1px
 			div.pending span
 				color: #ee4040
-				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
+				background: $sprite
+				background-position: 1px 1px
 			div.denied span
 				color: #7e7b71
-				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
+				background: $sprite
+				background-position: 1px 1px
 			form#wing-params-form
 				border-bottom: 1px solid #d3d1ca
 				input
@@ -267,16 +257,19 @@ li.thread-item
 						margin-left: 10px
 					input.input-sdate
 						width: 97px
-						background: url(../img/start-date.png) no-repeat 83px 6px white
+						background: $sprite
+						background-position: 1px 1px
 						padding-left: 10px
 					input.input-edate
 						width: 97px
-						background: url(../img/start-date.png) no-repeat 83px 6px white
+						background: $sprite
+						background-position: 1px 1px
 						padding-left: 10px
 					select
 						margin: 0
 						margin-top: 6px
-						background: url(../img/mini-arrow.png) no-repeat 40px #FFF
+						background: $sprite
+						background-position: 1px 1px
 	div.response-item
 		background: #fff
 		overflow: hidden

@@ -23,7 +23,8 @@ select
 	padding: 0
 	padding-left: 10px
 	margin-left: 0
-	background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+	background: $sprite #FFF
+	background-position: -345px -11px !important
 	@include border-radius(3px)
 
 
@@ -367,7 +368,7 @@ button.close
 						padding-left: 10px
 						margin: 0
 						margin-top: 3px
-						background: url(../img/mini-arrow.png) no-repeat #FFF
+						background: $sprite #FFF
 					.size-small
 						width: 57px
 						background-position: 40px
@@ -386,7 +387,7 @@ button.close
 						font-size: 12px
 
 			div.edit-click
-				background: #FFF
+				background: $sprite #FFF
 				@include transition(opacity, 0.25s)
 				@include opacity(0.6)
 				position: relative
@@ -490,7 +491,8 @@ button.close
 							padding: 0
 
 						span.more-about
-							background: url(../img/arrow_about.png) no-repeat 15px center
+							background: $sprite no-repeat
+							background-position: 15px center
 							text-indent: -9999px
 
 						p
@@ -656,10 +658,12 @@ button.close
 		.controls
 			.input-sdate
 				width: 90px
-				background: url(../img/start-date.png) no-repeat 75px center #FFF
+				background: $sprite
+				background-position: 75px center
 			.input-edate
 				width: 90px
-				background: url(../img/end-date.png) no-repeat 75px center #FFF
+				background: $sprite
+				background-position: 75px center
 			.checkbox
 				float: left
 				margin: 0 10px 0 0

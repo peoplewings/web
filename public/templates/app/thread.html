@@ -33,11 +33,13 @@
 				<span>10</span>
 				<span>50</span>
 			</div>-->
-			<div class="pager-btngroup">
-				<ul class="pager-buttons">
-					<li><button class="button-pager" id="previous" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}><i class="icon1 prev-page"></i></button></li>
-					<li><button class="button-pager" id="next" data-id="{{next}}" {{#unless next}}disabled{{/unless}}><i class="icon1 next-page"></i></button></li>
-				</ul>
+			<div class="button-group">
+				<a class="button-pager-previous" id="previous" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}>
+					<i class="icon-pager-previous">button previous</i>
+				</a>
+				<a class="button-pager-next" id="next" data-id="{{next}}" {{#unless next}}disabled{{/unless}}>
+					<i class="icon-pager-next">button next</i>
+				</a>
 			</div>
 		</div>
 	</div>
