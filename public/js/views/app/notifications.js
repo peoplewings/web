@@ -93,6 +93,7 @@ define(function(require){
 			this.$('#notification-sender').delegate('input', 'change', this.filter.bind(this));
 			this.$('select#ri-filters').on('change', this.filter.bind(this));
 			// this.$('#ri-status').on('change', this.filter.bind(this)).hide(); Sergi, here !
+
 			return this.loadData(filters).then(this.refresh);
 		},
 
@@ -100,8 +101,11 @@ define(function(require){
 			if (filters.search)
 				this.$('#search-query').val(filters.search);
 
-			if(filters.target)
-				this.$('#notification-sender [name="' + filters.target + '"]').attr('checked', 'checked');
+			if(filters.target) {
+				filters.target.split(',').forEach(function(target) {
+					this.$('#notification-sender [name="' + target + '"]').attr('checked', 'checked');
+				}, this);
+			}
 
 			if (filters.state)
 				this.$('#ri-status').val(filters.state);
@@ -128,8 +132,8 @@ define(function(require){
 				result.kind = kind;
 
 			var target = this.$('#notification-sender input:checked');
-			if (target.length === 1)
-				result.target = target.attr('name');
+			if (target.length)
+				result.target = target.toArray().map(function(el) { return el.getAttribute('name') }).join(',');
 
 			var status = this.$('#ri-status').val();
 			if (kind === 'reqinv' && status)
@@ -154,6 +158,9 @@ define(function(require){
 		},
 
 		loadData: function(params) {
+			if (params && params.target && params.target.indexOf(',') !== -1)
+				params.target = null;
+
 			return api.get('/api/v1/notificationslist', params)
 				.prop('data')
 				.then(function(data) {

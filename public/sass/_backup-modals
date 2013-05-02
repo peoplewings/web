@@ -274,6 +274,7 @@
 
 			.accordion-body.collapse
 				height: 450px
+				min-heigth: 450px
 
 			.accordion-heading
 				background: #FFF

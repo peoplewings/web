@@ -4,15 +4,15 @@
 	<div class="control-group clear">
 		<label class="control-label" for="inputName">Name</label>
 		<div class="controls two-elements">
-			<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required">
-			<input type="text" name="lastName" placeholder="Last Name" class="input-small required">
+			<input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-small required" maxlength="14">
+			<input type="text" name="lastName" placeholder="Last Name" class="input-small required" maxlength="30">
 			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputPassword">Password</label>
 		<div class="controls two-elements">
-			<input id="pass" type="password" name="password" placeholder="Password" class="required">
+			<input id="pass" type="password" name="password" placeholder="Password" class="required" maxlength="20">
 			<input type="password" name="confirm_password" placeholder="Repeat Password" class="required">
 			<span class="help-block"></span>
 		</div>
@@ -20,7 +20,7 @@
 	<div class="control-group">
 		<label class="control-label" for="inputEmail">Your email</label>
 		<div class="controls">
-			<input id="email" type="email" name="email" placeholder="Your current email address" class="required">
+			<input id="email" type="email" name="email" placeholder="Your current email address" class="required" maxlength="50">
 			<span class="help-block"></span>
 		</div>
 	</div>

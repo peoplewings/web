@@ -6,7 +6,7 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var utils = require("utils");
-	var settingsTpl = require("tmpl!templates/app/settings.html");
+	var settingsTpl = require("tmpl!templates/app/account/settings.html");
 	var alerts = require('views/lib/alerts');
 	var AccountModel = require("models/Account");
 

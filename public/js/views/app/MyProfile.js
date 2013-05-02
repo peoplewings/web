@@ -8,11 +8,11 @@ define(function(require){
 	var utils = require("utils");
 	var phrases = require('phrases');
 
-	var basicTpl = require('tmpl!templates/app/profile.form.basic.html');
-	var aboutTpl = require('tmpl!templates/app/profile.form.about.html');
-	var likesTpl = require('tmpl!templates/app/profile.form.likes.html');
-	var contactTpl = require('tmpl!templates/app/profile.form.contact.html');
-	var placesTpl = require('tmpl!templates/app/profile.form.places.html');
+	var basicTpl = require('tmpl!templates/app/profile/form.basic.html');
+	var aboutTpl = require('tmpl!templates/app/profile/form.about.html');
+	var likesTpl = require('tmpl!templates/app/profile/form.likes.html');
+	var contactTpl = require('tmpl!templates/app/profile/form.contact.html');
+	var placesTpl = require('tmpl!templates/app/profile/form.places.html');
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
@@ -95,7 +95,7 @@ define(function(require){
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
 
-			"click button.edit-box-btn" : "openForm",
+			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
 		},
 
@@ -222,13 +222,12 @@ define(function(require){
 								name: query,
 						};
 					},
-					onselect: function(){
+					/*onselect: function(){
 						console.log(arguments);
-					},
+					},*/
 					preProcess: function (data) {
-						if (data.code !== 200) {
+						if (!!!data.status)
 							return false;
-						}
 						return data.data.map(function(uni){ return uni.name; });
 					}
 				}

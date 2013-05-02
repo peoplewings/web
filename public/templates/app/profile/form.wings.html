@@ -7,7 +7,7 @@
 							<div class="control-group lined">
 								<label class="control-label" for="inputName">Wing name</label>
 								<div class="controls">
-									<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
+									<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required" maxlength="100">
 								</div>
 							</div>
 							<div class="control-group lined">
@@ -172,7 +172,7 @@
 							<div class="control-group">
 								<label class="control-label">About your accomodation</label>
 								<div class="controls">
-									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda">{{about}}</textarea>
+									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda" maxlength="1000">{{about}}</textarea>
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -190,7 +190,7 @@
 								<label class="control-label">Street address</label>
 								<i class="icon-lock">icon lock</i>
 								<div class="controls">
-									<input type="text" name="address" id="inputAddress" class="required" value="{{address}}">
+									<input type="text" name="address" id="inputAddress" class="required" value="{{address}}" maxlength="500">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -198,7 +198,7 @@
 								<label class="control-label">Number</label>
 								<i class="icon-lock">icon lock</i>
 								<div class="controls">
-									<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required">
+									<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required" maxlength="50">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -206,7 +206,7 @@
 								<label class="control-label">Additional Information</label>
 								<i class="icon-lock">icon lock</i>
 								<div class="controls">
-									<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard" value="{{additionalInformation}}">
+									<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard" value="{{additionalInformation}}" maxlength="500">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -224,7 +224,7 @@
 								<label class="control-label">Postal</label>
 								<i class="icon-lock">icon lock</i>
 								<div class="controls">
-									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required" value="{{postalCode}}">
+									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required" value="{{postalCode}}" maxlength="50">
 									<span class="help-block"></span>
 								</div>
 							</div>
