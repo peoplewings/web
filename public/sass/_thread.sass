@@ -61,29 +61,10 @@ div.messages-msg
 		padding: 9px
 		background: white
 		min-height: 27px
-		button
-			margin: 0
-			padding: 0
-			padding: 2px 12px
-			border: 1px solid #d0cec7
-			@include bg-gradient(#FFF, #ECECE5)
+		button, a
 			float: left
-		button#back
-			padding-bottom: 3px
-			&:hover 
-				background: #FFF
-				&:active
-					@include bg-gradient(#FFEB00, #FBFAC5)
-		button#delete-thread
+		#delete-thread
 			border-left: none
-			padding-bottom: 3px
-			&:hover 
-				background: #FFF
-				&:active
-					@include bg-gradient(#FFEB00, #FBFAC5)
-		span.icon-back
-			text-indent: -9999px
-			padding: 1px 1px
 		.messages-pager
 			float: right
 			div.resultCounter
@@ -98,7 +79,6 @@ div.messages-msg
 		div.button-group
 			float: right
 			a:first-child
-				margin-right: -3px
 				border-right: none
 
 // Thread item

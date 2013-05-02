@@ -84,10 +84,21 @@ button
 		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
 
 .button-basic-info
-	@extend button
+	@extend .button
 	padding: 14px
 	width: auto
 	color: #848178
 	cursor: pointer
 	border: 1px solid #D0CEC7
 	@include bg-gradient(#f5f5f0, #e1e0d9)
+
+.button-back
+	@extend .button
+	padding: 2px 12px
+	height: 20px
+
+.button-delete
+	@extend .button
+	padding: 5px 15px
+	color: #999
+	text-shadow: 1px 1px #FFF
