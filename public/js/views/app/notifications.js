@@ -95,6 +95,7 @@ define(function(require){
 			this.$('#ri-status').on('change', this.filter.bind(this));
 
 			return this.loadData(filters).then(this.refresh);
+			//Foo change
 		},
 
 		unserializeFilters: function(filters) {
