@@ -14,7 +14,18 @@ define(function(require){
 			this.id = options.id;
 			this.css = options.css;
 			this.styles = _.extend(options.styles || {}, {height: "300px"});
-			this.mapOptions = options.mapOptions || { zoom: 1, center: new google.maps.LatLng(0,0), mapTypeControl: false, streetViewControl: false, navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}, mapTypeId: google.maps.MapTypeId.ROADMAP };
+			this.mapOptions = options.mapOptions ||
+			{
+			 	zoom: 1,
+				scrollwheel: false,
+				center: new google.maps.LatLng(0, 0),
+				mapTypeControl: false,
+				streetViewControl: false,
+				navigationControlOptions: {
+					style: google.maps.NavigationControlStyle.SMALL
+				},
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
 
 			this.mapcanvas = $(document.createElement('div'));
 			this.mapcanvas.attr({ id: this.id});

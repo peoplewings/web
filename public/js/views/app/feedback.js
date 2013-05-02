@@ -9,7 +9,7 @@ define(function(require) {
 	var UserModel = require('models/Account');
 
 	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() > $(document).height() - 20) {
+		if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
 			$('#feedback-btn-submit').css('bottom', 54);
 		} else
 			$('#feedback-btn-submit').css('bottom', 0);
