@@ -5,7 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var utils = require("utils");
 	var alerts = require('views/lib/alerts');
-	var wingFormTpl = require("tmpl!templates/app/profile/form.wings.html");
+	var wingFormTpl = require("tmpl!templates/app/profile/form.wing.html");
 	var wingModalTpl = require("tmpl!templates/lib/modal.form.wings.html");
 	var wingViewTpl = require("tmpl!templates/app/profile/view.wing.html");
 
@@ -14,15 +14,22 @@ define(function(require) {
 		el: "#main",
 
 		newCityObject: {},
-
+		
 		wingDefaultData: {
 			about: "",
 			additionalInformation: "",
-			tram: false,
-			bus: false,
+			
 			metro: false,
+			bus: false,
+			taxi: false,
 			train: false,
-			others: false,
+			car: false,
+			motorbike: false,
+			bicycle: false,
+			boat: false,
+			plane: false,
+			other: false,
+
 			liveCenter: false,
 			petsAllowed: false,
 			wheelchair: false,
@@ -84,6 +91,7 @@ define(function(require) {
 			$(evt.target).find("button.save-wing-btn").button('loading');
 
 			var self = this;
+			debugger;
 			api.put(this.parentCtrl.model.urlWings() + "/" + wingId, data)
 			.then(function(){
 				self.parentCtrl.model.fetchWing({
