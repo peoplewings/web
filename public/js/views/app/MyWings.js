@@ -91,7 +91,6 @@ define(function(require) {
 			$(evt.target).find("button.save-wing-btn").button('loading');
 
 			var self = this;
-			debugger;
 			api.put(this.parentCtrl.model.urlWings() + "/" + wingId, data)
 			.then(function(){
 				self.parentCtrl.model.fetchWing({
