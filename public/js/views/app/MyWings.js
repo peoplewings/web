@@ -33,7 +33,7 @@ define(function(require) {
 
 		events: {
 			//"change [name=generalStatus]": "changeStatus",
-			"click button#add-wing-btn": function(e){
+			"click #add-wing-btn": function(e){
 				e.preventDefault();
 				this.wingModal = utils.showModal({
 					header: "Add Wing",
