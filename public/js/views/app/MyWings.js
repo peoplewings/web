@@ -14,11 +14,11 @@ define(function(require) {
 		el: "#main",
 
 		newCityObject: {},
-		
+
 		wingDefaultData: {
 			about: "",
 			additionalInformation: "",
-			
+
 			metro: false,
 			bus: false,
 			taxi: false,
