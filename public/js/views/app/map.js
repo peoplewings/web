@@ -16,7 +16,7 @@ define(function(require){
 			this.styles = _.extend(options.styles || {}, {height: "300px"});
 			this.mapOptions = options.mapOptions ||
 			{
-			 	zoom: 1,
+				zoom: 1,
 				scrollwheel: false,
 				center: new google.maps.LatLng(0, 0),
 				mapTypeControl: false,
