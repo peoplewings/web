@@ -30,7 +30,7 @@ div.request-options
 	div#wing-data
 		padding: 14px
 		background: #e1e0d9
-		background-position: 1px 1px
+		overflow: hidden
 		h2
 			font-weight: bold
 			padding-left: 3px
@@ -50,20 +50,24 @@ div.request-options
 						right: 6px
 						bottom: 4px
 						left: 10px
-					&.input-sdate
-						width: 97px
-						background: $sprite
-						background-position: 1px 1px
-					&.input-edate
-						width: 97px
-						background: $sprite
-						background-position: 1px 1px
+				input.input-sdate
+					width: 90px
+					background: $sprite #FFF
+					background-position: 64px -160px
+
+				input.input-edate
+					width: 90px
+					background: $sprite #FFF
+					background-position: -39px -160px
+
 				span
 					margin: 0
+
 			div.control-group.flexible-dates
 				margin: 0
 				label.checkbox
 					display: inline-block
+					margin: 0
 					font-size: 12px
 					line-height: normal
 					width: 115px

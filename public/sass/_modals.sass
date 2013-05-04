@@ -94,17 +94,18 @@ div.generic-modal
 					border: 1px solid #CCC
 					@include border-radius(0)
 					@include box-shadow(1px, 1px, 1px, #EEE, inset)
-				i
-					margin: 2px 0
 				label
-					margin: 5px 30px
-					display: inline
+					margin: 5px
 					input
 						margin-top: -3px
 						margin-right: 10px
+				.help-block
+					label
+						float: none
 				label[for="public-request"]
 					display: block
 					color: #000
+					padding-left: 45px
 					input
 						margin-top: 3px
 				h3
@@ -116,16 +117,10 @@ div.generic-modal
 
 			div.controls.radios
 				min-height: 25px
-				padding-top: 8px
-
-				label.radio-like-up
-					background: $sprite
-					background-position: 10px 5px
-					margin-right: 10px
-				label.radio-like-down
-					background: $sprite
-					background-position: 10px 5px
-
+				label
+					float: left
+				i
+					margin: 2px 0
 		div.control-group.avatar-message
 			label.control-label
 				margin-top: 0
@@ -155,7 +150,7 @@ div.generic-modal
  * --------------------------------------------------------------------------
 
 div.generic-modal.thin-modal
-	width: 389px
+	width: 391px
 
 	input
 		font-size: 12px

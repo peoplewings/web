@@ -173,11 +173,11 @@ define(function(require) {
 		},
 
 		request: function(targetId, targetName) {
-			return reqinv(targetId, targetName, 'request', 'New request', 'Send request', targetId);
+			return reqinv(targetId, targetName, 'request', 'New request', 'Send', targetId);
 		},
 
 		invitation: function(targetId, targetName) {
-			return reqinv(targetId, targetName, 'invite', 'New invitation', 'Send invitation', api.getUserId());
+			return reqinv(targetId, targetName, 'invite', 'New invitation', 'Send', api.getUserId());
 		}
 	};
 });

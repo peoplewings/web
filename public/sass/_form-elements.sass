@@ -1,20 +1,49 @@
 /* --------------------------------------------------------------------------
-	Form elements
-	-------------------------------------------------------------------------- */
-
-.size-medium
-	width: 90px
-	background-position: 70px 13px
-
-.size-large
-	width: 150px
-	background-position: 70px 13px
-
-.size-extralarge
-	width: 150px
-	background-position: 206px 13px
+ * Form elements
+ * ---------------------------------------------------------------------------
 
 select
 	//margin: 0
 	@include appearance(none)
 	background: $sprite #FFF
+
+.size
+	line-height: 15px
+
+.size-medium
+	@extend .size
+	width: 90px
+	background-position: -403px -12px !important
+
+.size-small
+	@extend .size
+	width: 57px
+	background-position: -436px -12px !important
+
+.size-large
+	@extend .size
+	width: 150px
+	background-position: -343px -12px !important
+
+.size-extralarge
+	@extend .size
+	width: 210px !important
+	background-position: -286px -12px
+
+.size-large.lock-info
+	width: 121px !important
+	background-position: 101px
+
+.size-box-standard
+	width: 310px !important
+
+.size-13
+	width: 115px !important
+	background-position: 100px
+
+.size-23
+	width: 160px !important
+	background-position: 100px
+
+.size-33
+	width: 310px !important
