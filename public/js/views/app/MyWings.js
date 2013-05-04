@@ -5,7 +5,7 @@ define(function(require) {
 	var api = require("api2");
 	var utils = require("utils");
 	var alerts = require('views/lib/alerts');
-	var wingFormTpl = require("tmpl!templates/app/profile/form.wings.html");
+	var wingFormTpl = require("tmpl!templates/app/profile/form.wing.html");
 	var wingModalTpl = require("tmpl!templates/lib/modal.form.wings.html");
 	var wingViewTpl = require("tmpl!templates/app/profile/view.wing.html");
 
@@ -18,11 +18,18 @@ define(function(require) {
 		wingDefaultData: {
 			about: "",
 			additionalInformation: "",
-			tram: false,
-			bus: false,
+
 			metro: false,
+			bus: false,
+			taxi: false,
 			train: false,
-			others: false,
+			car: false,
+			motorbike: false,
+			bicycle: false,
+			boat: false,
+			plane: false,
+			other: false,
+
 			liveCenter: false,
 			petsAllowed: false,
 			wheelchair: false,
@@ -33,7 +40,7 @@ define(function(require) {
 
 		events: {
 			//"change [name=generalStatus]": "changeStatus",
-			"click button#add-wing-btn": function(e){
+			"click #add-wing-btn": function(e){
 				e.preventDefault();
 				this.wingModal = utils.showModal({
 					header: "Add Wing",

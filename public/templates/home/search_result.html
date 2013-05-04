@@ -71,7 +71,11 @@
 					<dt class="languages-tag">Languages</dt>
 					<dd class="languages">
 						{{#each languages }}
-						{{ name }} ({{ level }}),
+							{{#if last}}
+								{{ name }} ({{ level }}).
+							{{else}}
+								{{ name }} ({{ level }}),
+							{{/if}}
 						{{/each}}
 					</dd>
 				</dl>

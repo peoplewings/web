@@ -28,7 +28,7 @@
 				{{/unless_equals}}
 
 				{{#equals kind 'request'}}
-				<textarea name="publicMessage" id="public-message-content" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
+				<textarea name="publicMessage" id="public-message-content" maxlength="1500" class="required" placeholder="Introduce yourself and explain a little your interest in the wing you are looking for"></textarea>
 				<span class="help-block"></span>
 				<label class="checkbox" for="public-request">
 					<input type="checkbox" id="public-request" checked>Let other hosts send me invitations (this text will be visible to all hosts)
@@ -36,7 +36,7 @@
 				<h3>Personal message to host</h3>
 				{{/equals}}
 				
-				<textarea name="privateMessage" id="message-content" class="required"
+				<textarea name="privateMessage" id="message-content" maxlength="1500" class="required"
 				{{#equals kind 'request'}}
 				placeholder="Tell your host why you'd like to meet them..."
 				{{else}}
