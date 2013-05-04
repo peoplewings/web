@@ -14,12 +14,11 @@ input#header-search
 	margin:
 		top: 15px
 		left: 20px
-	width: 175px
-	background: url(../img/icon-search.png) no-repeat 10px 5px #FFF
-	padding:
-		top: 2px
-		left: 30px
-	font-size: 12px
+	width: 143px
+	background: url(../img/icon-search.png) no-repeat 9px 7px #FFF
+	padding: 3px 0
+	padding-left: 30px
+	font-size: 11px
 	@include transition(box-shadow, 0.5s)
 	&:hover, &:active, &:focus
 		outline: none
@@ -27,7 +26,7 @@ input#header-search
 
 .navbar.nav.navbar-fixed-top
 	background: $gray-clear
-	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.4))
+	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.25))
 	height: 53px
 
 .navbar
@@ -89,7 +88,7 @@ div.nav-menu
 				height: 14px
 				color: #FFF
 				font-weight: bold
-				background: url(../img/icon-messages-received.png) no-repeat 1px 1px
+				background: url(../img/icon-messages-received.png) no-repeat 1px 0px
 				font-size: 10px
 				font-weight: normal
 				text-align: right
@@ -107,10 +106,11 @@ div.nav-menu
 				padding: 15px 2px 2px 6px
 
 div.btn-group.pull-right
-	margin-top: 16px
+	margin-top: 5px
 	a
 		display: block
-		padding: 5px
+		padding: 15px 5px
+		margin-left: -5px
 		@include border-radius(0)
 		&:hover
 			background-color: #D0CEC7
