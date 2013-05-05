@@ -72,6 +72,23 @@ div.profile
 			background: #00FF00
 			background: url(../img/online-corner.png) no-repeat left top
 
+		.span-online
+			float: left
+			position: absolute
+			top: 5px
+			left: -7px
+			z-index: 1
+			background: #FF0
+			text-transform: uppercase
+			font:
+				size: 11px
+				weight: bold
+				style: italic
+			padding: 0px 9px
+			text-shadow: 1px 1px #FFF
+			@include border-radius(3px)
+			@include box-shadow(1px, 1px, 1px, #999)
+
 	div.content-right
 		float: left
 		background: #FFF
