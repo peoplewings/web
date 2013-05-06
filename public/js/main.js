@@ -11,25 +11,25 @@ requirejs.config({
 		"bootstrap": "lib/plugins/bootstrap",
 		"underscore": "lib/lodash",
 		"backbone": "lib/backbone",
-		//"backbone.validateAll": "lib/plugins/Backbone.validateAll",
-		"backbone.ModelBinder": "lib/Backbone.ModelBinder",
+		"handlebars": "lib/handlebars",
+		// jQuery Plugins 
 		"jquery.Validate": "lib/plugins/jquery.validate",
 		"jquery.Extensions": "lib/plugins/jq-extensions",
+		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
+		"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
+		// Bootstrap plugins
+		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
+		// Require plugins
+		"async": "lib/plugins/async",
+		"text": "lib/plugins/text",
+		"tmpl": "lib/plugins/tmpl",
+		// Custom core libs
 		"templates": "../templates",
 		"api": "core/api",
 		"api2": "core/api2",
 		"utils": "core/utils",
 		"promise": "core/promise",
 		"phrases": "core/phrases",
-		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
-		//"spinner": "lib/spin",
-		//"jquery.spinner": "lib/plugins/spin.plugin",
-		"async": "lib/plugins/async",
-		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
-		"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
-		"text": "lib/plugins/text",
-		"tmpl": "lib/plugins/tmpl",
-		"handlebars": "lib/handlebars"
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
@@ -50,20 +50,10 @@ requirejs.config({
 			"deps": ["underscore", "jquery"],
 			"exports": "Backbone" //attaches "Backbone" to the window object
 		},
-		// Backbone.validateAll depends on Backbone.
-		"backbone.validateAll": ["backbone"],
-		// Backbone.ModelBinder depends on Backbone.
-		"backbone.ModelBinder": ["backbone"],
-
-		"jquery.Validate": ["jquery"],
 		"jquery.Jcrop": ["jquery"],
 		"jquery.Datepicker": ["jquery"],
+		"jquery.Validate": ["jquery"],
 		"jquery.Extensions": ["jquery.Validate"],
-		/*
-		"jquery.spinner": {
-						deps: ['jquery', 'spinner'],
-				},
-		 */
 
 	} // end Shim Configuration
 });
