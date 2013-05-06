@@ -5,7 +5,7 @@ define(function(require) {
 	var alerts = require('views/lib/alerts');
 	var spinner = require('views/lib/spinner');
 	var config = require("config");
-	
+
 	var server = config.getValue('server');
 	var apiVersion = config.getValue('apiVersion');
 
