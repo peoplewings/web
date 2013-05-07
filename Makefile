@@ -3,9 +3,9 @@ build:
 	node public/js/build/r -o public/js/build/app.build.js
 
 update.repo:
-	git checkout master
+	git checkout alpha
 	git checkout public/index.html
-	git pull origin master
+	git pull origin alpha
 
 update: update.repo build
 
@@ -23,7 +23,7 @@ put-s3-files:
 	rm public/.jshintrc
 	rm public/testem.yml
 	rm public/package.json
-	s3cmd put --acl-public --guess-mime-type --recursive public/ s3://test.peoplewings.com/
+	s3cmd put --acl-public --guess-mime-type --recursive public/ s3://alpha.peoplewings.com/
 	git checkout -- public/
 
 deploy: update put-s3-files
