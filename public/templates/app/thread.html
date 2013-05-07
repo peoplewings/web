@@ -1,7 +1,9 @@
 <div class="searchbar">
 	<div id="search">
-		<input type="text" id="search-query" class="size-extralarge"><!--
-	--><button id="search-btn" class="button1"><span class="icon-search"></span></button>
+		<input type="text" id="search-query" class="size-extralarge">
+		<a id="search-btn" class="button">
+			<i class="icon-search">Search icon</i>
+		</a>
 </div>
 </div>
 
@@ -25,19 +27,23 @@
 
 <div class="messages-msg">
 	<div class="floatality">
-		<button id="back"><span class="icon-back">Back</span></button>
-		<button id="delete-thread" value="Delete">Delete</button>
+		<a id="back" class="button-back">
+			<i class="icon-back">Back</i>
+		</a>
+		<button id="delete-thread" class="button-delete" value="Delete">Delete</button>
 		<div class="messages-pager">
 			<!--<div class="resultCounter">
 				<span>1</span>
 				<span>10</span>
 				<span>50</span>
 			</div>-->
-			<div class="pager-btngroup">
-				<ul class="pager-buttons">
-					<li><button class="button-pager" id="previous" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}><i class="icon1 prev-page"></i></button></li>
-					<li><button class="button-pager" id="next" data-id="{{next}}" {{#unless next}}disabled{{/unless}}><i class="icon1 next-page"></i></button></li>
-				</ul>
+			<div class="button-group">
+				<a class="button-pager-previous" id="previous" data-id="{{previous}}" {{#unless previous}}disabled{{/unless}}>
+					<i class="icon-pager-previous">button previous</i>
+				</a>
+				<a class="button-pager-next" id="next" data-id="{{next}}" {{#unless next}}disabled{{/unless}}>
+					<i class="icon-pager-next">button next</i>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -69,6 +75,7 @@
 						<div class="response-wrapper">
 							{{#unless isMessage}}
 							<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}" style="display: none">
+								<i>state</i>
 								<span>{{enum state 'notification-state'}}</span>
 							</div>
 							<div class="messages-params-box" style="display: none;">
