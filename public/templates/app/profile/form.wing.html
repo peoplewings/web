@@ -1,69 +1,70 @@
 					
-					<form id="accomodation-form-{{id}}" data-rel="{{id}}">
-						<div class="box-header">
-							<h1 class="house-icon">Accommodation Wing</h1>
-						</div>
-						<div class="box-content wings-info">
-							<div class="control-group lined">
-								<label class="control-label" for="inputName">Wing name</label>
-								<div class="controls">
-									<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required" maxlength="100">
-								</div>
-							</div>
-							<div class="control-group lined">
-								<label class="control-label" for="inputStatus">Wing status</label>
-								<div class="controls">
-									<select name="status" id="wingStatus" class="size-medium">
-										<option value="Y" {{selected status 'Y'}}>Yes</option>
-										<option value="N" {{selected status 'N'}}>No</option>
-										<option value="M" {{selected status 'M'}}>Maybe</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group lined">
-								<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
-								<div class="controls">
-									<label class="checkbox">
-										<input type="checkbox" name="sharingOnce" id="inputSharingOnce" {{checked sharingOnce true}}>
-									</label>
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div id="sharing-dates"class="control-group">
-								<div class="controls">
-									<input type="text" name="dateStart" class="input-sdate" placeholder="Start date" value="{{dateStart}}">
-									<input type="text" name="dateEnd" class="input-edate" placeholder="End date" value="{{dateEnd}}">
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputNewEmail">Best days to host</label>
-								<div class="controls">
-									<select name="bestDays" id="inputBestDays" class="size-large">
-										<option value="A" {{selected bestDays 'A'}}>Any</option>
-										<option value="F" {{selected bestDays 'F'}}>From Monday to Friday</option>
-										<option value="T" {{selected bestDays 'T'}}>From Monday to Thursday</option>
-										<option value="W" {{selected bestDays 'W'}}>Weekend</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputCapacity">Capacity</label>
-								<div class="controls">
-									<select name="capacity" class="size-small">
-										<option value="1" {{selected capacity '1'}}>1</option>
-										<option value="2" {{selected capacity '2'}}>2</option>
-										<option value="3" {{selected capacity '3'}}>3</option>
-										<option value="4" {{selected capacity '4'}}>4</option>
-										<option value="5" {{selected capacity '5'}}>5</option>
-										<option value="6" {{selected capacity '6'}}>6</option>
-										<option value="7" {{selected capacity '7'}}>7</option>
-										<option value="8" {{selected capacity '8'}}>8</option>
-										<option value="9" {{selected capacity '9'}}>9</option>
-										<option value="m" {{selected capacity 'm'}}>+9</option>
-									</select>
-								</div>
-							</div>
-							<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
+<form id="accomodation-form-{{id}}" data-rel="{{id}}">
+	<div class="box-header">
+		<i class="icon-house">Accommodation icon</i>
+		<h2>Accommodation Wing</h2>
+	</div>
+	<div class="box-content wings-info">
+		<div class="control-group lined">
+			<label class="control-label" for="inputName">Wing name</label>
+			<div class="controls">
+				<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required" maxlength="100">
+			</div>
+		</div>
+		<div class="control-group lined">
+			<label class="control-label" for="inputStatus">Wing status</label>
+			<div class="controls">
+				<select name="status" id="wingStatus" class="size-medium">
+					<option value="Y" {{selected status 'Y'}}>Yes</option>
+					<option value="N" {{selected status 'N'}}>No</option>
+					<option value="M" {{selected status 'M'}}>Maybe</option>
+				</select>
+			</div>
+		</div>
+		<div class="control-group lined">
+			<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
+			<div class="controls">
+				<label class="checkbox">
+					<input type="checkbox" name="sharingOnce" id="inputSharingOnce" {{checked sharingOnce true}}>
+				</label>
+				<span class="help-inline"></span>
+			</div>
+		</div>
+		<div id="sharing-dates"class="control-group">
+			<div class="controls">
+				<input type="text" name="dateStart" class="input-sdate" placeholder="Start date" value="{{dateStart}}">
+				<input type="text" name="dateEnd" class="input-edate" placeholder="End date" value="{{dateEnd}}">
+			</div>
+		</div>
+		<div class="control-group blocked">
+			<label class="control-label" for="inputNewEmail">Best days to host</label>
+			<div class="controls">
+				<select name="bestDays" id="inputBestDays" class="size-large">
+					<option value="A" {{selected bestDays 'A'}}>Any</option>
+					<option value="F" {{selected bestDays 'F'}}>From Monday to Friday</option>
+					<option value="T" {{selected bestDays 'T'}}>From Monday to Thursday</option>
+					<option value="W" {{selected bestDays 'W'}}>Weekend</option>
+				</select>
+			</div>
+		</div>
+		<div class="control-group blocked">
+			<label class="control-label" for="inputCapacity">Capacity</label>
+			<div class="controls">
+				<select name="capacity" class="size-small">
+					<option value="1" {{selected capacity '1'}}>1</option>
+					<option value="2" {{selected capacity '2'}}>2</option>
+					<option value="3" {{selected capacity '3'}}>3</option>
+					<option value="4" {{selected capacity '4'}}>4</option>
+					<option value="5" {{selected capacity '5'}}>5</option>
+					<option value="6" {{selected capacity '6'}}>6</option>
+					<option value="7" {{selected capacity '7'}}>7</option>
+					<option value="8" {{selected capacity '8'}}>8</option>
+					<option value="9" {{selected capacity '9'}}>9</option>
+					<option value="m" {{selected capacity 'm'}}>+9</option>
+				</select>
+			</div>
+		</div>
+		<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
 
 <!-- 							<div class="control-group">
 								<label class="control-label" for="inputGender">Preferred gender</label>
@@ -194,11 +195,12 @@
 							</div>
 						</div><!-- EOF box-content -->
 						<div class="box-header">
-							<h1 class="contact-icon">Listing location</h1>
+							<i class="icon-contact">Contact icon</i>
+							<h2>Listing location</h2>
 						</div>
 						<div class="guest-message">
 							<h2>Shown only to Confirmed Guests</h2>
-							<i class="icon-lock">icon lock</i>
+							<i class="icon-lock">Lock icon</i>
 							<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
 						</div><!-- EOF guest-message -->
 						<div class="listing-location">
@@ -245,8 +247,10 @@
 								</div>
 							</div>
 						</div><!-- EOF listing-location -->
-						<div class="accordion-heading">
-							<button type="submit" class="button2 yellow save-wing-btn" data-loading-text="Saving...">Save changes</button>
-							<button class="button2 cancel-wing-btn" wing-id="{{id}}">Cancel</button>
+						<div class="box-footer accordion-heading">
+							<div class="button-group">
+								<button class="button cancel-wing-btn" wing-id="{{id}}">Cancel</button>
+								<button id="save-wing-btn" type="submit" class="button-highlight" data-loading-text="Saving...">Save</button>
+							</div>
 						</div><!-- EOF box-footer -->
 					</form>

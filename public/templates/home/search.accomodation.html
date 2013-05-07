@@ -1,18 +1,18 @@
 <form id="accomodation-search-form">
 	<div class="form-errors date-error"></div>
 	<div class="form-block">
-		<h1 class="wings_text">Wings</h1>
+		<label class="wings_text">Wings</label>
 		<div class="control-group">
-			<label class="control-label" for="inputWings">Wings</label>
+			<label>Wings</label>
 			<input type="text" id="inputWings" name="wings" class="input-large" placeholder="City or town">
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputDate">Date</label>
+			<label>Date</label>
 			<input type="text" name="startDate" class="input-sdate" placeholder="Start date">
 			<input type="text" name="endDate" class="input-edate" placeholder="End date">
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputCapacity">Capacity</label>
+			<label>Capacity</label>
 			<select name="capacity" class="input-guests">
 				<option value="1">1 Guest</option>
 				<option value="2">2 Guests</option>
@@ -29,9 +29,9 @@
 	</div><!-- EOF form-block -->
 
 	<div class="form-block">
-		<h1 class="people_text">People</h1>
+		<label class="people_text">People</label>
 		<div class="control-group">
-			<label class="control-label" for="inputAge">Age</label>
+			<label>Age</label>
 			<select name="startAge" class="input-age1">
 				<option value="18">Age 18</option>
 				{{#range 20 98 2}}
@@ -45,7 +45,7 @@
 			</select>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputLanguage">Language</label>
+			<label>Language</label>
 			<select name="language" class="input-language">
 				<option value="all">Language</option>
 				<option value="all">All</option>
@@ -415,7 +415,7 @@
 			</select>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputGender">Gender</label>
+			<label>Gender</label>
 			<select class="input-others" name="gender">
 				<option value="Both" selected>Both genders</option>
 				<option value="Male">Male</option>
@@ -423,7 +423,7 @@
 			</select>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputHost">Host</label>
+			<label>Host</label>
 			<select class="input-others" name="type">
 				<option value="Host">Host</option>
 				<option value="Applicant">Applicant</option>

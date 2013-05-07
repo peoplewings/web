@@ -111,9 +111,9 @@ define(function(require) {
 			var changed = heading.html().replace(re, replaceText);
 			heading.html(changed);
 			if (targetText === 'more')
-				$(heading).css('background-image', 'url(../img/see_more_up.png)');
+				$(heading).css('background-position', '-858px -16px');
 			else
-				$(heading).css('background-image', 'url(../img/see_more.png)');
+				$(heading).css('background-position', '-658px -16px');
 		}
 	});
 	return resultsView;
