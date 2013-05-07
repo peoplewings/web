@@ -1,16 +1,28 @@
 <div class="box-standard maps">
 	<div class="box-header">
-		<h1 class="places-icon">Places</h1>
+		<i class="icon-places">Places icon</i>
+		<h2>Places</h2>
 		{{#if myProfile}}
-		<button id="edit-places-btn" class="button2 edit-box-btn" data-rel="places-box"><span class="edit-icon">Edit</span></button>
+		<a id="edit-places-btn" class="button-edit-info edit-box-btn" data-rel="places-box">
+			<i class="icon-edit">Edit icon</i>Edit
+		</a>
 		{{/if}}		
 	</div>
 	<div id="user-map"></div>
 	<div class="maps-legend">
 		<ul>
-			<li class="places-hometown-icon-mini">Hometown</li>
-			<li class="places-current-icon-mini">Current city</li>
-			<li class="places-lived-icon-mini">Where I have lived</li>
+			<li>
+				<i class="icon-places-hometown-mini">Hometown place icon</i>
+				<span>Hometown</span>
+			</li>
+			<li>
+				<i class="icon-places-current-mini">Current place icon</i>
+				<span>Current city</span>
+			</li>
+			<li>
+				<i class="icon-places-lived-mini">Lived place icon</i>
+				<span>Where I have lived</span>
+			</li>
 		</ul>
 	</div>
 </div><!-- box-standard maps -->

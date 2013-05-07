@@ -4,45 +4,30 @@
 
 .icon
 	display: block
+	width: 25px
+	height: 25px
 	text-indent: -9999px
-	background: url(../img/peoplewings-sprite.png) no-repeat
-
+	background: $sprite
+	margin: 0
 
 /*	Commons
  * --------------------------------------------------------------------------
 
 .icon-pager
 	@extend .icon
-	width: 25px
-	height: 25px
 
 .icon-pager-previous
 	@extend .icon-pager
-	background-position: 8px 8px
+	background-position: -12px -14px
 
 .icon-pager-next
 	@extend .icon-pager
-	background-position: -42px 8px
+	background-position: -61px -14px
 
-
-/*	Messages
- * --------------------------------------------------------------------------
-
-.icon-search
-	background: url(../img/icon-search.png) no-repeat
-
-.icon-back
-	background: url(../img/icon-back.png) no-repeat 1px 2px
-
-
-/*	Thread
- * --------------------------------------------------------------------------
-
-.icon-public-state
+.icon-config
 	@extend .icon
-	background: url(../img/icon-public-state.png) no-repeat
-	width: 16px
-	height: 11px
+	background-position: -761px -162px
+	margin-top: 0
 
 
 /*	Profile
@@ -50,23 +35,90 @@
 
 .icon-edit
 	@extend .icon
-	background: url(../img/edit-icon.png) no-repeat
-	width: 15px
-	height: 15px
+	background-position: -461px -162px
 
-.icon-wings
+.icon-about
 	@extend .icon
-	background: url(../img/icon-wings.png) no-repeat
-	width: 31px
-	height: 15px
+	background-position: -312px -162px
+
+.icon-like
+	@extend .icon
+	background-position: -562px -161px
+
+.icon-contact
+	@extend .icon
+	background-position: -511px -161px
+
+.icon-add-friend
+	@extend .icon
+	background-position: -10px -10px
+
+.icon-house
+	@extend .icon
+	background-position: -410px -162px
+
+.icon-places
+	@extend .icon
+	background-position: -612px -161px
+
+.icon-places-hometown-mini
+	@extend .icon
+	background-position: -62px -362px
+
+.icon-places-current-mini
+	@extend .icon
+	background-position: -162px -362px
+
+.icon-places-lived-mini
+	@extend .icon
+	background-position: -262px -362px
+
+.icon-add-wings
+	@extend .icon
+	width: 30px
+	background-position: -913px -159px
+
+
+/*	Messages
+ * --------------------------------------------------------------------------
+
+.icon-search
+	@extend .icon
+	background-position: -560px -118px
+
+
+/*	Thread
+ * --------------------------------------------------------------------------
+
+.icon-back
+	@extend .icon
+	background-position: -567px -19px
+	width: 15px
+	height: 12px
 
 .icon-lock
 	@extend .icon
-	background: url(../img/icon-lock.png) no-repeat
+	background-position: -669px -168px
 	width: 9px
 	height: 12px
 
 .icon-lock-open
 	@extend .icon-lock
-	background: url(../img/icon-lock-open.png) no-repeat
+	background-position: -719px -167px
 	height: 14px
+
+
+/*	Modals
+ * --------------------------------------------------------------------------
+
+.icon-public-state
+	@extend .icon
+	background-position: -163px -162px
+
+.icon-like-up
+	@extend .icon
+	background-position: -213px -162px
+
+.icon-like-down
+	@extend .icon
+	background-position: -262px -162px

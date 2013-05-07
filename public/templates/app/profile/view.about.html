@@ -1,8 +1,11 @@
 <div class="box-standard">
 	<div class="box-header">
-		<h1 class="about-icon">About me</h1>
+		<i class="icon-about">About icon</i>
+		<h2>About me</h2>
 		{{#if myProfile}}
-		<button id="edit-about-btn" class="button2 edit-box-btn" data-rel="about-box"><span class="edit-icon">Edit</span></button>
+		<a id="edit-about-btn" class="button-edit-info edit-box-btn" data-rel="about-box">
+			<i class="icon-edit">Edit icon</i>Edit
+		</a>
 		{{/if}}
 	</div>
 	<div class="accordion">
@@ -27,10 +30,10 @@
 						<p>{{company}}</p>
 						{{/if}}
 						{{#if education.length}}
-							<h2>Education</h2>
-							{{#each education}}
-								<p>{{degree}} at {{institution}}</p>
-							{{/each}}
+						<h2>Education</h2>
+						{{#each education}}
+						<p>{{degree}} at {{institution}}</p>
+						{{/each}}
 						{{/if}}
 						{{#if personalPhilosophy}}
 						<h2>Personal philosophy</h2>
@@ -49,12 +52,8 @@
 			</div>
 			<div class="gradient-box"></div>
 			<div class="accordion-heading" data-toggle="collapse" href="#collapse-about">
-				<div class="see-more">
-					<span class="more-about">more about</span>
-					<p>See all content</p>
-					<span class="more-about">more about</span>
-				</div>
+				<span>See more</span>
 			</div>
 		</div>
 	</div><!-- EOF accordion -->
-			</div><!-- EOF box-standard -->
+</div><!-- EOF box-standard -->
