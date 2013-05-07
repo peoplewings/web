@@ -19,10 +19,8 @@ put-s3-files:
 	rm -R public/js/views
 	rm public/js/main.js
 	rm public/js/router.js
-	rm public/.DS_Store
 	rm public/.jshintignore
 	rm public/.jshintrc
-	rm public/.jshintignore
 	rm public/testem.yml
 	rm public/package.json
 	s3cmd put --acl-public --guess-mime-type --recursive public/ s3://test.peoplewings.com/
