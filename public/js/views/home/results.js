@@ -15,8 +15,8 @@ define(function(require) {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
 			"click button.send-invitation-btn": "sendInvitation",
-			"click a.nextPage": "nextPage",
-			"click a.previousPage": "previousPage"
+			"click .pager-content a.button-pager-next": "nextPage",
+			"click .pager-content a.button-pager-previous": "previousPage"
 		},
 
 		reset: function(options) {
@@ -64,6 +64,7 @@ define(function(require) {
 
 		},
 		nextPage: function() {
+			debugger;
 			var scope = this;
 			if (+this.query.page === this.lastPage) return false;
 			this.query.page++;
