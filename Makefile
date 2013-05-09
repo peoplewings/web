@@ -3,27 +3,17 @@ build:
 	node public/js/build/r -o public/js/build/app.build.js
 
 update.repo:
-	git checkout alpha
 	git checkout public/index.html
-	git pull origin alpha
+	git pull origin master
 
 update: update.repo build
 
-put-s3-files:
-	sass --update public/sass:public/css
-	rm -R .sass-cache/
-	rm -rf public/sass
-	rm -R public/js/core
-	rm -R public/js/models
-	rm -R public/js/test
-	rm -R public/js/views
-	rm public/js/main.js
-	rm public/js/router.js
-	rm public/.jshintignore
-	rm public/.jshintrc
-	rm public/testem.yml
-	rm public/package.json
-	s3cmd put --acl-public --guess-mime-type --recursive public/ s3://alpha.peoplewings.com/
-	git checkout -- public/
 
-deploy: update put-s3-files
+deploy-test:
+	git add public/index.html
+	git add public/js/build.out
+	git commit -m "Test bundle ready for deployment"
+	git push test master
+	git reset --soft HEAD^
+	git reset HEAD public/index.html
+	git reset HEAD public/js/build.out
