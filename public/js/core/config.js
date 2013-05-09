@@ -32,7 +32,7 @@ define(function() {
 				case "test.peoplewings.com":
 					env = 'Test';
 					break;
-				case "peoplewings.heroku.com":
+				case "peoplewings-alpha.heroku.com":
 				case "alpha.peoplewings.com":
 					env = 'Alpha';
 					break;
