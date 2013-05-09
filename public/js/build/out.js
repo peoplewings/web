@@ -18394,6 +18394,7 @@ define('config',[],function() {
 				case "test.peoplewings.com":
 					env = 'Test';
 					break;
+				case "peoplewings-alpha.herokuapp.com":
 				case "alpha.peoplewings.com":
 					env = 'Alpha';
 					break;
