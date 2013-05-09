@@ -3,17 +3,17 @@ define(function() {
 	var Config = {
 		Local: {
 			domain: 'localhost',
-			server: 'http://peoplewings-be-development.herokuapp.com',
+			server: 'https://peoplewings-be-development.herokuapp.com',
 			apiVersion: '/api/v1',
 		},
 		Test: {
 			domain: 'test.peoplewings.com',
-			server: 'http://peoplewings-be-test.herokuapp.com',
+			server: 'https://peoplewings-be-test.herokuapp.com',
 			apiVersion: '/api/v1',
 		},
 		Alpha: {
 			domain: 'alpha.peoplewings.com',
-			server: 'http://peoplewings-be-alpha.herokuapp.com',
+			server: 'https://peoplewings-be-alpha.herokuapp.com',
 			apiVersion: '/api/v1',
 		},
 	};
@@ -28,7 +28,7 @@ define(function() {
 				case "127.0.0.1":
 					env = 'Local';
 					break;
-				//case: 'pw-test-bucket',
+				case "peoplewings-test.herokuapp.com":
 				case "test.peoplewings.com":
 					env = 'Test';
 					break;
