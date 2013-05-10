@@ -8,14 +8,11 @@ build.css:
 build: build.js build.css
 
 add.build:
-	git add public/index.html
-	git add public/js/build/out.js
-	git commit -m "Added JS built files"
-	git add public/css
-	git commit -m "Added minfied CSS"
+	git add public
+	git commit -m "Added JS & CSS compiled files"
 
 revert.build:
-	git reset --soft HEAD^2
+	git reset --soft HEAD^
 
 update.repo:
 	git co master
@@ -29,25 +26,13 @@ update.alpha:
 
 update: update.repo build
 
-prepare.test.alpha: update.alpha build add.build 
+prepare.alpha: update.alpha build add.build 
 
 deploy.test.alpha:
 	git push -f test-alpha alpha:master
 
-test.alpha: prepare.test.alpha
+test.alpha: prepare.alpha
 	git push -f test-alpha alpha:master
 
-
-
-
-
-deploy-alpha:
-	git co -b alpha-deploy
-	git add public/index.html
-	git add public/js/build/out.js
-	git commit -m "Alpha bundle ready for deployment"
-	git push -f alpha alpha-deploy:master
-	git co master
-	git br -D test-alpha
-
-alpha: update deploy-alpha
+alpha: prepare.alpha
+	git push -f alpha alpha:master
