@@ -9,23 +9,23 @@ update.repo:
 update: update.repo build
 
 deploy-test:
+	git co -b test-deploy
 	git add public/index.html
 	git add public/js/build/out.js
 	git commit -m "Test bundle ready for deployment"
-	git push test master
-	git reset --soft HEAD^
-	git reset HEAD public/index.html
-	git reset HEAD public/js/build/out.js
+	git push -f test test-deploy:master
+	git co master
+	git br -D test-deploy
 
 test: update deploy-test
 
 deploy-alpha:
+	git co -b alpha-deploy
 	git add public/index.html
 	git add public/js/build/out.js
 	git commit -m "Alpha bundle ready for deployment"
-	git push alpha master
-	git reset --soft HEAD^
-	git reset HEAD public/js/build/out.js
-	git reset HEAD public/index.html
+	git push -f alpha alpha-deploy:master
+	git co master
+	git br -D test-alpha
 
 alpha: update deploy-alpha
