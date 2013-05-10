@@ -64,7 +64,6 @@ define(function(require) {
 
 		},
 		nextPage: function() {
-			debugger;
 			var scope = this;
 			if (+this.query.page === this.lastPage) return false;
 			this.query.page++;
