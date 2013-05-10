@@ -1,3 +1,4 @@
+# Build process
 build.js:
 	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
 	node public/js/build/r -o public/js/build/app.build.js
@@ -14,6 +15,7 @@ add.build:
 revert.build:
 	git reset --soft HEAD^
 
+# Update commands
 update.repo:
 	git co master
 	git checkout public/index.html
@@ -24,8 +26,14 @@ update.alpha:
 	git checkout public/index.html
 	git pull origin alpha
 
+update.beta:
+	git co beta
+	git checkout public/index.html
+	git pull origin beta
+
 update: update.repo build
 
+#Alpha staging and production deploys
 prepare.alpha: update.alpha build add.build 
 
 deploy.test.alpha:
@@ -36,3 +44,15 @@ test.alpha: prepare.alpha
 
 alpha: prepare.alpha
 	git push -f alpha alpha:master
+
+#Beta staging and production deploys
+prepare.beta: update.beta build add.build 
+
+deploy.test.beta:
+	git push -f test-beta beta:master
+
+test.beta: prepare.beta
+	git push -f test-beta beta:master
+
+beta: prepare.beta
+	git push -f beta beta:master
