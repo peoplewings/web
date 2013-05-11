@@ -1,4 +1,4 @@
-<li class="notification-item" data-type="notification-item" data-rel="{{id}}" data-thread="{{reference}}" data-index="{{index}}">
+<li class="notification-item {{#unless read}}unread{{/unless}}" data-type="notification-item" data-rel="{{id}}" data-thread="{{reference}}" data-index="{{index}}">
 	<div class="messages-avatar">
 		<img src="{{avatar}}">
 	</div>
@@ -10,9 +10,9 @@
 	<div class="messages-flag">
 		<span class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}">state flag</span>
 	</div>
-	<div class="messages-state {{#unless read}}unread{{/unless}}">
+	<div class="messages-state">
 		{{#if isMessage }}
-		<h1 class="messages-name">{{content}}</h1>
+		<p class="messages-name">{{content}}</p>
 	</div>
 	<div class="messages-dates">
 		{{else}}

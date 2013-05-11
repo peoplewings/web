@@ -38,23 +38,23 @@
 			<div class="messages-params-box">
 				<dl>
 					<dt>Requested wing : </dt>
-					<dd {{#if_contains parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ parameters.wingName }} ({{ type }} in {{ parameters.wingCity }})</dd>
+					<dd {{#if_contains wing.parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ wing.parameters.wingName }} ({{ wing.type }} in {{ wing.parameters.wingCity }})</dd>
 				</dl>
 				<dl>
 					<dt>Arrival date : </dt>
-					<dd {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{ date parameters.startDate }}</dd>
+					<dd {{#if_contains wing.parameters.modified "startDate" }}class="modified"{{/if_contains}}>{{ date wing.parameters.startDate }}</dd>
 				</dl>
 				<dl>
 					<dt>Deperture date : </dt>
-					<dd {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{ date parameters.endDate }}</dd>
+					<dd {{#if_contains wing.parameters.modified "endDate" }}class="modified"{{/if_contains}}>{{ date wing.parameters.endDate }}</dd>
 				</dl>
 				<dl>
-					<dt>Number of surfers : </dt>
-					<dd {{#if_contains parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ parameters.capacity }}</dd>
+					<dt>Number of people : </dt>
+					<dd {{#if_contains wing.parameters.modified "capacity" }}class="modified"{{/if_contains}}>{{ wing.parameters.capacity }}</dd>
 				</dl>
 				<dl>
 					<dt>Arriving via : </dt>
-					<dd>{{ parameters.arrivingVia }}</dd>
+					<dd>{{ wing.parameters.arrivingVia }}</dd>
 				</dl>
 			</div>
 			<div class="messages-msg">

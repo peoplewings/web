@@ -1,8 +1,21 @@
-@import _effects.sass
-
 /* --------------------------------------------------------------------------
  * Feedback
- * -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
+
+#feedback-btn-submit
+	background: #FFF
+	font-style: italic
+	text-transform: uppercase
+	font-size: 11px
+	color: #999
+	@include border-radius(12px, 12px, 0, 0)
+	@include box-shadow(0, 0, 4px, #DDD)
+	padding: 7px 20px
+	position: fixed
+	bottom: 0
+	right: 320px
+	z-index: 1000000
+	border-bottom: none
 
 form#feedback-form
 	font-size: 12px
@@ -13,10 +26,12 @@ form#feedback-form
 		padding-left: 40px
 		width: 40px
 		&.like-up
-			background: url(../img/icon-like-up.png) no-repeat left 8px
+			background: $sprite
+			background-position: left 8px
 
 		&.like-down
-			background: url(../img/icon-like-down.png) no-repeat left 4px
+			background: $sprite
+			background-position: left 4px
 
 		input
 			width: auto
@@ -35,3 +50,4 @@ form#feedback-form
 	
 	div.control-group
 		margin-bottom: 20px
+

@@ -1,7 +1,8 @@
 <div class="box-standard">
 	<form id="about-me-form" data-rel="about-box">
 		<div class="box-header">
-			<h1 class="about-icon">About me</h1>
+			<i class="icon-about">About icon</i>
+			<h2>About me</h2>
 		</div>
 		<div class="box-content">
 			<div class="control-group">
@@ -15,6 +16,13 @@
 				<label class="control-label" for="inputMainMission">Current mission</label>
 				<div class="controls">
 					<textarea name="mainMission" rows="5" class="span6" placeholder="What is your current mission objective. Be creative, imaginative, wacky if you need to be" maxlength="100">{{mainMission}}</textarea>
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputOccupation">Occupation</label>
+				<div class="controls">
+					<input name="occupation" type="text" value="{{occupation}}" maxlength="100" placeholder="Current occupation" id="inputOccupation" size="20">
 					<span class="help-block"></span>
 				</div>
 			</div>
@@ -64,9 +72,11 @@
 				</div>
 			</div>
 		</div><!-- EOF box-content -->
-		<div class="accordion-heading">
-			<button id="save-profile-btn" type="submit" class="button2 yellow" data-loading-text="Saving...">Save changes</button>
-			<button class="button2 cancel-edition-btn" data-rel="about-box">Cancel</button>
-		</div>
+		<div class="box-footer accordion-heading">
+			<div class="button-group">
+				<button class="button cancel-edition-btn" data-rel="about-box">Cancel</button>
+				<button id="save-profile-btn" type="submit" class="button-highlight" data-loading-text="Saving...">Save</button>
+			</div>
+		</div><!-- EOF box-footer -->
 	</form>
 </div><!-- EOF box-standard -->

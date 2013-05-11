@@ -1,7 +1,8 @@
 		<div class="box-standard">
 			<form id="accomodation-form">
 				<div class="box-header">
-					<h1 class="house-icon">Accommodation Wing</h1>
+					<i class="icon-house">Accommodation icon</i>
+					<h1>Accommodation Wing</h1>
 				</div>
 				<div class="box-content wings-info">
 					{{#if update}}
@@ -170,19 +171,34 @@
 								<label class="control-label">Transports</label>
 								<div class="controls">
 									<label class="checkbox">
-										<input type="checkbox" name="underground" id="checkboxMetro">Metro
+										<input type="checkbox" name="metro" id="checkboxMetro">Metro
 									</label>
 									<label class="checkbox">
 										<input type="checkbox" name="bus" id="checkboxBus">Bus
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="tram" id="checkboxTram">Tram
+										<input type="checkbox" name="taxi" id="checkboxtaxi">Tram
 									</label>
 									<label class="checkbox">
 										<input type="checkbox" name="train" id="checkboxTrain">Train
 									</label>
 									<label class="checkbox">
-										<input type="checkbox" name="others" id="checkboxOthers">Others
+										<input type="checkbox" name="car" id="checkboxCar">Car
+									</label>
+									<label class="checkbox">
+										<input type="checkbox" name="motorbike" id="checkboxMotorbike">Motorbike
+									</label>
+									<label class="checkbox">
+										<input type="checkbox" name="bicycle" id="checkboxBicycle">Bicycle
+									</label>
+									<label class="checkbox">
+										<input type="checkbox" name="boat" id="checkboxBoat">Boat
+									</label>
+									<label class="checkbox">
+										<input type="checkbox" name="plane" id="checkboxPlane">Plane
+									</label>
+									<label class="checkbox">
+										<input type="checkbox" name="other" id="checkboxOther">Other
 									</label>
 									<span class="help-block"></span>
 								</div>
@@ -196,7 +212,8 @@
 							</div>
 						</div><!-- EOF box-content -->
 						<div class="box-header">
-							<h1 class="contact-icon">Listing location</h1>
+							<i class="icon-contact">Contact icon</i>
+							<h2>Listing location</h2>
 						</div>
 						<div class="guest-message">
 							<h2>Shown only to Confirmed Guests</h2>

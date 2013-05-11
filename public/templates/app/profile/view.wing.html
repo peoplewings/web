@@ -1,9 +1,10 @@
 				<div class="box-header">
-					<h1 class="house-icon">Accommodation</h1>
+					<i class="icon-house">About icon</i>
+					<h2>Accommodation Wing</h2>
 					{{#if myProfile}}
 					<div class="btn-group pull-right">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<span class="config"></span>
+							<i class="icon-config">Config icon</i>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#" class="edit-wing-btn" wing-id="{{id}}">Edit wing</a></li>
@@ -70,11 +71,14 @@
 					<h2>Public transport</h2>
 					<p>
 						{{#if train}}Train, {{/if}}
-						{{#if underground}}underground, {{/if}}
-						{{#if tram}}tram, {{/if}}
+						{{#if metro}}metro, {{/if}}
+						{{#if taxi}}taxi, {{/if}}
 						{{#if bus}}bus, {{/if}}
 						{{#if boat}}boat, {{/if}}
-						{{#if others}}others{{/if}}
+						{{#if plane}}plane{{/if}}
+						{{#if motorbike}}motorbike{{/if}}
+						{{#if bicycle}}bicycle{{/if}}
+						{{#if other}}other{{/if}}
 					</p>
 					{{/if}}
 					<h2 class="last-p">About your accommodation</h2>
@@ -82,9 +86,5 @@
 				</div>
 				<!-- <div class="gradient-box"></div> -->
 				<div class="accordion-heading">
-					<div class="see-more">
-						<span class="more-about">more about</span>
-						<p>See all content</p>
-						<span class="more-about">more about</span>
-					</div>
+					<span>See more</span>
 				</div>

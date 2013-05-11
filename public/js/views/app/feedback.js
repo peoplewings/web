@@ -8,6 +8,13 @@ define(function(require) {
 	var contentTpl = require('tmpl!templates/app/feedback.html');
 	var UserModel = require('models/Account');
 
+	$(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+			$('#feedback-btn-submit').css('bottom', 54);
+		} else
+			$('#feedback-btn-submit').css('bottom', 0);
+	});
+
 	var FeedbackView = Backbone.View.extend({
 
 		validation: {

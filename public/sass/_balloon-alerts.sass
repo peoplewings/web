@@ -1,15 +1,14 @@
-@import _effects.sass
-
 /* --------------------------------------------------------------------------
  * Balloon Alerts
- * -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 span.signal-bottom
 	float: left
 	text-indent: -9999px
 	height: 20px
 	width: 20px
-	background: url(../img/icon-direction-bottom.png) no-repeat
+	background: $sprite
+	background-position: -114px -66px
 	position: relative
 	left: 800px
 
@@ -21,7 +20,7 @@ div.balloon-alert
 	width: 756px
 	height: 414px
 	@include border-radius(12px)
-	@include box-shadow(2px, 2px, 2px, 0, #DDD)
+	@include box-shadow(2px, 2px, 2px, 0, rgba(0, 0, 0, 0.2))
 	div.balloon-content
 		padding: 45px
 		h1, h2

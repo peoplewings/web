@@ -14,7 +14,8 @@ div.message-arrow
 		display: block
 		width: 12px
 		height: 11px
-		background: url(../img/icon-pick.png) no-repeat
+		background: $sprite
+		background-position: -18px -69px
 		text-indent: -9999px
 		position: relative
 		top: -6px
@@ -60,29 +61,10 @@ div.messages-msg
 		padding: 9px
 		background: white
 		min-height: 27px
-		button
-			margin: 0
-			padding: 0
-			padding: 2px 12px
-			border: 1px solid #d0cec7
-			@include bg-gradient(#FFF, #ECECE5)
+		button, a
 			float: left
-		button#back
-			padding-bottom: 3px
-			&:hover 
-				background: #FFF
-				&:active
-					@include bg-gradient(#FFEB00, #FBFAC5)
-		button#delete-thread
+		#delete-thread
 			border-left: none
-			padding-bottom: 3px
-			&:hover 
-				background: #FFF
-				&:active
-					@include bg-gradient(#FFEB00, #FBFAC5)
-		span.icon-back
-			text-indent: -9999px
-			padding: 1px 1px
 		.messages-pager
 			float: right
 			div.resultCounter
@@ -94,26 +76,10 @@ div.messages-msg
 					content: " - "
 				span:last-child:before
 					content: " of "
-		div.pager-btngroup
+		div.button-group
 			float: right
-			ul.pager-buttons
-				li:last-child
-					button.button-pager
-						border-left: none
-				button.button-pager
-					padding: 0
-					.icon1
-						display: block
-						width: 25px
-						height: 25px
-					.next-page
-						background: url(../img/pager-next.png) no-repeat 10px 8px
-					.prev-page
-						background: url(../img/pager-prev.png) no-repeat 8px 8px
-					&:hover 
-						background: #FFF
-					&:active
-						@include bg-gradient(#FFEB00, #FBFAC5)
+			a:first-child
+				border-right: none
 
 // Thread item
 
@@ -127,7 +93,6 @@ li.thread-item
 		border: 1px solid #D0CEC7
 		border-top: none
 		background: #FFF
-		z-index: -1
 		width: auto
 		div.messages-avatar
 			float: left
@@ -220,6 +185,11 @@ li.thread-item
 			margin-left: 0
 			border: 1px solid #D0CEC7
 			div.state-flag
+				i
+					float: left
+					width: 40px
+					height: 40px
+					text-indent: -9999px
 				span
 					display: block
 					text-transform: capitalize
@@ -227,18 +197,22 @@ li.thread-item
 					background: #f5f5f0
 					padding: 10px 10px 10px 15px
 					padding-left: 45px
-			div.accepted span
+			div.accepted i
 				color: #85c333
-				background: url(../img/states/icon-accepted.png) 11px 8px no-repeat
-			div.maybe span
+				background: $sprite
+				background-position: -2px -204px
+			div.maybe i
 				color: #fa9e03
-				background: url(../img/states/icon-maybe.png) 11px 8px no-repeat
-			div.pending span
+				background: $sprite
+				background-position: -102px -204px
+			div.pending i
 				color: #ee4040
-				background: url(../img/states/icon-pending.png) 11px 8px no-repeat
-			div.denied span
+				background: $sprite
+				background-position: -52px -204px
+			div.denied i
 				color: #7e7b71
-				background: url(../img/states/icon-declined.png) 11px 8px no-repeat
+				background: $sprite
+				background-position: -152px -204px
 			form#wing-params-form
 				border-bottom: 1px solid #d3d1ca
 				input
@@ -268,16 +242,19 @@ li.thread-item
 						margin-left: 10px
 					input.input-sdate
 						width: 97px
-						background: url(../img/start-date.png) no-repeat 83px 6px white
+						background: $sprite
+						background-position: 1px 1px
 						padding-left: 10px
 					input.input-edate
 						width: 97px
-						background: url(../img/start-date.png) no-repeat 83px 6px white
+						background: $sprite
+						background-position: 1px 1px
 						padding-left: 10px
 					select
 						margin: 0
 						margin-top: 6px
-						background: url(../img/mini-arrow.png) no-repeat 40px #FFF
+						background: $sprite
+						background-position: 1px 1px
 	div.response-item
 		background: #fff
 		overflow: hidden

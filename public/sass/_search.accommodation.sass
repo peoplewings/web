@@ -10,31 +10,28 @@ form#accomodation-search-form
 	overflow: hidden
 	margin: 0
 
-	label
-		display: visible
-
 	div.form-block
-		overflow: hidden
+		clear: both
 
 		label
 			display: none
-
-		h1
 			float: left
-			margin-top: 10px
-			margin-right: 20px
 			text-indent: -9999px
-
-		h1.wings_text
-			background: url(../../img/wings_text.png) no-repeat
-			height: 20px
 			width: 67px
-
-		h1.people_text
-			background: url(../../img/people_text.png) no-repeat
 			height: 20px
-			width: 74px
-			margin-right: 13px
+			margin: 10px 10px 0 0
+
+		label.wings_text
+			display: block
+			background: $sprite
+			background-position: -1013px -263px
+			margin-right: 18px
+
+		label.people_text
+			display: block
+			background: $sprite
+			background-position: -1009px -215px
+			width: 75px
 
 		div.control-group
 			margin: 0
@@ -58,11 +55,13 @@ form#accomodation-search-form
 
 			input.input-sdate
 				width: 90px
-				background: url(../img/start-date.png) no-repeat 75px center #FFF
+				background: $sprite #FFF
+				background-position: 60px -156px
 
 			input.input-edate
 				width: 90px
-				background: url(../img/end-date.png) no-repeat 75px center #FFF
+				background: $sprite #FFF
+				background-position: 60px -156px
 
 			input.input-large
 				width: 213px
@@ -72,23 +71,28 @@ form#accomodation-search-form
 
 			select.input-guests
 				width: 90px
-				background: url(../img/mini-arrow.png) no-repeat 66px center #FFF
+				background: $sprite #FFF
+				background-position: -402px -8px
 
 			select.input-age1
 				width: 77px
-				background: url(../img/mini-arrow.png) no-repeat 56px center #FFF
+				background: $sprite #FFF
+				background-position: -415px -8px
 
 			select.input-age2
 				width: 57px
-				background: url(../img/mini-arrow.png) no-repeat 36px center #FFF
+				background: $sprite #FFF
+				background-position: -435px -8px
 
 			select.input-language
 				width: 89px
-				background: url(../img/mini-arrow.png) no-repeat 69px center #FFF
+				background: $sprite #FFF
+				background-position: -402px -8px
 
 			select.input-others
 				width: 108px
-				background: url(../img/mini-arrow.png) no-repeat 87px center #FFF
+				background: $sprite #FFF
+				background-position: -387px -8px
 
 	div.form-actions
 		float: right

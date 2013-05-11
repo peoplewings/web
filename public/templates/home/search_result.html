@@ -71,7 +71,11 @@
 					<dt class="languages-tag">Languages</dt>
 					<dd class="languages">
 						{{#each languages }}
-						{{ name }} ({{ level }}),
+							{{#if last}}
+								{{ name }} ({{ level }}).
+							{{else}}
+								{{ name }} ({{ level }}),
+							{{/if}}
 						{{/each}}
 					</dd>
 				</dl>
@@ -97,7 +101,7 @@
 			<div class="accordion-group">
 				<div id="collapse-{{@index}}" class="accordion-body collapse">
 					<div class="accordion-inner">
-						<h1>About me !</h1>
+						<h1>About me!</h1>
 						<p>{{ allAboutYou }}</p>
 						{{#if ../applicant}}
 						<h1>Looking for...</h1>

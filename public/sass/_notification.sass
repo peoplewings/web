@@ -46,7 +46,8 @@
 		.messages-dropdown
 			float: left
 			display: block
-			background: url(../img/mini-arrow.png) no-repeat center center
+			background: $sprite
+			background-position: 1px 1px
 			width: 12px
 		.pager-right
 			a.button-pager-next
@@ -66,6 +67,8 @@ li.notification-item
 	border-bottom: none
 	background: #FFF
 	cursor: pointer
+	&.unread
+		background: #EFEEEA
 	&:last-child
 		border-bottom: 1px solid #D0CEC7
 	div
@@ -108,28 +111,39 @@ li.notification-item
 			float: left
 			text-indent: -9999px
 		.from-me
-			background: url(../img/states/icon-left.png) no-repeat 0 top
+			background: $sprite
+			background-position: -883px -267px
 		.to-me
-			background: url(../img/states/icon-right.png) no-repeat 24px top
+			background: $sprite
+			background-position: -808px -267px
 		.from-me.accepted
-			background: url(../img/states/icon-accepted-left.png) no-repeat left top
+			background: $sprite
+			background-position: -104px -267px
 		.to-me.accepted
-			background: url(../img/states/icon-accepted-right.png) no-repeat right top
+			background: $sprite
+			background-position: -21px -267px
 		.from-me.maybe
-			background: url(../img/states/icon-maybe-left.png) no-repeat left top
+			background: $sprite
+			background-position: -494px -267px 
 		.to-me.maybe
-			background: url(../img/states/icon-maybe-right.png) no-repeat right top
+			background: $sprite
+			background-position: -14px -267px
 		.from-me.pending
-			background: url(../img/states/icon-pending-left.png) no-repeat left top
+			background: $sprite
+			background-position: -297px -267px
 		.to-me.pending
-			background: url(../img/states/icon-pending-right.png) no-repeat right top
+			background: $sprite
+			background-position: -216px -267px
 		.from-me.denied
-			background: url(../img/states/icon-declined-left.png) no-repeat left top
+			background: $sprite
+			background-position: -689px -267px
 		.to-me.denied
-			background: url(../img/states/icon-declined-right.png) no-repeat right top
+			background: $sprite
+			background-position: -608px -267px
 	div.messages-state
 		padding: 8px 15px
 		line-height: 16px
+		max-width: 360px
 		h1.messages-name
 			color: #000
 			font-weight: bold
@@ -144,6 +158,9 @@ li.notification-item
 		h2
 			text-transform: capitalize
 			font-weight: bold
+		p
+			color: #999
+			font-style: italic
 	div.messages-dates
 		float: right
 		div.messages-dates-info
@@ -163,3 +180,5 @@ li.notification-item
 			padding: 22px 20px
 			padding-bottom: 23px
 			font-weight: bold
+			width: 60px
+			text-align: center
