@@ -94,17 +94,24 @@ define(function(require){
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
-			"click button.cancel-edition-btn": "closeBox",
+			"click button.cancel-edition-btn" : "closeBox",
+			"click #edit-about-btn" : function(e){
+				debugger;
+				$(this).trigger('click');
+			}
 		},
 
 		initialize: function(model, parent) {
 			this.model = model;
 			this.parentCtrl = parent;
 
+			debugger;
+			/*
 			this.$('#upload-photo').click(function() {
 				inputfile.trigger('click');
 
 			$('impput-file').on('change', this.uploadFile);
+			*/
 		},
 
 		closeBox: function(evt){
