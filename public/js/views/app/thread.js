@@ -82,6 +82,7 @@ define(function(require) {
 							data.items = data.items.map(function(item){
 								if (item.senderLocation.indexOf('Not specified') === 0)
 									item.senderLocation = null;
+
 								return item;
 							});
 
@@ -99,7 +100,7 @@ define(function(require) {
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
 			var items = data.items.map(function(item, index) {
-				return _.extend(item, {
+				var a = _.extend(item, {
 					index: index,
 					fromMe: item.senderId === me,
 					reference: data.reference,
@@ -109,6 +110,8 @@ define(function(require) {
 					read: null,
 					online: null,
 				});
+
+				return a;
 			});
 
 			this.$el.html(threadTpl(data, {

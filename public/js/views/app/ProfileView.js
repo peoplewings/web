@@ -1,5 +1,5 @@
 define(function(require) {
-
+	require('jquery.Datepicker');
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
@@ -9,14 +9,17 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var MyProfile = require('views/app/MyProfile');
 	var MyWings = require('views/app/MyWings');
+	var CarouselView = require('views/lib/Carousel');
 	var profileTpl = require('tmpl!templates/app/profile/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile/view.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile/view.about.html');
 	var likesTpl = require('tmpl!templates/app/profile/view.likes.html');
+	var photosTpl = require('tmpl!templates/app/profile/view.photos.html');
 	var contactTpl = require('tmpl!templates/app/profile/view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile/view.places.html');
 	var wingTpl = require('tmpl!templates/app/profile/view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
+		
 
 	var ProfileView = Backbone.View.extend({
 
@@ -26,7 +29,34 @@ define(function(require) {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
 			"click button.send-invitation-btn": "sendInvitation",
-			//"click ul.nav-tabs li a": "tabHandler",
+			
+			"mouseenter #collapse-photos li" : function(e){
+				$(e.target).parent('li').find('.control').show();
+			},
+
+			"mouseleave #collapse-photos li" : function(e){
+				$(e.target).parent('li').find('.control').hide();
+			},
+
+			"click #collapse-photos .control .close" : function(e){
+				$(e.target).parents('li').slideUp();
+			},
+			"click #collapse-photos img" : "showCarrousel"
+		},
+
+		showCarrousel: function(e){
+			var imageId  = parseInt($(e.target).parent().data('slide-to'));
+			if(! this.carouselView){
+				this.carouselView = new CarouselView({
+					model: this.model,
+					id: imageId
+				});
+				$('body').append(this.carouselView.$el);
+
+			}else{
+				this.carouselView.options.id = imageId;
+				this.carouselView.show();
+			}
 		},
 
 		initialize: function(userId) {
@@ -36,7 +66,7 @@ define(function(require) {
 			});
 
 			this.model = new PreviewModel({
-				id: userId,
+				id: userId
 			});
 		},
 
@@ -64,18 +94,58 @@ define(function(require) {
 				this.selectTab(tab);
 		},
 
-		refreshProfile: function(myProfile){
+		refreshProfile: function(myProfile){			
+			//set images data
+			this.model.set('photos', [				
+				{
+					src: 'img/profilePhotosTest/1.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/2.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/3.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/4.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/5.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/6.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/7.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/8.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/9.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/10.jpg'
+				},
+				{
+					src: 'img/profilePhotosTest/11.jpg'
+				},
+			]);
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#photo-box").html(photosTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.map.render();
 			this.initMarkers();
+
+			//photos draggable
+			this.$("#photo-box ul" ).sortable();
 		},
 
 		refreshWings: function(myProfile){
@@ -115,6 +185,9 @@ define(function(require) {
 					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
 					break;
 				case "likes-box":
+					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "photos-box":
 					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
 					break;
 				case "contact-box":

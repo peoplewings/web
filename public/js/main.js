@@ -26,10 +26,13 @@ requirejs.config({
 		//"jquery.spinner": "lib/plugins/spin.plugin",
 		"async": "lib/plugins/async",
 		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
-		"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
+		"jquery.Datepicker": "lib/plugins/jquery-ui-1.10.2.custom.min",
+		//"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
 		"text": "lib/plugins/text",
 		"tmpl": "lib/plugins/tmpl",
-		"handlebars": "lib/handlebars"
+		"handlebars": "lib/handlebars",
+
+		//empty module, must not load anything
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
@@ -59,6 +62,8 @@ requirejs.config({
 		"jquery.Jcrop": ["jquery"],
 		"jquery.Datepicker": ["jquery"],
 		"jquery.Extensions": ["jquery.Validate"],
+
+		//"jquery.Datepicker": ["jquery.UI"]
 		/*
 		"jquery.spinner": {
 						deps: ['jquery', 'spinner'],

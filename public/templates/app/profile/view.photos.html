@@ -1,0 +1,37 @@
+<div class="box-standard">
+	<div class="box-header">
+		<h1 class="likes-icon">Photos</h1>
+		{{#if myProfile}}
+		<button id="edit-photos-btn" class="button2 edit-box-btn" >
+			<span class="edit-icon">Upload</span>
+		</button>
+		{{/if}}
+	</div><!-- EOF box-header -->
+
+	<div class="accordion">
+		<div class="accordion-group">
+			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<ul>
+					{{#each photos}}
+						<li data-slide-to="{{@index}}">
+							<img src="{{src}}">
+							<div class="control" hidden>
+								<button class="close">&times;</button>
+							</div>
+						</li>
+					{{/each}}
+					</ul>
+				</div>
+			</div>
+			<div class="gradient-box"></div>
+			<div class="accordion-heading" data-toggle="collapse" href="#collapse-photos">
+				<div class="see-more">
+					<span class="more-about">more about</span>
+					<p>See all content</p>
+					<span class="more-about">more about</span>
+				</div>
+			</div>
+		</div>
+	</div><!-- EOF accordion -->
+</div><!-- EOF box-standard -->

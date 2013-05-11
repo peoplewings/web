@@ -96,7 +96,7 @@ define(function(require){
 			"submit form#places-form": "submitProfile",
 
 			"click button.edit-box-btn" : "openForm",
-			"click button.cancel-edition-btn": "closeBox",
+			"click button.cancel-edition-btn": "closeBox"
 		},
 
 		initialize: function(model, parent) {
