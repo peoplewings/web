@@ -88,7 +88,6 @@ define(function(require){
 			"keypress [name=otherLocations]": function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-
 			"submit form#basic-info-form": "submitProfile",
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
@@ -101,6 +100,11 @@ define(function(require){
 		initialize: function(model, parent) {
 			this.model = model;
 			this.parentCtrl = parent;
+
+			this.$('#upload-photo').click(function() {
+				inputfile.trigger('click');
+
+			$('impput-file').on('change', this.uploadFile);
 		},
 
 		closeBox: function(evt){
@@ -149,7 +153,6 @@ define(function(require){
 			$(box).html(tpl);
 			if (initMethod)
 				initMethod();
-
 		},
 
 		editBasicBox: function(){
@@ -269,6 +272,46 @@ define(function(require){
 					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng());
 				}
 			};
+		},
+
+		uploadFile: function(event) {
+			var files = event.target.files;
+			//Maximum file size: 6Mb
+			if (files[0].size > 6291456){
+				alerts.error('Maximum file size allowed is 6 MB');
+				return;
+			}
+
+			if (!files.length)
+				return;
+
+			spinner.show('avatar');
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+		},
+
+		uploadComplete: function(url) {
+			var jobs = [{
+				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+				"src": url,
+
+				"functions": [{
+					"name": "resize_to_fit",
+					"params": {
+						"width": this.defaultMaxWidth,
+						"height": this.defaultMaxWidth
+					},
+					"save": {
+						"image_identifier": "external_sample_1"
+					}
+				}]
+			}];
+
+			blitline.submit(jobs, {
+				completed: this.resizeComplete
+				//submitted : function(jobIds, images) {
+				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
+				//}
+			});
 		},
 
 		submitProfile: function(e){
