@@ -94,7 +94,6 @@ define(function(require){
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
-
 			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
 		},

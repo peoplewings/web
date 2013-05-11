@@ -19,6 +19,8 @@ define(function(require) {
 	var placesTpl = require('tmpl!templates/app/profile/view.places.html');
 	var wingTpl = require('tmpl!templates/app/profile/view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
+	var foundation = require("foundation");
+	var foundationClearing = require("foundationClearing");
 		
 
 	var ProfileView = Backbone.View.extend({
@@ -31,35 +33,18 @@ define(function(require) {
 			"click button.send-invitation-btn": "sendInvitation",
 			
 			"mouseenter #collapse-photos li" : function(e){
-				$(e.target).parent('li').find('.control').show();
+				$(e.target).parents('li').find('.control').show();
 			},
 
 			"mouseleave #collapse-photos li" : function(e){
-				$(e.target).parent('li').find('.control').hide();
-			},
-
-			"click #collapse-photos .control .close" : function(e){
-				$(e.target).parents('li').slideUp();
-			},
-			"click #collapse-photos img" : "showCarrousel"
-		},
-
-		showCarrousel: function(e){
-			var imageId  = parseInt($(e.target).parent().data('slide-to'));
-			if(! this.carouselView){
-				this.carouselView = new CarouselView({
-					model: this.model,
-					id: imageId
-				});
-				$('body').append(this.carouselView.$el);
-
-			}else{
-				this.carouselView.options.id = imageId;
-				this.carouselView.show();
+				$(e.target).parents('li').find('.control').hide();
 			}
-		},
+		},		
 
 		initialize: function(userId) {
+			//binding
+			this.onCloseClick = this.onCloseClick.bind(this);
+
 			this.map = new MapView({
 				el: "#user-map",
 				id: "mapcanvas"
@@ -81,7 +66,7 @@ define(function(require) {
 			if (myProfile && !this.myProfile) {
 				this.myProfile = new MyProfile(this.model, this);
 				this.myWings = new MyWings(this);
-			}
+			}			
 		},
 
 		refresh: function(tab) {
@@ -92,6 +77,15 @@ define(function(require) {
 
 			if (tab)
 				this.selectTab(tab);
+
+			//initialize foundation for this view to use in photo slide
+			this.$("#photo-box").foundation();
+
+			//photos draggable
+			this.$("#photo-box ul").sortable();
+
+			//close image propagation
+			this.$('#collapse-photos .control').on('click', this.onCloseClick);
 		},
 
 		refreshProfile: function(myProfile){			
@@ -143,9 +137,6 @@ define(function(require) {
 
 			this.map.render();
 			this.initMarkers();
-
-			//photos draggable
-			this.$("#photo-box ul" ).sortable();
 		},
 
 		refreshWings: function(myProfile){
@@ -167,6 +158,12 @@ define(function(require) {
 				wing.transports = wing.metro || wing.tram || wing.train || wing.bus || wing.plane || wing.others;
 				$(box).html(wingTpl(wing));
 			});
+		},
+
+		onCloseClick: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$(e.target).parents('li').slideUp();
 		},
 
 		renderBox: function(box){

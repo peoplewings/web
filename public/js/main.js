@@ -39,6 +39,8 @@ requirejs.config({
 		"text": "lib/plugins/text",
 		"tmpl": "lib/plugins/tmpl",
 		"handlebars": "lib/handlebars",
+		"foundation": 'lib/plugins/foundation',
+		"foundationClearing": 'lib/plugins/foundation.clearing'
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
@@ -63,6 +65,13 @@ requirejs.config({
 		"jquery.Datepicker": ["jquery"],
 		"jquery.Validate": ["jquery"],
 		"jquery.Extensions": ["jquery.Validate"],
+		"foundation":{
+			"deps": ["jquery"],
+			"exports": "Foundation"
+		},
+		"foundationClearing":{
+			"deps": ["jquery", "foundation"]
+		}
 
 	} // end Shim Configuration
 });

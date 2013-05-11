@@ -10,7 +10,7 @@ define(function(require){
 		//id: select image
 		tagName: 'div',
 		initialize: function(options){
-			this.render();
+			//this.render();
 			this.activeImg();
 		},
 

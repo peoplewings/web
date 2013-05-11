@@ -13,10 +13,13 @@
 		<div class="accordion-group">
 			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<ul>
+					<ul class="clearing-thumbs" data-clearing>
 					{{#each photos}}
 						<li data-slide-to="{{@index}}">
-							<img src="{{src}}">
+							<a href="{{src}}">
+								<img src="{{src}}">
+							</a>
+
 							<div class="control" hidden>
 								<button class="close">&times;</button>
 							</div>
@@ -32,3 +35,15 @@
 		</div>
 	</div><!-- EOF accordion -->
 </div><!-- EOF box-standard -->
+
+<!--
+<ul class="clearing-thumbs" data-clearing>
+  <li>
+  	<a href="path/to/your/img">
+  	<img src="path/to/your/img-th">
+  	</a>
+  	</li>
+  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
+  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
+</ul>
+-->
