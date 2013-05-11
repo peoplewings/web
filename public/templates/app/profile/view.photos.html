@@ -1,10 +1,11 @@
 <div class="box-standard">
 	<div class="box-header">
-		<h1 class="likes-icon">Photos</h1>
+		<i class="icon-like">Like icon</i>
+		<h2>Photos</h2>
 		{{#if myProfile}}
-		<button id="edit-photos-btn" class="button2 edit-box-btn" >
-			<span class="edit-icon">Upload</span>
-		</button>
+		<a id="edit-about-btn" class="button-edit-info edit-box-btn">
+			<i class="icon-edit">Edit icon</i>Upload
+		</a>
 		{{/if}}
 	</div><!-- EOF box-header -->
 
@@ -26,11 +27,7 @@
 			</div>
 			<div class="gradient-box"></div>
 			<div class="accordion-heading" data-toggle="collapse" href="#collapse-photos">
-				<div class="see-more">
-					<span class="more-about">more about</span>
-					<p>See all content</p>
-					<span class="more-about">more about</span>
-				</div>
+				<span>See more</span>
 			</div>
 		</div>
 	</div><!-- EOF accordion -->
