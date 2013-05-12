@@ -15,10 +15,11 @@ input#header-search
 		top: 15px
 		left: 20px
 	width: 143px
-	background: url(../img/icon-search.png) no-repeat 9px 7px #FFF
 	padding: 3px 0
 	padding-left: 30px
 	font-size: 11px
+	background: $sprite #FFF
+	background-position: -558px -117px
 	@include transition(box-shadow, 0.5s)
 	&:hover, &:active, &:focus
 		outline: none
@@ -32,7 +33,8 @@ input#header-search
 .navbar
 	.brand
 		float: left
-		background: url(../img/peoplewings.png) no-repeat
+		background: $sprite
+		background-position: -1331px -224px
 		text-indent: -9999px
 		width: 237px
 		height: 60px
@@ -88,7 +90,8 @@ div.nav-menu
 				height: 14px
 				color: #FFF
 				font-weight: bold
-				background: url(../img/icon-messages-received.png) no-repeat 1px 0px
+				background: $sprite
+				background-position: -867px -167px
 				font-size: 10px
 				font-weight: normal
 				text-align: right
@@ -109,16 +112,12 @@ div.btn-group.pull-right
 	margin-top: 5px
 	a
 		display: block
-		padding: 15px 5px
-		margin-left: -5px
+		padding: 8px 0
+		overflow: hidden
+		margin-left: -3px
 		@include border-radius(0)
 		&:hover
 			background-color: #D0CEC7
-		span.config
-			display: block
-			height: 13px
-			width: 13px
-			background: url(../img/icon-config.png) no-repeat left top
 	ul.dropdown-menu
 		padding: 15px
 		@include border-radius(0)

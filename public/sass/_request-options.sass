@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
-	Request Options
-	-------------------------------------------------------------------------- */
+ * Request Options
+ * -------------------------------------------------------------------------- */
 
 div.request-options
 	margin-left: 0
@@ -13,19 +13,24 @@ div.request-options
 		padding-left: 45px
 	div.accepted h1
 		color: #85c333
-		background: url(../img/states/icon-accepted.png) 11px 8px no-repeat #f5f5f0
+		background: $sprite
+		background-position: 1px 1px
 	div.maybe h1
 		color: #fa9e03
-		background: url(../img/states/icon-maybe.png) 11px 8px no-repeat #f5f5f0
+		background: $sprite
+		background-position: 1px 1px
 	div.pending h1
 		color: #ee4040
-		background: url(../img/states/icon-pending.png) 11px 8px no-repeat #f5f5f0
+		background: $sprite
+		background-position: 1px 1px
 	div.denied h1
 		color: #7e7b71
-		background: url(../img/states/icon-declined.png) 11px 8px no-repeat #f5f5f0
+		background: $sprite
+		background-position: 1px 1px
 	div#wing-data
 		padding: 14px
 		background: #e1e0d9
+		overflow: hidden
 		h2
 			font-weight: bold
 			padding-left: 3px
@@ -45,18 +50,24 @@ div.request-options
 						right: 6px
 						bottom: 4px
 						left: 10px
-					&.input-sdate
-						width: 97px
-						background: url(../img/start-date.png) no-repeat 83px 6px #FFF
-					&.input-edate
-						width: 97px
-						background: url(../img/end-date.png) no-repeat 83px 6px #FFF
+				input.input-sdate
+					width: 90px
+					background: $sprite #FFF
+					background-position: 64px -160px
+
+				input.input-edate
+					width: 90px
+					background: $sprite #FFF
+					background-position: -39px -160px
+
 				span
 					margin: 0
+
 			div.control-group.flexible-dates
 				margin: 0
 				label.checkbox
 					display: inline-block
+					margin: 0
 					font-size: 12px
 					line-height: normal
 					width: 115px
@@ -76,3 +87,16 @@ div.request-options
 		padding-top: 10px
 		color: #000
 		min-height: auto
+
+#generic-modal
+	#wing-data
+		.help-block
+			label
+				display: inline !important
+				padding: 5px 15px !important
+
+	.help-block
+		label
+			display: block !important
+			padding: 0 !important
+			padding-left: 15px !important

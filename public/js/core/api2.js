@@ -4,9 +4,10 @@ define(function(require) {
 	var Promise = require('promise');
 	var alerts = require('views/lib/alerts');
 	var spinner = require('views/lib/spinner');
-	var server = 'http://peoplewings-be-development.herokuapp.com';
-	//var server = 'http://peoplewings-backend.herokuapp.com';
-	var apiVersion = '/api/v1';
+	var config = require("config");
+
+	var server = config.getValue('server');
+	var apiVersion = config.getValue('apiVersion');
 
 	function logout() {
 		alerts.error('Your session has expired');

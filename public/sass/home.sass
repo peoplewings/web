@@ -26,8 +26,8 @@ body
 @import _icons.sass
 @import _buttons.sass
 @import _form-elements.sass
-@import _request-options.sass
 @import _modals.sass
+@import _request-options.sass
 
 @import _register.sass
 @import _login.sass
@@ -65,22 +65,30 @@ body
 			border: none
 
 	.all
-		background: url(../img/icon_all_mini.png) no-repeat center top
+		background: $sprite
+		background-position: -530px -530px
 		&:hover
-			background: url(../img/icon_all_pre_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -430px -530px
 	.accommodation
-		background: url(../img/icon_accommodation_mini.png) no-repeat center top
+		background: $sprite
+		background-position: -530px -630px
 		&:hover
-			background: url(../img/icon_accommodation_pre_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -430px -630px
 			cursor: pointer
 	.transport
-		background: url(../img/icon_transport_mini.png) no-repeat center top
+		background: $sprite
+		background-position: -530px -730px
 		&:hover
-			background: url(../img/icon_transport_pre_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -430px -730px
 	.travel
-		background: url(../img/icon_trip_mini.png) no-repeat center top
+		background: $sprite
+		background-position: -530px -830px
 		&:hover
-			background: url(../img/icon_trip_pre_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -430px -830px
 
 	.all, .transport, .trip
 		&:hover
@@ -89,13 +97,17 @@ body
 	.active
 		a
 		.all
-			background: url(../img/icon_all_selected_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -530px -530px
 		.accommodation
-			background: url(../img/icon_accommodation_selected_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -330px -630px
 		.transport
-			background: url(../img/icon_transport_selected_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -530px -730px
 		.travel
-			background: url(../img/icon_trip_selected_mini.png) no-repeat center top
+			background: $sprite
+			background-position: -530px -830px
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover
 	border: none

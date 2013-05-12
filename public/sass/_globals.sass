@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------
- * _Globals
+ * Globals
  * --------------------------------------------------------------------------
 
 @import _variables.sass
@@ -26,10 +26,41 @@ li
 	list-style: none
 	float: left
 
-//input[type="text"],
-//input[type="password"],
-//input[type="email"],
-//input[type="submit"],
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input
+	&:hover, &:focus, &:active
+		outline: 0
+		border-color: #CCC
+		box-shadow: none
+		-webkit-box-shadow: none
+		-moz-webkit-box-shadow: none
+		-ms-webkit-box-shadow: none
+		-o-webkit-box-shadow: none
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select
+	@include transition(box-shadow, 0.5s)
+	&:hover, &:focus, &:active
+		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+
 input,
 select
 	font-size: 1em
@@ -38,10 +69,6 @@ select
 	border: 1px solid #CCC
 	@include appearance(none)
 	@include border-radius(5px)
-	@include transition(box-shadow, 0.5s)
-	&:hover, &:focus, &:active
-		outline: 0
-		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
 
 input[type="submit"]
 	text-transform: uppercase
@@ -135,35 +162,11 @@ button
 	position: absolute
 	z-index: -1
 
-.background-1
-	background: url(../img/bg_afternoon.png) no-repeat top center
-
-.background-2
-	background: url(../img/bg_happypeople.png) no-repeat top center
-
-.background-3
-	background: url(../img/bg_ironman.png) no-repeat top center
-
-.background-4
-	background: url(../img/bg_mountain.png) no-repeat top center
-	
-.background-5
-	background: url(../img/bg_lanterna.png) no-repeat top center
-
-.background-6
-	background: url(../img/bg_burncity.png) no-repeat top center
-
-.background-7
-	background: url(../img/bg_ocean.png) no-repeat top center
-
-.background-8
-	background: url(../img/bg_city.png) no-repeat top center
-
 .background-9
-	background: url(../img/bg_landing.jpg) no-repeat top center
+	background: url(../img/bg-landing.jpg) no-repeat top center
 
 .background-10
-	background: url(../img/bg_city.jpg) no-repeat top center
+	background: url(../img/bg-city.jpg) no-repeat top center
 
 
 /* Alerts and Errors
@@ -219,19 +222,22 @@ div#alerts-container
 	.alert-error
 		border: 1px solid #E30417
 		color: #E30417
-		background: url(../img/alert-red.jpg) no-repeat left #FFF
+		background: $sprite #FFF
+		background-position: -1560px -683px
 		.close
 			color: #E30417
 	.alert-warning
 		border: 1px solid #fc8200
 		color: #fc8200
-		background: url(../img/alert-orange.jpg) no-repeat left #FFF
+		background: $sprite #FFF
+		background-position: -1560px -609px
 		.close
 			color: #fc8200
 	.alert-success
 		border: 1px solid #6daf19
 		color: #6daf19
-		background: url(../img/alert-green.jpg) no-repeat left #FFF
+		background: $sprite #FFF
+		background-position: -1560px -535px
 		.close
 			color: #6daf19
 

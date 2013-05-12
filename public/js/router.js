@@ -5,9 +5,9 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
+
 	var homeView = require("views/home/main");
 	var appHomeView = require("views/app/home");
-
 	var registerView = require("views/home/register");
 	var loginView = require("views/home/login");
 	var helpCenter = require("views/home/help");

@@ -7,7 +7,7 @@
   name: "build/almond",
 
   // Uses uglify.js for minification
-  optimize: "none",
+  optimize: "uglify",
 
   include: ["main"],
   out: "out.js"

@@ -8,8 +8,7 @@ define(function(require) {
 
 	var HomeView = Backbone.View.extend({
 		initialize: function(){
-			if (api.userIsLoggedIn())
-				this.eventBinds();
+			this.eventBinds();
 		},
 		eventBinds: function(){
 			$("#feedback-btn-submit").live("click", this.showFeedback.bind(this));
