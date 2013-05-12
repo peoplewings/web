@@ -1,8 +1,6 @@
-@import _buttons.sass
-
 /* --------------------------------------------------------------------------
  * Delete Account
- * -------------------------------------------------------------------------- */
+ * --------------------------------------------------------------------------
 
 form#delete-account-form
 
@@ -33,7 +31,7 @@ form#delete-account-form
 			text-indent: -9999px
 			height: 16px
 			width: 15px
-			background: url(../img/icon-direction.png) no-repeat
+			background: $sprite
 			position: relative
 			bottom: 16px
 			left: 50px
@@ -78,7 +76,9 @@ form#delete-account-form
 				margin-top: 15px
 				margin-right: 15px
 				div.controls
-					button
+					a
+						float: left
+					button, a
 						border-bottom: none
 						&:last-child
 							border-left: none

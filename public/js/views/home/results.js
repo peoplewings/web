@@ -15,8 +15,8 @@ define(function(require) {
 			"click button.send-message-btn": "sendMessage",
 			"click button.send-request-btn": "sendRequest",
 			"click button.send-invitation-btn": "sendInvitation",
-			"click a.nextPage": "nextPage",
-			"click a.previousPage": "previousPage"
+			"click .pager-content a.button-pager-next": "nextPage",
+			"click .pager-content a.button-pager-previous": "previousPage"
 		},
 
 		reset: function(options) {
@@ -111,9 +111,9 @@ define(function(require) {
 			var changed = heading.html().replace(re, replaceText);
 			heading.html(changed);
 			if (targetText === 'more')
-				$(heading).css('background-image', 'url(../img/see_more_up.png)');
+				$(heading).css('background-position', '-858px -16px');
 			else
-				$(heading).css('background-image', 'url(../img/see_more.png)');
+				$(heading).css('background-position', '-658px -16px');
 		}
 	});
 	return resultsView;

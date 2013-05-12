@@ -23,7 +23,8 @@ select
 	padding: 0
 	padding-left: 10px
 	margin-left: 0
-	background: url(../img/mini-arrow.png) no-repeat 125px 13px #FFF
+	background: $sprite #FFF
+	background-position: -345px -11px
 	@include border-radius(3px)
 
 
@@ -87,83 +88,6 @@ button.close
 	&:hover
 		@include opacity(1)
 
-.size-small
-	width: 57px !important
-	background-position: 40px
-
-.size-medium
-	width: 90px !important
-	background-position: 70px
-
-.size-large
-	width: 150px !important
-	background-position: 130px
-
-.size-extralarge
-	width: 227px !important
-
-.size-large.lock-info
-	width: 121px !important
-	background-position: 101px
-
-.size-box-standard
-	width: 310px !important
-
-.size-13
-	width: 115px !important
-	background-position: 100px
-
-.size-23
-	width: 160px !important
-	background-position: 100px
-
-.size-33
-	width: 310px !important
-
-
-/* --------------------------------------------------------------------------
- * Icons
- * --------------------------------------------------------------------------
-
-.about-icon
-	background: url(../img/about-icon.png) no-repeat 27px 14px
-
-.likes-icon
-	background: url(../img/like-icon.png) no-repeat 27px 14px
-
-.contact-icon
-	background: url(../img/contact-icon.png) no-repeat 20px center
-
-.edit-icon
-	background: url(../img/edit-icon.png) no-repeat 18px center
-
-.add-friend-icon
-	background: url(../img/add-friend.png) no-repeat 18px center
-
-.house-icon
-	background: url(../img/house-icon.png) no-repeat 22px center
-
-.places-icon
-	background: url(../img/places-icon.png) no-repeat 23px 11px
-
-.places-hometown-icon
-	background: url(../img/places-hometown-marker.png) no-repeat 12px center
-
-.places-current-icon
-	background: url(../img/places-current-marker.png) no-repeat 12px center
-
-.places-lived-icon
-	background: url(../img/places-marker.png) no-repeat 12px center
-
-.places-hometown-icon-mini
-	background: url(../img/places-hometown-minimarker.png) no-repeat 12px center
-
-.places-current-icon-mini
-	background: url(../img/places-current-minimarker.png) no-repeat 12px center
-
-.places-lived-icon-mini
-	background: url(../img/places-lived-minimarker.png) no-repeat 12px center
-
 
 /* --------------------------------------------------------------------------
  * Structure
@@ -182,7 +106,7 @@ button.close
 	.landscape
 		min-height: 270px
 		padding: 27px
-		background: url(../img/landscape_photo.jpg) no-repeat
+		background: url(../img/landscape-photo.jpg) no-repeat
 		position: relative
 		margin-bottom: 8px
 
@@ -213,6 +137,7 @@ button.close
 					text-shadow: 1px 1px #000
 					@include border-radius(6px)
 					color: #FFF
+					width: auto
 					&:hover, &:active
 						background: #f5f5f0
 						color: $gray-link
@@ -264,13 +189,13 @@ button.close
 				&:active
 					@include bg-gradient(#FFEB00 , #FBFAC5)
 
-			.button-bar ul > li
-				float: left
+			.button-bar 
+				border-top: 1px solid #d2d2d2
+				ul > li
+					float: left
 
 			.content-top
 				padding: 20px
-				border-bottom: 1px solid #d2d2d2
-				padding-bottom: 10px
 
 				h1.name
 					font:
@@ -362,28 +287,20 @@ button.close
 					text-transform: capitalize
 
 				form
+					input
+						height: 30px
+						width: 150px
+						font-size: 12px
 					select
 						padding: 0
 						padding-left: 10px
 						margin: 0
 						margin-top: 3px
-						background: url(../img/mini-arrow.png) no-repeat #FFF
-					.size-small
-						width: 57px
-						background-position: 40px
-					.size-medium
-						width: 90px
-						background-position: 70px
-					.size-large
-						width: 150px
+						background: $sprite #FFF
 						background-position: 130px
 					.size-large.lock-info
 						width: 121px
 						background-position: 101px
-					input
-						height: 30px
-						width: 150px
-						font-size: 12px
 
 			div.edit-click
 				background: #FFF
@@ -431,20 +348,28 @@ button.close
 
 				.box-header
 					border-bottom: 1px solid #d0cec7
-					min-height: 42px
-					h1
+					min-height: 44px
+					& > i
+						margin: 9px
+						margin-left: 19px
+					h2
 						float: left
 						font:
 							size: 14px
 							weight: bold
-						text-shadow: 1px 1px white
-						padding: 12px 10px 10px 50px
-						overflow: hidden
-						text-overflow: ellipsis
-						white-space: nowrap
-					div.btn-group.pull-right
-						margin-top: 10px
-						margin-right: 9px
+						padding: 12px 0
+						text-shadow: 1px 1px #FFF
+					.button-edit-info
+						float: right
+						line-height: 24px
+						border:
+							top: none
+							right: none
+							bottom: none
+
+					.btn-group.pull-right
+						margin-top: 11px
+						margin-right: 12px
 
 				.box-content
 					overflow: hidden
@@ -476,29 +401,36 @@ button.close
 
 				.accordion-heading
 					background: #FFF
-					border-top: 1px solid #e5e5e5
+					border-top: 1px solid #D0CEC7
 					overflow: hidden
 					cursor: pointer
+					span
+						background: $sprite
+						background-position: -658px -8px
+						text-transform: uppercase
+						font-weight: bold
+						font-size: 13px
+						text-align: center
+						padding: 9px 34px
+						display: block
+						width: 74px
+						margin: 0 auto
+						display: block
 
-					.see-more
-						float: left
-						margin: 0.7em
-						margin-left: 88px
-
-						p, span
-							float: left
-							padding: 0
-
-						span.more-about
-							background: url(../img/arrow_about.png) no-repeat 15px center
-							text-indent: -9999px
-
-						p
-							font-size: 12px
-							text-align: center
-							text-transform: uppercase
-							margin: 0
-							border-bottom: 0
+				.button-group
+					float: right
+					overflow: hidden
+					button
+						min-width: 90px
+						border:
+							top: none
+							bottom: none
+						&:last-child
+							margin-left: -4px
+						&:last-child
+							border:
+								left: none
+								right: none
 
 			/* EOF box-standard */
 
@@ -536,13 +468,15 @@ button.close
 
 			.maps-legend
 				overflow: hidden
-				padding-left: 10px
 				border-top: 1px solid #D0CEC7
 				li
 					display: inline
-					margin-right: 10px
 					font-size: 12px
-					padding: 10px 0 10px 35px
+					padding: 10px
+					padding-left: 20px
+					line-height: 24px
+					span
+						margin-left: 5px
 
 			/* EOF box-standard.maps */
 
@@ -648,7 +582,6 @@ button.close
 	input, select
 		margin: 0
 	.control-group
-		overflow: hidden
 		margin-bottom: 18px
 		.control-label
 			padding: 0 0 0 1px
@@ -656,10 +589,12 @@ button.close
 		.controls
 			.input-sdate
 				width: 90px
-				background: url(../img/start-date.png) no-repeat 75px center #FFF
+				background: $sprite
+				background-position: 75px center
 			.input-edate
 				width: 90px
-				background: url(../img/end-date.png) no-repeat 75px center #FFF
+				background: $sprite
+				background-position: 75px center
 			.checkbox
 				float: left
 				margin: 0 10px 0 0
@@ -741,15 +676,16 @@ h1.guest-message
 
 .info
 	.button-basic-info
-		border:
-			top: none
-			right: none
-			left: none
+		width: 150px
+		padding: 10px 20px
+		border-left: 0
+		border-top: 0
+		line-height: 27px
+		text-align: left
 		i
-			margin-top: 3px
-			margin-right: 10px
-			margin-left: 23px
-
+			margin: 0 10px
+		.icon-add-wings
+			margin: 0 10px 0 20px
 
 /* OVER Bootstrap */
 
