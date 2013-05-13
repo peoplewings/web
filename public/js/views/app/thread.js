@@ -95,6 +95,7 @@ define(function(require) {
 
 		refresh: function(prevThread, nextThread, data) {
 			var isMessage = data.kind === 'message';
+			var isRequest = data.kind === 'request';
 			var me = api.getUserId();
 			var avatar = new UserAccount({ id: api.getUserId() }).get('avatar');
 
@@ -104,6 +105,7 @@ define(function(require) {
 					fromMe: item.senderId === me,
 					reference: data.reference,
 					isMessage: isMessage,
+					isRequest: isRequest,
 
 					id: null,
 					read: null,

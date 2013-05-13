@@ -147,14 +147,17 @@ li.notification-item
 		h1.messages-name
 			color: #000
 			font-weight: bold
+			text-transform: capitalize
 			&.accepted
 				color: #85c333
-			&.maybe
+			&.blah
 				color: #fa9e03
 			&.pending
 				color: #ee4040
 			&.declined
 				color: #7e7b71
+		h1.messages-name.accepted:after
+			content: "!"
 		h2
 			text-transform: capitalize
 			font-weight: bold
