@@ -26,11 +26,6 @@ update.alpha:
 	git checkout public/index.html
 	git pull origin alpha
 
-update.beta:
-	git co beta
-	git checkout public/index.html
-	git pull origin beta
-
 update: update.repo build
 
 #Alpha staging and production deploys
@@ -46,13 +41,13 @@ alpha: prepare.alpha
 	git push -f alpha alpha:master
 
 #Beta staging and production deploys
-prepare.beta: update.beta build add.build 
+prepare.beta: update.repo build add.build 
 
 deploy.test.beta:
-	git push -f test-beta beta:master
+	git push -f test-beta master
 
 test.beta: prepare.beta
-	git push -f test-beta beta:master
+	git push -f test-beta master
 
 beta: prepare.beta
-	git push -f beta beta:master
+	git push -f beta master
