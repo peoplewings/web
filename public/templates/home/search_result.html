@@ -32,7 +32,7 @@
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
 					<span class="dot {{#if live}}online{{/if}}">online dot</span>
-					<span class="span-online">online</span>
+					{{#if live}}<span class="span-online">online</span>{{/if}}
 					<a href="#/profiles/{{id}}/about">
 						<img src="{{ avatar }}" alt="avatar">
 					</a>
