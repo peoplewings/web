@@ -1,1 +1,2931 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after{content:"";content:none}q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}*{margin:0}html,body{height:100%}body,input,select{font-family:Helvetica,Arial,Sans-Serif;color:#000;background:#fff}a{text-decoration:none;color:#848178}a:hover{color:#ff0}li{list-style:none;float:left}textarea:hover,textarea:focus,textarea:active,input[type="text"]:hover,input[type="text"]:focus,input[type="text"]:active,input[type="password"]:hover,input[type="password"]:focus,input[type="password"]:active,input[type="datetime"]:hover,input[type="datetime"]:focus,input[type="datetime"]:active,input[type="datetime-local"]:hover,input[type="datetime-local"]:focus,input[type="datetime-local"]:active,input[type="date"]:hover,input[type="date"]:focus,input[type="date"]:active,input[type="month"]:hover,input[type="month"]:focus,input[type="month"]:active,input[type="time"]:hover,input[type="time"]:focus,input[type="time"]:active,input[type="week"]:hover,input[type="week"]:focus,input[type="week"]:active,input[type="number"]:hover,input[type="number"]:focus,input[type="number"]:active,input[type="email"]:hover,input[type="email"]:focus,input[type="email"]:active,input[type="url"]:hover,input[type="url"]:focus,input[type="url"]:active,input[type="search"]:hover,input[type="search"]:focus,input[type="search"]:active,input[type="tel"]:hover,input[type="tel"]:focus,input[type="tel"]:active,input[type="color"]:hover,input[type="color"]:focus,input[type="color"]:active,.uneditable-input:hover,.uneditable-input:focus,.uneditable-input:active{outline:0;border-color:#ccc;box-shadow:none;-webkit-box-shadow:none;-moz-webkit-box-shadow:none;-ms-webkit-box-shadow:none;-o-webkit-box-shadow:none}textarea,input[type="text"],input[type="password"],input[type="number"],input[type="email"],select{transition:box-shadow 0.5s;-moz-transition:box-shadow 0.5s;-webkit-transition:box-shadow 0.5s;-o-transition:box-shadow 0.5s}textarea:hover,textarea:focus,textarea:active,input[type="text"]:hover,input[type="text"]:focus,input[type="text"]:active,input[type="password"]:hover,input[type="password"]:focus,input[type="password"]:active,input[type="number"]:hover,input[type="number"]:focus,input[type="number"]:active,input[type="email"]:hover,input[type="email"]:focus,input[type="email"]:active,select:hover,select:focus,select:active{box-shadow:0 0 8px 3px #ff0;-moz-box-shadow:0 0 3px 8px #ff0;-webkit-box-shadow:0 0 8px 3px #ff0}input,select{font-size:1em;padding:0.7em;margin:0.5em;border:1px solid #ccc;-webkit-appearance:none;-moz-appearance:none;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px}input[type="submit"]{text-transform:uppercase}input[type="checkbox"]{-webkit-appearance:checkbox;-moz-appearance:checkbox}input[type="radio"]{-webkit-appearance:radio;-moz-appearance:radio}button{display:block;padding:11px 14px;font-size:11px;font-style:italic;color:gray;text-decoration:none;text-transform:uppercase;border:none;border-left:1px solid #cecdce;border-right:1px solid #fff;background:none}button:hover{color:#000;background:#fff}button:active{background:#ffeb00;background:-moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));background:-webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%)}.wrapper{min-height:100%;height:auto !important;height:100%;margin:0 auto -56px}.push{height:75px}.navbar-fixed-top .navbar-inner,.navbar-static-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none}.navbar-inner{max-width:960px;margin:0 auto;padding:0;background:none;border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none}#mini-spinner{float:left;display:block;height:30px;width:30px;margin-top:14px;margin-left:14px}#mini-spinner span{font-size:11px;font-style:italic;text-transform:uppercase;position:relative;top:4px;left:35px}.icon,.icon-pager,.icon-pager-previous,.icon-pager-next,.icon-config,.icon-edit,.icon-about,.icon-like,.icon-contact,.icon-add-friend,.icon-house,.icon-places,.icon-places-hometown-mini,.icon-places-current-mini,.icon-places-lived-mini,.icon-add-wings,.icon-search,.icon-back,.icon-lock,.icon-lock-open,.icon-public-state,.icon-like-up,.icon-like-down{float:left;width:65px;height:78px;text-indent:-9999px}.background-roller{width:100%;height:637px;position:absolute;z-index:-1}.background-9{background:url(../img/bg-landing.jpg) no-repeat top center}.background-10{background:url(../img/bg-city.jpg) no-repeat top center}.error{background:#d34836;color:#fff;font-size:11px;padding:0px;padding-left:15px;margin-top:5px}.form-errors{min-height:20px}.form-errors label{margin:0}.date-error{margin-bottom:5px;margin-left:322px;max-width:218px}.age-error{float:left;margin-top:1px;margin-left:89px;width:136px}div#alerts-container{position:fixed;z-index:10000000;top:45px}div#alerts-container .alert{overflow:hidden;min-width:250px;max-width:630px;margin-left:570px;padding-left:35px;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px}div#alerts-container .alert .close{float:right;line-height:20px;font-size:16px}div#alerts-container .alert p{float:left;text-align:left;background:#fff;font-size:11px;font-style:italic}div#alerts-container .alert-error{border:1px solid #e30417;color:#e30417;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-1560px -683px}div#alerts-container .alert-error .close{color:#e30417}div#alerts-container .alert-warning{border:1px solid #fc8200;color:#fc8200;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-1560px -609px}div#alerts-container .alert-warning .close{color:#fc8200}div#alerts-container .alert-success{border:1px solid #6daf19;color:#6daf19;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-1560px -535px}div#alerts-container .alert-success .close{color:#6daf19}.accordion{margin:0}.accordion .accordion-group{border-radius:0px;-webkit-border-radius:0px;-moz-border-radius:0px;border:none}.accordion .accordion-group .accordion-inner{border:none;padding:0}@media (max-width: 665px){ul.nav.pull-right,.btn-group.pull-right{display:none}}@media (max-width: 767px){[class*="span"],.row-fluid [class*="span"]{float:left;width:700px}}@media (max-width: 979px){.navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{padding:0}.navbar-fixed-top,.navbar-fixed-bottom{position:fixed}.input-large{min-height:20px;box-sizing:inherit;-webkit-box-sizing:inherit;-moz-box-sizing:inherit}}@media (max-width: 1200px){.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container{width:1170px}}body{background:#f5f5f0}.span8{width:700px}#feedback-btn{margin-bottom:80px;z-index:10000}header{min-height:53px}input#header-search{float:left;margin-top:20px;border:1px solid #d0cec7;border-radius:13px;-webkit-border-radius:13px;-moz-border-radius:13px;margin-top:15px;margin-left:20px;width:175px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-558px -117px;padding-top:2px;padding-left:30px;font-size:12px;line-height:21px;transition:box-shadow 0.5s;-moz-transition:box-shadow 0.5s;-webkit-transition:box-shadow 0.5s;-o-transition:box-shadow 0.5s}input#header-search:hover,input#header-search:active,input#header-search:focus{outline:none;box-shadow:0 0 8px 3px #ff0;-moz-box-shadow:0 0 3px 8px #ff0;-webkit-box-shadow:0 0 8px 3px #ff0}.navbar.nav.navbar-fixed-top{background:#edede6;box-shadow:0px 1px 4px 0px rgba(0,0,0,0.4);-moz-box-shadow:0px 1px 0px 4px rgba(0,0,0,0.4);-webkit-box-shadow:0px 1px 4px 0px rgba(0,0,0,0.4);height:53px}.navbar .brand{float:left;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1331px -224px;text-indent:-9999px;width:237px;height:60px;margin-top:17px;padding:0;margin-left:0}.navbar .nav{float:right;font-size:11px;margin-right:10px;margin-top:23px;line-height:12px}.navbar .nav li{float:left;line-height:inherit}.navbar .nav li:after{content:"|";margin-left:4px;margin-right:4px;color:#848178}.navbar .nav li:last-child:after{content:""}.navbar .nav li a{display:inline;font-size:inherit;font-family:Helvetica,Arial,Sans-Serif;text-shadow:none;padding:0;color:#848178;text-transform:uppercase}.navbar .nav li a:hover{color:#18183f;text-decoration:underline}div.nav-menu ul.nav.pull-right{text-transform:uppercase;margin-top:5px;margin-right:0}div.nav-menu ul.nav.pull-right li{padding:0}div.nav-menu ul.nav.pull-right li a{display:inline-block;padding:15px 6px}div.nav-menu ul.nav.pull-right li a:hover{background:#d0cec7;text-decoration:none}div.nav-menu ul.nav.pull-right li span#notif-count{float:left;padding-right:10px;display:block;width:14px;height:14px;color:#fff;font-weight:bold;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-867px -167px;font-size:10px;font-weight:normal;text-align:right}div.nav-menu ul.nav.pull-right li img{float:right;width:35px;height:35px;margin:-13px 0 0 10px;border:2px solid #fff}div.nav-menu ul.nav.pull-right li.logged{padding:0}div.nav-menu ul.nav.pull-right li.logged:after{margin-right:0px}div.nav-menu ul.nav.pull-right li.logged a{padding:15px 2px 2px 6px}div.btn-group.pull-right{margin-top:16px}div.btn-group.pull-right a{display:block;overflow:hidden;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0}div.btn-group.pull-right a:hover{background-color:#d0cec7}div.btn-group.pull-right ul.dropdown-menu{padding:15px;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;box-shadow:1px 1px 2px #ccc;-moz-box-shadow:1px 1px #ccc 2px;-webkit-box-shadow:1px 1px 2px #ccc}div.btn-group.pull-right ul.dropdown-menu li{float:none}div.btn-group.pull-right ul.dropdown-menu li a{font-size:12px;color:#999}div.btn-group.pull-right ul.dropdown-menu li a:hover,div.btn-group.pull-right ul.dropdown-menu li a:focus{background:#ff0;background:-moz-linear-gradient(top, #ff0 0%, #ffea00 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff0), color-stop(100%, #ffea00));background:-webkit-linear-gradient(top, #ff0 0%, #ffea00 100%);background:-o-linear-gradient(top, #ff0 0%, #ffea00 100%);background:-ms-linear-gradient(top, #ff0 0%, #ffea00 100%);background:linear-gradient(to bottom, #ff0 0%, #ffea00 100%)}.icon,.icon-pager,.icon-pager-previous,.icon-pager-next,.icon-config,.icon-edit,.icon-about,.icon-like,.icon-contact,.icon-add-friend,.icon-house,.icon-places,.icon-places-hometown-mini,.icon-places-current-mini,.icon-places-lived-mini,.icon-add-wings,.icon-search,.icon-back,.icon-lock,.icon-lock-open,.icon-public-state,.icon-like-up,.icon-like-down{display:block;width:25px;height:25px;text-indent:-9999px;background:url(../img/peoplewings-sprite.png) no-repeat;margin:0}.icon-pager-previous{background-position:-12px -14px}.icon-pager-next{background-position:-61px -14px}.icon-config{background-position:-761px -162px;margin-top:0}.icon-edit{background-position:-461px -162px}.icon-about{background-position:-312px -162px}.icon-like{background-position:-562px -161px}.icon-contact{background-position:-511px -161px}.icon-add-friend{background-position:-10px -10px}.icon-house{background-position:-410px -162px}.icon-places{background-position:-612px -161px}.icon-places-hometown-mini{background-position:-62px -362px}.icon-places-current-mini{background-position:-162px -362px}.icon-places-lived-mini{background-position:-262px -362px}.icon-add-wings{width:30px;background-position:-913px -159px}.icon-search{background-position:-560px -118px}.icon-back{background-position:-567px -19px;width:15px;height:12px}.icon-lock,.icon-lock-open{background-position:-669px -168px;width:9px;height:12px}.icon-lock-open{background-position:-719px -167px;height:14px}.icon-public-state{background-position:-163px -162px}.icon-like-up{background-position:-213px -162px}.icon-like-down{background-position:-262px -162px}button{font-family:inherit}.button,.button-highlight,.button-pager-previous,.button-pager-next,.button-close,.button-peoplewings,.button-basic-info,.button-edit-info,.button-back,.button-delete{display:inline-block;*display:inline;*zoom:1;padding:15px 25px;margin:0;font-size:11px;font-style:italic;color:#000;line-height:normal;text-shadow:1px 1px 1px #fff;text-transform:uppercase;text-align:center;border:1px solid #d0cec7;cursor:pointer;-webkit-appearance:none;background:#fff;background:-moz-linear-gradient(top, #fff 0%, #ecece5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ecece5));background:-webkit-linear-gradient(top, #fff 0%, #ecece5 100%);background:-o-linear-gradient(top, #fff 0%, #ecece5 100%);background:-ms-linear-gradient(top, #fff 0%, #ecece5 100%);background:linear-gradient(to bottom, #fff 0%, #ecece5 100%)}.button:hover,.button-highlight:hover,.button-pager-previous:hover,.button-pager-next:hover,.button-close:hover,.button-peoplewings:hover,.button-basic-info:hover,.button-edit-info:hover,.button-back:hover,.button-delete:hover,.button:active,.button-highlight:active,.button-pager-previous:active,.button-pager-next:active,.button-close:active,.button-peoplewings:active,.button-basic-info:active,.button-edit-info:active,.button-back:active,.button-delete:active,.button:focus,.button-highlight:focus,.button-pager-previous:focus,.button-pager-next:focus,.button-close:focus,.button-peoplewings:focus,.button-basic-info:focus,.button-edit-info:focus,.button-back:focus,.button-delete:focus{background:#fff;color:#000}.button:active,.button-highlight:active,.button-pager-previous:active,.button-pager-next:active,.button-close:active,.button-peoplewings:active,.button-basic-info:active,.button-edit-info:active,.button-back:active,.button-delete:active{background:#ffeb00;background:-moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));background:-webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%)}.button-highlight{background:#ff0;background:-moz-linear-gradient(top, #ff0 0%, #ffeb00 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff0), color-stop(100%, #ffeb00));background:-webkit-linear-gradient(top, #ff0 0%, #ffeb00 100%);background:-o-linear-gradient(top, #ff0 0%, #ffeb00 100%);background:-ms-linear-gradient(top, #ff0 0%, #ffeb00 100%);background:linear-gradient(to bottom, #ff0 0%, #ffeb00 100%)}.button-pager-previous{padding:0;text-indent:-9999px}.button-pager-next{padding:0;text-indent:-9999px}.button-close{float:right;border:none;margin:0;padding:0;background:transparent;line-height:15px;font-size:20px;font-style:normal;font-weight:bold;color:#000;text-shadow:0 1px 0 #fff;cursor:pointer;opacity:0.2;filter:alpha(opacity=20)}.button-close:hover{opacity:1;filter:alpha(opacity=100);background:none}.button-peoplewings{padding:3px 15px;background:#18183f;color:#ff0;font-family:"Exo",Tahoma,Sans-Serif;font-size:16px;font-weight:bold;text-shadow:none;border:2px solid #ff0;border-radius:18px;-webkit-border-radius:18px;-moz-border-radius:18px;transition:box-shadow 0.5s;-moz-transition:box-shadow 0.5s;-webkit-transition:box-shadow 0.5s;-o-transition:box-shadow 0.5s}.button-peoplewings:hover,.button-peoplewings:focus,.button-peoplewings:active{color:#ff0;background:#18183f;outline:0;box-shadow:0 0 8px 3px #ff0;-moz-box-shadow:0 0 3px 8px #ff0;-webkit-box-shadow:0 0 8px 3px #ff0}.button-basic-info{width:auto;padding:14px;color:#848178;background:#f5f5f0;background:-moz-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f0), color-stop(100%, #e1e0d9));background:-webkit-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);background:-o-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);background:-ms-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);background:linear-gradient(to bottom, #f5f5f0 0%, #e1e0d9 100%)}.button-edit-info{color:#848178;line-height:24px;padding:9px 28px 10px 20px}.button-back{padding:2px 12px;height:20px}.button-delete{padding:5px 15px;color:#999;text-shadow:1px 1px #fff}select{-webkit-appearance:none;-moz-appearance:none;background:url(../img/peoplewings-sprite.png) no-repeat #fff}.size,.size-medium,.size-small,.size-large,.size-extralarge{line-height:15px}.size-medium{width:90px;background-position:-403px -12px !important}.size-small{width:57px;background-position:-436px -12px !important}.size-large{width:150px;background-position:-343px -12px !important}.size-extralarge{width:210px !important;background-position:-286px -12px}.size-large.lock-info{width:121px !important;background-position:101px}.size-box-standard{width:310px !important}.size-13{width:115px !important;background-position:100px}.size-23{width:160px !important;background-position:100px}.size-33{width:310px !important}.modal-backdrop.fade.in{opacity:0.1;filter:alpha(opacity=10)}.modal.fade.in{top:270px}@media (max-width: 767px){.modal.fade.in{top:auto}}div.generic-modal{display:block;font-size:12px;color:#999;background:#e1e0d9;border:1px solid #d3d1ca;width:790px;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;box-shadow:5px 4px 10px 0px #ccc;-moz-box-shadow:5px 4px 0px 10px #ccc;-webkit-box-shadow:5px 4px 10px 0px #ccc}div.generic-modal:focus{outline:none}div.generic-modal div,div.generic-modal h1,div.generic-modal form,div.generic-modal label,div.generic-modal input{line-height:inherit}div.generic-modal div.modal-header{background:#e1e0d9;border:none;padding:18px 30px;border-bottom:1px solid #d3d1ca;border-radius:15px 15px 0 0;-webkit-border-radius:15px 15px 0 0;-moz-border-radius:15px 15px 0 0}div.generic-modal div.modal-header h1{display:inline-block;font-size:14px;font-weight:bold;text-shadow:1px 1px 1px #fff;color:#000}div.generic-modal div.modal-body{padding:15px 25px;background:#fff;max-height:100%}div.generic-modal div.modal-body div.control-group{margin-bottom:15px}div.generic-modal div.modal-body div.control-group:last-child{margin-bottom:0}div.generic-modal div.modal-body div.control-group label.control-label{float:left;width:60px;font-weight:bold;text-align:right;margin:8px -5px}div.generic-modal div.modal-body div.control-group div.controls{margin-left:70px}div.generic-modal div.modal-body div.control-group div.controls input[type="text"]{width:640px;padding:7px 14px;margin:0;color:#000;font-size:inherit;font-weight:bold;background:#fff;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;box-shadow:1px 1px 1px #eee inset;-moz-box-shadow:1px 1px #eee 1px inset;-webkit-box-shadow:1px 1px 1px #eee inset}div.generic-modal div.modal-body div.control-group div.controls textarea{display:inline-block;height:80px;width:640px;max-width:640px;padding:13px;padding-left:15px;margin:0;color:#000;font-family:inherit;font-size:inherit;background-color:#fff;border:1px solid #ccc;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0;box-shadow:1px 1px 1px #eee inset;-moz-box-shadow:1px 1px #eee 1px inset;-webkit-box-shadow:1px 1px 1px #eee inset}div.generic-modal div.modal-body div.control-group div.controls label{margin:5px}div.generic-modal div.modal-body div.control-group div.controls label input{margin-top:-3px;margin-right:10px}div.generic-modal div.modal-body div.control-group div.controls .help-block label{float:none}div.generic-modal div.modal-body div.control-group div.controls label[for="public-request"]{display:block;color:#000;padding-left:45px}div.generic-modal div.modal-body div.control-group div.controls label[for="public-request"] input{margin-top:3px}div.generic-modal div.modal-body div.control-group div.controls h3{color:#000;font-weight:bold;margin:8px 0}div.generic-modal div.modal-body div.control-group div.controls select{margin:0}div.generic-modal div.modal-body div.control-group div.controls.radios{min-height:25px}div.generic-modal div.modal-body div.control-group div.controls.radios label{float:left}div.generic-modal div.modal-body div.control-group div.controls.radios i{margin:2px 0}div.generic-modal div.modal-body div.control-group.avatar-message label.control-label{margin-top:0}div.generic-modal div.modal-footer{padding:0;overflow:hidden;background:#fff;border:none;border-radius:0 0 15px 15px;-webkit-border-radius:0 0 15px 15px;-moz-border-radius:0 0 15px 15px}div.generic-modal div.modal-footer button{border-bottom:none}div.generic-modal div.modal-footer button.button:last-child,div.generic-modal div.modal-footer button.button-highlight:last-child,div.generic-modal div.modal-footer button.button-pager-previous:last-child,div.generic-modal div.modal-footer button.button-pager-next:last-child,div.generic-modal div.modal-footer button.button-close:last-child,div.generic-modal div.modal-footer button.button-peoplewings:last-child,div.generic-modal div.modal-footer button.button-basic-info:last-child,div.generic-modal div.modal-footer button.button-edit-info:last-child,div.generic-modal div.modal-footer button.button-back:last-child,div.generic-modal div.modal-footer button.button-delete:last-child{border-left:none}div.generic-modal div.modal-footer div.button-group{float:right;margin-right:20px}div.generic-modal div.modal-footer div.button-group button{min-width:90px}div.generic-modal div.modal-footer div.button-group button:first-child{margin-right:-3px}div.generic-modal.thin-modal{width:391px}div.generic-modal.thin-modal input{font-size:12px;background:#fff;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-webkit-box-shadow:inset 1px 1px #eee;width:644px;padding:7px 15px}div.generic-modal.thin-modal textarea{width:647px;font-size:12px;padding:12px;padding-left:15px;min-height:250px}div.generic-modal.thin-modal div.modal-body{padding:0;max-height:500px}div.generic-modal.thin-modal div.modal-body div.box-standard{width:374px;background:#fff;color:gray;margin:0;border:none;overflow:hidden}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header{border-bottom:1px solid #d0cec7;height:44px}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header i{margin-left:10px;margin-top:10px}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header h1,div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header h2{float:left;font-size:14px;font-weight:bold;text-shadow:1px 1px #fff;padding:13px 0 0 10px;text-overflow:ellipsis;white-space:nowrap}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content.wings-info .blocked{margin-right:5px !important}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content{overflow:hidden;padding:25px}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content p{color:#000;font-size:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #ddd}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input{padding:4px 6px}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content label.control-label{width:auto;font-weight:normal;margin:0 10px 0 0;text-align:left}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input[type="checkbox"]{width:auto;margin-top:0}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input[type="text"]{line-height:20px;font-weight:normal;padding-left:10px}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content div.controls{margin-left:0}div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content div.controls textarea{width:300px !important;padding:10px;min-height:auto}div.generic-modal.thin-modal div.modal-body div.box-standard .wings-info h2,div.generic-modal.thin-modal div.modal-body div.box-standard .contact-info h2{float:left;margin-right:10px}div.generic-modal.thin-modal div.modal-body div.box-standard .wings-info .last-p,div.generic-modal.thin-modal div.modal-body div.box-standard .contact-info .last-p{float:none}div.generic-modal div.modal-body div.listing-location div.control-group.blocked label{width:auto}div.generic-modal div.modal-body div.listing-location div.control-group.blocked label.control-label{width:auto;font-weight:normal;text-align:left;margin:0 0 6px 0}div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls{margin-left:0}div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls input{font-size:inherit;color:inherit;padding:4px 6px;width:auto;font-weight:normal}div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .input-medium{width:210px}div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .input-mini{width:60px}div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .size-box-standard{width:310px !important}div.request-options{margin-left:0;border:1px solid #d0cec7;border-bottom:none}div.request-options h1{text-transform:capitalize;font-weight:bold;padding:10px;padding-left:45px}div.request-options div.accepted h1{color:#85c333;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px}div.request-options div.maybe h1{color:#fa9e03;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px}div.request-options div.pending h1{color:#ee4040;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px}div.request-options div.denied h1{color:#7e7b71;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px}div.request-options div#wing-data{padding:14px;background:#e1e0d9;overflow:hidden}div.request-options div#wing-data h2{font-weight:bold;padding-left:3px;margin-bottom:4px}div.request-options div#wing-data span{margin-left:10px}div.request-options div#wing-data div#wing-accomodation-params div.control-group{margin:0;margin-top:10px}div.request-options div#wing-data div#wing-accomodation-params div.controls{margin:0}div.request-options div#wing-data div#wing-accomodation-params div.controls input{margin:0;padding-top:4px;padding-right:6px;padding-bottom:4px;padding-left:10px}div.request-options div#wing-data div#wing-accomodation-params div.controls input.input-sdate{width:90px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:64px -160px}div.request-options div#wing-data div#wing-accomodation-params div.controls input.input-edate{width:90px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-39px -160px}div.request-options div#wing-data div#wing-accomodation-params div.controls span{margin:0}div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates{margin:0}div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates label.checkbox{display:inline-block;margin:0;font-size:12px;line-height:normal;width:115px;padding:6px 0;padding-top:8px}div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates label.checkbox input[type="checkbox"]{float:none;width:auto;padding:0;margin-right:10px;margin-top:-2px}div.request-options textarea{border:none;width:647px;margin:0px;padding:15px;padding-top:10px;color:#000;min-height:auto}#generic-modal #wing-data .help-block label{display:inline !important;padding:5px 15px !important}#generic-modal .help-block label{display:block !important;padding:0 !important;padding-left:15px !important}form#register-form{float:right;background:rgba(30,30,57,0.7);padding:0 28px 28px 14px;margin:27px 12px;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:469px}form#register-form input,form#register-form select,form#register-form .help-block{margin:0}form#register-form input[type="text"],form#register-form input[type="password"],form#register-form input[type="email"]{font-size:13px;padding:8px;border:1px solid #79766c;color:#000;line-height:16px;-webkit-appearance:none;-moz-appearance:none;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}form#register-form label.checkbox{padding-left:0;margin-bottom:15px}form#register-form label.checkbox input{margin-top:2px;margin-left:0;margin-right:15px}form#register-form span.signal{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-167px -67px;position:relative;bottom:16px;left:233px;opacity:0.7;filter:alpha(opacity=70)}form#register-form legend{float:right;position:relative;right:10px;bottom:13px;width:107px;height:28px;text-indent:-9999px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1171px -210px}form#register-form .clear{clear:both}form#register-form .control-group:after,form#register-form .control-group:before{display:block}form#register-form .control-group{margin:0}form#register-form .control-group .control-label{float:left;font-size:14px;color:#fff;padding-left:10px;width:100px;text-shadow:1px 1px 1px #000;text-align:left}form#register-form .control-group .controls{margin-left:122px;margin-bottom:4px}form#register-form .control-group .controls input[type="text"],form#register-form .control-group .controls input[type="password"],form#register-form .control-group .controls input[type="email"]{width:94.8%}form#register-form .control-group .controls select{width:32.5%;min-height:36px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-382px -9px}form#register-form .control-group .controls.two-elements input[type="text"],form#register-form .control-group .controls.two-elements input[type="password"]{width:44.2%}form#register-form .control-group .controls.terms{color:#fff;font-size:12px;line-height:18px}form#register-form .control-group .controls.terms p{margin:15px 0px}form#register-form .control-group .controls.terms a{color:#ff0}form#register-form .control-group .controls.terms a:hover{text-decoration:underline;cursor:pointer}form#login-form{float:right;background:rgba(30,30,57,0.7);padding:0 28px 28px 14px;margin:27px 12px;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:469px}form#login-form input,form#login-form select,form#login-form .help-block{margin:0}form#login-form input[type="text"],form#login-form input[type="password"],form#login-form input[type="email"]{font-size:13px;padding:8px;border:1px solid #79766c;color:#000;line-height:16px;-webkit-appearance:none;-moz-appearance:none;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}form#login-form label.checkbox{padding-left:0;margin-bottom:15px}form#login-form label.checkbox input{margin-top:2px;margin-left:0;margin-right:15px}form#login-form span.signal{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-167px -67px;position:relative;bottom:16px;left:280px;opacity:0.7;filter:alpha(opacity=70)}form#login-form legend{float:right;position:relative;right:10px;bottom:13px;width:107px;height:28px;text-indent:-9999px}form#login-form .clear{clear:both}form#login-form .control-group{margin:0;margin-bottom:4px}form#login-form .control-group:after,form#login-form .control-group:before{display:block}form#login-form .control-label{float:left;font-size:14px;color:#fff;padding-left:10px;width:100px;text-shadow:1px 1px 1px #000;text-align:left}form#login-form .controls{margin-left:122px}form#login-form .controls input[type="text"],form#login-form .controls input[type="password"],form#login-form .controls input[type="email"]{width:94.8%}form#login-form .controls.terms{color:#fff;font-size:12px;line-height:18px;margin-top:12px}form#login-form .controls.terms a{color:#ff0;float:right;position:relative;bottom:33px}form#login-form .controls.terms a:hover{text-decoration:underline;cursor:pointer}@media (max-width: 767px){form#login-form input[type="password"],form#login-form input[type="email"]{width:100%;line-height:20px;height:auto}}form#accomodation-search-form{padding:30px;padding-top:10px;background:#e1e0d9;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;overflow:hidden;margin:0}form#accomodation-search-form div.form-block{clear:both}form#accomodation-search-form div.form-block label{display:none;float:left;text-indent:-9999px;width:67px;height:20px;margin:10px 10px 0 0}form#accomodation-search-form div.form-block label.wings_text{display:block;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1013px -263px;margin-right:18px}form#accomodation-search-form div.form-block label.people_text{display:block;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1009px -215px;width:75px}form#accomodation-search-form div.form-block div.control-group{margin:0}form#accomodation-search-form div.form-block div.control-group:before{display:inline}form#accomodation-search-form div.form-block div.control-group:after{display:inline}form#accomodation-search-form div.form-block div.control-group input,form#accomodation-search-form div.form-block div.control-group select{float:left;font-size:12px;padding:8px;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;border:1px solid #79766c;margin-right:4px;margin-bottom:4px;margin-top:0;margin-left:0;line-height:15px}form#accomodation-search-form div.form-block div.control-group input.input-sdate{width:90px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:60px -156px}form#accomodation-search-form div.form-block div.control-group input.input-edate{width:90px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:60px -156px}form#accomodation-search-form div.form-block div.control-group input.input-large{width:213px}form#accomodation-search-form div.form-block div.control-group select{height:38px}form#accomodation-search-form div.form-block div.control-group select.input-guests{width:90px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-402px -8px}form#accomodation-search-form div.form-block div.control-group select.input-age1{width:77px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-415px -8px}form#accomodation-search-form div.form-block div.control-group select.input-age2{width:57px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-435px -8px}form#accomodation-search-form div.form-block div.control-group select.input-language{width:89px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-402px -8px}form#accomodation-search-form div.form-block div.control-group select.input-others{width:108px;background:url(../img/peoplewings-sprite.png) no-repeat #fff;background-position:-387px -8px}form#accomodation-search-form div.form-actions{float:right;margin-bottom:0px;margin-top:12px;background:none;padding:0px;border:none}.pager-content{background:#fff;font-size:13px;overflow:hidden;padding:5px;padding-left:18px;margin-top:35px;margin-bottom:13px;color:#999}.pager-content p{display:inline}.pager-content .pager-left{float:left;padding:4px 0}.pager-content .pager-left span:first-child{font-weight:bold}.pager-right{float:right}.pager-right .resultCounter{float:left;margin-right:15px;padding:4px 0}.pager-right .resultCounter span:first-child:after{content:" - "}.pager-right .resultCounter span:last-child:before{content:" of "}.pager-right .button-group{float:left;line-height:0}.pager-right .button-group a:last-child{border-left:none;margin-left:-4px}div.profile{border:1px solid #ccccd3;margin-bottom:8px;line-height:20px;position:relative}div.profile div.content-left{float:left;width:175px;height:175px}div.profile div.content-left span.dot{float:left;width:18px;height:18px;background:transparent;text-indent:-9999px;position:absolute;top:-1px;left:-1px;z-index:1}div.profile div.content-left .dot.online{background:lime;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-215px -64px}div.profile div.content-right{float:left;background:#fff;width:523px;height:175px;position:absolute;right:0}div.profile div.content-right div.personal-info{margin:24px;margin-bottom:14px}div.profile div.content-right div.personal-info div.first-info{min-height:72px}div.profile div.content-right div.personal-info div.first-info h1.name{font-size:21px;font-weight:bold;display:inline}div.profile div.content-right div.personal-info div.first-info h1.name a{text-decoration:none;color:#000}div.profile div.content-right div.personal-info div.first-info h1.name a:hover{color:#01a6da}div.profile div.content-right div.personal-info div.first-info span{margin-left:0.2em}div.profile div.content-right div.personal-info div.first-info span.age{font-size:14px}div.profile div.content-right div.personal-info div.first-info span.online{color:gray;font-style:italic;font-size:13px}div.profile div.content-right div.personal-info div.first-info h2.home-town{font-size:16px}div.profile div.content-right div.personal-info div.first-info h3.current-location{color:gray;font-size:14px;margin-bottom:0.8em}div.profile div.content-right div.personal-info dl dt.languages-tag{float:left;font-size:13px;color:gray;margin-right:10px}div.profile div.content-right div.personal-info dl dd{font-size:13px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;line-height:20px}div.profile div.content-right div.personal-info dl dd.languages{color:#000;text-transform:capitalize}div.profile div.content-right div.main-bar{font-size:11px;color:gray;background:#fff;background:-moz-linear-gradient(top, #fff 0%, #ecece5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ecece5));background:-webkit-linear-gradient(top, #fff 0%, #ecece5 100%);background:-o-linear-gradient(top, #fff 0%, #ecece5 100%);background:-ms-linear-gradient(top, #fff 0%, #ecece5 100%);background:linear-gradient(to bottom, #fff 0%, #ecece5 100%);border-top:1px solid #e5e5e5;overflow:hidden;position:absolute;bottom:0;width:100%}div.profile div.content-right div.main-bar div{float:left}div.profile div.content-right div.main-bar div.info-bar{padding:12px 24px;padding-right:0}div.profile div.content-right div.main-bar div.info-bar span{float:left;margin-right:0.8em}div.profile div.content-right div.main-bar div.info-bar span.results{font-size:16px;font-weight:bold;color:#000}div.profile div.content-right div.main-bar div.info-bar span.results:last-child{margin-right:0}div.profile div.content-right div.main-bar div.button-bar{float:right}div.profile div.content-right div.main-bar div.button-bar button{font-weight:bold;color:#777;border-top:none;border-right:none;border-bottom:none;padding:16px 15px 15px 15px;min-width:90px}div.profile div.content-right div.main-bar div.button-bar button.button-highlight{color:#000}div.profile div.accordion{clear:both;color:gray;background:#fff;font-size:0.8em}div.profile div.accordion div.accordion-group{margin:0}div.profile div.accordion div.accordion-group div.accordion-inner{padding:29px;overflow:hidden;border-top:1px solid #d0cec7}div.profile div.accordion div.accordion-group div.accordion-inner h1{font-size:17px;font-weight:bold;margin-bottom:5px;float:left}div.profile div.accordion div.accordion-group div.accordion-inner h2{font-size:12px;font-style:italic;float:right}div.profile div.accordion div.accordion-group div.accordion-inner p{font-size:13px;color:gray;clear:both;line-height:20px}div.profile div.accordion div.accordion-group div.accordion-heading{border-top:1px solid #d0cec7;padding:9px;overflow:hidden;cursor:pointer}div.profile div.accordion div.accordion-group div.accordion-heading span{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-658px -16px;text-transform:uppercase;font-weight:bold;text-align:center;padding:0 34px;display:block;width:74px;margin:0 auto}.searchbar{padding:12px 0;padding-bottom:5px;overflow:hidden}.searchbar #search{float:right}.searchbar #search input{float:left;font-size:12px;margin:0;width:249px !important;border-right:0;border-radius:2px 0 0 2px;-webkit-border-radius:2px 0 0 2px;-moz-border-radius:2px 0 0 2px}.searchbar #search a{padding:1px 3px 2px 3px;border-radius:0 2px 2px 0;-webkit-border-radius:0 2px 2px 0;-moz-border-radius:0 2px 2px 0}.messages-header{overflow:hidden;position:relative}.messages-header .messages-tabs{float:left;cursor:pointer;position:absolute;bottom:0}.messages-header .messages-tabs #notification-type{font-size:11px;margin-top:0;padding-left:10px;overflow:hidden}.messages-header .messages-tabs #notification-type li{padding:11px 16px;background:#e1e0d9;margin-right:4px;min-width:40px;text-align:center;-webkit-border-radius:4px 4px 0 0;text-transform:uppercase;font-style:italic;font-weight:bold;color:#000;border-bottom:1px solid #e1e0d9}.messages-header .messages-tabs #notification-type li:hover{background:#fff;border-bottom:1px solid #fff;color:#000}.messages-header .messages-tabs #notification-type .button.selected,.messages-header .messages-tabs #notification-type .selected.button-highlight,.messages-header .messages-tabs #notification-type .selected.button-pager-previous,.messages-header .messages-tabs #notification-type .selected.button-pager-next,.messages-header .messages-tabs #notification-type .selected.button-close,.messages-header .messages-tabs #notification-type .selected.button-peoplewings,.messages-header .messages-tabs #notification-type .selected.button-basic-info,.messages-header .messages-tabs #notification-type .selected.button-edit-info,.messages-header .messages-tabs #notification-type .selected.button-back,.messages-header .messages-tabs #notification-type .selected.button-delete{background:#fff;border-bottom:1px solid #fff;color:#000}.messages-header .button-bar{float:right}.messages-header .button-bar li:last-child{border-right:1px solid #ddd}.messages-header .button-bar .button1{color:#ccc;width:auto;border:1px solid #ddd;border-right:1px solid #fff;border-bottom:none;padding:11px 25px;background:#fff;background:-moz-linear-gradient(top, #fff 0%, #ecece5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ecece5));background:-webkit-linear-gradient(top, #fff 0%, #ecece5 100%);background:-o-linear-gradient(top, #fff 0%, #ecece5 100%);background:-ms-linear-gradient(top, #fff 0%, #ecece5 100%);background:linear-gradient(to bottom, #fff 0%, #ecece5 100%);cursor:default}#notification-panel{font-size:12px;color:#999;background:none;margin-top:0;border-top:1px solid #d3d1cb;padding:0;padding-top:7px;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0}#notification-panel .floatality{margin-bottom:7px;padding:9px;background:#fff;min-height:27px}#notification-panel .floatality .btn-group{float:left;margin-right:100px}#notification-panel .floatality .btn-group label{float:left;margin-right:10px}#notification-panel .floatality .messages-filters label#filter-title{float:left;padding:5px;margin-right:10px}#notification-panel .floatality .messages-filters select{float:left;margin:0;margin-right:4px;line-height:15px}#notification-panel .floatality .messages-filters div#notification-sender{float:left;padding:5px 0}#notification-panel .floatality .messages-filters div#notification-sender label{display:inline;margin-left:15px}#notification-panel .floatality .messages-filters div#notification-sender label input{margin-right:8px;margin-top:-3px}#notification-panel .floatality .messages-dropdown{float:left;display:block;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px;width:12px}#notification-panel .floatality .pager-right a.button-pager-next{margin-left:-3px}ul#notifications-list{margin-bottom:50px}li.notification-item{font-size:12px;overflow:hidden;float:none;border:1px solid #d0cec7;border-bottom:none;background:#fff;cursor:pointer}li.notification-item.unread{background:#efeeea}li.notification-item:last-child{border-bottom:1px solid #d0cec7}li.notification-item div{float:left;overflow:hidden}li.notification-item div.messages-check{padding:10px 6px;padding-top:20px}li.notification-item div.messages-avatar{width:65px;height:65px}li.notification-item div.messages-avatar img{width:65px;height:65px}li.notification-item div.messages-sender{padding:15px 0 0 20px;line-height:16px;min-width:173px}li.notification-item div.messages-sender h1{display:inline-block;max-width:150px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}li.notification-item div.messages-sender h1 a{font-weight:bold;color:#000}li.notification-item div.messages-sender h1 a:hover{color:#000;text-decoration:underline}li.notification-item div.messages-sender h1 span{margin-left:5px}li.notification-item div.messages-sender span,li.notification-item div.messages-sender h2{color:#999}li.notification-item div.messages-flag span{display:block;width:62px;height:65px;float:left;text-indent:-9999px}li.notification-item div.messages-flag .from-me{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-883px -267px}li.notification-item div.messages-flag .to-me{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-808px -267px}li.notification-item div.messages-flag .from-me.accepted{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-104px -267px}li.notification-item div.messages-flag .to-me.accepted{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-21px -267px}li.notification-item div.messages-flag .from-me.maybe{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-494px -267px}li.notification-item div.messages-flag .to-me.maybe{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-14px -267px}li.notification-item div.messages-flag .from-me.pending{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-297px -267px}li.notification-item div.messages-flag .to-me.pending{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-216px -267px}li.notification-item div.messages-flag .from-me.denied{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-689px -267px}li.notification-item div.messages-flag .to-me.denied{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-608px -267px}li.notification-item div.messages-state{padding:8px 15px;line-height:16px;max-width:360px}li.notification-item div.messages-state h1.messages-name{color:#000;font-weight:bold}li.notification-item div.messages-state h1.messages-name.accepted{color:#85c333}li.notification-item div.messages-state h1.messages-name.maybe{color:#fa9e03}li.notification-item div.messages-state h1.messages-name.pending{color:#ee4040}li.notification-item div.messages-state h1.messages-name.declined{color:#7e7b71}li.notification-item div.messages-state h2{text-transform:capitalize;font-weight:bold}li.notification-item div.messages-state p{color:#999;font-style:italic}li.notification-item div.messages-dates{float:right}li.notification-item div.messages-dates div.messages-dates-info{padding:8px 15px;line-height:16px;font-style:italic;color:gray}li.notification-item div.messages-dates div.messages-dates-info dl{text-align:right}li.notification-item div.messages-dates div.messages-dates-info dl dt{font-weight:bold;margin-right:5px}li.notification-item div.messages-dates div.messages-dates-info dl dt,li.notification-item div.messages-dates div.messages-dates-info dl dd{display:inline}li.notification-item div.messages-dates div.messages-date-msg{border-left:1px solid #d0cec7;padding:22px 20px;padding-bottom:23px;font-weight:bold;width:60px;text-align:center}div.message-arrow{background:none;border-bottom:1px solid #d0cec7;width:100%;overflow:visible;height:4px}div.message-arrow span{display:block;width:12px;height:11px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-18px -69px;text-indent:-9999px;position:relative;top:-6px;left:85px}li.wing-item div.messages-state{padding:15px 20px}li.wing-item div.messages-state h2{display:inline;color:#000;font-size:14px}li.wing-item div.messages-state h3{display:inline;font-style:italic;padding-left:10px;font-size:14px}li.wing-item div.messages-dates div.messages-dates-info{padding:15px 20px}li.wing-item div.messages-dates div.messages-dates-info dt{padding-left:5px}li.wing-item div.messages-dates div.messages-dates-info dd:last-child{padding-left:10px;font-weight:bold;font-style:normal}div.messages-msg{font-size:12px;color:gray;background:none;margin-top:0;border-top:1px solid #d3d1cb;padding:0;padding-top:7px;border-radius:0;-webkit-border-radius:0;-moz-border-radius:0}div.messages-msg div.floatality{margin-bottom:7px;padding:9px;background:#fff;min-height:27px}div.messages-msg div.floatality button,div.messages-msg div.floatality a{float:left}div.messages-msg div.floatality #delete-thread{border-left:none}div.messages-msg div.floatality .messages-pager{float:right}div.messages-msg div.floatality .messages-pager div.resultCounter{font-size:12px;float:left;padding:5px;padding-right:10px}div.messages-msg div.floatality .messages-pager div.resultCounter span:first-child:after{content:" - "}div.messages-msg div.floatality .messages-pager div.resultCounter span:last-child:before{content:" of "}div.messages-msg div.floatality div.button-group{float:right}div.messages-msg div.floatality div.button-group a:first-child{border-right:none}ul#notif-list{margin-bottom:50px}li.thread-item{cursor:pointer;float:none}li.thread-item div.messages-header{border:1px solid #d0cec7;border-top:none;background:#fff;width:auto}li.thread-item div.messages-header div.messages-avatar{float:left;width:65px;height:65px}li.thread-item div.messages-header div.messages-avatar img{width:65px;height:65px}li.thread-item div.messages-header div.messages-sender{padding:10px 15px 0 20px;line-height:16px;float:left}li.thread-item div.messages-header div.messages-sender legend{font-weight:bold;color:#999}li.thread-item div.messages-header div.messages-sender h1{display:inline}li.thread-item div.messages-header div.messages-sender h1 a{color:#000;font-weight:bold}li.thread-item div.messages-header div.messages-sender h1 a:hover{color:#000;text-decoration:underline}li.thread-item div.messages-header div.messages-sender span,li.thread-item div.messages-header div.messages-sender h2{color:#999;display:inline}li.thread-item div.messages-header div.messages-sender h3{font-style:italic}li.thread-item div.messages-header div.messages-state{padding:8px 15px;line-height:16px}li.thread-item div.messages-header div.messages-state h1.messages-name{color:#000;font-weight:bold}li.thread-item div.messages-header div.messages-state h2{text-transform:capitalize;font-weight:bold}li.thread-item div.messages-header div.messages-date-msg{float:right;padding:12px 15px 12px 20px;font-weight:bold;color:#000;text-align:right}li.thread-item div.messages-header div.messages-date-msg.accepted h2{color:#85c333}li.thread-item div.messages-header div.messages-date-msg.maybe h2{color:#fa9e03}li.thread-item div.messages-header div.messages-date-msg.pending h2{color:#ee4040}li.thread-item div.messages-header div.messages-date-msg.denied h2{color:#7e7b71}li.thread-item div.messages-header div.messages-date-msg span{text-transform:capitalize}li.thread-item div.messages-content{padding:24px;padding-left:84px;border:1px solid #d0cec7;border-top:none;background:#fff}li.thread-item div.messages-content div.messages-params-box{float:none}li.thread-item div.messages-content div.messages-params-box dt,li.thread-item div.messages-content div.messages-params-box dd{display:inline;margin-right:5px}li.thread-item div.messages-content div.messages-params-box dd{color:#000;font-weight:bold}li.thread-item div.messages-content div.messages-params-box dd span{font-weight:normal}li.thread-item div.messages-content div.messages-msg{border-top:1px solid #d0cec7;margin-top:15px;padding-top:15px;color:#000;float:none}li.thread-item div#response-options{padding:10px 0 12px 18px;margin-left:65px}li.thread-item div#response-options span{display:inline;font-weight:bold;color:#000;cursor:pointer}li.thread-item div#write-response{float:right}li.thread-item div#write-response input,li.thread-item div#write-response select,li.thread-item div#write-response textarea{font-size:12px}li.thread-item div#write-response div.response-wrapper{margin:10px;margin-left:0;border:1px solid #d0cec7}li.thread-item div#write-response div.response-wrapper div.state-flag i{float:left;width:40px;height:40px;text-indent:-9999px}li.thread-item div#write-response div.response-wrapper div.state-flag span{display:block;text-transform:capitalize;font-weight:bold;background:#f5f5f0;padding:10px 10px 10px 15px;padding-left:45px}li.thread-item div#write-response div.response-wrapper div.accepted i{color:#85c333;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-2px -204px}li.thread-item div#write-response div.response-wrapper div.maybe i{color:#fa9e03;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-102px -204px}li.thread-item div#write-response div.response-wrapper div.pending i{color:#ee4040;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-52px -204px}li.thread-item div#write-response div.response-wrapper div.denied i{color:#7e7b71;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-152px -204px}li.thread-item div#write-response div.response-wrapper form#wing-params-form{border-bottom:1px solid #d3d1ca}li.thread-item div#write-response div.response-wrapper form#wing-params-form input{margin-bottom:0}li.thread-item div#write-response div.response-wrapper form#wing-params-form div.response-header-dates span{display:block;font-weight:bold;margin-right:10px}li.thread-item div#write-response div.response-wrapper textarea{border:none;height:72px;width:843px;margin:0px;padding:15px;padding-top:10px;color:#000}li.thread-item div#write-response div#edit-wing-params{background:#e1e0d9}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates{padding:14px}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates h2{padding-left:3px;margin-bottom:4px}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates span{margin-left:10px}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates input.input-sdate{width:97px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px;padding-left:10px}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates input.input-edate{width:97px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px;padding-left:10px}li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates select{margin:0;margin-top:6px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:1px 1px}li.thread-item div.response-item{background:#fff;overflow:hidden;border:1px solid #d0cec7;border-top:none}li.thread-item div.response-item div.messages-avatar{float:left;line-height:0}li.thread-item div.response-item div.button-group{float:right;margin-right:10px}li.thread-item div.response-item div.button-group button{border-bottom:none;min-width:90px}li.thread-item div.response-item div.button-group button:first-child{margin-right:-3px;border-right:none}form#delete-account-form input,form#delete-account-form select{font-size:13px;color:#000;margin:0;padding:8px;min-height:22px;line-height:15px;border:1px solid #d0cec7;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;-webkit-appearance:none;-moz-appearance:none}form#delete-account-form input::-webkit-input-placeholder,form#delete-account-form select::-webkit-input-placeholder{color:#000}form#delete-account-form div.balloon-wrapper{margin:40px auto;background:#fff;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:501px;border:1px solid #d0cec7;font-size:12px;color:#999}form#delete-account-form div.balloon-wrapper span{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/peoplewings-sprite.png) no-repeat;position:relative;bottom:16px;left:50px}form#delete-account-form div.balloon-wrapper div.balloon-header{padding:20px 25px}form#delete-account-form div.balloon-wrapper div.balloon-header h1{font-size:15px;font-weight:bold}form#delete-account-form div.balloon-wrapper div.balloon-content{background:#f5f5f0;padding:8px 0 15px 0;border-bottom:1px solid #d0cec7}form#delete-account-form div.balloon-wrapper div.balloon-content p{padding:15px 25px;font-style:italic}form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group:after,form#delete-account-form div.balloon-wrapper div.balloon-content .control-group:before{display:block}form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group{margin:0;margin-bottom:5px}form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group label.control-label{float:left;width:100px;padding:11px;padding-left:25px;text-align:left}form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group input{min-width:320px}form#delete-account-form div.balloon-wrapper div.balloon-footer{overflow:hidden}form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group{float:right;margin:0;margin-top:15px;margin-right:15px}form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a{float:left}form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls button,form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a{border-bottom:none}form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls button:last-child,form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a:last-child{border-left:none}form#delete-account-form div.balloon-wrapper div.help-block{margin:0}form#settings-form{margin:40px auto;background:#fff;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:501px;border:1px solid #d0cec7}form#settings-form input,form#settings-form select{margin:0;min-height:22px}form#settings-form select{height:40px}form#settings-form input[type="text"],form#settings-form input[type="password"],form#settings-form input[type="email"],form#settings-form select{font-size:13px;padding:8px;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;-webkit-appearance:none;-moz-appearance:none;border:1px solid #d0cec7;color:#000;line-height:15px}form#settings-form input[type="text"]::-webkit-input-placeholder,form#settings-form input[type="password"]::-webkit-input-placeholder,form#settings-form input[type="email"]::-webkit-input-placeholder,form#settings-form select::-webkit-input-placeholder{color:#000}form#settings-form input[type="text"],form#settings-form input[type="password"]{max-width:149px}form#settings-form input[type="checkbox"]{margin:10px 17px 10px 0}form#settings-form legend{float:right;position:relative;right:10px;bottom:13px;width:186px;height:28px;text-indent:-9999px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1395px -411px}form#settings-form label.control-label{float:left;color:#999;width:100px;padding:11px;font-size:12px;text-align:left}form#settings-form label.checkbox{padding-left:0}form#settings-form div.form-wrapper{padding:0 27px 27px 14px}form#settings-form div.form-wrapper div.help-block{margin:0}form#settings-form div.form-wrapper span.signal{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-69px -67px;position:relative;bottom:16px;left:50px}form#settings-form div.form-wrapper div.clear{clear:both}form#settings-form div.form-wrapper div.control-group:after,form#settings-form div.form-wrapper .control-group:before{display:block}form#settings-form div.form-wrapper div.control-group{margin:0;margin-bottom:5px}form#settings-form div.form-wrapper div.control-group:last-child{margin-top:25px;padding-top:18px;border-top:1px solid #e5e5e5}form#settings-form div.form-wrapper div.control-group:last-child p{font-style:italic;color:#999;font-size:12px}form#settings-form div.form-wrapper div.control-group:last-child p a{color:#000;text-decoration:underline}form#settings-form div.form-wrapper div.control-group:last-child p a:hover{color:#000;font-weight:bold}form#settings-form div.form-wrapper div.controls{margin-left:122px}form#settings-form div.form-wrapper div.controls h1{padding:11px;font-size:13px;color:#000}form#settings-form div.form-wrapper div.controls input[type="text"]{width:149px}form#settings-form div.form-wrapper div.controls input[type="email"],form#settings-form div.form-wrapper div.controls input[type="password"]{width:95%}form#settings-form div.form-wrapper div.controls input[type="password"].password-line{min-width:95%}form#settings-form div.form-wrapper div.controls input[type="submit"]{font-size:18px}form#settings-form div.form-wrapper div.controls input.input-margin{margin-bottom:5px}form#settings-form div.control-group.confirm-changes{padding:8px 0;padding-bottom:15px;background:#f5f5f0;line-height:18px;border-bottom:1px solid #d7cec0;margin-bottom:15px}form#settings-form div.control-group.confirm-changes div.controls{margin-left:122px}form#settings-form div.control-group.confirm-changes div.controls input{min-width:320px}form#settings-form div.control-group.confirm-changes label.control-label{padding-left:25px}form#settings-form div.control-group.confirm-changes p{padding:18px 50px;font-style:italic;color:#999;font-size:12px}form#settings-form div.footer-content{overflow:hidden}form#settings-form div.footer-content div.button-group{float:right;margin-right:20px}form#settings-form div.footer-content div.button-group a{padding:15px 0}form#settings-form div.footer-content div.button-group button,form#settings-form div.footer-content div.button-group a{width:90px;border-bottom:none}form#settings-form div.footer-content div.button-group button:last-child,form#settings-form div.footer-content div.button-group a:last-child{margin-left:-4px;border-left:none}div.sidebar{float:left;margin-top:45px;margin-left:10px;width:200px;overflow:hidden}div.sidebar li{float:none;background:#e1e0d9;border:1px solid #d0cec7;border-bottom:none}div.sidebar li:last-child{border:1px solid #d0cec7}div.sidebar li a{display:block;text-transform:uppercase;font-size:11px;font-style:italic;text-shadow:1px 1px 1px #fff;padding:10px}div.sidebar li a:hover,div.sidebar li a:active,div.sidebar li a:focus{background:#fff;color:#000}div.sidebar li a:active{background:#ffeb00;background:-moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));background:-webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:-ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);background:linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%)}div.sidebar li.active{color:#848178;background:#edede6}div#help-center.tab-content{float:left;background:#fff;width:67%;margin:45px 10px;border:1px solid #d0cec7;padding:38px;overflow:visible}div#help-center.tab-content legend{float:right;position:relative;right:-40px;bottom:49px;width:186px;height:28px;text-indent:-9999px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1442px -464px}div#help-center.tab-content div.help-center-content h1:first-child{margin:0;margin-bottom:12px}div#help-center.tab-content div.help-center-content h1,div#help-center.tab-content div.help-center-content h2,div#help-center.tab-content div.help-center-content p{color:#79776b}div#help-center.tab-content div.help-center-content h1{font-size:19px;font-weight:bold;margin-bottom:12px;margin-top:40px}div#help-center.tab-content div.help-center-content h2{font-size:14px;font-weight:bold}div#help-center.tab-content div.help-center-content p{font-size:12px}@media (max-width: 960px){div#help-center.tab-content{width:auto}}form#password-form input,form#password-form select{font-size:13px;color:#000;margin:0;padding:8px;min-height:22px;line-height:15px;border:1px solid #d0cec7;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;-webkit-appearance:none;-moz-appearance:none}form#password-form input::-webkit-input-placeholder,form#password-form select::-webkit-input-placeholder{color:#000}form#password-form div.balloon-wrapper{margin:40px auto;background:#fff;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:501px;border:1px solid #d0cec7;font-size:12px;color:#999}form#password-form div.balloon-wrapper span{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/icon-direction.png) no-repeat;position:relative;bottom:16px;left:50px}form#password-form div.balloon-wrapper div.balloon-header{padding:20px 25px}form#password-form div.balloon-wrapper div.balloon-header h1{font-size:15px;font-weight:bold}form#password-form div.balloon-wrapper div.balloon-content{background:#f5f5f0;padding:8px 0 15px 0;border-bottom:1px solid #d0cec7}form#password-form div.balloon-wrapper div.balloon-content p{padding:15px 25px;font-style:italic}form#password-form div.balloon-wrapper div.balloon-content div.control-group:after,form#password-form div.balloon-wrapper div.balloon-content .control-group:before{display:block}form#password-form div.balloon-wrapper div.balloon-content div.control-group{margin:0;margin-bottom:5px}form#password-form div.balloon-wrapper div.balloon-content div.control-group label.control-label{float:left;width:100px;padding:11px;padding-left:25px;text-align:left}form#password-form div.balloon-wrapper div.balloon-content div.control-group input{min-width:320px}form#password-form div.balloon-wrapper div.balloon-footer{overflow:hidden;margin:0;margin-top:15px;margin-right:15px}form#password-form div.balloon-wrapper div.balloon-footer .button-group{float:right}form#password-form div.balloon-wrapper div.balloon-footer .button-group a{float:left}form#password-form div.balloon-wrapper div.balloon-footer .button-group button,form#password-form div.balloon-wrapper div.balloon-footer .button-group a{border-bottom:none}form#password-form div.balloon-wrapper div.balloon-footer .button-group button:last-child,form#password-form div.balloon-wrapper div.balloon-footer .button-group a:last-child{border-left:none}form#password-form div.balloon-wrapper div.help-block{margin:0}form#forgot-form{margin:40px auto;background:#fff;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;width:501px;border:1px solid #d0cec7}form#forgot-form input,form#forgot-form select{margin:0;min-height:22px}form#forgot-form select{height:40px}form#forgot-form input[type="text"],form#forgot-form input[type="password"],form#forgot-form input[type="email"],form#forgot-form select{font-size:13px;padding:8px;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;-webkit-appearance:none;-moz-appearance:none;border:1px solid #d0cec7;color:#000;line-height:15px}form#forgot-form input[type="text"]::-webkit-input-placeholder,form#forgot-form input[type="password"]::-webkit-input-placeholder,form#forgot-form input[type="email"]::-webkit-input-placeholder,form#forgot-form select::-webkit-input-placeholder{color:#000}form#forgot-form input[type="text"],form#forgot-form input[type="password"]{max-width:149px}form#forgot-form input[type="checkbox"]{margin:10px 17px 10px 0}form#forgot-form legend{float:right;position:relative;right:10px;bottom:13px;width:186px;height:28px;text-indent:-9999px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-1395px -411px}form#forgot-form label.control-label{float:left;color:#999;width:100px;padding:11px;font-size:12px;text-align:left}form#forgot-form label.checkbox{padding-left:0}form#forgot-form div.form-header{padding:20px 25px}form#forgot-form div.form-header h1{color:#999;font-weight:bold;font-size:15px}form#forgot-form div.form-wrapper{padding:0}form#forgot-form div.form-wrapper div.help-block{margin:0}form#forgot-form div.form-wrapper span.signal{float:left;text-indent:-9999px;height:16px;width:15px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-69px -67px;position:relative;bottom:16px;left:50px}form#forgot-form div.form-wrapper div.clear{clear:both}form#forgot-form div.form-wrapper div.control-group:after,form#forgot-form div.form-wrapper .control-group:before{display:block}form#forgot-form div.form-wrapper div.control-group{margin:0;margin-bottom:5px}form#forgot-form div.form-wrapper div.control-group:last-child{margin-top:25px;padding-top:18px;border-top:1px solid #e5e5e5}form#forgot-form div.form-wrapper div.control-group:last-child p{font-style:italic;color:#999;font-size:12px}form#forgot-form div.form-wrapper div.control-group:last-child p a{color:#000;text-decoration:underline}form#forgot-form div.form-wrapper div.control-group:last-child p a:hover{color:#000;font-weight:bold}form#forgot-form div.form-wrapper div.controls{margin-left:122px}form#forgot-form div.form-wrapper div.controls h1{padding:11px;font-size:13px;color:#000}form#forgot-form div.form-wrapper div.controls input[type="text"]{width:149px}form#forgot-form div.form-wrapper div.controls input[type="email"],form#forgot-form div.form-wrapper div.controls input[type="password"]{width:95%}form#forgot-form div.form-wrapper div.controls input[type="password"].password-line{min-width:95%}form#forgot-form div.form-wrapper div.controls input[type="submit"]{font-size:18px}form#forgot-form div.form-wrapper div.controls input.input-margin{margin-bottom:5px}form#forgot-form div.control-group.confirm-changes{padding:8px 0;padding-bottom:15px;background:#f5f5f0;line-height:18px;border-bottom:1px solid #d7cec0;margin-bottom:15px}form#forgot-form div.control-group.confirm-changes div.controls{margin-left:122px}form#forgot-form div.control-group.confirm-changes div.controls input{min-width:320px}form#forgot-form div.control-group.confirm-changes label.control-label{padding-left:25px}form#forgot-form div.control-group.confirm-changes p{padding:18px 50px;font-style:italic;color:#999;font-size:12px}form#forgot-form div.footer-content{overflow:hidden}form#forgot-form div.footer-content div.button-group{float:right;margin-right:20px}form#forgot-form div.footer-content div.button-group a{padding:15px 0}form#forgot-form div.footer-content div.button-group button,form#forgot-form div.footer-content div.button-group a{width:90px;border-bottom:none}form#forgot-form div.footer-content div.button-group button:last-child,form#forgot-form div.footer-content div.button-group a:last-child{margin-left:-4px;border-left:none}span.signal-bottom{float:left;text-indent:-9999px;height:20px;width:20px;background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-114px -66px;position:relative;left:800px}div.balloon-alert{background:#fff;margin:50px auto 0 auto;border:1px solid #d0cec7;border-bottom:none;width:756px;height:414px;border-radius:12px;-webkit-border-radius:12px;-moz-border-radius:12px;box-shadow:2px 2px 2px 0 rgba(0,0,0,0.2);-moz-box-shadow:2px 2px 0 2px rgba(0,0,0,0.2);-webkit-box-shadow:2px 2px 2px 0 rgba(0,0,0,0.2)}div.balloon-alert div.balloon-content{padding:45px}div.balloon-alert div.balloon-content h1,div.balloon-alert div.balloon-content h2{display:block;font-family:"Exo",Tahoma,Sans-Serif;font-style:italic;font-weight:800;line-height:normal;text-transform:uppercase}div.balloon-alert div.balloon-content h1{font-size:81px;color:#d0cec7}div.balloon-alert div.balloon-content h2{font-size:27px}div.balloon-alert div.balloon-content p:last-child{margin-bottom:20px}div.balloon-alert div.balloon-content p.description{color:#999;font-size:12px;margin-top:30px}div.balloon-alert div.balloon-content p a{color:#000;font-weight:bold;text-decoration:underline}div.balloon-alert div.balloon-content p strong{font-weight:bold}div.balloon-alert div.balloon-footer{padding-left:45px;text-transform:uppercase;font-style:italic;font-size:12px;margin-top:35px}div.balloon-alert div.balloon-footer a{color:#000}div.balloon-alert div.balloon-footer a:hover{text-decoration:underline;color:inherit}span.ribbon{display:block;height:19px;background:url(../img/pattern.png) center;-webkit-border-radius:12px 12px 0 0}#feedback-btn-submit{background:#fff;font-style:italic;text-transform:uppercase;font-size:11px;color:#999;border-radius:12px 12px 0 0;-webkit-border-radius:12px 12px 0 0;-moz-border-radius:12px 12px 0 0;box-shadow:0 0 4px #ddd;-moz-box-shadow:0 0 #ddd 4px;-webkit-box-shadow:0 0 4px #ddd;padding:7px 20px;position:fixed;bottom:0;right:320px;z-index:1000000;border-bottom:none}form#feedback-form{font-size:12px;color:#999}form#feedback-form label.radio{display:inline-block;padding-left:40px;width:40px}form#feedback-form label.radio.like-up{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:left 8px}form#feedback-form label.radio.like-down{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:left 4px}form#feedback-form label.radio input{width:auto}form#feedback-form label.control-label.avatar-image{width:auto;height:auto;margin-left:10px;margin-top:1px;float:left}form#feedback-form label.control-label{float:left;margin:4px 0}form#feedback-form div.control-group{margin-bottom:20px}.navbar-fixed-bottom{height:40px;clear:both}.footer.navbar.navbar-fixed-bottom{position:relative;background:#edede6;color:#848178;font-size:11px;overflow:hidden;padding-top:14px}.footer.navbar.navbar-fixed-bottom ul{margin:0}.footer.navbar.navbar-fixed-bottom .navbar-inner{min-height:40px}.footer.navbar.navbar-fixed-bottom .navbar-inner div{float:left}.footer.navbar.navbar-fixed-bottom #likes{height:20px;width:81px;text-indent:-9999px;position:relative;top:7px}.footer.navbar.navbar-fixed-bottom #terms{line-height:11px;margin-left:20%;margin-top:11px}.footer.navbar.navbar-fixed-bottom #terms li{line-height:inherit;display:inline}.footer.navbar.navbar-fixed-bottom #terms li a{margin-right:12px}.footer.navbar.navbar-fixed-bottom #terms li a:hover{text-decoration:underline;color:#18183f}.footer.navbar.navbar-fixed-bottom #terms li:first-child{font-weight:800;margin-right:15px}.footer.navbar.navbar-fixed-bottom #follow{float:right;width:202px}.footer.navbar.navbar-fixed-bottom #follow p{float:left;display:block;margin-right:10px;margin-top:11px;line-height:11px}.footer.navbar.navbar-fixed-bottom #follow ul{margin-right:20px}.footer.navbar.navbar-fixed-bottom #follow ul li{display:inline}.footer.navbar.navbar-fixed-bottom #follow ul a{margin-right:3px}.footer.navbar.navbar-fixed-bottom #follow .follow{width:33px;height:33px}.footer.navbar.navbar-fixed-bottom #follow .facebook{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-60px -409px}.footer.navbar.navbar-fixed-bottom #follow .twitter{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-160px -408px}.footer.navbar.navbar-fixed-bottom #follow .youtube{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-260px -409px}.nav{margin:0}.nav-tabs{display:inline-block;border:none;position:relative;top:35px;left:20px}.nav-tabs li a{width:43px;height:59px;text-indent:-9999px;padding:0;margin:0;border:none}.nav-tabs .all{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -530px}.nav-tabs .all:hover{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-430px -530px}.nav-tabs .accommodation{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -630px}.nav-tabs .accommodation:hover{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-430px -630px;cursor:pointer}.nav-tabs .transport{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -730px}.nav-tabs .transport:hover{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-430px -730px}.nav-tabs .travel{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -830px}.nav-tabs .travel:hover{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-430px -830px}.nav-tabs .all:hover,.nav-tabs .transport:hover,.nav-tabs .trip:hover{cursor:default}.nav-tabs .active .all{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -530px}.nav-tabs .active .accommodation{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-330px -630px}.nav-tabs .active .transport{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -730px}.nav-tabs .active .travel{background:url(../img/peoplewings-sprite.png) no-repeat;background-position:-530px -830px}.nav-tabs>.active>a,.nav-tabs>.active>a:hover{border:none;background-color:transparent}input,select{margin:0px}.pac-container{z-index:10000 !important}section#main{overflow:hidden}
+/* ==========================================================================
+ * INITIAL CONFIG
+ * ========================================================================== */
+/* --------------------------------------------------------------------------
+ * _Reset : Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * 					http://cssreset.com
+ * -------------------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* --------------------------------------------------------------------------
+ * Mixins
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * Globals
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * Variables
+ * -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * Mixins
+ * -------------------------------------------------------------------------- */
+* {
+  margin: 0; }
+
+html, body {
+  height: 100%; }
+
+body, input, select {
+  font-family: Helvetica, Arial, Sans-Serif;
+  color: black;
+  background: white; }
+
+a {
+  text-decoration: none;
+  color: #848178; }
+  a:hover {
+    color: yellow; }
+
+li {
+  list-style: none;
+  float: left; }
+
+textarea:hover, textarea:focus, textarea:active,
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="text"]:active,
+input[type="password"]:hover,
+input[type="password"]:focus,
+input[type="password"]:active,
+input[type="datetime"]:hover,
+input[type="datetime"]:focus,
+input[type="datetime"]:active,
+input[type="datetime-local"]:hover,
+input[type="datetime-local"]:focus,
+input[type="datetime-local"]:active,
+input[type="date"]:hover,
+input[type="date"]:focus,
+input[type="date"]:active,
+input[type="month"]:hover,
+input[type="month"]:focus,
+input[type="month"]:active,
+input[type="time"]:hover,
+input[type="time"]:focus,
+input[type="time"]:active,
+input[type="week"]:hover,
+input[type="week"]:focus,
+input[type="week"]:active,
+input[type="number"]:hover,
+input[type="number"]:focus,
+input[type="number"]:active,
+input[type="email"]:hover,
+input[type="email"]:focus,
+input[type="email"]:active,
+input[type="url"]:hover,
+input[type="url"]:focus,
+input[type="url"]:active,
+input[type="search"]:hover,
+input[type="search"]:focus,
+input[type="search"]:active,
+input[type="tel"]:hover,
+input[type="tel"]:focus,
+input[type="tel"]:active,
+input[type="color"]:hover,
+input[type="color"]:focus,
+input[type="color"]:active,
+.uneditable-input:hover,
+.uneditable-input:focus,
+.uneditable-input:active {
+  outline: 0;
+  border-color: #cccccc;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-webkit-box-shadow: none;
+  -ms-webkit-box-shadow: none;
+  -o-webkit-box-shadow: none; }
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select {
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  textarea:hover, textarea:focus, textarea:active,
+  input[type="text"]:hover,
+  input[type="text"]:focus,
+  input[type="text"]:active,
+  input[type="password"]:hover,
+  input[type="password"]:focus,
+  input[type="password"]:active,
+  input[type="number"]:hover,
+  input[type="number"]:focus,
+  input[type="number"]:active,
+  input[type="email"]:hover,
+  input[type="email"]:focus,
+  input[type="email"]:active,
+  select:hover,
+  select:focus,
+  select:active {
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; }
+
+input,
+select {
+  font-size: 1em;
+  padding: 0.7em;
+  margin: 0.5em;
+  border: 1px solid #cccccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px; }
+
+input[type="submit"] {
+  text-transform: uppercase; }
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox; }
+
+input[type="radio"] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio; }
+
+button {
+  display: block;
+  padding: 11px 14px;
+  font-size: 11px;
+  font-style: italic;
+  color: gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  border-left: 1px solid #cecdce;
+  border-right: 1px solid white;
+  background: none; }
+  button:hover {
+    color: black;
+    background: white; }
+  button:active {
+    background: #ffeb00;
+    background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+    background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -56px; }
+
+.push {
+  height: 75px; }
+
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.navbar-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+#mini-spinner {
+  float: left;
+  display: block;
+  height: 30px;
+  width: 30px;
+  margin-top: 14px;
+  margin-left: 14px; }
+  #mini-spinner span {
+    font-size: 11px;
+    font-style: italic;
+    text-transform: uppercase;
+    position: relative;
+    top: 4px;
+    left: 35px; }
+
+/* Icons
+ * -------------------------------------------------------------------------- */
+.icon, .icon-pager, .icon-pager-previous, .icon-pager-next, .icon-config, .icon-edit, .icon-about, .icon-like, .icon-contact, .icon-add-friend, .icon-house, .icon-places, .icon-places-hometown-mini, .icon-places-current-mini, .icon-places-lived-mini, .icon-add-wings, .icon-search, .icon-back, .icon-lock, .icon-lock-open, .icon-public-state, .icon-like-up, .icon-like-down {
+  float: left;
+  width: 65px;
+  height: 78px;
+  text-indent: -9999px; }
+
+/* Backgrounds
+ * -------------------------------------------------------------------------- */
+.background-roller {
+  width: 100%;
+  height: 637px;
+  position: absolute;
+  z-index: -1; }
+
+.background-9 {
+  background: url(../img/bg-landing.jpg) no-repeat top center; }
+
+.background-10 {
+  background: url(../img/bg-city.jpg) no-repeat top center; }
+
+/* Alerts and Errors
+ * -------------------------------------------------------------------------- */
+.error {
+  background: #d34836;
+  color: white;
+  font-size: 11px;
+  padding: 0px;
+  padding-left: 15px;
+  margin-top: 5px; }
+
+.form-errors {
+  min-height: 20px; }
+  .form-errors label {
+    margin: 0; }
+
+.date-error {
+  margin-bottom: 5px;
+  margin-left: 322px;
+  max-width: 218px; }
+
+.age-error {
+  float: left;
+  margin-top: 1px;
+  margin-left: 89px;
+  width: 136px; }
+
+div#alerts-container {
+  position: fixed;
+  z-index: 10000000;
+  top: 45px; }
+  div#alerts-container .alert {
+    overflow: hidden;
+    min-width: 250px;
+    max-width: 630px;
+    margin-left: 570px;
+    padding-left: 35px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px; }
+    div#alerts-container .alert .close {
+      float: right;
+      line-height: 20px;
+      font-size: 16px; }
+    div#alerts-container .alert p {
+      float: left;
+      text-align: left;
+      background: white;
+      font-size: 11px;
+      font-style: italic; }
+  div#alerts-container .alert-error {
+    border: 1px solid #e30417;
+    color: #e30417;
+    background: url(../img/peoplewings-sprite.png) no-repeat white;
+    background-position: -1560px -683px; }
+    div#alerts-container .alert-error .close {
+      color: #e30417; }
+  div#alerts-container .alert-warning {
+    border: 1px solid #fc8200;
+    color: #fc8200;
+    background: url(../img/peoplewings-sprite.png) no-repeat white;
+    background-position: -1560px -609px; }
+    div#alerts-container .alert-warning .close {
+      color: #fc8200; }
+  div#alerts-container .alert-success {
+    border: 1px solid #6daf19;
+    color: #6daf19;
+    background: url(../img/peoplewings-sprite.png) no-repeat white;
+    background-position: -1560px -535px; }
+    div#alerts-container .alert-success .close {
+      color: #6daf19; }
+
+/* OVER Bootstrap
+ * -------------------------------------------------------------------------- */
+.accordion {
+  margin: 0; }
+  .accordion .accordion-group {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border: none; }
+    .accordion .accordion-group .accordion-inner {
+      border: none;
+      padding: 0; }
+
+@media (max-width: 665px) {
+  ul.nav.pull-right, .btn-group.pull-right {
+    display: none; } }
+@media (max-width: 767px) {
+  [class*="span"], .row-fluid [class*="span"] {
+    float: left;
+    width: 700px; } }
+@media (max-width: 979px) {
+  .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+    padding: 0; }
+
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed; }
+
+  .input-large {
+    min-height: 20px;
+    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit; } }
+@media (max-width: 1200px) {
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 1170px; } }
+body {
+  background: #f5f5f0; }
+
+.span8 {
+  width: 700px; }
+
+#feedback-btn {
+  margin-bottom: 80px;
+  z-index: 10000; }
+
+/* ==========================================================================
+ * HTML STRUCTURE
+ * ========================================================================== */
+/* --------------------------------------------------------------------------
+ * Header
+ * -------------------------------------------------------------------------- */
+header {
+  min-height: 53px; }
+
+input#header-search {
+  float: left;
+  margin-top: 20px;
+  border: 1px solid #d0cec7;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  margin-top: 15px;
+  margin-left: 20px;
+  width: 175px;
+  background: url(../img/peoplewings-sprite.png) no-repeat white;
+  background-position: -558px -117px;
+  padding-top: 2px;
+  padding-left: 30px;
+  font-size: 12px;
+  line-height: 21px;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  input#header-search:hover, input#header-search:active, input#header-search:focus {
+    outline: none;
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; }
+
+.navbar.nav.navbar-fixed-top {
+  background: #edede6;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 1px 0px 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+  height: 53px; }
+
+.navbar .brand {
+  float: left;
+  background: url(../img/peoplewings-sprite.png) no-repeat;
+  background-position: -1331px -224px;
+  text-indent: -9999px;
+  width: 237px;
+  height: 60px;
+  margin-top: 17px;
+  padding: 0;
+  margin-left: 0; }
+.navbar .nav {
+  float: right;
+  font-size: 11px;
+  margin-right: 10px;
+  margin-top: 23px;
+  line-height: 12px; }
+  .navbar .nav li {
+    float: left;
+    line-height: inherit; }
+    .navbar .nav li:after {
+      content: "|";
+      margin-left: 4px;
+      margin-right: 4px;
+      color: #848178; }
+    .navbar .nav li:last-child:after {
+      content: ""; }
+    .navbar .nav li a {
+      display: inline;
+      font-size: inherit;
+      font-family: Helvetica, Arial, Sans-Serif;
+      text-shadow: none;
+      padding: 0;
+      color: #848178;
+      text-transform: uppercase; }
+      .navbar .nav li a:hover {
+        color: #18183f;
+        text-decoration: underline; }
+
+div.nav-menu ul.nav.pull-right {
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-right: 0; }
+  div.nav-menu ul.nav.pull-right li {
+    padding: 0; }
+    div.nav-menu ul.nav.pull-right li a {
+      display: inline-block;
+      padding: 15px 6px; }
+      div.nav-menu ul.nav.pull-right li a:hover {
+        background: #d0cec7;
+        text-decoration: none; }
+    div.nav-menu ul.nav.pull-right li span#notif-count {
+      float: left;
+      padding-right: 10px;
+      display: block;
+      width: 14px;
+      height: 14px;
+      color: white;
+      font-weight: bold;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -867px -167px;
+      font-size: 10px;
+      font-weight: normal;
+      text-align: right; }
+    div.nav-menu ul.nav.pull-right li img {
+      float: right;
+      width: 35px;
+      height: 35px;
+      margin: -13px 0 0 10px;
+      border: 2px solid white; }
+  div.nav-menu ul.nav.pull-right li.logged {
+    padding: 0; }
+    div.nav-menu ul.nav.pull-right li.logged:after {
+      margin-right: 0px; }
+    div.nav-menu ul.nav.pull-right li.logged a {
+      padding: 15px 2px 2px 6px; }
+
+div.btn-group.pull-right {
+  margin-top: 16px; }
+  div.btn-group.pull-right a {
+    display: block;
+    overflow: hidden;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0; }
+    div.btn-group.pull-right a:hover {
+      background-color: #d0cec7; }
+  div.btn-group.pull-right ul.dropdown-menu {
+    padding: 15px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    box-shadow: 1px 1px 2px #cccccc;
+    -moz-box-shadow: 1px 1px #cccccc 2px;
+    -webkit-box-shadow: 1px 1px 2px #cccccc; }
+    div.btn-group.pull-right ul.dropdown-menu li {
+      float: none; }
+      div.btn-group.pull-right ul.dropdown-menu li a {
+        font-size: 12px;
+        color: #999999; }
+        div.btn-group.pull-right ul.dropdown-menu li a:hover, div.btn-group.pull-right ul.dropdown-menu li a:focus {
+          background: yellow;
+          background: -moz-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffea00));
+          background: -webkit-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -o-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
+          background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
+
+/* --------------------------------------------------------------------------
+ *	Icons
+ * -------------------------------------------------------------------------- */
+.icon, .icon-pager, .icon-pager-previous, .icon-pager-next, .icon-config, .icon-edit, .icon-about, .icon-like, .icon-contact, .icon-add-friend, .icon-house, .icon-places, .icon-places-hometown-mini, .icon-places-current-mini, .icon-places-lived-mini, .icon-add-wings, .icon-search, .icon-back, .icon-lock, .icon-lock-open, .icon-public-state, .icon-like-up, .icon-like-down {
+  display: block;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+  background: url(../img/peoplewings-sprite.png) no-repeat;
+  margin: 0; }
+
+/*	Commons
+ * -------------------------------------------------------------------------- */
+.icon-pager-previous {
+  background-position: -12px -14px; }
+
+.icon-pager-next {
+  background-position: -61px -14px; }
+
+.icon-config {
+  background-position: -761px -162px;
+  margin-top: 0; }
+
+/*	Profile
+ * -------------------------------------------------------------------------- */
+.icon-edit {
+  background-position: -461px -162px; }
+
+.icon-about {
+  background-position: -312px -162px; }
+
+.icon-like {
+  background-position: -562px -161px; }
+
+.icon-contact {
+  background-position: -511px -161px; }
+
+.icon-add-friend {
+  background-position: -10px -10px; }
+
+.icon-house {
+  background-position: -410px -162px; }
+
+.icon-places {
+  background-position: -612px -161px; }
+
+.icon-places-hometown-mini {
+  background-position: -62px -362px; }
+
+.icon-places-current-mini {
+  background-position: -162px -362px; }
+
+.icon-places-lived-mini {
+  background-position: -262px -362px; }
+
+.icon-add-wings {
+  width: 30px;
+  background-position: -913px -159px; }
+
+/*	Messages
+ * -------------------------------------------------------------------------- */
+.icon-search {
+  background-position: -560px -118px; }
+
+/*	Thread
+ * -------------------------------------------------------------------------- */
+.icon-back {
+  background-position: -567px -19px;
+  width: 15px;
+  height: 12px; }
+
+.icon-lock, .icon-lock-open {
+  background-position: -669px -168px;
+  width: 9px;
+  height: 12px; }
+
+.icon-lock-open {
+  background-position: -719px -167px;
+  height: 14px; }
+
+/*	Modals
+ * -------------------------------------------------------------------------- */
+.icon-public-state {
+  background-position: -163px -162px; }
+
+.icon-like-up {
+  background-position: -213px -162px; }
+
+.icon-like-down {
+  background-position: -262px -162px; }
+
+/* --------------------------------------------------------------------------
+ * Buttons
+ * -------------------------------------------------------------------------- */
+button {
+  font-family: inherit; }
+
+.button, .button-highlight, .button-pager-previous, .button-pager-next, .button-close, .button-peoplewings, .button-basic-info, .button-edit-info, .button-back, .button-delete {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+  *zoom: 1;
+  padding: 15px 25px;
+  margin: 0;
+  font-size: 11px;
+  font-style: italic;
+  color: black;
+  line-height: normal;
+  text-shadow: 1px 1px 1px white;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1px solid #d0cec7;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+  background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+  background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+  background: linear-gradient(to bottom, white 0%, #ecece5 100%); }
+  .button:hover, .button-highlight:hover, .button-pager-previous:hover, .button-pager-next:hover, .button-close:hover, .button-peoplewings:hover, .button-basic-info:hover, .button-edit-info:hover, .button-back:hover, .button-delete:hover, .button:active, .button-highlight:active, .button-pager-previous:active, .button-pager-next:active, .button-close:active, .button-peoplewings:active, .button-basic-info:active, .button-edit-info:active, .button-back:active, .button-delete:active, .button:focus, .button-highlight:focus, .button-pager-previous:focus, .button-pager-next:focus, .button-close:focus, .button-peoplewings:focus, .button-basic-info:focus, .button-edit-info:focus, .button-back:focus, .button-delete:focus {
+    background: white;
+    color: black; }
+  .button:active, .button-highlight:active, .button-pager-previous:active, .button-pager-next:active, .button-close:active, .button-peoplewings:active, .button-basic-info:active, .button-edit-info:active, .button-back:active, .button-delete:active {
+    background: #ffeb00;
+    background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+    background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+    background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
+
+.button-highlight {
+  background: yellow;
+  background: -moz-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, yellow), color-stop(100%, #ffeb00));
+  background: -webkit-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -o-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: -ms-linear-gradient(top, yellow 0%, #ffeb00 100%);
+  background: linear-gradient(to bottom, yellow 0%, #ffeb00 100%); }
+
+.button-pager-previous {
+  padding: 0;
+  text-indent: -9999px; }
+
+.button-pager-next {
+  padding: 0;
+  text-indent: -9999px; }
+
+.button-close {
+  float: right;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  line-height: 15px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  color: black;
+  text-shadow: 0 1px 0 white;
+  cursor: pointer;
+  opacity: 0.2;
+  filter: alpha(opacity=20); }
+  .button-close:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background: none; }
+
+.button-peoplewings {
+  padding: 3px 15px;
+  background: #18183f;
+  color: yellow;
+  font-family: "Exo", Tahoma, Sans-Serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: none;
+  border: 2px solid yellow;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
+  -o-transition: box-shadow 0.5s; }
+  .button-peoplewings:hover, .button-peoplewings:focus, .button-peoplewings:active {
+    color: yellow;
+    background: #18183f;
+    outline: 0;
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; }
+
+.button-basic-info {
+  width: auto;
+  padding: 14px;
+  color: #848178;
+  background: #f5f5f0;
+  background: -moz-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f0), color-stop(100%, #e1e0d9));
+  background: -webkit-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);
+  background: -o-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);
+  background: -ms-linear-gradient(top, #f5f5f0 0%, #e1e0d9 100%);
+  background: linear-gradient(to bottom, #f5f5f0 0%, #e1e0d9 100%); }
+
+.button-edit-info {
+  color: #848178;
+  line-height: 24px;
+  padding: 9px 28px 10px 20px; }
+
+.button-back {
+  padding: 2px 12px;
+  height: 20px; }
+
+.button-delete {
+  padding: 5px 15px;
+  color: #999999;
+  text-shadow: 1px 1px white; }
+
+/* --------------------------------------------------------------------------
+ * Form elements
+ * --------------------------------------------------------------------------- */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url(../img/peoplewings-sprite.png) no-repeat white; }
+
+.size, .size-medium, .size-small, .size-large, .size-extralarge {
+  line-height: 15px; }
+
+.size-medium {
+  width: 90px;
+  background-position: -403px -12px !important; }
+
+.size-small {
+  width: 57px;
+  background-position: -436px -12px !important; }
+
+.size-large {
+  width: 150px;
+  background-position: -343px -12px !important; }
+
+.size-extralarge {
+  width: 210px !important;
+  background-position: -286px -12px; }
+
+.size-large.lock-info {
+  width: 121px !important;
+  background-position: 101px; }
+
+.size-box-standard {
+  width: 310px !important; }
+
+.size-13 {
+  width: 115px !important;
+  background-position: 100px; }
+
+.size-23 {
+  width: 160px !important;
+  background-position: 100px; }
+
+.size-33 {
+  width: 310px !important; }
+
+/* --------------------------------------------------------------------------
+ * Enviroment
+ * -------------------------------------------------------------------------- */
+.modal-backdrop.fade.in {
+  opacity: 0.1;
+  filter: alpha(opacity=10); }
+
+.modal.fade.in {
+  top: 270px; }
+
+@media (max-width: 767px) {
+  .modal.fade.in {
+    top: auto; } }
+/* --------------------------------------------------------------------------
+ * Modal Basic
+ * -------------------------------------------------------------------------- */
+div.generic-modal {
+  display: block;
+  font-size: 12px;
+  color: #999999;
+  background: #e1e0d9;
+  border: 1px solid #d3d1ca;
+  width: 790px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  box-shadow: 5px 4px 10px 0px #cccccc;
+  -moz-box-shadow: 5px 4px 0px 10px #cccccc;
+  -webkit-box-shadow: 5px 4px 10px 0px #cccccc; }
+  div.generic-modal:focus {
+    outline: none; }
+  div.generic-modal div, div.generic-modal h1, div.generic-modal form, div.generic-modal label, div.generic-modal input {
+    line-height: inherit; }
+  div.generic-modal div.modal-header {
+    background: #e1e0d9;
+    border: none;
+    padding: 18px 30px;
+    border-bottom: 1px solid #d3d1ca;
+    border-radius: 15px 15px 0 0;
+    -webkit-border-radius: 15px 15px 0 0;
+    -moz-border-radius: 15px 15px 0 0; }
+    div.generic-modal div.modal-header h1 {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px white;
+      color: black; }
+  div.generic-modal div.modal-body {
+    padding: 15px 25px;
+    background: white;
+    max-height: 100%; }
+    div.generic-modal div.modal-body div.control-group {
+      margin-bottom: 15px; }
+      div.generic-modal div.modal-body div.control-group:last-child {
+        margin-bottom: 0; }
+      div.generic-modal div.modal-body div.control-group label.control-label {
+        float: left;
+        width: 60px;
+        font-weight: bold;
+        text-align: right;
+        margin: 8px -5px; }
+      div.generic-modal div.modal-body div.control-group div.controls {
+        margin-left: 70px; }
+        div.generic-modal div.modal-body div.control-group div.controls input[type="text"] {
+          width: 640px;
+          padding: 7px 14px;
+          margin: 0;
+          color: black;
+          font-size: inherit;
+          font-weight: bold;
+          background: white;
+          border-radius: 2px;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          box-shadow: 1px 1px 1px #eeeeee inset;
+          -moz-box-shadow: 1px 1px #eeeeee 1px inset;
+          -webkit-box-shadow: 1px 1px 1px #eeeeee inset; }
+        div.generic-modal div.modal-body div.control-group div.controls textarea {
+          display: inline-block;
+          height: 80px;
+          width: 640px;
+          max-width: 640px;
+          padding: 13px;
+          padding-left: 15px;
+          margin: 0;
+          color: black;
+          font-family: inherit;
+          font-size: inherit;
+          background-color: white;
+          border: 1px solid #cccccc;
+          border-radius: 0;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          box-shadow: 1px 1px 1px #eeeeee inset;
+          -moz-box-shadow: 1px 1px #eeeeee 1px inset;
+          -webkit-box-shadow: 1px 1px 1px #eeeeee inset; }
+        div.generic-modal div.modal-body div.control-group div.controls label {
+          margin: 5px; }
+          div.generic-modal div.modal-body div.control-group div.controls label input {
+            margin-top: -3px;
+            margin-right: 10px; }
+        div.generic-modal div.modal-body div.control-group div.controls .help-block label {
+          float: none; }
+        div.generic-modal div.modal-body div.control-group div.controls label[for="public-request"] {
+          display: block;
+          color: black;
+          padding-left: 45px; }
+          div.generic-modal div.modal-body div.control-group div.controls label[for="public-request"] input {
+            margin-top: 3px; }
+        div.generic-modal div.modal-body div.control-group div.controls h3 {
+          color: black;
+          font-weight: bold;
+          margin: 8px 0; }
+        div.generic-modal div.modal-body div.control-group div.controls select {
+          margin: 0; }
+      div.generic-modal div.modal-body div.control-group div.controls.radios {
+        min-height: 25px; }
+        div.generic-modal div.modal-body div.control-group div.controls.radios label {
+          float: left; }
+        div.generic-modal div.modal-body div.control-group div.controls.radios i {
+          margin: 2px 0; }
+    div.generic-modal div.modal-body div.control-group.avatar-message label.control-label {
+      margin-top: 0; }
+  div.generic-modal div.modal-footer {
+    padding: 0;
+    overflow: hidden;
+    background: white;
+    border: none;
+    border-radius: 0 0 15px 15px;
+    -webkit-border-radius: 0 0 15px 15px;
+    -moz-border-radius: 0 0 15px 15px; }
+    div.generic-modal div.modal-footer button {
+      border-bottom: none; }
+      div.generic-modal div.modal-footer button.button:last-child, div.generic-modal div.modal-footer button.button-highlight:last-child, div.generic-modal div.modal-footer button.button-pager-previous:last-child, div.generic-modal div.modal-footer button.button-pager-next:last-child, div.generic-modal div.modal-footer button.button-close:last-child, div.generic-modal div.modal-footer button.button-peoplewings:last-child, div.generic-modal div.modal-footer button.button-basic-info:last-child, div.generic-modal div.modal-footer button.button-edit-info:last-child, div.generic-modal div.modal-footer button.button-back:last-child, div.generic-modal div.modal-footer button.button-delete:last-child {
+        border-left: none; }
+    div.generic-modal div.modal-footer div.button-group {
+      float: right;
+      margin-right: 20px; }
+      div.generic-modal div.modal-footer div.button-group button {
+        min-width: 90px; }
+        div.generic-modal div.modal-footer div.button-group button:first-child {
+          margin-right: -3px; }
+
+/* --------------------------------------------------------------------------
+ * Modal Wings
+ * -------------------------------------------------------------------------- */
+div.generic-modal.thin-modal {
+  width: 391px; }
+  div.generic-modal.thin-modal input {
+    font-size: 12px;
+    background: white;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-box-shadow: inset 1px 1px #eeeeee;
+    width: 644px;
+    padding: 7px 15px; }
+  div.generic-modal.thin-modal textarea {
+    width: 647px;
+    font-size: 12px;
+    padding: 12px;
+    padding-left: 15px;
+    min-height: 250px;
+    /* box-standard */ }
+  div.generic-modal.thin-modal div.modal-body {
+    padding: 0;
+    max-height: 500px;
+    /* EOF box-standard */ }
+    div.generic-modal.thin-modal div.modal-body div.box-standard {
+      width: 374px;
+      background: white;
+      color: gray;
+      margin: 0;
+      border: none;
+      overflow: hidden; }
+      div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header {
+        border-bottom: 1px solid #d0cec7;
+        height: 44px; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header i {
+          margin-left: 10px;
+          margin-top: 10px; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header h1, div.generic-modal.thin-modal div.modal-body div.box-standard div.box-header h2 {
+          float: left;
+          font-size: 14px;
+          font-weight: bold;
+          text-shadow: 1px 1px white;
+          padding: 13px 0 0 10px;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+      div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content.wings-info .blocked {
+        margin-right: 5px !important; }
+      div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content {
+        overflow: hidden;
+        padding: 25px; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content p {
+          color: black;
+          font-size: 12px;
+          padding-bottom: 12px;
+          margin-bottom: 12px;
+          border-bottom: 1px solid #dddddd; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input {
+          padding: 4px 6px; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content label.control-label {
+          width: auto;
+          font-weight: normal;
+          margin: 0 10px 0 0;
+          text-align: left; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input[type="checkbox"] {
+          width: auto;
+          margin-top: 0; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content input[type="text"] {
+          line-height: 20px;
+          font-weight: normal;
+          padding-left: 10px; }
+        div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content div.controls {
+          margin-left: 0; }
+          div.generic-modal.thin-modal div.modal-body div.box-standard div.box-content div.controls textarea {
+            width: 300px !important;
+            padding: 10px;
+            min-height: auto; }
+      div.generic-modal.thin-modal div.modal-body div.box-standard .wings-info h2, div.generic-modal.thin-modal div.modal-body div.box-standard .contact-info h2 {
+        float: left;
+        margin-right: 10px; }
+      div.generic-modal.thin-modal div.modal-body div.box-standard .wings-info .last-p, div.generic-modal.thin-modal div.modal-body div.box-standard .contact-info .last-p {
+        float: none; }
+
+div.generic-modal div.modal-body div.listing-location div.control-group.blocked label {
+  width: auto; }
+div.generic-modal div.modal-body div.listing-location div.control-group.blocked label.control-label {
+  width: auto;
+  font-weight: normal;
+  text-align: left;
+  margin: 0 0 6px 0; }
+div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls {
+  margin-left: 0; }
+  div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls input {
+    font-size: inherit;
+    color: inherit;
+    padding: 4px 6px;
+    width: auto;
+    font-weight: normal; }
+  div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .input-medium {
+    width: 210px; }
+  div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .input-mini {
+    width: 60px; }
+  div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .size-box-standard {
+    width: 310px !important; }
+
+/* --------------------------------------------------------------------------
+ * Request Options
+ * -------------------------------------------------------------------------- */
+div.request-options {
+  margin-left: 0;
+  border: 1px solid #d0cec7;
+  border-bottom: none; }
+  div.request-options h1 {
+    text-transform: capitalize;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 45px; }
+  div.request-options div.accepted h1 {
+    color: #85c333;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: 1px 1px; }
+  div.request-options div.maybe h1 {
+    color: #fa9e03;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: 1px 1px; }
+  div.request-options div.pending h1 {
+    color: #ee4040;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: 1px 1px; }
+  div.request-options div.denied h1 {
+    color: #7e7b71;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: 1px 1px; }
+  div.request-options div#wing-data {
+    padding: 14px;
+    background: #e1e0d9;
+    overflow: hidden; }
+    div.request-options div#wing-data h2 {
+      font-weight: bold;
+      padding-left: 3px;
+      margin-bottom: 4px; }
+    div.request-options div#wing-data span {
+      margin-left: 10px; }
+    div.request-options div#wing-data div#wing-accomodation-params div.control-group {
+      margin: 0;
+      margin-top: 10px; }
+    div.request-options div#wing-data div#wing-accomodation-params div.controls {
+      margin: 0; }
+      div.request-options div#wing-data div#wing-accomodation-params div.controls input {
+        margin: 0;
+        padding-top: 4px;
+        padding-right: 6px;
+        padding-bottom: 4px;
+        padding-left: 10px; }
+      div.request-options div#wing-data div#wing-accomodation-params div.controls input.input-sdate {
+        width: 90px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: 64px -160px; }
+      div.request-options div#wing-data div#wing-accomodation-params div.controls input.input-edate {
+        width: 90px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -39px -160px; }
+      div.request-options div#wing-data div#wing-accomodation-params div.controls span {
+        margin: 0; }
+    div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates {
+      margin: 0; }
+      div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates label.checkbox {
+        display: inline-block;
+        margin: 0;
+        font-size: 12px;
+        line-height: normal;
+        width: 115px;
+        padding: 6px 0;
+        padding-top: 8px; }
+        div.request-options div#wing-data div#wing-accomodation-params div.control-group.flexible-dates label.checkbox input[type="checkbox"] {
+          float: none;
+          width: auto;
+          padding: 0;
+          margin-right: 10px;
+          margin-top: -2px; }
+  div.request-options textarea {
+    border: none;
+    width: 647px;
+    margin: 0px;
+    padding: 15px;
+    padding-top: 10px;
+    color: black;
+    min-height: auto; }
+
+#generic-modal #wing-data .help-block label {
+  display: inline !important;
+  padding: 5px 15px !important; }
+#generic-modal .help-block label {
+  display: block !important;
+  padding: 0 !important;
+  padding-left: 15px !important; }
+
+/* --------------------------------------------------------------------------
+ * Register
+ * -------------------------------------------------------------------------- */
+form#register-form {
+  float: right;
+  background: rgba(30, 30, 57, 0.7);
+  padding: 0 28px 28px 14px;
+  margin: 27px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 469px; }
+  form#register-form input, form#register-form select, form#register-form .help-block {
+    margin: 0; }
+  form#register-form input[type="text"],
+  form#register-form input[type="password"],
+  form#register-form input[type="email"] {
+    font-size: 13px;
+    padding: 8px;
+    border: 1px solid #79766c;
+    color: black;
+    line-height: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px; }
+  form#register-form label.checkbox {
+    padding-left: 0;
+    margin-bottom: 15px; }
+    form#register-form label.checkbox input {
+      margin-top: 2px;
+      margin-left: 0;
+      margin-right: 15px; }
+  form#register-form span.signal {
+    float: left;
+    text-indent: -9999px;
+    height: 16px;
+    width: 15px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -167px -67px;
+    position: relative;
+    bottom: 16px;
+    left: 233px;
+    opacity: 0.7;
+    filter: alpha(opacity=70); }
+  form#register-form legend {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 13px;
+    width: 107px;
+    height: 28px;
+    text-indent: -9999px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -1171px -210px; }
+  form#register-form .clear {
+    clear: both; }
+  form#register-form .control-group:after, form#register-form .control-group:before {
+    display: block; }
+  form#register-form .control-group {
+    margin: 0; }
+    form#register-form .control-group .control-label {
+      float: left;
+      font-size: 14px;
+      color: white;
+      padding-left: 10px;
+      width: 100px;
+      text-shadow: 1px 1px 1px black;
+      text-align: left; }
+    form#register-form .control-group .controls {
+      margin-left: 122px;
+      margin-bottom: 4px; }
+      form#register-form .control-group .controls input[type="text"],
+      form#register-form .control-group .controls input[type="password"],
+      form#register-form .control-group .controls input[type="email"] {
+        width: 94.8%; }
+      form#register-form .control-group .controls select {
+        width: 32.5%;
+        min-height: 36px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -382px -9px; }
+    form#register-form .control-group .controls.two-elements input[type="text"],
+    form#register-form .control-group .controls.two-elements input[type="password"] {
+      width: 44.2%; }
+    form#register-form .control-group .controls.terms {
+      color: white;
+      font-size: 12px;
+      line-height: 18px; }
+      form#register-form .control-group .controls.terms p {
+        margin: 15px 0px; }
+      form#register-form .control-group .controls.terms a {
+        color: yellow; }
+        form#register-form .control-group .controls.terms a:hover {
+          text-decoration: underline;
+          cursor: pointer; }
+
+/* --------------------------------------------------------------------------
+ * Login
+ * -------------------------------------------------------------------------- */
+form#login-form {
+  float: right;
+  background: rgba(30, 30, 57, 0.7);
+  padding: 0 28px 28px 14px;
+  margin: 27px 12px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 469px; }
+  form#login-form input, form#login-form select, form#login-form .help-block {
+    margin: 0; }
+  form#login-form input[type="text"],
+  form#login-form input[type="password"],
+  form#login-form input[type="email"] {
+    font-size: 13px;
+    padding: 8px;
+    border: 1px solid #79766c;
+    color: black;
+    line-height: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px; }
+  form#login-form label.checkbox {
+    padding-left: 0;
+    margin-bottom: 15px; }
+    form#login-form label.checkbox input {
+      margin-top: 2px;
+      margin-left: 0;
+      margin-right: 15px; }
+  form#login-form span.signal {
+    float: left;
+    text-indent: -9999px;
+    height: 16px;
+    width: 15px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -167px -67px;
+    position: relative;
+    bottom: 16px;
+    left: 280px;
+    opacity: 0.7;
+    filter: alpha(opacity=70); }
+  form#login-form legend {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 13px;
+    width: 107px;
+    height: 28px;
+    text-indent: -9999px; }
+  form#login-form .clear {
+    clear: both; }
+  form#login-form .control-group {
+    margin: 0;
+    margin-bottom: 4px; }
+  form#login-form .control-group:after, form#login-form .control-group:before {
+    display: block; }
+  form#login-form .control-label {
+    float: left;
+    font-size: 14px;
+    color: white;
+    padding-left: 10px;
+    width: 100px;
+    text-shadow: 1px 1px 1px black;
+    text-align: left; }
+  form#login-form .controls {
+    margin-left: 122px; }
+    form#login-form .controls input[type="text"],
+    form#login-form .controls input[type="password"],
+    form#login-form .controls input[type="email"] {
+      width: 94.8%; }
+  form#login-form .controls.terms {
+    color: white;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 12px; }
+    form#login-form .controls.terms a {
+      color: yellow;
+      float: right;
+      position: relative;
+      bottom: 33px; }
+      form#login-form .controls.terms a:hover {
+        text-decoration: underline;
+        cursor: pointer; }
+
+@media (max-width: 767px) {
+  form#login-form input[type="password"],
+  form#login-form input[type="email"] {
+    width: 100%;
+    line-height: 20px;
+    height: auto; } }
+/* --------------------------------------------------------------------------
+ * Search Accommodation
+ * -------------------------------------------------------------------------- */
+form#accomodation-search-form {
+  padding: 30px;
+  padding-top: 10px;
+  background: #e1e0d9;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  overflow: hidden;
+  margin: 0; }
+  form#accomodation-search-form div.form-block {
+    clear: both; }
+    form#accomodation-search-form div.form-block label {
+      display: none;
+      float: left;
+      text-indent: -9999px;
+      width: 67px;
+      height: 20px;
+      margin: 10px 10px 0 0; }
+    form#accomodation-search-form div.form-block label.wings_text {
+      display: block;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -1013px -263px;
+      margin-right: 18px; }
+    form#accomodation-search-form div.form-block label.people_text {
+      display: block;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -1009px -215px;
+      width: 75px; }
+    form#accomodation-search-form div.form-block div.control-group {
+      margin: 0; }
+      form#accomodation-search-form div.form-block div.control-group:before {
+        display: inline; }
+      form#accomodation-search-form div.form-block div.control-group:after {
+        display: inline; }
+      form#accomodation-search-form div.form-block div.control-group input, form#accomodation-search-form div.form-block div.control-group select {
+        float: left;
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border: 1px solid #79766c;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        margin-top: 0;
+        margin-left: 0;
+        line-height: 15px; }
+      form#accomodation-search-form div.form-block div.control-group input.input-sdate {
+        width: 90px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: 60px -156px; }
+      form#accomodation-search-form div.form-block div.control-group input.input-edate {
+        width: 90px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: 60px -156px; }
+      form#accomodation-search-form div.form-block div.control-group input.input-large {
+        width: 213px; }
+      form#accomodation-search-form div.form-block div.control-group select {
+        height: 38px; }
+      form#accomodation-search-form div.form-block div.control-group select.input-guests {
+        width: 90px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -402px -8px; }
+      form#accomodation-search-form div.form-block div.control-group select.input-age1 {
+        width: 77px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -415px -8px; }
+      form#accomodation-search-form div.form-block div.control-group select.input-age2 {
+        width: 57px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -435px -8px; }
+      form#accomodation-search-form div.form-block div.control-group select.input-language {
+        width: 89px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -402px -8px; }
+      form#accomodation-search-form div.form-block div.control-group select.input-others {
+        width: 108px;
+        background: url(../img/peoplewings-sprite.png) no-repeat white;
+        background-position: -387px -8px; }
+  form#accomodation-search-form div.form-actions {
+    float: right;
+    margin-bottom: 0px;
+    margin-top: 12px;
+    background: none;
+    padding: 0px;
+    border: none; }
+
+/* --------------------------------------------------------------------------
+ * Search Results
+ * -------------------------------------------------------------------------- */
+/* Pager Counter
+ * -------------------------------------------------------------------------- */
+.pager-content {
+  background: white;
+  font-size: 13px;
+  overflow: hidden;
+  padding: 5px;
+  padding-left: 18px;
+  margin-top: 35px;
+  margin-bottom: 13px;
+  color: #999999; }
+  .pager-content p {
+    display: inline; }
+  .pager-content .pager-left {
+    float: left;
+    padding: 4px 0; }
+    .pager-content .pager-left span:first-child {
+      font-weight: bold; }
+
+.pager-right {
+  float: right; }
+  .pager-right .resultCounter {
+    float: left;
+    margin-right: 15px;
+    padding: 4px 0; }
+    .pager-right .resultCounter span:first-child:after {
+      content: " - "; }
+    .pager-right .resultCounter span:last-child:before {
+      content: " of "; }
+  .pager-right .button-group {
+    float: left;
+    line-height: 0; }
+    .pager-right .button-group a:last-child {
+      border-left: none;
+      margin-left: -4px; }
+
+/* Profile Card
+ * -------------------------------------------------------------------------- */
+div.profile {
+  border: 1px solid #ccccd3;
+  margin-bottom: 8px;
+  line-height: 20px;
+  position: relative; }
+  div.profile div.content-left {
+    float: left;
+    width: 175px;
+    height: 175px; }
+    div.profile div.content-left span.dot {
+      float: left;
+      width: 18px;
+      height: 18px;
+      background: transparent;
+      text-indent: -9999px;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      z-index: 1; }
+    div.profile div.content-left .dot.online {
+      background: lime;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -215px -64px; }
+    div.profile div.content-left .span-online {
+      float: left;
+      position: absolute;
+      top: 5px;
+      left: -7px;
+      z-index: 1;
+      background: yellow;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: bold;
+      font-style: italic;
+      padding: 0px 9px;
+      text-shadow: 1px 1px white;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      box-shadow: 1px 1px 1px #999999;
+      -moz-box-shadow: 1px 1px #999999 1px;
+      -webkit-box-shadow: 1px 1px 1px #999999; }
+  div.profile div.content-right {
+    float: left;
+    background: white;
+    width: 523px;
+    height: 175px;
+    position: absolute;
+    right: 0; }
+    div.profile div.content-right div.personal-info {
+      margin: 24px;
+      margin-bottom: 14px; }
+      div.profile div.content-right div.personal-info div.first-info {
+        min-height: 72px; }
+        div.profile div.content-right div.personal-info div.first-info h1.name {
+          font-size: 21px;
+          font-weight: bold;
+          display: inline; }
+          div.profile div.content-right div.personal-info div.first-info h1.name a {
+            text-decoration: none;
+            color: black; }
+            div.profile div.content-right div.personal-info div.first-info h1.name a:hover {
+              color: #01a6da; }
+        div.profile div.content-right div.personal-info div.first-info span {
+          margin-left: 0.2em; }
+        div.profile div.content-right div.personal-info div.first-info span.age {
+          font-size: 14px; }
+        div.profile div.content-right div.personal-info div.first-info span.online {
+          color: gray;
+          font-style: italic;
+          font-size: 13px; }
+        div.profile div.content-right div.personal-info div.first-info h2.home-town {
+          font-size: 16px; }
+        div.profile div.content-right div.personal-info div.first-info h3.current-location {
+          color: gray;
+          font-size: 14px;
+          margin-bottom: 0.8em; }
+      div.profile div.content-right div.personal-info dl dt.languages-tag {
+        float: left;
+        font-size: 13px;
+        color: gray;
+        margin-right: 10px; }
+      div.profile div.content-right div.personal-info dl dd {
+        font-size: 13px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 20px; }
+      div.profile div.content-right div.personal-info dl dd.languages {
+        color: black;
+        text-transform: capitalize; }
+    div.profile div.content-right div.main-bar {
+      font-size: 11px;
+      color: gray;
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+      background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+      background: linear-gradient(to bottom, white 0%, #ecece5 100%);
+      border-top: 1px solid #e5e5e5;
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      width: 100%; }
+      div.profile div.content-right div.main-bar div {
+        float: left; }
+      div.profile div.content-right div.main-bar div.info-bar {
+        padding: 12px 24px;
+        padding-right: 0; }
+        div.profile div.content-right div.main-bar div.info-bar span {
+          float: left;
+          margin-right: 0.8em; }
+        div.profile div.content-right div.main-bar div.info-bar span.results {
+          font-size: 16px;
+          font-weight: bold;
+          color: black; }
+          div.profile div.content-right div.main-bar div.info-bar span.results:last-child {
+            margin-right: 0; }
+      div.profile div.content-right div.main-bar div.button-bar {
+        float: right; }
+        div.profile div.content-right div.main-bar div.button-bar button {
+          font-weight: bold;
+          color: #777777;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          padding: 16px 15px 15px 15px;
+          min-width: 90px; }
+        div.profile div.content-right div.main-bar div.button-bar button.button-highlight {
+          color: black; }
+  div.profile div.accordion {
+    clear: both;
+    color: gray;
+    background: white;
+    font-size: 0.8em; }
+    div.profile div.accordion div.accordion-group {
+      margin: 0; }
+      div.profile div.accordion div.accordion-group div.accordion-inner {
+        padding: 29px;
+        overflow: hidden;
+        border-top: 1px solid #d0cec7; }
+        div.profile div.accordion div.accordion-group div.accordion-inner h1 {
+          font-size: 17px;
+          font-weight: bold;
+          margin-bottom: 5px;
+          float: left; }
+        div.profile div.accordion div.accordion-group div.accordion-inner h2 {
+          font-size: 12px;
+          font-style: italic;
+          float: right; }
+        div.profile div.accordion div.accordion-group div.accordion-inner p {
+          font-size: 13px;
+          color: gray;
+          clear: both;
+          line-height: 20px; }
+      div.profile div.accordion div.accordion-group div.accordion-heading {
+        border-top: 1px solid #d0cec7;
+        padding: 9px;
+        overflow: hidden;
+        cursor: pointer; }
+        div.profile div.accordion div.accordion-group div.accordion-heading span {
+          background: url(../img/peoplewings-sprite.png) no-repeat;
+          background-position: -658px -16px;
+          text-transform: uppercase;
+          font-weight: bold;
+          text-align: center;
+          padding: 0 34px;
+          display: block;
+          width: 74px;
+          margin: 0 auto; }
+
+/* --------------------------------------------------------------------------
+ * Notification Header
+ * -------------------------------------------------------------------------- */
+.searchbar {
+  padding: 12px 0;
+  padding-bottom: 5px;
+  overflow: hidden; }
+  .searchbar #search {
+    float: right; }
+    .searchbar #search input {
+      float: left;
+      font-size: 12px;
+      margin: 0;
+      width: 249px !important;
+      border-right: 0;
+      border-radius: 2px 0 0 2px;
+      -webkit-border-radius: 2px 0 0 2px;
+      -moz-border-radius: 2px 0 0 2px; }
+    .searchbar #search a {
+      padding: 1px 3px 2px 3px;
+      border-radius: 0 2px 2px 0;
+      -webkit-border-radius: 0 2px 2px 0;
+      -moz-border-radius: 0 2px 2px 0; }
+
+.messages-header {
+  overflow: hidden;
+  position: relative; }
+  .messages-header .messages-tabs {
+    float: left;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0; }
+    .messages-header .messages-tabs #notification-type {
+      font-size: 11px;
+      margin-top: 0;
+      padding-left: 10px;
+      overflow: hidden; }
+      .messages-header .messages-tabs #notification-type li {
+        padding: 11px 16px;
+        background: #e1e0d9;
+        margin-right: 4px;
+        min-width: 40px;
+        text-align: center;
+        -webkit-border-radius: 4px 4px 0 0;
+        text-transform: uppercase;
+        font-style: italic;
+        font-weight: bold;
+        color: black;
+        border-bottom: 1px solid #e1e0d9; }
+        .messages-header .messages-tabs #notification-type li:hover {
+          background: white;
+          border-bottom: 1px solid white;
+          color: black; }
+      .messages-header .messages-tabs #notification-type .button.selected, .messages-header .messages-tabs #notification-type .selected.button-highlight, .messages-header .messages-tabs #notification-type .selected.button-pager-previous, .messages-header .messages-tabs #notification-type .selected.button-pager-next, .messages-header .messages-tabs #notification-type .selected.button-close, .messages-header .messages-tabs #notification-type .selected.button-peoplewings, .messages-header .messages-tabs #notification-type .selected.button-basic-info, .messages-header .messages-tabs #notification-type .selected.button-edit-info, .messages-header .messages-tabs #notification-type .selected.button-back, .messages-header .messages-tabs #notification-type .selected.button-delete {
+        background: white;
+        border-bottom: 1px solid white;
+        color: black; }
+  .messages-header .button-bar {
+    float: right; }
+    .messages-header .button-bar li:last-child {
+      border-right: 1px solid #dddddd; }
+    .messages-header .button-bar .button1 {
+      color: #cccccc;
+      width: auto;
+      border: 1px solid #dddddd;
+      border-right: 1px solid white;
+      border-bottom: none;
+      padding: 11px 25px;
+      background: white;
+      background: -moz-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ecece5));
+      background: -webkit-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -o-linear-gradient(top, white 0%, #ecece5 100%);
+      background: -ms-linear-gradient(top, white 0%, #ecece5 100%);
+      background: linear-gradient(to bottom, white 0%, #ecece5 100%);
+      cursor: default; }
+
+/* --------------------------------------------------------------------------
+ * Notification
+ * -------------------------------------------------------------------------- */
+#notification-panel {
+  font-size: 12px;
+  color: #999999;
+  background: none;
+  margin-top: 0;
+  border-top: 1px solid #d3d1cb;
+  padding: 0;
+  padding-top: 7px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0; }
+  #notification-panel .floatality {
+    margin-bottom: 7px;
+    padding: 9px;
+    background: white;
+    min-height: 27px; }
+    #notification-panel .floatality .btn-group {
+      float: left;
+      margin-right: 100px; }
+      #notification-panel .floatality .btn-group label {
+        float: left;
+        margin-right: 10px; }
+    #notification-panel .floatality .messages-filters label#filter-title {
+      float: left;
+      padding: 5px;
+      margin-right: 10px; }
+    #notification-panel .floatality .messages-filters select {
+      float: left;
+      margin: 0;
+      margin-right: 4px;
+      line-height: 15px; }
+    #notification-panel .floatality .messages-filters div#notification-sender {
+      float: left;
+      padding: 5px 0; }
+      #notification-panel .floatality .messages-filters div#notification-sender label {
+        display: inline;
+        margin-left: 15px; }
+        #notification-panel .floatality .messages-filters div#notification-sender label input {
+          margin-right: 8px;
+          margin-top: -3px; }
+    #notification-panel .floatality .messages-dropdown {
+      float: left;
+      display: block;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: 1px 1px;
+      width: 12px; }
+    #notification-panel .floatality .pager-right a.button-pager-next {
+      margin-left: -3px; }
+
+ul#notifications-list {
+  margin-bottom: 50px; }
+
+li.notification-item {
+  font-size: 12px;
+  overflow: hidden;
+  float: none;
+  border: 1px solid #d0cec7;
+  border-bottom: none;
+  background: white;
+  cursor: pointer; }
+  li.notification-item.unread {
+    background: #efeeea; }
+  li.notification-item:last-child {
+    border-bottom: 1px solid #d0cec7; }
+  li.notification-item div {
+    float: left;
+    overflow: hidden; }
+  li.notification-item div.messages-check {
+    padding: 10px 6px;
+    padding-top: 20px; }
+  li.notification-item div.messages-avatar {
+    width: 65px;
+    height: 65px; }
+    li.notification-item div.messages-avatar img {
+      width: 65px;
+      height: 65px; }
+  li.notification-item div.messages-sender {
+    padding: 15px 0 0 20px;
+    line-height: 16px;
+    min-width: 173px; }
+    li.notification-item div.messages-sender h1 {
+      display: inline-block;
+      max-width: 150px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      li.notification-item div.messages-sender h1 a {
+        font-weight: bold;
+        color: black; }
+        li.notification-item div.messages-sender h1 a:hover {
+          color: black;
+          text-decoration: underline; }
+      li.notification-item div.messages-sender h1 span {
+        margin-left: 5px; }
+    li.notification-item div.messages-sender span, li.notification-item div.messages-sender h2 {
+      color: #999999; }
+  li.notification-item div.messages-flag span {
+    display: block;
+    width: 62px;
+    height: 65px;
+    float: left;
+    text-indent: -9999px; }
+  li.notification-item div.messages-flag .from-me {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -883px -267px; }
+  li.notification-item div.messages-flag .to-me {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -808px -267px; }
+  li.notification-item div.messages-flag .from-me.accepted {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -104px -267px; }
+  li.notification-item div.messages-flag .to-me.accepted {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -21px -267px; }
+  li.notification-item div.messages-flag .from-me.maybe {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -494px -267px; }
+  li.notification-item div.messages-flag .to-me.maybe {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -14px -267px; }
+  li.notification-item div.messages-flag .from-me.pending {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -297px -267px; }
+  li.notification-item div.messages-flag .to-me.pending {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -216px -267px; }
+  li.notification-item div.messages-flag .from-me.denied {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -689px -267px; }
+  li.notification-item div.messages-flag .to-me.denied {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -608px -267px; }
+  li.notification-item div.messages-state {
+    padding: 8px 15px;
+    line-height: 16px;
+    max-width: 360px; }
+    li.notification-item div.messages-state h1.messages-name {
+      color: black;
+      font-weight: bold; }
+      li.notification-item div.messages-state h1.messages-name.accepted {
+        color: #85c333; }
+      li.notification-item div.messages-state h1.messages-name.maybe {
+        color: #fa9e03; }
+      li.notification-item div.messages-state h1.messages-name.pending {
+        color: #ee4040; }
+      li.notification-item div.messages-state h1.messages-name.declined {
+        color: #7e7b71; }
+    li.notification-item div.messages-state h2 {
+      text-transform: capitalize;
+      font-weight: bold; }
+    li.notification-item div.messages-state p {
+      color: #999999;
+      font-style: italic; }
+  li.notification-item div.messages-dates {
+    float: right; }
+    li.notification-item div.messages-dates div.messages-dates-info {
+      padding: 8px 15px;
+      line-height: 16px;
+      font-style: italic;
+      color: gray; }
+      li.notification-item div.messages-dates div.messages-dates-info dl {
+        text-align: right; }
+        li.notification-item div.messages-dates div.messages-dates-info dl dt {
+          font-weight: bold;
+          margin-right: 5px; }
+        li.notification-item div.messages-dates div.messages-dates-info dl dt, li.notification-item div.messages-dates div.messages-dates-info dl dd {
+          display: inline; }
+    li.notification-item div.messages-dates div.messages-date-msg {
+      border-left: 1px solid #d0cec7;
+      padding: 22px 20px;
+      padding-bottom: 23px;
+      font-weight: bold;
+      width: 60px;
+      text-align: center; }
+
+/* --------------------------------------------------------------------------
+ * Thread
+ * -------------------------------------------------------------------------- */
+div.message-arrow {
+  background: none;
+  border-bottom: 1px solid #d0cec7;
+  width: 100%;
+  overflow: visible;
+  height: 4px; }
+  div.message-arrow span {
+    display: block;
+    width: 12px;
+    height: 11px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -18px -69px;
+    text-indent: -9999px;
+    position: relative;
+    top: -6px;
+    left: 85px; }
+
+li.wing-item div.messages-state {
+  padding: 15px 20px; }
+  li.wing-item div.messages-state h2 {
+    display: inline;
+    color: black;
+    font-size: 14px; }
+  li.wing-item div.messages-state h3 {
+    display: inline;
+    font-style: italic;
+    padding-left: 10px;
+    font-size: 14px; }
+li.wing-item div.messages-dates div.messages-dates-info {
+  padding: 15px 20px; }
+  li.wing-item div.messages-dates div.messages-dates-info dt {
+    padding-left: 5px; }
+  li.wing-item div.messages-dates div.messages-dates-info dd:last-child {
+    padding-left: 10px;
+    font-weight: bold;
+    font-style: normal; }
+
+div.messages-msg {
+  font-size: 12px;
+  color: gray;
+  background: none;
+  margin-top: 0;
+  border-top: 1px solid #d3d1cb;
+  padding: 0;
+  padding-top: 7px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0; }
+  div.messages-msg div.floatality {
+    margin-bottom: 7px;
+    padding: 9px;
+    background: white;
+    min-height: 27px; }
+    div.messages-msg div.floatality button, div.messages-msg div.floatality a {
+      float: left; }
+    div.messages-msg div.floatality #delete-thread {
+      border-left: none; }
+    div.messages-msg div.floatality .messages-pager {
+      float: right; }
+      div.messages-msg div.floatality .messages-pager div.resultCounter {
+        font-size: 12px;
+        float: left;
+        padding: 5px;
+        padding-right: 10px; }
+        div.messages-msg div.floatality .messages-pager div.resultCounter span:first-child:after {
+          content: " - "; }
+        div.messages-msg div.floatality .messages-pager div.resultCounter span:last-child:before {
+          content: " of "; }
+    div.messages-msg div.floatality div.button-group {
+      float: right; }
+      div.messages-msg div.floatality div.button-group a:first-child {
+        border-right: none; }
+
+ul#notif-list {
+  margin-bottom: 50px; }
+
+li.thread-item {
+  cursor: pointer;
+  float: none; }
+  li.thread-item div.messages-header {
+    border: 1px solid #d0cec7;
+    border-top: none;
+    background: white;
+    width: auto; }
+    li.thread-item div.messages-header div.messages-avatar {
+      float: left;
+      width: 65px;
+      height: 65px; }
+      li.thread-item div.messages-header div.messages-avatar img {
+        width: 65px;
+        height: 65px; }
+    li.thread-item div.messages-header div.messages-sender {
+      padding: 10px 15px 0 20px;
+      line-height: 16px;
+      float: left; }
+      li.thread-item div.messages-header div.messages-sender legend {
+        font-weight: bold;
+        color: #999999; }
+      li.thread-item div.messages-header div.messages-sender h1 {
+        display: inline; }
+        li.thread-item div.messages-header div.messages-sender h1 a {
+          color: black;
+          font-weight: bold; }
+          li.thread-item div.messages-header div.messages-sender h1 a:hover {
+            color: black;
+            text-decoration: underline; }
+      li.thread-item div.messages-header div.messages-sender span, li.thread-item div.messages-header div.messages-sender h2 {
+        color: #999999;
+        display: inline; }
+      li.thread-item div.messages-header div.messages-sender h3 {
+        font-style: italic; }
+    li.thread-item div.messages-header div.messages-state {
+      padding: 8px 15px;
+      line-height: 16px; }
+      li.thread-item div.messages-header div.messages-state h1.messages-name {
+        color: black;
+        font-weight: bold; }
+      li.thread-item div.messages-header div.messages-state h2 {
+        text-transform: capitalize;
+        font-weight: bold; }
+    li.thread-item div.messages-header div.messages-date-msg {
+      float: right;
+      padding: 12px 15px 12px 20px;
+      font-weight: bold;
+      color: black;
+      text-align: right; }
+      li.thread-item div.messages-header div.messages-date-msg.accepted h2 {
+        color: #85c333; }
+      li.thread-item div.messages-header div.messages-date-msg.maybe h2 {
+        color: #fa9e03; }
+      li.thread-item div.messages-header div.messages-date-msg.pending h2 {
+        color: #ee4040; }
+      li.thread-item div.messages-header div.messages-date-msg.denied h2 {
+        color: #7e7b71; }
+      li.thread-item div.messages-header div.messages-date-msg span {
+        text-transform: capitalize; }
+  li.thread-item div.messages-content {
+    padding: 24px;
+    padding-left: 84px;
+    border: 1px solid #d0cec7;
+    border-top: none;
+    background: white; }
+    li.thread-item div.messages-content div.messages-params-box {
+      float: none; }
+      li.thread-item div.messages-content div.messages-params-box dt, li.thread-item div.messages-content div.messages-params-box dd {
+        display: inline;
+        margin-right: 5px; }
+      li.thread-item div.messages-content div.messages-params-box dd {
+        color: black;
+        font-weight: bold; }
+        li.thread-item div.messages-content div.messages-params-box dd span {
+          font-weight: normal; }
+    li.thread-item div.messages-content div.messages-msg {
+      border-top: 1px solid #d0cec7;
+      margin-top: 15px;
+      padding-top: 15px;
+      color: black;
+      float: none; }
+  li.thread-item div#response-options {
+    padding: 10px 0 12px 18px;
+    margin-left: 65px; }
+    li.thread-item div#response-options span {
+      display: inline;
+      font-weight: bold;
+      color: black;
+      cursor: pointer; }
+  li.thread-item div#write-response {
+    float: right; }
+    li.thread-item div#write-response input, li.thread-item div#write-response select, li.thread-item div#write-response textarea {
+      font-size: 12px; }
+    li.thread-item div#write-response div.response-wrapper {
+      margin: 10px;
+      margin-left: 0;
+      border: 1px solid #d0cec7; }
+      li.thread-item div#write-response div.response-wrapper div.state-flag i {
+        float: left;
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px; }
+      li.thread-item div#write-response div.response-wrapper div.state-flag span {
+        display: block;
+        text-transform: capitalize;
+        font-weight: bold;
+        background: #f5f5f0;
+        padding: 10px 10px 10px 15px;
+        padding-left: 45px; }
+      li.thread-item div#write-response div.response-wrapper div.accepted i {
+        color: #85c333;
+        background: url(../img/peoplewings-sprite.png) no-repeat;
+        background-position: -2px -204px; }
+      li.thread-item div#write-response div.response-wrapper div.maybe i {
+        color: #fa9e03;
+        background: url(../img/peoplewings-sprite.png) no-repeat;
+        background-position: -102px -204px; }
+      li.thread-item div#write-response div.response-wrapper div.pending i {
+        color: #ee4040;
+        background: url(../img/peoplewings-sprite.png) no-repeat;
+        background-position: -52px -204px; }
+      li.thread-item div#write-response div.response-wrapper div.denied i {
+        color: #7e7b71;
+        background: url(../img/peoplewings-sprite.png) no-repeat;
+        background-position: -152px -204px; }
+      li.thread-item div#write-response div.response-wrapper form#wing-params-form {
+        border-bottom: 1px solid #d3d1ca; }
+        li.thread-item div#write-response div.response-wrapper form#wing-params-form input {
+          margin-bottom: 0; }
+        li.thread-item div#write-response div.response-wrapper form#wing-params-form div.response-header-dates span {
+          display: block;
+          font-weight: bold;
+          margin-right: 10px; }
+      li.thread-item div#write-response div.response-wrapper textarea {
+        border: none;
+        height: 72px;
+        width: 843px;
+        margin: 0px;
+        padding: 15px;
+        padding-top: 10px;
+        color: black; }
+    li.thread-item div#write-response div#edit-wing-params {
+      background: #e1e0d9; }
+      li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates {
+        padding: 14px; }
+        li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates h2 {
+          padding-left: 3px;
+          margin-bottom: 4px; }
+        li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates span {
+          margin-left: 10px; }
+        li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates input.input-sdate {
+          width: 97px;
+          background: url(../img/peoplewings-sprite.png) no-repeat;
+          background-position: 1px 1px;
+          padding-left: 10px; }
+        li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates input.input-edate {
+          width: 97px;
+          background: url(../img/peoplewings-sprite.png) no-repeat;
+          background-position: 1px 1px;
+          padding-left: 10px; }
+        li.thread-item div#write-response div#edit-wing-params .response-header .response-header-dates select {
+          margin: 0;
+          margin-top: 6px;
+          background: url(../img/peoplewings-sprite.png) no-repeat;
+          background-position: 1px 1px; }
+  li.thread-item div.response-item {
+    background: white;
+    overflow: hidden;
+    border: 1px solid #d0cec7;
+    border-top: none; }
+    li.thread-item div.response-item div.messages-avatar {
+      float: left;
+      line-height: 0; }
+    li.thread-item div.response-item div.button-group {
+      float: right;
+      margin-right: 10px; }
+      li.thread-item div.response-item div.button-group button {
+        border-bottom: none;
+        min-width: 90px; }
+        li.thread-item div.response-item div.button-group button:first-child {
+          margin-right: -3px;
+          border-right: none; }
+
+/* --------------------------------------------------------------------------
+ * Delete Account
+ * -------------------------------------------------------------------------- */
+form#delete-account-form input, form#delete-account-form select {
+  font-size: 13px;
+  color: black;
+  margin: 0;
+  padding: 8px;
+  min-height: 22px;
+  line-height: 15px;
+  border: 1px solid #d0cec7;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+  form#delete-account-form input::-webkit-input-placeholder, form#delete-account-form select::-webkit-input-placeholder {
+    color: black; }
+form#delete-account-form div.balloon-wrapper {
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 501px;
+  border: 1px solid #d0cec7;
+  font-size: 12px;
+  color: #999999; }
+  form#delete-account-form div.balloon-wrapper span {
+    float: left;
+    text-indent: -9999px;
+    height: 16px;
+    width: 15px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    position: relative;
+    bottom: 16px;
+    left: 50px; }
+  form#delete-account-form div.balloon-wrapper div.balloon-header {
+    padding: 20px 25px; }
+    form#delete-account-form div.balloon-wrapper div.balloon-header h1 {
+      font-size: 15px;
+      font-weight: bold; }
+  form#delete-account-form div.balloon-wrapper div.balloon-content {
+    background: #f5f5f0;
+    padding: 8px 0 15px 0;
+    border-bottom: 1px solid #d0cec7; }
+    form#delete-account-form div.balloon-wrapper div.balloon-content p {
+      padding: 15px 25px;
+      font-style: italic; }
+    form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group:after, form#delete-account-form div.balloon-wrapper div.balloon-content .control-group:before {
+      display: block; }
+    form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group {
+      margin: 0;
+      margin-bottom: 5px; }
+      form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group label.control-label {
+        float: left;
+        width: 100px;
+        padding: 11px;
+        padding-left: 25px;
+        text-align: left; }
+      form#delete-account-form div.balloon-wrapper div.balloon-content div.control-group input {
+        min-width: 320px; }
+  form#delete-account-form div.balloon-wrapper div.balloon-footer {
+    overflow: hidden; }
+    form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group {
+      float: right;
+      margin: 0;
+      margin-top: 15px;
+      margin-right: 15px; }
+      form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a {
+        float: left; }
+      form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls button, form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a {
+        border-bottom: none; }
+        form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls button:last-child, form#delete-account-form div.balloon-wrapper div.balloon-footer div.control-group div.controls a:last-child {
+          border-left: none; }
+  form#delete-account-form div.balloon-wrapper div.help-block {
+    margin: 0; }
+
+/* --------------------------------------------------------------------------
+ * Account Settings
+ * -------------------------------------------------------------------------- */
+form#settings-form {
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 501px;
+  border: 1px solid #d0cec7; }
+  form#settings-form input, form#settings-form select {
+    margin: 0;
+    min-height: 22px; }
+  form#settings-form select {
+    height: 40px; }
+  form#settings-form input[type="text"],
+  form#settings-form input[type="password"],
+  form#settings-form input[type="email"],
+  form#settings-form select {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #d0cec7;
+    color: black;
+    line-height: 15px; }
+    form#settings-form input[type="text"]::-webkit-input-placeholder,
+    form#settings-form input[type="password"]::-webkit-input-placeholder,
+    form#settings-form input[type="email"]::-webkit-input-placeholder,
+    form#settings-form select::-webkit-input-placeholder {
+      color: black; }
+  form#settings-form input[type="text"],
+  form#settings-form input[type="password"] {
+    max-width: 149px; }
+  form#settings-form input[type="checkbox"] {
+    margin: 10px 17px 10px 0; }
+  form#settings-form legend {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 13px;
+    width: 186px;
+    height: 28px;
+    text-indent: -9999px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -1395px -411px; }
+  form#settings-form label.control-label {
+    float: left;
+    color: #999999;
+    width: 100px;
+    padding: 11px;
+    font-size: 12px;
+    text-align: left; }
+  form#settings-form label.checkbox {
+    padding-left: 0; }
+  form#settings-form div.form-wrapper {
+    padding: 0 27px 27px 14px; }
+    form#settings-form div.form-wrapper div.help-block {
+      margin: 0; }
+    form#settings-form div.form-wrapper span.signal {
+      float: left;
+      text-indent: -9999px;
+      height: 16px;
+      width: 15px;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -69px -67px;
+      position: relative;
+      bottom: 16px;
+      left: 50px; }
+    form#settings-form div.form-wrapper div.clear {
+      clear: both; }
+    form#settings-form div.form-wrapper div.control-group:after, form#settings-form div.form-wrapper .control-group:before {
+      display: block; }
+    form#settings-form div.form-wrapper div.control-group {
+      margin: 0;
+      margin-bottom: 5px; }
+      form#settings-form div.form-wrapper div.control-group:last-child {
+        margin-top: 25px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e5e5; }
+        form#settings-form div.form-wrapper div.control-group:last-child p {
+          font-style: italic;
+          color: #999999;
+          font-size: 12px; }
+          form#settings-form div.form-wrapper div.control-group:last-child p a {
+            color: black;
+            text-decoration: underline; }
+            form#settings-form div.form-wrapper div.control-group:last-child p a:hover {
+              color: black;
+              font-weight: bold; }
+    form#settings-form div.form-wrapper div.controls {
+      margin-left: 122px; }
+      form#settings-form div.form-wrapper div.controls h1 {
+        padding: 11px;
+        font-size: 13px;
+        color: black; }
+      form#settings-form div.form-wrapper div.controls input[type="text"] {
+        width: 149px; }
+      form#settings-form div.form-wrapper div.controls input[type="email"],
+      form#settings-form div.form-wrapper div.controls input[type="password"] {
+        width: 95%; }
+      form#settings-form div.form-wrapper div.controls input[type="password"].password-line {
+        min-width: 95%; }
+      form#settings-form div.form-wrapper div.controls input[type="submit"] {
+        font-size: 18px; }
+      form#settings-form div.form-wrapper div.controls input.input-margin {
+        margin-bottom: 5px; }
+  form#settings-form div.control-group.confirm-changes {
+    padding: 8px 0;
+    padding-bottom: 15px;
+    background: #f5f5f0;
+    line-height: 18px;
+    border-bottom: 1px solid #d7cec0;
+    margin-bottom: 15px; }
+    form#settings-form div.control-group.confirm-changes div.controls {
+      margin-left: 122px; }
+      form#settings-form div.control-group.confirm-changes div.controls input {
+        min-width: 320px; }
+    form#settings-form div.control-group.confirm-changes label.control-label {
+      padding-left: 25px; }
+    form#settings-form div.control-group.confirm-changes p {
+      padding: 18px 50px;
+      font-style: italic;
+      color: #999999;
+      font-size: 12px; }
+  form#settings-form div.footer-content {
+    overflow: hidden; }
+    form#settings-form div.footer-content div.button-group {
+      float: right;
+      margin-right: 20px; }
+      form#settings-form div.footer-content div.button-group a {
+        padding: 15px 0; }
+      form#settings-form div.footer-content div.button-group button, form#settings-form div.footer-content div.button-group a {
+        width: 90px;
+        border-bottom: none; }
+        form#settings-form div.footer-content div.button-group button:last-child, form#settings-form div.footer-content div.button-group a:last-child {
+          margin-left: -4px;
+          border-left: none; }
+
+/* --------------------------------------------------------------------------
+ * Help Center
+ * -------------------------------------------------------------------------- */
+div.sidebar {
+  float: left;
+  margin-top: 45px;
+  margin-left: 10px;
+  width: 200px;
+  overflow: hidden; }
+  div.sidebar li {
+    float: none;
+    background: #e1e0d9;
+    border: 1px solid #d0cec7;
+    border-bottom: none; }
+    div.sidebar li:last-child {
+      border: 1px solid #d0cec7; }
+    div.sidebar li a {
+      display: block;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-style: italic;
+      text-shadow: 1px 1px 1px white;
+      padding: 10px; }
+      div.sidebar li a:hover, div.sidebar li a:active, div.sidebar li a:focus {
+        background: white;
+        color: black; }
+      div.sidebar li a:active {
+        background: #ffeb00;
+        background: -moz-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffeb00), color-stop(100%, #fbfac5));
+        background: -webkit-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+        background: -o-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+        background: -ms-linear-gradient(top, #ffeb00 0%, #fbfac5 100%);
+        background: linear-gradient(to bottom, #ffeb00 0%, #fbfac5 100%); }
+  div.sidebar li.active {
+    color: #848178;
+    background: #edede6; }
+
+div#help-center.tab-content {
+  float: left;
+  background: white;
+  width: 67%;
+  margin: 45px 10px;
+  border: 1px solid #d0cec7;
+  padding: 38px;
+  overflow: visible; }
+  div#help-center.tab-content legend {
+    float: right;
+    position: relative;
+    right: -40px;
+    bottom: 49px;
+    width: 186px;
+    height: 28px;
+    text-indent: -9999px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -1442px -464px; }
+  div#help-center.tab-content div.help-center-content h1:first-child {
+    margin: 0;
+    margin-bottom: 12px; }
+  div#help-center.tab-content div.help-center-content h1, div#help-center.tab-content div.help-center-content h2, div#help-center.tab-content div.help-center-content p {
+    color: #79776b; }
+  div#help-center.tab-content div.help-center-content h1 {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 40px; }
+  div#help-center.tab-content div.help-center-content h2 {
+    font-size: 14px;
+    font-weight: bold; }
+  div#help-center.tab-content div.help-center-content p {
+    font-size: 12px; }
+
+@media (max-width: 960px) {
+  div#help-center.tab-content {
+    width: auto; } }
+/* --------------------------------------------------------------------------
+ * Reset Password
+ * -------------------------------------------------------------------------- */
+form#password-form input, form#password-form select {
+  font-size: 13px;
+  color: black;
+  margin: 0;
+  padding: 8px;
+  min-height: 22px;
+  line-height: 15px;
+  border: 1px solid #d0cec7;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+  form#password-form input::-webkit-input-placeholder, form#password-form select::-webkit-input-placeholder {
+    color: black; }
+form#password-form div.balloon-wrapper {
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 501px;
+  border: 1px solid #d0cec7;
+  font-size: 12px;
+  color: #999999; }
+  form#password-form div.balloon-wrapper span {
+    float: left;
+    text-indent: -9999px;
+    height: 16px;
+    width: 15px;
+    background: url(../img/icon-direction.png) no-repeat;
+    position: relative;
+    bottom: 16px;
+    left: 50px; }
+  form#password-form div.balloon-wrapper div.balloon-header {
+    padding: 20px 25px; }
+    form#password-form div.balloon-wrapper div.balloon-header h1 {
+      font-size: 15px;
+      font-weight: bold; }
+  form#password-form div.balloon-wrapper div.balloon-content {
+    background: #f5f5f0;
+    padding: 8px 0 15px 0;
+    border-bottom: 1px solid #d0cec7; }
+    form#password-form div.balloon-wrapper div.balloon-content p {
+      padding: 15px 25px;
+      font-style: italic; }
+    form#password-form div.balloon-wrapper div.balloon-content div.control-group:after, form#password-form div.balloon-wrapper div.balloon-content .control-group:before {
+      display: block; }
+    form#password-form div.balloon-wrapper div.balloon-content div.control-group {
+      margin: 0;
+      margin-bottom: 5px; }
+      form#password-form div.balloon-wrapper div.balloon-content div.control-group label.control-label {
+        float: left;
+        width: 100px;
+        padding: 11px;
+        padding-left: 25px;
+        text-align: left; }
+      form#password-form div.balloon-wrapper div.balloon-content div.control-group input {
+        min-width: 320px; }
+  form#password-form div.balloon-wrapper div.balloon-footer {
+    overflow: hidden;
+    margin: 0;
+    margin-top: 15px;
+    margin-right: 15px; }
+    form#password-form div.balloon-wrapper div.balloon-footer .button-group {
+      float: right; }
+      form#password-form div.balloon-wrapper div.balloon-footer .button-group a {
+        float: left; }
+      form#password-form div.balloon-wrapper div.balloon-footer .button-group button, form#password-form div.balloon-wrapper div.balloon-footer .button-group a {
+        border-bottom: none; }
+        form#password-form div.balloon-wrapper div.balloon-footer .button-group button:last-child, form#password-form div.balloon-wrapper div.balloon-footer .button-group a:last-child {
+          border-left: none; }
+  form#password-form div.balloon-wrapper div.help-block {
+    margin: 0; }
+
+/* --------------------------------------------------------------------------
+ * Forgot Password
+ * -------------------------------------------------------------------------- */
+form#forgot-form {
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  width: 501px;
+  border: 1px solid #d0cec7; }
+  form#forgot-form input, form#forgot-form select {
+    margin: 0;
+    min-height: 22px; }
+  form#forgot-form select {
+    height: 40px; }
+  form#forgot-form input[type="text"],
+  form#forgot-form input[type="password"],
+  form#forgot-form input[type="email"],
+  form#forgot-form select {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #d0cec7;
+    color: black;
+    line-height: 15px; }
+    form#forgot-form input[type="text"]::-webkit-input-placeholder,
+    form#forgot-form input[type="password"]::-webkit-input-placeholder,
+    form#forgot-form input[type="email"]::-webkit-input-placeholder,
+    form#forgot-form select::-webkit-input-placeholder {
+      color: black; }
+  form#forgot-form input[type="text"],
+  form#forgot-form input[type="password"] {
+    max-width: 149px; }
+  form#forgot-form input[type="checkbox"] {
+    margin: 10px 17px 10px 0; }
+  form#forgot-form legend {
+    float: right;
+    position: relative;
+    right: 10px;
+    bottom: 13px;
+    width: 186px;
+    height: 28px;
+    text-indent: -9999px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -1395px -411px; }
+  form#forgot-form label.control-label {
+    float: left;
+    color: #999999;
+    width: 100px;
+    padding: 11px;
+    font-size: 12px;
+    text-align: left; }
+  form#forgot-form label.checkbox {
+    padding-left: 0; }
+  form#forgot-form div.form-header {
+    padding: 20px 25px; }
+    form#forgot-form div.form-header h1 {
+      color: #999999;
+      font-weight: bold;
+      font-size: 15px; }
+  form#forgot-form div.form-wrapper {
+    padding: 0; }
+    form#forgot-form div.form-wrapper div.help-block {
+      margin: 0; }
+    form#forgot-form div.form-wrapper span.signal {
+      float: left;
+      text-indent: -9999px;
+      height: 16px;
+      width: 15px;
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -69px -67px;
+      position: relative;
+      bottom: 16px;
+      left: 50px; }
+    form#forgot-form div.form-wrapper div.clear {
+      clear: both; }
+    form#forgot-form div.form-wrapper div.control-group:after, form#forgot-form div.form-wrapper .control-group:before {
+      display: block; }
+    form#forgot-form div.form-wrapper div.control-group {
+      margin: 0;
+      margin-bottom: 5px; }
+      form#forgot-form div.form-wrapper div.control-group:last-child {
+        margin-top: 25px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e5e5; }
+        form#forgot-form div.form-wrapper div.control-group:last-child p {
+          font-style: italic;
+          color: #999999;
+          font-size: 12px; }
+          form#forgot-form div.form-wrapper div.control-group:last-child p a {
+            color: black;
+            text-decoration: underline; }
+            form#forgot-form div.form-wrapper div.control-group:last-child p a:hover {
+              color: black;
+              font-weight: bold; }
+    form#forgot-form div.form-wrapper div.controls {
+      margin-left: 122px; }
+      form#forgot-form div.form-wrapper div.controls h1 {
+        padding: 11px;
+        font-size: 13px;
+        color: black; }
+      form#forgot-form div.form-wrapper div.controls input[type="text"] {
+        width: 149px; }
+      form#forgot-form div.form-wrapper div.controls input[type="email"],
+      form#forgot-form div.form-wrapper div.controls input[type="password"] {
+        width: 95%; }
+      form#forgot-form div.form-wrapper div.controls input[type="password"].password-line {
+        min-width: 95%; }
+      form#forgot-form div.form-wrapper div.controls input[type="submit"] {
+        font-size: 18px; }
+      form#forgot-form div.form-wrapper div.controls input.input-margin {
+        margin-bottom: 5px; }
+  form#forgot-form div.control-group.confirm-changes {
+    padding: 8px 0;
+    padding-bottom: 15px;
+    background: #f5f5f0;
+    line-height: 18px;
+    border-bottom: 1px solid #d7cec0;
+    margin-bottom: 15px; }
+    form#forgot-form div.control-group.confirm-changes div.controls {
+      margin-left: 122px; }
+      form#forgot-form div.control-group.confirm-changes div.controls input {
+        min-width: 320px; }
+    form#forgot-form div.control-group.confirm-changes label.control-label {
+      padding-left: 25px; }
+    form#forgot-form div.control-group.confirm-changes p {
+      padding: 18px 50px;
+      font-style: italic;
+      color: #999999;
+      font-size: 12px; }
+  form#forgot-form div.footer-content {
+    overflow: hidden; }
+    form#forgot-form div.footer-content div.button-group {
+      float: right;
+      margin-right: 20px; }
+      form#forgot-form div.footer-content div.button-group a {
+        padding: 15px 0; }
+      form#forgot-form div.footer-content div.button-group button, form#forgot-form div.footer-content div.button-group a {
+        width: 90px;
+        border-bottom: none; }
+        form#forgot-form div.footer-content div.button-group button:last-child, form#forgot-form div.footer-content div.button-group a:last-child {
+          margin-left: -4px;
+          border-left: none; }
+
+/* --------------------------------------------------------------------------
+ * Balloon Alerts
+ * -------------------------------------------------------------------------- */
+span.signal-bottom {
+  float: left;
+  text-indent: -9999px;
+  height: 20px;
+  width: 20px;
+  background: url(../img/peoplewings-sprite.png) no-repeat;
+  background-position: -114px -66px;
+  position: relative;
+  left: 800px; }
+
+div.balloon-alert {
+  background: white;
+  margin: 50px auto 0 auto;
+  border: 1px solid #d0cec7;
+  border-bottom: none;
+  width: 756px;
+  height: 414px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2); }
+  div.balloon-alert div.balloon-content {
+    padding: 45px; }
+    div.balloon-alert div.balloon-content h1, div.balloon-alert div.balloon-content h2 {
+      display: block;
+      font-family: "Exo", Tahoma, Sans-Serif;
+      font-style: italic;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase; }
+    div.balloon-alert div.balloon-content h1 {
+      font-size: 81px;
+      color: #d0cec7; }
+    div.balloon-alert div.balloon-content h2 {
+      font-size: 27px; }
+    div.balloon-alert div.balloon-content p:last-child {
+      margin-bottom: 20px; }
+    div.balloon-alert div.balloon-content p.description {
+      color: #999999;
+      font-size: 12px;
+      margin-top: 30px; }
+    div.balloon-alert div.balloon-content p a {
+      color: black;
+      font-weight: bold;
+      text-decoration: underline; }
+    div.balloon-alert div.balloon-content p strong {
+      font-weight: bold; }
+  div.balloon-alert div.balloon-footer {
+    padding-left: 45px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 35px; }
+    div.balloon-alert div.balloon-footer a {
+      color: black; }
+      div.balloon-alert div.balloon-footer a:hover {
+        text-decoration: underline;
+        color: inherit; }
+
+span.ribbon {
+  display: block;
+  height: 19px;
+  background: url(../img/pattern.png) center;
+  -webkit-border-radius: 12px 12px 0 0; }
+
+/* --------------------------------------------------------------------------
+ * Feedback
+ * -------------------------------------------------------------------------- */
+#feedback-btn-submit {
+  background: white;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #999999;
+  border-radius: 12px 12px 0 0;
+  -webkit-border-radius: 12px 12px 0 0;
+  -moz-border-radius: 12px 12px 0 0;
+  box-shadow: 0 0 4px #dddddd;
+  -moz-box-shadow: 0 0 #dddddd 4px;
+  -webkit-box-shadow: 0 0 4px #dddddd;
+  padding: 7px 20px;
+  position: fixed;
+  bottom: 0;
+  right: 320px;
+  z-index: 1000000;
+  border-bottom: none; }
+
+form#feedback-form {
+  font-size: 12px;
+  color: #999999; }
+  form#feedback-form label.radio {
+    display: inline-block;
+    padding-left: 40px;
+    width: 40px; }
+    form#feedback-form label.radio.like-up {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: left 8px; }
+    form#feedback-form label.radio.like-down {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: left 4px; }
+    form#feedback-form label.radio input {
+      width: auto; }
+  form#feedback-form label.control-label.avatar-image {
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 1px;
+    float: left; }
+  form#feedback-form label.control-label {
+    float: left;
+    margin: 4px 0; }
+  form#feedback-form div.control-group {
+    margin-bottom: 20px; }
+
+/* --------------------------------------------------------------------------
+ * Footer
+ * -------------------------------------------------------------------------- */
+.navbar-fixed-bottom {
+  height: 40px;
+  clear: both; }
+
+.footer.navbar.navbar-fixed-bottom {
+  position: relative;
+  background: #edede6;
+  color: #848178;
+  font-size: 11px;
+  overflow: hidden;
+  padding-top: 14px; }
+  .footer.navbar.navbar-fixed-bottom ul {
+    margin: 0; }
+  .footer.navbar.navbar-fixed-bottom .navbar-inner {
+    min-height: 40px; }
+    .footer.navbar.navbar-fixed-bottom .navbar-inner div {
+      float: left; }
+  .footer.navbar.navbar-fixed-bottom #likes {
+    height: 20px;
+    width: 81px;
+    text-indent: -9999px;
+    position: relative;
+    top: 7px; }
+  .footer.navbar.navbar-fixed-bottom #terms {
+    line-height: 11px;
+    margin-left: 20%;
+    margin-top: 11px; }
+    .footer.navbar.navbar-fixed-bottom #terms li {
+      line-height: inherit;
+      display: inline; }
+      .footer.navbar.navbar-fixed-bottom #terms li a {
+        margin-right: 12px; }
+        .footer.navbar.navbar-fixed-bottom #terms li a:hover {
+          text-decoration: underline;
+          color: #18183f; }
+      .footer.navbar.navbar-fixed-bottom #terms li:first-child {
+        font-weight: 800;
+        margin-right: 15px; }
+  .footer.navbar.navbar-fixed-bottom #follow {
+    float: right;
+    width: 202px; }
+    .footer.navbar.navbar-fixed-bottom #follow p {
+      float: left;
+      display: block;
+      margin-right: 10px;
+      margin-top: 11px;
+      line-height: 11px; }
+    .footer.navbar.navbar-fixed-bottom #follow ul {
+      margin-right: 20px; }
+      .footer.navbar.navbar-fixed-bottom #follow ul li {
+        display: inline; }
+      .footer.navbar.navbar-fixed-bottom #follow ul a {
+        margin-right: 3px; }
+    .footer.navbar.navbar-fixed-bottom #follow .follow {
+      width: 33px;
+      height: 33px; }
+    .footer.navbar.navbar-fixed-bottom #follow .facebook {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -60px -409px; }
+    .footer.navbar.navbar-fixed-bottom #follow .twitter {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -160px -408px; }
+    .footer.navbar.navbar-fixed-bottom #follow .youtube {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -260px -409px; }
+
+.nav {
+  margin: 0; }
+
+.nav-tabs {
+  display: inline-block;
+  border: none;
+  position: relative;
+  top: 35px;
+  left: 20px; }
+  .nav-tabs li a {
+    width: 43px;
+    height: 59px;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    border: none; }
+  .nav-tabs .all {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -530px; }
+    .nav-tabs .all:hover {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -430px -530px; }
+  .nav-tabs .accommodation {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -630px; }
+    .nav-tabs .accommodation:hover {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -430px -630px;
+      cursor: pointer; }
+  .nav-tabs .transport {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -730px; }
+    .nav-tabs .transport:hover {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -430px -730px; }
+  .nav-tabs .travel {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -830px; }
+    .nav-tabs .travel:hover {
+      background: url(../img/peoplewings-sprite.png) no-repeat;
+      background-position: -430px -830px; }
+  .nav-tabs .all:hover, .nav-tabs .transport:hover, .nav-tabs .trip:hover {
+    cursor: default; }
+  .nav-tabs .active .all {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -530px; }
+  .nav-tabs .active .accommodation {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -330px -630px; }
+  .nav-tabs .active .transport {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -730px; }
+  .nav-tabs .active .travel {
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -530px -830px; }
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+  border: none;
+  background-color: transparent; }
+
+input, select {
+  margin: 0px; }
+
+.pac-container {
+  z-index: 10000 !important; }
+
+section#main {
+  overflow: hidden; }
