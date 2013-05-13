@@ -39,8 +39,6 @@ test.alpha: prepare.test.alpha
 
 
 
-
-
 deploy-alpha:
 	git co -b alpha-deploy
 	git add public/index.html
