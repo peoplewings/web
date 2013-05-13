@@ -53,6 +53,9 @@ table {
 * {
   margin: 0; }
 
+html {
+  overflow-y: scroll; }
+
 html, body {
   height: 100%; }
 
@@ -63,9 +66,11 @@ body, input, select {
 
 a {
   text-decoration: none;
-  color: #848178; }
+  color: #3c3a34; }
   a:hover {
-    color: yellow; }
+    color: #1c1b19; }
+  a:visited {
+    color: #656358; }
 
 li {
   list-style: none;
@@ -294,12 +299,12 @@ button {
 div#alerts-container {
   position: fixed;
   z-index: 10000000;
-  top: 45px; }
+  top: 45px;
+  left: 40%; }
   div#alerts-container .alert {
     overflow: hidden;
     min-width: 250px;
     max-width: 630px;
-    margin-left: 570px;
     padding-left: 35px;
     border-radius: 12px;
     -webkit-border-radius: 12px;
@@ -399,13 +404,12 @@ input#header-search {
   -moz-border-radius: 13px;
   margin-top: 15px;
   margin-left: 20px;
-  width: 175px;
+  width: 143px;
+  padding: 3px 0;
+  padding-left: 30px;
+  font-size: 11px;
   background: url(../img/peoplewings-sprite.png) no-repeat white;
   background-position: -558px -117px;
-  padding-top: 2px;
-  padding-left: 30px;
-  font-size: 12px;
-  line-height: 21px;
   transition: box-shadow 0.5s;
   -moz-transition: box-shadow 0.5s;
   -webkit-transition: box-shadow 0.5s;
@@ -418,9 +422,9 @@ input#header-search {
 
 .navbar.nav.navbar-fixed-top {
   background: #edede6;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0px 1px 0px 4px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 1px 0px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   height: 53px; }
 
 .navbar .brand {
@@ -430,7 +434,7 @@ input#header-search {
   text-indent: -9999px;
   width: 237px;
   height: 60px;
-  margin-top: 17px;
+  margin-top: 14px;
   padding: 0;
   margin-left: 0; }
 .navbar .nav {
@@ -446,7 +450,7 @@ input#header-search {
       content: "|";
       margin-left: 4px;
       margin-right: 4px;
-      color: #848178; }
+      color: #3c3a34; }
     .navbar .nav li:last-child:after {
       content: ""; }
     .navbar .nav li a {
@@ -455,7 +459,7 @@ input#header-search {
       font-family: Helvetica, Arial, Sans-Serif;
       text-shadow: none;
       padding: 0;
-      color: #848178;
+      color: #3c3a34;
       text-transform: uppercase; }
       .navbar .nav li a:hover {
         color: #18183f;
@@ -500,10 +504,12 @@ div.nav-menu ul.nav.pull-right {
       padding: 15px 2px 2px 6px; }
 
 div.btn-group.pull-right {
-  margin-top: 16px; }
+  margin-top: 5px; }
   div.btn-group.pull-right a {
     display: block;
+    padding: 8px 0;
     overflow: hidden;
+    margin-left: -3px;
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0; }
@@ -803,8 +809,12 @@ select {
   opacity: 0.1;
   filter: alpha(opacity=10); }
 
+.modal {
+  left: 38%; }
+
 .modal.fade.in {
-  top: 270px; }
+  top: 270px;
+  left: 38%; }
 
 @media (max-width: 767px) {
   .modal.fade.in {
@@ -1043,6 +1053,16 @@ div.generic-modal div.modal-body div.listing-location div.control-group.blocked 
     width: 60px; }
   div.generic-modal div.modal-body div.listing-location div.control-group.blocked div.controls .size-box-standard {
     width: 310px !important; }
+
+/* --------------------------------------------------------------------------
+ * Crop Modal
+ * -------------------------------------------------------------------------- */
+#crop-modal {
+  width: 789px !important;
+  height: auto;
+  left: 43%; }
+  #crop-modal h2 {
+    margin-bottom: 15px; }
 
 /* --------------------------------------------------------------------------
  * Request Options
@@ -1286,7 +1306,9 @@ form#login-form {
     bottom: 13px;
     width: 107px;
     height: 28px;
-    text-indent: -9999px; }
+    text-indent: -9999px;
+    background: url(../img/peoplewings-sprite.png) no-repeat;
+    background-position: -1170px -263px; }
   form#login-form .clear {
     clear: both; }
   form#login-form .control-group {
@@ -1470,8 +1492,8 @@ div.profile {
     height: 175px; }
     div.profile div.content-left span.dot {
       float: left;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       background: transparent;
       text-indent: -9999px;
       position: absolute;
@@ -1568,7 +1590,7 @@ div.profile {
       div.profile div.content-right div.main-bar div {
         float: left; }
       div.profile div.content-right div.main-bar div.info-bar {
-        padding: 12px 24px;
+        padding: 11px 24px;
         padding-right: 0; }
         div.profile div.content-right div.main-bar div.info-bar span {
           float: left;
@@ -1587,8 +1609,8 @@ div.profile {
           border-top: none;
           border-right: none;
           border-bottom: none;
-          padding: 16px 15px 15px 15px;
-          min-width: 90px; }
+          padding: 15px;
+          min-width: 72px; }
         div.profile div.content-right div.main-bar div.button-bar button.button-highlight {
           color: black; }
   div.profile div.accordion {
@@ -1850,15 +1872,18 @@ li.notification-item {
     max-width: 360px; }
     li.notification-item div.messages-state h1.messages-name {
       color: black;
-      font-weight: bold; }
+      font-weight: bold;
+      text-transform: capitalize; }
       li.notification-item div.messages-state h1.messages-name.accepted {
         color: #85c333; }
-      li.notification-item div.messages-state h1.messages-name.maybe {
+      li.notification-item div.messages-state h1.messages-name.blah {
         color: #fa9e03; }
       li.notification-item div.messages-state h1.messages-name.pending {
         color: #ee4040; }
       li.notification-item div.messages-state h1.messages-name.declined {
         color: #7e7b71; }
+    li.notification-item div.messages-state h1.messages-name.accepted:after {
+      content: "!"; }
     li.notification-item div.messages-state h2 {
       text-transform: capitalize;
       font-weight: bold; }
@@ -2802,7 +2827,7 @@ form#feedback-form {
 .footer.navbar.navbar-fixed-bottom {
   position: relative;
   background: #edede6;
-  color: #848178;
+  color: #3c3a34;
   font-size: 11px;
   overflow: hidden;
   padding-top: 14px; }
