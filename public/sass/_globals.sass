@@ -8,6 +8,9 @@
 *
 	margin: 0
 
+html
+	overflow-y: scroll
+
 html, body
 	height: 100%
 
@@ -20,7 +23,9 @@ a
 	text-decoration: none
 	color: $gray_link
 	&:hover
-		color: $yellow_corp
+		color: #1c1b19
+	&:visited
+		color: #656358
 
 li
 	list-style: none
@@ -201,11 +206,11 @@ div#alerts-container
 	position: fixed
 	z-index: 10000000
 	top: 45px
+	left: 40%
 	.alert
 		overflow: hidden
 		min-width: 250px
 		max-width: 630px
-		margin-left: 570px
 		padding-left: 35px
 		@include border-radius(12px)
 		.close

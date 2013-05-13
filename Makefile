@@ -1,3 +1,4 @@
+# Build process
 build.js:
 	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
 	node public/js/build/r -o public/js/build/app.build.js
@@ -8,15 +9,13 @@ build.css:
 build: build.js build.css
 
 add.build:
-	git add public/index.html
-	git add public/js/build/out.js
-	git commit -m "Added JS built files"
-	git add public/css
-	git commit -m "Added minfied CSS"
+	git add public
+	git commit -m "Added JS & CSS compiled files"
 
 revert.build:
-	git reset --soft HEAD^2
+	git reset --mixed HEAD^
 
+# Update commands
 update.repo:
 	git co master
 	git checkout public/index.html
@@ -29,25 +28,24 @@ update.alpha:
 
 update: update.repo build
 
-prepare.test.alpha: update.alpha build add.build 
+#Alpha staging and production deploys
+prepare.alpha: update.alpha build add.build 
 
-deploy.test.alpha:
+test.alpha: prepare.alpha
 	git push -f test-alpha alpha:master
+	git reset --mixed HEAD^
 
-test.alpha: prepare.test.alpha
-	git push -f test-alpha alpha:master
+alpha: prepare.alpha
+	git push -f alpha alpha:master
+	git reset --mixed HEAD^
 
+#Beta staging and production deploys
+prepare.beta: update.repo build add.build 
 
+test.beta: prepare.beta
+	git push -f test-beta master
+	git reset --mixed HEAD^
 
-
-
-deploy-alpha:
-	git co -b alpha-deploy
-	git add public/index.html
-	git add public/js/build/out.js
-	git commit -m "Alpha bundle ready for deployment"
-	git push -f alpha alpha-deploy:master
-	git co master
-	git br -D test-alpha
-
-alpha: update deploy-alpha
+beta: prepare.beta
+	git push -f beta master
+	git reset --mixed HEAD^
