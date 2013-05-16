@@ -27,6 +27,9 @@
 			var fb_login_handler = {
 				data: null,
 				listeners: [],
+				clear: function() {
+					this.listeners = [];
+				},
 				then: function(callback) {
 					if (this.data)
 						return callback(this.data);
