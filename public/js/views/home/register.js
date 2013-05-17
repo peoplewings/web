@@ -8,6 +8,7 @@ define(function(require) {
 	var utils = require('utils');
 	var phrases = require("phrases");
 	var spinner = require('views/lib/spinner');
+	var facebook = require('tools/facebook');
 
 	var responseView = require('views/lib/balloon.response');
 
@@ -21,7 +22,7 @@ define(function(require) {
 
 		events: {
 			"submit form#register-form": "submitRegister",
-			"click .fb-login": "facebookConnect",
+			"click .fb-register": "facebookConnect",
 		},
 
 		validation: {
@@ -60,38 +61,8 @@ define(function(require) {
 		},
 
 		facebookConnect: function() {
-			FB.login(function(response) {
-				if (!response.authResponse) return;
-
-				FB.api('/me', function(response) {
-					var birth = response.birthday.split('/').map(function(a) { return parseInt(a, 10) });
-
-					var registerData = {
-						fbid: response.id,
-						firstName: response.first_name,
-						lastName: response.last_name,
-						email: response.email,
-						gender: response.gender[0].toUpperCase() + response.gender.substr(1),
-						birthdayDay: birth[0],
-						birthdayMonth: birth[1],
-						birthdayYear: birth[2],
-					};
-
-					api.post(api.getApiVersion() + '/connectfb/', registerData).then(function(data) {
-						if (!data.status) throw new Error('cosa'); //register(response);
-
-						api.saveAuthToken(JSON.stringify({
-							auth: data.xAuthToken,
-							uid: data.idAccount
-						}));
-
-						router.header = new Header;
-						router.navigate("#/search");
-					});
-				});
-			}, { scope: 'email,user_about_me,user_birthday,user_hometown,user_location'});
+			facebook.connect();
 		},
-
 
 		render: function() {
 

@@ -4,6 +4,7 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
+	var facebook = require('tools/facebook');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
 
@@ -29,22 +30,7 @@ define(function(require) {
 		},
 
 		facebookLogin: function() {
-			FB.login(function(response) {
-				if (!response.authResponse) return;
-				console.log(response);
-
-				api.post(api.getApiVersion() + '/authfb/', { fbid: response.userID }).then(function(data) {
-					if (!data.status) throw new Error('cosa'); //register(response);
-
-					api.saveAuthToken(JSON.stringify({
-						auth: data.xAuthToken,
-						uid: data.idAccount
-					}));
-
-					router.header = new Header;
-					router.navigate("#/search");
-				});
-			}, { scope: 'email,user_about_me,user_birthday,user_hometown,user_location' });
+			facebook.connect();
 		},
 
 		submitLogin: function(e) {
