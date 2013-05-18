@@ -19,13 +19,14 @@ define(function(require) {
 			"click .pager-content a.button-pager-previous": "previousPage"
 		},
 
-		reset: function(options) {
+		initialize: function(options) {
 			this.$el = $('#search-results');
 			this.el = this.$el[0];
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
 		},
+
 		setQuery: function(query) {
 			this.query = query;
 		},

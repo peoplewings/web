@@ -73,10 +73,10 @@ define(function(require) {
 		},
 
 		renderResults: function(query, results) {
-			if (!this.resultsView)
-				this.resultsView = new ResultsView();
+			if (this.resultsView)
+				this.resultsView.close();
 
-			this.resultsView.reset({
+			this.resultsView = new ResultsView({
 				logged: api.userIsLoggedIn(),
 				query: query,
 			});
