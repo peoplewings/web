@@ -17,19 +17,19 @@ revert.build:
 
 # Update commands
 update.repo:
-	git co master
+	git checkout master
 	git checkout public/index.html
 	git pull origin master
 
 update.alpha:
-	git co alpha
+	git checkout alpha
 	git checkout public/index.html
 	git pull origin alpha
 
 update: update.repo build
 
 #Alpha staging and production deploys
-prepare.alpha: update.alpha build add.build 
+prepare.alpha: update.alpha build add.build
 
 test.alpha: prepare.alpha
 	git push -f test-alpha alpha:master
@@ -40,7 +40,7 @@ alpha: prepare.alpha
 	git reset --mixed HEAD^
 
 #Beta staging and production deploys
-prepare.beta: update.repo build add.build 
+prepare.beta: update.repo build add.build
 
 test.beta: prepare.beta
 	git push -f test-beta master
