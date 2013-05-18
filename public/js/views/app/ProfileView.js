@@ -127,7 +127,7 @@ define(function(require) {
 			]);
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
-
+			
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));

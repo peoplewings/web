@@ -378,6 +378,13 @@ div#alerts-container {
   right: 6px; }
 #collapse-photos .close {
   font-style: normal; }
+#collapse-photos .uploading img {
+  opacity: 0.3; }
+#collapse-photos .uploading p {
+  position: absolute;
+  color: black;
+  top: 0;
+  padding: 5px; }
 
 /* --------------------------------------------------------------------------
  * Globals
