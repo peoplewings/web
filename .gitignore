@@ -1,5 +1,4 @@
 .sass-cache/
 .DS_Store
-public/cs
-public/csss
+public/css
 node_modules
