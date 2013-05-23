@@ -53,18 +53,30 @@ div#help-center.tab-content
 		h1:first-child
 			margin: 0
 			margin-bottom: 12px
-		h1, h2, p
+		h1, h2, h3, p, li
 			color: #79776b
+			font-size: 12px
 		h1
 			font-size: 19px
 			font-weight: bold
+			margin-top: 25px
 			margin-bottom: 12px
-			margin-top: 40px
 		h2
 			font-size: 14px
 			font-weight: bold
+			margin: 10px 0
+		h3
+			margin: 10px 0
 		p
-			font-size: 12px
+			margin-bottom: 10px
+			text-align: justify
+		ul
+			margin-left: 16px
+			li
+				float: none
+				list-style-type: square
+				&:last-child
+					margin-bottom: 10px
 
 
 @media (max-width: 960px)
