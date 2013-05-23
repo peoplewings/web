@@ -153,11 +153,13 @@ define(function(require) {
 						case 'START_DATE_GT_END_DATE':
 						case 'TOO_LONG':
 						case 'VALIDATION_ERROR':
-							alerts.error(JSON.stringify(error, null, '\t'), {autoclose:0});
+							if (config.getValue('debug'))
+								alerts.error(JSON.stringify(error, null, '\t'), {autoclose:0});
 							break;
 
 						default:
-							alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autoclose:0});
+							if (config.getValue('debug'))
+								alerts.error('UNKNOWN ERROR TYPE:\n' + JSON.stringify(error, null, '\t'), {autoclose:0});
 					}
 				});
 
