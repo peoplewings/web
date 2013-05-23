@@ -45,7 +45,7 @@
 		{{else}}
 			<div class="messages-params-box">
 				<dl>
-					<dt>Requested wing : </dt>
+					<dt>{{#if isRequest }}Requested{{else}}Invited{{/if}} wing :</dt>
 					<dd {{#if_contains wing.parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ wing.parameters.wingName }} ({{ wing.type }} in {{ wing.parameters.wingCity }})</dd>
 				</dl>
 				<dl>
