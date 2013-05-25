@@ -84,7 +84,7 @@ define(function(require) {
 
 		refreshProfile: function(myProfile){			
 			//set images data
-			this.model.set('photos', [				
+			var hackPhotosArray = [				
 				{
 					src: 'img/profilePhotosTest/1.jpg'
 				},
@@ -118,8 +118,9 @@ define(function(require) {
 				{
 					src: 'img/profilePhotosTest/11.jpg'
 				},
-			]);
+			];
 
+			this.model.attributes.albums[0].photos = hackPhotosArray;
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));

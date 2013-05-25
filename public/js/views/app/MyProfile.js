@@ -177,7 +177,7 @@ define(function(require){
 
 		renderPhotoUpload: function(photo){
 			var self = this;
-			this.$el.find('#photo-box .clearing-thumbs').append(
+			this.$el.find('#photo-box .clearing-thumbs').prepend(
 				photosListTpl({
 					id: 0,
 					src: photo.src				
@@ -214,7 +214,6 @@ define(function(require){
 		},
 
 		removePhoto: function(e){
-			debugger;
 			e.stopPropagation();
 			e.preventDefault();
 
