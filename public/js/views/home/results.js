@@ -50,6 +50,16 @@ define(function(require) {
 				})
 			}));
 
+			this.$('span.dot.online').tooltip({
+				animation: true,
+				placement: 'right',
+				trigger: 'hover',
+				delay: {
+					show: 500,
+					hide: 100,
+				}
+			});
+
 			this.lastPage = results.count / results.endResult;
 
 			$('[id^=collapse]').on('hide', function() {
