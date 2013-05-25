@@ -14,14 +14,12 @@ input#header-search
 	margin:
 		top: 15px
 		left: 20px
-	width: 175px
+	width: 143px
+	padding: 3px 0
+	padding-left: 30px
+	font-size: 11px
 	background: $sprite #FFF
 	background-position: -558px -117px
-	padding:
-		top: 2px
-		left: 30px
-	font-size: 12px
-	line-height: 21px
 	@include transition(box-shadow, 0.5s)
 	&:hover, &:active, &:focus
 		outline: none
@@ -29,7 +27,7 @@ input#header-search
 
 .navbar.nav.navbar-fixed-top
 	background: $gray-clear
-	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.4))
+	@include box-shadow(0px, 1px, 4px, 0px, rgba(0, 0, 0, 0.25))
 	height: 53px
 
 .navbar
@@ -40,7 +38,7 @@ input#header-search
 		text-indent: -9999px
 		width: 237px
 		height: 60px
-		margin-top: 17px
+		margin-top: 14px
 		padding: 0
 		margin-left: 0
 	.nav
@@ -111,10 +109,12 @@ div.nav-menu
 				padding: 15px 2px 2px 6px
 
 div.btn-group.pull-right
-	margin-top: 16px
+	margin-top: 5px
 	a
 		display: block
+		padding: 8px 0
 		overflow: hidden
+		margin-left: -3px
 		@include border-radius(0)
 		&:hover
 			background-color: #D0CEC7
