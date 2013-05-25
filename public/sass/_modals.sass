@@ -5,9 +5,12 @@
 .modal-backdrop.fade.in
 	@include opacity(0.1)
 
+.modal
+	left: 38%
+
 .modal.fade.in
 	top: 270px
-	//left: 38%
+	left: 38%
 
 @media (max-width: 767px)
 	.modal.fade.in
@@ -271,3 +274,14 @@ div.generic-modal
 					.size-box-standard
 						width: 310px !important
 
+
+/* --------------------------------------------------------------------------
+ * Crop Modal
+ * --------------------------------------------------------------------------
+
+#crop-modal
+	width: 789px !important
+	height: auto
+	left: 43%
+	h2
+		margin-bottom: 15px

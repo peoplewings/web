@@ -39,7 +39,7 @@ define(function(require) {
 			"mouseleave #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').hide();
 			}
-		},		
+		},
 
 		initialize: function(userId) {
 			//binding
