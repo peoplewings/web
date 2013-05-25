@@ -163,6 +163,7 @@ define(function(require) {
 		onCloseClick: function(e){
 			e.stopPropagation();
 			e.preventDefault();
+
 			$(e.target).parents('li').slideUp();
 		},
 

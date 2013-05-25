@@ -143,8 +143,7 @@ define(function(require){
 				self.renderPhotoUpload(this);
 
 				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
-					//alerts.success(url);
-
+					
 					var jobs = [{
 						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
 						"src": url,
@@ -156,7 +155,7 @@ define(function(require){
 								"height": 600
 						},
 							"save": {
-								"image_identifier": "big_"+this.$('.clearing-thumbs').data('albumid')
+								"image_identifier": self.model.get('id')+"_big_"+self.$('.clearing-thumbs').data('albumid')
 							}
 						}, {
 							"name": "resize_to_fit",
@@ -164,7 +163,7 @@ define(function(require){
 								"width": 380								
 							},
 							"save": {
-								"image_identifier": "thumb_"+this.$('.clearing-thumbs').data('albumid')
+								"image_identifier": self.model.get('id')+"_thumb_"+self.$('.clearing-thumbs').data('albumid')
 							}
 						}],
 
@@ -175,7 +174,9 @@ define(function(require){
 				});
 			}
 		},
+
 		renderPhotoUpload: function(photo){
+			var self = this;
 			this.$el.find('#photo-box .clearing-thumbs').append(
 				photosListTpl({
 					id: 0,
@@ -187,6 +188,12 @@ define(function(require){
 
 			//photos draggable
 			this.$("#photo-box ul").sortable();
+
+			//hack to imitate upload process
+			setTimeout(function(){
+				self.$('.uploading p').remove();
+				self.$('.uploading').removeClass('uploading');
+			},1500);
 		},
 		initialize: function(model, parent) {			
 			this.model = model;
@@ -194,6 +201,7 @@ define(function(require){
 
 			//album update listener
 			api.listenUpdate('album', function(value){
+				debugger;
 				console.log('album update:'+value+'');
 			});
 		},
