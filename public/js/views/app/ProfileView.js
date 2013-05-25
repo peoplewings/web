@@ -42,9 +42,6 @@ define(function(require) {
 		},
 
 		initialize: function(userId) {
-			//binding
-			this.onCloseClick = this.onCloseClick.bind(this);
-
 			this.map = new MapView({
 				el: "#user-map",
 				id: "mapcanvas"
@@ -83,9 +80,6 @@ define(function(require) {
 
 			//photos draggable
 			this.$("#photo-box ul").sortable();
-
-			//close image propagation
-			this.$('#collapse-photos .control').on('click', this.onCloseClick);
 		},
 
 		refreshProfile: function(myProfile){			
@@ -127,7 +121,7 @@ define(function(require) {
 			]);
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
-			
+
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
@@ -163,7 +157,6 @@ define(function(require) {
 		onCloseClick: function(e){
 			e.stopPropagation();
 			e.preventDefault();
-
 			$(e.target).parents('li').slideUp();
 		},
 

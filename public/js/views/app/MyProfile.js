@@ -194,16 +194,31 @@ define(function(require){
 				self.$('.uploading p').remove();
 				self.$('.uploading').removeClass('uploading');
 			},1500);
+
+			//close image propagation
+			this.$('#collapse-photos .control')
+				.off()
+				.on('click', this.removePhoto);
 		},
 		initialize: function(model, parent) {			
 			this.model = model;
 			this.parentCtrl = parent;
 
+			//binding
+			this.removePhoto = this.removePhoto.bind(this);
+
 			//album update listener
 			api.listenUpdate('album', function(value){
-				debugger;
 				console.log('album update:'+value+'');
-			});
+			});			
+		},
+
+		removePhoto: function(e){
+			debugger;
+			e.stopPropagation();
+			e.preventDefault();
+
+			$(e.target).parents('li').slideUp();
 		},
 
 		closeBox: function(evt){
