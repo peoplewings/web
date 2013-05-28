@@ -32,25 +32,24 @@
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
 					<span class="dot {{#if live}}online{{/if}}" title="online">online dot</span>
-					<a href="#/profiles/{{id}}/about">
-						<img src="{{ avatar }}" alt="avatar">
-					</a>
-				</div>
-				<div class="content-right">
-					<div class="personal-info">
-						<div class="first-info">
-							<h1 id="user-name-label" class="name">
-								<a
-								{{#if ../notlogged}}
-								href="#/register"
-								style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"
-								{{else}}
-								href="#/profiles/{{id}}/about"
-								{{/if}}
-								>{{firstName}} {{lastName}}</a>
-							</h1>
-							<span class="age">[{{age}}]</span>
-							{{#if live}}<span class="online">{{online}}</span>{{/if}}
+					<img src="{{ avatar }}" alt="avatar">
+				</a>
+			</div>
+			<div class="content-right">
+				<div class="personal-info">
+					<div class="first-info">
+						<h1 id="user-name-label" class="name">
+							<a
+							{{#if ../notlogged}}
+							href="#/register"
+							style="color: transparent; text-shadow: 3px 3px 11px rgba(0,0,0,1)"
+							{{else}}
+							href="#/profiles/{{id}}/about"
+							{{/if}}
+							>{{firstName}} {{lastName}}</a>
+						</h1>
+						<span class="age">[{{age}}]</span>
+						{{#if live}}<span class="online">{{online}}</span>{{/if}}
 						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
@@ -71,11 +70,11 @@
 					<dt class="languages-tag">Languages</dt>
 					<dd class="languages">
 						{{#each languages }}
-							{{#if last}}
-								{{ name }} ({{ level }}).
-							{{else}}
-								{{ name }} ({{ level }}),
-							{{/if}}
+						{{#if last}}
+						{{ name }} ({{ level }}).
+						{{else}}
+						{{ name }} ({{ level }}),
+						{{/if}}
 						{{/each}}
 					</dd>
 				</dl>
