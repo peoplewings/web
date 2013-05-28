@@ -36,6 +36,7 @@ build.commit.revert:
 # ALPHA
 
 alpha.update:
+	git stash
 	git checkout alpha
 	git pull origin alpha
 
@@ -56,6 +57,7 @@ alpha.test: update.alpha alpha.test.push build.commit.revert
 # BETA
 
 beta.update:
+	git stash
 	git checkout beta
 	git pull origin beta
 
