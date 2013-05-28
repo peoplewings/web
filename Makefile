@@ -1,4 +1,16 @@
+# Development
+
+sass:
+	sass --watch public/sass:public/css
+
+update:
+	git checkout master
+	git pull
+
+
+
 # Build process
+
 build.js:
 	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
 	node public/js/build/r -o public/js/build/app.build.js
@@ -8,44 +20,52 @@ build.css:
 
 build: build.js build.css
 
-add.build:
-	git add public
+
+
+# Deploys
+
+build.commit:
+	git add public/js/build/out.js
+	git add -f public/css/home.css public/css/landing.css public/css/profile.css
 	git commit -m "Added JS & CSS compiled files"
 
-revert.build:
+build.commit.revert:
 	git reset --mixed HEAD^
-
-# Update commands
-update.repo:
-	git checkout master
+	rm public/js/build/out.js
+	rm public/css/home.css public/css/landing.css public/css/profile.css
 	git checkout public/index.html
-	git pull origin master
 
-update.alpha:
+
+# ALPHA
+
+alpha.update:
 	git checkout alpha
-	git checkout public/index.html
 	git pull origin alpha
 
-update: update.repo build
-
-#Alpha staging and production deploys
-prepare.alpha: update.alpha build add.build
-
-test.alpha: prepare.alpha
-	git push -f test-alpha alpha:master
-	git reset --mixed HEAD^
-
-alpha: prepare.alpha
+alpha.push: build build.commit
 	git push -f alpha alpha:master
-	git reset --mixed HEAD^
 
-#Beta staging and production deploys
-prepare.beta: update.repo build add.build
+alpha: alpha.update alpha.push build.commit.revert
 
-test.beta: prepare.beta
-	git push -f test-beta master
-	git reset --mixed HEAD^
+alpha.test.push: build build.commit
+	git push -f test-alpha alpha:master
 
-beta: prepare.beta
-	git push -f beta master
-	git reset --mixed HEAD^
+alpha.test: update.alpha alpha.test.push build.commit.revert
+
+
+
+# BETA
+
+beta.update:
+	git checkout beta
+	git pull origin beta
+
+beta.push: build build.commit
+	git push -f beta beta:master
+
+beta: beta.update beta.push build.commit.revert
+
+beta.test.push: build build.commit
+	git push -f test-beta beta:master
+
+beta.test: update.beta beta.test.push build.commit.revert
