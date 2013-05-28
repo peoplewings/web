@@ -23,16 +23,16 @@ button
 	border: 1px solid #D0CEC7
 	cursor: pointer
 	-webkit-appearance: none
-	@include bg-gradient(#FFF, #ECECE5)
+	+bg-gradient(#FFF, #ECECE5)
 	&:hover, &:active, &:focus
 		background: #FFF
 		color: #000
 	&:active
-		@include bg-gradient(#FFEB00, #FBFAC5)
+		+bg-gradient(#FFEB00, #FBFAC5)
 
 .button-highlight
 	@extend .button
-	@include bg-gradient(#FFFF00, #FFEB00)
+	+bg-gradient(#FFFF00, #FFEB00)
 
 .button-pager-previous
 	@extend .button
@@ -59,9 +59,9 @@ button
 	color: #000
 	text-shadow: 0 1px 0 #FFF
 	cursor: pointer
-	@include opacity(0.2)
+	+opacity(0.2)
 	&:hover
-		@include opacity(1)
+		+opacity(1)
 		background: none
 
 .button-peoplewings
@@ -75,20 +75,20 @@ button
 		weight: bold
 	text-shadow: none
 	border: 2px solid #FFFF00
-	@include border-radius(18px)
-	@include transition(box-shadow, 0.5s)
+	+border-radius(18px)
+	+transition(box-shadow, 0.5s)
 	&:hover, &:focus, &:active
 		color: #FFFF00
 		background: #18183F
 		outline: 0
-		@include box-shadow(0, 0, 8px, 3px, #FFFF00)
+		+box-shadow(0, 0, 8px, 3px, #FFFF00)
 
 .button-basic-info
 	@extend .button
 	width: auto
 	padding: 14px
 	color: #848178
-	@include bg-gradient(#f5f5f0, #e1e0d9)
+	+bg-gradient(#f5f5f0, #e1e0d9)
 
 .button-edit-info
 	@extend .button
@@ -106,3 +106,18 @@ button
 	padding: 5px 15px
 	color: #999
 	text-shadow: 1px 1px #FFF
+
+.button-facebook
+	color: #FFF
+	font-size: 15px
+	font-style: normal
+	text-shadow: 1px -1px #3F5175
+	text-transform: capitalize
+	border: 1px solid #8da1c8
+	padding: 7px 79px 6px 80px
+	strong
+		font-weight: bold
+	+border-radius(0, 2px, 2px, 0)
+	+bg-gradient(#6f8ecb, #5B75AE)
+	&:active
+		+bg-gradient(#5B75AE, #6f8ecb)
