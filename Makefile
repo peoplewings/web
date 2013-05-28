@@ -30,10 +30,7 @@ build.commit:
 	git commit -m "Added JS & CSS compiled files"
 
 build.commit.revert:
-	git reset --mixed HEAD^
-	rm public/js/build/out.js
-	rm public/css/home.css public/css/landing.css public/css/profile.css
-	git checkout public/index.html
+	git reset --hard HEAD^
 
 
 # ALPHA
@@ -46,11 +43,13 @@ alpha.push: build build.commit
 	git push -f alpha alpha:master
 
 alpha: alpha.update alpha.push build.commit.revert
+	git checkout master
 
 alpha.test.push: build build.commit
 	git push -f test-alpha alpha:master
 
 alpha.test: update.alpha alpha.test.push build.commit.revert
+	git checkout master
 
 
 
@@ -64,8 +63,10 @@ beta.push: build build.commit
 	git push -f beta beta:master
 
 beta: beta.update beta.push build.commit.revert
+	git checkout master
 
 beta.test.push: build build.commit
 	git push -f test-beta beta:master
 
 beta.test: update.beta beta.test.push build.commit.revert
+	git checkout master
