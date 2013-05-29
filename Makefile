@@ -17,16 +17,14 @@ update:
 add-repos:
 	-git remote remove origin
 	-git remote remove bitbucket
+	-git remote remove test
 	-git remote remove alpha
-	-git remote remove alpha-test
 	-git remote remove beta
-	-git remote remove beta-test
 	git remote add origin git@github.com:peoplewings/web.git
 	git remote add bitbucket git@bitbucket.org:peoplewings/peoplewings-frontend.git
+	git remote add test git@heroku.com:peoplewings-test.git
 	git remote add alpha git@heroku.com:peoplewings-alpha.git
-	git remote add alpha-test git@heroku.com:peoplewings-test.git
 	git remote add beta git@heroku.com:peoplewings-beta.git
-	git remote add beta-test git@heroku.com:peoplewings-test-beta.git
 
 
 
@@ -45,14 +43,29 @@ build: build.js build.css
 
 # Deploys
 
-build.commit:
+build.commit: build
+	git add public/index.html
 	git add public/js/build/out.js
 	git add -f public/css/home.css public/css/landing.css public/css/profile.css
-	git commit -m "Added JS & CSS compiled files"
+	git commit -m "[BUILD] Added JS & CSS compiled files"
 
 build.commit.revert:
 	git reset --hard HEAD^
 	git checkout master
+
+
+
+# TEST
+
+test.init:
+	git stash
+
+test.push: test.init build.commit
+	git push -f test HEAD:master
+
+test: test.push
+	git reset --hard HEAD^
+
 
 
 # ALPHA
@@ -65,15 +78,10 @@ alpha-update:
 	git push origin alpha
 	git push bitbucket alpha
 
-alpha.push: build build.commit
+alpha.push: build.commit
 	ggit push -f alpha alpha:master
 
 alpha: alpha-update alpha.push build.commit.revert
-
-alpha.test.push: build build.commit
-	git push -f alpha-test alpha-test:master
-
-alpha-test: alpha-update alpha.test.push build.commit.revert
 
 
 
@@ -84,12 +92,7 @@ beta-update:
 	git checkout beta
 	git pull origin beta
 
-beta.push: build build.commit
+beta.push: build.commit
 	git push -f beta beta:master
 
 beta: beta-update beta.push build.commit.revert
-
-beta.test.push: build build.commit
-	git push -f beta-test beta-test:master
-
-beta-test: beta-update beta.test.push build.commit.revert
