@@ -8,10 +8,14 @@
 		</div>
 		<div class="messages-sender {{#unless read }}unread{{/unless}}">
 			<legend>
-				{{#if isMessage }}
-					Message from
+				{{#if isMessage}}
+					Message
 				{{else}}
-					Request from
+					{{#if isRequest}}
+						Request
+					{{else}}
+						Invitation
+					{{/if}}
 				{{/if}}
 			</legend>
 			<h1 class="messages-name">
@@ -27,7 +31,11 @@
 			{{#if isMessage }}
 				<h2>Message</h2>
 			{{else}}
-				<h2>Request <span>{{enum wing.state 'notification-state' }}</span></h2>
+				{{#if isRequest}}
+					<h2>Request <span>{{enum wing.state 'notification-state' }}</span></h2>
+				{{else}}
+					<h2>Invitation <span>{{enum wing.state 'notification-state' }}</span></h2>
+				{{/if}}
 			{{/if}}
 		</div>
 	</div>
@@ -37,7 +45,7 @@
 		{{else}}
 			<div class="messages-params-box">
 				<dl>
-					<dt>Requested wing : </dt>
+					<dt>{{#if isRequest }}Requested{{else}}Invited{{/if}} wing :</dt>
 					<dd {{#if_contains wing.parameters.modified "wingName" }}class="modified"{{/if_contains}}>{{ wing.parameters.wingName }} ({{ wing.type }} in {{ wing.parameters.wingCity }})</dd>
 				</dl>
 				<dl>

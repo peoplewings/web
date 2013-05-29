@@ -19,13 +19,14 @@ define(function(require) {
 			"click .pager-content a.button-pager-previous": "previousPage"
 		},
 
-		reset: function(options) {
+		initialize: function(options) {
 			this.$el = $('#search-results');
 			this.el = this.$el[0];
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
 		},
+
 		setQuery: function(query) {
 			this.query = query;
 		},
@@ -48,6 +49,16 @@ define(function(require) {
 					return result;
 				})
 			}));
+
+			this.$('span.dot.online').tooltip({
+				animation: true,
+				placement: 'right',
+				trigger: 'hover',
+				delay: {
+					show: 500,
+					hide: 100,
+				}
+			});
 
 			this.lastPage = results.count / results.endResult;
 

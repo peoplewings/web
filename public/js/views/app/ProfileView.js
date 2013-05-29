@@ -23,9 +23,9 @@ define(function(require) {
 		el: "#main",
 
 		events: {
-			"click button.send-message-btn": "sendMessage",
-			"click button.send-request-btn": "sendRequest",
-			"click button.send-invitation-btn": "sendInvitation",
+			"click .personal-info button.send-message-btn": "sendMessage",
+			"click .personal-info button.send-request-btn": "sendRequest",
+			"click .personal-info button.send-invitation-btn": "sendInvitation",
 			//"click ul.nav-tabs li a": "tabHandler",
 		},
 

@@ -14,7 +14,7 @@ define(function(require) {
 
 		options = options || {};
 		if (!('autoclose' in options))
-			options.autoclose = 60000;
+			options.autoclose = 10 * 1000;
 
 		var alert = $(template({
 			type: type,

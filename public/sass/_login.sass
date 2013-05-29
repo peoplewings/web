@@ -53,6 +53,8 @@ form#login-form
 		width: 107px
 		height: 28px
 		text-indent: -9999px
+		background: $sprite
+		background-position: -1170px -263px
 
 	.clear
 		clear: both
@@ -63,6 +65,37 @@ form#login-form
 
 	.control-group:after, .control-group:before
 		display: block
+
+	.facebook-separator
+		margin: 15px 0
+		span:first-child, span:last-child
+			display: inline-block
+			width: 150px
+			border-top: 1px solid #fff
+			position: relative
+			top: -3px
+		span.odd
+			font-size: 15px
+			color: #fff
+			text-align: center
+			text-shadow: 1px -1px #000
+			border: none
+			padding: 0 10px
+
+	.facebook-bright
+		+border-radius(2px)
+		+transition(box-shadow, 0.25s)
+		&:hover
+			+box-shadow(0, 0, 8px, 3px, $yellow_corp)
+
+	.icon-facebook-login
+		margin-top: 0
+		width: 35px
+		height: 35px
+		float: left
+		text-indent: -9999px
+		background: $sprite
+		background-position: -312px -407px
 
 	.control-label
 		float: left
