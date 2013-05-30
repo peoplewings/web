@@ -19,26 +19,15 @@ define(function(require) {
 		return api.post(api.getApiVersion() + '/authfb/', {
 			fbid: fbData.userID,
 			cookie: document.cookie,
-		}).then(pwCallback);
+		});
 	}
 
-	function pwCallback(response) {
-		if (response.status) {
-
-			api.saveAuthToken(JSON.stringify({
-				auth: response.data.xAuthToken,
-				uid: response.data.idAccount
-			}));
-
-			router.header = new Header;
-			router.navigate("#/search");
-		}
-
-		return response.status;
-	}
-
-	function connect() {
-		return askFbLogin().then(pwLogin);
+	function connect(callback) {
+		return askFbLogin().then(pwLogin).then(function(response) {
+			if (response.status)
+				callback(response.data);
+			return response.status;
+		});
 	}
 
 	return {

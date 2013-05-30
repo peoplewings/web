@@ -61,7 +61,15 @@ define(function(require) {
 		},
 
 		facebookConnect: function() {
-			facebook.connect();
+			facebook.connect(function loginCompleted(data) {
+				api.saveAuthToken(JSON.stringify({
+					auth: data.xAuthToken,
+					uid: data.idAccount
+				}));
+
+				router.header = new Header;
+				router.navigate("#/search");
+			});
 		},
 
 		render: function() {
