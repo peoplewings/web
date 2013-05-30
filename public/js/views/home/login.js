@@ -10,6 +10,16 @@ define(function(require) {
 
 	var spinner = require('views/lib/spinner');
 
+	function loginCompleted(data) {
+		api.saveAuthToken(JSON.stringify({
+			auth: data.xAuthToken,
+			uid: data.idAccount
+		}));
+
+		router.header = new Header;
+		router.navigate("#/search");
+	}
+
 
 	var LoginView = Backbone.View.extend({
 
@@ -30,7 +40,7 @@ define(function(require) {
 		},
 
 		facebookLogin: function() {
-			facebook.connect();
+			facebook.connect(loginCompleted);
 		},
 
 		submitLogin: function(e) {
