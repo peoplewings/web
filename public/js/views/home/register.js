@@ -8,6 +8,7 @@ define(function(require) {
 	var utils = require('utils');
 	var phrases = require("phrases");
 	var spinner = require('views/lib/spinner');
+	var facebook = require('tools/facebook');
 
 	var responseView = require('views/lib/balloon.response');
 
@@ -21,6 +22,7 @@ define(function(require) {
 
 		events: {
 			"submit form#register-form": "submitRegister",
+			"click .fb-register": "facebookConnect",
 		},
 
 		validation: {
@@ -58,6 +60,10 @@ define(function(require) {
 			},
 		},
 
+		facebookConnect: function() {
+			facebook.connect();
+		},
+
 		render: function() {
 
 			$(this.el).html(registerTpl({
@@ -81,6 +87,9 @@ define(function(require) {
 			data.birthdayDay = +data.birthdayDay;
 
 			spinner.show('register');
+
+			console.log(data);
+			return;
 
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){

@@ -12,7 +12,7 @@ requirejs.config({
 		"underscore": "lib/lodash",
 		"backbone": "lib/backbone",
 		"handlebars": "lib/handlebars",
-		// jQuery Plugins 
+		// jQuery Plugins
 		"jquery.Validate": "lib/plugins/jquery.validate",
 		"jquery.Extensions": "lib/plugins/jq-extensions",
 		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",

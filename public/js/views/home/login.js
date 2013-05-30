@@ -4,17 +4,20 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var utils = require('utils');
 	var api = require('api2');
+	var facebook = require('tools/facebook');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
 
 	var spinner = require('views/lib/spinner');
+
 
 	var LoginView = Backbone.View.extend({
 
 		el: "#main",
 
 		events: {
-			"submit form#login-form": "submitLogin"
+			"submit form#login-form": "submitLogin",
+			"click .fb-login": "facebookLogin",
 		},
 
 		render: function() {
@@ -24,6 +27,10 @@ define(function(require) {
 			this.$inputPassword = this.$("#inputPassword");
 
 			$("#feedback-btn").hide();
+		},
+
+		facebookLogin: function() {
+			facebook.connect();
 		},
 
 		submitLogin: function(e) {
@@ -48,17 +55,9 @@ define(function(require) {
 		},
 
 		loginSuccess: function(data) {
-			api.saveAuthToken(JSON.stringify({
-				auth: data.xAuthToken,
-				uid: data.idAccount
-			}));
-
 			this.$inputPassword.val("");
 			this.$inputEmail.val("");
-
-			router.header = new Header;
-			router.navigate("#/search");
-
+			loginCompleted(data);
 		}
 	});
 
