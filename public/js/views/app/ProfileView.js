@@ -42,9 +42,6 @@ define(function(require) {
 		},
 
 		initialize: function(userId) {
-			//binding
-			this.onCloseClick = this.onCloseClick.bind(this);
-
 			this.map = new MapView({
 				el: "#user-map",
 				id: "mapcanvas"
@@ -83,14 +80,11 @@ define(function(require) {
 
 			//photos draggable
 			this.$("#photo-box ul").sortable();
-
-			//close image propagation
-			this.$('#collapse-photos .control').on('click', this.onCloseClick);
 		},
 
 		refreshProfile: function(myProfile){			
 			//set images data
-			this.model.set('photos', [				
+			var hackPhotosArray = [				
 				{
 					src: 'img/profilePhotosTest/1.jpg'
 				},
@@ -124,8 +118,9 @@ define(function(require) {
 				{
 					src: 'img/profilePhotosTest/11.jpg'
 				},
-			]);
+			];
 
+			this.model.attributes.albums[0].photos = hackPhotosArray;
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));

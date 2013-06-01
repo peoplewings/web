@@ -14,9 +14,15 @@ define(function(require){
 	var contactTpl = require('tmpl!templates/app/profile/form.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile/form.places.html');
 
+	var photosListTpl = require('tmpl!templates/app/profile/view.photos_list.html');
+	var foundation = require("foundation");
+	var foundationClearing = require("foundationClearing");
+
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
 	var AvatarView = require("views/app/Avatar");
+
+	var blitline = new Blitline();
 
 	function extract(source, props) {
 		var target = {};
@@ -88,19 +94,130 @@ define(function(require){
 			"keypress [name=otherLocations]": function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-
 			"submit form#basic-info-form": "submitProfile",
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
-			"click button.cancel-edition-btn": "closeBox",
+			"click button.cancel-edition-btn" : "closeBox",
+			//photos events
+			"click #add_photo" : function(e){
+				$(e.target).find('input[type="file"]').trigger('click');
+			},
+			'change #add_photo input[type="file"]':function(e){
+				var photoData = e.target.files[0];
+				this.checkPhotoData(photoData);
+			}
+		},
+		checkPhotoData: function(photo){
+			var self = this;
+
+			//check size: is more than 6Mb
+			if(photo.size > 6291456){
+				alert('this photo is bigger than 6 Mb');
+				return;
+			}
+			
+			//create image
+			var img = new Image();
+			var url = window.URL || window.webkitURL;
+			if(url){
+				img.src = url.createObjectURL(photo);
+			}else{
+				alerts.error('Your browser does not support image loading. To get the best experience, please download Chrome');
+			}
+
+			//check dimension
+			img.onload = function(){
+				if(this.width < 380){
+					alerts.error('The photo width must be bigger than 380px');
+					return;
+				}
+				if(this.height < 150){
+					alerts.error('The photo width must be bigger than 150px');
+					return;
+				}
+
+				//render photo
+				self.renderPhotoUpload(this);
+
+				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
+					
+					var jobs = [{
+						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+						"src": url,
+
+						"functions": [{
+							"name": "resize_to_fit",
+							"params": {
+								"width": 600,
+								"height": 600
+						},
+							"save": {
+								"image_identifier": self.model.get('id')+"_big_"+self.$('.clearing-thumbs').data('albumid')
+							}
+						}, {
+							"name": "resize_to_fit",
+							"params": {
+								"width": 380								
+							},
+							"save": {
+								"image_identifier": self.model.get('id')+"_thumb_"+self.$('.clearing-thumbs').data('albumid')
+							}
+						}],
+
+						postback_url: api.getServerUrl() + api.getApiVersion() + '/photoUploaded'
+					}];
+
+					blitline.submit(jobs, {});
+				});
+			}
 		},
 
-		initialize: function(model, parent) {
+		renderPhotoUpload: function(photo){
+			var self = this;
+			this.$el.find('#photo-box .clearing-thumbs').prepend(
+				photosListTpl({
+					id: 0,
+					src: photo.src				
+				})
+			);
+			//initialize foundation for this view to use in photo slide
+			this.$("#photo-box").foundation();
+
+			//photos draggable
+			this.$("#photo-box ul").sortable();
+
+			//hack to imitate upload process
+			setTimeout(function(){
+				self.$('.uploading p').remove();
+				self.$('.uploading').removeClass('uploading');
+			},1500);
+
+			//close image propagation
+			this.$('#collapse-photos .control')
+				.off()
+				.on('click', this.removePhoto);
+		},
+		initialize: function(model, parent) {			
 			this.model = model;
 			this.parentCtrl = parent;
+
+			//binding
+			this.removePhoto = this.removePhoto.bind(this);
+
+			//album update listener
+			api.listenUpdate('album', function(value){
+				console.log('album update:'+value+'');
+			});			
+		},
+
+		removePhoto: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+
+			$(e.target).parents('li').slideUp();
 		},
 
 		closeBox: function(evt){
@@ -149,7 +266,6 @@ define(function(require){
 			$(box).html(tpl);
 			if (initMethod)
 				initMethod();
-
 		},
 
 		editBasicBox: function(){
@@ -234,7 +350,6 @@ define(function(require){
 		},
 
 		initLocationTypeahead: function(){
-
 			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
 			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));
 
@@ -269,6 +384,46 @@ define(function(require){
 					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng());
 				}
 			};
+		},
+
+		uploadFile: function(event) {
+			var files = event.target.files;
+			//Maximum file size: 6Mb
+			if (files[0].size > 6291456){
+				alerts.error('Maximum file size allowed is 6 MB');
+				return;
+			}
+
+			if (!files.length)
+				return;
+
+			spinner.show('avatar');
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+		},
+
+		uploadComplete: function(url) {
+			var jobs = [{
+				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+				"src": url,
+
+				"functions": [{
+					"name": "resize_to_fit",
+					"params": {
+						"width": this.defaultMaxWidth,
+						"height": this.defaultMaxWidth
+					},
+					"save": {
+						"image_identifier": "external_sample_1"
+					}
+				}]
+			}];
+
+			blitline.submit(jobs, {
+				completed: this.resizeComplete
+				//submitted : function(jobIds, images) {
+				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
+				//}
+			});
 		},
 
 		submitProfile: function(e){

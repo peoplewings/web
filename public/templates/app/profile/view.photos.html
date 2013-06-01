@@ -3,9 +3,11 @@
 		<i class="icon-like">Like icon</i>
 		<h2>Photos</h2>
 		{{#if myProfile}}
-		<a id="edit-about-btn" class="button-edit-info edit-box-btn">
-			<i class="icon-edit">Edit icon</i>Upload
+		<a id="add_photo" class="button-edit-info edit-box-btn">
+			+ Add
+			<input type="file" accept="image/*" hidden>
 		</a>
+
 		{{/if}}
 	</div><!-- EOF box-header -->
 
@@ -13,8 +15,8 @@
 		<div class="accordion-group">
 			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<ul class="clearing-thumbs" data-clearing>
-					{{#each photos}}
+					<ul class="clearing-thumbs" data-clearing data-albumid="{{albums.0.id}}">
+						{{#each albums.0.photos}}
 						<li data-slide-to="{{@index}}">
 							<a href="{{src}}">
 								<img src="{{src}}">
@@ -24,7 +26,7 @@
 								<button class="close">&times;</button>
 							</div>
 						</li>
-					{{/each}}
+						{{/each}}
 					</ul>
 				</div>
 			</div>
@@ -35,15 +37,3 @@
 		</div>
 	</div><!-- EOF accordion -->
 </div><!-- EOF box-standard -->
-
-<!--
-<ul class="clearing-thumbs" data-clearing>
-  <li>
-  	<a href="path/to/your/img">
-  	<img src="path/to/your/img-th">
-  	</a>
-  	</li>
-  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
-  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
-</ul>
--->
