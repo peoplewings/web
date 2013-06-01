@@ -108,8 +108,16 @@ define(function(require){
 			'change #add_photo input[type="file"]':function(e){
 				var photoData = e.target.files[0];
 				this.checkPhotoData(photoData);
+			},
+			"mouseenter #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').show();
+			},
+
+			"mouseleave #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').hide();
 			}
 		},
+
 		checkPhotoData: function(photo){
 			var self = this;
 
@@ -210,6 +218,7 @@ define(function(require){
 			//album update listener
 			api.listenUpdate('album', function(value){
 				console.log('album update:'+value+'');
+				debugger;
 			});			
 		},
 

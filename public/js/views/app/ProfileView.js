@@ -32,13 +32,13 @@ define(function(require) {
 			"click button.send-request-btn": "sendRequest",
 			"click button.send-invitation-btn": "sendInvitation",
 			
-			"mouseenter #collapse-photos li" : function(e){
+			/*"mouseenter #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').show();
 			},
 
 			"mouseleave #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').hide();
-			}
+			}*/
 		},
 
 		initialize: function(userId) {
@@ -79,7 +79,7 @@ define(function(require) {
 			this.$("#photo-box").foundation();
 
 			//photos draggable
-			this.$("#photo-box ul").sortable();
+			this.$("#myProfile-photos").sortable();
 		},
 
 		refreshProfile: function(myProfile){			
@@ -120,6 +120,7 @@ define(function(require) {
 				},
 			];
 
+			
 			this.model.attributes.albums[0].photos = hackPhotosArray;
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
