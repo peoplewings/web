@@ -79,7 +79,7 @@ alpha-update:
 	git push bitbucket alpha
 
 alpha.push: build.commit
-	ggit push -f alpha alpha:master
+	git push -f alpha alpha:master
 
 alpha: alpha-update alpha.push build.commit.revert
 
