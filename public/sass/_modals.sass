@@ -199,12 +199,10 @@ div.generic-modal.thin-modal
 					text-overflow: ellipsis
 					white-space: nowrap
 
-			div.box-content.wings-info .blocked
-				margin-right: 5px !important
-
 			div.box-content
 				overflow: hidden
 				padding: 25px
+				padding-top: 20px
 				//height: 450px
 				p
 					color: #000
@@ -248,32 +246,6 @@ div.generic-modal.thin-modal
 
 		/* EOF box-standard */
 
-div.generic-modal
-	div.modal-body
-		div.listing-location
-			div.control-group.blocked
-				label
-					width: auto
-				label.control-label
-					width: auto
-					font-weight: normal
-					text-align: left
-					margin: 0 0 6px 0
-				div.controls
-					margin-left: 0
-					input
-						font-size: inherit
-						color: inherit
-						padding: 4px 6px
-						width: auto
-						font-weight: normal
-					.input-medium
-						width: 210px
-					.input-mini
-						width: 60px
-					.size-box-standard
-						width: 310px !important
-
 
 /* --------------------------------------------------------------------------
  * Crop Modal
@@ -293,6 +265,14 @@ div.generic-modal
 
 .block-form
 	padding: 5px 0px
+	label
+		&.control-label
+			margin-bottom: 5px !important
+		&.error
+			margin: 0 !important
+			margin-top: 5px !important
+			padding-left: 8px !important
+			padding-right: 8px !important
 
 .block-form.dates-type
 	label
@@ -307,14 +287,23 @@ div.generic-modal
 		padding: 0 !important
 	input[type="checkbox"]
 		margin-top: 3px !important
-		margin-right: 10px
+		margin-right: 10px !important
+
+.block-form.grid
+	input[type="checkbox"]
+		margin: 0 !important
+		margin-right: 10px !important
+
+.block-label
+	overflow: hidden
+
+.block-form.float-left.margin-right
+	label.error
+		width: 216px
 
 /* --------------------------------------------------------------------------
  * Helpers
  * --------------------------------------------------------------------------
-
-.first-child
-	padding-top: 25px !important
 
 .input-dates
 	width: 100px !important
@@ -328,3 +317,28 @@ div.generic-modal
 .margin-right
 	margin-right: 3px
 
+.width72pc
+	width: 72%
+
+.container-5
+	width: 325px
+	background: yellow
+
+.grid-1
+	width: 18%
+	margin-left: 1% !important
+	margin-right: 1% !important
+	float: left
+
+
+/* --------------------------------------------------------------------------
+ * Block sizes inputs
+ * --------------------------------------------------------------------------
+
+.block-form
+	.input-medium
+		width: 200px !important
+	.input-mini
+		width: 55px !important
+	.input-large
+		width: 290px !important

@@ -16,10 +16,10 @@
 						</ul>
 					</div>
 					{{/if}}
-					<div class="block-form first-child">
+					<div class="block-form">
 						<label class="control-label" for="inputName">Wing name</label>
 						<div class="controls">
-							<input type="text" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
+							<input type="text" id="inputName" name="name" placeholder="Some name" class="input-large required">
 							<span class="help-block"></span>
 						</div>
 					</div>
@@ -115,72 +115,72 @@
 					</div>
 					<div class="block-form checkbox-type clearfix">
 						<label class="checkbox">
-								<input type="checkbox" name="wheelchair" id="inlineCheckbox1">Wheelchair accessible
-							</label>
-							<span class="help-block"></span>
-						</div>
-					<div class="block-form checkbox-type">
-							<label class="checkbox">
-								<input type="checkbox" name="iHavePet" id="inlineCheckbox1">I have pet
-							</label>
-							<span class="help-block"></span>
+							<input type="checkbox" name="wheelchair" id="inlineCheckbox1">Wheelchair accessible
+						</label>
+						<span class="help-block"></span>
 					</div>
 					<div class="block-form checkbox-type">
 						<label class="checkbox">
-								<input type="checkbox" name="petsAllowed" id="inlineCheckbox2">Guests pets allowed
-							</label>
-							<span class="help-block"></span>
-						</div>
+							<input type="checkbox" name="iHavePet" id="inlineCheckbox1">I have pet
+						</label>
+						<span class="help-block"></span>
+					</div>
 					<div class="block-form checkbox-type">
 						<label class="checkbox">
-								<input type="checkbox" name="blankets" id="inputBlankets">I have blankets
-							</label>
-							<span class="help-block"></span>
-						</div>
+							<input type="checkbox" name="petsAllowed" id="inlineCheckbox2">Guests pets allowed
+						</label>
+						<span class="help-block"></span>
+					</div>
 					<div class="block-form checkbox-type">
 						<label class="checkbox">
-								<input type="checkbox" name="liveCenter" id="inputLiveCenter">I live in the center
-							</label>
-							<span class="help-block"></span>
-						</div>
-					<div class="block-form">
-						<label class="control-label">Transports</label>
-						<div class="controls">
-							<label>
+							<input type="checkbox" name="blankets" id="inputBlankets">I have blankets
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form checkbox-type">
+						<label class="checkbox">
+							<input type="checkbox" name="liveCenter" id="inputLiveCenter">I live in the center
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form grid">
+						<label>Transports</label>
+						<div class="container-5">
+							<label class="grid-1">
 								<input type="checkbox" name="metro" id="checkboxMetro">Metro
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="bus" id="checkboxBus">Bus
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="taxi" id="checkboxtaxi">Tram
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="train" id="checkboxTrain">Train
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="car" id="checkboxCar">Car
 							</label>
-							<label>
-								<input type="checkbox" name="motorbike" id="checkboxMotorbike">Motorbike
+							<label class="grid-1">
+								<input type="checkbox" name="motorbike" id="checkboxMotorbike">Moto
 							</label>
-							<label>
-								<input type="checkbox" name="bicycle" id="checkboxBicycle">Bicycle
+							<label class="grid-1">
+								<input type="checkbox" name="bicycle" id="checkboxBicycle">Bici
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="boat" id="checkboxBoat">Boat
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="plane" id="checkboxPlane">Plane
 							</label>
-							<label>
+							<label class="grid-1">
 								<input type="checkbox" name="other" id="checkboxOther">Other
 							</label>
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label">About your accomodation</label>
+					<div class="block-form">
+						<label class="control-label">About your accommodation</label>
 						<div class="controls">
 							<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
 							<span class="help-block"></span>
@@ -197,42 +197,51 @@
 					<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
 				</div><!-- EOF guest-message -->
 				<div class="listing-location">
-					<div class="control-group blocked">
-						<label class="control-label">Street address</label>
-						<i class="icon-lock">icon lock</i>
+					<div class="block-form float-left margin-right width72pc">
+						<div class="block-label">
+							<label class="control-label">Street address</label>
+							<i class="icon-lock">icon lock</i>
+						</div>
 						<div class="controls">
 							<input type="text" name="address" id="inputAddress" class="input-medium required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group blocked">
-						<label class="control-label">Number</label>
-						<i class="icon-lock">icon lock</i>
+					<div class="block-form">
+						<div class="block-label">
+							<label class="control-label">Number</label>
+							<i class="icon-lock">icon lock</i>
+						</div>
 						<div class="controls">
-							<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
 							<input type="text" name="number" id="inputNumber" class="input-mini required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group blocked">
-						<label class="control-label">Additional Information</label>
-						<i class="icon-lock">icon lock</i>
+					<div class="block-form clearfix">
+						<div class="block-label">
+							<label class="control-label">Additional Information</label>
+							<i class="icon-lock">icon lock</i>
+						</div>
 						<div class="controls">
-							<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard">
+							<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="input-large">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group blocked">
-						<label class="control-label">City</label>
-						<i class="icon-lock-open">icon lock</i>
+					<div class="block-form float-left margin-right width72pc">
+						<div class="block-label">
+							<label class="control-label">City</label>
+							<i class="icon-lock-open">icon lock</i>
+						</div>
 						<div class="controls">
 							<input type="text" name="city" id="inputCity" class="input-medium required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group blocked">
-						<label class="control-label">Postal</label>
-						<i class="icon-lock">icon lock</i>
+					<div class="block-form">
+						<div class="block-label">
+							<label class="control-label">Postal</label>
+							<i class="icon-lock">icon lock</i>
+						</div>
 						<div class="controls">
 							<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
 							<span class="help-block"></span>
@@ -240,4 +249,4 @@
 					</div>
 				</div><!-- EOF listing-location -->
 			</form>
-				</div><!-- EOF box-standard -->
+		</div><!-- EOF box-standard -->
