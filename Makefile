@@ -12,7 +12,6 @@ update:
 	git pull origin master
 	git pull bitbucket master
 	git push origin master
-	git push bitbucket master
 
 add-repos:
 	-git remote remove origin
@@ -76,7 +75,6 @@ alpha-update:
 	git pull origin alpha
 	git pull bitbucket alpha
 	git push origin alpha
-	git push bitbucket alpha
 
 alpha.push: build.commit
 	git push -f alpha alpha:master
