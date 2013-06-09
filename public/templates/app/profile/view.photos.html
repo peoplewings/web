@@ -3,7 +3,7 @@
 		<i class="icon-like">Like icon</i>
 		<h2>Photos</h2>
 		{{#if myProfile}}
-		<a id="edit-about-btn" class="button-edit-info edit-box-btn">
+		<a id="edit-photos-btn" class="button-edit-info edit-box-btn">
 			<i class="icon-edit">Edit icon</i>Upload
 		</a>
 		{{/if}}
@@ -14,10 +14,10 @@
 			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<ul class="clearing-thumbs" data-clearing>
-					{{#each photos}}
-						<li data-slide-to="{{@index}}">
-							<a href="{{src}}">
-								<img src="{{src}}">
+					{{#each albums.photos}}
+						<li data-slide-to="{{@index}}" data-photo-id="{{id}}">
+							<a href="{{big_url}}">
+								<img src="{{thumb_url}}">
 							</a>
 
 							<div class="control" hidden>

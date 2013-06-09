@@ -85,41 +85,52 @@ define(function(require) {
 
 		refreshProfile: function(myProfile){
 			//set images data
-			this.model.set('photos', [
-				{
-					src: 'img/profilePhotosTest/1.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/2.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/3.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/4.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/5.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/6.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/7.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/8.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/9.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/10.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/11.jpg'
-				},
-			]);
+			console.log(this.model.get('albums'));
+			this.model.get('albums').photos = [{
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/1.jpg',
+					thumb_url: 'img/profilePhotosTest/1.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/2.jpg',
+					thumb_url: 'img/profilePhotosTest/2.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/3.jpg',
+					thumb_url: 'img/profilePhotosTest/3.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/4.jpg',
+					thumb_url: 'img/profilePhotosTest/4.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/5.jpg',
+					thumb_url: 'img/profilePhotosTest/5.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/6.jpg',
+					thumb_url: 'img/profilePhotosTest/6.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/7.jpg',
+					thumb_url: 'img/profilePhotosTest/7.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/8.jpg',
+					thumb_url: 'img/profilePhotosTest/8.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/9.jpg',
+					thumb_url: 'img/profilePhotosTest/9.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/10.jpg',
+					thumb_url: 'img/profilePhotosTest/10.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/11.jpg',
+					thumb_url: 'img/profilePhotosTest/11.jpg',
+			}];
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
