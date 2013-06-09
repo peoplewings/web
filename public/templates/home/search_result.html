@@ -31,7 +31,7 @@
 			{{#each results}}
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
-					<span class="dot {{#if live}}online{{/if}}">online dot</span>
+					<span class="dot {{#if live}}online{{/if}}" title="online">online dot</span>
 					<a href="#/profiles/{{id}}/about">
 						<img src="{{ avatar }}" alt="avatar">
 					</a>
@@ -148,5 +148,5 @@
 			</div>
 		</div><!-- EOF button-group -->
 	</div><!-- EOF pager content -->
-	
+
 </div>

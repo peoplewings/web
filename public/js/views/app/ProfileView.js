@@ -21,17 +21,17 @@ define(function(require) {
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
 	var foundation = require("foundation");
 	var foundationClearing = require("foundationClearing");
-		
+
 
 	var ProfileView = Backbone.View.extend({
 
 		el: "#main",
 
 		events: {
-			"click button.send-message-btn": "sendMessage",
-			"click button.send-request-btn": "sendRequest",
-			"click button.send-invitation-btn": "sendInvitation",
-			
+			"click .personal-info button.send-message-btn": "sendMessage",
+			"click .personal-info button.send-request-btn": "sendRequest",
+			"click .personal-info button.send-invitation-btn": "sendInvitation",
+
 			"mouseenter #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').show();
 			},
@@ -39,7 +39,7 @@ define(function(require) {
 			"mouseleave #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').hide();
 			}
-		},		
+		},
 
 		initialize: function(userId) {
 			//binding
@@ -66,7 +66,7 @@ define(function(require) {
 			if (myProfile && !this.myProfile) {
 				this.myProfile = new MyProfile(this.model, this);
 				this.myWings = new MyWings(this);
-			}			
+			}
 		},
 
 		refresh: function(tab) {
@@ -88,9 +88,9 @@ define(function(require) {
 			this.$('#collapse-photos .control').on('click', this.onCloseClick);
 		},
 
-		refreshProfile: function(myProfile){			
+		refreshProfile: function(myProfile){
 			//set images data
-			this.model.set('photos', [				
+			this.model.set('photos', [
 				{
 					src: 'img/profilePhotosTest/1.jpg'
 				},

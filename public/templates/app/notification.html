@@ -16,7 +16,7 @@
 	</div>
 	<div class="messages-dates">
 		{{else}}
-		<h1 class="messages-name">{{enum kind 'notification-type'}}</h1>
+		<h1 class="messages-name {{enum state 'notification-state'}}">{{enum kind 'notification-type'}} {{enum state 'notification-state'}}</h1>
 		{{#with wingParameters}}
 		<h2>{{wingType}} {{wingCity}}</h2>
 		<h3>{{message}}</h3>

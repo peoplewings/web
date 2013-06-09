@@ -110,34 +110,34 @@ li.notification-item
 			height: 65px
 			float: left
 			text-indent: -9999px
-		.from-me
-			background: $sprite
-			background-position: -883px -267px
 		.to-me
 			background: $sprite
-			background-position: -808px -267px
-		.from-me.accepted
+			background-position: -883px -267px
+		.from-me
 			background: $sprite
-			background-position: -104px -267px
+			background-position: -808px -267px
 		.to-me.accepted
 			background: $sprite
-			background-position: -21px -267px
-		.from-me.maybe
+			background-position: -104px -267px
+		.from-me.accepted
 			background: $sprite
-			background-position: -494px -267px 
+			background-position: -21px -267px
 		.to-me.maybe
 			background: $sprite
-			background-position: -14px -267px
-		.from-me.pending
+			background-position: -494px -267px
+		.from-me.maybe
 			background: $sprite
-			background-position: -297px -267px
+			background-position: -14px -267px
 		.to-me.pending
 			background: $sprite
+			background-position: -297px -267px
+		.from-me.pending
+			background: $sprite
 			background-position: -216px -267px
-		.from-me.denied
+		.to-me.denied
 			background: $sprite
 			background-position: -689px -267px
-		.to-me.denied
+		.from-me.denied
 			background: $sprite
 			background-position: -608px -267px
 	div.messages-state
@@ -147,14 +147,17 @@ li.notification-item
 		h1.messages-name
 			color: #000
 			font-weight: bold
+			text-transform: capitalize
 			&.accepted
 				color: #85c333
-			&.maybe
+			&.blah
 				color: #fa9e03
 			&.pending
 				color: #ee4040
 			&.declined
 				color: #7e7b71
+		h1.messages-name.accepted:after
+			content: "!"
 		h2
 			text-transform: capitalize
 			font-weight: bold
