@@ -96,6 +96,14 @@ define(function(require){
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
+
+			"mouseenter #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').show();
+			},
+
+			"mouseleave #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').hide();
+			}
 		},
 
 		initialize: function(model, parent) {

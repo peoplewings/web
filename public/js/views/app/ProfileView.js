@@ -31,14 +31,6 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
-
-			"mouseenter #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').show();
-			},
-
-			"mouseleave #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').hide();
-			}
 		},
 
 		initialize: function(userId) {
@@ -81,8 +73,11 @@ define(function(require) {
 			//initialize foundation for this view to use in photo slide
 			this.$("#photo-box").foundation();
 
-			//photos draggable
-			this.$("#photo-box ul").sortable();
+			if (myProfile) {
+				this.$("#photo-box ul")
+					.addClass('sortable')
+					.sortable();
+			}
 
 			//close image propagation
 			this.$('#collapse-photos .control').on('click', this.onCloseClick);
