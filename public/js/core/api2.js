@@ -105,6 +105,8 @@ define(function(require) {
 				var errorOptions = {autoclose:60000};
 
 				response.errors.forEach(function(error) {
+					body;
+
 					switch (error.type) {
 						case 'AUTH_REQUIRED':
 							logout();
@@ -136,7 +138,7 @@ define(function(require) {
 							prom.resolve({"errors": [{"type": "UNDERAGE"}], "status": false});
 							break;
 						case 'INVALID':
-							if (error.extras.length === 1)
+							if (error.extras.length !== 0)
 								alerts.error('Invalid field ' + error.extras[0], errorOptions);
 							else
 								debugger;
