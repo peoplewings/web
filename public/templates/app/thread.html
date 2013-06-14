@@ -10,9 +10,15 @@
 <div class="messages-header">
 	<div class="messages-tabs">
 		<ul id="notification-type">
-			<li class="button selected" data-filter="">All</li>
-			<li class="button" data-filter="reqinv">Request & Invitations</li>
-			<li class="button" data-filter="msg">Messages</li>
+			<li class="button selected">
+				<a href="#/messages">All</a>
+			</li>
+			<li class="button">
+				<a href='#/messages/filter/{"kind":"reqinv"}'>Request & Invitations</a>
+			</li>
+			<li class="button">
+				<a href='#/messages/filter/{"kind":"msg"}'>Messages</a>
+			</li>
 		</ul>
 	</div>
 
