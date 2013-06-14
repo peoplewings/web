@@ -107,7 +107,6 @@ define(function(require) {
 		createWing: function(evt){
 			evt.preventDefault();
 			var data = this.parseForm(evt.target.id, this.newCityObject.city);
-			this.newCityObject = null;
 
 			$(evt.target).find("button.save-wing-btn").button('loading');
 			var self = this;
