@@ -97,6 +97,8 @@ define(function(require) {
 		if (time === -1)
 			return '-';
 
+		time *= 1000;
+
 		var weeks = Math.floor(time / weekMs);
 		if (weeks > 4) return '+4w';
 		if (weeks > 0) return weeks + 'w';
