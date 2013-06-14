@@ -226,7 +226,7 @@ define(function(require){
 						console.log(arguments);
 					},*/
 					preProcess: function (data) {
-						if (!!!data.status)
+						if (!data.status)
 							return false;
 						return data.data.map(function(uni){ return uni.name; });
 					}
@@ -305,7 +305,7 @@ define(function(require){
 					data["levels"] = [data["levels"]];
 				}
 				data["languages"] = data["languages"].map(function(item, index){
-						return { name: item, level: data["levels"][index] };
+					return { name: item, level: data["levels"][index] };
 				});
 				delete data["levels"];
 			}
@@ -315,7 +315,7 @@ define(function(require){
 					data["imUsername"] = [data["imUsername"]];
 				}
 				data["instantMessages"] = data["instantMessages"].map(function(item, index){
-						return { instantMessage: item, imUsername: data["imUsername"][index] };
+					return { instantMessage: item, imUsername: data["imUsername"][index] };
 				});
 				delete data["imUsername"];
 			}
@@ -326,20 +326,13 @@ define(function(require){
 					data["snUsername"] = [data["snUsername"]];
 				}
 				data["socialNetworks"] = data["socialNetworks"].map(function(item, index){
-						return { socialNetwork: item, snUsername: data["snUsername"][index] };
+					return { socialNetwork: item, snUsername: data["snUsername"][index] };
 				});
 				delete data["snUsername"];
 			}
 
-			if (data["education"]){
-				if (!(data["education"] instanceof Array)) {
-					data["education"] = [data["education"]];
-					data["degree"] = [data["degree"]];
-				}
-				data["education"] = data["education"].map(function(item, index){
-						return { institution: item, degree: data["degree"][index] };
-				});
-				delete data["degree"];
+			if (data["education"] && !(data["education"] instanceof Array)) {
+				data["education"] = [data["education"]];
 			}
 
 			if (data["other-city"]){
