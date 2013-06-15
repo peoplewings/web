@@ -48,8 +48,13 @@ define(function(require){
 				this.removeSelection();
 			},
 			'change .messages-check': function(e){
-				var threadId = $(e.target).parent().parent().attr('data-thread');
-				this.selection.push(threadId);
+				var thread = $(e.target).closest('.notification-item').data('thread');
+
+				this.selection = this.selection.filter(function(a) { return a !== thread; });
+				if ($(e.target).is(':checked'))
+					this.selection.push(thread);
+
+				console.log(this.selection);
 			},
 			'change #main-checker': function(e) {
 				var a = this.$list.find('input[type="checkbox"]');
@@ -221,13 +226,6 @@ define(function(require){
 				})
 				.click(function() {
 					event.stopPropagation();
-				})
-				.on('change', function() {
-					var thread = $(this).closest('.notification-item').data('thread');
-
-					self.selection = self.selection.filter(function(a) { return a !== thread; });
-					if ($(this).is(':checked'))
-						self.selection.push(thread);
 				});
 
 			this.renderCounters(data.startResult, data.endResult, data.count);
