@@ -4,7 +4,7 @@
 		<a id="search-btn" class="button">
 			<i class="icon-search">Search icon</i>
 		</a>
-</div>
+	</div>
 </div>
 
 <div class="messages-header">
@@ -84,35 +84,14 @@
 								<i>state</i>
 								<span>{{enum state 'notification-state'}}</span>
 							</div>
-							<div class="messages-params-box" style="display: none;">
-								<dl>
-									<dt>Requested wing :</dt>
-									<dd {{#if_contains parameters.modified "wingName"}}class="modified"{{/if_contains}}>{{parameters.wingName}} <span>({{type}} in {{parameters.wingCity}})</span></dd>
-								</dl>
-								<dl>
-									<dt>Arrival date :</dt>
-									<dd {{#if_contains parameters.modified "startDate"}}class="modified"{{/if_contains}}>{{date parameters.startDate}}</dd>
-								</dl>
-								<dl>
-									<dt>Deperture date :</dt>
-									<dd {{#if_contains parameters.modified "endDate"}}class="modified"{{/if_contains}}>{{date parameters.endDate}}</dd>
-								</dl>
-								<dl>
-									<dt>Number of people :</dt>
-									<dd {{#if_contains parameters.modified "capacity"}}class="modified"{{/if_contains}}>{{parameters.capacity}}</dd>
-								</dl>
-								<dl>
-									<dt>Arriving via :</dt>
-									<dd>{{parameters.arrivingVia}}</dd>
-								</dl>
-							</div>
 							<div id="edit-wing-params" style="display: none">
 								<form id="wing-params-form">
 									<div class="response-header">
 										<div class="response-header-dates">
-											<span>{{type}} in {{parameters.wingCity}}{{parameters.wingName}}</span>
+											<span>{{ wing.type }} in {{ wing.parameters.wingCity }}</span>
 											<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate 'YYYY-MM-DD'}}">
 											<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate 'YYYY-MM-DD'}}">
+											<span class="capacity">Capacity</span>
 											<select name="capacity" class="input-mini required">
 												{{#range 9}}
 												<option value="{{indexPlusOne}}" {{selected capacity indexPlusOne}}>{{indexPlusOne}}</option>
