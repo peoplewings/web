@@ -361,25 +361,29 @@ define(function(require){
 				delete data["other-lon"];
 			} else data["otherLocations"] = [];
 
-			var currentProps = {
-				'current-city': 'name',
-				'current-country': 'country',
-				'current-region': 'region',
-				'current-lat': 'lat',
-				'current-lon': 'lon'
-			};
-			data.current = data.current ? extract(data, currentProps) : {};
-			data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
+			if (data.current) {
+				var currentProps = {
+					'current-city': 'name',
+					'current-country': 'country',
+					'current-region': 'region',
+					'current-lat': 'lat',
+					'current-lon': 'lon'
+				};
+				data.current = data.current ? extract(data, currentProps) : {};
+				data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
+			}
 
-			var hometownProps = {
-				'hometown-city': 'name',
-				'hometown-country': 'country',
-				'hometown-region': 'region',
-				'hometown-lat': 'lat',
-				'hometown-lon': 'lon'
-			};
-			data.hometown = data.hometown ? extract(data, hometownProps) : {};
-			data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+			if (data.hometown) {
+				var hometownProps = {
+					'hometown-city': 'name',
+					'hometown-country': 'country',
+					'hometown-region': 'region',
+					'hometown-lat': 'lat',
+					'hometown-lon': 'lon'
+				};
+				data.hometown = data.hometown ? extract(data, hometownProps) : {};
+				data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+			}
 
 			return data;
 		},
