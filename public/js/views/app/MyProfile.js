@@ -226,7 +226,7 @@ define(function(require){
 						console.log(arguments);
 					},*/
 					preProcess: function (data) {
-						if (!!!data.status)
+						if (!data.status)
 							return false;
 						return data.data.map(function(uni){ return uni.name; });
 					}
@@ -305,7 +305,7 @@ define(function(require){
 					data["levels"] = [data["levels"]];
 				}
 				data["languages"] = data["languages"].map(function(item, index){
-						return { name: item, level: data["levels"][index] };
+					return { name: item, level: data["levels"][index] };
 				});
 				delete data["levels"];
 			}
@@ -315,7 +315,7 @@ define(function(require){
 					data["imUsername"] = [data["imUsername"]];
 				}
 				data["instantMessages"] = data["instantMessages"].map(function(item, index){
-						return { instantMessage: item, imUsername: data["imUsername"][index] };
+					return { instantMessage: item, imUsername: data["imUsername"][index] };
 				});
 				delete data["imUsername"];
 			}
@@ -326,20 +326,13 @@ define(function(require){
 					data["snUsername"] = [data["snUsername"]];
 				}
 				data["socialNetworks"] = data["socialNetworks"].map(function(item, index){
-						return { socialNetwork: item, snUsername: data["snUsername"][index] };
+					return { socialNetwork: item, snUsername: data["snUsername"][index] };
 				});
 				delete data["snUsername"];
 			}
 
-			if (data["education"]){
-				if (!(data["education"] instanceof Array)) {
-					data["education"] = [data["education"]];
-					data["degree"] = [data["degree"]];
-				}
-				data["education"] = data["education"].map(function(item, index){
-						return { institution: item, degree: data["degree"][index] };
-				});
-				delete data["degree"];
+			if (data["education"] && !(data["education"] instanceof Array)) {
+				data["education"] = [data["education"]];
 			}
 
 			if (data["other-city"]){
@@ -368,25 +361,29 @@ define(function(require){
 				delete data["other-lon"];
 			} else data["otherLocations"] = [];
 
-			var currentProps = {
-				'current-city': 'name',
-				'current-country': 'country',
-				'current-region': 'region',
-				'current-lat': 'lat',
-				'current-lon': 'lon'
-			};
-			data.current = data.current ? extract(data, currentProps) : {};
-			data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
+			if (data.current) {
+				var currentProps = {
+					'current-city': 'name',
+					'current-country': 'country',
+					'current-region': 'region',
+					'current-lat': 'lat',
+					'current-lon': 'lon'
+				};
+				data.current = data.current ? extract(data, currentProps) : {};
+				data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
+			}
 
-			var hometownProps = {
-				'hometown-city': 'name',
-				'hometown-country': 'country',
-				'hometown-region': 'region',
-				'hometown-lat': 'lat',
-				'hometown-lon': 'lon'
-			};
-			data.hometown = data.hometown ? extract(data, hometownProps) : {};
-			data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+			if (data.hometown) {
+				var hometownProps = {
+					'hometown-city': 'name',
+					'hometown-country': 'country',
+					'hometown-region': 'region',
+					'hometown-lat': 'lat',
+					'hometown-lon': 'lon'
+				};
+				data.hometown = data.hometown ? extract(data, hometownProps) : {};
+				data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+			}
 
 			return data;
 		},

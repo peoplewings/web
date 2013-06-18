@@ -22,6 +22,9 @@ define(function() {
 	};
 
 	function getEnv() {
+		if (window.location.hostname.indexOf('192.168.1.') === 0)
+			return 'local';
+
 		switch (window.location.hostname) {
 			case "localhost":
 			case "peoplewings":
