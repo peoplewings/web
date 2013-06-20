@@ -16,22 +16,37 @@
 						<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
 					</div><!-- EOF guest-message -->
 					<div class="box-content contact-info">
-						<h2>Email</h2>
-						<p>{{emails}}</p>
-						<h2>Phone</h2>
-						<p>{{phone}}</p>
-						<h2>Social Network</h2>
-						{{#each socialNetworks}}
-						<p>{{socialNetwork}} : {{snUsername}}</p>
-						{{/each}}
-						<h2>Instant Message</h2>
-						{{#each instantMessages}}
-						<p>{{instantMessage}} : {{imUsername}}</p>
-						{{/each}}
-					</div><!-- EOF box-content -->
+						<div>
+							<dl>
+								<dt>Email</dt>
+								<dd>{{emails}}</dd>
+								<dt>Phone</dt>
+								<dd>{{phone}}</dd>
+							</dl>
+						</div>
+						<div class="dl-list">
+							<span class="dt-title">Social Network</span>
+							<dl>
+								{{#each socialNetworks}}
+								<dt>{{socialNetwork}} :</dt>
+								<dd>{{snUsername}}</dd>
+								{{/each}}
+							</dl>
+						</div>
+						<div class="dl-list">
+							<span class="dt-title">Instant Message</span>
+							<dl>
+								{{#each instantMessages}}
+								<dt>{{instantMessage}} :</dt>
+								<dd>{{imUsername}}</dd>
+								{{/each}}
+							</dl>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="accordion-heading" data-toggle="collapse" href="#collapse-contact">
+			<div class="gradient-box"></div>
+			<div class="accordion-heading" data-toggle="collapse" href="#collapse-likes">
 				<span>See more</span>
 			</div>
 		</div>
