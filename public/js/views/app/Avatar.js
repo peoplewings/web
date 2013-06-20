@@ -55,6 +55,11 @@ define(function(require) {
 
 			spinner.show('avatar');
 			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+
+			// We reset the form so the 'change' event is always fired
+			// when a file is selected
+			var form = $(event.target).closest('form').get(0)
+			form.reset();
 		},
 
 		uploadComplete: function(url) {
