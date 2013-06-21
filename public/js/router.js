@@ -179,7 +179,7 @@ define(function(require) {
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
-			return appHomeView.render();
+			this.navigate('/search');
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
