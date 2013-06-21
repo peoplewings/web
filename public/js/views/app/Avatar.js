@@ -17,7 +17,7 @@ define(function(require) {
 
 	var AvatarView = Backbone.View.extend({
 
-		el: "#basic-box",
+		el: "#main",
 
 		originalAvatarId: null,
 
@@ -26,7 +26,7 @@ define(function(require) {
 		events: {
 			"click #upload-avatar": function(e) {
 				e.preventDefault();
-				this.$('#upload').trigger('click');
+				$('#upload').trigger('click');
 			},
 			"click #submit-avatar": function(e) {
 				e.preventDefault();
@@ -91,6 +91,10 @@ define(function(require) {
 			spinner.hide('avatar');
 			var self = this;
 			this.params = {x: 0, y: 0, w: 0, h: 0};
+
+			images.forEach(function(image) {
+				image.s3_url = image.s3_url.replace(/^http:/, 'https:');
+			});
 
 			function showCoords(coords) {
 				var scale_x = self.size.width / $("#cropbox").width();

@@ -51,7 +51,7 @@
 							<label class="control-label">Interested in</label>
 							<div class="controls">
 								<select name="interestedIn" class="size-large">
-									<option value="Both" {{selected interestedIn.0.gender 'Both'}}>Both</option>								
+									<option value="Both" {{selected interestedIn.0.gender 'Both'}}>Both</option>
 									<option value="Female" {{selected interestedIn.0.gender 'Female'}}>Female</option>
 									<option value="Male" {{selected interestedIn.0.gender 'Male'}}>Male</option>
 								</select>
@@ -449,7 +449,7 @@
 											<option value="Zulu" {{selected name 'Zulu'}}>Zulu</option>
 										</select>
 										<select name="levels" id="level-field-{{@index}}" class="size-large">
-											<option value="beginner" {{selected level 'beginner'}}>Beginner</option>											
+											<option value="beginner" {{selected level 'beginner'}}>Beginner</option>
 											<option value="intermediate" {{selected level 'intermediate'}}>Intermediate</option>
 											<option value="expert" {{selected level 'expert'}}>Expert</option>
 										</select>
@@ -823,7 +823,7 @@
 										<option value="Zulu" >Zulu</option>
 									</select>
 									<select name="levels" class="size-large">
-										<option value="beginner" selected="selected">Beginner</option>											
+										<option value="beginner" selected="selected">Beginner</option>
 										<option value="intermediate">Intermediate</option>
 										<option value="expert">Expert</option>
 									</select>
@@ -837,28 +837,3 @@
 					<button class="button2 cancel-edition-btn" data-rel="basic-box">Cancel</button>
 				</div>
 			</form>
-		<form id="file-form" style="display: none" method="post" action="" enctype="multipart/form-data">
-			<input id="upload" type="file" name="files[]" />
-		</form>
-
-    <div id="crop-modal" class="generic-modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="display:none">
-      <div class="modal-header">
-        <h1 id="myModalLabel">Crop Image</h1>
-        <button type="button" class="button-close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body" style="max-height: 500px">
-        <h2>To crop image, drag the region below and click Send.</h2>
-        <center>
-          <img id="cropbox" src="" alt="">
-          <div class="progress progress-striped" style="margin-top:10px;display:none;">
-            <div class="bar" style="width: 0%;"></div>
-          </div>
-        </center>
-      </div>
-      <div class="modal-footer">
-        <div class="button-group">
-          <button id="cancel-crop" class="button" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          <button type="submit" id="submit-avatar" class="button-highlight accept-modal-btn" data-loading-text="Processing...">Send</button>
-        </div>
-      </div>
-    </div>
