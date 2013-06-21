@@ -149,7 +149,7 @@ define(function(require) {
 		fd.append('key', key);
 		fd.append('file', file);
 
-		return api.request('POST', 'http://peoplewings-test-media.s3.amazonaws.com', {}, fd).then(function() {
+		return api.request('POST', '//peoplewings-test-media.s3.amazonaws.com', {}, fd).then(function() {
 			return 'https://s3-eu-west-1.amazonaws.com/' + bucket + '/' + key;
 		});
 	}

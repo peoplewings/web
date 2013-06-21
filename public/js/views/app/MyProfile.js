@@ -153,6 +153,10 @@ define(function(require){
 
 		},
 
+		refresh: function() {
+			this.avatar = new AvatarView();
+		},
+
 		editBasicBox: function(){
 			this.languagesList = new List({
 				el: "#languages-list",
@@ -160,8 +164,6 @@ define(function(require){
 				key: "language",
 				tpl: "#language-tpl",
 			});
-
-			this.avatar = new AvatarView();
 		},
 
 		editAboutBox: function(){
