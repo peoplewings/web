@@ -180,6 +180,7 @@ define(function(require) {
 				return this.landing();
 
 			this.navigate('/search');
+			this.search();
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
