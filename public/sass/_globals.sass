@@ -65,6 +65,7 @@ select
 	@include transition(box-shadow, 0.5s)
 	&:hover, &:focus, &:active
 		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+		outline: 0
 
 input,
 select
@@ -216,6 +217,7 @@ div#alerts-container
 			float: right
 			line-height: 20px
 			font-size: 16px
+			font-style: normal !important
 		p
 			float: left
 			text-align: left
@@ -230,6 +232,8 @@ div#alerts-container
 		background-position: -1560px -683px
 		.close
 			color: #E30417
+			font-style: normal !important
+			font-size: 16px !important
 	.alert-warning
 		border: 1px solid #fc8200
 		color: #fc8200
@@ -237,6 +241,8 @@ div#alerts-container
 		background-position: -1560px -609px
 		.close
 			color: #fc8200
+			font-style: normal !important
+			font-size: 16px !important
 	.alert-success
 		border: 1px solid #6daf19
 		color: #6daf19
@@ -244,6 +250,9 @@ div#alerts-container
 		background-position: -1560px -535px
 		.close
 			color: #6daf19
+			font-style: normal !important
+			font-size: 16px !important
+
 
 
 /* OVER Bootstrap
