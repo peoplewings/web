@@ -41,8 +41,6 @@ define(function(require) {
 				locationSearch: self.query.wings,
 				applicant: self.query.type === "Applicant",
 				results: results.profiles.map(function(result) {
-					result.live = (result.online === 'ON') ? true : false;
-					result.online = (result.online === 'ON') ? 'Online' : false;
 					result.id = result.profileId;
 					result.replyTime = utils.formatReplyTime(+result.replyTime);
 					self.namesById[result.id]  = result.firstName + ' ' + result.lastName;
