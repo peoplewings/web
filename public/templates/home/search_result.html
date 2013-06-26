@@ -31,8 +31,8 @@
 			{{#each results}}
 			<div class="profile search-result" data-profile-id="{{ id }}">
 				<div class="content-left">
-					<span class="dot {{#if live}}online{{/if}}">online dot</span>
-					{{#if online}}<span class="span-online">online</span>{{/if}}
+					<span class="dot {{#if online }}online{{/if}}">online dot</span>
+					{{#if online }}<span class="span-online">online</span>{{/if}}
 					<a href="#/profiles/{{id}}/about">
 						<img src="{{ avatar }}" alt="avatar">
 					</a>
@@ -51,7 +51,7 @@
 								>{{firstName}} {{lastName}}</a>
 							</h1>
 							<span class="age">[{{age}}]</span>
-							{{#if online}}<span class="online">Online</span>{{/if}}
+							{{#if online }}<span class="online">Online</span>{{/if}}
 						<!--
 						{{#if verified }}
 							<span class="label label-success">Verified</span>
