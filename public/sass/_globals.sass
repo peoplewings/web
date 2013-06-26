@@ -75,6 +75,9 @@ select
 	border: 1px solid #CCC
 	@include appearance(none)
 	@include border-radius(5px)
+	outline: 0
+	&:hover, &:focus, &:active
+		outline: 0
 
 input[type="submit"]
 	text-transform: uppercase
