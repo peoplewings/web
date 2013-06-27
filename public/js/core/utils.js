@@ -72,7 +72,7 @@ define(function(require) {
 			loadingText: options.loadingText,
 			formRel: 'form="' + options.form + '"',
 		}));
-		$("body section:last").append(modal);
+		$("#main").append(modal);
 
 		modal.modal('show');
 		var acceptBtn = modal.find('.accept-modal-btn');
