@@ -155,6 +155,7 @@ define(function(require){
 
 		refresh: function() {
 			this.avatar = new AvatarView();
+			this.refresh = function() { };
 		},
 
 		editBasicBox: function(){
