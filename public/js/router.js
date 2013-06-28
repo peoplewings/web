@@ -184,7 +184,7 @@ define(function(require) {
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
-			return window._gaq.push(['_trackPageview', "/" + url]);
+			return window.ga('_trackPageview', "/" + url);
 		},
 		initialize: function(){
 			console.log('router.js: initialize() ', api.getAuthToken(), api.getUserId());

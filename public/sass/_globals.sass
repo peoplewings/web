@@ -2,6 +2,7 @@
  * Globals
  * --------------------------------------------------------------------------
 
+@import _font-face.sass
 @import _variables.sass
 @import _mixins.sass
 
@@ -46,6 +47,7 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
+select,
 .uneditable-input
 	&:hover, &:focus, &:active
 		outline: 0
@@ -62,9 +64,9 @@ input[type="password"],
 input[type="number"],
 input[type="email"],
 select
-	@include transition(box-shadow, 0.5s)
+	+transition(box-shadow, 0.5s)
 	&:hover, &:focus, &:active
-		@include box-shadow(0, 0, 8px, 3px, $yellow_corp)
+		+box-shadow(0, 0, 8px, 3px, $yellow_corp)
 		outline: 0
 
 input,
@@ -73,8 +75,8 @@ select
 	padding: 0.7em
 	margin: 0.5em
 	border: 1px solid #CCC
-	@include appearance(none)
-	@include border-radius(5px)
+	+appearance(none)
+	+border-radius(5px)
 	outline: 0
 	&:hover, &:focus, &:active
 		outline: 0
@@ -83,33 +85,10 @@ input[type="submit"]
 	text-transform: uppercase
 
 input[type="checkbox"],
-	@include appearance(checkbox)
+	+appearance(checkbox)
 
 input[type="radio"]
-	@include appearance(radio)
-
-button
-	display: block
-	padding: 11px 14px
-	font:
-		size: 11px
-		style: italic
-		//weight: bold
-	color: #808080
-	text-decoration: none
-	text-transform: uppercase
-	border: none
-	border:
-		left: 1px solid #CECDCE
-		right: 1px solid #FFF
-	background: none
-
-	&:hover
-		color: #000
-		background: #FFF
-
-	&:active
-		@include bg-gradient(#ffeb00, #fbfac5)
+	+appearance(radio)
 
 .wrapper
 	min-height: 100%
@@ -128,7 +107,7 @@ button
 .navbar-fixed-top .navbar-inner,
 .navbar-static-top .navbar-inner,
 .navbar-fixed-bottom .navbar-inner
-	@include box-shadow(none)
+	+box-shadow(none)
 
 .navbar-inner
 	max-width: 960px
@@ -136,7 +115,7 @@ button
 	padding: 0
 	background: none
 	border: none
-	@include box-shadow(none)
+	+box-shadow(none)
 
 #mini-spinner
 	float: left
@@ -211,7 +190,7 @@ div#alerts-container
 		min-width: 250px
 		max-width: 630px
 		padding-left: 35px
-		@include border-radius(12px)
+		+border-radius(12px)
 		.close
 			float: right
 			line-height: 20px
@@ -260,7 +239,7 @@ div#alerts-container
 .accordion
 	margin: 0
 	.accordion-group
-		@include border-radius(0px)
+		+border-radius(0px)
 		border: none
 		.accordion-inner
 			border: none

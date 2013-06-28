@@ -8,6 +8,7 @@ define(function(require) {
 	var utils = require('utils');
 	var phrases = require("phrases");
 	var spinner = require('views/lib/spinner');
+	var facebook = require('tools/facebook');
 
 	var responseView = require('views/lib/balloon.response');
 
@@ -21,6 +22,7 @@ define(function(require) {
 
 		events: {
 			"submit form#register-form": "submitRegister",
+			"click .fb-register": "facebookConnect",
 		},
 
 		validation: {
@@ -56,6 +58,18 @@ define(function(require) {
 			errorPlacement: function(error, element) {
 				error.appendTo(element.nextAll("span.help-block"));
 			},
+		},
+
+		facebookConnect: function() {
+			facebook.connect(function loginCompleted(data) {
+				api.saveAuthToken(JSON.stringify({
+					auth: data.xAuthToken,
+					uid: data.idAccount
+				}));
+
+				router.header = new Header;
+				router.navigate("#/search");
+			});
 		},
 
 		render: function() {
