@@ -3,6 +3,9 @@
 # Development
 
 sass:
+	sass --update public/sass:public/css
+
+sass-watch:
 	sass --watch public/sass:public/css
 
 update:
@@ -10,8 +13,6 @@ update:
 	git checkout master
 	git pull
 	git pull origin master
-	git pull bitbucket master
-	git push origin master
 
 add-repos:
 	-git remote remove origin
@@ -52,45 +53,33 @@ build.commit.revert:
 	git reset --hard HEAD^
 	git checkout master
 
+stash:
+	git stash
+
 
 
 # TEST
 
-test.init:
-	git stash
-
-test.push: test.init build.commit
+test.push: build.commit
 	git push -f test HEAD:master
 
-test: test.push
+test: stash test.push
 	git reset --hard HEAD^
 
 
 
 # ALPHA
 
-alpha-update:
-	git stash
-	git checkout alpha
-	git pull origin alpha
-	git pull bitbucket alpha
-	git push origin alpha
-
 alpha.push: build.commit
-	git push -f alpha alpha:master
+	git push -f alpha HEAD:master
 
-alpha: alpha-update alpha.push build.commit.revert
+alpha: stash alpha.push build.commit.revert
 
 
 
 # BETA
 
-beta-update:
-	git stash
-	git checkout beta
-	git pull origin beta
-
 beta.push: build.commit
-	git push -f beta beta:master
+	git push -f beta HEAD:master
 
-beta: beta-update beta.push build.commit.revert
+beta: stash beta.push build.commit.revert
