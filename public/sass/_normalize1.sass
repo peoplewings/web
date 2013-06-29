@@ -1,0 +1,39 @@
+/* --------------------------------------------------------------------------
+ * Normalize
+ * --------------------------------------------------------------------------
+
+body
+	font-family: arial, sans-serif
+	font-size: 12px
+
+input, select
+	color: gray
+	font-size: 1em
+	padding: 0.7em
+	border: 1px solid #CCC
+	background-color: white
+	background-repeat: no-repeat
+	+appearance(none)
+	+border-radius(3px)
+	+transition(box-shadow, 0.5s)
+	&:hover, &:active, &:focus
+		outline: 0
+		+box-shadow(0, 0, 8px, 3px, yellow)
+
+select
+	padding-right: 2.6em
+	background-image: $sprite_arrows
+	background-position: right -136px
+
+
+/* Measures
+ * --------------------------------------------------------------------------
+
+.medium
+	padding: 0.6em
+
+.normal
+	padding: 0.7em
+
+.large
+	padding: 0.87em

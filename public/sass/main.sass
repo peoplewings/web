@@ -6,12 +6,16 @@
 @import _mixins.sass
 @import _font-face.sass
 
+@import _variables1.sass
+@import _normalize1.sass
+@import _form-elements1.sass
+@import _buttons1.sass
 
 /* --------------------------------------------------------------------------
  * Styleguide
  * --------------------------------------------------------------------------
 
-.example
+section
 	border-bottom: 2px dotted #CCC
 	padding: 20px
 
@@ -19,160 +23,3 @@
 	font-size: 34px
 	font-weight: bold
 	margin: 10px auto
-
-
-/* --------------------------------------------------------------------------
- * Variables
- * --------------------------------------------------------------------------
-
-// Sprite route and config
-$sprite: url(../img/peoplewings-sprite.png) no-repeat
-$sprite_arrows: url(../img/peoplewings-sprite-arrows.png) no-repeat
-
-$color_blue_corp: #18183F
-$color_gray_soft: #D0CEC7
-
-
-/* --------------------------------------------------------------------------
- * Normalize
- * --------------------------------------------------------------------------
-
-body
-	font-family: arial, sans-serif
-	font-size: 12px
-
-input, select
-	border: 1px solid #CCC
-	background-color: white
-	+appearance(none)
-	+border-radius(3px)
-	+transition(box-shadow, 0.5s)
-	&:hover, &:active, &:focus
-		outline: 0
-		+box-shadow(0, 0, 8px, 3px, yellow)
-
-.form-search
-	input, select
-		border-color: #79766C
-	select
-		padding-right: 2.6em
-		background: $sprite_arrows
-		background-position: right -134px
-
-.input-basic
-	padding: 0.7em
-	font-size: 1.1em
-
-.input-sdate, .input-edate
-
-.input-edate
-	background-position: right -241px
-
-.select-landing
-	padding: 0.7em
-	font-size: 1.1em
-	padding-right: 3em
-	background: $sprite_arrows
-	background-position: right -86px
-
-.fuck
-	input, select
-		font-size: 12px
-		padding: 8px
-		+border-radius(4px)
-		border: 1px solid #79766C
-		margin:
-			right: 4px
-			bottom: 4px
-			top: 0
-			left: 0
-		line-height: 15px
-
-	input.input-sdate
-		width: 90px
-		background: $sprite #FFF
-		background-position: 60px -156px
-
-	input.input-edate
-		width: 90px
-		background: $sprite #FFF
-		background-position: -40px -156px
-
-	input.input-large
-		width: 213px
-
-	select
-		height: 38px
-
-	select.input-guests
-		width: 90px
-		background: $sprite #FFF
-		background-position: -402px -8px
-
-	select.input-age1
-		width: 77px
-		background: $sprite #FFF
-		background-position: -415px -8px
-
-	select.input-age2
-		width: 57px
-		background: $sprite #FFF
-		background-position: -435px -8px
-
-	select.input-language
-		width: 89px
-		background: $sprite #FFF
-		background-position: -402px -8px
-
-	select.input-others
-		width: 108px
-		background: $sprite #FFF
-		background-position: -387px -8px
-
-/* --------------------------------------------------------------------------
- * Buttons
- * --------------------------------------------------------------------------
-
-button
-	font-family: inherit
-
-.button
-	display: inline-block
-	*display: inline
-	/* IE7 inline-block hack */
-	*zoom: 1
-	padding: 1em 1.5em
-	margin: 0
-	font-size: 1em
-	font-style: italic
-	color: #000
-	line-height: normal
-	text-shadow: 1px 1px 1px white
-	text-transform: uppercase
-	text-align: center
-	border: 1px solid $color_gray_soft
-	cursor: pointer
-	+appearance(none)
-	+bg-gradient(white, #ECECE5)
-	&:hover, &:active, &:focus
-		background: white
-		color: black
-	&:active
-		+bg-gradient(#FFEB00, #FBFAC5)
-
-.button-peoplewings
-	@extend .button
-	background: $color_blue_corp
-	color: yellow
-	padding: 0.2em 0.95em
-	font-family: "Exo700I", Tahoma, Sans-Serif
-	font-size: 1.3em
-	text-shadow: none
-	border: 2px solid yellow
-	+border-radius(18px)
-	+transition(box-shadow, 0.5s)
-	&:hover, &:focus, &:active
-		color: yellow
-		background: $color_blue_corp
-		outline: 0
-		+box-shadow(0, 0, 8px, 3px, yellow)

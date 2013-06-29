@@ -1,0 +1,47 @@
+/* --------------------------------------------------------------------------
+ * Buttons
+ * --------------------------------------------------------------------------
+
+button
+	font-family: inherit
+
+.button
+	display: inline-block
+	*display: inline
+	/* IE7 inline-block hack */
+	*zoom: 1
+	padding: 1em 1.5em
+	margin: 0
+	font-size: 1em
+	font-style: italic
+	color: #000
+	line-height: normal
+	text-shadow: 1px 1px 1px white
+	text-transform: uppercase
+	text-align: center
+	border: 1px solid $color_gray_soft
+	cursor: pointer
+	+appearance(none)
+	+bg-gradient(white, #ECECE5)
+	&:hover, &:active, &:focus
+		background: white
+		color: black
+	&:active
+		+bg-gradient(#FFEB00, #FBFAC5)
+
+.button-peoplewings
+	@extend .button
+	background: $color_blue_corp
+	color: yellow
+	padding: 0.2em 0.95em
+	font-family: "Exo700I", Tahoma, Sans-Serif
+	font-size: 1.3em
+	text-shadow: none
+	border: 2px solid yellow
+	+border-radius(18px)
+	+transition(box-shadow, 0.5s)
+	&:hover, &:focus, &:active
+		color: yellow
+		background: $color_blue_corp
+		outline: 0
+		+box-shadow(0, 0, 8px, 3px, yellow)
