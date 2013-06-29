@@ -27,6 +27,7 @@
 .select-medium
 	@extend .medium
 	padding-right: 2.6em
+	background-position: right -137px
 
 .select-large
 	@extend .large
@@ -42,11 +43,20 @@
 		font-size: 1.1em
 
 .form-search
-	background: #E1E0D9
+	background: $color-gray_corp
 	input, select
 		border-color: #79766C
 
 .form-register
 	background-color: rgba(30, 30, 57, 0.7)
+	input, select
+		font-size: 1.1em
+	input
+		min-height: 1.4em
 	select
 		color: black
+		min-height: 2.75em
+		background-position: right -134px
+
+.form-basic-info
+	background-color: $color-gray_corp
