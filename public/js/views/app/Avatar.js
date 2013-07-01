@@ -24,7 +24,7 @@ define(function(require) {
 		defaultMaxWidth: 600,
 
 		events: {
-			"click #upload-avatar": function(e) {
+			"click #edit-click": function(e) {
 				e.preventDefault();
 				$('#upload').trigger('click');
 			},
