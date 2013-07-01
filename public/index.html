@@ -8,7 +8,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<script>if (document.location.protocol === 'http:') ;//	document.location.protocol = 'https:';</script>
+	<script>
+		if (document.location.host.indexOf('peoplewings.com') !== -1 && document.location.protocol === 'http:')
+			document.location.protocol = 'https:';
+	</script>
 
 	<title>Peoplewings</title>
 	<meta name="description" content="">
