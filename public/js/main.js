@@ -31,6 +31,7 @@ requirejs.config({
 		"promise": "core/promise",
 		"phrases": "core/phrases",
 		"config": "core/config",
+		"cookies": "core/cookies",
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
