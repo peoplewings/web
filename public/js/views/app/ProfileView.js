@@ -47,11 +47,6 @@ define(function(require) {
 
 			var tab = '#' + tabId || '#about';
 			this.model.fetch({success: this.refresh.bind(this, tab)});
-
-			if (myProfile && !this.myProfile) {
-				this.myProfile = new MyProfile(this.model, this);
-				this.myWings = new MyWings(this);
-			}
 		},
 
 		refresh: function(tab) {
@@ -63,8 +58,13 @@ define(function(require) {
 			if (tab)
 				this.selectTab(tab);
 
-			if (myProfile)
+			if (myProfile) {
+				if (!this.myProfile) {
+					this.myProfile = new MyProfile(this.model, this);
+					this.myWings = new MyWings(this);
+				}
 				this.myProfile.refresh();
+			}
 		},
 
 		refreshProfile: function(myProfile){
