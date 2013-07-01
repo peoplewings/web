@@ -63,7 +63,8 @@ define(function(require) {
 			if (tab)
 				this.selectTab(tab);
 
-			this.myProfile.refresh();
+			if (myProfile)
+				this.myProfile.refresh();
 		},
 
 		refreshProfile: function(myProfile){
