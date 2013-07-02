@@ -5,7 +5,7 @@
 		{{#if myProfile}}
 		<a id="add_photo" class="button-edit-info edit-box-btn">
 			+ Add
-			<input type="file" accept="image/*" hidden>
+			<input type="file" accept="image/*" data-album="{{albums.0.id}}" hidden>
 		</a>
 
 		{{/if}}
@@ -16,19 +16,21 @@
 			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<ul class="clearing-thumbs" data-clearing>
-					{{#each albums.photos}}
-						<li data-slide-to="{{@index}}" data-photo-id="{{id}}">
+					{{#each albums }}
+					{{#each photos}}
+						<li data-slide-to="{{@index}}" data-album-id="{{../id}}" data-photo-id="{{id}}">
 							<a href="{{big_url}}">
 								<img src="{{thumb_url}}">
 							</a>
 
-							{{#if ../myProfile}}
+							{{#if ../../myProfile}}
 							<div class="control" hidden>
 								<button class="close">&times;</button>
 							</div>
 							{{/if}}
 						</li>
-						{{/each}}
+					{{/each}}
+					{{/each}}
 					</ul>
 				</div>
 			</div>

@@ -107,7 +107,7 @@ define(function(require){
 			},
 			'change #add_photo input[type="file"]':function(e){
 				var photoData = e.target.files[0];
-				this.checkPhotoData(photoData);
+				this.checkPhotoData(photoData, $(e.target).data('album'));
 			},
 			"mouseenter #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').show();
@@ -118,7 +118,7 @@ define(function(require){
 			}
 		},
 
-		checkPhotoData: function(photo){
+		checkPhotoData: function(photo, albumId){
 			var self = this;
 
 			//check size: is more than 6Mb
@@ -126,7 +126,7 @@ define(function(require){
 				alert('this photo is bigger than 6 Mb');
 				return;
 			}
-			
+
 			//create image
 			var img = new Image();
 			var url = window.URL || window.webkitURL;
@@ -151,7 +151,8 @@ define(function(require){
 				self.renderPhotoUpload(this);
 
 				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
-					
+					var id = Date.now() + '-' + Math.random();
+
 					var jobs = [{
 						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
 						"src": url,
@@ -161,36 +162,52 @@ define(function(require){
 							"params": {
 								"width": 600,
 								"height": 600
-						},
+							},
 							"save": {
-								"image_identifier": self.model.get('id')+"_big_"+self.$('.clearing-thumbs').data('albumid')
+								"image_identifier": 'big',
+								"s3_destination":{
+									"bucket":{
+										"name":"peoplewings-test-media",
+										"location":"eu-west-1"
+									},
+									"key":"/photoalbums/big_" + id
+								}
 							}
 						}, {
 							"name": "resize_to_fit",
 							"params": {
-								"width": 380								
+								"width": 380
 							},
 							"save": {
-								"image_identifier": self.model.get('id')+"_thumb_"+self.$('.clearing-thumbs').data('albumid')
+								"image_identifier": 'thumb',
+								"s3_destination":{
+									"bucket":{
+										"name":"peoplewings-test-media",
+										"location":"eu-west-1"
+									},
+									"key":"/photoalbums/thumb_" + id
+								}
 							}
 						}],
 
-						postback_url: api.getServerUrl() + api.getApiVersion() + '/photoUploaded'
+						postback_url: api.getServerUrl() + api.getApiVersion() + '/photoCompleted' + api.urlEncode({
+							album: albumId,
+							authToken: api.getAuthToken()
+						})
 					}];
 
 					blitline.submit(jobs, {});
 				});
-			}
+			};
 		},
 
 		renderPhotoUpload: function(photo){
 			var self = this;
-			this.$el.find('#photo-box .clearing-thumbs').prepend(
-				photosListTpl({
-					id: 0,
-					src: photo.src				
-				})
-			);
+			this.$el.find('#photo-box .clearing-thumbs').prepend(photosListTpl({
+				id: 0,
+				src: photo.src
+			}));
+
 			//initialize foundation for this view to use in photo slide
 			this.$("#photo-box").foundation();
 
@@ -211,21 +228,18 @@ define(function(require){
 		initialize: function(model, parent) {
 			this.model = model;
 			this.parentCtrl = parent;
-
-			//binding
 			this.removePhoto = this.removePhoto.bind(this);
 
 			//album update listener
-			api.listenUpdate('album', function(value){
-				console.log('album update:'+value+'');
+			api.listenUpdate('album', function(value) {
+				console.log('album update:', value);
 				debugger;
-			});			
+			});
 		},
 
 		removePhoto: function(e){
 			e.stopPropagation();
 			e.preventDefault();
-
 			$(e.target).parents('li').slideUp();
 		},
 
