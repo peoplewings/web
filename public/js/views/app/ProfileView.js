@@ -172,8 +172,8 @@ define(function(require) {
 
 		onPhotoSort: function(event, ui) {
 			var $li = this.$("#photo-box ul li");
-			var ids = $li.map(function() {
-				return $(this).data('photo-id');
+			var ids = $li.toArray().map(function(li) {
+				return $(li).data('photo-id');
 			});
 
 			api.put(api.getApiVersion() + '/albums/', {
