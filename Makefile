@@ -18,27 +18,25 @@ add-repos:
 	-git remote remove origin
 	-git remote remove bitbucket
 	-git remote remove test
+	-git remote remove production
 	-git remote remove alpha
 	-git remote remove beta
 	git remote add origin git@github.com:peoplewings/web.git
-	git remote add bitbucket git@bitbucket.org:peoplewings/peoplewings-frontend.git
 	git remote add test git@heroku.com:peoplewings-test.git
-	git remote add alpha git@heroku.com:peoplewings-alpha.git
-	git remote add beta git@heroku.com:peoplewings-beta.git
+	git remote add production git@heroku.com:peoplewings-alpha.git
 
 
 
 # Build process
 
 build.js:
-	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
 	node public/js/build/r -o public/js/build/app.build.js
+	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
 
 build.css:
 	sass --update public/sass/:public/css/ --style compressed
 
 build: build.js build.css
-
 
 
 # Deploys
@@ -51,35 +49,26 @@ build.commit: build
 
 build.commit.revert:
 	git reset --hard HEAD^
-	git checkout master
 
 stash:
 	git stash
 
+deploy.before: stash
+
+deploy.after: build.commit.revert sass
 
 
-# TEST
+# Deploy - Test
 
-test.push: build.commit
+deploy.test: build.commit
 	git push -f test HEAD:master
 
-test: stash test.push
-	git reset --hard HEAD^
+test: deploy.before deploy.test deploy.after
 
 
+# Deploy - Production
 
-# ALPHA
+deploy.production: build.commit
+	git push -f production HEAD:master
 
-alpha.push: build.commit
-	git push -f alpha HEAD:master
-
-alpha: stash alpha.push build.commit.revert
-
-
-
-# BETA
-
-beta.push: build.commit
-	git push -f beta HEAD:master
-
-beta: stash beta.push build.commit.revert
+production: deploy.before deploy.production deploy.after
