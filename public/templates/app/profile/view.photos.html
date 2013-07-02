@@ -15,11 +15,11 @@
 		<div class="accordion-group">
 			<div id="collapse-photos" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<ul {{#if myProfile}}id="myProfile-photos"{{/if}} class="clearing-thumbs" data-clearing data-albumid="{{albums.0.id}}">
-						{{#each albums.0.photos}}
-						<li data-slide-to="{{@index}}">
-							<a href="{{src}}">
-								<img src="{{src}}">
+					<ul class="clearing-thumbs" data-clearing>
+					{{#each albums.photos}}
+						<li data-slide-to="{{@index}}" data-photo-id="{{id}}">
+							<a href="{{big_url}}">
+								<img src="{{thumb_url}}">
 							</a>
 
 							{{#if ../myProfile}}
@@ -39,3 +39,15 @@
 		</div>
 	</div><!-- EOF accordion -->
 </div><!-- EOF box-standard -->
+
+<!--
+<ul class="clearing-thumbs" data-clearing>
+  <li>
+  	<a href="path/to/your/img">
+  	<img src="path/to/your/img-th">
+  	</a>
+  	</li>
+  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
+  <li><a href="path/to/your/img"><img src="path/to/your/img-th"></a></li>
+</ul>
+-->

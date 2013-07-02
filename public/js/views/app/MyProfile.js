@@ -100,7 +100,7 @@ define(function(require){
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
-			"click button.cancel-edition-btn" : "closeBox",
+			"click button.cancel-edition-btn": "closeBox",
 			//photos events
 			"click #add_photo" : function(e){
 				$(e.target).find('input[type="file"]').trigger('click');
@@ -208,7 +208,7 @@ define(function(require){
 				.off()
 				.on('click', this.removePhoto);
 		},
-		initialize: function(model, parent) {			
+		initialize: function(model, parent) {
 			this.model = model;
 			this.parentCtrl = parent;
 

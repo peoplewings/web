@@ -21,7 +21,7 @@ define(function(require) {
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
 	var foundation = require("foundation");
 	var foundationClearing = require("foundationClearing");
-		
+
 
 	var ProfileView = Backbone.View.extend({
 
@@ -31,10 +31,12 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
-			//"click ul.nav-tabs li a": "tabHandler",
 		},
 
 		initialize: function(userId) {
+			//binding
+			this.onCloseClick = this.onCloseClick.bind(this);
+
 			this.map = new MapView({
 				el: "#user-map",
 				id: "mapcanvas"
@@ -66,8 +68,14 @@ define(function(require) {
 			//initialize foundation for this view to use in photo slide
 			this.$("#photo-box").foundation();
 
-			//photos draggable
-			this.$("#myProfile-photos").sortable();
+			if (myProfile) {
+				this.$("#photo-box ul")
+					.addClass('sortable')
+					.sortable();
+			}
+
+			//close image propagation
+			this.$('#collapse-photos .control').on('click', this.onCloseClick);
 
 			if (myProfile) {
 				if (!this.myProfile) {
@@ -78,46 +86,55 @@ define(function(require) {
 			}
 		},
 
-		refreshProfile: function(myProfile){			
+		refreshProfile: function(myProfile){
 			//set images data
-			var hackPhotosArray = [				
-				{
-					src: 'img/profilePhotosTest/1.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/2.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/3.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/4.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/5.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/6.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/7.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/8.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/9.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/10.jpg'
-				},
-				{
-					src: 'img/profilePhotosTest/11.jpg'
-				},
-			];
+			console.log(this.model.get('albums'));
+			this.model.get('albums').photos = [{
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/1.jpg',
+					thumb_url: 'img/profilePhotosTest/1.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/2.jpg',
+					thumb_url: 'img/profilePhotosTest/2.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/3.jpg',
+					thumb_url: 'img/profilePhotosTest/3.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/4.jpg',
+					thumb_url: 'img/profilePhotosTest/4.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/5.jpg',
+					thumb_url: 'img/profilePhotosTest/5.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/6.jpg',
+					thumb_url: 'img/profilePhotosTest/6.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/7.jpg',
+					thumb_url: 'img/profilePhotosTest/7.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/8.jpg',
+					thumb_url: 'img/profilePhotosTest/8.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/9.jpg',
+					thumb_url: 'img/profilePhotosTest/9.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/10.jpg',
+					thumb_url: 'img/profilePhotosTest/10.jpg',
+				}, {
+					id: 'xxxxxxxxxxxx',
+					big_url: 'img/profilePhotosTest/11.jpg',
+					thumb_url: 'img/profilePhotosTest/11.jpg',
+			}];
 
-			
-			this.model.attributes.albums[0].photos = hackPhotosArray;
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
