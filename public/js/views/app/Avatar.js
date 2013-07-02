@@ -17,16 +17,16 @@ define(function(require) {
 
 	var AvatarView = Backbone.View.extend({
 
-		el: "#basic-box",
+		el: "#main",
 
 		originalAvatarId: null,
 
 		defaultMaxWidth: 600,
 
 		events: {
-			"click #upload-avatar": function(e) {
+			"click #edit-click": function(e) {
 				e.preventDefault();
-				this.$('#upload').trigger('click');
+				$('#upload').trigger('click');
 			},
 			"click #submit-avatar": function(e) {
 				e.preventDefault();
@@ -55,6 +55,11 @@ define(function(require) {
 
 			spinner.show('avatar');
 			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+
+			// We reset the form so the 'change' event is always fired
+			// when a file is selected
+			var form = $(event.target).closest('form').get(0)
+			form.reset();
 		},
 
 		uploadComplete: function(url) {
@@ -86,6 +91,10 @@ define(function(require) {
 			spinner.hide('avatar');
 			var self = this;
 			this.params = {x: 0, y: 0, w: 0, h: 0};
+
+			images.forEach(function(image) {
+				image.s3_url = image.s3_url.replace(/^http:/, 'https:');
+			});
 
 			function showCoords(coords) {
 				var scale_x = self.size.width / $("#cropbox").width();

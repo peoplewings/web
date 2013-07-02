@@ -53,7 +53,7 @@
 					<div class="block-form float-left margin-right">
 						<label class="control-label" for="inputNewEmail">Best days to host</label>
 						<div class="controls">
-							<select name="bestDays" id="inputBestDays" class="size-large">
+							<select name="bestDays" id="inputBestDays" class="width160px">
 								<option value="A" selected="selected">Any</option>
 								<option value="F">From Monday to Friday</option>
 								<option value="T">From Monday to Thursday</option>
@@ -75,7 +75,7 @@
 								<option value="7">7</option>
 								<option value="8">8</option>
 								<option value="9">9</option>
-								<option value="m">+9</option>
+								<option value="10">+9</option>
 							</select>
 							<span class="help-block"></span>
 						</div>
@@ -94,7 +94,7 @@
 					<div class="block-form float-left margin-right">
 						<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
 						<div class="controls">
-							<select name="whereSleepingType" id="whereSleepingType" class="size-large">
+							<select name="whereSleepingType" id="whereSleepingType" class="width160px">
 								<option value="C" selected="selected">Common area</option>
 								<option value="P">Private area</option>
 								<option value="S">Shared private area</option>
@@ -197,51 +197,42 @@
 					<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
 				</div><!-- EOF guest-message -->
 				<div class="listing-location">
-					<div class="block-form float-left margin-right width72pc">
-						<div class="block-label">
-							<label class="control-label">Street address</label>
-							<i class="icon-lock">icon lock</i>
-						</div>
+					<div class="control-group blocked">
+						<label class="control-label">Street address</label>
+						<i class="icon-lock">icon lock</i>
 						<div class="controls">
 							<input type="text" name="address" id="inputAddress" class="input-medium required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="block-form">
-						<div class="block-label">
-							<label class="control-label">Number</label>
-							<i class="icon-lock">icon lock</i>
-						</div>
+					<div class="control-group blocked">
+						<label class="control-label">Number</label>
+						<i class="icon-lock">icon lock</i>
 						<div class="controls">
+							<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
 							<input type="text" name="number" id="inputNumber" class="input-mini required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="block-form clearfix">
-						<div class="block-label">
-							<label class="control-label">Additional Information</label>
-							<i class="icon-lock">icon lock</i>
-						</div>
+					<div class="control-group blocked">
+						<label class="control-label">Additional Information</label>
+						<i class="icon-lock">icon lock</i>
 						<div class="controls">
-							<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="input-large">
+							<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="block-form float-left margin-right width72pc">
-						<div class="block-label">
-							<label class="control-label">City</label>
-							<i class="icon-lock-open">icon lock</i>
-						</div>
+					<div class="control-group blocked">
+						<label class="control-label">City</label>
+						<i class="icon-lock-open">icon lock</i>
 						<div class="controls">
 							<input type="text" name="city" id="inputCity" class="input-medium required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="block-form">
-						<div class="block-label">
-							<label class="control-label">Postal</label>
-							<i class="icon-lock">icon lock</i>
-						</div>
+					<div class="control-group blocked">
+						<label class="control-label">Postal</label>
+						<i class="icon-lock">icon lock</i>
 						<div class="controls">
 							<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
 							<span class="help-block"></span>

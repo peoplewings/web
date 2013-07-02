@@ -43,7 +43,7 @@ define(function(require) {
 			});
 
 			this.model = new PreviewModel({
-				id: userId
+				id: userId,
 			});
 		},
 
@@ -54,11 +54,6 @@ define(function(require) {
 
 			var tab = '#' + tabId || '#about';
 			this.model.fetch({success: this.refresh.bind(this, tab)});
-
-			if (myProfile && !this.myProfile) {
-				this.myProfile = new MyProfile(this.model, this);
-				this.myWings = new MyWings(this);
-			}
 		},
 
 		refresh: function(tab) {
@@ -81,6 +76,14 @@ define(function(require) {
 
 			//close image propagation
 			this.$('#collapse-photos .control').on('click', this.onCloseClick);
+
+			if (myProfile) {
+				if (!this.myProfile) {
+					this.myProfile = new MyProfile(this.model, this);
+					this.myWings = new MyWings(this);
+				}
+				this.myProfile.refresh();
+			}
 		},
 
 		refreshProfile: function(myProfile){

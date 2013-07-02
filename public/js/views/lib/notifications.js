@@ -51,7 +51,7 @@ define(function(require) {
 	}
 
 
-	function modalHelper(targetId, targetName, kind, title, button, wingsReq, getData) {
+	function modalHelper(targetId, targetName, kind, title, wingsReq, getData) {
 		var prom = new Promise();
 		var hasTarget = !!targetId;
 
@@ -77,7 +77,8 @@ define(function(require) {
 
 			var modal = utils.showModal({
 				header: title,
-				accept: button,
+				accept: 'Send',
+				loadingText: 'Sending..',
 				content: content,
 				callback: send
 			});
@@ -116,9 +117,9 @@ define(function(require) {
 					targetId = contacts.filter(function(c) { return c.fullname === selected; })['0'].id;
 				}
 
-				$(".generic-modal-btn").button('loading');
+				$(".accept-modal-btn").button('loading');
 
-				api.post('/api/v1/notificationslist', {
+				return api.post('/api/v1/notificationslist', {
 					"idReceiver": targetId,
 					"kind": kind,
 					"data": data,
@@ -130,7 +131,7 @@ define(function(require) {
 					alerts.defaultError();
 					prom.reject(error);
 				}).fin(function() {
-					$(".generic-modal-btn").button('reset');
+					$(".accept-modal-btn").button('reset');
 					modal.modal('hide');
 				});
 			}
@@ -140,9 +141,9 @@ define(function(require) {
 	}
 
 
-	function reqinv(targetId, targetName, kind, title, button, wingsOwnerId) {
+	function reqinv(targetId, targetName, kind, title, wingsOwnerId) {
 		var request = api.get('/api/v1/wings', { profile:  wingsOwnerId}).prop('data');
-		return modalHelper(targetId, targetName, kind, title, button, request, function(modal) {
+		return modalHelper(targetId, targetName, kind, title, request, function(modal) {
 			return {
 				"privateText": modal.find('#message-content').val(),
 				"publicText": modal.find('#public-message-content').val(),
@@ -165,7 +166,7 @@ define(function(require) {
 	return {
 
 		message: function(targetId, targetName) {
-			modalHelper(targetId, targetName, 'message', 'New message', 'Send', null, function(modal) {
+			modalHelper(targetId, targetName, 'message', 'New message', null, function(modal) {
 				return {
 					"content": modal.find('#message-content').val(),
 				};
@@ -173,11 +174,11 @@ define(function(require) {
 		},
 
 		request: function(targetId, targetName) {
-			return reqinv(targetId, targetName, 'request', 'New request', 'Send', targetId);
+			return reqinv(targetId, targetName, 'request', 'New request', targetId);
 		},
 
 		invitation: function(targetId, targetName) {
-			return reqinv(targetId, targetName, 'invite', 'New invitation', 'Send', api.getUserId());
+			return reqinv(targetId, targetName, 'invite', 'New invitation', api.getUserId());
 		}
 	};
 });

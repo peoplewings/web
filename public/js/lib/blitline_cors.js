@@ -3,7 +3,7 @@ Blitline = function() {
 		completedCallback,
 		inProgress = false,
 		images = [],
-		serverUrl = "http://api.blitline.com";
+		serverUrl = "//blitline.com";
 
 	this.submit = function(jobs, callbacks) {
 		var validationErrors = [],

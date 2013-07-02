@@ -72,7 +72,7 @@ define(function(require) {
 			loadingText: options.loadingText,
 			formRel: 'form="' + options.form + '"',
 		}));
-		$("body section:last").append(modal);
+		$("#main").append(modal);
 
 		modal.modal('show');
 		var acceptBtn = modal.find('.accept-modal-btn');
@@ -96,6 +96,8 @@ define(function(require) {
 	function formatReplyTime(time) {
 		if (time === -1)
 			return '-';
+
+		time *= 1000;
 
 		var weeks = Math.floor(time / weekMs);
 		if (weeks > 4) return '+4w';
@@ -147,7 +149,7 @@ define(function(require) {
 		fd.append('key', key);
 		fd.append('file', file);
 
-		return api.request('POST', 'http://peoplewings-test-media.s3.amazonaws.com', {}, fd).then(function() {
+		return api.request('POST', '//peoplewings-test-media.s3.amazonaws.com', {}, fd).then(function() {
 			return 'https://s3-eu-west-1.amazonaws.com/' + bucket + '/' + key;
 		});
 	}
