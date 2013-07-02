@@ -31,6 +31,7 @@ define(function(require) {
 			"activate/:token": "activate",
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
+			"search": "search",
 			"search/?:params": "search",
 			//Logged User patterns
 			"logout": "logout",
@@ -85,13 +86,26 @@ define(function(require) {
 		search: function(params){
 			this.showHeaderSearch(false);
 			this.showBackgroundImage(false);
-			var unserialized = $.deparam(params);
-			homeView.render(unserialized);
 
-			api.get(api.getApiVersion() + "/profiles", unserialized)
+			var unserialized = $.deparam(params);
+			var filters = _.defaults(unserialized, {
+				capacity: 1,
+				language: 'all',
+				type: 'Host',
+				gender: 'Both',
+				startAge: 18,
+				endAge: 98,
+				page: 1,
+			});
+
+			console.log(filters);
+
+			homeView.render(filters);
+
+			api.get(api.getApiVersion() + "/profiles", filters)
 				.prop('data')
 				.then(function(results){
-					homeView.renderResults(unserialized, results);
+					homeView.renderResults(filters, results);
 				});
 		},
 		//Logged User hashs
@@ -165,11 +179,12 @@ define(function(require) {
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
-			return appHomeView.render();
+			this.navigate('/search');
+			this.search();
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
-			return window._gaq.push(['_trackPageview', "/" + url]);
+			return window.ga('_trackPageview', "/" + url);
 		},
 		initialize: function(){
 			console.log('router.js: initialize() ', api.getAuthToken(), api.getUserId());

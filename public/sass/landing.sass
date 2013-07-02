@@ -3,8 +3,16 @@
  * ==========================================================================
 
 @import _reset.sass
+@import _font-face.sass
 @import _globals.sass
 @import _buttons.sass
+
+.icon
+	float: left
+	width: 65px
+	height: 78px
+	text-indent: -9999px
+
 
 /* ==========================================================================
  * HTML STRUCTURE
@@ -40,20 +48,15 @@
 			height: 158px
 			text-indent: -9999px
 		h2
-			text-transform: uppercase
-			color: #FFFF00
-			font:
-				family: $ffamily-corp
-				size: 1.7em
-				weight: 800
-				style: italic
-			line-height: 0.78em
-			letter-spacing: -1px
-			@include text-stroke(2.5px, $blue_corp)
+			background: $sprite
+			background-position: -875px -462px
+			height: 27px
+			width: 443px
+			text-indent: -9999px
 			margin:
 				top: 0.7em
 				bottom: 0.3em
-				left: 20px
+				left: 12px
 
 #categories
 	margin-top: 35px
@@ -112,6 +115,7 @@
 	form
 		div.control-group
 			float: left
+			width: 330px
 			label.control-label
 				float: left
 				width: 67px
@@ -131,9 +135,10 @@
 			input
 				width: 216px
 				margin: 10px 5px
+				font-size: 13px
 			div.controls
-				width: 315px
 				select
+					font-size: 13px
 					background: $sprite #FFF
 					background-position: -196px -6px
 					min-width: 100px
@@ -142,7 +147,6 @@
 		button.button-peoplewings
 			font-size: 21.75px
 			padding: 3px 17px
-			margin-left: 10px
 			margin-top: 10px
 
 #middle

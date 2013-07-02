@@ -16,14 +16,14 @@
 						</ul>
 					</div>
 					{{/if}}
-					<div class="control-group lined">
+					<div class="block-form">
 						<label class="control-label" for="inputName">Wing name</label>
 						<div class="controls">
-							<input type="text" id="inputName" name="name" placeholder="Some name" class="size-extralarge required">
+							<input type="text" id="inputName" name="name" placeholder="Some name" class="input-large required">
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group lined">
+					<div class="block-form">
 						<label class="control-label" for="inputStatus">Wing status</label>
 						<div class="controls">
 							<select name="status" id="wingStatus" class="size-medium">
@@ -34,7 +34,7 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group lined">
+					<div class="block-form dates-type">
 						<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 						<div class="controls">
 							<label class="checkbox">
@@ -43,17 +43,17 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div id="sharing-dates"class="control-group">
-						<div class="controls">
-							<input type="text" name="dateStart" class="input-sdate" placeholder="Start date">
-							<input type="text" name="dateEnd" class="input-edate" placeholder="End date">
+					<div class="block-form clearfix">
+						<div id="sharing-dates" class="controls">
+							<input type="text" class="input-dates" name="dateStart" placeholder="Start date">
+							<input type="text" class="input-dates" name="dateEnd" placeholder="End date">
 						</div>
 						<span class="help-block"></span>
 					</div>
-					<div class="control-group blocked">
+					<div class="block-form float-left margin-right">
 						<label class="control-label" for="inputNewEmail">Best days to host</label>
 						<div class="controls">
-							<select name="bestDays" id="inputBestDays" class="size-large">
+							<select name="bestDays" id="inputBestDays" class="width160px">
 								<option value="A" selected="selected">Any</option>
 								<option value="F">From Monday to Friday</option>
 								<option value="T">From Monday to Thursday</option>
@@ -62,7 +62,7 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="control-group blocked">
+					<div class="block-form float-left margin-right">
 						<label class="control-label" for="inputCapacity">Capacity</label>
 						<div class="controls">
 							<select name="capacity" class="size-small">
@@ -75,193 +75,169 @@
 								<option value="7">7</option>
 								<option value="8">8</option>
 								<option value="9">9</option>
-								<option value="m">+9</option>
+								<option value="10">+9</option>
 							</select>
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<!-- HELLO SERGI, there are changes :  interested in male female now is a select -->
-
-<!-- 							<div class="control-group">
-								<label class="control-label" for="inputGender">Preferred gender</label>
-								<div class="controls">
-									<label class="checkbox inline">
-										<input type="checkbox" name="preferredMale" id="inlineCheckbox1"> Male
-									</label>
-									<label class="checkbox inline">
-										<input type="checkbox" name="preferredFemale" id="inlineCheckbox2"> Female
-									</label>
-									<span class="help-inline"></span>
-								</div>
-							</div> -->
-							<div class="control-group blocked no-margin">
-								<label class="control-label" for="inputGender">Prefered gender</label>
-								<div class="controls">
-									<select name="preferredGender" class="size-medium">
-										<option value="Male">Male</option>
-										<option value="Female">Female</option>
-										<option value="Both">Both</option>
-									</select>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
-								<div class="controls">
-									<select name="whereSleepingType" id="whereSleepingType" class="size-large">
-										<option value="C" selected="selected">Common area</option>
-										<option value="P">Private area</option>
-										<option value="S">Shared private area</option>
-									</select>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label" for="inputNewEmail">Smoking</label>
-								<div class="controls">
-									<select name="smoking" id="smoking" class="size-large">
-										<option value="N" selected="selected">No smoking allowed</option>
-										<option value="S">I smoke</option>
-										<option value="D">I don't smoke but guests can smoke here</option>
-									</select>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls check">
-									<label class="checkbox">
-										<input type="checkbox" name="wheelchair" id="inlineCheckbox1">Wheelchair accessible
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls check">
-									<label class="checkbox">
-										<input type="checkbox" name="iHavePet" id="inlineCheckbox1">I have pet
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls check">
-									<label class="checkbox">
-										<input type="checkbox" name="petsAllowed" id="inlineCheckbox2">Guests pets allowed
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls check">
-									<label class="checkbox">
-										<input type="checkbox" name="blankets" id="inputBlankets">I have blankets
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls check">
-									<label class="checkbox">
-										<input type="checkbox" name="liveCenter" id="inputLiveCenter">I live in the center
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label">Transports</label>
-								<div class="controls">
-									<label class="checkbox">
-										<input type="checkbox" name="metro" id="checkboxMetro">Metro
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="bus" id="checkboxBus">Bus
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="taxi" id="checkboxtaxi">Tram
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="train" id="checkboxTrain">Train
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="car" id="checkboxCar">Car
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="motorbike" id="checkboxMotorbike">Motorbike
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="bicycle" id="checkboxBicycle">Bicycle
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="boat" id="checkboxBoat">Boat
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="plane" id="checkboxPlane">Plane
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" name="other" id="checkboxOther">Other
-									</label>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label">About your accomodation</label>
-								<div class="controls">
-									<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
-									<span class="help-block"></span>
-								</div>
-							</div>
-						</div><!-- EOF box-content -->
-						<div class="box-header">
-							<i class="icon-contact">Contact icon</i>
-							<h2>Listing location</h2>
+					<div class="block-form float-left">
+						<label class="control-label" for="inputGender">Prefered gender</label>
+						<div class="controls">
+							<select name="preferredGender" class="size-medium">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Both">Both</option>
+							</select>
+							<span class="help-block"></span>
 						</div>
-						<div class="guest-message">
-							<h2>Shown only to Confirmed Guests</h2>
-							<i class="icon-lock">icon lock</i>
-							<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
-						</div><!-- EOF guest-message -->
-						<div class="listing-location">
-							<div class="control-group blocked">
-								<label class="control-label">Street address</label>
-								<i class="icon-lock">icon lock</i>
-								<div class="controls">
-									<input type="text" name="address" id="inputAddress" class="input-medium required">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label">Number</label>
-								<i class="icon-lock">icon lock</i>
-								<div class="controls">
-									<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
-									<input type="text" name="number" id="inputNumber" class="input-mini required">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label">Additional Information</label>
-								<i class="icon-lock">icon lock</i>
-								<div class="controls">
-									<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label">City</label>
-								<i class="icon-lock-open">icon lock</i>
-								<div class="controls">
-									<input type="text" name="city" id="inputCity" class="input-medium required">
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="control-group blocked">
-								<label class="control-label">Postal</label>
-								<i class="icon-lock">icon lock</i>
-								<div class="controls">
-									<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
-									<span class="help-block"></span>
-								</div>
-							</div>
-						</div><!-- EOF listing-location -->
-					</form>
-				</div><!-- EOF box-standard -->
+					</div>
+					<div class="block-form float-left margin-right">
+						<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
+						<div class="controls">
+							<select name="whereSleepingType" id="whereSleepingType" class="width160px">
+								<option value="C" selected="selected">Common area</option>
+								<option value="P">Private area</option>
+								<option value="S">Shared private area</option>
+							</select>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="block-form float-left">
+						<label class="control-label" for="inputNewEmail">Smoking</label>
+						<div class="controls">
+							<select name="smoking" id="smoking" class="size-large">
+								<option value="N" selected="selected">No smoking allowed</option>
+								<option value="S">I smoke</option>
+								<option value="D">I don't smoke but guests can smoke here</option>
+							</select>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="block-form checkbox-type clearfix">
+						<label class="checkbox">
+							<input type="checkbox" name="wheelchair" id="inlineCheckbox1">Wheelchair accessible
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form checkbox-type">
+						<label class="checkbox">
+							<input type="checkbox" name="iHavePet" id="inlineCheckbox1">I have pet
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form checkbox-type">
+						<label class="checkbox">
+							<input type="checkbox" name="petsAllowed" id="inlineCheckbox2">Guests pets allowed
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form checkbox-type">
+						<label class="checkbox">
+							<input type="checkbox" name="blankets" id="inputBlankets">I have blankets
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form checkbox-type">
+						<label class="checkbox">
+							<input type="checkbox" name="liveCenter" id="inputLiveCenter">I live in the center
+						</label>
+						<span class="help-block"></span>
+					</div>
+					<div class="block-form grid">
+						<label>Transports</label>
+						<div class="container-5">
+							<label class="grid-1">
+								<input type="checkbox" name="metro" id="checkboxMetro">Metro
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="bus" id="checkboxBus">Bus
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="taxi" id="checkboxtaxi">Tram
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="train" id="checkboxTrain">Train
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="car" id="checkboxCar">Car
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="motorbike" id="checkboxMotorbike">Moto
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="bicycle" id="checkboxBicycle">Bici
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="boat" id="checkboxBoat">Boat
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="plane" id="checkboxPlane">Plane
+							</label>
+							<label class="grid-1">
+								<input type="checkbox" name="other" id="checkboxOther">Other
+							</label>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="block-form">
+						<label class="control-label">About your accommodation</label>
+						<div class="controls">
+							<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda"></textarea>
+							<span class="help-block"></span>
+						</div>
+					</div>
+				</div><!-- EOF box-content -->
+				<div class="box-header">
+					<i class="icon-contact">Contact icon</i>
+					<h2>Listing location</h2>
+				</div>
+				<div class="guest-message">
+					<h2>Shown only to Confirmed Guests</h2>
+					<i class="icon-lock">icon lock</i>
+					<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
+				</div><!-- EOF guest-message -->
+				<div class="listing-location">
+					<div class="control-group blocked">
+						<label class="control-label">Street address</label>
+						<i class="icon-lock">icon lock</i>
+						<div class="controls">
+							<input type="text" name="address" id="inputAddress" class="input-medium required">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label">Number</label>
+						<i class="icon-lock">icon lock</i>
+						<div class="controls">
+							<!-- <input type="number" name="number" id="inputNumber" class="input-mini required"> -->
+							<input type="text" name="number" id="inputNumber" class="input-mini required">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label">Additional Information</label>
+						<i class="icon-lock">icon lock</i>
+						<div class="controls">
+							<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label">City</label>
+						<i class="icon-lock-open">icon lock</i>
+						<div class="controls">
+							<input type="text" name="city" id="inputCity" class="input-medium required">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="control-group blocked">
+						<label class="control-label">Postal</label>
+						<i class="icon-lock">icon lock</i>
+						<div class="controls">
+							<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required">
+							<span class="help-block"></span>
+						</div>
+					</div>
+				</div><!-- EOF listing-location -->
+			</form>
+		</div><!-- EOF box-standard -->

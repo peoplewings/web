@@ -28,17 +28,10 @@ define(function(require) {
 		el: "#main",
 
 		events: {
-			"click button.send-message-btn": "sendMessage",
-			"click button.send-request-btn": "sendRequest",
-			"click button.send-invitation-btn": "sendInvitation",
-			
-			/*"mouseenter #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').show();
-			},
-
-			"mouseleave #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').hide();
-			}*/
+			"click .personal-info button.send-message-btn": "sendMessage",
+			"click .personal-info button.send-request-btn": "sendRequest",
+			"click .personal-info button.send-invitation-btn": "sendInvitation",
+			//"click ul.nav-tabs li a": "tabHandler",
 		},
 
 		initialize: function(userId) {
@@ -48,7 +41,7 @@ define(function(require) {
 			});
 
 			this.model = new PreviewModel({
-				id: userId
+				id: userId,
 			});
 		},
 
@@ -59,11 +52,6 @@ define(function(require) {
 
 			var tab = '#' + tabId || '#about';
 			this.model.fetch({success: this.refresh.bind(this, tab)});
-
-			if (myProfile && !this.myProfile) {
-				this.myProfile = new MyProfile(this.model, this);
-				this.myWings = new MyWings(this);
-			}			
 		},
 
 		refresh: function(tab) {
@@ -80,6 +68,14 @@ define(function(require) {
 
 			//photos draggable
 			this.$("#myProfile-photos").sortable();
+
+			if (myProfile) {
+				if (!this.myProfile) {
+					this.myProfile = new MyProfile(this.model, this);
+					this.myWings = new MyWings(this);
+				}
+				this.myProfile.refresh();
+			}
 		},
 
 		refreshProfile: function(myProfile){			

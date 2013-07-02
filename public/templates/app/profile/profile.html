@@ -1,4 +1,29 @@
 <div class="container">
+	<form id="file-form" style="display: none" method="post" action="" enctype="multipart/form-data">
+		<input id="upload" type="file" name="files[]" />
+	</form>
+    <div id="crop-modal" class="generic-modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="display:none">
+      <div class="modal-header">
+        <h1 id="myModalLabel">Crop Image</h1>
+        <button type="button" class="button-close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body" style="max-height: 500px">
+        <h2>To crop image, drag the region below and click Send.</h2>
+        <center>
+          <img id="cropbox" src="" alt="">
+          <div class="progress progress-striped" style="margin-top:10px;display:none;">
+            <div class="bar" style="width: 0%;"></div>
+          </div>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <div class="button-group">
+          <button id="cancel-crop" class="button" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button type="submit" id="submit-avatar" class="button-highlight accept-modal-btn" data-loading-text="Processing...">Send</button>
+        </div>
+      </div>
+    </div>
+
 	<div class="landscape">
 		<div class="tabs">
 			<ul class="nav nav-tabs">
@@ -14,19 +39,17 @@
 					{{#equals lastLoginDate 'ON' }}
 						Online
 					{{else}}
+						Last connection
 						{{date lastLoginDate 'YYYY-MM-DD' }}
 					{{/equals}}
 				</span>
 				<h2 class="home-town">
-					{{#if hometown.name}}
-					{{hometown.name}}, {{hometown.country}}
+					{{#if current.name}}
+						{{current.name}}, {{current.country}}
 					{{/if}}
 				</h2>
-			{{#if myProfile}}
 			</div>
-			{{else}}
-				<h3 class="current-location">Now in {{current.name}}, {{current.country}}</h3>
-			</div>
+			{{#unless myProfile}}
 			<div class="button-bar">
 				<ul>
 					<li><button class="send-message-btn">Message</button></li>
@@ -34,7 +57,7 @@
 					<li><button class="send-invitation-btn">Invite</button></li>
 				</ul>
 			</div>
-			{{/if}}
+			{{/unless}}
 		</div><!-- EOF personal -->
 	</div><!-- EOF landscape -->
 	<div class="tab-content">

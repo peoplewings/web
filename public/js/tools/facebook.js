@@ -2,6 +2,7 @@ define(function(require) {
 
 	var Promise = require('promise');
 	var api = require('api2');
+	var cookies = require('cookies');
 	var Header = require('views/app/header');
 
 	function askFbLogin() {
@@ -16,9 +17,12 @@ define(function(require) {
 	}
 
 	function pwLogin(fbData) {
+		var cookie = cookies.startWith('fbsr_');
+
 		return api.post(api.getApiVersion() + '/authfb/', {
 			fbid: fbData.userID,
-			cookie: document.cookie,
+			appid: cookie.name,
+			token: cookie.value,
 		});
 	}
 

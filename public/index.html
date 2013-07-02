@@ -4,172 +4,177 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<script>if (document.location.protocol === 'http:') ;//	document.location.protocol = 'https:';</script>
 
-		<title>Peoplewings</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script>
+		if (document.location.host.indexOf('peoplewings.com') !== -1 && document.location.protocol === 'http:')
+			document.location.protocol = 'https:';
+	</script>
 
-		<link rel="stylesheet" href="css/bootstrap_older.css">
-		<link rel="stylesheet" href="css/home.css">
-		<link rel="stylesheet" href="css/profile.css">
-		<!-- <link rel="stylesheet" href="css/styles.css"> -->
-		<link rel="stylesheet" href="css/jquery.Jcrop.min.css">
-		<link rel="stylesheet" href="css/jquery-ui-1.9.1.custom.min.css">
+	<title>Peoplewings</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
-		<link rel="stylesheet" href="css/foundation.css">
-		<link href='//fonts.googleapis.com/css?family=Exo:800italic,500italic' rel='stylesheet' type='text/css'>
-	</head>
+	<link rel="stylesheet" href="css/bootstrap_older.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/profile.css">
+	<!-- <link rel="stylesheet" href="css/styles.css"> -->
+	<link rel="stylesheet" href="css/jquery.Jcrop.min.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.9.1.custom.min.css">
 
-	<body>
-		<div id="fb-root"></div>
-		<script type="text/javascript">
-			var fb_login_handler = {
-				data: null,
-				listeners: [],
-				clear: function() {
-					this.listeners = [];
-				},
-				then: function(callback) {
-					if (this.data)
-						return callback(this.data);
-					this.listeners.push(callback);
-				},
-				resolve: function(data) {
-					this.data = data;
-					this.listeners.forEach(function(cbk) { cbk(data) });
+	<link rel="stylesheet" href="css/foundation.css">
+	<link href='//fonts.googleapis.com/css?family=Exo:800italic,500italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+		var fb_login_handler = {
+			data: null,
+			listeners: [],
+			clear: function() {
+				this.listeners = [];
+			},
+			then: function(callback) {
+				if (this.data)
+					return callback(this.data);
+				this.listeners.push(callback);
+			},
+			resolve: function(data) {
+				this.data = data;
+				this.listeners.forEach(function(cbk) { cbk(data) });
+			}
+		};
+
+		// Additional JS functions here
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '582389231792268', // App ID
+				channelUrl : '//www.peoplewings.com/channel.html', // Channel File
+				status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : false // parse XFBML
+			});
+
+			// Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+			// for any auth related change, such as login, logout or session refresh. This means that
+			// whenever someone who was previously logged out tries to log in again, the correct case below
+			// will be handled.
+			FB.Event.subscribe('auth.authResponseChange', function(response) {
+				// Here we specify what we do with the response anytime this event occurs.
+				if (response.status === 'connected') {
+					// The response object is returned with a status field that lets the app know the current
+					// login status of the person. In this case, we're handling the situation where they
+					// have logged in to the app.
+					FB.api('/me', function(response) {
+						//var id = response.id;
+						fb_login_handler.resolve(response);
+					});
+				} else if (response.status === 'not_authorized') {
+					// In this case, the person is logged into Facebook, but not into the app, so we call
+					// FB.login() to prompt them to do so.
+					// In real-life usage, you wouldn't want to immediately prompt someone to login
+					// like this, for two reasons:
+					// (1) JavaScript created popup windows are blocked by most browsers unless they
+					// result from direct user interaction (such as a mouse click)
+					// (2) it is a bad experience to be continually prompted to login upon page load.
+					FB.login();
+				} else {
+					// In this case, the person is not logged into Facebook, so we call the login()
+					// function to prompt them to do so. Note that at this stage there is no indication
+					// of whether they are logged into the app. If they aren't then they'll see the Login
+					// dialog right after they log in to Facebook.
+					// The same caveats as above apply to the FB.login() call here.
+					FB.login();
 				}
-			};
+			});
+		};
 
-			// Additional JS functions here
-			window.fbAsyncInit = function() {
-				FB.init({
-					appId      : '582389231792268', // App ID
-					channelUrl : '//www.peoplewings.com/channel.html', // Channel File
-					status     : true, // check login status
-					cookie     : true, // enable cookies to allow the server to access the session
-					xfbml      : false // parse XFBML
-				});
-
-				// Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
-				// for any auth related change, such as login, logout or session refresh. This means that
-				// whenever someone who was previously logged out tries to log in again, the correct case below
-				// will be handled.
-				FB.Event.subscribe('auth.authResponseChange', function(response) {
-					// Here we specify what we do with the response anytime this event occurs.
-					if (response.status === 'connected') {
-						// The response object is returned with a status field that lets the app know the current
-						// login status of the person. In this case, we're handling the situation where they
-						// have logged in to the app.
-						FB.api('/me', function(response) {
-							//var id = response.id;
-							fb_login_handler.resolve(response);
-						});
-					} else if (response.status === 'not_authorized') {
-						// In this case, the person is logged into Facebook, but not into the app, so we call
-						// FB.login() to prompt them to do so.
-						// In real-life usage, you wouldn't want to immediately prompt someone to login
-						// like this, for two reasons:
-						// (1) JavaScript created popup windows are blocked by most browsers unless they
-						// result from direct user interaction (such as a mouse click)
-						// (2) it is a bad experience to be continually prompted to login upon page load.
-						FB.login();
-					} else {
-						// In this case, the person is not logged into Facebook, so we call the login()
-						// function to prompt them to do so. Note that at this stage there is no indication
-						// of whether they are logged into the app. If they aren't then they'll see the Login
-						// dialog right after they log in to Facebook.
-						// The same caveats as above apply to the FB.login() call here.
-						FB.login();
-					}
-				});
-			};
-
-			// Load the SDK asynchronously
-			(function(d){
-				var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-				if (d.getElementById(id)) {return;}
-				js = d.createElement('script'); js.id = id; js.async = true;
-				js.src = "//connect.facebook.net/en_US/all.js";
-				ref.parentNode.insertBefore(js, ref);
-			}(document));
-		</script>
+		// Load the SDK asynchronously
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+	</script>
 
 
-		<div class="wrapper">
-			<div class="background-roller"></div>
+	<div class="wrapper">
+		<div class="background-roller"></div>
 
-			<header>
-				<div class="navbar nav navbar-fixed-top">
-					<div class="navbar-inner">
-						<a class="brand" href="#">Peoplewings</a>
-						<div class="nav-menu">
-							<ul class="nav pull-right">
-								<li class="register-menu"><a href="/#/register">SIGN UP</a></li>
-								<li class="login-menu"><a href="/#/login">LOG IN</a></li>
-								<li class="help-menu"><a href="/#/help#how-it-works">HOW IT WORKS</a></li>
-							</ul>
-						</div>
-						<div id="mini-spinner"><span style="display: none">loading</span></div>
-					</div>
-				</div>
-			</header>
-
-			<div id="alerts-container"></div>
-			<section id="main" class="navbar-inner"></section>
-
-			<div class="push"></div>
-		</div>
-
-		<div id="feedback-btn">
-				<div>
-					<a id="feedback-btn-submit" href="#/feedback" role="button" class="btn" >Send feedback</a>
-				</div>
-		</div>
-
-		<footer class="footer navbar navbar-fixed-bottom">
-			<div class="navbar-inner">
-
-					<div id="terms">
-						<ul id="service-terms">
-							<li>©2013 PEOPLEWINGS</li>
-							<li><a href="/#/help#terms-of-service">Terms of Service</a></li>
-							<li><a href="/#/help#privacy-policy">Privacy Policy</a></li>
-							<li><a href="mailto:info@peoplewings.com">Help</a></li>
+		<header>
+			<div class="navbar nav navbar-fixed-top">
+				<div class="wrap">
+					<a class="brand" href="#">Peoplewings</a>
+					<div class="nav-menu">
+						<ul class="nav pull-right">
+							<li class="register-menu"><a href="/#/register">SIGN UP</a></li>
+							<li class="login-menu"><a href="/#/login">LOG IN</a></li>
+							<li class="help-menu"><a href="/#/help#how-it-works">HOW IT WORKS</a></li>
 						</ul>
 					</div>
-					<div id="follow">
-						<p>Follow us...</p>
-						<ul>
-							<li><a href="https://www.facebook.com/PEOPLEWINGS" target="_blank" class="icon follow facebook">facebook</a></li>
-							<li><a href="https://twitter.com/PEOPLEWINGS" target="_blank" class="icon follow twitter">twitter</a></li>
-							<li><a href="http://www.youtube.com/user/PeopleWings" target="_blank" class="icon follow youtube">youtube</a></li>
-						</ul>
-					</div>
+					<div id="mini-spinner"><span style="display: none">loading</span></div>
+				</div>
 			</div>
-		</footer>
+		</header>
 
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en"></script>
-		<script src="js/lib/spin.min.js"></script>
-		<script src="js/lib/moment.js"></script>
-		<script src="js/lib/webtoolkit.base64.js"></script>
-		<script src="js/lib/sha1.js"></script>
-		<script src="js/lib/blitline_cors.js"></script>
-		<!--<script src="js/build/out.js"></script>-->
-		<script data-main="js/main" src="js/lib/require.js"></script>
+		<div id="alerts-container"></div>
+		<div id="main" class="wrap"></div>
 
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		<div class="push"></div>
+	</div>
 
-			ga('create', 'UA-41199442-1', 'peoplewings.com');
-			ga('send', 'pageview');
-		</script>
+	<div id="feedback-btn">
+		<div>
+			<a id="feedback-btn-submit" href="#/feedback" role="button" class="btn" >Send feedback</a>
+		</div>
+	</div>
 
-	</body>
+	<footer class="footer navbar navbar-fixed-bottom">
+		<div class="wrap">
+
+			<div id="terms">
+				<ul id="service-terms">
+					<li>©2013 PEOPLEWINGS</li>
+					<li><a href="/#/help#terms-of-service">Terms of Service</a></li>
+					<li><a href="/#/help#privacy-policy">Privacy Policy</a></li>
+					<li><a href="mailto:info@peoplewings.com">Help</a></li>
+				</ul>
+			</div>
+			<div id="follow">
+				<p>Follow us...</p>
+				<ul>
+					<li><a href="https://www.facebook.com/PEOPLEWINGS" target="_blank" class="icon follow facebook">facebook</a></li>
+					<li><a href="https://twitter.com/PEOPLEWINGS" target="_blank" class="icon follow twitter">twitter</a></li>
+					<li><a href="http://www.youtube.com/user/PeopleWings" target="_blank" class="icon follow youtube">youtube</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABBKjubUcAk69Kijktx-s0jcNL1cIjZ98&sensor=false&libraries=places&language=en"></script>
+	<script src="js/lib/spin.min.js"></script>
+	<script src="js/lib/moment.js"></script>
+	<script src="js/lib/webtoolkit.base64.js"></script>
+	<script src="js/lib/sha1.js"></script>
+	<script src="js/lib/blitline_cors.js"></script>
+	<!--<script src="js/build/out.js"></script>-->
+	<script data-main="js/main" src="js/lib/require.js"></script>
+
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-41199442-1', 'peoplewings.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+
 </html>

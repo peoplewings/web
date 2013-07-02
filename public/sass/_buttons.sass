@@ -70,9 +70,9 @@ button
 	background: #18183F
 	color: #FFFF00
 	font:
-		family: $ffamily-corp
+		family: "Exo700I", Tahoma, Sans-Serif
 		size: 16px
-		weight: bold
+		style: normal
 	text-shadow: none
 	border: 2px solid #FFFF00
 	+border-radius(18px)
@@ -90,11 +90,20 @@ button
 	color: #848178
 	+bg-gradient(#f5f5f0, #e1e0d9)
 
+.button-add-wing
+	@extend .button-basic-info
+	+bg-gradient(#f5f5f0, #e1e0d9)
+	// +bg-gradient(#FFFF00, #FFEB00) // yellow button
+	i
+		float: left
+
 .button-edit-info
 	@extend .button
 	color: #848178
 	line-height: 24px
 	padding: 9px 28px 10px 20px
+	i
+		float: left
 
 .button-back
 	@extend .button

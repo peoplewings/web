@@ -86,6 +86,7 @@ button.close
 	@include opacity(1)
 	background: none
 	color: #999
+	font-style: normal !important
 	&:hover
 		@include opacity(1)
 
@@ -190,7 +191,7 @@ button.close
 				&:active
 					@include bg-gradient(#FFEB00 , #FBFAC5)
 
-			.button-bar 
+			.button-bar
 				border-top: 1px solid #d2d2d2
 				ul > li
 					float: left
@@ -293,8 +294,8 @@ button.close
 						width: 150px
 						font-size: 12px
 					select
-						padding: 0
-						padding-left: 10px
+						padding: 0 10px
+						padding-right: 25px
 						margin: 0
 						margin-top: 3px
 						background: $sprite #FFF
@@ -309,9 +310,9 @@ button.close
 			div.edit-click
 				background: #FFF
 				@include transition(opacity, 0.25s)
-				@include opacity(0.6)
+				@include opacity(0)
 				position: relative
-				bottom: 48px
+				top: -177px
 				text-transform: uppercase
 				font:
 					size: 12px
@@ -321,8 +322,11 @@ button.close
 				text-shadow: 1px 1px #FFF
 				text-align: center
 				padding: 12px
+				height: 172px
+				padding-top: 130px
+				box-sizing: border-box
 				&:hover
-					@include opacity(0)
+					@include opacity(0.6)
 
 			.basic-info-footer
 				padding: 0
@@ -356,6 +360,7 @@ button.close
 					& > i
 						margin: 9px
 						margin-left: 19px
+						float: left
 					h2
 						float: left
 						font:
@@ -374,6 +379,8 @@ button.close
 					.btn-group.pull-right
 						margin-top: 11px
 						margin-right: 12px
+						a
+							padding: 0
 
 				.box-content
 					overflow: hidden
@@ -395,6 +402,14 @@ button.close
 					.last-p
 						float: none
 
+				.wings-info
+					.overflow
+						overflow: hidden
+					.size-165
+						width: 165px
+						background-position: -325px -11px
+						padding-right: 25px
+
 				.gradient-box
 					background: url(../img/gradient-transparent.png) repeat-x left top
 					height: 100px
@@ -402,8 +417,8 @@ button.close
 					margin: -100px 0 0 0
 
 				.accordion-body.collapse
-					height: 450px
-					min-height: 450px
+					height: 362px
+					min-height: 362px
 
 				.accordion-heading
 					background: #FFF
@@ -483,8 +498,40 @@ button.close
 					line-height: 24px
 					span
 						margin-left: 5px
+					i
+						float: left
 
 			/* EOF box-standard.maps */
+
+			.contact-info
+				dt, dd, span
+					font: normal 12px / 12px Arial
+				dt
+					float: left
+					margin-right: 10px
+				dd
+					color: #000
+					padding-bottom: 12px
+					margin-bottom: 12px
+					border-bottom: 1px solid #DDD
+					min-height: 12px
+					&.dt-title
+						color: #808080
+				div
+					line-height: 0
+				span
+					display: block
+					margin-bottom: 12px
+
+				div.dl-list
+					dt
+						color: #000
+					dd
+						border: none
+						margin: 0
+						&:last-child
+							border-bottom: 1px solid #DDD
+							margin-bottom: 12px
 
 			.box-standard.contact-info
 
@@ -555,7 +602,6 @@ button.close
 	//margin-bottom: 8px
 
 #languages-list
-	overflow: hidden
 	div
 		margin-bottom: 10px
 
@@ -573,6 +619,7 @@ button.close
 		background-position: 195px 4px
 		margin-bottom: 7px
 	i
+		float: left
 		margin-left: 10px
 		margin-top: 4px
 	p
@@ -596,11 +643,11 @@ button.close
 			.input-sdate
 				width: 90px
 				background: $sprite
-				background-position: 75px center
+				background-position: 60px -160px
 			.input-edate
 				width: 90px
 				background: $sprite
-				background-position: 75px center
+				background-position: -40px -160px
 			.checkbox
 				float: left
 				margin: 0 10px 0 0
@@ -625,7 +672,7 @@ button.close
 		display: block
 		float: left
 		clear: none
-		margin-right: 12px
+		margin-right: 3px
 		.control-label
 			float: none
 			margin: 0 0 6px 0
@@ -657,6 +704,7 @@ h1.guest-message
 		margin-left: 2px
 
 	i
+		float: left
 		margin-left: 10px
 		margin-top: 4px
 
@@ -670,7 +718,7 @@ h1.guest-message
 		display: block
 		float: left
 		clear: none
-		margin-right: 12px
+		margin-right: 3px
 
 	.control-label
 		margin: 0 0 6px 0
@@ -681,7 +729,7 @@ h1.guest-message
 	clear: both
 
 .info
-	.button-basic-info
+	.button-basic-info, .button-add-wing
 		width: 150px
 		padding: 10px 20px
 		border-left: 0

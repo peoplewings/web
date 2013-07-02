@@ -15,6 +15,8 @@ requirejs.config({
 		// jQuery Plugins
 		"jquery.Validate": "lib/plugins/jquery.validate",
 		"jquery.Extensions": "lib/plugins/jq-extensions",
+		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
+		"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
 		// Bootstrap plugins
 		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 		// Require plugins
@@ -29,6 +31,7 @@ requirejs.config({
 		"promise": "core/promise",
 		"phrases": "core/phrases",
 		"config": "core/config",
+		"cookies": "core/cookies",
 		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
 		//"spinner": "lib/spin",
 		//"jquery.spinner": "lib/plugins/spin.plugin",

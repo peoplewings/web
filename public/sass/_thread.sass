@@ -174,8 +174,23 @@ li.thread-item
 		span
 			display: inline
 			font-weight: bold
-			color: #000
 			cursor: pointer
+
+		.option-Cancel, .option-Deny 
+			color: #7e7b71
+
+		.option-Accept, .option-Reopen
+			color: #85c333
+
+		.option-Maybe
+			color: #fa9e03
+		
+		.option-Pending
+			color: #ee4040
+
+		.option-Chat
+			color: #000
+
 	div#write-response
 		float: right
 		input, select, textarea
@@ -240,21 +255,31 @@ li.thread-item
 						margin-bottom: 4px
 					span
 						margin-left: 10px
+						margin-bottom: 5px
+						&.capacity
+							display: inline-block
+							font-weight: bold
+							margin-right: 10px
+					input, select
+						margin: 0
+						outline: 0
 					input.input-sdate
 						width: 97px
 						background: $sprite
-						background-position: 1px 1px
+						background-position: 71px -161px
+						background-color: #fff
 						padding-left: 10px
+						margin-left: 9px
 					input.input-edate
 						width: 97px
 						background: $sprite
-						background-position: 1px 1px
+						background-position: -32px -161px
+						background-color: #fff
 						padding-left: 10px
 					select
-						margin: 0
-						margin-top: 6px
 						background: $sprite
-						background-position: 1px 1px
+						background-position: -435px -12px
+						background-color: #fff
 	div.response-item
 		background: #fff
 		overflow: hidden
