@@ -156,6 +156,7 @@ define(function(require){
 					var jobs = [{
 						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
 						"src": url,
+						"content_type_json": true,
 
 						"functions": [{
 							"name": "resize_to_fit",
@@ -165,6 +166,7 @@ define(function(require){
 							},
 							"save": {
 								"image_identifier": 'big',
+								"quality": 100,
 								"s3_destination":{
 									"bucket":{
 										"name":"peoplewings-test-media",
@@ -180,6 +182,7 @@ define(function(require){
 							},
 							"save": {
 								"image_identifier": 'thumb',
+								"quality": 100,
 								"s3_destination":{
 									"bucket":{
 										"name":"peoplewings-test-media",
@@ -190,7 +193,7 @@ define(function(require){
 							}
 						}],
 
-						postback_url: api.getServerUrl() + api.getApiVersion() + '/photoCompleted' + api.urlEncode({
+						postback_url: api.getServerUrl() + api.getApiVersion() + '/photocompleted' + api.urlEncode({
 							album: albumId,
 							authToken: api.getAuthToken()
 						})

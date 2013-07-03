@@ -89,52 +89,7 @@ define(function(require) {
 
 		refreshProfile: function(myProfile){
 			//set images data
-			console.log(this.model.get('albums'));
-			this.model.get('albums')[0].photos = [{
-					id: 'xxxxxxxxxx01',
-					big_url: 'img/profilePhotosTest/1.jpg',
-					thumb_url: 'img/profilePhotosTest/1.jpg',
-				}, {
-					id: 'xxxxxxxxxx02',
-					big_url: 'img/profilePhotosTest/2.jpg',
-					thumb_url: 'img/profilePhotosTest/2.jpg',
-				}, {
-					id: 'xxxxxxxxxx03',
-					big_url: 'img/profilePhotosTest/3.jpg',
-					thumb_url: 'img/profilePhotosTest/3.jpg',
-				}, {
-					id: 'xxxxxxxxxx04',
-					big_url: 'img/profilePhotosTest/4.jpg',
-					thumb_url: 'img/profilePhotosTest/4.jpg',
-				}, {
-					id: 'xxxxxxxxxx05',
-					big_url: 'img/profilePhotosTest/5.jpg',
-					thumb_url: 'img/profilePhotosTest/5.jpg',
-				}, {
-					id: 'xxxxxxxxxx06',
-					big_url: 'img/profilePhotosTest/6.jpg',
-					thumb_url: 'img/profilePhotosTest/6.jpg',
-				}, {
-					id: 'xxxxxxxxxx07',
-					big_url: 'img/profilePhotosTest/7.jpg',
-					thumb_url: 'img/profilePhotosTest/7.jpg',
-				}, {
-					id: 'xxxxxxxxxx08',
-					big_url: 'img/profilePhotosTest/8.jpg',
-					thumb_url: 'img/profilePhotosTest/8.jpg',
-				}, {
-					id: 'xxxxxxxxxx09',
-					big_url: 'img/profilePhotosTest/9.jpg',
-					thumb_url: 'img/profilePhotosTest/9.jpg',
-				}, {
-					id: 'xxxxxxxxxx10',
-					big_url: 'img/profilePhotosTest/10.jpg',
-					thumb_url: 'img/profilePhotosTest/10.jpg',
-				}, {
-					id: 'xxxxxxxxxx11',
-					big_url: 'img/profilePhotosTest/11.jpg',
-					thumb_url: 'img/profilePhotosTest/11.jpg',
-			}];
+			console.log(this.model.get('albums')[0]);
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
@@ -176,10 +131,7 @@ define(function(require) {
 				return $(li).data('photo-id');
 			});
 
-			api.put(api.getApiVersion() + '/albums/', {
-				id: $li.data('album.id'),
-				photos: ids,
-			});
+			api.put(api.getApiVersion() + '/albums/' + $li.data('album-id'), { photos: ids });
 		},
 
 		onCloseClick: function(e){
