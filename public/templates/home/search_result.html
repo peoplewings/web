@@ -66,16 +66,22 @@
 					<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
 					{{/if}}
 				</div>
+				{{#if wings.length }}
+				<dl>
+					<dt class="wings-tag">Wings</dt>
+					<dd class="wings">
+						{{#each wings }}
+							{{ self }}{{#unless last}},{{/unless}}
+						{{/each}}
+					</dd>
+				</dl>
+				{{/if}}
 				{{#if languages.length }}
 				<dl>
 					<dt class="languages-tag">Languages</dt>
 					<dd class="languages">
 						{{#each languages }}
-							{{#if last}}
-								{{ name }} ({{ level }}).
-							{{else}}
-								{{ name }} ({{ level }}),
-							{{/if}}
+							{{ name }} ({{ level }}){{#unless last}},{{/unless}}
 						{{/each}}
 					</dd>
 				</dl>
