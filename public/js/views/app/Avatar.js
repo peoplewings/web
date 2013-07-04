@@ -1,5 +1,4 @@
 //jshint camelcase:false
-/*globals Blitline */
 
 define(function(require) {
 
@@ -8,11 +7,9 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api2');
 	var utils = require('utils');
+	var blitline = require('tools/blitline');
 	var alerts = require("views/lib/alerts");
 	var spinner = require("views/lib/spinner");
-
-
-	var blitline = new Blitline();
 
 
 	var AvatarView = Backbone.View.extend({
@@ -80,12 +77,7 @@ define(function(require) {
 				}]
 			}];
 
-			blitline.submit(jobs, {
-				completed: this.resizeComplete
-				//submitted : function(jobIds, images) {
-				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
-				//}
-			});
+			blitline.submit(jobs, this.resizeComplete);
 		},
 
 		resizeComplete: function(images, error) {

@@ -1,5 +1,5 @@
 define(function(require) {
-
+	require('jquery.Datepicker');
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
@@ -9,14 +9,19 @@ define(function(require) {
 	var notifications = require('views/lib/notifications');
 	var MyProfile = require('views/app/MyProfile');
 	var MyWings = require('views/app/MyWings');
+	var CarouselView = require('views/lib/Carousel');
 	var profileTpl = require('tmpl!templates/app/profile/profile.html');
 	var basicTpl = require('tmpl!templates/app/profile/view.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile/view.about.html');
 	var likesTpl = require('tmpl!templates/app/profile/view.likes.html');
+	var photosTpl = require('tmpl!templates/app/profile/view.photos.html');
 	var contactTpl = require('tmpl!templates/app/profile/view.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile/view.places.html');
 	var wingTpl = require('tmpl!templates/app/profile/view.wing.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
+	var foundation = require("foundation");
+	var foundationClearing = require("foundationClearing");
+
 
 	var ProfileView = Backbone.View.extend({
 
@@ -26,10 +31,13 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
-			//"click ul.nav-tabs li a": "tabHandler",
 		},
 
 		initialize: function(userId) {
+			//binding
+			this.onCloseClick = this.onCloseClick.bind(this);
+			this.onPhotoSort = this.onPhotoSort.bind(this);
+
 			this.map = new MapView({
 				el: "#user-map",
 				id: "mapcanvas"
@@ -58,6 +66,18 @@ define(function(require) {
 			if (tab)
 				this.selectTab(tab);
 
+			//initialize foundation for this view to use in photo slide
+			this.$("#photo-box").foundation();
+
+			if (myProfile) {
+				this.$("#photo-box ul")
+					.addClass('sortable')
+					.sortable({ update: this.onPhotoSort });
+			}
+
+			//close image propagation
+			this.$('#collapse-photos .control').on('click', this.onCloseClick);
+
 			if (myProfile) {
 				if (!this.myProfile) {
 					this.myProfile = new MyProfile(this.model, this);
@@ -68,12 +88,15 @@ define(function(require) {
 		},
 
 		refreshProfile: function(myProfile){
+			//set images data
+			console.log(this.model.get('albums')[0]);
 
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#about-box").html(aboutTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#likes-box").html(likesTpl(this.model.toJSON(), {myProfile: myProfile}));
+			this.$("#photo-box").html(photosTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
@@ -102,6 +125,26 @@ define(function(require) {
 			});
 		},
 
+		onPhotoSort: function(event, ui) {
+			var $li = this.$("#photo-box ul li");
+			var ids = $li.toArray().map(function(li) {
+				return $(li).data('photo-id');
+			});
+
+			api.put(api.getApiVersion() + '/albums/' + $li.data('album-id'), { photos: ids });
+		},
+
+		onCloseClick: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+
+			var $li = $(e.target).closest('li');
+			var id = $li.data('photo-id');
+
+			$li.slideUp();
+			api['delete'](api.getApiVersion() + '/photos/' + id);
+		},
+
 		renderBox: function(box){
 			this.model.fetch({success: this.refreshBox.bind(this, box)});
 		},
@@ -118,6 +161,9 @@ define(function(require) {
 					tpl = aboutTpl(this.model.toJSON(), {myProfile: myProfile});
 					break;
 				case "likes-box":
+					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
+					break;
+				case "photos-box":
 					tpl = likesTpl(this.model.toJSON(), {myProfile: myProfile});
 					break;
 				case "contact-box":

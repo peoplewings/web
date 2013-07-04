@@ -7,12 +7,17 @@ define(function(require){
 	var api = require("api2");
 	var utils = require("utils");
 	var phrases = require('phrases');
+	var blitline = require('tools/blitline');
 
 	var basicTpl = require('tmpl!templates/app/profile/form.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile/form.about.html');
 	var likesTpl = require('tmpl!templates/app/profile/form.likes.html');
 	var contactTpl = require('tmpl!templates/app/profile/form.contact.html');
 	var placesTpl = require('tmpl!templates/app/profile/form.places.html');
+
+	var photosListTpl = require('tmpl!templates/app/profile/view.photos_list.html');
+	var foundation = require("foundation");
+	var foundationClearing = require("foundationClearing");
 
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
@@ -88,20 +93,186 @@ define(function(require){
 			"keypress [name=otherLocations]": function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-
 			"submit form#basic-info-form": "submitProfile",
 			"submit form#about-me-form": "submitProfile",
 			"submit form#likes-form": "submitProfile",
 			"submit form#contact-form": "submitProfile",
 			"submit form#places-form": "submitProfile",
-
 			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
+			//photos events
+			"click #add_photo" : function(e){
+				var input = $(e.target).find('#input-photo-upload');
+				input.clone()
+					.removeAttr('id')
+					.appendTo(input.parent())
+					.trigger('click');
+			},
+			'change #add_photo input[type="file"]':function(e){
+				var photoData = e.target.files[0];
+				this.checkPhotoData(photoData, $(e.target).data('album'));
+				$(e.target).closest('form').get(0).reset();
+			},
+			"mouseenter #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').show();
+			},
+
+			"mouseleave #collapse-photos li" : function(e){
+				$(e.target).parents('li').find('.control').hide();
+			}
+		},
+
+		checkPhotoData: function(photo, albumId){
+			var self = this;
+
+			//check size: is more than 6Mb
+			if(photo.size > 6291456){
+				alert('this photo is bigger than 6 Mb');
+				return;
+			}
+
+			//create image
+			var img = new Image();
+			var url = window.URL || window.webkitURL;
+			if(url){
+				img.src = url.createObjectURL(photo);
+			}else{
+				alerts.error('Your browser does not support image loading. To get the best experience, please download Chrome');
+			}
+
+			//check dimension
+			img.onload = function(){
+				if(this.width < 380){
+					alerts.error('The photo width must be bigger than 380px');
+					return;
+				}
+				if(this.height < 150){
+					alerts.error('The photo width must be bigger than 150px');
+					return;
+				}
+
+				var id = Date.now() + '-' + Math.random();
+
+				//render photo
+				self.renderPhotoUpload(this, id);
+
+				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
+					var jobs = [{
+						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+						"src": url,
+						"content_type_json": true,
+
+						"functions": [{
+							"name": "resize_to_fit",
+							"params": {
+								"width": 600,
+								"height": 600
+							},
+							"save": {
+								"image_identifier": 'big',
+								"quality": 100,
+								"s3_destination":{
+									"bucket":{
+										"name":"peoplewings-test-media",
+										"location":"eu-west-1"
+									},
+									"key":"/photoalbums/big_" + id
+								}
+							}
+						}, {
+							"name": "resize_to_fit",
+							"params": {
+								"width": 380
+							},
+							"save": {
+								"image_identifier": 'thumb',
+								"quality": 100,
+								"s3_destination":{
+									"bucket":{
+										"name":"peoplewings-test-media",
+										"location":"eu-west-1"
+									},
+									"key":"/photoalbums/thumb_" + id
+								}
+							}
+						}],
+
+						postback_url: api.getServerUrl() + api.getApiVersion() + '/photocompleted' + api.urlEncode({
+							album: albumId,
+							authToken: api.getAuthToken(),
+							hash: id,
+						})
+					}];
+
+					blitline.submit(jobs);
+				});
+			};
+		},
+
+		renderPhotoUpload: function(photo, id){
+			var self = this;
+			this.$el.find('#photo-box .clearing-thumbs').prepend(photosListTpl({
+				uploading: true,
+				id: id,
+				src: photo.src
+			}));
+
+			//initialize foundation for this view to use in photo slide
+			this.$("#photo-box").foundation();
+
+			//photos draggable
+			this.$("#photo-box ul").sortable();
+
+			//close image propagation
+			this.$('#collapse-photos .control')
+				.off()
+				.on('click', this.removePhoto);
+
+			this.uploadStart(id);
+		},
+
+		uploadStart: function(id) {
+			this._uploading.push(id);
+			console.log('Uploading', id);
+			if (!this._interval) {
+				this._interval = setInterval(api.control, 5000);
+				console.log('Starting interval');
+			}
+		},
+
+		uploadEnd: function(id) {
+			this._uploading = this._uploading.filter(function(a) { return a !== id });
+			console.log('Upload end', id);
+			if (!this._uploading.length) {
+				clearInterval(this._interval);
+				this._interval = null;
+				console.log('Clearing interval');
+			}
 		},
 
 		initialize: function(model, parent) {
+			this._uploading = [];
 			this.model = model;
 			this.parentCtrl = parent;
+			this.removePhoto = this.removePhoto.bind(this);
+			var self = this;
+
+			//album update listener
+			api.listenUpdate('photos', function(photos) {
+				photos.forEach(function(photo) {
+					var el = $(photosListTpl(photo));
+
+					$('[data-tmp-photo-id="' + photo.hash + '"]').replaceWith(el);
+					el.find('.control').on('click', parent.onCloseClick);
+					self.uploadEnd(photo.hash);
+				});
+			});
+		},
+
+		removePhoto: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$(e.target).parents('li').slideUp();
 		},
 
 		closeBox: function(evt){
@@ -150,7 +321,6 @@ define(function(require){
 			$(box).html(tpl);
 			if (initMethod)
 				initMethod();
-
 		},
 
 		refresh: function() {
@@ -238,7 +408,6 @@ define(function(require){
 		},
 
 		initLocationTypeahead: function(){
-
 			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
 			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));
 
@@ -273,6 +442,41 @@ define(function(require){
 					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng());
 				}
 			};
+		},
+
+		uploadFile: function(event) {
+			var files = event.target.files;
+			//Maximum file size: 6Mb
+			if (files[0].size > 6291456){
+				alerts.error('Maximum file size allowed is 6 MB');
+				return;
+			}
+
+			if (!files.length)
+				return;
+
+			spinner.show('avatar');
+			utils.uploadAmazon(files[0], 'to-resize').then(this.uploadComplete);
+		},
+
+		uploadComplete: function(url) {
+			var jobs = [{
+				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
+				"src": url,
+
+				"functions": [{
+					"name": "resize_to_fit",
+					"params": {
+						"width": this.defaultMaxWidth,
+						"height": this.defaultMaxWidth
+					},
+					"save": {
+						"image_identifier": "external_sample_1"
+					}
+				}]
+			}];
+
+			blitline.submit(jobs, this.resizeComplete);
 		},
 
 		submitProfile: function(e){

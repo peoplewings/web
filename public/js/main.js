@@ -32,6 +32,18 @@ requirejs.config({
 		"phrases": "core/phrases",
 		"config": "core/config",
 		"cookies": "core/cookies",
+		"typeahead": "lib/plugins/bootstrap-typeahead-ajax",
+		//"spinner": "lib/spin",
+		//"jquery.spinner": "lib/plugins/spin.plugin",
+		"async": "lib/plugins/async",
+		"jquery.Jcrop": "lib/plugins/jquery.Jcrop",
+		"jquery.Datepicker": "lib/plugins/jquery-ui-1.10.2.custom.min",
+		//"jquery.Datepicker": "lib/plugins/jquery-ui-1.9.1.custom.min",
+		"text": "lib/plugins/text",
+		"tmpl": "lib/plugins/tmpl",
+		"handlebars": "lib/handlebars",
+		"foundation": 'lib/plugins/foundation',
+		"foundationClearing": 'lib/plugins/foundation.clearing'
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
@@ -56,6 +68,13 @@ requirejs.config({
 		"jquery.Datepicker": ["jquery"],
 		"jquery.Validate": ["jquery"],
 		"jquery.Extensions": ["jquery.Validate"],
+		"foundation":{
+			"deps": ["jquery"],
+			"exports": "Foundation"
+		},
+		"foundationClearing":{
+			"deps": ["jquery", "foundation"]
+		}
 
 	} // end Shim Configuration
 });
