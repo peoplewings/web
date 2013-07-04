@@ -1,9 +1,19 @@
-<li class="uploading" data-slide-to="{{id}}">
-	<a href="{{src}}">
-		<img src="{{src}}">
-	</a>
-	<p>Uploading...</p>
-	<div class="control" hidden>
-		<button class="close">&times;</button>
-	</div>
-</li>
+{{#if uploading }}
+	<li class="uploading" data-tmp-photo-id="{{id}}">
+		<a href="{{src}}">
+			<img src="{{src}}">
+		</a>
+
+		<p>Uploading...</p>
+	</li>
+{{else}}
+	<li data-album-id="{{albumId}}" data-photo-id="{{id}}">
+		<a href="{{bigUrl}}">
+			<img src="{{thumbUrl}}">
+		</a>
+
+		<div class="control" hidden>
+			<button class="close">&times;</button>
+		</div>
+	</li>
+{{/if}}

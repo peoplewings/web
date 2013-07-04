@@ -5,7 +5,9 @@
 		{{#if myProfile}}
 		<a id="add_photo" class="button-edit-info edit-box-btn">
 			+ Add
-			<input type="file" accept="image/*" data-album="{{albums.0.id}}" hidden>
+			<form hidden>
+				<input type="file" id="input-photo-upload" accept="image/*" data-album="{{albums.0.id}}">
+			</form>
 		</a>
 
 		{{/if}}
@@ -18,7 +20,7 @@
 					<ul class="clearing-thumbs" data-clearing>
 					{{#each albums }}
 					{{#each photos}}
-						<li data-slide-to="{{@index}}" data-album-id="{{../id}}" data-photo-id="{{id}}">
+						<li data-album-id="{{../id}}" data-photo-id="{{id}}">
 							<a href="{{bigUrl}}">
 								<img src="{{thumbUrl}}">
 							</a>

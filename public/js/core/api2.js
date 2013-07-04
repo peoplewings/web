@@ -22,6 +22,7 @@ define(function(require) {
 	var updateListeners = {};
 
 	function parseUpdates(updates) {
+		console.log('UPDATES', updates);
 		_.each(updates, function(value, key) {
 			var listeners = updateListeners[key];
 			if (!listeners)
@@ -232,6 +233,10 @@ define(function(require) {
 		},
 		get: function(uri, params) {
 			return request('GET', addParams(uri, params), null);
+		},
+
+		control: function() {
+			request('GET', apiVersion + '/control');
 		},
 
 		listenUpdate: registerUpdateListener,

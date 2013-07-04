@@ -103,11 +103,16 @@ define(function(require){
 			"click button.cancel-edition-btn": "closeBox",
 			//photos events
 			"click #add_photo" : function(e){
-				$(e.target).find('input[type="file"]').trigger('click');
+				var input = $(e.target).find('#input-photo-upload');
+				input.clone()
+					.removeAttr('id')
+					.appendTo(input.parent())
+					.trigger('click');
 			},
 			'change #add_photo input[type="file"]':function(e){
 				var photoData = e.target.files[0];
 				this.checkPhotoData(photoData, $(e.target).data('album'));
+				$(e.target).closest('form').get(0).reset();
 			},
 			"mouseenter #collapse-photos li" : function(e){
 				$(e.target).parents('li').find('.control').show();
@@ -147,12 +152,12 @@ define(function(require){
 					return;
 				}
 
+				var id = Date.now() + '-' + Math.random();
+
 				//render photo
-				self.renderPhotoUpload(this);
+				self.renderPhotoUpload(this, id);
 
 				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
-					var id = Date.now() + '-' + Math.random();
-
 					var jobs = [{
 						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
 						"src": url,
@@ -195,19 +200,22 @@ define(function(require){
 
 						postback_url: api.getServerUrl() + api.getApiVersion() + '/photocompleted' + api.urlEncode({
 							album: albumId,
-							authToken: api.getAuthToken()
+							authToken: api.getAuthToken(),
+							hash: id,
 						})
 					}];
 
-					blitline.submit(jobs, {});
+					self._queue.push(jobs);
+					self.nextBlitlineTask();
 				});
 			};
 		},
 
-		renderPhotoUpload: function(photo){
+		renderPhotoUpload: function(photo, id){
 			var self = this;
 			this.$el.find('#photo-box .clearing-thumbs').prepend(photosListTpl({
-				id: 0,
+				uploading: true,
+				id: id,
 				src: photo.src
 			}));
 
@@ -217,26 +225,64 @@ define(function(require){
 			//photos draggable
 			this.$("#photo-box ul").sortable();
 
-			//hack to imitate upload process
-			setTimeout(function(){
-				self.$('.uploading p').remove();
-				self.$('.uploading').removeClass('uploading');
-			},1500);
-
 			//close image propagation
 			this.$('#collapse-photos .control')
 				.off()
 				.on('click', this.removePhoto);
+
+			this.uploadStart(id);
 		},
+
+		uploadStart: function(id) {
+			this._uploading.push(id);
+			console.log('Uploading', id);
+			if (!this._interval) {
+				this._interval = setInterval(api.control, 5000);
+				console.log('Starting interval');
+			}
+		},
+
+		uploadEnd: function(id) {
+			this.nextBlitlineTask();
+			this._uploading = this._uploading.filter(function(a) { return a !== id });
+			console.log('Upload end', id);
+			if (!this._uploading.length) {
+				clearInterval(this._interval);
+				this._interval = null;
+				console.log('Clearing interval');
+			}
+		},
+
+		nextBlitlineTask: function() {
+			if (this._working || !this._queue.length) return;
+			this._working = true;
+			var self = this;
+
+			blitline.submit(this._queue.shift(), {
+				completed : function(images, error) {
+					self._working = false;
+					self.nextBlitlineTask();
+				},
+			});
+		},
+
 		initialize: function(model, parent) {
+			this._uploading = [];
+			this._queue = [];
 			this.model = model;
 			this.parentCtrl = parent;
 			this.removePhoto = this.removePhoto.bind(this);
+			var self = this;
 
 			//album update listener
-			api.listenUpdate('album', function(value) {
-				console.log('album update:', value);
-				debugger;
+			api.listenUpdate('photos', function(photos) {
+				photos.forEach(function(photo) {
+					var el = $(photosListTpl(photo));
+
+					$('[data-tmp-photo-id="' + photo.hash + '"]').replaceWith(el);
+					el.find('.control').on('click', parent.onCloseClick);
+					self.uploadEnd(photo.hash);
+				});
 			});
 		},
 
