@@ -1,0 +1,103 @@
+/* --------------------------------------------------------------------------
+ * Search People
+ * --------------------------------------------------------------------------
+
+form#people-search-form
+	padding: 30px
+	padding-top: 10px
+	background: #E1E0D9
+	@include border-radius(12px)
+	overflow: hidden
+	margin: 0
+
+	div.form-block
+		clear: both
+
+		label
+			display: none
+			float: left
+			text-indent: -9999px
+			width: 67px
+			height: 20px
+			margin: 10px 10px 0 0
+
+		label.wings_text
+			display: block
+			background: $sprite
+			background-position: -1013px -263px
+			margin-right: 18px
+
+		label.people_text
+			display: block
+			background: $sprite
+			background-position: -1009px -215px
+			width: 75px
+
+		div.control-group
+			margin: 0
+			&:before
+				display: inline
+			&:after
+				display: inline
+
+			input, select
+				float: left
+				font-size: 12px
+				padding: 8px
+				@include border-radius(4px)
+				border: 1px solid #79766c
+				margin:
+					right: 4px
+					bottom: 4px
+					top: 0
+					left: 0
+				line-height: 15px
+
+			input.input-sdate
+				width: 90px
+				background: $sprite #FFF
+				background-position: 60px -156px
+
+			input.input-edate
+				width: 90px
+				background: $sprite #FFF
+				background-position: -40px -156px
+
+			input.input-large
+				width: 213px
+
+			select
+				height: 38px
+
+			select.input-guests
+				width: 90px
+				background: $sprite #FFF
+				background-position: -402px -8px
+
+			select.input-age1
+				width: 77px
+				background: $sprite #FFF
+				background-position: -415px -8px
+
+			select.input-age2
+				width: 57px
+				background: $sprite #FFF
+				background-position: -435px -8px
+
+			select.input-language
+				width: 89px
+				background: $sprite #FFF
+				background-position: -402px -8px
+
+			select.input-others
+				width: 108px
+				background: $sprite #FFF
+				background-position: -387px -8px
+
+	div.form-actions
+		float: right
+		margin-bottom: 0px
+		margin-top: 12px
+		background: none
+		padding: 0px
+		border: none

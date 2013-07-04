@@ -32,7 +32,7 @@ define(function(require) {
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
 			"search": "search",
-			"search/?:params": "search",
+			"search/:type/?:params": "search",
 			//Logged User patterns
 			"logout": "logout",
 			"settings":"settings",
@@ -82,31 +82,10 @@ define(function(require) {
 		landing: function() {
 			document.location = 'landing.html';
 		},
-
-		search: function(params){
+		search: function(type, params){
 			this.showHeaderSearch(false);
 			this.showBackgroundImage(false);
-
-			var unserialized = $.deparam(params);
-			var filters = _.defaults(unserialized, {
-				capacity: 1,
-				language: 'all',
-				type: 'Host',
-				gender: 'Both',
-				startAge: 18,
-				endAge: 98,
-				page: 1,
-			});
-
-			console.log(filters);
-
-			homeView.render(filters);
-
-			api.get(api.getApiVersion() + "/profiles", filters)
-				.prop('data')
-				.then(function(results){
-					homeView.renderResults(filters, results);
-				});
+			homeView.execute(type || 'people', $.deparam(params));
 		},
 		//Logged User hashs
 		logout: function() {
@@ -179,8 +158,8 @@ define(function(require) {
 			if (!api.userIsLoggedIn())
 				return this.landing();
 
-			this.navigate('/search');
-			this.search();
+			this.navigate('/search/people/');
+			this.search('people');
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();

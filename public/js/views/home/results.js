@@ -25,6 +25,7 @@ define(function(require) {
 			this.namesById = {};
 			this.logged = options.logged;
 			this.query = options.query;
+			this.type = options.type;
 		},
 
 		setQuery: function(query) {
@@ -35,6 +36,7 @@ define(function(require) {
 
 			this.$el.html(resultsTpl({
 				notlogged: !self.logged,
+				isPeople: this.type === 'people',
 				startResult: results.startResult,
 				endResult: results.endResult,
 				totalCount: results.count,
