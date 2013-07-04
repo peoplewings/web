@@ -7,6 +7,7 @@ define(function(require){
 	var api = require("api2");
 	var utils = require("utils");
 	var phrases = require('phrases');
+	var blitline = require('tools/blitline');
 
 	var basicTpl = require('tmpl!templates/app/profile/form.basic.html');
 	var aboutTpl = require('tmpl!templates/app/profile/form.about.html');
@@ -21,8 +22,6 @@ define(function(require){
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
 	var AvatarView = require("views/app/Avatar");
-
-	var blitline = new Blitline();
 
 	function extract(source, props) {
 		var target = {};
@@ -205,8 +204,7 @@ define(function(require){
 						})
 					}];
 
-					self._queue.push(jobs);
-					self.nextBlitlineTask();
+					blitline.submit(jobs);
 				});
 			};
 		},
@@ -243,7 +241,6 @@ define(function(require){
 		},
 
 		uploadEnd: function(id) {
-			this.nextBlitlineTask();
 			this._uploading = this._uploading.filter(function(a) { return a !== id });
 			console.log('Upload end', id);
 			if (!this._uploading.length) {
@@ -253,22 +250,8 @@ define(function(require){
 			}
 		},
 
-		nextBlitlineTask: function() {
-			if (this._working || !this._queue.length) return;
-			this._working = true;
-			var self = this;
-
-			blitline.submit(this._queue.shift(), {
-				completed : function(images, error) {
-					self._working = false;
-					self.nextBlitlineTask();
-				},
-			});
-		},
-
 		initialize: function(model, parent) {
 			this._uploading = [];
-			this._queue = [];
 			this.model = model;
 			this.parentCtrl = parent;
 			this.removePhoto = this.removePhoto.bind(this);
@@ -493,12 +476,7 @@ define(function(require){
 				}]
 			}];
 
-			blitline.submit(jobs, {
-				completed: this.resizeComplete
-				//submitted : function(jobIds, images) {
-				//	console.log("Job has been succesfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
-				//}
-			});
+			blitline.submit(jobs, this.resizeComplete);
 		},
 
 		submitProfile: function(e){
