@@ -25,11 +25,11 @@ define(function(require) {
 
 		},
 
-		render: function(params) {
-			$(this.el).html(mainTpl);
+		render: function(type, params) {
+			$(this.el).html(mainTpl({ selected: type }));
 
-			this.$("#people").html(peopleTpl);
-			this.$("#accomodation").html(accomodationTpl);
+			this.$("#people").html(peopleTpl(params));
+			this.$("#accommodation").html(accomodationTpl(params));
 
 			this.$("input[name=startDate]").datepicker({
 				minDate: new Date(),
@@ -40,11 +40,12 @@ define(function(require) {
 				dateFormat: "yy-mm-dd",
 			});
 
+			this.search = new google.maps.places.Autocomplete(document.getElementById("inputLocation"), { types: ['(cities)'] });
 			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
 
 			/*
-			* BUG: Do search is never reached if user selects city by pressing Enter
-			*/
+			 * BUG: Do search is never reached if user selects city by pressing Enter
+			 */
 			google.maps.event.addListener(this.search, 'place_changed', this.setCityField.bind(this));
 
 			if (params)
@@ -97,32 +98,16 @@ define(function(require) {
 			});
 		},
 
-		execute: function(type, params) {
-			return type === 'accomodation' ?
-				this.executeAccomodation(params) :
-				this.executePeople(params);
-		},
-
-		executePeople: function(params) {
-			var self = this;
-			var filters = _.defaults(params, {
+		_defaults: {
+			'people': {
 				wingType: 'people',
 				language: 'all',
 				gender: 'Both',
 				startAge: 18,
 				endAge: 98,
 				page: 1,
-			});
-
-			this.render(filters);
-			return api.get(api.getApiVersion() + "/profiles", filters)
-				.prop('data')
-				.then(this.renderResults.bind(this, 'people', filters));
-		},
-
-		executeAccomodation: function(params) {
-			var self = this;
-			var filters = _.defaults(params, {
+			},
+			'accommodation': {
 				capacity: 1,
 				language: 'all',
 				type: 'Host',
@@ -130,26 +115,23 @@ define(function(require) {
 				startAge: 18,
 				endAge: 98,
 				page: 1,
-			});
+			}
+		},
 
-			this.render(filters);
+		execute: function(type, params) {
+			var filters = _.defaults(params, this._defaults[type]);
+			this.render(type, filters);
 			return api.get(api.getApiVersion() + "/profiles", filters)
 				.prop('data')
-				.then(this.renderResults.bind(this, 'accomodation', filters));
+				.then(this.renderResults.bind(this, type, filters));
 		},
 
 		searchPeople: function(e) {
 			var errors = [];
 			e.preventDefault();
 
-			var crc = this.$('#inputWings').val();
-			this.$('#inputWings').val(crc.split(',')[0]);
-
-			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
-				errors.push({css: 'date-error', text: 'Invalid dates'});
-
-			if (+$("select[name=endAge]").val() < +$("select[name=startAge]").val())
-				errors.push({css: 'age-error', text: 'Invalid age'});
+			var crc = this.$('#inputLocation').val();
+			this.$('#inputLocation').val(crc.split(',')[0]);
 
 			if (errors.length)
 				return this.displayErrors(errors);
@@ -162,7 +144,7 @@ define(function(require) {
 
 			formData.page = 1;
 			//Trigger false isn't working here due to BacboneJS bug I guess
-			router.navigate("#/search/" + api.urlEncode(formData), {trigger: false});
+			router.navigate("#/search/people/" + api.urlEncode(formData), {trigger: false});
 
 		},
 
