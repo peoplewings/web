@@ -45,27 +45,28 @@
 			</div>
 			<div id="categories" class="navbar-inner">
 				<ul id="options">
-					<li><a class="icon all">All</a><span>coming soon!</span></li>
-					<li><a href="#" class="icon accommodation selected">Acommodation</a><span class="span-accommodation">accommodation!</span></li>
-					<li><a class="icon transport">Transport</a><span class="span-transport">coming soon!</span></li>
-					<li><a class="icon travel">Travel</a><span class="span-travel">coming soon!</span></li>
+					<li>
+						<a class="icon people selected">All people</a>
+						<span>All people!</span>
+					</li>
+					<li>
+						<a href="./#/search/accommodation/" class="icon accommodation">Acommodation</a>
+						<span class="span-accommodation">accommodation!</span>
+					</li>
+					<li>
+						<a class="icon transport">Transport</a>
+						<span class="span-transport">coming soon!</span>
+					</li>
+					<li>
+						<a class="icon travel">Travel</a>
+						<span class="span-travel">coming soon!</span>
+					</li>
 				</ul>
 			</div>
 			<div id="landing-form" class="navbar-inner">
 				<form id="accomodation-search-form">
 					<div class="control-group">
-						<label class="control-label wings_text" for="inputWings">WINGS</label>
-						<input type="text" id="inputWings" name="wings" placeholder="Where do you need accommodation?">
-					</div>
-					<div class="control-group">
-						<label class="control-label people_text" for="inputPeople">PEOPLE</label>
-						<div class="controls">
-							<select name="startAge">
-								<option value="18">Age 18</option>
-							</select>
-							<select name="endAge">
-							</select>
-						</div>
+						<input type="text" id="inputLocation" name="location" placeholder="Where do you wanna met people?">
 					</div>
 					<button type="submit" class="button-peoplewings">Search Peoplewings</button>
 				</form>
@@ -112,45 +113,13 @@
 	<script type="text/javascript">
 	$(function() {
 
-		$('[name="startAge"],[name="endAge"]').append(Array(41).join().split(',').map(function(_, index) {
-			var num = 20 + index * 2;
-			return '<option value="' + num + '">' + num + '</option>';
-		}).join(''));
-		var options = $('[name="endAge"] option').get();
-		options.pop();
-		$('[name="endAge"]').html(options.reverse());
-
 		$('#accomodation-search-form').on('submit', function() {
-			if (+$('select[name="endAge"]').val() < +$('select[name="startAge"]').val()) {
-				$('.form-errors').html('The start age is bigger than end age');
-				return false;
-			}
-
-			document.location =
-			'index.html#/search/accommodation/?capacity=1&language=all&type=Host&gender=Both&page=1&' +
-			$('#accomodation-search-form [name]')
-			.toArray()
-			.map($)
-			.map(function(input) {
-				if ('inputWings' === input.attr('id') && parsedCity)
-					input.val(parsedCity);
-				else
-					input.val(input.val().split(',')[0]);
-				if (input.val())
-					return encodeURIComponent(input.attr('name')) + '=' + encodeURIComponent(input.val());
-
-			})
-			.filter(Boolean)
-			.join('&');
-
+			var city = parsedCity ||$('#accomodation-search-form [name=location]').val().split(',')[0]
+			document.location ='./#/search/people/' + (city ? '?location=' + city : '');
 			return false;
 		});
 
-		var search = new google.maps.places.Autocomplete(document.getElementById('inputWings'), { types: ['(cities)'] });
-
-		var parsedCity = null;
-
-		var parsePlace = function(){
+		function parsePlace() {
 			function getCC(addressComponents){
 				var data = {};
 				for (component in addressComponents){
@@ -173,22 +142,24 @@
 			parsedCity = getCC(search.getPlace().address_components).city;
 		}
 
+		var search = new google.maps.places.Autocomplete(document.getElementById('inputLocation'), { types: ['(cities)'] });
+		var parsedCity = null;
 		google.maps.event.addListener(search, 'place_changed', parsePlace);
 
 		$('ul#options li span').hide();
-
 		$('ul#options li a').hover(function(e){
 			e.preventDefault();
-			var tip = e.target.parentNode.getElementsByTagName('span');
-			$(tip).show();
-		},
-		function(e){
+			$(e.target)
+				.parent()
+				.find('span')
+					.show();
+		}, function(e){
 			e.preventDefault();
-			var tip = e.target.parentNode.getElementsByTagName('span');
-			$(tip).hide();
+			$(e.target)
+				.parent()
+				.find('span')
+					.hide();
 		});
-
-
 	});
 
 </script>

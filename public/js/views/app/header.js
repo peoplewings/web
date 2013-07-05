@@ -46,14 +46,10 @@ define(function(require){
 		doSearch: function(){
 			var $header = this.$('#header-search');
 			var cc = utils.getCityAndCountry(this.search.getPlace().address_components);
-
-			if (!cc)
-				return;
-
-			var filter = $header.val() ? '&wings=' + cc.city : '';
+			if (!cc) return;
 			$header.val('');
 			$header.blur();
-			document.location.hash = '/search/?capacity=1&language=all&type=Host&gender=Both&page=1&startAge=18&endAge=98' + filter;
+			document.location.hash = '/search/people/?location=' + cc.city;
 		}
 	});
 

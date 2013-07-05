@@ -65,16 +65,16 @@
 	ul
 		li
 			float: none
-	.all
+	.people.selected
 		background: $sprite
-		background-position: -220px -520px
+		background-position: -20px -520px
+	.accommodation
+		background: $sprite
+		background-position: -220px -620px
 		&:hover
 			background: $sprite
-			background-position: -120px -520px
+			background-position: -120px -620px
 			cursor: default
-	.accommodation.selected
-		background: $sprite
-		background-position: -20px -620px
 	.transport
 		background: $sprite
 		background-position: -220px -720px
@@ -115,7 +115,7 @@
 	form
 		div.control-group
 			float: left
-			width: 330px
+			width: 660px
 			label.control-label
 				float: left
 				width: 67px
@@ -129,11 +129,10 @@
 				width: 75px
 				background: $sprite
 				background-position: -1009px -215px
-			input, select
+			input
 				padding: 9px
 				@include border-radius(3px)
-			input
-				width: 216px
+				width: 615px
 				margin: 10px 5px
 				font-size: 13px
 			div.controls

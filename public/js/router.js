@@ -32,6 +32,8 @@ define(function(require) {
 			"forgot": "forgotPassword",
 			"forgot/:token": "forgotPassword",
 			"search": "search",
+			"search/:type": "search",
+			"search/:type/": "search",
 			"search/:type/?:params": "search",
 			//Logged User patterns
 			"logout": "logout",
