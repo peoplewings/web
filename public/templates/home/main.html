@@ -2,11 +2,15 @@
 	<div class="span8">
 		<div class="tab-content">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#people" class="people" data-toggle="tab">Poeple</a></li>
-				<li><a href="#accomodation" class="accommodation" data-toggle="tab">Accomodation</a></li>
+				<li class="{{#equals selected 'people' }}active{{/equals}}">
+					<a href="#/search/people/" class="people">Poeple</a>
+				</li>
+				<li class="{{#equals selected 'accommodation' }}active{{/equals}}">
+					<a href="#/search/accommodation/" class="accommodation">Accommodation</a>
+				</li>
 			</ul>
-			<div class="tab-pane active" id="people">People</div>
-			<div class="tab-pane" id="accomodation">Accomodation</div>
+			<div class="tab-pane {{#equals selected 'people' }}active{{/equals}}" id="people">People</div>
+			<div class="tab-pane {{#equals selected 'accommodation' }}active{{/equals}}" id="accommodation">Accommodation</div>
 		</div><!-- EOF tab-content -->
 	</div><!-- EOF span8 -->
 </div><!-- EOF row -->
