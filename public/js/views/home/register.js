@@ -96,9 +96,6 @@ define(function(require) {
 
 			spinner.show('register');
 
-			console.log(data);
-			return;
-
 			api.post(api.getApiVersion() + '/newuser', data)
 			.then(function(response){
 				spinner.hide('register');
