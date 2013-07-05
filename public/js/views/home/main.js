@@ -143,6 +143,12 @@ define(function(require) {
 			}
 
 			formData.page = 1;
+
+			_.each(this._defaults['people'], function(value, key) {
+				if (formData[key] == value)
+					delete formData[key];
+			});
+
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/people/" + api.urlEncode(formData), {trigger: false});
 
@@ -171,6 +177,12 @@ define(function(require) {
 			}
 
 			formData.page = 1;
+
+			_.each(this._defaults['accommodation'], function(value, key) {
+				if (formData[key] == value)
+					delete formData[key];
+			});
+
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate("#/search/accommodation/" + api.urlEncode(formData), {trigger: false});
 		},
