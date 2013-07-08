@@ -425,9 +425,9 @@ button.close
 					border-top: 1px solid #D0CEC7
 					overflow: hidden
 					cursor: pointer
+
 					span
 						background: $sprite
-						background-position: -658px -8px
 						text-transform: uppercase
 						font-weight: bold
 						font-size: 13px
@@ -437,6 +437,18 @@ button.close
 						width: 74px
 						margin: 0 auto
 						display: block
+					span.see-more
+						background-position: -658px -8px
+						display: none
+					span.see-less
+						background-position: -861px -8px
+
+					&.collapsed
+						span.see-more
+							display: block
+						span.see-less
+							display: none
+
 
 				.button-group
 					float: right
