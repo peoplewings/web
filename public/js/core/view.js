@@ -36,6 +36,10 @@ define(function(require) {
 		return Handlebars.helpers.unless.call(this, value && (value.indexOf(expected) !== -1), options);
 	});
 
+	Handlebars.registerHelper('escape', function(text, options) {
+		return new Handlebars.SafeString(text.replace(/\n/g, '<br>'));
+	});
+
 	Handlebars.registerHelper('date', function(value, format) {
 		var date = typeof value === 'number' ? moment.unix(value) : moment(value);
 
@@ -53,7 +57,7 @@ define(function(require) {
 	});
 
 	Handlebars.registerHelper('rate', function(rate) {
-		return (rate === -1) ? new Handlebars.SafeString('-') : new Handlebars.SafeString(rate + '%');
+		return new Handlebars.SafeString(rate === -1 ? '-' : rate + '%');
 	});
 
 	var originalEach = Handlebars.helpers.each;
