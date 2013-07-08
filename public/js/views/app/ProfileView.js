@@ -100,8 +100,19 @@ define(function(require) {
 			this.$("#contact-box").html(contactTpl(this.model.toJSON(), {myProfile: myProfile}));
 			this.$("#places-box").html(placesTpl(this.model.toJSON(), {myProfile: myProfile}));
 
+			this.fixBoxes();
 			this.map.render();
 			this.initMarkers();
+		},
+
+		fixBoxes: function() {
+			$('.accordion-group').each(function() {
+				var accordion = $(this);
+				var maxHeight = accordion.find('.accordion-body').attr('mincollapse');
+				var height = accordion.find('.accordion-inner').outerHeight();
+				if (height < maxHeight)
+					accordion.find('.accordion-heading').hide();
+			});
 		},
 
 		refreshWings: function(myProfile){
