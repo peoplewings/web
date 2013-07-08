@@ -24,7 +24,6 @@ define(function(require) {
 			return reduced && !!actual;
 		}, true);
 
-		console.log(value);
 		return Handlebars.helpers['if'].call(this, value, options);
 	});
 

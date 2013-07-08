@@ -22,7 +22,6 @@ define(function(require) {
 
 		events: {
 			"click .my-profile #upload-avatar": function(e) {
-				console.log('aaaaa');
 				e.preventDefault();
 				$('#upload').trigger('click');
 			},

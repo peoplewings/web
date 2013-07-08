@@ -88,9 +88,6 @@ define(function(require) {
 		},
 
 		refreshProfile: function(myProfile){
-			//set images data
-			console.log(this.model.get('albums')[0]);
-
 			$(this.el).html(profileTpl(this.model.toJSON(), {myProfile: myProfile}));
 
 			this.$("#basic-box").html(basicTpl(this.model.toJSON(), {myProfile: myProfile}));
