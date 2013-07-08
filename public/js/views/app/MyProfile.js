@@ -395,9 +395,6 @@ define(function(require){
 								name: query,
 						};
 					},
-					/*onselect: function(){
-						console.log(arguments);
-					},*/
 					preProcess: function (data) {
 						if (!data.status)
 							return false;

@@ -10,11 +10,12 @@ define(function(require) {
 
 	var spinner = require('views/lib/spinner');
 
-	function loginCompleted(data) {
-		api.saveAuthToken(JSON.stringify({
+	function loginCompleted(data, remember) {
+		api.saveAuthToken({
 			auth: data.xAuthToken,
-			uid: data.idAccount
-		}));
+			uid: data.idAccount,
+			remember: remember
+		});
 
 		router.header = new Header;
 		router.navigate("#/search");
@@ -56,7 +57,7 @@ define(function(require) {
 			api.post(api.getApiVersion() + '/auth/', formData)
 				.prop('data')
 				.then(function(data){
-					self.loginSuccess(data, formData.remember);
+					self.loginSuccess(data, formData.remember === 'on');
 				})
 				.fin(function(){
 					self.$inputPassword.val('');
@@ -64,10 +65,10 @@ define(function(require) {
 				});
 		},
 
-		loginSuccess: function(data) {
+		loginSuccess: function(data, remember) {
 			this.$inputPassword.val("");
 			this.$inputEmail.val("");
-			loginCompleted(data);
+			loginCompleted(data, remember);
 		}
 	});
 

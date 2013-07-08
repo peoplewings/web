@@ -53,8 +53,6 @@ define(function(require){
 				this.selection = this.selection.filter(function(a) { return a !== thread; });
 				if ($(e.target).is(':checked'))
 					this.selection.push(thread);
-
-				console.log(this.selection);
 			},
 			'change #main-checker': function(e) {
 				var a = this.$list.find('input[type="checkbox"]');
