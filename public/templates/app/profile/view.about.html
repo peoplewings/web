@@ -13,40 +13,54 @@
 			<div id="collapse-about" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<div class="box-content">
-						{{#if allAboutYou}}
-						<h2>Description</h2>
-						<p>{{allAboutYou}}</p>
-						{{/if}}
-						{{#if mainMission}}
-						<h2>Current mission</h2>
-						<p>{{mainMission}}</p>
-						{{/if}}
-						{{#if occupation}}
-						<h2>Occupation</h2>
-						<p>{{occupation}}</p>
-						{{/if}}
-						{{#if company}}
-						<h2>Company</h2>
-						<p>{{company}}</p>
-						{{/if}}
-						{{#if education.length}}
-						<h2>Education</h2>
-						{{#each education}}
-						<p>{{self}}</p>
-						{{/each}}
-						{{/if}}
-						{{#if personalPhilosophy}}
-						<h2>Personal philosophy</h2>
-						<p>{{personalPhilosophy}}</p>
-						{{/if}}
-						{{#if politicalOpinion}}
-						<h2>Political views</h2>
-						<p>{{politicalOpinion}}</p>
-						{{/if}}
-						{{#if religion}}
-						<h2>Religion</h2>
-						<p>{{religion}}</p>
-						{{/if}}
+						{{#if_any allAboutYou mainMission occupation company
+							education.length personalPhilosophy politicalOpinion
+							religion }}
+
+							{{#if allAboutYou}}
+							<h2>Description</h2>
+							<p>{{allAboutYou}}</p>
+							{{/if}}
+							{{#if mainMission}}
+							<h2>Current mission</h2>
+							<p>{{mainMission}}</p>
+							{{/if}}
+							{{#if occupation}}
+							<h2>Occupation</h2>
+							<p>{{occupation}}</p>
+							{{/if}}
+							{{#if company}}
+							<h2>Company</h2>
+							<p>{{company}}</p>
+							{{/if}}
+							{{#if education.length}}
+							<h2>Education</h2>
+							{{#each education}}
+							<p>{{self}}</p>
+							{{/each}}
+							{{/if}}
+							{{#if personalPhilosophy}}
+							<h2>Personal philosophy</h2>
+							<p>{{personalPhilosophy}}</p>
+							{{/if}}
+							{{#if politicalOpinion}}
+							<h2>Political views</h2>
+							<p>{{politicalOpinion}}</p>
+							{{/if}}
+							{{#if religion}}
+							<h2>Religion</h2>
+							<p>{{religion}}</p>
+							{{/if}}
+
+						{{else}}
+
+							<h2>All about you</h2>
+							<p></p>
+							<h2>Current mission</h2>
+							<p></p>
+							<h2>Personal philosophy</h2>
+
+						{{/if_any}}
 					</div><!-- EOF box-content -->
 				</div>
 			</div>
