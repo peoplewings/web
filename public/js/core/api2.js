@@ -174,8 +174,10 @@ define(function(require) {
 			requestBody = JSON.stringify(body);
 			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 		}
-		if(loadAuthToken()) {
-			xhr.setRequestHeader("X-Auth-Token", JSON.parse(loadAuthToken()).auth);
+
+		var token = loadAuthToken();
+		if(token) {
+			xhr.setRequestHeader("X-Auth-Token", token.auth);
 		}
 
 		xhr.send(requestBody);
@@ -186,10 +188,6 @@ define(function(require) {
 		return url + '?' + _.map(params, function(value, key) {
 			return encodeURIComponent(key) + '=' + encodeURIComponent(value);
 		}).join('&');
-	}
-
-	function loadAuthToken() {
-		return localStorage.getItem("Peoplewings-Auth-Token");
 	}
 
 	var pooling = {
@@ -218,6 +216,25 @@ define(function(require) {
 	pooling.tick = pooling.tick.bind(pooling);
 	pooling.start();
 
+	function json(data) {
+		return data ? JSON.parse(data) : null;
+	}
+	function loadAuthToken() {
+		var data = json(localStorage.getItem('Peoplewings-Auth-Token'));
+		if (!data) return null;
+		if (data.remember) return data;
+		return json(sessionStorage.getItem('Peoplewings-Auth-Token'));
+	}
+	function saveAuthToken(authToken) {
+		var data = JSON.stringify(authToken);
+		localStorage.setItem('Peoplewings-Auth-Token', data);
+		sessionStorage.setItem('Peoplewings-Auth-Token', data);
+	}
+	function clearAuthToken() {
+		localStorage.removeItem('Peoplewings-Auth-Token');
+		sessionStorage.removeItem('Peoplewings-Auth-Token');
+	}
+
 
 	return {
 		request: simpleRequest,
@@ -244,14 +261,10 @@ define(function(require) {
 		urlEncode: function(params){
 			return addParams("", params);
 		},
-		saveAuthToken: function(authToken) {
-			localStorage.setItem("Peoplewings-Auth-Token", authToken);
-		},
-		clearAuthToken: function() {
-			localStorage.removeItem("Peoplewings-Auth-Token");
-		},
+		saveAuthToken: saveAuthToken,
+		clearAuthToken: clearAuthToken,
 		userIsLoggedIn: function() {
-			return loadAuthToken() != null;
+			return loadAuthToken();
 		},
 		getServerUrl: function() {
 			return server;
@@ -260,10 +273,12 @@ define(function(require) {
 			return apiVersion;
 		},
 		getUserId: function() {
-			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).uid;
+			var token = loadAuthToken();
+			return token ? token.uid : null;
 		},
 		getAuthToken: function() {
-			if(loadAuthToken() != null) return JSON.parse(loadAuthToken()).auth;
+			var token = loadAuthToken();
+			return token ? token.auth : null;
 		}
 	};
 
