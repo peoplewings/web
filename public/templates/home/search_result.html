@@ -4,7 +4,11 @@
 			<div class="pager-content">
 				<div class="pager-left">
 					<span>{{totalCount}}</span>
+					{{#if isPeople}}
+					<p>results of people in</p>
+					{{else}}
 					<p>results of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
+					{{/if}}					
 					{{#if locationSearch}}
 					<span class="location">{{locationSearch}}</span>
 					{{else}}
