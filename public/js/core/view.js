@@ -17,6 +17,17 @@ define(function(require) {
 		return Handlebars.helpers.unless.call(this, value == expected, options);
 	});
 
+	Handlebars.registerHelper('if_any', function() {
+		var args = _.toArray(arguments);
+		var options = args.pop();
+		var value = args.reduce(function(reduced, actual) {
+			return reduced && !!actual;
+		}, true);
+
+		console.log(value);
+		return Handlebars.helpers['if'].call(this, value, options);
+	});
+
 	Handlebars.registerHelper('if_contains', function(value, expected, options) {
 		return Handlebars.helpers['if'].call(this, value && (value.indexOf(expected) !== -1), options);
 	});

@@ -13,42 +13,55 @@
 			<div id="collapse-likes" minCollapse="450" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<div class="box-content">
-						{{#if enjoyPeople}}
-						<h2>People I enjoy</h2>
-						<p>{{enjoyPeople}}</p>
-						{{/if}}
-						{{#if movies}}
-						<h2>Movies, series, books, games...</h2>
-						<p>{{movies}}</p>
-						{{/if}}
-						{{#if sports}}
-						<h2>Sports</h2>
-						<p>{{sports}}</p>
-						{{/if}}
-						{{#if otherPages}}
-						<h2>Other webpages</h2>
-						<p>{{otherPages}}</p>
-						{{/if}}
-						{{#if sharing}}
-						<h2>Show, learn, share</h2>
-						<p>{{sharing}}</p>
-						{{/if}}
-						{{#if incredible}}
-						<h2>Amazing things done/seen</h2>
-						<p>{{incredible}}</p>
-						{{/if}}
-						{{#if inspiredBy}}
-						<h2>People who inspires you</h2>
-						<p>{{inspiredBy}}</p>
-						{{/if}}
-						{{#if quotes}}
-						<h2>Favourite quotes</h2>
-						<p>{{quotes}}</p>
-						{{/if}}
-						{{#if pwOpinion}}
-						<h2>Opinion about Peoplewings</h2>
-						<p>{{pwOpinion}}</p>
-						{{/if}}
+						{{#if_any enjoyPeople movies sports otherPages sharing
+							incredible inspiredBy quotes pwOpinion }}
+
+							{{#if enjoyPeople}}
+							<h2>People I enjoy</h2>
+							<p>{{enjoyPeople}}</p>
+							{{/if}}
+							{{#if movies}}
+							<h2>Movies, series, books, games...</h2>
+							<p>{{movies}}</p>
+							{{/if}}
+	 						{{#if sports}}
+							<h2>Sports</h2>
+							<p>{{sports}}</p>
+							{{/if}}
+							{{#if otherPages}}
+							<h2>Other webpages</h2>
+							<p>{{otherPages}}</p>
+							{{/if}}
+							{{#if sharing}}
+							<h2>Show, learn, share</h2>
+							<p>{{sharing}}</p>
+							{{/if}}
+							{{#if incredible}}
+							<h2>Amazing things done/seen</h2>
+							<p>{{incredible}}</p>
+							{{/if}}
+							{{#if inspiredBy}}
+							<h2>People who inspires you</h2>
+							<p>{{inspiredBy}}</p>
+							{{/if}}
+							{{#if quotes}}
+							<h2>Favourite quotes</h2>
+							<p>{{quotes}}</p>
+							{{/if}}
+							{{#if pwOpinion}}
+							<h2>Opinion about Peoplewings</h2>
+							<p>{{pwOpinion}}</p>
+							{{/if}}
+
+						{{else}}
+
+							<h2>People I enjoy</h2>
+							<p></p>
+							<h2>Movies, series, books, games...</h2>
+							<p></p>
+							<h2>Sports</h2>
+
+						{{/if_any}}
 					</div><!-- EOF box-content -->
 				</div>
 			</div>
