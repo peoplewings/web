@@ -21,8 +21,8 @@ define(function(require) {
 		var args = _.toArray(arguments);
 		var options = args.pop();
 		var value = args.reduce(function(reduced, actual) {
-			return reduced && !!actual;
-		}, true);
+			return reduced || !!actual;
+		}, false);
 
 		return Handlebars.helpers['if'].call(this, value, options);
 	});
