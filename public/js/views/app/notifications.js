@@ -13,7 +13,7 @@ define(function(require){
 
 	api.listenUpdate('notifs', function(count) {
 		$('#notif-count')
-			.css('display', count ? 'block' : 'hidden')
+			.css('display', count ? 'block' : 'none')
 			.html(count);
 	});
 
