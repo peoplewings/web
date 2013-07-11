@@ -175,6 +175,8 @@ define(function(require) {
 					this.header = new Header;
 				else
 					this.header.render();
+
+				this.firstExecution = true;
 			}
 
 			Backbone.history.start();

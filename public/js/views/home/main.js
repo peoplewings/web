@@ -87,6 +87,23 @@ define(function(require) {
 			});
 
 			this.resultsView.render(results);
+
+			if (window.router.firstExecution) {
+				window.router.firstExecution = false;
+
+				var body = $(document.body)
+					.addClass('tutorial-running');
+
+				function end() {
+					body.removeClass('tutorial-running');
+				}
+
+				introJs()
+					.setOption('showStepNumbers', false)
+					.oncomplete(end)
+					.onexit(end)
+					.start();
+			}
 		},
 
 		displayErrors: function(errors) {
