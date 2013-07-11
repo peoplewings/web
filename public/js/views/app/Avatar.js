@@ -129,6 +129,15 @@ define(function(require) {
 				$('#crop-modal').width(650);
 
 				$('#crop-modal').modal('show');
+
+				// HACK: Jcrop does not set the size at second execution
+				$('#cropbox')
+					.data('Jcrop', null)
+					.parent()
+						.find('.jcrop-holder')
+						.remove();
+				// END HACK
+
 				$('#cropbox').Jcrop({
 					onChange: showCoords,
 					onSelect: showCoords,
@@ -136,6 +145,7 @@ define(function(require) {
 					aspectRatio: 1,
 					setSelect: [50, 50, 224, 224],
 					minSize: [174, 174],
+					trueSize: [self.size.width, self.size.height],
 				});
 
 			};
