@@ -1,6 +1,7 @@
 define(function(require) {
 	require('jquery.Datepicker');
 	var $ = require("jquery");
+	var Promise = require('promise');
 	var Backbone = require("backbone");
 	var api = require("api2");
 
@@ -107,7 +108,24 @@ define(function(require) {
 				var accordion = $(this);
 				var maxHeight = accordion.find('.accordion-body').attr('mincollapse');
 				var height = accordion.find('.accordion-inner').outerHeight();
-				if (height < maxHeight) {
+
+				if (accordion.closest('.box-standard').attr('id') === 'profile-photos') {
+
+					var proms = accordion.find('img').toArray().map(function(img) {
+						if (img.complete) return Promise.resolved();
+						var prom = new Promise();
+						img.onload = prom.resolve.bind(prom);
+						img.onerror = prom.reject.bind(prom);
+					});
+
+					Promise.all(proms).then(function() {
+						if (height < maxHeight) {
+							accordion.find('.accordion-heading').hide();
+							accordion.find('.accordion-body').css('height', 401);
+						}
+					});
+
+				} else if (height < maxHeight) {
 					accordion.find('.accordion-heading').hide();
 					accordion.find('.accordion-body').css('height', 401);
 				}
