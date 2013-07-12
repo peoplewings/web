@@ -2,7 +2,7 @@ define(function(require) {
 
 	var Promise = require('promise');
 	var api = require('api2');
-	var cookies = require('cookies');
+	var cookies = require('core/cookies');
 	var Header = require('views/app/header');
 
 	function askFbLogin() {

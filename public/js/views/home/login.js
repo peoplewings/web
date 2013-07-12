@@ -17,6 +17,7 @@ define(function(require) {
 			remember: remember
 		});
 
+		router.firstExecution = data.tutorial;
 		router.header = new Header;
 		router.navigate("#/search");
 	}
