@@ -107,8 +107,10 @@ define(function(require) {
 				var accordion = $(this);
 				var maxHeight = accordion.find('.accordion-body').attr('mincollapse');
 				var height = accordion.find('.accordion-inner').outerHeight();
-				if (height < maxHeight)
+				if (height < maxHeight) {
 					accordion.find('.accordion-heading').hide();
+					accordion.find('.accordion-body').css('height', 401);
+				}
 			});
 		},
 
