@@ -125,7 +125,7 @@ define(function(require) {
 				items: items.map(itemTpl).join(''),
 			}));
 
-			this.$('li .messages-content').hide().last().show();
+			this.$('li .messages-content').hide().slice(-2).show();
 		},
 
 		remove: function() {
