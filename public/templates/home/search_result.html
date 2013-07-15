@@ -8,7 +8,7 @@
 					<p>results of people in</p>
 					{{else}}
 					<p>results of {{#if applicant}}applicant{{else}}accommodation{{/if}} in</p>
-					{{/if}}					
+					{{/if}}
 					{{#if locationSearch}}
 					<span class="location">{{locationSearch}}</span>
 					{{else}}
@@ -33,7 +33,13 @@
 			</div><!-- EOF pager content -->
 
 			{{#each results}}
-			<div class="profile search-result" data-profile-id="{{ id }}">
+			<div class="profile search-result" data-profile-id="{{ id }}"
+				{{#if first }}
+					 data-step="5"
+					 data-position="top"
+					 data-intro="These are the superheroes of PEOPLEWINGS. From here you can find them and communicate with them"
+				{{/if}}
+				>
 				<div class="content-left">
 					<span class="dot {{#if online }}online{{/if}}" title="online">online dot</span>
 					<a href="#/profiles/{{id}}/about">
@@ -98,7 +104,13 @@
 					<span class="">Reply rate</span>
 					<span class="results">{{rate replyRate}}</span>
 				</div>
-				<div class="button-bar">
+				<div class="button-bar"
+					{{#if first }}
+						data-step="6"
+						data-position="top"
+						data-intro="Here you'll find buttons to send a message to a user, request him if you want a wing the user is sharing or invite him to one of your wings."
+					{{/if}}
+					>
 					<ul>
 						<li><button class="button send-message-btn">MESSAGE</button></li>
 						{{#if ../isPeople }}

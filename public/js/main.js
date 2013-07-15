@@ -32,7 +32,6 @@ requirejs.config({
 		"promise": "core/promise",
 		"phrases": "core/phrases",
 		"config": "core/config",
-		"cookies": "core/cookies",
 		//"spinner": "lib/spin",
 		//"jquery.spinner": "lib/plugins/spin.plugin",
 		"foundation": 'lib/plugins/foundation',
