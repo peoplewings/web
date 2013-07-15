@@ -89,8 +89,8 @@
 									<div class="response-header">
 										<div class="response-header-dates">
 											<span>{{ wing.type }} in {{ wing.parameters.wingCity }}</span>
-											<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date parameters.startDate 'YYYY-MM-DD'}}">
-											<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date parameters.endDate 'YYYY-MM-DD'}}">
+											<input type="text" name="startDate" class="input-sdate" placeholder="Start date" value="{{date wing.parameters.startDate 'YYYY-MM-DD'}}">
+											<input type="text" name="endDate" class="input-edate" placeholder="End date" value="{{date wing.parameters.endDate 'YYYY-MM-DD'}}">
 											<span class="capacity">Capacity</span>
 											<select name="capacity" class="input-mini required">
 												{{#range 9}}
