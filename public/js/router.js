@@ -1,5 +1,3 @@
-//globals _gaq
-
 define(function(require) {
 
 	var $ = require("jquery");
