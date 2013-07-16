@@ -100,6 +100,8 @@ define(function(require){
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
+			"click .see-more": "gradientBoxVisiblity",
+			"click .see-less": "gradientBoxVisiblity",
 			//photos events
 			"click #add_photo" : function(e){
 				var input = $(e.target).find('#input-photo-upload');
@@ -591,6 +593,17 @@ define(function(require){
 
 			return data;
 		},
+
+		gradientBoxVisiblity: function(evt){
+			evt.preventDefault();
+			if ($(evt.target).closest('.accordion-group').children('[data-toggle=collapse]').length == 1){
+				$(evt.target).closest('.accordion-group').children('.gradient-box').hide();
+			} else {
+				$(evt.target).closest('.accordion-group').children('.gradient-box').show();
+			}
+			
+		},
+
 	  });
 
 	  return ProfileView;

@@ -32,6 +32,8 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
+			"click .see-more": "gradientBoxVisiblity",
+			"click .see-less": "gradientBoxVisiblity",
 		},
 
 		initialize: function(userId) {
@@ -258,6 +260,16 @@ define(function(require) {
 			$('.tabs ul li a[href=' + tabId + ']')
 			.parent()
 			.addClass("active");
+		},
+
+		gradientBoxVisiblity: function(evt){
+			evt.preventDefault();
+			if ($(evt.target).closest('.accordion-group').children('[data-toggle=collapse]').length == 1){
+				$(evt.target).closest('.accordion-group').children('.gradient-box').hide();
+			} else {
+				$(evt.target).closest('.accordion-group').children('.gradient-box').show();
+			}
+			
 		},
 
 		/*
