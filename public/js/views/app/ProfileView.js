@@ -32,8 +32,8 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
-			"click .see-more": "checkSeeMore",
-			"click .see-less": "checkSeeLess",
+			"click .see-more": "gradientBoxVisiblity",
+			"click .see-less": "gradientBoxVisiblity",
 		},
 
 		initialize: function(userId) {
@@ -262,20 +262,14 @@ define(function(require) {
 			.addClass("active");
 		},
 
-		checkSeeMore: function(evt){
+		gradientBoxVisiblity: function(evt){
 			evt.preventDefault();
-			var grBox = $(evt.target).parent().parent().children('.gradient-box')
-			if (grBox){
-				grBox.hide();
+			if ($(evt.target).closest('.accordion-group').children('[data-toggle=collapse]').length == 1){
+				$(evt.target).closest('.accordion-group').children('.gradient-box').hide();
+			} else {
+				$(evt.target).closest('.accordion-group').children('.gradient-box').show();
 			}
-		},
-
-		checkSeeLess: function(evt){
-			evt.preventDefault();
-			var grBox = $(evt.target).parent().parent().children('.gradient-box')
-			if (grBox){
-				grBox.show();
-			}
+			
 		},
 
 		/*
