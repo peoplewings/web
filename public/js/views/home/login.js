@@ -7,6 +7,7 @@ define(function(require) {
 	var facebook = require('tools/facebook');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
+	var adwordsTpl = require('tmpl!templates/lib/adwords-conversion.html');
 
 	var spinner = require('views/lib/spinner');
 
@@ -20,6 +21,9 @@ define(function(require) {
 		router.firstExecution = data.tutorial;
 		router.header = new Header;
 		router.navigate("#/search");
+
+		if (router.firstExecution)
+			$('<div>').html(adwordsTpl()).appendTo(document.body);
 	}
 
 
