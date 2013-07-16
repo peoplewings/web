@@ -106,29 +106,29 @@ define(function(require) {
 		fixBoxes: function() {
 			$('.accordion-group').each(function() {
 				var accordion = $(this);
-				var maxHeight = accordion.find('.accordion-body').attr('mincollapse');
-				var height = accordion.find('.accordion-inner').outerHeight();
 
-				if (accordion.closest('.box-standard').attr('id') === 'profile-photos') {
+				function execute() {
+					var maxHeight = accordion.find('.accordion-body').attr('mincollapse');
+					var height = accordion.find('.accordion-inner').outerHeight();
 
-					var proms = accordion.find('img').toArray().map(function(img) {
-						if (img.complete) return Promise.resolved();
-						var prom = new Promise();
-						img.onload = prom.resolve.bind(prom);
-						img.onerror = prom.reject.bind(prom);
-					});
-
-					Promise.all(proms).then(function() {
-						if (height < maxHeight) {
-							accordion.find('.accordion-heading').hide();
-							accordion.find('.accordion-body').css('height', 401);
-						}
-					});
-
-				} else if (height < maxHeight) {
-					accordion.find('.accordion-heading').hide();
-					accordion.find('.accordion-body').css('height', 401);
+					if (height < maxHeight) {
+						accordion.find('.accordion-heading').hide();
+						accordion.find('.accordion-body').css('height', 401);
+					}
 				}
+
+				if (accordion.closest('.box-standard').attr('id') !== 'profile-photos')
+					return execute();
+
+				var proms = accordion.find('img').toArray().map(function(img, index) {
+					if (img.complete) return Promise.resolved();
+					var prom = new Promise();
+					img.onload = prom.resolve.bind(prom);
+					img.onerror = prom.reject.bind(prom);
+					return prom.future;
+				});
+
+				Promise.all(proms).then(execute);
 			});
 		},
 
