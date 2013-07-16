@@ -32,6 +32,8 @@ define(function(require) {
 			"click .personal-info button.send-message-btn": "sendMessage",
 			"click .personal-info button.send-request-btn": "sendRequest",
 			"click .personal-info button.send-invitation-btn": "sendInvitation",
+			"click .see-more": "checkSeeMore",
+			"click .see-less": "checkSeeLess",
 		},
 
 		initialize: function(userId) {
@@ -258,6 +260,22 @@ define(function(require) {
 			$('.tabs ul li a[href=' + tabId + ']')
 			.parent()
 			.addClass("active");
+		},
+
+		checkSeeMore: function(evt){
+			evt.preventDefault();
+			var grBox = $(evt.target).parent().parent().children('.gradient-box')
+			if (grBox){
+				grBox.hide();
+			}
+		},
+
+		checkSeeLess: function(evt){
+			evt.preventDefault();
+			var grBox = $(evt.target).parent().parent().children('.gradient-box')
+			if (grBox){
+				grBox.show();
+			}
 		},
 
 		/*

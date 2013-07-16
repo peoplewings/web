@@ -100,6 +100,8 @@ define(function(require){
 			"submit form#places-form": "submitProfile",
 			"click .edit-box-btn" : "openForm",
 			"click button.cancel-edition-btn": "closeBox",
+			"click .see-more": "checkSeeMore",
+			"click .see-less": "checkSeeLess",
 			//photos events
 			"click #add_photo" : function(e){
 				var input = $(e.target).find('#input-photo-upload');
@@ -591,6 +593,23 @@ define(function(require){
 
 			return data;
 		},
+
+		checkSeeMore: function(evt){
+			evt.preventDefault();
+			var grBox = $(evt.target).parent().parent().children('.gradient-box')
+			if (grBox){
+				grBox.hide();
+			}
+		},
+
+		checkSeeLess: function(evt){
+			evt.preventDefault();
+			var grBox = $(evt.target).parent().parent().children('.gradient-box')
+			if (grBox){
+				grBox.show();
+			}
+		},
+
 	  });
 
 	  return ProfileView;
