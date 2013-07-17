@@ -154,6 +154,14 @@ define(function(require) {
 		});
 	}
 
+	function resetMain(num) {
+		if (typeof num === 'undefined'){
+			$('body').scrollTop(0);
+		} else {
+			$('body').scrollTop(num);
+		}	
+	}
+
 	return {
 		serializeForm: serialize,
 		showModal: showModal,
@@ -161,5 +169,6 @@ define(function(require) {
 		getCityAndCountry: getCC,
 		formatReplyTime: formatReplyTime,
 		uploadAmazon: uploadAmazon,
+		resetMain: resetMain,
 	};
 });

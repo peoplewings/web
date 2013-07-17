@@ -4,6 +4,7 @@ define(function(require) {
 	var Promise = require('promise');
 	var Backbone = require("backbone");
 	var api = require("api2");
+	var utils = require('utils');
 
 	var PreviewModel = require("models/ProfileModel");
 	var MapView = require('views/app/map');
@@ -56,8 +57,8 @@ define(function(require) {
 			this.model.clear({silent: true});
 			this.model.set("id", userId, {silent: true});
 
-			var tab = '#' + tabId || '#about';
-			this.model.fetch({success: this.refresh.bind(this, tab)});
+			var tab = '#' + tabId || '#about';			
+			this.model.fetch({success: this.refresh.bind(this, tab)});			
 		},
 
 		refresh: function(tab) {
@@ -65,6 +66,7 @@ define(function(require) {
 
 			this.refreshProfile(myProfile);
 			this.refreshWings(myProfile);
+			utils.resetMain(150);		
 
 			if (tab)
 				this.selectTab(tab);

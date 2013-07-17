@@ -3,7 +3,8 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api2");
-	var utils = require("utils");
+	var utils = require('utils');
+
 	var alerts = require('views/lib/alerts');
 	var wingFormTpl = require("tmpl!templates/app/profile/form.wing.html");
 	var wingModalTpl = require("tmpl!templates/lib/modal.form.wings.html");
@@ -161,6 +162,7 @@ define(function(require) {
 		refreshWing: function(wingId, tpl){
 			var wing = this.parentCtrl.model.findWingById(wingId);
 			$(this.el).html(tpl(wing, {myProfile: true}));
+			utils.resetMain(150);
 
 			return wing;
 		},
