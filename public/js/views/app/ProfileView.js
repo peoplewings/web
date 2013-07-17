@@ -264,7 +264,7 @@ define(function(require) {
 
 		gradientBoxVisiblity: function(evt){
 			evt.preventDefault();
-			if ($(evt.target).closest('.accordion-group').children('[data-toggle=collapse]').length == 1){
+			if ($(evt.target).closest('.accordion-group').children('.collapsed').length == 1){
 				$(evt.target).closest('.accordion-group').children('.gradient-box').hide();
 			} else {
 				$(evt.target).closest('.accordion-group').children('.gradient-box').show();
