@@ -272,7 +272,7 @@ define(function(require){
 		removePhoto: function(e){
 			e.stopPropagation();
 			e.preventDefault();
-			debugger;
+			
 			var id = $(e.target).parents('li').data('photo-id');
 			$(e.target).parents('li').slideUp();
 
