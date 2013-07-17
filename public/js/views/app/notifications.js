@@ -4,6 +4,8 @@ define(function(require){
 	var Backbone = require("backbone");
 	var api = require("api2");
 	var Promise = require("promise");
+	var utils = require('utils');
+
 	var notificationsTpl = require("tmpl!templates/app/notifications.html");
 	var itemTpl = require("tmpl!templates/app/notification.html");
 	var alerts = require("views/lib/alerts");
@@ -231,6 +233,7 @@ define(function(require){
 			this.threads = data.items.map(function(item) {
 				return item.reference;
 			});
+			utils.resetMain();
 
 			return this.threads;
 		},
