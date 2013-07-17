@@ -131,8 +131,7 @@ define(function(require){
 			if(photo.size > 6291456){
 				alert('this photo is bigger than 6 Mb');
 				return;
-			}
-
+			}			
 			//create image
 			var img = new Image();
 			var url = window.URL || window.webkitURL;
@@ -155,7 +154,7 @@ define(function(require){
 
 				var id = Date.now() + '-' + Math.random();
 
-				//render photo
+				//render photo				
 				self.renderPhotoUpload(this, id);
 
 				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
@@ -263,7 +262,6 @@ define(function(require){
 			api.listenUpdate('photos', function(photos) {
 				photos.forEach(function(photo) {
 					var el = $(photosListTpl(photo));
-
 					$('[data-tmp-photo-id="' + photo.hash + '"]').replaceWith(el);
 					el.find('.control').on('click', parent.onCloseClick);
 					self.uploadEnd(photo.hash);
@@ -274,7 +272,11 @@ define(function(require){
 		removePhoto: function(e){
 			e.stopPropagation();
 			e.preventDefault();
+			debugger;
+			var id = $(e.target).parents('li').data('photo-id');
 			$(e.target).parents('li').slideUp();
+
+			api['delete'](api.getApiVersion() + '/photos/' + id);
 		},
 
 		closeBox: function(evt){
