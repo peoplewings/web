@@ -1,0 +1,290 @@
+/* ==========================================================================
+ * GRID
+ * ==========================================================================
+
+.wrap
+	max-width: 960px
+	margin: 0 auto
+
+
+/* Container
+ *---------------------------------------------------------------------------
+
+.container_12
+	width: 100%
+
+
+/* Grid >> Global
+ *---------------------------------------------------------------------------
+
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12
+	display: inline
+	float: left
+	margin-right: 1%
+	margin-left: 1%
+
+
+/* Grid >> Children (Alpha ~ First,	Omega ~ Last)
+ *---------------------------------------------------------------------------
+
+.alpha
+	margin-right: 0
+
+.omega
+	margin-left: 0
+
+
+/* Grid >> 12 Columns
+ *---------------------------------------------------------------------------
+
+.container_12
+
+	.grid_1
+		width: 6.333333333% 
+
+	.grid_2
+		width: 14.66666666%
+
+	.grid_3
+		width: 23%
+
+	.grid_4
+		width: 31.33333333%
+
+	.grid_5
+		width: 39.66666666%
+
+	.grid_6
+		width: 48%
+
+	.grid_7
+		width: 56.33333333%
+
+	.grid_8
+		width: 64.66666666%
+
+	.grid_9
+		width: 73%
+
+	.grid_10
+		width: 81.33333333%
+
+	.grid_11
+		width: 89.66666666%
+
+	.grid_12
+		width: 98%
+
+
+/* Prefix Extra Space >> 12 Columns
+ *---------------------------------------------------------------------------
+
+.container_12
+
+	.prefix_1
+		padding-right: 6.333333333%
+
+	.prefix_2
+		padding-right: 14.66666666%
+
+	.prefix_3
+		padding-right: 23%
+
+	.prefix_4
+		padding-right: 31.33333333%
+
+	.prefix_5
+		padding-right: 39.66666666%
+
+	.prefix_6
+		padding-right: 48%
+
+	.prefix_7
+		padding-right: 56.33333333%
+
+	.prefix_8
+		padding-right: 64.66666666%
+
+	.prefix_9
+		padding-right: 73%
+
+	.prefix_10
+		padding-right: 81.33333333%
+
+	.prefix_11
+		padding-right: 89.66666666%
+
+
+/* Suffix Extra Space >> 12 Columns
+ *---------------------------------------------------------------------------
+
+.container_12
+	
+	.suffix_1
+		padding-left: 6.333333333%
+	
+	.suffix_2
+		padding-left: 14.66666666%
+	
+	.suffix_3
+		padding-left: 23%
+	
+	.suffix_4
+		padding-left: 31.33333333%
+	
+	.suffix_5
+		padding-left: 39.66666666%
+	
+	.suffix_6
+		padding-left: 48%
+	
+	.suffix_7
+		padding-left: 56.33333333%
+	
+	.suffix_8
+		padding-left: 64.66666666%
+	
+	.suffix_9
+		padding-left: 73%
+	
+	.suffix_10
+		padding-left: 81.33333333%
+	
+	.suffix_11
+		padding-left: 89.66666666%
+
+
+/* Push Space >> 12 Columns
+ *---------------------------------------------------------------------------
+
+.container_12
+
+	.push_1
+		right: 6.333333333%
+
+	.push_2
+		right: 14.66666666%
+
+	.push_3
+		right: 23%
+
+	.push_4
+		right: 31.33333333%
+
+	.push_5
+		right: 39.66666666%
+
+	.push_6
+		right: 48%
+
+	.push_7
+		right: 56.33333333%
+
+	.push_8
+		right: 64.66666666%
+
+	.push_9
+		right: 73%
+
+	.push_10
+		right: 81.33333333%
+
+	.push_11
+		right: 89.66666666%
+
+
+/* Pull Space >> 12 Columns
+ *----------------------------------------------------------------------------------------------------
+
+.container_12
+
+	.pull_1
+		right: -6.333333333%
+
+	.pull_2
+		right: -14.66666666%
+
+	.pull_3
+		right: -23%
+
+	.pull_4
+		right: -31.33333333%
+
+	.pull_5
+		right: -39.66666666%
+
+	.pull_6
+		right: -48%
+
+	.pull_7
+		right: -56.33333333%
+
+	.pull_8
+		right: -64.66666666%
+
+	.pull_9
+		right: -73%
+
+	.pull_10
+		right: -81.33333333%
+
+	.pull_11
+		right: -89.66666666%
+
+
+/* Clear Floated Elements
+ *----------------------------------------------------------------------------------------------------
+
+/* http://sonspring.com/journal/clearing-floats
+
+// .clear
+// 	clear: both
+// 	display: block
+// 	overflow: hidden
+// 	visibility: hidden
+// 	width: 0
+// 	height: 0
+
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified
+
+.clearfix
+	&:before, &:after
+		content: '.'
+		display: block
+		overflow: hidden
+		visibility: hidden
+		font-size: 0
+		line-height: 0
+		width: 0
+		height: 0
+
+.container_12
+	&:before, &:after
+		content: '.'
+		display: block
+		overflow: hidden
+		visibility: hidden
+		font-size: 0
+		line-height: 0
+		width: 0
+		height: 0
+
+.clearfix:after, .container_12:after
+	clear: both
+
+/* The following zoom:1 rule is specifically for IE6 + IE7.
+ * Move to separate stylesheet if invalid CSS is a problem.
+
+.clearfix, .container_12
+	zoom: 1
