@@ -117,7 +117,8 @@ form#login-form
 
 @media (max-width: 560px)
 
-	form#login-form
+	form#login-form,
+	form#register-form
 		width: 83%
 		float: none
 
@@ -126,7 +127,8 @@ form#login-form
 		.icon-facebook-login
 			display: none
 
-		.controls
+		.controls,
+		.control-group .controls
 			margin-left: 4%
 
 		.facebook-separator
@@ -149,18 +151,22 @@ form#login-form
 			float: none !important
 			margin-bottom: 10px
 			overflow: hidden
+			margin-left: 10% !important
 
 		#follow
 			display: none
+			margin-left: 10% !important
 
 
 @media (max-width: 530px)
 
-	form#login-form
+	form#login-form,
+	form#register-form
 
 		.icon-facebook-login
 			display: none
 
+	form#login-form
 		.controls.terms a
 			display: block
 			float: none
@@ -168,3 +174,34 @@ form#login-form
 			bottom: 0
 			margin-bottom: 20px
 
+	form#register-form
+		.control-group
+			.controls.two-elements
+				input[type="text"],
+				input[type="password"]
+					width: 44.8%
+					padding: 2%
+
+
+@media (max-width: 440px)
+
+	form#register-form
+		.control-group
+			.controls
+				input[type="text"],
+				input[type="password"],
+				input[type="email"]
+					width: 90% !important
+					padding: 3% 5% !important
+				select
+					background-image: url(../img/icon-arrow-mini.png)
+					background-color: white
+					background-position: right center
+					padding: 2%
+					width: 100%
+					margin-bottom: 5px
+		
+		#pass, #firstName
+			width: 90%
+			padding: 3% 5%
+			margin-bottom: 5px

@@ -1853,21 +1853,32 @@ form#login-form {
   .wrap {
     width: auto !important; } }
 @media (max-width: 560px) {
-  form#login-form {
+  form#login-form,
+  form#register-form {
     width: 83%;
     float: none; }
     form#login-form .control-label,
     form#login-form .signal,
-    form#login-form .icon-facebook-login {
+    form#login-form .icon-facebook-login,
+    form#register-form .control-label,
+    form#register-form .signal,
+    form#register-form .icon-facebook-login {
       display: none; }
-    form#login-form .controls {
+    form#login-form .controls,
+    form#login-form .control-group .controls,
+    form#register-form .controls,
+    form#register-form .control-group .controls {
       margin-left: 4%; }
-    form#login-form .facebook-separator span:first-child, form#login-form .facebook-separator span:last-child {
+    form#login-form .facebook-separator span:first-child, form#login-form .facebook-separator span:last-child,
+    form#register-form .facebook-separator span:first-child,
+    form#register-form .facebook-separator span:last-child {
       width: 43%; }
-    form#login-form .facebook-separator .odd {
+    form#login-form .facebook-separator .odd,
+    form#register-form .facebook-separator .odd {
       font-size: 75%;
       padding: 0 2%; }
-    form#login-form .button-facebook {
+    form#login-form .button-facebook,
+    form#register-form .button-facebook {
       padding-left: 0;
       padding-right: 0; }
 
@@ -1876,18 +1887,44 @@ form#login-form {
     .navbar-fixed-bottom #terms {
       float: none !important;
       margin-bottom: 10px;
-      overflow: hidden; }
+      overflow: hidden;
+      margin-left: 10% !important; }
     .navbar-fixed-bottom #follow {
-      display: none; } }
+      display: none;
+      margin-left: 10% !important; } }
 @media (max-width: 530px) {
-  form#login-form .icon-facebook-login {
+  form#login-form .icon-facebook-login,
+  form#register-form .icon-facebook-login {
     display: none; }
+
   form#login-form .controls.terms a {
     display: block;
     float: none;
     position: static;
     bottom: 0;
-    margin-bottom: 20px; } }
+    margin-bottom: 20px; }
+
+  form#register-form .control-group .controls.two-elements input[type="text"],
+  form#register-form .control-group .controls.two-elements input[type="password"] {
+    width: 44.8%;
+    padding: 2%; } }
+@media (max-width: 440px) {
+  form#register-form .control-group .controls input[type="text"],
+  form#register-form .control-group .controls input[type="password"],
+  form#register-form .control-group .controls input[type="email"] {
+    width: 90% !important;
+    padding: 3% 5% !important; }
+  form#register-form .control-group .controls select {
+    background-image: url(../img/icon-arrow-mini.png);
+    background-color: white;
+    background-position: right center;
+    padding: 2%;
+    width: 100%;
+    margin-bottom: 5px; }
+  form#register-form #pass, form#register-form #firstName {
+    width: 90%;
+    padding: 3% 5%;
+    margin-bottom: 5px; } }
 /* --------------------------------------------------------------------------
  * Search People
  * -------------------------------------------------------------------------- */
