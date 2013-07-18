@@ -129,3 +129,16 @@ div.btn-group.pull-right
 				color: #999
 				&:hover, &:focus
 					@include bg-gradient(#FFFF00, #FFEA00)
+
+@media (max-width: 530px)
+	.navbar
+		.brand
+			float: none
+			width: 100%
+	div.nav-menu
+		ul.nav.pull-right
+			background-color: #edede6
+			width: 100%
+			padding-left: 10% !important
+			float: left
+			+box-shadow(0, 0, 8px, 3px, #FFFF00)
