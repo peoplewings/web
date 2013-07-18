@@ -9,8 +9,7 @@ form#login-form
 	background: $blue_sign
 	padding: 0 28px 28px 14px
 	margin: 27px 12px
-	@include border-radius(12px)
-	width: 469px
+	+border-radius(12px)
 
 	input, select, .help-block
 		margin: 0
@@ -23,8 +22,8 @@ form#login-form
 		border: 1px solid #79766c
 		color: #000
 		line-height: 16px
-		@include appearance(none)
-		@include border-radius(4px)
+		+appearance(none)
+		+border-radius(4px)
 
 	label.checkbox
 		padding-left: 0
@@ -48,7 +47,7 @@ form#login-form
 		position: relative
 		bottom: 16px
 		left: 280px
-		@include opacity(0.7)
+		+opacity(0.7)
 
 	legend
 		float: right
@@ -106,6 +105,103 @@ form#login-form
 	form#login-form
 		input[type="password"],
 		input[type="email"]
-			width: 100%
+			width: 100% !important
 			line-height: 20px
 			height: auto
+
+
+@media (max-width: 960px)
+	.wrap
+		width: auto !important
+
+
+@media (max-width: 560px)
+
+	form#login-form,
+	form#register-form
+		width: 83%
+		float: none
+
+		.control-label,
+		.signal,
+		.icon-facebook-login
+			display: none
+
+		.controls,
+		.control-group .controls
+			margin-left: 4%
+
+		.facebook-separator
+
+			span:first-child, span:last-child
+				width: 43%
+
+			.odd
+				font-size: 75%
+				padding: 0 2%
+		
+		.button-facebook
+			padding-left: 0
+			padding-right: 0
+
+	.navbar-fixed-bottom
+		height: auto !important
+
+		#terms
+			float: none !important
+			margin-bottom: 10px
+			overflow: hidden
+			margin-left: 10% !important
+
+		#follow
+			display: none
+			margin-left: 10% !important
+
+
+@media (max-width: 530px)
+
+	form#login-form,
+	form#register-form
+
+		.icon-facebook-login
+			display: none
+
+	form#login-form
+		.controls.terms a
+			display: block
+			float: none
+			position: static
+			bottom: 0
+			margin-bottom: 20px
+
+	form#register-form
+		.control-group
+			.controls.two-elements
+				input[type="text"],
+				input[type="password"]
+					width: 44.8%
+					padding: 2%
+
+
+@media (max-width: 440px)
+
+	form#register-form
+		.control-group
+			.controls
+				input[type="text"],
+				input[type="password"],
+				input[type="email"]
+					width: 90% !important
+					padding: 3% 5% !important
+				select
+					background-image: url(../img/icon-arrow-mini.png)
+					background-color: white
+					background-position: right center
+					padding: 2%
+					width: 100%
+					margin-bottom: 5px
+		
+		#pass, #firstName
+			width: 90%
+			padding: 3% 5%
+			margin-bottom: 5px
