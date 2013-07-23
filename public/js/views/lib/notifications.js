@@ -50,6 +50,13 @@ define(function(require) {
 		return container.find('option[value="' + container.find('#wings').val() + '"]').data('type');
 	}
 
+	function displayErrors(errors, form) {
+		errors.map(function(error){
+			form.$('#wing-accomodation-form-errors-date')
+				.html('<label class="error">' + error.text + '</label>');
+			form.$('#wing-accomodation-form-errors-date').show();
+		});
+	}
 
 	function modalHelper(targetId, targetName, kind, title, wingsReq, getData) {
 		var prom = new Promise();
@@ -105,10 +112,17 @@ define(function(require) {
 
 			modal.find('form').validate(validation);
 
-
 			function send() {
+				var errors = [];
+
 				if (!modal.find('form').valid())
 					return;
+
+				if (new Date($("input[name=end-date]").val()) < new Date($("input[name=start-date]").val()))
+					errors.push({css: 'date-error', text: 'Invalid dates'});
+
+				if (errors.length)
+					return displayErrors(errors, modal);
 
 				var data = getData(modal);
 
@@ -127,7 +141,6 @@ define(function(require) {
 					alerts.success('Message Sent');
 					prom.resolve(true);
 				}, function(error) {
-					debugger;
 					alerts.defaultError();
 					prom.reject(error);
 				}).fin(function() {
