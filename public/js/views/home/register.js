@@ -4,11 +4,12 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var utils = require('utils');
-	var phrases = require("phrases");
+	var texts = require('tools/texts');
 	var spinner = require('views/lib/spinner');
 	var facebook = require('tools/facebook');
+	var Header = require('views/app/header');
 
 	var responseView = require('views/lib/balloon.response');
 
@@ -18,11 +19,11 @@ define(function(require) {
 
 	var RegisterView = Backbone.View.extend({
 
-		el: "#main",
+		el: '#main',
 
 		events: {
-			"submit form#register-form": "submitRegister",
-			"click .fb-register": "facebookConnect",
+			'submit form#register-form': 'submitRegister',
+			'click .fb-register': 'facebookConnect',
 		},
 
 		validation: {
@@ -33,7 +34,7 @@ define(function(require) {
 				},
 				confirm_password: {
 					minlength: 8,
-					equalTo: "#pass",
+					equalTo: '#pass',
 				},
 				/*birthdayYear: {
 					max: (new Date()).getFullYear() - 18,
@@ -51,12 +52,12 @@ define(function(require) {
 			},
 			messages: {
 				birthdayYear: {
-					max: "You need to be +18 years old to register"
+					max: 'You need to be +18 years old to register'
 				},
-				hasAcceptedTerms: "Please accept our terms"
+				hasAcceptedTerms: 'Please accept our terms'
 			},
 			errorPlacement: function(error, element) {
-				error.appendTo(element.nextAll("span.help-block"));
+				error.appendTo(element.nextAll('span.help-block'));
 			},
 		},
 
@@ -68,19 +69,19 @@ define(function(require) {
 				});
 
 				router.header = new Header;
-				router.navigate("#/search");
+				router.navigate('#/search');
 			});
 		},
 
 		render: function() {
 
 			$(this.el).html(registerTpl({
-				month: phrases.months,
+				month: texts.months,
 			}));
 
 			this.$('#register-form').validate(this.validation);
 
-			$("#feedback-btn").hide();
+			$('#feedback-btn').hide();
 
 		},
 

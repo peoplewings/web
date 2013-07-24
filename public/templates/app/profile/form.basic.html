@@ -19,7 +19,7 @@
 								<select id="id_birthday_month" name="birthMonth" class="size-large required">
 									<option value="">Month</option>
 									{{#each months}}
-									<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{name}}</option>
+									<option value="{{indexPlusOne}}" {{selected ../birthMonth indexPlusOne}}>{{self}}</option>
 									{{/each}}
 								</select>
 								<span class="help-block"></span>

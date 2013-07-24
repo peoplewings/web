@@ -1,228 +1,187 @@
 define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
 	var utils = require('utils');
 
+	var Wing = require('models/wing');
 	var alerts = require('views/lib/alerts');
-	var wingFormTpl = require("tmpl!templates/app/profile/form.wing.html");
-	var wingModalTpl = require("tmpl!templates/lib/modal.form.wings.html");
-	var wingViewTpl = require("tmpl!templates/app/profile/view.wing.html");
+	var wingModalTpl = require('tmpl!templates/lib/modal.form.wings.html');
+	var wingFormTpl = require('tmpl!templates/app/profile/form.wing.html');
+	var wingViewTpl = require('tmpl!templates/app/profile/view.wing.html');
+
+	var wingTypeTpl = {
+		accomodation: require('tmpl!templates/app/profile/view.wing.accommodation.html'),
+	};
 
 	var WingsView = Backbone.View.extend({
-
-		el: "#main",
-
-		newCityObject: {},
-
-		wingDefaultData: {
-			about: "",
-			additionalInformation: "",
-
-			metro: false,
-			bus: false,
-			taxi: false,
-			train: false,
-			car: false,
-			motorbike: false,
-			bicycle: false,
-			boat: false,
-			plane: false,
-			other: false,
-
-			liveCenter: false,
-			petsAllowed: false,
-			wheelchair: false,
-			sharingOnce: false,
-			iHavePet: false,
-			blankets: false,
-		},
+		el: '#main',
 
 		events: {
-			//"change [name=generalStatus]": "changeStatus",
-			"click #add-wing-btn": function(e){
+			//'change [name=generalStatus]': 'changeStatus',
+			'click #add-wing-btn': function(e) {
 				e.preventDefault();
 				this.wingModal = utils.showModal({
-					header: "Add Wing",
-					accept: "Save",
+					header: 'Add Wing',
+					accept: 'Save',
 					loadingText: 'Saving...',
 					content: wingModalTpl,
 					send: this.submitWing,
-					form: "accomodation-form",
+					form: 'accomodation-form',
 					thin: true,
 				});
 				this.initWing();
 			},
-			"click input#inputSharingOnce": function(evt) {
+			'click input#inputSharingOnce': function(evt) {
 				if (evt.target.checked)
-					this.$("div#sharing-dates").show();
+					this.$('div#sharing-dates').show();
 				else {
-					this.$("div#sharing-dates").hide();
-					this.$("[name=dateStart]").val("");
-					this.$("[name=dateEnd]").val("");
+					this.$('div#sharing-dates').hide();
+					this.$('[name=dateStart]').val('');
+					this.$('[name=dateEnd]').val('');
 				}
 			},
-			"click a.edit-wing-btn": "editWing",
-			"click a.delete-wing-btn": "deleteWing",
-			"click button.cancel-wing-btn": "cancelEdition",
-			"submit form#accomodation-form": "createWing",
-			"submit form[id^=accomodation-form-]": "submitWing",
+			'click a.edit-wing-btn': 'editWing',
+			'click a.delete-wing-btn': 'deleteWing',
+			'click button.cancel-wing-btn': 'cancelEdition',
+			'submit form#accomodation-form': 'createWing',
+			'submit form[id^=accomodation-form-]': 'submitWing',
 		},
 
-		initialize: function(parent) {
-			this.parentCtrl = parent;
+		initialize: function(collection) {
+			this.cityHolder = {};
+			this.wings = collection;
 		},
 
-		/*changeStatus: function(e) {
-			api.put(api.getApiVersion() + "/profiles/" + api.getUserId(), {
-				pwState: e.target.value
-			})
-			.then(function() {
-				alerts.success('Wings general status updated');
-			}, function() {
-				alerts.defaultError();
-			});
-		},*/
+		dataToWing: function(wing, data) {
+			var globalData = _.pick(data, 'id', 'type', 'author', 'dateStart',
+				'dateEnd', 'name', 'status', 'bestDays', 'city', 'sharingOnce');
 
-		submitWing: function(evt){
-			evt.preventDefault();
-			var wingId = +$(evt.target).attr("data-rel");
-			var data = this.parseForm(evt.target.id, this.parentCtrl.model.findWingById(wingId).city);
-			$(evt.target).find("button.save-wing-btn").button('loading');
+			var extraFields = _.pick(data, 'wheelchair', 'about', 'whereSleepingType',
+				'additionalInformation', 'liveCenter', 'preferredGender', 'petsAllowed',
+				'address', 'postalCode', 'smoking', 'iHavePet', 'blankets');
 
+			extraFields.PublicTransport = data.transport;
+			globalData.extraFields = new Backbone.Model(extraFields);
+			wing.set(globalData);
+		},
+
+		createWing: function(event) {
+			event.preventDefault();
+			var target = $(event.target);
+			var data = this.parseForm(target, null);
+			var button = target.find('button.save-wing-btn');
+			var tmpWing = new Wing.uncached();
 			var self = this;
-			api.put(this.parentCtrl.model.urlWings() + "/" + wingId, data)
-			.then(function(){
-				self.parentCtrl.model.fetchWing({
-					wingId: wingId,
-					success: self.refreshWing.bind(self, wingId, wingViewTpl)
-				});
-				alerts.success('Wing saved');
-			})
-			.fin(function(){
-				$(evt.target).find("button.save-wing-btn").button('reset');
-			});
-		},
 
-		createWing: function(evt){
-			evt.preventDefault();
-			var data = this.parseForm(evt.target.id, this.newCityObject.city);
+			this.dataToWing(tmpWing, data);
 
-			$(evt.target).find("button.save-wing-btn").button('loading');
-			var self = this;
-			api.post(this.parentCtrl.model.urlWings(), data)
-			.then(function(){
-				self.parentCtrl.model.fetchWings({
-					success: self.parentCtrl.refreshWings.bind(self.parentCtrl, true)
-				});
+			button.button('loading');
+			return tmpWing.save().then(function() {
+				self.wings.fetch();
 				self.wingModal.modal('hide');
 				alerts.success('Wing saved');
-			})
-			.fin(function(){
-				$(evt.target).find("button.save-wing-btn").button('reset');
-				self.el = '#main';
+			}).fin(function() {
+				button.button('reset');
 			});
 		},
 
-		parseForm: function(formId, city){
-			var data = this.wingDefaultData;
-			data = _.extend(data, utils.serializeForm(formId));
-			_.each(data, function(value, attr){
-				if (value === "on")
-					data[attr] = true;
-			});
+		submitWing: function(event) {
+			event.preventDefault();
+			var target = $(event.target);
+			var wingId = +target.attr('data-rel');
+			var wing = this.wings.get(wingId);
+			var button = target.find('button.save-wing-btn');
+			var data = this.parseForm(target.attr('id'), wing.get('city'));
+			var self = this;
+
+			this.dataToWing(wing, data);
+
+			button.button('loading');
+			return wing.save()
+				.then(wing.fetch.bind(wing))
+				.then(function() {
+					self.refreshWing(wingId, false);
+					alerts.success('Wing saved');
+				}).fin(function() {
+					button.button('reset');
+				});
+		},
+
+		parseForm: function(form, city) {
+			var data = utils.serializeForm(form);
+
 			if (!data.sharingOnce)
-				data = _.omit(data, ["dateStart", "dateEnd"]);
+				data = _.omit(data, ['dateStart', 'dateEnd']);
 
-			data.city = city;
-
+			data.city = this.cityHolder.city;
+			data.type = 'Accommodation';
 			return data;
 		},
 
-		editWing: function(evt){
-			evt.preventDefault();
-			var wingId = +evt.target.attributes['wing-id'].value;
-			this.el = '#wing-box-' + wingId;
-
-			this.initWing(this.refreshWing(wingId, wingFormTpl));
+		editWing: function(event) {
+			event.preventDefault();
+			var wingId = +event.target.attributes['wing-id'].value;
+			this.initWing(this.refreshWing(wingId, true));
 		},
 
-		cancelEdition: function(evt){
-			evt.preventDefault();
-
-			var wingId = +evt.target.attributes['wing-id'].value;
-			this.$("#accomodation-form-" + wingId)[0].reset();
-
-			this.refreshWing(wingId, wingViewTpl);
-
-			this.el = '#main';
+		cancelEdition: function(event) {
+			event.preventDefault();
+			var wingId = +event.target.attributes['wing-id'].value;
+			this.$('#accomodation-form-' + wingId).get(0).reset();
+			this.refreshWing(wingId, false);
 		},
 
-		refreshWing: function(wingId, tpl){
-			var wing = this.parentCtrl.model.findWingById(wingId);
-			$(this.el).html(tpl(wing, {myProfile: true}));
+		refreshWing: function(wingId, isEditing) {
+			var tpl = isEditing ? wingFormTpl : wingViewTpl;
+			var wing = this.wings.get(wingId);
+			$('#wing-box-' + wingId).html(tpl(wing, { myProfile: true }));
 			utils.resetMain(150);
-
 			return wing;
 		},
 
-		initWing: function(wing){
-			var dS = "";
-			var dE = "";
+		initWing: function(wing) {
+			this.$('#accomodation-form').validate();
+			this.$('input.input-date')
+				.datepicker({
+					minDate: new Date(),
+					dateFormat: 'yy-mm-dd',
+				})
+				.val('');
 
-			if (wing && wing.sharingOnce){
-				this.$("div#sharing-dates").show();
-				dS = wing.dateStart;
-				dE = wing.dateEnd;
+			if (wing && wing.get('sharingOnce')) {
+				this.$('div#sharing-dates').show();
+				this.$('input[name=dateStart]').val(wing.get('dateStart'));
+				this.$('input[name=dateEnd]').val(wing.get('dateEnd'));
 			}
 
-			this.$("div#sharing-dates").hide();
+			this.$('div#sharing-dates').hide();
 
-			this.$('#accomodation-form').validate();
-			this.$("input[name=dateStart]")
-			.datepicker({
-				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
-			})
-			.val(dS);
-
-			this.$("input[name=dateEnd]")
-			.datepicker({
-				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
-			})
-			.val(dE);
-
-			var autoCity = new google.maps.places.Autocomplete(document.getElementById("inputCity"), {
-				types: ['(cities)']
+			var cityInput = this.$('#inputCity');
+			var autoCity = new google.maps.places.Autocomplete(cityInput.get(0), {
+				types: [ '(cities)' ]
 			});
 
-			var wingObj = wing || this.newCityObject;
-			google.maps.event.addListener(autoCity, 'place_changed', utils.setAutocomplete.bind(this, autoCity, wingObj));
+			google.maps.event.addListener(autoCity, 'place_changed',
+				utils.setAutocomplete.bind(utils, autoCity, this.cityHolder));
 
-			this.$("#inputCity").keypress(function(event){
+			cityInput.keypress(function(event) {
 				if (event.which === 13) event.preventDefault();
 			});
 
 			this.$('#accomodation-form').validate();
 		},
 
-		deleteWing: function(evt){
-			evt.preventDefault();
-			var wingId = evt.target.attributes['wing-id'].value;
+		deleteWing: function(event) {
+			event.preventDefault();
+			var wingId = event.target.attributes['wing-id'].value;
+			var wing = this.wings.get(wingId);
 
-			var self = this;
-			if (confirm("Are you sure you want to delete this wing?")) {
-				api.delete(api.getApiVersion() + "/profiles/" + api.getUserId() + "/accomodations/" + wingId)
-				.then(function() {
-					self.parentCtrl.model.fetch({success: function(){
-						self.parentCtrl.model.fetchWings({ success: self.parentCtrl.refreshWings.bind(self.parentCtrl, true)});
-						alerts.success('Wing deleted');
-					}});
-				}, function() {
-					alerts.defaultError();
-				});
+			if (confirm('Are you sure you want to delete this wing?')) {
+				wing.destroy().then(
+					alerts.success.bind(alerts, 'Wing deleted'),
+					alerts.defaultError
+				);
 			}
 		}
 	});

@@ -1,0 +1,40 @@
+<h2>Capacity</h2>
+<p>{{extraFields.capacity}} people</p>
+
+{{#equals extraFields.preferredGender 'Male' }}
+	<h2>Preferred gender</h2>
+	<p>Male</p>
+{{/equals}}
+{{#equals extraFields.preferredGender 'Female' }}
+	<h2>Preferred gender</h2>
+	<p>Female</p>
+{{/equals}}
+
+<h2>Wheelchair accessible</h2>
+<p>{{text 'yes-no' extraFields.weelchair}}</p>
+<h2>Sleeping arrangements</h2>
+<p>{{text 'whereSleepingType' extraFields.whereSleepingType}}</p>
+<h2>Smoking</h2>
+<p>{{text 'smoking' extraFields.smoking}}</p>
+<h2>Pets</h2>
+<p>
+	{{#unless extraFields.petsAllowed}}No{{/unless}}
+	guest pets allowed and I
+	{{#unless extraFields.iHavePet}}don't{{/unless}}
+	have any pet
+</p>
+<h2>I have blankets</h2>
+<p>{{text 'yes-no' extraFields.blankets}}</p>
+<h2>I live in the city center</h2>
+<p>{{text 'yes-no' extraFields.liveCenter}}</p>
+{{#if extraFields.PublicTransport.length}}
+	<h2>Public transport</h2>
+	<p>
+		{{#each extraFields.PublicTransport}}
+			{{self}}
+			{{#unless last}},{{/unless}}
+		{{/each}}
+	</p>
+{{/if}}
+<h2 class="last-p">About your accommodation</h2>
+<p>{{extraFields.about}}</p>
