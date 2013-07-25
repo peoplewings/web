@@ -4,6 +4,7 @@ define(function(require) {
 
 	var _ = require('underscore');
 	var Handlebars = require('handlebars');
+	var texts = require('tools/texts');
 
 	/**************
 	 * HANDLEBARS *
@@ -35,7 +36,7 @@ define(function(require) {
 		return Handlebars.helpers.unless.call(this, value && (value.indexOf(expected) !== -1), options);
 	});
 
-	Handlebars.registerHelper('escape', function(text, options) {
+	Handlebars.registerHelper('escape', function(text) {
 		return new Handlebars.SafeString(text.replace(/\n/g, '<br>'));
 	});
 
@@ -48,15 +49,35 @@ define(function(require) {
 		return date.format(typeof format === 'string' ? format : 'L');
 	});
 
-	Handlebars.registerHelper('enum', function(value, id) {
-		if (enums[id])
-			return enums[id].fromValue(value);
-		else
-			return window[id][value];
+	Handlebars.registerHelper('format-reply-rate', function(rate) {
+		return new Handlebars.SafeString(rate === -1 ? '-' : rate + '%');
 	});
 
-	Handlebars.registerHelper('rate', function(rate) {
-		return new Handlebars.SafeString(rate === -1 ? '-' : rate + '%');
+	var weekMs = moment(0).add('weeks', 1).valueOf();
+	var dayMs = moment(0).add('days', 1).valueOf();
+	var hourMs = moment(0).add('hours', 1).valueOf();
+	var minuteMs = moment(0).add('minutes', 1).valueOf();
+
+	Handlebars.registerHelper('format-reply-time', function(time) {
+		if (time === -1)
+			return '-';
+
+		time *= 1000;
+
+		var weeks = Math.floor(time / weekMs);
+		if (weeks > 4) return '+4w';
+		if (weeks > 0) return weeks + 'w';
+
+		var days = Math.floor(time / dayMs);
+		if (days > 0) return days + 'd';
+
+		var hours = Math.floor(time / hourMs);
+		if (hours > 0) return hours + 'h';
+
+		var minutes = Math.floor(time / minuteMs);
+		if (minutes > 5) return minutes + 'm';
+
+		return '5m';
 	});
 
 	var originalEach = Handlebars.helpers.each;
@@ -118,49 +139,14 @@ define(function(require) {
 		}
 	});
 
-
-	/*********
-	 * ENUMS *
-	 *********/
-
-	function enumerate(values) {
-		var inverse = _.object(_.values(values), _.keys(values));
-		var map = values;
-
-		if (values instanceof Array) {
-			var tmp = map;
-			map = inverse;
-			inverse = tmp;
-		}
-
-		map.fromValue = function(value) {
-			return inverse[value];
-		};
-		return map;
-	}
-
-	var enums = {
-		'notification-type': enumerate({
-			Request: 'request',
-			Invitation: 'invite',
-			Message: 'message'
-		}),
-
-		'notification-state': enumerate({
-			pending: 'P',
-			maybe: 'M',
-			accepted: 'A',
-			denied: 'D',
-		}),
-
-	};
+	Handlebars.registerHelper('text', texts.resolve);
 
 
 	/*****************
 	 * VIEW FUNCTION *
 	 *****************/
 
-	return function(text) {
+	function view(text) {
 		var compiled = Handlebars.compile(text);
 
 		return function(data) {
@@ -168,5 +154,7 @@ define(function(require) {
 				data = _.extend.apply(_, [{}].concat(_.toArray(arguments)));
 			return compiled(data ||   {});
 		};
-	};
+	}
+
+	return view;
 });

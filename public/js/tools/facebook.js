@@ -1,9 +1,10 @@
+/*globals FB */
+
 define(function(require) {
 
 	var Promise = require('promise');
-	var api = require('api2');
+	var api = require('api');
 	var cookies = require('core/cookies');
-	var Header = require('views/app/header');
 
 	function askFbLogin() {
 		var prom = new Promise();

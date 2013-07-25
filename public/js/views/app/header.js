@@ -2,12 +2,12 @@
 
 define(function(require){
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var headerTpl = require("tmpl!templates/app/header.html");
-	var UserModel = require("models/Account");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var utils = require('utils');
+	var headerTpl = require('tmpl!templates/app/header.html');
+	var UserModel = require('models/Account');
 
 	var AppHeader = Backbone.View.extend({
 
@@ -15,7 +15,7 @@ define(function(require){
 
 		initialize: function(){
 			this.model = new UserModel({id: api.getUserId()});
-			this.model.on("change", this.render.bind(this));
+			this.model.on('change', this.render.bind(this));
 			this.model.fetch();
 			this.searchVisible = true;
 		},
@@ -23,7 +23,7 @@ define(function(require){
 		render: function(){
 			$(this.el).html(headerTpl(this.model.toJSON(), {lastName: this.model.get('lastName')[0] + '.'}));
 
-			this.search = new google.maps.places.Autocomplete(document.getElementById("header-search"), { types: ['(cities)'] });
+			this.search = new google.maps.places.Autocomplete(document.getElementById('header-search'), { types: ['(cities)'] });
 			google.maps.event.addListener(this.search, 'place_changed', this.doSearch.bind(this));
 			this.showSearch(this.searchVisible);
 		},

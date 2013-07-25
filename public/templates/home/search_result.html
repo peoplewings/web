@@ -100,9 +100,9 @@
 			<div class="main-bar">
 				<div class="info-bar">
 					<span class="">Reply time</span>
-					<span class="results">{{replyTime}}</span>
+					<span class="results">{{format-reply-time replyTime}}</span>
 					<span class="">Reply rate</span>
-					<span class="results">{{rate replyRate}}</span>
+					<span class="results">{{format-reply-rate replyRate}}</span>
 				</div>
 				<div class="button-bar"
 					{{#if first }}

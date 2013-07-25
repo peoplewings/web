@@ -26,15 +26,15 @@
 			<h2>{{ senderLocation }}</h2>
 			<h3>{{#if fromMe }}From{{else}}To{{/if}} me</h3>
 		</div>
-		<div class="messages-date-msg state-flag {{#if fromMe }}from-me{{else}}to-me{{/if}} {{enum wing.state 'notification-state' }}">
+		<div class="messages-date-msg state-flag {{#if fromMe }}from-me{{else}}to-me{{/if}} {{text 'notification-state' wing.state }}">
 			<h1>{{date created "MMM Do, HH:mm" }} </h1>
 			{{#if isMessage }}
 				<h2>Message</h2>
 			{{else}}
 				{{#if isRequest}}
-					<h2>Request <span>{{enum wing.state 'notification-state' }}</span></h2>
+					<h2>Request <span>{{text 'notification-state' wing.state }}</span></h2>
 				{{else}}
-					<h2>Invitation <span>{{enum wing.state 'notification-state' }}</span></h2>
+					<h2>Invitation <span>{{text 'notification-state' wing.state }}</span></h2>
 				{{/if}}
 			{{/if}}
 		</div>

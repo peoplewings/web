@@ -1,7 +1,7 @@
 define(function(require){
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
 
 	var mapView = Backbone.View.extend({
 
@@ -13,7 +13,7 @@ define(function(require){
 			this.el = options.el;
 			this.id = options.id;
 			this.css = options.css;
-			this.styles = _.extend(options.styles || {}, {height: "300px"});
+			this.styles = _.extend(options.styles || {}, {height: '300px'});
 			this.mapOptions = options.mapOptions ||
 			{
 				zoom: 1,

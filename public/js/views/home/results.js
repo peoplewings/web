@@ -2,21 +2,20 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api2');
-	var utils = require('utils');
+	var api = require('api');
 	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
 
 	var resultsView = Backbone.View.extend({
 
-		el: "#search-results",
+		el: '#search-results',
 
 		events: {
-			"click button.send-message-btn": "sendMessage",
-			"click button.send-request-btn": "sendRequest",
-			"click button.send-invitation-btn": "sendInvitation",
-			"click .pager-content a.button-pager-next": "nextPage",
-			"click .pager-content a.button-pager-previous": "previousPage"
+			'click button.send-message-btn': 'sendMessage',
+			'click button.send-request-btn': 'sendRequest',
+			'click button.send-invitation-btn': 'sendInvitation',
+			'click .pager-content a.button-pager-next': 'nextPage',
+			'click .pager-content a.button-pager-previous': 'previousPage'
 		},
 
 		initialize: function(options) {
@@ -41,10 +40,9 @@ define(function(require) {
 				endResult: results.endResult,
 				totalCount: results.count,
 				locationSearch: self.query.wings,
-				applicant: self.query.type === "Applicant",
+				applicant: self.query.type === 'Applicant',
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId;
-					result.replyTime = utils.formatReplyTime(+result.replyTime);
 					self.namesById[result.id]  = result.firstName + ' ' + result.lastName;
 					return result;
 				})
@@ -71,14 +69,14 @@ define(function(require) {
 			});
 
 			if (!self.logged)
-				$("#feedback-btn").hide();
+				$('#feedback-btn').hide();
 
 		},
 		nextPage: function() {
 			var scope = this;
 			if (+this.query.page === this.lastPage) return false;
 			this.query.page++;
-			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results) {
+			api.get(api.getApiVersion() + '/profiles', this.query).then(function(results) {
 				scope.render(results.data);
 			});
 			return false;
@@ -87,7 +85,7 @@ define(function(require) {
 			var scope = this;
 			if (+this.query.page === 1) return false;
 			this.query.page--;
-			api.get(api.getApiVersion() + "/profiles", this.query).then(function(results) {
+			api.get(api.getApiVersion() + '/profiles', this.query).then(function(results) {
 				scope.render(results.data);
 			});
 			return false;

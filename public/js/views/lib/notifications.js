@@ -4,7 +4,7 @@
 define(function(require) {
 
 	var $ = require('jquery');
-	var api = require('api2');
+	var api = require('api');
 	var Promise = require('promise');
 	var utils = require('utils');
 	var alerts = require('views/lib/alerts');
@@ -19,15 +19,15 @@ define(function(require) {
 		},
 		'accomodation': function(parent, params) {
 			parent.html(accomodationTpl(params));
-			parent.parents("form").validate(validation);
+			parent.parents('form').validate(validation);
 
-			parent.find("input[name=start-date]").datepicker({
+			parent.find('input[name=start-date]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
+				dateFormat: 'yy-mm-dd',
 			});
-			parent.find("input[name=end-date]").datepicker({
+			parent.find('input[name=end-date]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
+				dateFormat: 'yy-mm-dd',
 			});
 		},
 	};
@@ -42,7 +42,7 @@ define(function(require) {
 				},
 			},
 			errorPlacement: function(error, element) {
-				error.appendTo(element.next("span.help-block"));
+				error.appendTo(element.next('span.help-block'));
 			},
 	};
 
@@ -131,12 +131,12 @@ define(function(require) {
 					targetId = contacts.filter(function(c) { return c.fullname === selected; })['0'].id;
 				}
 
-				$(".accept-modal-btn").button('loading');
+				$('.accept-modal-btn').button('loading');
 
 				return api.post('/api/v1/notificationslist', {
-					"idReceiver": targetId,
-					"kind": kind,
-					"data": data,
+					'idReceiver': targetId,
+					'kind': kind,
+					'data': data,
 				}).then(function() {
 					alerts.success('Message Sent');
 					prom.resolve(true);
@@ -144,7 +144,7 @@ define(function(require) {
 					alerts.defaultError();
 					prom.reject(error);
 				}).fin(function() {
-					$(".accept-modal-btn").button('reset');
+					$('.accept-modal-btn').button('reset');
 					modal.modal('hide');
 				});
 			}
@@ -158,18 +158,18 @@ define(function(require) {
 		var request = api.get('/api/v1/wings', { profile:  wingsOwnerId}).prop('data');
 		return modalHelper(targetId, targetName, kind, title, request, function(modal) {
 			return {
-				"privateText": modal.find('#message-content').val(),
-				"publicText": modal.find('#public-message-content').val(),
-				"makePublic": modal.find('#public-request').is(':checked'),
-				"wingType": selectedWingType(modal),
-				"wingParameters": {
-					"wingId": modal.find('#wings').val(),
-					"startDate": +new Date(modal.find('#wing-parameters [name="start-date"]').val())/1000,
-					"endDate": +new Date(modal.find('#wing-parameters [name="end-date"]').val())/1000,
-					"capacity": modal.find('#wing-parameters [name="capacity"]').val(),
-					"arrivingVia": modal.find('#wing-parameters [name="via"]').val(),
-					"flexibleStart": modal.find('#wing-parameters #flexible-start-date').is(':checked'),
-					"flexibleEnd": modal.find('#wing-parameters #flexible-end-date').is(':checked'),
+				'privateText': modal.find('#message-content').val(),
+				'publicText': modal.find('#public-message-content').val(),
+				'makePublic': modal.find('#public-request').is(':checked'),
+				'wingType': selectedWingType(modal),
+				'wingParameters': {
+					'wingId': modal.find('#wings').val(),
+					'startDate': +new Date(modal.find('#wing-parameters [name="start-date"]').val())/1000,
+					'endDate': +new Date(modal.find('#wing-parameters [name="end-date"]').val())/1000,
+					'capacity': modal.find('#wing-parameters [name="capacity"]').val(),
+					'arrivingVia': modal.find('#wing-parameters [name="via"]').val(),
+					'flexibleStart': modal.find('#wing-parameters #flexible-start-date').is(':checked'),
+					'flexibleEnd': modal.find('#wing-parameters #flexible-end-date').is(':checked'),
 				}
 			};
 		});
@@ -181,7 +181,7 @@ define(function(require) {
 		message: function(targetId, targetName) {
 			modalHelper(targetId, targetName, 'message', 'New message', null, function(modal) {
 				return {
-					"content": modal.find('#message-content').val(),
+					'content': modal.find('#message-content').val(),
 				};
 			});
 		},

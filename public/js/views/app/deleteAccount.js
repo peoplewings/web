@@ -1,12 +1,12 @@
 define(function(require) {
 
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var utils = require('utils');
-	var logoutView = require("views/app/logout");
+	var logoutView = require('views/app/logout');
 	var deleteTpl = require('tmpl!templates/app/account/delete-account.html');
 	var responseTpl = require('tmpl!templates/lib/responses/account.deleted.html');
-	var AccountModel = require("models/Account");
+	var AccountModel = require('models/Account');
 	var responseView = require('views/lib/balloon.response');
 
 	var DeleteAccount = Backbone.View.extend({
@@ -14,7 +14,7 @@ define(function(require) {
 		el: '#main',
 
 		events: {
-			"submit form#delete-account-form" : "deleteAccount"
+			'submit form#delete-account-form' : 'deleteAccount'
 		},
 
 		initialize: function() {
@@ -33,7 +33,7 @@ define(function(require) {
 			if (!this.$('#' + evt.target.id).valid())
 				return;
 
-			this.$("#delete-account-btn").button('loading');
+			this.$('#delete-account-btn').button('loading');
 
 			var data = utils.serializeForm(evt.target.id);
 			var self = this;
@@ -45,7 +45,7 @@ define(function(require) {
 				});
 				setTimeout(logoutView.goodbye, 5000);
 			}, function(){
-				self.$("#delete-account-btn").button('reset');
+				self.$('#delete-account-btn').button('reset');
 				self.$('#' + evt.target.id)[0].reset();
 			});
 
