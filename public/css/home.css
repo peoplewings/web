@@ -397,9 +397,6 @@ div#alerts-container {
       border: none;
       padding: 0; }
 
-@media (max-width: 665px) {
-  ul.nav.pull-right, .btn-group.pull-right {
-    display: none; } }
 @media (max-width: 767px) {
   [class*="span"], .row-fluid [class*="span"] {
     float: left;
@@ -778,6 +775,15 @@ div.btn-group.pull-right {
           background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
           background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
 
+@media (max-width: 530px) {
+  div.nav-menu ul.nav.pull-right {
+    background-color: #edede6;
+    width: 100%;
+    padding-left: 10% !important;
+    float: left;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 0 4px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25); } }
 /* --------------------------------------------------------------------------
  * Font-face
  * -------------------------------------------------------------------------- */
@@ -1516,6 +1522,10 @@ div.request-options {
       margin-bottom: 4px; }
     div.request-options div#wing-data span {
       margin-left: 10px; }
+    div.request-options div#wing-data div#wing-accomodation-params div.form-errors.date-error {
+      margin-bottom: -5px;
+      margin-left: -4px;
+      max-width: 228px; }
     div.request-options div#wing-data div#wing-accomodation-params div.control-group {
       margin: 0;
       margin-top: 10px; }
@@ -1893,9 +1903,12 @@ form#login-form {
       display: none;
       margin-left: 10% !important; } }
 @media (max-width: 530px) {
-  form#login-form .icon-facebook-login,
-  form#register-form .icon-facebook-login {
-    display: none; }
+  form#login-form,
+  form#register-form {
+    margin-top: 100px; }
+    form#login-form .icon-facebook-login,
+    form#register-form .icon-facebook-login {
+      display: none; }
 
   form#login-form .controls.terms a {
     display: block;
@@ -3534,6 +3547,77 @@ form#feedback-form {
   background-color: yellow !important; }
 
 /* --------------------------------------------------------------------------
+ * Chat
+ * -------------------------------------------------------------------------- */
+#chat-manager {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  overflow: visible; }
+  #chat-manager div#chat-wrapper {
+    position: relative; }
+    #chat-manager div#chat-wrapper div.chat {
+      border: 1px solid #18183f;
+      width: 225px;
+      position: fixed;
+      bottom: 0; }
+      #chat-manager div#chat-wrapper div.chat:nth-child(1) {
+        right: 10px; }
+      #chat-manager div#chat-wrapper div.chat:nth-child(2) {
+        right: 245px; }
+      #chat-manager div#chat-wrapper div.chat:nth-child(3) {
+        right: 480px; }
+      #chat-manager div#chat-wrapper div.chat:nth-child(4) {
+        right: 715px; }
+      #chat-manager div#chat-wrapper div.chat div.header {
+        border-bottom: 1px solid #18183f;
+        height: 36px;
+        background-color: #18183f;
+        color: yellow; }
+        #chat-manager div#chat-wrapper div.chat div.header td.td-online-button {
+          width: 30px;
+          height: 36px; }
+          #chat-manager div#chat-wrapper div.chat div.header td.td-online-button div.online-button {
+            width: 10px;
+            height: 10px;
+            background-color: green;
+            border-radius: 50%;
+            margin: 5px;
+            float: right; }
+        #chat-manager div#chat-wrapper div.chat div.header td.username {
+          width: 150px;
+          text-align: center; }
+        #chat-manager div#chat-wrapper div.chat div.header td.td-button-close {
+          width: 30px;
+          height: 36px; }
+        #chat-manager div#chat-wrapper div.chat div.header button.button-close {
+          font-size: 1.2em;
+          float: right;
+          border: 0px solid black;
+          margin-bottom: 5px;
+          background-color: #18183f;
+          color: red; }
+      #chat-manager div#chat-wrapper div.chat div.contents {
+        background-color: #18183f; }
+        #chat-manager div#chat-wrapper div.chat div.contents div.chat-window {
+          border: 1px solid black;
+          margin: 10px;
+          background-color: #cccccc;
+          height: 200px; }
+          #chat-manager div#chat-wrapper div.chat div.contents div.chat-window p {
+            margin-left: 10px; }
+        #chat-manager div#chat-wrapper div.chat div.contents div.chat-input {
+          margin: 10px;
+          height: 36px;
+          width: 195px; }
+        #chat-manager div#chat-wrapper div.chat div.contents textarea.chat-textarea {
+          width: 100%;
+          height: 36px;
+          resize: none; }
+
+/* --------------------------------------------------------------------------
  * Footer
  * -------------------------------------------------------------------------- */
 .navbar-fixed-bottom {
@@ -3667,7 +3751,8 @@ input, select {
   margin: 0px; }
 
 .pac-container {
-  z-index: 10000 !important; }
+  z-index: 10000 !important;
+  font-size: 12px; }
 
 section#main {
   overflow: hidden; }

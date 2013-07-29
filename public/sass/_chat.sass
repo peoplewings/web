@@ -1,0 +1,89 @@
+/* --------------------------------------------------------------------------
+ * Chat
+ * --------------------------------------------------------------------------
+#chat-manager
+	position: fixed
+	bottom: 0
+	right: 0
+	width: 0
+	height: 0
+	overflow: visible
+
+	div#chat-wrapper
+		position: relative
+
+		div.chat 
+			border: 1px solid #18183f
+			width: 225px
+			position: fixed
+			bottom: 0
+
+			&:nth-child(1)
+				right: 10px
+
+			&:nth-child(2)
+				right: 245px
+
+			&:nth-child(3)
+				right: 480px
+
+			&:nth-child(4)
+				right: 715px
+
+
+
+			div.header
+				border-bottom: 1px solid #18183f
+				height: 36px
+				background-color: #18183f
+				color: yellow
+			
+				td.td-online-button
+					width: 30px
+					height: 36px
+
+					div.online-button
+						width: 10px
+						height: 10px
+						background-color: green
+						border-radius: 50%
+						margin: 5px
+						float: right
+
+			
+				td.username
+					width: 150px
+					text-align: center
+				
+				td.td-button-close
+					width: 30px
+					height: 36px
+				
+				button.button-close
+					font-size: 1.2em
+					float: right
+					border: 0px solid black
+					margin-bottom: 5px
+					background-color: #18183f
+					color: red
+
+			div.contents
+				background-color: #18183f
+				
+				div.chat-window
+					border: 1px solid black
+					margin: 10px
+					background-color: #CCCCCC
+					height: 200px
+					p
+						margin-left: 10px
+
+				div.chat-input
+					margin: 10px
+					height: 36px
+					width: 195px
+				
+				textarea.chat-textarea
+					width: 100%
+					height: 36px
+					resize: none

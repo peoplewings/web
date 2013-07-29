@@ -72,7 +72,7 @@ requirejs.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-requirejs(['modernizr', 'jquery', 'backbone', 'router', 'promise', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router, Promise) {
+requirejs(['modernizr', 'jquery', 'backbone', 'router', 'promise','views/chat/chat_manager', 'bootstrap', 'typeahead', 'jquery.Extensions', 'async'], function(Modernizr, $, Backbone, Router, Promise, ChatManager) {
 	Promise.debug = true;
 	// Instantiates a new Router
 	window.router = new Router();

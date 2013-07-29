@@ -5,10 +5,12 @@ define(function(require) {
 	var api = require('api2');
 	var mainView = require('views/home/main');
 	var FeedView = require('views/app/feedback');
+	var chatManagerView = require('views/chat/chat');
 
 	var HomeView = Backbone.View.extend({
 		initialize: function(){
 			this.eventBinds();
+			this.chatMngView = new chatManagerView();
 		},
 		eventBinds: function(){
 			$("#feedback-btn-submit").live("click", this.showFeedback.bind(this));

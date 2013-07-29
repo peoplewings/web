@@ -33,7 +33,7 @@
 			</div><!-- EOF pager content -->
 
 			{{#each results}}
-			<div class="profile search-result" data-profile-id="{{ id }}"
+			<div class="profile search-result" data-profile-id="{{ id }}" data-profile-fullname="{{fullname}}"
 				{{#if first }}
 					 data-step="5"
 					 data-position="top"
@@ -112,7 +112,11 @@
 					{{/if}}
 					>
 					<ul>
-						<li><button class="button send-message-btn">MESSAGE</button></li>
+						{{#if online}}
+							<li><button class="button send-chat-btn">CHAT</button></li>
+						{{else}}
+							<li><button class="button send-message-btn">MESSAGE</button></li>
+						{{/if}}
 						{{#if ../isPeople }}
 							{{#if wings.length }}
 								<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
