@@ -1,7 +1,7 @@
 define(function(require) {
 
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var UserModel = require('models/Account');
 	var ProfileModel = require('models/ProfileModel');
 
@@ -20,7 +20,7 @@ define(function(require) {
 			api.clearAuthToken();
 			new ProfileModel({ id: api.getUserId() }).clear();
 			new UserModel({ id: api.getUserId() }).clear();
-			router.navigate("/#/");
+			router.navigate('/#/');
 			location.reload();
 		}
 	});

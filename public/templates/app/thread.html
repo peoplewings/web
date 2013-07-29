@@ -80,9 +80,9 @@
 					<div id="write-response" style="display: none">
 						<div class="response-wrapper">
 							{{#unless isMessage}}
-							<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}" style="display: none">
+							<div class="state-flag {{#if iStarted }}from-me{{else}}to-me{{/if}} {{text 'notification-state' state }}" style="display: none">
 								<i>state</i>
-								<span>{{enum state 'notification-state'}}</span>
+								<span>{{text 'notification-state' state }}</span>
 							</div>
 							<div id="edit-wing-params" style="display: none">
 								<form id="wing-params-form">

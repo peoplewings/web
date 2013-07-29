@@ -1,17 +1,17 @@
 define(function(require){
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var Promise = require("promise");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var Promise = require('promise');
 	var utils = require('utils');
 
-	var notificationsTpl = require("tmpl!templates/app/notifications.html");
-	var itemTpl = require("tmpl!templates/app/notification.html");
-	var alerts = require("views/lib/alerts");
+	var notificationsTpl = require('tmpl!templates/app/notifications.html');
+	var itemTpl = require('tmpl!templates/app/notification.html');
+	var alerts = require('views/lib/alerts');
 
-	var AccountModel = require("models/Account");
-	var ProfileModel = require("models/ProfileModel");
+	var AccountModel = require('models/Account');
+	var ProfileModel = require('models/ProfileModel');
 
 	api.listenUpdate('notifs', function(count) {
 		$('#notif-count')
@@ -30,13 +30,13 @@ define(function(require){
 			var profile = new ProfileModel({
 					id: api.getUserId()
 			});
-			profile.fetch(router.previewView.refreshBox("basic-box"));
+			profile.fetch(router.previewView.refreshBox('basic-box'));
 			alerts.success('Your profile picture has been updated');
 		}
 	});
 
 	var NotificationsView = Backbone.View.extend({
-		el: "#main",
+		el: '#main',
 
 		activePage: 1,
 		lastPage: null,

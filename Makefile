@@ -2,6 +2,9 @@
 
 # Development
 
+lint:
+	jshint public/js
+
 sass:
 	sass --update public/sass:public/css
 

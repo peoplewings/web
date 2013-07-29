@@ -1,51 +1,50 @@
 define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
 
-	var homeView = require("views/home/main");
-	var appHomeView = require("views/app/home");
-	var registerView = require("views/home/register");
-	var loginView = require("views/home/login");
-	var helpCenter = require("views/home/help");
-	var activateView = require("views/home/activate");
-	var passwordView = require("views/home/password");
-	var logoutView = require("views/app/logout");
-	var SettingsView = require("views/app/settings");
-	var deleteAccount = require("views/app/deleteAccount");
-	var ProfileView = require("views/app/ProfileView");
-	var notificationsView = require("views/app/notifications");
-	var threadView = require("views/app/thread");
-	var Header = require("views/app/header");
+	var homeView = require('views/home/main');
+	var registerView = require('views/home/register');
+	var loginView = require('views/home/login');
+	var helpCenter = require('views/home/help');
+	var activateView = require('views/home/activate');
+	var passwordView = require('views/home/password');
+	var logoutView = require('views/app/logout');
+	var SettingsView = require('views/app/settings');
+	var deleteAccount = require('views/app/deleteAccount');
+	var ProfileView = require('views/app/ProfileView');
+	var notificationsView = require('views/app/notifications');
+	var threadView = require('views/app/thread');
+	var Header = require('views/app/header');
 
 
 	var Router = Backbone.Router.extend({
 		routes: {
-			"register": "register",
-			"login": "login",
-			"help": "help",
-			"help#:tab": "help",
-			"activate/:token": "activate",
-			"forgot": "forgotPassword",
-			"forgot/:token": "forgotPassword",
-			"search": "search",
-			"search/:type": "search",
-			"search/:type/": "search",
-			"search/:type/?:params": "search",
+			'register': 'register',
+			'login': 'login',
+			'help': 'help',
+			'help#:tab': 'help',
+			'activate/:token': 'activate',
+			'forgot': 'forgotPassword',
+			'forgot/:token': 'forgotPassword',
+			'search': 'search',
+			'search/:type': 'search',
+			'search/:type/': 'search',
+			'search/:type/?:params': 'search',
 			//Logged User patterns
-			"logout": "logout",
-			"settings":"settings",
-			"settings/delete":"deleteAccount",
+			'logout': 'logout',
+			'settings':'settings',
+			'settings/delete':'deleteAccount',
 
-			"profiles/:id/about":"aboutProfile",
-			"profiles/:id/wings":"wingsProfile",
+			'profiles/:id/about':'aboutProfile',
+			'profiles/:id/wings':'wingsProfile',
 
-			"messages/:id": "showThread",
-			"messages/filter/:filters": "showNotifications",
-			"messages": "showNotifications",
+			'messages/:id': 'showThread',
+			'messages/filter/:filters': 'showNotifications',
+			'messages': 'showNotifications',
 			//Default action
-			"*actions": "defaultAction",
+			'*actions': 'defaultAction',
 		},
 
 		//Anonymous User hashs
@@ -121,7 +120,7 @@ define(function(require) {
 
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
-			this.previewView.render(+userId, "about");
+			this.previewView.render(+userId, 'about');
 
 		},
 		wingsProfile: function(userId){
@@ -132,7 +131,7 @@ define(function(require) {
 
 			if (!this.previewView)
 				this.previewView = new ProfileView(+userId);
-			this.previewView.render(+userId, "wings");
+			this.previewView.render(+userId, 'wings');
 		},
 
 		showNotifications: function(filters){
@@ -163,7 +162,7 @@ define(function(require) {
 		},
 		_trackPageview: function() {
 			var url = Backbone.history.getFragment();
-			return window.ga('_trackPageview', "/" + url);
+			return window.ga('_trackPageview', '/' + url);
 		},
 		initialize: function(){
 			console.log('router.js: initialize() ', api.getAuthToken(), api.getUserId());

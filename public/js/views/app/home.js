@@ -2,7 +2,7 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var mainView = require('views/home/main');
 	var FeedView = require('views/app/feedback');
 	var chatManagerView = require('views/chat/chat');
@@ -13,11 +13,11 @@ define(function(require) {
 			this.chatMngView = new chatManagerView();
 		},
 		eventBinds: function(){
-			$("#feedback-btn-submit").live("click", this.showFeedback.bind(this));
+			$('#feedback-btn-submit').live('click', this.showFeedback.bind(this));
 		},
 		render: function(){
 			mainView.render();
-			$("#feedback-btn").show();
+			$('#feedback-btn').show();
 		},
 		showFeedback: function(evt){
 			evt.preventDefault();

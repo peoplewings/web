@@ -1,18 +1,19 @@
 define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var Promise = require("promise");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var Promise = require('promise');
+	var texts = require('tools/texts');
 	var UserAccount = require('models/Account');
 	var alerts = require('views/lib/alerts');
 	var notifications = require('views/lib/notifications');
-	var notifList = require("views/app/notifications");
-	var threadTpl = require("tmpl!templates/app/thread.html");
-	var itemTpl = require("tmpl!templates/app/thread-item.html");
+	var notifList = require('views/app/notifications');
+	var threadTpl = require('tmpl!templates/app/thread.html');
+	var itemTpl = require('tmpl!templates/app/thread-item.html');
 
 	var ThreadView = Backbone.View.extend({
-		el: "#main",
+		el: '#main',
 
 		events: {
 			'click #back': 'back',
@@ -51,7 +52,7 @@ define(function(require) {
 				}
 			},
 			errorPlacement: function(error, element) {
-				error.appendTo(element.nextAll("span.help-block"));
+				error.appendTo(element.nextAll('span.help-block'));
 			},
 		},
 
@@ -76,7 +77,7 @@ define(function(require) {
 					return api.get('/api/v1/notificationsthread/' + id)
 						.prop('data')
 						.then(function(data){
-							if (data.kind !== "message")
+							if (data.kind !== 'message')
 								self.parseOptions(data.options, data.firstSender, data.wing.state);
 
 							data.items = data.items.map(function(item){
@@ -175,7 +176,7 @@ define(function(require) {
 		},
 
 		reply: function() {
-			if (this.data.kind !== "message")
+			if (this.data.kind !== 'message')
 				this.prevState = this.data.wing.state;
 
 			this.$('#response-options').hide();
@@ -199,19 +200,18 @@ define(function(require) {
 				.hide();
 
 			if (this.prevState) {
-				var e = Handlebars.helpers['enum'];
 				this.$('.state-flag')
-					.removeClass(e(this.data.wing.state, "notification-state"))
-					.addClass(e(this.prevState, "notification-state"))
-					.find("span")
-					.text(e(this.prevState, "notification-state"));
+					.removeClass(texts.resolve(this.data.wing.state, 'notification-state'))
+					.addClass(texts.resolve(this.prevState, 'notification-state'))
+					.find('span')
+					.text(texts.resolve('notification-state', this.prevState));
 
 				this.data.wing.state = this.prevState;
 			}
 		},
 
 		sendResponse: function() {
-			var form = this.$("#edit-wing-params > form");
+			var form = this.$('#edit-wing-params > form');
 			if (form.length && !form.valid())
 				return Promise.resolved(false);
 
@@ -219,12 +219,12 @@ define(function(require) {
 			if (!resp.content)
 				return Promise.resolved(false);
 
-			if (this.data.kind === "request" || this.data.kind === "invite"){
+			if (this.data.kind === 'request' || this.data.kind === 'invite'){
 				resp.wingParameters = this.getWingParameters(this.data.wing.state);
 				resp.state = this.getWingState();
 			}
 
-			this.$("#send-response").button('loading');
+			this.$('#send-response').button('loading');
 
 			var self = this;
 			return api.post('/api/v1/notificationsthread/', {
@@ -234,7 +234,7 @@ define(function(require) {
 				return self.render(self.current.id);
 			}).then(function() {
 				alerts.success('Response sent');
-				self.$("#send-response").button('reset');
+				self.$('#send-response').button('reset');
 			}, function() {
 				debugger;
 				alerts.defaultError();
@@ -243,55 +243,54 @@ define(function(require) {
 
 		optAccept: function() {
 			this.reply();
-			this.data.wing.state = "A";
+			this.data.wing.state = 'A';
 			this.$('#edit-wing-params').show();
 			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optMaybe: function() {
 			this.reply();
-			this.data.wing.state = "M";
+			this.data.wing.state = 'M';
 			this.$('#edit-wing-params').show();
 			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optReopen: function() {
 			this.reply();
-			this.data.wing.state = "P";
+			this.data.wing.state = 'P';
 			this.$('#edit-wing-params').show();
 			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		optDeny: function() {
 			this.reply();
-			this.data.wing.state = "D";
+			this.data.wing.state = 'D';
 			this.$('#write-response > .params-box').show();
 			this.handleOption(this.data.wing.state, this.prevState);
 		},
 
 		handleOption: function(option, prevState) {
-			var e = Handlebars.helpers['enum'];
 			this.$('.state-flag')
 				.show()
-				.removeClass(e(prevState, "notification-state"))
-				.addClass(e(option, "notification-state"))
-				.find("span")
-				.text(e(option, "notification-state"));
+				.removeClass(texts.resolve(prevState, 'notification-state'))
+				.addClass(texts.resolve(option, 'notification-state'))
+				.find('span')
+				.text(texts.resolve('notification-state', option));
 
-			this.$("#wing-params-form")
+			this.$('#wing-params-form')
 				.validate(this.responseValidation);
 
 
-			this.$("input[name=startDate]").datepicker({
+			this.$('input[name=startDate]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
+				dateFormat: 'yy-mm-dd',
 			});
 
-			this.$("input[name=endDate]").datepicker({
+			this.$('input[name=endDate]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
-			}).rules("add", {
-				gte: this.$("input[name=startDate]"),
+				dateFormat: 'yy-mm-dd',
+			}).rules('add', {
+				gte: this.$('input[name=startDate]'),
 			});
 
 			this.$('select[name=capacity]')
@@ -300,16 +299,16 @@ define(function(require) {
 
 		parseOptions: function(options, firstSender, wingState){
 			if (api.getUserId() === firstSender)
-				options[options.indexOf("Deny")] = "Cancel";
-			if (wingState === "D")
-				options[options.indexOf("Pending")] = "Reopen";
+				options[options.indexOf('Deny')] = 'Cancel';
+			if (wingState === 'D')
+				options[options.indexOf('Pending')] = 'Reopen';
 		},
 
 		getWingParameters: function(state){
 			if (state === 'M' || state === 'A' || state === 'P'){
-				this.data.wing.parameters.startDate = +new Date(this.$("input[name=startDate]").val())/1000;
-				this.data.wing.parameters.endDate = +new Date(this.$("input[name=endDate]").val())/1000;
-				this.data.wing.parameters.capacity = this.$("select[name=capacity]").val();
+				this.data.wing.parameters.startDate = +new Date(this.$('input[name=startDate]').val())/1000;
+				this.data.wing.parameters.endDate = +new Date(this.$('input[name=endDate]').val())/1000;
+				this.data.wing.parameters.capacity = this.$('select[name=capacity]').val();
 			}
 
 			return {

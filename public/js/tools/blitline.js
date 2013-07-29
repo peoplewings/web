@@ -1,6 +1,6 @@
 /*globals Blitline */
 
-define(function(require) {
+define(function() {
 
 	var blitline = new Blitline();
 	var queue = [];

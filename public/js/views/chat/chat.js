@@ -13,6 +13,7 @@ define(function(require) {
 				this.model = new UserProfile({
 					id: otherId,
 				});
+				
 				this.model.fetch({success: function(prof){
 					debugger;
 					alert(prof.toJSON);

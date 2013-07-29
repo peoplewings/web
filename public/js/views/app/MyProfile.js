@@ -1,330 +1,134 @@
 //jshint camelcase:false, sub:true
 
-define(function(require){
+define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var phrases = require('phrases');
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var utils = require('utils');
+	var texts = require('tools/texts');
 	var blitline = require('tools/blitline');
 
-	var basicTpl = require('tmpl!templates/app/profile/form.basic.html');
-	var aboutTpl = require('tmpl!templates/app/profile/form.about.html');
-	var likesTpl = require('tmpl!templates/app/profile/form.likes.html');
-	var contactTpl = require('tmpl!templates/app/profile/form.contact.html');
-	var placesTpl = require('tmpl!templates/app/profile/form.places.html');
-
-	var photosListTpl = require('tmpl!templates/app/profile/view.photos_list.html');
-	var foundation = require("foundation");
-	var foundationClearing = require("foundationClearing");
-
+	var spinner = require('views/lib/spinner');
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
-	var AvatarView = require("views/app/Avatar");
+	var AvatarView = require('views/app/Avatar');
 
-	function extract(source, props) {
-		var target = {};
-		_.each(props, function(value, key) {
-			target[value] = source[key];
-		});
-		return target;
-	}
+	var formsTpl = {
+		'basic': require('tmpl!templates/app/profile/form.basic.html'),
+		'about': require('tmpl!templates/app/profile/form.about.html'),
+		'likes': require('tmpl!templates/app/profile/form.likes.html'),
+		'contact': require('tmpl!templates/app/profile/form.contact.html'),
+		'places': require('tmpl!templates/app/profile/form.places.html'),
+	};
 
 
 	var ProfileView = Backbone.View.extend({
-		el: "#main",
+		el: '#main',
+
 		events:{
-			"click a#add-language-btn": function(e){
+			'click a#add-language-btn': function(e) {
 				e.preventDefault();
 				this.languagesList.addItem();
 			},
-			"click button[id^=delete-lang]": function(e){
+			'click button[id^=delete-lang]': function(e) {
 				e.preventDefault();
 				this.languagesList.deleteItem(e);
 			},
-			"click a#add-edu-btn": function(e){
+			'click a#add-edu-btn': function(e) {
 				e.preventDefault();
 				this.educationsList.addItem();
 				this.initStudyTypeahead();
 			},
-			"click button[id^=delete-edu]": function(e){
+			'click button[id^=delete-edu]': function(e) {
 				e.preventDefault();
 				this.educationsList.deleteItem(e);
 			},
-			"click a#add-otherLocation-btn": function(e){
+			'click a#add-otherLocation-btn': function(e) {
 				e.preventDefault();
 
 				var added = this.otherLocationsList.addItem();
-				var newInput = this.$("#" + added).children("[name=otherLocations]")[0];
+				var newInput = this.$('#' + added).children('[name=otherLocations]')[0];
 				var auto = new google.maps.places.Autocomplete(newInput, { types: ['(cities)'] });
 
-				google.maps.event.addListener(auto, 'place_changed', this.updateMap(auto, "other", added));
+				google.maps.event.addListener(auto, 'place_changed', this.updateMap(auto, 'other', added));
 				$(newInput).keypress(function(event) { if ( event.which === 13 ) event.preventDefault(); });
 			},
-			"click button[id^=delete-otherLocation]": function(e){
+			'click button[id^=delete-otherLocation]': function(e) {
 				e.preventDefault();
-				var id = e.target.id.split("delete-")[1];
+				var id = e.target.id.split('delete-')[1];
 				this.otherLocationsList.deleteItem(e);
 				this.parentCtrl.map.deleteMarker(id);
 			},
-			"click a#add-social-btn": function(e){
+			'click a#add-social-btn': function(e) {
 				e.preventDefault();
 				this.socialsList.addItem();
 			},
-			"click button[id^=delete-social]": function(e){
+			'click button[id^=delete-social]': function(e) {
 				e.preventDefault();
 				this.socialsList.deleteItem(e);
 			},
-			"click a#add-im-btn": function(e){
+			'click a#add-im-btn': function(e) {
 				e.preventDefault();
 				this.imList.addItem();
 			},
-			"click button[id^=delete-im]": function(e){
+			'click button[id^=delete-im]': function(e) {
 				e.preventDefault();
 				this.imList.deleteItem(e);
 			},
-			"keypress #hometown": function(e) {
+			'keypress #hometown': function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-			"keypress #currentCity": function(e) {
+			'keypress #currentCity': function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-			"keypress [name=otherLocations]": function(e) {
+			'keypress [name=otherLocations]': function(e) {
 				if (e.which === 13) e.preventDefault();
 			},
-			"submit form#basic-info-form": "submitProfile",
-			"submit form#about-me-form": "submitProfile",
-			"submit form#likes-form": "submitProfile",
-			"submit form#contact-form": "submitProfile",
-			"submit form#places-form": "submitProfile",
-			"click .edit-box-btn" : "openForm",
-			"click button.cancel-edition-btn": "closeBox",
-			"click .see-more": "gradientBoxVisiblity",
-			"click .see-less": "gradientBoxVisiblity",
-			//photos events
-			"click #add_photo" : function(e){
-				var input = $(e.target).find('#input-photo-upload');
-				input.clone()
-					.removeAttr('id')
-					.appendTo(input.parent())
-					.trigger('click');
-			},
-			'change #add_photo input[type="file"]':function(e){
-				var photoData = e.target.files[0];
-				this.checkPhotoData(photoData, $(e.target).data('album'));
-				$(e.target).closest('form').get(0).reset();
-			},
-			"mouseenter #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').show();
-			},
-
-			"mouseleave #collapse-photos li" : function(e){
-				$(e.target).parents('li').find('.control').hide();
-			}
+			'submit form#basic-info-form': 'submitProfile',
+			'submit form#about-me-form': 'submitProfile',
+			'submit form#likes-form': 'submitProfile',
+			'submit form#contact-form': 'submitProfile',
+			'submit form#places-form': 'submitProfile',
+			'click .edit-box-btn' : 'openForm',
+			'click button.cancel-edition-btn': 'closeBox',
+			'click .see-more': 'gradientBoxVisiblity',
+			'click .see-less': 'gradientBoxVisiblity',
 		},
 
-		checkPhotoData: function(photo, albumId){
-			var self = this;
-
-			//check size: is more than 6Mb
-			if(photo.size > 6291456){
-				alert('this photo is bigger than 6 Mb');
-				return;
-			}			
-			//create image
-			var img = new Image();
-			var url = window.URL || window.webkitURL;
-			if(url){
-				img.src = url.createObjectURL(photo);
-			}else{
-				alerts.error('Your browser does not support image loading. To get the best experience, please download Chrome');
-			}
-
-			//check dimension
-			img.onload = function(){
-				if(this.width < 380){
-					alerts.error('The photo width must be bigger than 380px');
-					return;
-				}
-				if(this.height < 150){
-					alerts.error('The photo width must be bigger than 150px');
-					return;
-				}
-
-				var id = Date.now() + '-' + Math.random();
-
-				//render photo				
-				self.renderPhotoUpload(this, id);
-
-				utils.uploadAmazon(photo, 'to-resize').then(function(url) {
-					var jobs = [{
-						"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
-						"src": url,
-						"content_type_json": true,
-
-						"functions": [{
-							"name": "resize_to_fit",
-							"params": {
-								"width": 600,
-								"height": 600
-							},
-							"save": {
-								"image_identifier": 'big',
-								"quality": 100,
-								"s3_destination":{
-									"bucket":{
-										"name":"peoplewings-test-media",
-										"location":"eu-west-1"
-									},
-									"key":"/photoalbums/big_" + id
-								}
-							}
-						}, {
-							"name": "resize_to_fit",
-							"params": {
-								"width": 380
-							},
-							"save": {
-								"image_identifier": 'thumb',
-								"quality": 100,
-								"s3_destination":{
-									"bucket":{
-										"name":"peoplewings-test-media",
-										"location":"eu-west-1"
-									},
-									"key":"/photoalbums/thumb_" + id
-								}
-							}
-						}],
-
-						postback_url: api.getServerUrl() + api.getApiVersion() + '/photocompleted' + api.urlEncode({
-							album: albumId,
-							authToken: api.getAuthToken(),
-							hash: id,
-						})
-					}];
-
-					blitline.submit(jobs);
-				});
-			};
-		},
-
-		renderPhotoUpload: function(photo, id){
-			var self = this;
-			this.$el.find('#photo-box .clearing-thumbs').prepend(photosListTpl({
-				uploading: true,
-				id: id,
-				src: photo.src
-			}));
-
-			//initialize foundation for this view to use in photo slide
-			this.$("#photo-box").foundation();
-
-			//photos draggable
-			this.$("#photo-box ul").sortable();
-
-			//close image propagation
-			this.$('#collapse-photos .control')
-				.off()
-				.on('click', this.removePhoto);
-
-			this.uploadStart(id);
-		},
-
-		uploadStart: function(id) {
-			this._uploading.push(id);
-			console.log('Uploading', id);
-			if (!this._interval) {
-				this._interval = setInterval(api.control, 5000);
-				console.log('Starting interval');
-			}
-		},
-
-		uploadEnd: function(id) {
-			this._uploading = this._uploading.filter(function(a) { return a !== id });
-			console.log('Upload end', id);
-			if (!this._uploading.length) {
-				clearInterval(this._interval);
-				this._interval = null;
-				console.log('Clearing interval');
-			}
-		},
 
 		initialize: function(model, parent) {
-			this._uploading = [];
 			this.model = model;
 			this.parentCtrl = parent;
-			this.removePhoto = this.removePhoto.bind(this);
-			var self = this;
+		},
 
-			//album update listener
-			api.listenUpdate('photos', function(photos) {
-				photos.forEach(function(photo) {
-					var el = $(photosListTpl(photo));
-					$('[data-tmp-photo-id="' + photo.hash + '"]').replaceWith(el);
-					el.find('.control').on('click', parent.onCloseClick);
-					self.uploadEnd(photo.hash);
-				});
+		closeBox: function(event) {
+			event.preventDefault();
+			var boxName = this._getBoxName(event.target);
+			this.parentCtrl.refreshBox(boxName);
+		},
+
+		reloadBox: function(event) {
+			event.preventDefault();
+			var boxName = this._getBoxName(event.target);
+			this.parentCtrl.renderBox(boxName);
+		},
+
+		_getBoxName: function(target) {
+			target = $(target);
+			var id = target.parent().attr('data-rel') || target.attr('data-rel');
+			return id.split('-')[0];
+		},
+
+		openForm: function(event) {
+			var boxName = this._getBoxName(event.target);
+			var html = formsTpl[boxName](this.model.toJSON(), {
+				myProfile: this.model.isMyProfile(),
+				months: texts.months,
 			});
-		},
 
-		removePhoto: function(e){
-			e.stopPropagation();
-			e.preventDefault();
-			
-			var id = $(e.target).parents('li').data('photo-id');
-			$(e.target).parents('li').slideUp();
-
-			api['delete'](api.getApiVersion() + '/photos/' + id);
-		},
-
-		closeBox: function(evt){
-			evt.preventDefault();
-			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
-			this.parentCtrl.refreshBox(boxId);
-		},
-
-		reloadBox: function(evt){
-			evt.preventDefault();
-			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
-			this.parentCtrl.renderBox(boxId);
-		},
-
-		openForm: function(evt){
-
-			var boxId = $(evt.target).parent().attr("data-rel") || $(evt.target).attr("data-rel");
-			var box = document.getElementById(boxId);
-			var tpl = null;
-			var initMethod = null;
-
-			$(box).children().remove();
-
-			switch (boxId){
-				case "basic-box":
-					tpl = basicTpl(this.model.toJSON(), {months: phrases.months});
-					initMethod = this.editBasicBox.bind(this);
-					break;
-				case "about-box":
-					tpl = aboutTpl(this.model.toJSON());
-					initMethod = this.editAboutBox.bind(this);
-					break;
-				case "likes-box":
-					tpl = likesTpl(this.model.toJSON());
-					break;
-				case "contact-box":
-					tpl = contactTpl(this.model.toJSON());
-					initMethod = this.editContactBox.bind(this);
-					break;
-				case "places-box":
-					tpl = placesTpl(this.model.toJSON());
-					initMethod = this.editPlacesBox.bind(this);
-					break;
-			}
-
-			$(box).html(tpl);
-			if (initMethod)
-				initMethod();
+			this.$('#' + boxName + '-box').html(html);
+			this.initBox[boxName].call(this);
 		},
 
 		refresh: function() {
@@ -332,115 +136,115 @@ define(function(require){
 			this.refresh = function() { };
 		},
 
-		editBasicBox: function(){
-			this.languagesList = new List({
-				el: "#languages-list",
-				store: this.model.get("languages"),
-				key: "language",
-				tpl: "#language-tpl",
-			});
+		initBox: {
+			'basic': function() {
+				this.languagesList = new List({
+					el: '#languages-list',
+					store: this.model.get('languages'),
+					key: 'language',
+					tpl: '#language-tpl',
+				});
+			},
+
+			'about': function() {
+				this.educationsList = new List({
+					el: '#education-list',
+					store: this.model.get('education'),
+					key: 'edu',
+					tpl: '#education-tpl',
+				});
+
+				this.initStudyTypeahead();
+			},
+
+			'likes': function() {
+
+			},
+
+			'contact': function() {
+				this.socialsList = new List({
+					el: '#socialNetwork-list',
+					store: this.model.get('socialNetworks'),
+					key: 'social',
+					tpl: '#socialNetwork-tpl',
+				});
+
+				this.imList = new List({
+					el: '#instantMessage-list',
+					store: this.model.get('instantMessages'),
+					key: 'im',
+					tpl: '#im-tpl',
+				});
+			},
+
+			'places': function() {
+				this.otherLocationsList = new List({
+					el: '#otherLocations-list',
+					store: this.model.get('otherLocations'),
+					key: 'otherLocation',
+					tpl: '#otherLocation-tpl',
+				});
+
+				this.parentCtrl.map.render();
+				this.initLocationTypeahead();
+			},
 		},
 
-		editAboutBox: function(){
-			this.educationsList = new List({
-				el: "#education-list",
-				store: this.model.get("education"),
-				key: "edu",
-				tpl: "#education-tpl",
-			});
-
-			this.initStudyTypeahead();
-		},
-
-		editContactBox: function(){
-			this.socialsList = new List({
-				el: "#socialNetwork-list",
-				store: this.model.get("socialNetworks"),
-				key: "social",
-				tpl: "#socialNetwork-tpl",
-			});
-
-			this.imList = new List({
-				el: "#instantMessage-list",
-				store: this.model.get("instantMessages"),
-				key: "im",
-				tpl: "#im-tpl",
-			});
-		},
-
-		editPlacesBox: function(){
-			this.otherLocationsList = new List({
-				el: "#otherLocations-list",
-				store: this.model.get("otherLocations"),
-				key: "otherLocation",
-				tpl: "#otherLocation-tpl",
-			});
-
-			this.parentCtrl.map.render();
-
-			this.initLocationTypeahead();
-		},
-
-		initStudyTypeahead: function(){
-
+		initStudyTypeahead: function() {
 			$.ajaxSetup({
-				beforeSend: function(xhr){
-					xhr.setRequestHeader("X-Auth-Token", api.getAuthToken());
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader('X-Auth-Token', api.getAuthToken());
 				},
 			});
 
 			$('.autocompleteStudy').typeahead({
 				ajax: {
-					url: api.getServerUrl() + "/api/v1/universities",
+					url: api.getServerUrl() + '/api/v1/universities',
 					triggerLength: 1,
-					method: "get",
+					method: 'get',
 					preDispatch: function (query) {
-						return {
-								name: query,
-						};
+						return { name: query };
 					},
 					preProcess: function (data) {
-						if (!data.status)
-							return false;
-						return data.data.map(function(uni){ return uni.name; });
+						if (!data.status) return false;
+						return data.data.map(function(uni) { return uni.name; });
 					}
 				}
 			});
 		},
 
-		initLocationTypeahead: function(){
-			var hometown = new google.maps.places.Autocomplete(document.getElementById("hometownCity"), { types: ['(cities)'] });
-			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, "hometown", "hometown"));
+		initLocationTypeahead: function() {
+			var hometown = new google.maps.places.Autocomplete(document.getElementById('hometownCity'), { types: ['(cities)'] });
+			google.maps.event.addListener(hometown, 'place_changed', this.updateMap(hometown, 'hometown', 'hometown'));
 
-			var current = new google.maps.places.Autocomplete(document.getElementById("currentCity"), { types: ['(cities)'] });
-			google.maps.event.addListener(current, 'place_changed', this.updateMap(current, "current", "current"));
+			var current = new google.maps.places.Autocomplete(document.getElementById('currentCity'), { types: ['(cities)'] });
+			google.maps.event.addListener(current, 'place_changed', this.updateMap(current, 'current', 'current'));
 
-			var lastId = this.$("#otherLocations-list").children().last().prop("id");
-			var last = new google.maps.places.Autocomplete($("#" + lastId).children("[name=otherLocations]")[0], { types: ['(cities)'] });
-			google.maps.event.addListener(last, 'place_changed', this.updateMap(last, "other", lastId));
-
+			var lastId = this.$('#otherLocations-list').children().last().prop('id');
+			var last = new google.maps.places.Autocomplete($('#' + lastId).children('[name=otherLocations]')[0], { types: ['(cities)'] });
+			google.maps.event.addListener(last, 'place_changed', this.updateMap(last, 'other', lastId));
 		},
 
 		updateMap: function(auto, field, id) {
-			var sc = this.parentCtrl;
+			var self = this.parentCtrl;
 			return function() {
 				var place = auto.getPlace();
-				if (place.geometry){
+				if (place.geometry) {
 					var cc = utils.getCityAndCountry(place.address_components);
 
-					sc.map.setCenter(place.geometry.location);
-					sc.map.addMarker({
+					self.map.setCenter(place.geometry.location);
+					self.map.addMarker({
 						id: id,
 						location: place.geometry.location,
-						title: cc.city + ", " + cc.country,
+						title: cc.city + ', ' + cc.country,
 						icon: 'img/places-' + field + '-marker.png'
 					});
 
-					sc.$("#" + id + " input[name^=" + field + "-city]").val(cc.city);
-					sc.$("#" + id + " input[name^=" + field + "-country]").val(cc.country);
-					sc.$("#" + id + " input[name^=" + field + "-region]").val(cc.region);
-					sc.$("#" + id + " input[name^=" + field + "-lat]").val(place.geometry.location.lat());
-					sc.$("#" + id + " input[name^=" + field + "-lon]").val(place.geometry.location.lng());
+					self.$('#' + id + ' input[name^=' + field + '-city]').val(cc.city);
+					self.$('#' + id + ' input[name^=' + field + '-country]').val(cc.country);
+					self.$('#' + id + ' input[name^=' + field + '-region]').val(cc.region);
+					self.$('#' + id + ' input[name^=' + field + '-lat]').val(place.geometry.location.lat());
+					self.$('#' + id + ' input[name^=' + field + '-lon]').val(place.geometry.location.lng());
 				}
 			};
 		},
@@ -448,7 +252,7 @@ define(function(require){
 		uploadFile: function(event) {
 			var files = event.target.files;
 			//Maximum file size: 6Mb
-			if (files[0].size > 6291456){
+			if (files[0].size > 6291456) {
 				alerts.error('Maximum file size allowed is 6 MB');
 				return;
 			}
@@ -462,17 +266,17 @@ define(function(require){
 
 		uploadComplete: function(url) {
 			var jobs = [{
-				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
-				"src": url,
+				'application_id': '7XqmahVqL8tvhEIjzBm6-jg',
+				'src': url,
 
-				"functions": [{
-					"name": "resize_to_fit",
-					"params": {
-						"width": this.defaultMaxWidth,
-						"height": this.defaultMaxWidth
+				'functions': [{
+					'name': 'resize_to_fit',
+					'params': {
+						'width': this.defaultMaxWidth,
+						'height': this.defaultMaxWidth
 					},
-					"save": {
-						"image_identifier": "external_sample_1"
+					'save': {
+						'image_identifier': 'external_sample_1'
 					}
 				}]
 			}];
@@ -480,133 +284,113 @@ define(function(require){
 			blitline.submit(jobs, this.resizeComplete);
 		},
 
-		submitProfile: function(e){
+		submitProfile: function(e) {
 			e.preventDefault(e);
 			var data = this.collectData(e.target.id);
 
 			$(e.target)
 				.parent()
 				.parent()
-				.find("#save-profile-btn")
+				.find('#save-profile-btn')
 				.button('loading');
 
 			var self = this;
-			this.model.save(data)
-				.then(function(){
-					alerts.success('Profile saved');
-				})
-				.fin(function(){
-					self.$("#save-profile-btn").button('reset');
-					self.reloadBox(e);
-				});
+			this.model.save(data).then(function() {
+				alerts.success('Profile saved');
+			}).fin(function() {
+				self.$('#save-profile-btn').button('reset');
+				self.reloadBox(e);
+			});
 		},
 
 		collectData: function(formId) {
-			var data = utils.serializeForm(formId);
-			_.extend(data, utils.serializeForm('contact-form'));
-			_.extend(data, utils.serializeForm('about-me-form'));
-			_.extend(data, utils.serializeForm('likes-form'));
+			var data = _.extend(
+				utils.serializeForm(formId),
+				utils.serializeForm('contact-form'),
+				utils.serializeForm('about-me-form'),
+				utils.serializeForm('likes-form')
+			);
 
-			if (data["languages"]){
-				if (!(data["languages"] instanceof Array)) {
-					data["languages"] = [data["languages"]];
-					data["levels"] = [data["levels"]];
-				}
-				data["languages"] = data["languages"].map(function(item, index){
-					return { name: item, level: data["levels"][index] };
-				});
-				delete data["levels"];
-			}
-			if (data["instantMessages"]){
-				if (!(data["instantMessages"] instanceof Array)) {
-					data["instantMessages"] = [data["instantMessages"]];
-					data["imUsername"] = [data["imUsername"]];
-				}
-				data["instantMessages"] = data["instantMessages"].map(function(item, index){
-					return { instantMessage: item, imUsername: data["imUsername"][index] };
-				});
-				delete data["imUsername"];
-			}
-
-			if (data["socialNetworks"]){
-				if (!(data["socialNetworks"] instanceof Array)) {
-					data["socialNetworks"] = [data["socialNetworks"]];
-					data["snUsername"] = [data["snUsername"]];
-				}
-				data["socialNetworks"] = data["socialNetworks"].map(function(item, index){
-					return { socialNetwork: item, snUsername: data["snUsername"][index] };
-				});
-				delete data["snUsername"];
-			}
-
-			if (data["education"] && !(data["education"] instanceof Array)) {
-				data["education"] = [data["education"]];
-			}
-
-			if (data["other-city"]){
-				if (!(data["other-city"] instanceof Array)) {
-					data["other-city"] = [data["other-city"]];
-					data["other-region"] = [data["other-region"]];
-					data["other-country"] = [data["other-country"]];
-					data["other-lat"] = [data["other-lat"]];
-					data["other-lon"] = [data["other-lon"]];
+			function helper(a, b, c, d) {
+				if (!d) d = b;
+				if (!data[a]) return;
+				if (!_.isArray(data[a])) {
+					data[a] = [data[a]];
+					data[b] = [data[b]];
 				}
 
-				data["otherLocations"] = data["other-city"].map(function(item, index){
-					return {
-						name: item,
-						country: data["other-country"][index],
-						region:  data["other-region"][index],
-						lat:  data["other-lat"][index],
-						lon:  data["other-lon"][index]
-					};
+				data[a] = data[a].map(function(item, index) {
+					return _.object([[ c, item ], [ d, data[b][index] ]]);
 				});
+				delete data[b];
+			}
 
-				delete data["other-city"];
-				delete data["other-country"];
-				delete data["other-region"];
-				delete data["other-lat"];
-				delete data["other-lon"];
-			} else data["otherLocations"] = [];
+			helper('languages', 'levels', 'name', 'level');
+			helper('instantMessages', 'imUsername', 'instantMessage');
+			helper('socialNetworks', 'snUsername', 'socialNetwork');
 
-			if (data.current) {
-				var currentProps = {
-					'current-city': 'name',
-					'current-country': 'country',
-					'current-region': 'region',
-					'current-lat': 'lat',
-					'current-lon': 'lon'
+			if (data['education'] && !_.isArray(data['education']))
+				data['education'] = [data['education']];
+
+			function extract(props, source) {
+				var target = {};
+				_.each(props, function(value, key) {
+					target[key] = source[value];
+				});
+				return target;
+			}
+
+			function getProps(source, type) {
+				return {
+					name: type + '-city',
+					country: type + '-country',
+					region: type + '-region',
+					lat: type + '-lat',
+					lon: type + '-lon',
 				};
-				data.current = data.current ? extract(data, currentProps) : {};
-				data = _.omit.apply(_, [data].concat(_.keys(currentProps)));
 			}
 
-			if (data.hometown) {
-				var hometownProps = {
-					'hometown-city': 'name',
-					'hometown-country': 'country',
-					'hometown-region': 'region',
-					'hometown-lat': 'lat',
-					'hometown-lon': 'lon'
-				};
-				data.hometown = data.hometown ? extract(data, hometownProps) : {};
-				data = _.omit.apply(_, [data].concat(_.keys(hometownProps)));
+			function switchIndexes(map) {
+				var keys = _.keys(map);
+				var arrays = _.values(map).map(function(a) {
+					return _.isArray(a) ? a : [a];
+				});
+				return arrays[0].map(function(a, index) {
+					return _.object(keys, _.pluck(arrays, index));
+				});
+			}
+
+			if (data['current']) {
+				var currentProps = getProps('current');
+				data.current = extract(currentProps, data);
+				data = _.omit(data, _.values(currentProps));
+			}
+
+			if (data['hometown']) {
+				var hometownProps = getProps('hometown');
+				data.hometown = extract(hometownProps, data);
+				data = _.omit(data, _.values(hometownProps));
+			}
+
+			if (data['other-city']) {
+				var otherProps = getProps('other');
+				var values = _.values(otherProps);
+				var others = _.pick(data, 'other-city', values);
+				data = _.omit(data, values);
+				data.otherLocations = switchIndexes(others)
+					.map(extract.bind(null, otherProps));
 			}
 
 			return data;
 		},
 
-		gradientBoxVisiblity: function(evt){
-			evt.preventDefault();
-			if ($(evt.target).closest('.accordion-group').children('.collapsed').length == 1){
-				$(evt.target).closest('.accordion-group').children('.gradient-box').hide();
-			} else {
-				$(evt.target).closest('.accordion-group').children('.gradient-box').show();
-			}
-			
+		gradientBoxVisiblity: function(event) {
+			event.preventDefault();
+			var group = $(event.target).closest('.accordion-group');
+			var isCollapsed = !!group.children('.collapsed').length;
+			group.children('.gradient-box')[ isCollapsed ? 'hide' : 'show' ]();
 		},
-
-	  });
-
-	  return ProfileView;
 	});
+
+	return ProfileView;
+});

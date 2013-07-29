@@ -8,7 +8,7 @@
 		<h2>{{location}}</h2>
 	</div>
 	<div class="messages-flag">
-		<span class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{enum state 'notification-state'}}">state flag</span>
+		<span class="state-flag {{#if flagDirection }}from-me{{else}}to-me{{/if}} {{text 'notification-type' state }}">state flag</span>
 	</div>
 	<div class="messages-state">
 		{{#if isMessage }}
@@ -16,7 +16,7 @@
 	</div>
 	<div class="messages-dates">
 		{{else}}
-		<h1 class="messages-name {{enum state 'notification-state'}}">{{enum kind 'notification-type'}} {{enum state 'notification-state'}}</h1>
+		<h1 class="messages-name {{text 'notification-type' state }}">{{text 'notification-type' kind }} {{text 'notification-type' state }}</h1>
 		{{#with wingParameters}}
 		<h2>{{wingType}} {{wingCity}}</h2>
 		<h3>{{message}}</h3>

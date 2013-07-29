@@ -1,8 +1,8 @@
-define(function(require) {
+define(function() {
 
 	function parseCookies() {
 		var cookies = {};
-		var list = document.cookie.split(/; ?/)
+		var list = document.cookie.split(/; ?/);
 
 		list.forEach(function(cookie) {
 			var name = cookie.substr(0, cookie.indexOf('='));

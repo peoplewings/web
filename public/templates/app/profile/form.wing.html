@@ -31,8 +31,8 @@
 		</div>
 		<div id="sharing-dates"class="control-group">
 			<div class="controls">
-				<input type="text" name="dateStart" class="input-sdate" placeholder="Start date" value="{{dateStart}}">
-				<input type="text" name="dateEnd" class="input-edate" placeholder="End date" value="{{dateEnd}}">
+				<input type="text" name="dateStart" class="input-sdate input-date" placeholder="Start date" value="{{dateStart}}">
+				<input type="text" name="dateEnd" class="input-edate input-date" placeholder="End date" value="{{dateEnd}}">
 			</div>
 		</div>
 		<div class="control-group blocked">
@@ -138,34 +138,34 @@
 			<label class="control-label">Transports</label>
 			<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" name="metro" id="checkboxMetro" {{checked metro true}}>Metro
+					<input type="checkbox" name="transport" value="metro" id="checkboxMetro" {{checked metro true}}>Metro
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="bus" id="checkboxBus" {{checked bus true}}>Bus
+					<input type="checkbox" name="transport" value="bus" id="checkboxBus" {{checked bus true}}>Bus
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="taxi" id="checkboxtaxi" {{checked taxi true}}>Tram
+					<input type="checkbox" name="transport" value="taxi" id="checkboxtaxi" {{checked taxi true}}>Tram
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="train" id="checkboxTrain" {{checked train true}}>Train
+					<input type="checkbox" name="transport" value="train" id="checkboxTrain" {{checked train true}}>Train
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="car" id="checkboxCar" {{checked car true}}>Car
+					<input type="checkbox" name="transport" value="car" id="checkboxCar" {{checked car true}}>Car
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="motorbike" id="checkboxMotorbike" {{checked motorbike true}}>Motorbike
+					<input type="checkbox" name="transport" value="motorbike" id="checkboxMotorbike" {{checked motorbike true}}>Motorbike
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="bicycle" id="checkboxBicycle" {{checked bicycle true}}>Bicycle
+					<input type="checkbox" name="transport" value="bicycle" id="checkboxBicycle" {{checked bicycle true}}>Bicycle
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="boat" id="checkboxBoat" {{checked boat true}}>Boat
+					<input type="checkbox" name="transport" value="boat" id="checkboxBoat" {{checked boat true}}>Boat
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="plane" id="checkboxPlane" {{checked plane true}}>Plane
+					<input type="checkbox" name="transport" value="plane" id="checkboxPlane" {{checked plane true}}>Plane
 				</label>
 				<label class="checkbox">
-					<input type="checkbox" name="other" id="checkboxOther" {{checked other true}}>Other
+					<input type="checkbox" name="transport" value="other" id="checkboxOther" {{checked other true}}>Other
 				</label>
 
 				<span class="help-inline"></span>

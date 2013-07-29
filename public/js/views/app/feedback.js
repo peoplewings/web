@@ -2,7 +2,7 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var utils = require('utils');
 	var alerts = require('views/lib/alerts');
 	var contentTpl = require('tmpl!templates/app/feedback.html');
@@ -31,30 +31,30 @@ define(function(require) {
 		},
 
 		render: function(){
-			var content = contentTpl({ avatar: this.model.get("avatar")});
+			var content = contentTpl({ avatar: this.model.get('avatar')});
 			this.modal = utils.showModal({
-				header: "New suggestion",
-				accept: "Send",
+				header: 'New suggestion',
+				accept: 'Send',
 				loadingText: 'Sending...',
 				content: content,
 				form: 'feedback-form'
 			});
 			this.modal.on('hidden', this.close.bind(this));
-			$("#feedback-form").on('submit', this.submitFeedback.bind(this));
-			$("#feedback-form").validate(this.validation);
+			$('#feedback-form').on('submit', this.submitFeedback.bind(this));
+			$('#feedback-form').validate(this.validation);
 		},
 
 		submitFeedback: function(evt){
 			evt.preventDefault();
 			var self = this;
-			var data = utils.serializeForm("feedback-form");
+			var data = utils.serializeForm('feedback-form');
 
-			if (this.modal.find("#feedback-form").valid()) {
-				this.modal.find(".accept-modal-btn").button('loading');
+			if (this.modal.find('#feedback-form').valid()) {
+				this.modal.find('.accept-modal-btn').button('loading');
 
-				api.post(api.getApiVersion() + "/feedback", data)
+				api.post(api.getApiVersion() + '/feedback', data)
 				.then(function(response){
-					self.modal.find(".accept-modal-btn").button('reset');
+					self.modal.find('.accept-modal-btn').button('reset');
 					self.modal.modal('hide');
 
 					if (response.status === true)
