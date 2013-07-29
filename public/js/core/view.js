@@ -141,6 +141,18 @@ define(function(require) {
 
 	Handlebars.registerHelper('text', texts.resolve);
 
+	Handlebars.registerHelper('subview', function(template, key, options) {
+		if (key) {
+			key = key.toLowerCase();
+			if (!(key in template))
+				throw new Error('Template key --[' + key + ']-- not found into --[' + template + ']--');
+			template = template[key];
+		}
+
+		var html = template(this);
+		return new Handlebars.SafeString(html);
+	});
+
 
 	/*****************
 	 * VIEW FUNCTION *

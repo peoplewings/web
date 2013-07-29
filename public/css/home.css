@@ -397,9 +397,6 @@ div#alerts-container {
       border: none;
       padding: 0; }
 
-@media (max-width: 665px) {
-  ul.nav.pull-right, .btn-group.pull-right {
-    display: none; } }
 @media (max-width: 767px) {
   [class*="span"], .row-fluid [class*="span"] {
     float: left;
@@ -778,6 +775,19 @@ div.btn-group.pull-right {
           background: -ms-linear-gradient(top, yellow 0%, #ffea00 100%);
           background: linear-gradient(to bottom, yellow 0%, #ffea00 100%); }
 
+@media (max-width: 530px) {
+  .navbar .brand {
+    float: none;
+    width: 100%; }
+
+  div.nav-menu ul.nav.pull-right {
+    background-color: #edede6;
+    width: 100%;
+    padding-left: 10% !important;
+    float: left;
+    box-shadow: 0 0 8px 3px yellow;
+    -moz-box-shadow: 0 0 3px 8px yellow;
+    -webkit-box-shadow: 0 0 8px 3px yellow; } }
 /* --------------------------------------------------------------------------
  * Font-face
  * -------------------------------------------------------------------------- */
@@ -1893,9 +1903,12 @@ form#login-form {
       display: none;
       margin-left: 10% !important; } }
 @media (max-width: 530px) {
-  form#login-form .icon-facebook-login,
-  form#register-form .icon-facebook-login {
-    display: none; }
+  form#login-form,
+  form#register-form {
+    margin-top: 100px; }
+    form#login-form .icon-facebook-login,
+    form#register-form .icon-facebook-login {
+      display: none; }
 
   form#login-form .controls.terms a {
     display: block;
