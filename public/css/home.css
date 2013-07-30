@@ -3562,7 +3562,7 @@ form#feedback-form {
       border: 1px solid #18183f;
       width: 225px;
       position: fixed;
-      bottom: 0; }
+      bottom: 5px; }
       #chat-manager div#chat-wrapper div.chat:nth-child(1) {
         right: 10px; }
       #chat-manager div#chat-wrapper div.chat:nth-child(2) {
@@ -3571,41 +3571,45 @@ form#feedback-form {
         right: 480px; }
       #chat-manager div#chat-wrapper div.chat:nth-child(4) {
         right: 715px; }
-      #chat-manager div#chat-wrapper div.chat div.header {
-        border-bottom: 1px solid #18183f;
+      #chat-manager div#chat-wrapper div.chat header {
         height: 36px;
-        background-color: #18183f;
-        color: yellow; }
-        #chat-manager div#chat-wrapper div.chat div.header td.td-online-button {
-          width: 30px;
-          height: 36px; }
-          #chat-manager div#chat-wrapper div.chat div.header td.td-online-button div.online-button {
-            width: 10px;
-            height: 10px;
-            background-color: green;
-            border-radius: 50%;
-            margin: 5px;
-            float: right; }
-        #chat-manager div#chat-wrapper div.chat div.header td.username {
-          width: 150px;
+        min-height: 36px;
+        background-color: #6f6fe9;
+        color: white;
+        overflow: hidden; }
+        #chat-manager div#chat-wrapper div.chat header div {
+          width: 25px;
+          height: 36px;
+          margin: auto;
+          float: left;
+          vertical-align: middle;
+          margin-top: 10px; }
+        #chat-manager div#chat-wrapper div.chat header div.online-button {
+          width: 15px;
+          height: 15px;
+          background-color: green;
+          border-radius: 50%;
+          margin-left: 5px;
+          margin-top: 0px; }
+        #chat-manager div#chat-wrapper div.chat header div.username {
+          width: 175px;
           text-align: center; }
-        #chat-manager div#chat-wrapper div.chat div.header td.td-button-close {
-          width: 30px;
-          height: 36px; }
-        #chat-manager div#chat-wrapper div.chat div.header button.button-close {
+        #chat-manager div#chat-wrapper div.chat header button.button-close-chat {
           font-size: 1.2em;
           float: right;
           border: 0px solid black;
-          margin-bottom: 5px;
-          background-color: #18183f;
+          background-color: transparent;
           color: red; }
       #chat-manager div#chat-wrapper div.chat div.contents {
-        background-color: #18183f; }
+        background-color: #6f6fe9;
+        height: 270px;
+        overflow: hidden; }
         #chat-manager div#chat-wrapper div.chat div.contents div.chat-window {
           border: 1px solid black;
           margin: 10px;
           background-color: #cccccc;
-          height: 200px; }
+          height: 200px;
+          overflow: auto; }
           #chat-manager div#chat-wrapper div.chat div.contents div.chat-window p {
             margin-left: 10px; }
         #chat-manager div#chat-wrapper div.chat div.contents div.chat-input {

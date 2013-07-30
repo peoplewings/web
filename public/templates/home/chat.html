@@ -1,22 +1,17 @@
-<div class="header">
-	<table cellpadding="0">
-		<tbody>
-			<tr>
-				<td class="td-online-button">
-					<div class="online-button">
-				</td>
-				<td class="username">
-					{{userName}}
-				</td>
-				<td class="td-button-close">
-					<button type="button" id="close-button-{{id}}" class="button-close" data-dissmiss="chat" aria-hidden="true">x</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>										
-</div>
-<div class="contents">
-	<div class="chat-window"></div>
+<header class="header">
+
+	<div class="td-online-button">
+		<div class="online-button"></div>
+	</div>
+	<div class="username">
+		{{userName}}
+	</div>
+	<div class="td-button-close">
+		<button type="button" id="close-button-{{id}}" class="button-close-chat" data-dissmiss="chat" aria-hidden="true">x</button>
+	</div>
+										
+</header><div class="contents">
+	<div id="chat-window-{{id}}" class="chat-window"></div>
 	<div class="chat-input">
 		<textarea id="text-area-{{id}}" class="chat-textarea"></textarea>
 	</div>

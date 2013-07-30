@@ -16,7 +16,7 @@
 			border: 1px solid #18183f
 			width: 225px
 			position: fixed
-			bottom: 0
+			bottom: 5px
 
 			&:nth-child(1)
 				right: 10px
@@ -30,51 +30,51 @@
 			&:nth-child(4)
 				right: 715px
 
-
-
-			div.header
-				border-bottom: 1px solid #18183f
+			header
 				height: 36px
-				background-color: #18183f
-				color: yellow
-			
-				td.td-online-button
-					width: 30px
+				min-height: 36px
+				background-color: #6F6FE9
+				color: #FFFFFF
+				overflow: hidden
+
+				div
+					width: 25px
 					height: 36px
+					margin: auto
+					float: left
+					vertical-align: middle
+					margin-top: 10px
 
-					div.online-button
-						width: 10px
-						height: 10px
-						background-color: green
-						border-radius: 50%
-						margin: 5px
-						float: right
-
-			
-				td.username
-					width: 150px
+				div.online-button
+					width: 15px
+					height: 15px
+					background-color: green
+					border-radius: 50%
+					margin-left: 5px
+					margin-top: 0px
+					
+				div.username
+					width: 175px
 					text-align: center
 				
-				td.td-button-close
-					width: 30px
-					height: 36px
-				
-				button.button-close
+				button.button-close-chat
 					font-size: 1.2em
 					float: right
 					border: 0px solid black
-					margin-bottom: 5px
-					background-color: #18183f
+					background-color: transparent
 					color: red
 
 			div.contents
-				background-color: #18183f
-				
+				background-color: #6F6FE9
+				height: 270px
+				overflow: hidden
+
 				div.chat-window
 					border: 1px solid black
 					margin: 10px
 					background-color: #CCCCCC
 					height: 200px
+					overflow: auto
 					p
 						margin-left: 10px
 
