@@ -51,8 +51,7 @@ define(function(require) {
 						creating: true,
 						wingTypeView: wingFormTypeTpl,
 					}),
-					send: this.submitWing,
-					form: 'accomodation-form',
+					form: '.wing-form.new-wing',
 					thin: true,
 				});
 				this.initWing();
@@ -79,6 +78,7 @@ define(function(require) {
 		},
 
 		initialize: function(collection) {
+			_.bindAll(this, 'createWing');
 			this.cityHolder = {};
 			this.wings = collection;
 		},
@@ -92,11 +92,20 @@ define(function(require) {
 			wing.set(globalData);
 		},
 
-		createWing: function(event) {
+		_wingFormHelper: function(event) {
 			event.preventDefault();
-			var target = $(event.target);
-			var data = this.parseForm(target);
-			var button = target.find('button.save-wing-btn');
+
+			var form = $(event.target);
+			if (!form.valid())
+				return null;
+
+			return this.parseForm(form);
+		},
+
+		createWing: function(event) {
+			var data = this._wingFormHelper(event);
+			if (!data) return;
+			var button = $('accept-modal-btn');
 			var tmpWing = new Wing.uncached();
 			var self = this;
 
@@ -113,12 +122,12 @@ define(function(require) {
 		},
 
 		submitWing: function(event) {
-			event.preventDefault();
-			var target = $(event.target);
-			var wingId = +target.attr('data-rel');
+			var data = this._wingFormHelper(event);
+			if (!data) return;
+			var form = $(event.target);
+			var wingId = +form.attr('data-rel');
 			var wing = this.wings.get(wingId);
-			var button = target.find('button.save-wing-btn');
-			var data = this.parseForm(target);
+			var button = form.find('button.save-wing-btn');
 			var self = this;
 
 			this.dataToWing(wing, data);
