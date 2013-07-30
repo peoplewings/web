@@ -3562,7 +3562,8 @@ form#feedback-form {
       border: 1px solid #18183f;
       width: 225px;
       position: fixed;
-      bottom: 5px; }
+      bottom: 5px;
+      z-index: 2000; }
       #chat-manager div#chat-wrapper div.chat:nth-child(1) {
         right: 10px; }
       #chat-manager div#chat-wrapper div.chat:nth-child(2) {
@@ -3609,9 +3610,37 @@ form#feedback-form {
           margin: 10px;
           background-color: #cccccc;
           height: 200px;
+          width: 195px;
           overflow: auto; }
-          #chat-manager div#chat-wrapper div.chat div.contents div.chat-window p {
-            margin-left: 10px; }
+          #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element {
+            display: inline-block;
+            width: 100%;
+            min-height: 32px;
+            margin-bottom: 5px; }
+            #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-photo-me {
+              width: 32px;
+              float: left;
+              margin-right: 10px; }
+              #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-photo-me img {
+                width: 32px;
+                height: 32px; }
+            #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-text-me {
+              margin-left: 32px; }
+              #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-text-me p {
+                font-size: 12px;
+                margin-left: 10px; }
+            #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-photo-other {
+              width: 32px;
+              float: right;
+              margin-left: 10px; }
+              #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-photo-other img {
+                width: 32px;
+                height: 32px; }
+            #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-text-other {
+              margin-right: 32px; }
+              #chat-manager div#chat-wrapper div.chat div.contents div.chat-window .chat-element .chat-element-text-other p {
+                font-size: 12px;
+                margin-left: 10px; }
         #chat-manager div#chat-wrapper div.chat div.contents div.chat-input {
           margin: 10px;
           height: 36px;

@@ -8,6 +8,10 @@ define(function(require){
 		el: '#chat-manager',
 
 		initialize: function(options){
+			this.startup(options);
+		},
+
+		startup: function(options){
 			if(api.userIsLoggedIn()){
 				this.closeEvents = [];
 				this.render(); 
@@ -17,8 +21,20 @@ define(function(require){
 		render: function(){
 			var self = this;
 			var userId = api.getUserId();
+			//Crate a presence data
+			var onlineRef = new Firebase('https://peoplewings-chat.firebaseIO.com/onlineRef/' + userId);
+			var connectedRef = new Firebase('https://SampleChat.firebaseIO-demo.com/.info/connected');
+			connectedRef.on('value', function(snap) {
+				if (snap.val() === true) {
+				// We're connected (or reconnected)!  Set up our presence state and
+				// tell the server to set a timestamp when we leave.
+					onlineRef.onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
+					onlineRef.set(true);
+			  	}
+			});
 			var publicRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId);
- 			publicRoom.on('child_added', function(snapshot) {				
+			console.log('loooooooool');
+			publicRoom.on('child_added', function(snapshot) {
 				var otherId = snapshot.name();
 				if (otherId != userId){
 					var privateRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/private/' + (otherId < userId ? otherId + '-' + userId: userId + '-' + otherId));					
@@ -37,9 +53,10 @@ define(function(require){
 		openRoom: function(otherId) {
 			var self = this;
 			var userId = api.getUserId();
-			var roomRefMine = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId + '/' + otherId);	
-			roomRefMine.set({'visible': true});
-			//Now, we open the room of communication...	
+			if (otherId != userId){
+				var roomRefMine = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId + '/' + otherId);	
+				roomRefMine.set({'visible': true});
+			}
 		},
 
 	});

@@ -17,6 +17,7 @@
 			width: 225px
 			position: fixed
 			bottom: 5px
+			z-index: 2000
 
 			&:nth-child(1)
 				right: 10px
@@ -74,9 +75,46 @@
 					margin: 10px
 					background-color: #CCCCCC
 					height: 200px
+					width: 195px
 					overflow: auto
-					p
-						margin-left: 10px
+					
+					.chat-element
+						display: inline-block
+						width: 100%
+						min-height: 32px
+						margin-bottom: 5px
+
+						.chat-element-photo-me
+							width: 32px
+							float: left
+							margin-right: 10px
+
+							img
+								width: 32px
+								height: 32px
+
+						.chat-element-text-me
+							margin-left: 32px
+
+							p
+								font-size: 12px
+								margin-left: 10px
+
+						.chat-element-photo-other
+							width: 32px
+							float: right
+							margin-left: 10px
+
+							img
+								width: 32px
+								height: 32px
+
+						.chat-element-text-other
+							margin-right: 32px
+
+							p
+								font-size: 12px
+								margin-left: 10px
 
 				div.chat-input
 					margin: 10px
