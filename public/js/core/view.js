@@ -141,7 +141,7 @@ define(function(require) {
 
 	Handlebars.registerHelper('text', texts.resolve);
 
-	Handlebars.registerHelper('subview', function(template, key, options) {
+	Handlebars.registerHelper('subview', function(template, key) {
 		if (key) {
 			key = key.toLowerCase();
 			if (!(key in template))

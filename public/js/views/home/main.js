@@ -15,6 +15,8 @@ define(function(require) {
 
 	function cleanFormDataHelper(defaults, value, key, formData) {
 		var def = defaults[key];
+
+//jshint eqeqeq:false
 		if (value === '' || value == def)
 			delete formData[key];
 	}
