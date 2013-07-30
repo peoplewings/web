@@ -53,12 +53,12 @@ define(function(require) {
 		return new Handlebars.SafeString(rate === -1 ? '-' : rate + '%');
 	});
 
-	var weekMs = moment(0).add('weeks', 1).valueOf();
-	var dayMs = moment(0).add('days', 1).valueOf();
-	var hourMs = moment(0).add('hours', 1).valueOf();
-	var minuteMs = moment(0).add('minutes', 1).valueOf();
-
 	Handlebars.registerHelper('format-reply-time', function(time) {
+		var weekMs = moment(0).add('weeks', 1).valueOf();
+		var dayMs = moment(0).add('days', 1).valueOf();
+		var hourMs = moment(0).add('hours', 1).valueOf();
+		var minuteMs = moment(0).add('minutes', 1).valueOf();
+
 		if (time === -1)
 			return '-';
 
