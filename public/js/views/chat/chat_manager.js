@@ -3,6 +3,9 @@ define(function(require){
 	var Backbone = require("backbone");
 	var api = require("api");
 	var Chat = require("views/chat/chat");
+	var config = require("config");
+
+	var firebase = config.getValue('firebase');
 
 	var  ChatManager = Backbone.View.extend({
 		el: '#chat-manager',
@@ -21,8 +24,8 @@ define(function(require){
 		render: function(){
 			var userId = api.getUserId();
 			//Crate a presence data
-			var onlineRef = new Firebase('https://peoplewings-chat.firebaseIO.com/onlineRef/' + userId);
-			var connectedRef = new Firebase('https://SampleChat.firebaseIO-demo.com/.info/connected');
+			var onlineRef = new Firebase(firebase + '/onlineRef/' + userId);
+			var connectedRef = new Firebase(firebase + '/.info/connected');
 			connectedRef.on('value', function(snap) {
 				if (snap.val() === true) {
 				// We're connected (or reconnected)!  Set up our presence state and
@@ -31,12 +34,12 @@ define(function(require){
 					onlineRef.set(true);
 				}
 			});
-			var publicRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId);
+			var publicRoom = new Firebase(firebase + '/rooms/' + userId);
 			console.log('loooooooool');
 			publicRoom.on('child_added', function(snapshot) {
 				var otherId = snapshot.name();
 				if (otherId !== userId){
-					var privateRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/private/' + (otherId < userId ? otherId + '-' + userId: userId + '-' + otherId));
+					var privateRoom = new Firebase(firebase + '/private/' + (otherId < userId ? otherId + '-' + userId: userId + '-' + otherId));
 					var chatRoom = new Chat(privateRoom, publicRoom, otherId);
 					//var contents = chatRoom.render();
 					this.$('#chat-wrapper').append(chatRoom.$el);
@@ -52,7 +55,7 @@ define(function(require){
 		openRoom: function(otherId) {
 			var userId = api.getUserId();
 			if (otherId !== userId){
-				var roomRefMine = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId + '/' + otherId);
+				var roomRefMine = new Firebase(firebase + '/rooms/' + userId + '/' + otherId);
 				roomRefMine.set({'visible': true});
 			}
 		},

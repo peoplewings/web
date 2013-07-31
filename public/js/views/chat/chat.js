@@ -8,6 +8,9 @@ define(function(require) {
 	var UserProfile = require('models/ProfileModel');
 	var api = require("api");
 	var Promise = require('promise');
+	var config = require("config");
+
+	var firebase = config.getValue('firebase');
 
 	var ChatView = Backbone.View.extend({
 
@@ -30,7 +33,7 @@ define(function(require) {
 			this.privateRoom = privateRoom;
 			this.conectionRoom = conectionRoom;
 			//Create presence conection with the otherId
-			var onlineRef = new Firebase('https://peoplewings-chat.firebaseIO.com/onlineRef/' + otherId);
+			var onlineRef = new Firebase(firebase + '/onlineRef/' + otherId);
 			onlineRef.on('value', function(snapshot){
 				if (snapshot.val() === true){
 					this.$(".chat[data-id='" + self.otherId + "']").find('.online-button').css('background-color', 'green');
@@ -89,7 +92,7 @@ define(function(require) {
 
 		checkWindowOpened: function(){
 			//This methods checks if the other's window chat is opened. If it's not, it sends an event to open it
-			var otherRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + this.otherId + '/' + this.myId);
+			var otherRoom = new Firebase(firebase + '/rooms/' + this.otherId + '/' + this.myId);
 			otherRoom.set({'visible': true});
 		},
 
