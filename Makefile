@@ -56,7 +56,7 @@ build.commit.revert:
 stash:
 	git stash
 
-deploy.before:
+deploy.before: stash
 
 deploy.after: build.commit.revert sass
 
