@@ -76,7 +76,6 @@ requirejs([
 	'api',
 	'router',
 	'promise',
-	'views/chat/chat_manager',
 	'modernizr',
 	'jquery',
 	'bootstrap',
@@ -87,8 +86,7 @@ requirejs([
 	Backbone,
 	api,
 	Router,
-	Promise,
-	ChatManager
+	Promise
 ) {
 	Promise.debug = true;
 	// Instantiates a new Router

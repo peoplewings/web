@@ -1,8 +1,8 @@
+/*globals Firebase*/
 define(function(require){
-	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var api = require("api");
-	var Chat = require("views/chat/chat")
+	var Chat = require("views/chat/chat");
 
 	var  ChatManager = Backbone.View.extend({
 		el: '#chat-manager',
@@ -11,15 +11,14 @@ define(function(require){
 			this.startup(options);
 		},
 
-		startup: function(options){
+		startup: function(){
 			if(api.userIsLoggedIn()){
 				this.closeEvents = [];
-				this.render(); 
+				this.render();
 			}
 		},
 
 		render: function(){
-			var self = this;
 			var userId = api.getUserId();
 			//Crate a presence data
 			var onlineRef = new Firebase('https://peoplewings-chat.firebaseIO.com/onlineRef/' + userId);
@@ -30,14 +29,14 @@ define(function(require){
 				// tell the server to set a timestamp when we leave.
 					onlineRef.onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
 					onlineRef.set(true);
-			  	}
+				}
 			});
 			var publicRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId);
 			console.log('loooooooool');
 			publicRoom.on('child_added', function(snapshot) {
 				var otherId = snapshot.name();
-				if (otherId != userId){
-					var privateRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/private/' + (otherId < userId ? otherId + '-' + userId: userId + '-' + otherId));					
+				if (otherId !== userId){
+					var privateRoom = new Firebase('https://peoplewings-chat.firebaseIO.com/private/' + (otherId < userId ? otherId + '-' + userId: userId + '-' + otherId));
 					var chatRoom = new Chat(privateRoom, publicRoom, otherId);
 					//var contents = chatRoom.render();
 					this.$('#chat-wrapper').append(chatRoom.$el);
@@ -51,10 +50,9 @@ define(function(require){
 		},
 
 		openRoom: function(otherId) {
-			var self = this;
 			var userId = api.getUserId();
-			if (otherId != userId){
-				var roomRefMine = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId + '/' + otherId);	
+			if (otherId !== userId){
+				var roomRefMine = new Firebase('https://peoplewings-chat.firebaseIO.com/rooms/' + userId + '/' + otherId);
 				roomRefMine.set({'visible': true});
 			}
 		},
