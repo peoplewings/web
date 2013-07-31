@@ -1,7 +1,7 @@
 define(function(require) {
 
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var factory = require('core/factory');
 
 	var UserModel = Backbone.Model.extend({

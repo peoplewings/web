@@ -1,139 +1,94 @@
 define(function(require) {
 
 	var Backbone = require('backbone');
-	var api = require('api2');
-	var utils = require('utils');
+	var api = require('api');
 	var Promise = require('promise');
-	var phrases = require('phrases');
 	var factory = require('core/factory');
+	var Wing = require('models/Wing');
+	var Wings = require('collections/wings');
+
+	function getId(item) {
+		return item.id;
+	}
 
 	var Preview = Backbone.Model.extend({
 
-		me: function(){
+		urlRoot: api.getApiVersion() + '/profiles/',
+
+		url: function() {
+			return this.urlRoot + this.id + (this.isMyProfile() ? '' : '/preview');
+		},
+
+		urlWings: function() {
+			return api.getApiVersion() + '/wings/?author=' + this.id;
+		},
+
+		isMyProfile: function() {
 			return api.getUserId() === this.id;
 		},
 
-		urlRoot: api.getApiVersion() + "/profiles/",
+		fetch: function() {
+			var wings = new Wings(null, { author: this.id });
 
-		url: function(){
-			return this.me() ? this.urlRoot + this.id : this.urlRoot + this.id + "/preview";
+			return Promise.parallel(
+				wings.fetch(),
+				Backbone.Model.prototype.fetch.call(this)
+			).spread(this.afterLoad.bind(this));
 		},
 
-		urlWings: function(){
-			return  this.me() ? this.urlRoot + this.id + "/accomodations" : this.urlRoot + this.id + "/accomodations/preview";
+		parse: function(response) {
+			return response.data;
 		},
 
-		fetch: function(options) {
-			var self = this;
-			Promise.parallel(
-				api.get(this.url()),
-				api.get(this.urlWings())
-				).spread(function(profile, wings) {
-					self.parse(profile.data, wings.data);
-
-					if (options && options.success)
-						options.success();
-				});
-		},
-
-		fetchWing: function(options){
-			if (!options)
-				return;
-
-			var self = this;
-			api.get(this.urlWings() + "/" + options.wingId)
-			.then(function(resp){
-				self.setWing(options.wingId, self.parseWing(resp.data));
-				if (options.success)
-					options.success();
-			});
-		},
-
-		fetchWings: function(options){
-			var self = this;
-			api.get(this.urlWings())
-			.then(function(resp){
-				self.set("wingsCollection", resp.data.map(self.parseWing.bind(self)));
-				self.trigger("change:wingsCollection");
-				if (options.success)
-					options.success();
-			});
-		},
-
-		parse: function(profile, wings){
-
-			profile.civilStateVerbose = phrases.choices.civilState[profile.civilState];
-			profile.replyTimeVerbose = utils.formatReplyTime(profile.replyTime);
-
-			profile.birthdayVerbose = this.parseBirthday({
-				day: profile.birthDay,
-				month: profile.birthMonth,
-				year: profile.birthYear,
-				privacy: profile.showBirthday,
+		afterLoad: function(wings) {
+			this.formattedBirthday = this.parseBirthday({
+				day: this.birthDay,
+				month: this.birthMonth,
+				year: this.birthYear,
+				privacy: this.showBirthday,
 			});
 
-			this.attributes = profile;
-
-			this.set("wingsCollection", wings.map(this.parseWing.bind(this)));
+			this.wings = wings;
+			wings.on('change', this.trigger.bind(this, 'change'));
 		},
 
-		parseWing: function(wing){
-			wing.bestDaysVerbose = phrases.choices.wingDaysChoices[wing.bestDays];
-			wing.smokingVerbose = phrases.choices.smoking[wing.smoking];
-			wing.whereSleepingTypeVerbose = phrases.choices.whereSleepingType[wing.whereSleepingType];
-			wing.statusVerbose = phrases.choices.wingStatus[wing.status];
-			wing.myProfile = this.me();
-			return wing;
+		parseWing: function(data) {
+			return new Wing(data);
 		},
 
-		parseBirthday: function(options){
-			switch (options.privacy){
-				case "F":
-				return options.month + "-" + options.day + "-" + options.year;
-				case "P":
-				return options.month + "-" + options.day;
-				case "N":
-				return "";
+		parseBirthday: function(options) {
+			switch (options.privacy) {
+			case 'F':
+				return options.month + '-' + options.day + '-' + options.year;
+			case 'P':
+				return options.month + '-' + options.day;
+			case 'N':
+				return '';
 			}
 		},
 
-		save: function(data){
-			var self = this;
-
-			_.each(data, function(value, attr){
-				self.set(attr, value);
-				if (attr === "interestedIn")
-					self.set(attr, [{gender: value}]);
-			});
-
-			var copy = _.omit(this.attributes, ["replyTimeVerbose","civilStateVerbose", "wingsCollection"]);
-
-			return api.put(this.urlRoot + this.id, copy);
+		save: function(data) {
+			if (data.interestedIn)
+				data.interestedIn = [{ gender: data.interestedIn }];
+			return Backbone.Model.prototype.save.call(this, data);
 		},
 
-		setWing: function(id, update){
-			var index = this.findIndexByWingId(id);
-			this.attributes.wingsCollection[index] = update;
-			this.trigger("change:wingsCollection");
-		},
-
-		findWingById: function(id){
-			return _.find(this.get("wingsCollection"), function(wing){
+		getWingById: function(id) {
+			return _.find(this.wings, function(wing) {
 				return wing.id === id;
 			});
 		},
 
-		findIndexByWingId: function(id){
-			var index = null;
-			_.find(this.get("wingsCollection"), function(wing, idx){
-				if (wing.id === id){
-					index = idx;
-				}
-				return wing.id === id;
-			});
+		findIndexByWingId: function(id) {
+			var ids = this.wings.map(getId);
 
-			return index;
+			var index = ids.indexOf(id);
+			return index !== -1 ? index : null;
 		},
+
+		pick: function() {
+			return _.pick(this.attributes, _.toArray(arguments));
+		}
 	});
 
 	// Returns the Model singleton instance

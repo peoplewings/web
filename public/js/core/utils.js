@@ -2,65 +2,93 @@
 /*globals Base64, b64_hmac_sha1 */
 
 define(function(require) {
+	'use strict';
 
 	var $ = require('jquery');
-	var api = require('api2');
+	var api = require('api');
 	var modalTpl = require('tmpl!templates/lib/modal2.html');
 
-	function getCC(addressComponents){
+	function getCC(addressComponents) {
 		var data = {};
+		var map = {
+			'locality': 'city',
+			'country': 'country',
+			'administrative_area_level_1': 'region',
+		};
 
 		_.each(addressComponents, function(component) {
 			_.each(component.types, function(type) {
-				switch (type) {
-					case "locality":
-						data.city = component.long_name;
-						break;
-					case "country":
-						data.country = component.long_name;
-						break;
-					case "administrative_area_level_1":
-						data.region = component.long_name;
-						break;
-				}
+				data[map[type]] = component.long_name;
 			});
 		});
 		return data;
 	}
 
-	var setAutocomplete = function(autocomplete, wing) {
+	function setAutocomplete(autocomplete, container) {
 		var place = autocomplete.getPlace();
-		if (place.geometry) {
-			var cc = getCC(place.address_components);
-			cc.lat = place.geometry.location.lat() + "";
-			cc.lon = place.geometry.location.lng() + "";
-			cc.name = cc.city;
-			cc = _.omit(cc, "city");
-			wing.city = cc;
-		} else
-			return;
-	};
+		if (!place.geometry) return;
 
-	var serialize = function(form_id){
-		var form = (form_id) ? 'form#' + form_id : 'form';
-		var values = {};
-		$.each(jQuery(form).serializeArray(), function(i, field) {
-			if (!field.value) return;
-			var key = field.name;
-			var value = field.value;
+		var cc = getCC(place.address_components);
+		cc.lat = place.geometry.location.lat() + '';
+		cc.lon = place.geometry.location.lng() + '';
+		cc.name = cc.city;
+		container.city = _.omit(cc, 'city');
+	}
 
-			if (!values.hasOwnProperty(key)) {
-				values[key] = value;
-				return value;
+	function serialize(form) {
+		if (!form) throw new Error();
+
+
+		var dom = typeof form === 'string' ? $('#' + form) : $(form);
+		var selectsAndFields = dom.find('select,textarea,' +
+			'input[type=text],input[type=email],input[type=password]');
+		var checkboxes = dom.find('input[type=checkbox]');
+		var found = selectsAndFields.length + checkboxes.length;
+		var result = {};
+
+		selectsAndFields.each(function() {
+			var name = this.name;
+
+			if (!(name in result)) {
+				result[name] = this.value;
+				return;
 			}
 
-			if (!(values[key] instanceof Array))
-				values[key] = [values[key]];
+			if (!_.isArray(result[name])) {
+				result[name] = [result[name], this.value];
+				return;
+			}
 
-			values[key].push(value);
+			result[name].push(this.value);
 		});
-		return values;
-	};
+
+		checkboxes.each(function() {
+			var name = this.name;
+			var value = $(this).is(':checked');
+
+			if (value && this.value !== 'on')
+				value = this.value;
+
+			if (!(name in result)) {
+				result[name] = value;
+				return;
+			}
+
+			var old = result[name];
+			if (!_.isArray(old)) {
+				old = old ? [old] : [];
+				result[name] = old;
+			}
+
+			if (value)
+				old.push(value);
+		});
+
+		if (dom.find('select,input,textarea').length !== found)
+			throw new Error('not implemented');
+
+		return result;
+	}
 
 	var showModal = function(options) {
 		var modal = $(modalTpl({
@@ -72,14 +100,18 @@ define(function(require) {
 			loadingText: options.loadingText,
 			formRel: 'form="' + options.form + '"',
 		}));
-		$("#main").append(modal);
+		$('#main').append(modal);
 
 		modal.modal('show');
 		var acceptBtn = modal.find('.accept-modal-btn');
-		acceptBtn.click(options.callback);
 
-		if (options.form)
-			acceptBtn.attr('form', options.form);
+		if (_.isFunction(options.callback))
+			acceptBtn.click(options.callback);
+		else if (options.form) {
+			var id = 'modal-form-' + Math.random();
+			$(options.form).attr('id', id);
+			acceptBtn.attr('form', id);
+		}
 
 		modal.on('hidden', function() {
 			modal.remove();
@@ -87,33 +119,6 @@ define(function(require) {
 
 		return modal;
 	};
-
-	var weekMs = moment(0).add('weeks', 1).valueOf();
-	var dayMs = moment(0).add('days', 1).valueOf();
-	var hourMs = moment(0).add('hours', 1).valueOf();
-	var minuteMs = moment(0).add('minutes', 1).valueOf();
-
-	function formatReplyTime(time) {
-		if (time === -1)
-			return '-';
-
-		time *= 1000;
-
-		var weeks = Math.floor(time / weekMs);
-		if (weeks > 4) return '+4w';
-		if (weeks > 0) return weeks + 'w';
-
-		var days = Math.floor(time / dayMs);
-		if (days > 0) return days + 'd';
-
-		var hours = Math.floor(time / hourMs);
-		if (hours > 0) return hours + 'h';
-
-		var minutes = Math.floor(time / minuteMs);
-		if (minutes > 5) return minutes + 'm';
-
-		return '5m';
-	}
 
 	function uploadAmazon(file, folder, filename) {
 		filename = filename || file.name;
@@ -126,13 +131,13 @@ define(function(require) {
 		var key = folder + filename;
 
 		var policyJson = {
-			"expiration": "2013-12-12T12:00:00.000Z",
-			"conditions": [
-				[ "eq", "$bucket", bucket ],
-				[ "starts-with", "$key", key ],
-				{ "acl": acl },
-				{ "x-amz-meta-filename": filename },
-				[ "starts-with", "$Content-Type", contentType ]
+			'expiration': '2013-12-12T12:00:00.000Z',
+			'conditions': [
+				[ 'eq', '$bucket', bucket ],
+				[ 'starts-with', '$key', key ],
+				{ 'acl': acl },
+				{ 'x-amz-meta-filename': filename },
+				[ 'starts-with', '$Content-Type', contentType ]
 			]
 		};
 
@@ -155,11 +160,7 @@ define(function(require) {
 	}
 
 	function resetMain(num) {
-		if (typeof num === 'undefined'){
-			$('body').scrollTop(0);
-		} else {
-			$('body').scrollTop(num);
-		}	
+		$('body').scrollTop(num || 0);
 	}
 
 	return {
@@ -167,7 +168,6 @@ define(function(require) {
 		showModal: showModal,
 		setAutocomplete: setAutocomplete,
 		getCityAndCountry: getCC,
-		formatReplyTime: formatReplyTime,
 		uploadAmazon: uploadAmazon,
 		resetMain: resetMain,
 	};

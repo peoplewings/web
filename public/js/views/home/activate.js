@@ -1,6 +1,6 @@
 define(function(require) {
 
-	var api = require('api2');
+	var api = require('api');
 	var Backbone = require('backbone');
 	var alerts = require('views/lib/alerts');
 
@@ -13,7 +13,7 @@ define(function(require) {
 				router.navigate('#/login');
 			});
 
-			$("#feedback-btn").hide();
+			$('#feedback-btn').hide();
 		},
 	});
 

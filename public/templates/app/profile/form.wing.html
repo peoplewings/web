@@ -1,13 +1,37 @@
-<form id="accomodation-form-{{id}}" data-rel="{{id}}">
+<form
+	class="wing-form accomodation-form {{#if creating }}new-wing{{else}}edit-wing{{/if}}"
+	data-rel="{{id}}">
+
 	<div class="box-header">
-		<i class="icon-house">Accommodation icon</i>
-		<h2>Accommodation Wing</h2>
+		{{#equals type 'accommodation' }}
+			<i class="icon-house">Accommodation icon</i>
+			<h2>Accommodation Wing</h2>
+		{{/equals}}
 	</div>
 	<div class="box-content wings-info">
+		{{#unless creating}}
+			<div class="btn-group pull-right">
+				<button class="btn btn-mini">Options</button>
+				<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a id="delete-wing-btn" tabindex="-1">Delete</a></li>
+				</ul>
+			</div>
+		{{/unless}}
 		<div class="control-group lined">
 			<label class="control-label" for="inputName">Wing name</label>
 			<div class="controls">
-				<input type="text" value="{{name}}" id="inputName" name="name" placeholder="Some name" class="size-extralarge required" maxlength="100">
+				<input
+					id="inputName"
+					class="size-extralarge required"
+					type="text"
+					name="name"
+					value="{{name}}"
+					placeholder="Some name"
+					maxlength="100">
+				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group lined">
@@ -18,224 +42,49 @@
 					<option value="N" {{selected status 'N'}}>No</option>
 					<option value="M" {{selected status 'M'}}>Maybe</option>
 				</select>
+				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="control-group lined overflow">
 			<label class="control-label" for="inputSharingOnce">Are you sharing one time?</label>
 			<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" name="sharingOnce" id="inputSharingOnce" {{checked sharingOnce true}}>
+					<input
+						id="inputSharingOnce"
+						type="checkbox"
+						name="sharingOnce"
+						{{checked sharingOnce true}}>
 				</label>
 				<span class="help-inline"></span>
 			</div>
 		</div>
 		<div id="sharing-dates"class="control-group">
 			<div class="controls">
-				<input type="text" name="dateStart" class="input-sdate" placeholder="Start date" value="{{dateStart}}">
-				<input type="text" name="dateEnd" class="input-edate" placeholder="End date" value="{{dateEnd}}">
+				<input
+					class="input-sdate input-date"
+					type="text"
+					name="dateStart"
+					value="{{dateStart}}"
+					placeholder="Start date">
+				<input
+					class="input-edate input-date"
+					type="text"
+					name="dateEnd"
+					value="{{dateEnd}}"
+					placeholder="End date">
 			</div>
+			<span class="help-block"></span>
 		</div>
-		<div class="control-group blocked">
-			<label class="control-label" for="inputNewEmail">Best days to host</label>
-			<div class="controls">
-				<select name="bestDays" id="inputBestDays" class="size-165">
-					<option value="A" {{selected bestDays 'A'}}>Any</option>
-					<option value="F" {{selected bestDays 'F'}}>From Monday to Friday</option>
-					<option value="T" {{selected bestDays 'T'}}>From Monday to Thursday</option>
-					<option value="W" {{selected bestDays 'W'}}>Weekend</option>
-				</select>
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label" for="inputCapacity">Capacity</label>
-			<div class="controls">
-				<select name="capacity" class="size-small">
-					<option value="1" {{selected capacity '1'}}>1</option>
-					<option value="2" {{selected capacity '2'}}>2</option>
-					<option value="3" {{selected capacity '3'}}>3</option>
-					<option value="4" {{selected capacity '4'}}>4</option>
-					<option value="5" {{selected capacity '5'}}>5</option>
-					<option value="6" {{selected capacity '6'}}>6</option>
-					<option value="7" {{selected capacity '7'}}>7</option>
-					<option value="8" {{selected capacity '8'}}>8</option>
-					<option value="9" {{selected capacity '9'}}>9</option>
-					<option value="m" {{selected capacity 'm'}}>+9</option>
-				</select>
-			</div>
-		</div>
-		<div class="control-group blocked no-margin">
-			<label class="control-label" for="inputGender">Prefered gender</label>
-			<div class="controls">
-				<select name="preferredGender" class="size-medium">
-					<option value="Male" {{selected preferredGender 'Male'}}>Male</option>
-					<option value="Female" {{selected preferredGender 'Female'}}>Female</option>
-					<option value="Both" {{selected preferredGender 'Both'}}>Both</option>
-				</select>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label" for="inputNewEmail">Sleeping arrangements</label>
-			<div class="controls">
-				<select name="whereSleepingType" id="whereSleepingType" class="size-165">
-					<option value="C" {{selected whereSleepingType 'C'}}>Common area</option>
-					<option value="P" {{selected whereSleepingType 'P'}}>Private area</option>
-					<option value="S" {{selected whereSleepingType 'S'}}>Shared private area</option>
-				</select>
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label" for="inputNewEmail">Smoking</label>
-			<div class="controls">
-				<select name="smoking" id="smoking" class="size-large">
-					<option value="N" {{selected smoking 'N'}}>No smoking allowed</option>
-					<option value="S" {{selected smoking 'S'}}>I smoke</option>
-					<option value="D" {{selected smoking 'D'}}>I don't smoke but guests can smoke here</option>
-				</select>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls check">
-				<label class="checkbox">
-					<input type="checkbox" name="wheelchair" id="inlineCheckbox1" {{checked wheelchair true}}>Wheelchair accessible
-				</label>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls check">
-				<label class="checkbox">
-					<input type="checkbox" name="iHavePet" id="inlineCheckbox1" {{checked iHavePet true}}>I have pet
-				</label>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls check">
-				<label class="checkbox">
-					<input type="checkbox" name="petsAllowed" id="inlineCheckbox2" {{checked petsAllowed true}}>Guests pets allowed
-				</label>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls check">
-				<label class="checkbox">
-					<input type="checkbox" name="blankets" id="inputBlankets" {{checked blankeys true}}>I have blankets
-				</label>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls check">
-				<label class="checkbox">
-					<input type="checkbox" name="liveCenter" id="inputLiveCenter" {{checked liveCenter true}}>I live in the center
-				</label>
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Transports</label>
-			<div class="controls">
-				<label class="checkbox">
-					<input type="checkbox" name="metro" id="checkboxMetro" {{checked metro true}}>Metro
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="bus" id="checkboxBus" {{checked bus true}}>Bus
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="taxi" id="checkboxtaxi" {{checked taxi true}}>Tram
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="train" id="checkboxTrain" {{checked train true}}>Train
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="car" id="checkboxCar" {{checked car true}}>Car
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="motorbike" id="checkboxMotorbike" {{checked motorbike true}}>Motorbike
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="bicycle" id="checkboxBicycle" {{checked bicycle true}}>Bicycle
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="boat" id="checkboxBoat" {{checked boat true}}>Boat
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="plane" id="checkboxPlane" {{checked plane true}}>Plane
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="other" id="checkboxOther" {{checked other true}}>Other
-				</label>
-
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">About your accomodation</label>
-			<div class="controls">
-				<textarea class="span4" name="about" id="inputAbout" placeholder="Texto de ayuda" maxlength="1000">{{about}}</textarea>
-				<span class="help-block"></span>
-			</div>
-		</div>
-	</div><!-- EOF box-content -->
-	<div class="box-header">
-		<i class="icon-contact">Contact icon</i>
-		<h2>Listing location</h2>
 	</div>
-	<div class="guest-message">
-		<h2>Shown only to Confirmed Guests</h2>
-		<i class="icon-lock">Lock icon</i>
-		<p>To protect your privacy, we hide your address, phone number, and contact information from users that have not confirmed a reservation with you</p>
-	</div><!-- EOF guest-message -->
-	<div class="listing-location">
-		<div class="control-group blocked">
-			<label class="control-label">Street address</label>
-			<i class="icon-lock">icon lock</i>
-			<div class="controls">
-				<input type="text" name="address" id="inputAddress" class="required" value="{{address}}" maxlength="500">
-				<span class="help-block"></span>
+
+	{{subview wingTypeView type }}
+
+	{{#unless creating }}
+		<div class="box-footer accordion-heading">
+			<div class="button-group">
+				<button class="button cancel-wing-btn" wing-id="{{id}}">Cancel</button>
+				<button id="save-wing-btn" class="button-highlight" data-loading-text="Saving...">Save</button>
 			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label">Number</label>
-			<i class="icon-lock">icon lock</i>
-			<div class="controls">
-				<input type="text" name="number" id="inputNumber" value="{{number}}" class="input-mini required" maxlength="50">
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label">Additional Information</label>
-			<i class="icon-lock">icon lock</i>
-			<div class="controls">
-				<input type="text" name="additionalInformation" id="inputAdditionalInfo" class="size-box-standard" value="{{additionalInformation}}" maxlength="500">
-				<span class="help-block"></span>
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label">City</label>
-			<i class="icon-lock-open">icon lock</i>
-			<div class="controls">
-				{{#with city}}
-				<input type="text" name="city" id="inputCity" class="required" value="{{name}}, {{region}}, {{country}}">
-				<span class="help-block"></span>
-				{{/with}}
-			</div>
-		</div>
-		<div class="control-group blocked">
-			<label class="control-label">Postal</label>
-			<i class="icon-lock">icon lock</i>
-			<div class="controls">
-				<input type="text" name="postalCode" id="inputPostalCode" class="input-mini required" value="{{postalCode}}" maxlength="50">
-				<span class="help-block"></span>
-			</div>
-		</div>
-	</div><!-- EOF listing-location -->
-	<div class="box-footer accordion-heading">
-		<div class="button-group">
-			<button class="button cancel-wing-btn" wing-id="{{id}}">Cancel</button>
-			<button id="save-wing-btn" type="submit" class="button-highlight" data-loading-text="Saving...">Save</button>
-		</div>
-	</div><!-- EOF box-footer -->
+		</div><!-- EOF box-footer -->
+	{{/unless}}
 </form>

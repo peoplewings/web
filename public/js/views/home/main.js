@@ -1,24 +1,34 @@
+/*globals introJs */
 //jshint camelcase:false
 
 define(function(require) {
 
-	require("jquery.Datepicker");
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var mainTpl = require("tmpl!templates/home/main.html");
-	var peopleTpl = require("tmpl!templates/home/search.people.html");
-	var accomodationTpl = require("tmpl!templates/home/search.accomodation.html");
-	var ResultsView = require("views/home/results");
+	require('jquery.Datepicker');
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var utils = require('utils');
+	var mainTpl = require('tmpl!templates/home/main.html');
+	var peopleTpl = require('tmpl!templates/home/search.people.html');
+	var accomodationTpl = require('tmpl!templates/home/search.accomodation.html');
+	var ResultsView = require('views/home/results');
+
+	function cleanFormDataHelper(defaults, value, key, formData) {
+		var def = defaults[key];
+
+//jshint eqeqeq:false
+		if (value === '' || value == def)
+			delete formData[key];
+	}
+
 
 	var MainHomeView = Backbone.View.extend({
 
-		el: "#main",
+		el: '#main',
 
 		events: {
-			"submit form#people-search-form": "searchPeople",
-			"submit form#accomodation-search-form": "searchAccommodation",
+			'submit form#people-search-form': 'searchPeople',
+			'submit form#accomodation-search-form': 'searchAccommodation',
 		},
 
 		initialize: function() {
@@ -28,20 +38,20 @@ define(function(require) {
 		render: function(type, params) {
 			$(this.el).html(mainTpl({ selected: type }));
 
-			this.$("#people").html(peopleTpl(params));
-			this.$("#accommodation").html(accomodationTpl(params));
+			this.$('#people').html(peopleTpl(params));
+			this.$('#accommodation').html(accomodationTpl(params));
 
-			this.$("input[name=startDate]").datepicker({
+			this.$('input[name=startDate]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
+				dateFormat: 'yy-mm-dd',
 			});
-			this.$("input[name=endDate]").datepicker({
+			this.$('input[name=endDate]').datepicker({
 				minDate: new Date(),
-				dateFormat: "yy-mm-dd",
+				dateFormat: 'yy-mm-dd',
 			});
 
-			this.search = new google.maps.places.Autocomplete(document.getElementById("inputLocation"), { types: ['(cities)'] });
-			this.search = new google.maps.places.Autocomplete(document.getElementById("inputWings"), { types: ['(cities)'] });
+			this.search = new google.maps.places.Autocomplete(document.getElementById('inputLocation'), { types: ['(cities)'] });
+			this.search = new google.maps.places.Autocomplete(document.getElementById('inputWings'), { types: ['(cities)'] });
 
 			/*
 			 * BUG: Do search is never reached if user selects city by pressing Enter
@@ -52,7 +62,7 @@ define(function(require) {
 				this.unserializeParams(params);
 
 			if (!api.userIsLoggedIn())
-				$("#feedback-btn").hide();
+				$('#feedback-btn').hide();
 
 		},
 
@@ -71,7 +81,7 @@ define(function(require) {
 		unserializeParams: function(params){
 			var self = this;
 			_.each(params, function(value, key){
-				self.$("[name=" + key + "]")
+				self.$('[name=' + key + ']')
 				.val(value);
 			});
 		},
@@ -94,9 +104,9 @@ define(function(require) {
 				var body = $(document.body)
 					.addClass('tutorial-running');
 
-				function end() {
+				var end = function() {
 					body.removeClass('tutorial-running');
-				}
+				};
 
 				introJs()
 					.setOption('showStepNumbers', false)
@@ -138,7 +148,7 @@ define(function(require) {
 		execute: function(type, params) {
 			var filters = _.defaults(params, this._defaults[type]);
 			this.render(type, filters);
-			return api.get(api.getApiVersion() + "/profiles", filters)
+			return api.get(api.getApiVersion() + '/profiles', filters)
 				.prop('data')
 				.then(this.renderResults.bind(this, type, filters));
 		},
@@ -160,14 +170,9 @@ define(function(require) {
 			}
 
 			formData.page = 1;
-
-			_.each(this._defaults['people'], function(value, key) {
-				if (formData[key] == value)
-					delete formData[key];
-			});
-
+			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.people));
 			//Trigger false isn't working here due to BacboneJS bug I guess
-			router.navigate("#/search/people/" + api.urlEncode(formData), {trigger: false});
+			router.navigate('#/search/people/' + api.urlEncode(formData), {trigger: false});
 
 		},
 
@@ -178,10 +183,10 @@ define(function(require) {
 			var crc = this.$('#inputWings').val();
 			this.$('#inputWings').val(crc.split(',')[0]);
 
-			if (new Date($("input[name=endDate]").val()) < new Date($("input[name=startDate]").val()))
+			if (new Date($('input[name=endDate]').val()) < new Date($('input[name=startDate]').val()))
 				errors.push({css: 'date-error', text: 'Invalid dates'});
 
-			if (+$("select[name=endAge]").val() < +$("select[name=startAge]").val())
+			if (+$('select[name=endAge]').val() < +$('select[name=startAge]').val())
 				errors.push({css: 'age-error', text: 'Invalid age'});
 
 			if (errors.length)
@@ -194,14 +199,9 @@ define(function(require) {
 			}
 
 			formData.page = 1;
-
-			_.each(this._defaults['accommodation'], function(value, key) {
-				if (formData[key] == value)
-					delete formData[key];
-			});
-
+			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.accommodation));
 			//Trigger false isn't working here due to BacboneJS bug I guess
-			router.navigate("#/search/accommodation/" + api.urlEncode(formData), {trigger: false});
+			router.navigate('#/search/accommodation/' + api.urlEncode(formData), {trigger: false});
 		},
 
 	});

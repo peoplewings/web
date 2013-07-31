@@ -21,6 +21,7 @@ define(function() {
 			return store[id];
 		}
 
+		ModelFactory.uncached = model;
 		ModelFactory.prototype = Object.create(model.prototype);
 		return ModelFactory;
 	};

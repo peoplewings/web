@@ -36,14 +36,14 @@ define(function(require) {
 				.appendTo(this.el)
 				.prepend('<button type="button" class="close" id="delete-' + this.key + '-' + this.length + '">×</button>')
 				.show()
-				.prop("id");
+				.prop('id');
 		},
 
 		deleteItem: function(e) {
 			$(e.target).parent().remove();
 			this.length--;
 
-			var index = +e.target.id.split(this.key + "-")[1];
+			var index = +e.target.id.split(this.key + '-')[1];
 			this.store.splice(index, 1);
 		},
 

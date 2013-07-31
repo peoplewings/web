@@ -3,7 +3,7 @@ define(function(require) {
 	var $ = require('jquery');
 	var Backbone = require('backbone');
 	var utils = require('utils');
-	var api = require('api2');
+	var api = require('api');
 
 	var responseView = require('views/lib/balloon.response');
 	var confirmTpl = require('tmpl!templates/lib/responses/password.check-email.html');
@@ -16,11 +16,11 @@ define(function(require) {
 
 
 	var PasswordView = Backbone.View.extend({
-		el: "#main",
+		el: '#main',
 
 		events:{
-			"submit form#forgot-form": "submitForgot",
-			"submit form#password-form": "submitNewPwd"
+			'submit form#forgot-form': 'submitForgot',
+			'submit form#password-form': 'submitNewPwd'
 		},
 
 		validation: {
@@ -31,13 +31,13 @@ define(function(require) {
 				},
 				newPassword2: {
 					minlength: 8,
-					equalTo: "#inputPassword"
+					equalTo: '#inputPassword'
 				}
 			},
 		},
 
 		errorPlacement: function(error, element){
-			error.appendTo(element.nextAll("span.help-block"));
+			error.appendTo(element.nextAll('span.help-block'));
 		},
 
 		initialize: function(){
@@ -57,7 +57,7 @@ define(function(require) {
 				.validate(_.extend(this.validation, this.errorPlacement));
 			}
 
-			$("#feedback-btn").hide();
+			$('#feedback-btn').hide();
 		},
 
 		submitForgot: function(e){

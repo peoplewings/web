@@ -2,6 +2,9 @@
 
 # Development
 
+lint:
+	jshint public/js
+
 sass:
 	sass --update public/sass:public/css
 
@@ -53,7 +56,7 @@ build.commit.revert:
 stash:
 	git stash
 
-deploy.before: stash
+deploy.before:
 
 deploy.after: build.commit.revert sass
 

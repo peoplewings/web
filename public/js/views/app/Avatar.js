@@ -5,7 +5,7 @@ define(function(require) {
 	require("jquery.Jcrop");
 	var $ = require('jquery');
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
 	var utils = require('utils');
 	var blitline = require('tools/blitline');
 	var alerts = require("views/lib/alerts");
@@ -55,8 +55,10 @@ define(function(require) {
 
 			// We reset the form so the 'change' event is always fired
 			// when a file is selected
-			var form = $(event.target).closest('form').get(0)
-			form.reset();
+			$(event.target)
+				.closest('form')
+				.get(0)
+				.reset();
 		},
 
 		uploadComplete: function(url) {

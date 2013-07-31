@@ -2,20 +2,20 @@
 
 define(function(require) {
 
-	var $ = require("jquery");
-	var Backbone = require("backbone");
-	var api = require("api2");
-	var utils = require("utils");
-	var settingsTpl = require("tmpl!templates/app/account/settings.html");
+	var $ = require('jquery');
+	var Backbone = require('backbone');
+	var api = require('api');
+	var utils = require('utils');
+	var settingsTpl = require('tmpl!templates/app/account/settings.html');
 	var alerts = require('views/lib/alerts');
-	var AccountModel = require("models/Account");
+	var AccountModel = require('models/Account');
 
 	var settingsView = Backbone.View.extend({
 
-		el: "#main",
+		el: '#main',
 
 		events: {
-			"submit form#settings-form": "submitSettings",
+			'submit form#settings-form': 'submitSettings',
 		},
 
 		validation: {
@@ -45,7 +45,7 @@ define(function(require) {
 				},
 			},
 			errorPlacement: function(error, element) {
-				error.appendTo(element.nextAll("span.help-block"));
+				error.appendTo(element.nextAll('span.help-block'));
 			},
 		},
 
@@ -53,13 +53,13 @@ define(function(require) {
 			this.model = new AccountModel({
 				id: api.getUserId()
 			});
-			this.model.on("change", this.render.bind(this));
+			this.model.on('change', this.render.bind(this));
 		},
 
 		render: function() {
 			$(this.el).html(settingsTpl(this.model.toJSON()));
-			this.$('#settings-form').validate(this.validation);	
-			this.displayPasswordForm();	
+			this.$('#settings-form').validate(this.validation);
+			this.displayPasswordForm();
 		},
 
 		displayPasswordForm: function() {
@@ -74,9 +74,9 @@ define(function(require) {
 
 		submitSettings: function(e) {
 			e.preventDefault();
-			this.$("#save-settings-btn").button('loading');
+			this.$('#save-settings-btn').button('loading');
 			var data = utils.serializeForm('settings-form');
-			var values = _.omit(data, 'repeatPassword', 'repeatEmail', 'current_password', 'repeatCreatePassword')			
+			var values = _.omit(data, 'repeatPassword', 'repeatEmail', 'current_password', 'repeatCreatePassword');
 			var self = this;
 
 			values.hasPass = true;
@@ -95,7 +95,7 @@ define(function(require) {
 			})
 			.fin(function() {
 				self.$('#settings-form')[0].reset();
-				self.$("#save-settings-btn").button('reset');
+				self.$('#save-settings-btn').button('reset');
 			});
 		},
 	});

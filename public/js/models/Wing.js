@@ -1,23 +1,22 @@
 define(function(require) {
 
 	var Backbone = require('backbone');
-	var api = require('api2');
+	var api = require('api');
+	var factory = require('core/factory');
 
-	var WingModel = Backbone.Model.extend({
+	var Wing = Backbone.Model.extend({
 
-		urlRoot: api.getApiVersion() + '/profiles/' + api.getUserId() + '/accomodations/',
+		urlRoot: api.getApiVersion() + '/wings/',
 
-		fetch: function(options){
-			var self = this;
-			api.get(this.url())
-				.then(function(resp){
-					self.attributes = resp.data;
-					self.trigger("change");
-					if (options && options.success)
-						options.success();
-				});
+		url: function() {
+			return this.urlRoot + (this.id ? this.id + '/' : '');
 		},
+
+		parse: function(response) {
+			return response.success ? response.data : response;
+		}
 	});
 
-	return WingModel;
+	// Returns the Model singleton instance
+	return factory(Wing);
 });
