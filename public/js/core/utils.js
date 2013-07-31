@@ -104,10 +104,14 @@ define(function(require) {
 
 		modal.modal('show');
 		var acceptBtn = modal.find('.accept-modal-btn');
-		acceptBtn.click(options.callback);
 
-		if (options.form)
-			acceptBtn.attr('form', options.form);
+		if (_.isFunction(options.callback))
+			acceptBtn.click(options.callback);
+		else if (options.form) {
+			var id = 'modal-form-' + Math.random();
+			$(options.form).attr('id', id);
+			acceptBtn.attr('form', id);
+		}
 
 		modal.on('hidden', function() {
 			modal.remove();

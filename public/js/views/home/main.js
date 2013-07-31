@@ -13,6 +13,15 @@ define(function(require) {
 	var accomodationTpl = require('tmpl!templates/home/search.accomodation.html');
 	var ResultsView = require('views/home/results');
 
+	function cleanFormDataHelper(defaults, value, key, formData) {
+		var def = defaults[key];
+
+//jshint eqeqeq:false
+		if (value === '' || value == def)
+			delete formData[key];
+	}
+
+
 	var MainHomeView = Backbone.View.extend({
 
 		el: '#main',
@@ -161,12 +170,7 @@ define(function(require) {
 			}
 
 			formData.page = 1;
-
-			_.each(this._defaults.people, function(value, key) {
-				if (formData[key] === value)
-					delete formData[key];
-			});
-
+			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.people));
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/people/' + api.urlEncode(formData), {trigger: false});
 
@@ -195,12 +199,7 @@ define(function(require) {
 			}
 
 			formData.page = 1;
-
-			_.each(this._defaults.accommodation, function(value, key) {
-				if (formData[key] === value)
-					delete formData[key];
-			});
-
+			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.accommodation));
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/accommodation/' + api.urlEncode(formData), {trigger: false});
 		},

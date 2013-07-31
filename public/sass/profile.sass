@@ -177,9 +177,9 @@ button.close
 				padding: 14px 24px
 				margin: 0
 				border: none
-				font:
-					weight: bold
-					style: italic
+				font-size: 11px
+				font-weight: bold
+				font-style: italic
 				background: none
 				text-shadow: 1px #EEE
 				border-right: 1px solid #d2d2d2
@@ -306,6 +306,9 @@ button.close
 					span.lock
 						float: right
 						padding: 11px 8px
+					.ellipsis
+                    	overflow: hidden
+                    	text-overflow: ellipsis
 
 			div.edit-click
 				background: #FFF
@@ -749,6 +752,7 @@ h1.guest-message
 		line-height: 27px
 		text-align: left
 		i
+			float: left
 			margin: 0 10px
 		.icon-add-wings
 			margin: 0 10px 0 20px
@@ -800,3 +804,8 @@ ul.dropdown-menu
 				@include bg-gradient(#FFFF00, #FFEA00)
 
 /* EOF OVER Bootstrap */
+
+#wings
+	.container .tab-content .content-right .box-standard .accordion-heading span
+		background-position: -658px -8px
+

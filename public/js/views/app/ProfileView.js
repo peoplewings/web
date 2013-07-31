@@ -15,7 +15,11 @@ define(function(require) {
 
 	var profileTpl = require('tmpl!templates/app/profile/profile.html');
 	var wingsBarTpl = require('tmpl!templates/app/profile/form.add-wings.html');
-	var wingTpl = require('tmpl!templates/app/profile/view.wing.html');
+
+	var wingViewTpl = require('tmpl!templates/app/profile/view.wing.html');
+	var wingViewTypeTpl = {
+		accommodation: require('tmpl!templates/app/profile/view.wing.accommodation.html'),
+	};
 
 	var boxesTpl = {
 		'basic': require('tmpl!templates/app/profile/view.basic.html'),
@@ -23,9 +27,6 @@ define(function(require) {
 		'likes': require('tmpl!templates/app/profile/view.likes.html'),
 		'contact': require('tmpl!templates/app/profile/view.contact.html'),
 		'places': require('tmpl!templates/app/profile/view.places.html'),
-	};
-	var wingTypeTpl = {
-		accommodation: require('tmpl!templates/app/profile/view.wing.accommodation.html'),
 	};
 
 	var ProfileView = Backbone.View.extend({
@@ -128,18 +129,19 @@ define(function(require) {
 		},
 
 		refreshWings: function() {
-			var html = this.model.isMyProfile() ?
+			var isMyProfile = this.model.isMyProfile();
+			var html = isMyProfile ?
 				wingsBarTpl(this.model.pick('avatar', 'pwState')) :
-				boxesTpl.basic(this.model.toJSON(), { myProfile: this.model.isMyProfile() });
+				boxesTpl.basic(this.model.toJSON(), { myProfile: isMyProfile });
 
 			var boxes = this.model.wings.map(function(wing) {
 				var box = $('<div>')
 					.attr('id', 'wing-box-' + wing.id)
 					.addClass('box-standard');
 
-				var typeTpl = wingTypeTpl[wing.get('type').toLowerCase()];
-				box.html(wingTpl(wing.toJSON(), {
-					extraFieldsView: typeTpl(wing.toJSON()),
+				box.html(wingViewTpl(wing.toJSON(), {
+					myProfile: isMyProfile,
+					wingTypeView: wingViewTypeTpl,
 				}));
 				return box;
 			});
