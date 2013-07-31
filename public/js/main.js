@@ -88,7 +88,6 @@ requirejs([
 	Router,
 	Promise
 ) {
-
 	Promise.debug = true;
 	// Instantiates a new Router
 

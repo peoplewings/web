@@ -7,6 +7,7 @@ define(function(require) {
 	var facebook = require('tools/facebook');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
+	var chatMng = require('views/chat/chat_manager');
 
 	var spinner = require('views/lib/spinner');
 
@@ -20,6 +21,7 @@ define(function(require) {
 		router.firstExecution = data.tutorial;
 		router.header = new Header;
 		router.navigate('#/search');
+		chatMng.startup();
 	}
 
 

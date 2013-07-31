@@ -5,12 +5,14 @@ define(function(require) {
 	var api = require('api');
 	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');
+	var chatMng = require('views/chat/chat_manager');
 
 	var resultsView = Backbone.View.extend({
 
 		el: '#search-results',
 
 		events: {
+			"click button.send-chat-btn": "sendChat",
 			'click button.send-message-btn': 'sendMessage',
 			'click button.send-request-btn': 'sendRequest',
 			'click button.send-invitation-btn': 'sendInvitation',
@@ -96,12 +98,22 @@ define(function(require) {
 		},
 
 		_sendNotification: function(event, type) {
+			var id = this._sendHelper(event);
+			var name = this.namesById[id];
+			notifications[type](id, name);
+		},
+
+		_sendHelper: function(event) {
 			if (!this.logged)
 				return router.navigate('#/register');
 
 			var id = $(event.target).parents('.search-result').data('profile-id');
-			var name = this.namesById[id];
-			notifications[type](id, name);
+			return id;
+		},
+
+		sendChat: function(event) {
+			var id = this._sendHelper(event);
+			chatMng.openRoom(id);
 		},
 
 		sendMessage: function(event) {
