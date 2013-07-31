@@ -21,7 +21,7 @@ define(function(require) {
 		router.firstExecution = data.tutorial;
 		router.header = new Header;
 		router.navigate('#/search');
-		chatMng.startup();
+		chatMng.cleanOldChats().then(chatMng.startup.bind(chatMng));
 	}
 
 

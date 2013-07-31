@@ -4,6 +4,7 @@ define(function(require){
 	var api = require("api");
 	var Chat = require("views/chat/chat");
 	var config = require("config");
+	var Promise = require('promise');
 
 	var firebase = config.getValue('firebase');
 
@@ -35,7 +36,6 @@ define(function(require){
 				}
 			});
 			var publicRoom = new Firebase(firebase + '/rooms/' + userId);
-			console.log('loooooooool');
 			publicRoom.on('child_added', function(snapshot) {
 				var otherId = snapshot.name();
 				if (otherId !== userId){
@@ -58,6 +58,16 @@ define(function(require){
 				var roomRefMine = new Firebase(firebase + '/rooms/' + userId + '/' + otherId);
 				roomRefMine.set({'visible': true});
 			}
+		},
+
+		cleanOldChats: function(){
+			var promise = new Promise();
+			var userId = api.getUserId();
+			var fbRef = new Firebase(firebase + '/rooms/' + userId);
+			fbRef.set({}, function(){
+				promise.resolve();
+			});
+			return promise.future;
 		},
 
 	});
