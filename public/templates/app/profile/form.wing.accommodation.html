@@ -291,6 +291,8 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
+{{/with}}
+
 	<div class="control-group blocked">
 		<label class="control-label">City</label>
 		<i class="icon-lock-open">icon lock</i>
@@ -316,10 +318,9 @@
 				class="input-mini required"
 				type="text"
 				name="postalCode"
-				value="{{postalCode}}"
+				value="{{extraFields.postalCode}}"
 				maxlength="50">
 			<span class="help-block"></span>
 		</div>
 	</div>
 </div><!-- EOF listing-location -->
-{{/with}}
