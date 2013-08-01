@@ -163,7 +163,6 @@ define(function(require) {
 		cancelEdition: function(event) {
 			event.preventDefault();
 			var wingId = +event.target.attributes['wing-id'].value;
-			this.$('#accomodation-form-' + wingId).get(0).reset();
 			this.refreshWing(wingId, false);
 		},
 
