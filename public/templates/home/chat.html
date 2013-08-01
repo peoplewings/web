@@ -1,20 +1,25 @@
 <header class="header">
 
 	<div class="td-online-button">
-		<div class="online-button"></div>
+		<span class="dot-chat">button online</span>
 	</div>
 	<div class="username">
 		<a href="#profiles/{{id}}/about">
 		{{userName}}
 		</a>
 	</div>
-	<div class="td-button-close">
-		<button type="button" id="close-button" class="button-close-chat" data-dissmiss="chat" aria-hidden="true">x</button>
+	<div class="age">
+		<a href="#profiles/{{id}}/about">
+		[{{age}}]
+		</a>
 	</div>
-										
+	<div class="td-button-close">
+		<button type="button" id="button-close close-button" class="button-close-chat" data-dissmiss="chat" aria-hidden="true">x</button>
+	</div>
+
 </header><div class="contents">
 	<div id="chat-window" class="chat-window"></div>
 	<div class="chat-input">
-		<textarea id="text-area" class="chat-textarea"></textarea>
+		<textarea id="text-area" class="chat-textarea" rows="1" cols="20" placeholder="Send a message..."></textarea>
 	</div>
 </div>

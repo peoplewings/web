@@ -20,7 +20,6 @@ define(function(require) {
 		},
 
 		initialize: function(privateRoom, conectionRoom, otherId){
-			var self = this;
 			this.myId = api.getUserId();
 
 			this.otherProfile = new UserProfile({
@@ -33,18 +32,21 @@ define(function(require) {
 			this.privateRoom = privateRoom;
 			this.conectionRoom = conectionRoom;
 			//Create presence conection with the otherId
-			var onlineRef = new Firebase(firebase + '/onlineRef/' + otherId);
-			onlineRef.on('value', function(snapshot){
-				if (snapshot.val() === true){
-					this.$(".chat[data-id='" + self.otherId + "']").find('.online-button').css('background-color', 'green');
-				} else {
-					this.$(".chat[data-id='" + self.otherId + "']").find('.online-button').css('background-color', 'grey');
-				}
-			});
-			Promise.parallel(this.otherProfile.fetch(), this.myProfile.fetch()).then(this.render.bind(this));
+			Promise.parallel(this.otherProfile.fetch(), this.myProfile.fetch()).then(this.render.bind(this)).then(this.addOnlineRef.bind(this));
 
 		},
 
+		addOnlineRef: function (){
+			var self = this;
+			var onlineRef = new Firebase(firebase + '/onlineRef/' + this.otherId);
+			onlineRef.on('value', function(snapshot){
+				if (snapshot.val() === true){
+					this.$(".chat[data-id='" + self.otherId + "']").find('span.dot-chat').addClass('online-chat');
+				} else {
+					this.$(".chat[data-id='" + self.otherId + "']").find('span.dot-chat').removeClass('online-chat');
+				}
+			});
+		},
 
 		render: function(){
 			var self = this;
@@ -76,18 +78,29 @@ define(function(require) {
 			});
 
 			//TODO get the name of the target
-			var content = contentTpl({userName: this.otherProfile.get('firstName') + ' ' + this.otherProfile.get('lastName'), id: self.otherId});
+			var content = contentTpl({userName: this.otherProfile.get('firstName') + ' ' + this.otherProfile.get('lastName'), id: self.otherId, age: this.otherProfile.get('age')});
 			return this.$el.addClass('chat nChild-' + this.otherId).attr('data-id', this.otherId).html(content);
 		},
 
 		sendMessage: function(e){
+			var ta = $(e.target);
+			var maxrows = 5;
 			if (e.keyCode === 13) {
-				var val = $(e.target).val();
+				var val = ta.val();
 				val = val.replace(/(\r\n|\n|\r)/gm,"");
 				this.checkWindowOpened();
 				this.privateRoom.push({'message' : val, 'senderId': this.myId});
-				$(e.target).val('');
+				ta.val('');
+				ta.prop('rows', 1);
 			}
+			while (ta.prop('scrollHeight') > ta.prop('clientHeight') + 1 && !window.opera && ta.prop('rows') < maxrows) {
+				ta.css('overflow','hidden');
+				ta.prop('rows', ta.prop('rows') + 1);
+			}
+			if (ta.prop('scrollHeight') > ta.prop('clientHeight') + 1){
+				ta.css('overflow', 'auto');
+			}
+
 		},
 
 		checkWindowOpened: function(){
