@@ -42,6 +42,7 @@ define(function(require) {
 		},
 
 		initialize: function(userId) {
+			_.bindAll(this, 'refreshWings');
 			this.map = new MapView({
 				el: '#user-map',
 				id: 'mapcanvas'
@@ -49,6 +50,7 @@ define(function(require) {
 
 			this.model = new ProfileModel({ id: userId });
 			this.photos = new PhotosView(this.model);
+
 		},
 
 		render: function(userId, tabId) {
@@ -60,6 +62,7 @@ define(function(require) {
 		},
 
 		refresh: function(tab) {
+			this.model.wings.on('all', this.refreshWings);
 			this.refreshProfile();
 			this.refreshWings();
 			this.refreshPhotos();

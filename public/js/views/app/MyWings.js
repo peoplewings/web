@@ -25,7 +25,7 @@ define(function(require) {
 		accommodation: function(data) {
 			var extraFields = _.pick(data, 'wheelchair', 'about', 'whereSleepingType',
 				'additionalInformation', 'liveCenter', 'preferredGender', 'petsAllowed',
-				'address', 'postalCode', 'smoking', 'iHavePet', 'blankets');
+				'address', 'postalCode', 'smoking', 'iHavePet', 'blankets', 'number');
 
 			extraFields.publicTransport = data.transport;
 			return extraFields;
@@ -163,7 +163,6 @@ define(function(require) {
 		cancelEdition: function(event) {
 			event.preventDefault();
 			var wingId = +event.target.attributes['wing-id'].value;
-			this.$('#accomodation-form-' + wingId).get(0).reset();
 			this.refreshWing(wingId, false);
 		},
 
@@ -189,12 +188,9 @@ define(function(require) {
 				.val('');
 
 			if (wing && wing.get('sharingOnce')) {
-				this.$('div#sharing-dates').show();
 				this.$('input[name=dateStart]').val(wing.get('dateStart'));
 				this.$('input[name=dateEnd]').val(wing.get('dateEnd'));
 			}
-
-			this.$('div#sharing-dates').hide();
 
 			var cityInput = this.$('#inputCity');
 			var autoCity = new google.maps.places.Autocomplete(cityInput.get(0), {

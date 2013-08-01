@@ -11,6 +11,8 @@ define(function(require) {
 	 **************/
 
 	Handlebars.registerHelper('equals', function(value, expected, options) {
+		value = value && value.toLowerCase();
+		expected = expected && expected.toLowerCase();
 		return Handlebars.helpers['if'].call(this, value == expected, options);
 	});
 

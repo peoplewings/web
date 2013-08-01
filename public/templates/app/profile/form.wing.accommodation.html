@@ -1,3 +1,4 @@
+{{#with extraFields }}
 <div class="box-content wings-info">
 	<div class="control-group blocked">
 		<label class="control-label" for="inputNewEmail">Best days to host</label>
@@ -231,9 +232,8 @@
 				class="span4"
 				name="about"
 				placeholder="Texto de ayuda"
-				maxlength="1000">
-				{{about}}
-			</textarea>
+				maxlength="1000"
+				>{{about}}</textarea>
 			<span class="help-block"></span>
 		</div>
 	</div>
@@ -291,6 +291,8 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
+{{/with}}
+
 	<div class="control-group blocked">
 		<label class="control-label">City</label>
 		<i class="icon-lock-open">icon lock</i>
@@ -316,7 +318,7 @@
 				class="input-mini required"
 				type="text"
 				name="postalCode"
-				value="{{postalCode}}"
+				value="{{extraFields.postalCode}}"
 				maxlength="50">
 			<span class="help-block"></span>
 		</div>
