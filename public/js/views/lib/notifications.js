@@ -17,7 +17,7 @@ define(function(require) {
 		'none': function(parent) {
 			parent.html('');
 		},
-		'accomodation': function(parent, params) {
+		'accommodation': function(parent, params) {
 			parent.html(accomodationTpl(params));
 			parent.parents('form').validate(validation);
 
@@ -76,10 +76,10 @@ define(function(require) {
 					fullname: targetName
 				},
 				wings: wings ? [{
-					idWing: null,
-					wingName: 'Select a wing',
-					wingType: 'none',
-				}].concat(wings.items) : null,
+					id: null,
+					name: 'Select a wing',
+					type: 'none',
+				}].concat(wings) : null,
 			});
 
 			var modal = utils.showModal({
@@ -155,7 +155,7 @@ define(function(require) {
 
 
 	function reqinv(targetId, targetName, kind, title, wingsOwnerId) {
-		var request = api.get('/api/v1/wings', { profile:  wingsOwnerId}).prop('data');
+		var request = api.get('/api/v1/wings', { author:  wingsOwnerId}).prop('data');
 		return modalHelper(targetId, targetName, kind, title, request, function(modal) {
 			return {
 				'privateText': modal.find('#message-content').val(),
