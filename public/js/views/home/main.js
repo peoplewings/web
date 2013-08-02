@@ -89,7 +89,6 @@ define(function(require) {
 		},
 
 		renderResults: function(type, query, results, myWings) {
-			//debugger;
 			if (this.resultsView)
 				this.resultsView.close();
 
