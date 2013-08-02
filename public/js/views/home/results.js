@@ -32,7 +32,7 @@ define(function(require) {
 		setQuery: function(query) {
 			this.query = query;
 		},
-		render: function(results) {
+		render: function(results, hasWings) {
 			var self = this;
 
 			this.$el.html(resultsTpl({
@@ -43,6 +43,7 @@ define(function(require) {
 				totalCount: results.count,
 				locationSearch: self.query.wings,
 				applicant: self.query.type === 'Applicant',
+				iHaveWings: hasWings,
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId;
 					self.namesById[result.id]  = result.firstName + ' ' + result.lastName;

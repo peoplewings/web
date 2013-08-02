@@ -124,7 +124,9 @@
 						{{else}}
 							<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
 						{{/if}}
-						<li><button class="button send-invitation-btn">INVITE</button></li>
+						{{#if ../iHaveWings}}
+							<li><button class="button send-invitation-btn">INVITE</button></li>
+						{{/if}}
 					</ul>
 				</div><!-- EOF button-bar -->
 			</div><!-- EOF main-bar -->
