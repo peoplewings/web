@@ -12,6 +12,8 @@ define(function(require) {
 	var peopleTpl = require('tmpl!templates/home/search.people.html');
 	var accomodationTpl = require('tmpl!templates/home/search.accomodation.html');
 	var ResultsView = require('views/home/results');
+	var Promise = require('promise');
+	var UserProfile = require('models/ProfileModel');
 
 	function cleanFormDataHelper(defaults, value, key, formData) {
 		var def = defaults[key];
@@ -87,6 +89,7 @@ define(function(require) {
 		},
 
 		renderResults: function(type, query, results) {
+			//debugger;
 			if (this.resultsView)
 				this.resultsView.close();
 
@@ -95,8 +98,8 @@ define(function(require) {
 				query: query,
 				type: type,
 			});
-
-			this.resultsView.render(results);
+			//results[0] are the actual results. results[1] are my wings
+			this.resultsView.render(results[0], results[1].length);
 
 			if (window.router.firstExecution) {
 				window.router.firstExecution = false;
@@ -146,11 +149,19 @@ define(function(require) {
 		},
 
 		execute: function(type, params) {
+			var myId = api.getUserId();
 			var filters = _.defaults(params, this._defaults[type]);
+			this.myProfile = new UserProfile({
+				id: this.myId,
+			});
 			this.render(type, filters);
+			/*
 			return api.get(api.getApiVersion() + '/profiles', filters)
 				.prop('data')
 				.then(this.renderResults.bind(this, type, filters));
+			*/
+			return Promise.parallel(api.get(api.getApiVersion() + '/profiles', filters).prop('data'), api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')).then(this.renderResults.bind(this, type, filters));
+
 		},
 
 		searchPeople: function(e) {
