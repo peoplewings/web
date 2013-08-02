@@ -88,7 +88,7 @@ define(function(require) {
 			});
 		},
 
-		renderResults: function(type, query, results) {
+		renderResults: function(type, query, results, myWings) {
 			//debugger;
 			if (this.resultsView)
 				this.resultsView.close();
@@ -98,8 +98,8 @@ define(function(require) {
 				query: query,
 				type: type,
 			});
-			//results[0] are the actual results. results[1] are my wings
-			this.resultsView.render(results[0], results[1].length);
+
+			this.resultsView.render(results, myWings.length);
 
 			if (window.router.firstExecution) {
 				window.router.firstExecution = false;
@@ -151,16 +151,12 @@ define(function(require) {
 		execute: function(type, params) {
 			var myId = api.getUserId();
 			var filters = _.defaults(params, this._defaults[type]);
-			this.myProfile = new UserProfile({
-				id: this.myId,
-			});
 			this.render(type, filters);
-			/*
-			return api.get(api.getApiVersion() + '/profiles', filters)
-				.prop('data')
-				.then(this.renderResults.bind(this, type, filters));
-			*/
-			return Promise.parallel(api.get(api.getApiVersion() + '/profiles', filters).prop('data'), api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')).then(this.renderResults.bind(this, type, filters));
+
+			return Promise.parallel(
+				api.get(api.getApiVersion() + '/profiles', filters).prop('data'),
+				api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
+			).spread(this.renderResults.bind(this, type, filters));
 
 		},
 
