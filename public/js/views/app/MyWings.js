@@ -94,12 +94,34 @@ define(function(require) {
 
 		_wingFormHelper: function(event) {
 			event.preventDefault();
+			var error = false;
 
 			var form = $(event.target);
 			if (!form.valid())
+				error = true;
+
+			var data = this.parseForm(form);
+
+			console.log(data.sharingOnce, data.dateEnd, data.dateStart, data.dateEnd > data.dateStart);
+			if (data.sharingOnce) {
+				if (!data.dateStart || !data.dateEnd) {
+					error = true;
+					form.find('#wing-form-errors-date')
+						.html('This field is required')
+						.show();
+				} else if (data.dateStart > data.dateEnd) {
+					error = true;
+					form.find('#wing-form-errors-date')
+						.html('End date should be bigger than start date')
+						.show();
+				} else
+					form.find('#wing-form-errors-date').hide();
+			}
+
+			if (error)
 				return null;
 
-			return this.parseForm(form);
+			return data;
 		},
 
 		createWing: function(event) {
@@ -179,7 +201,7 @@ define(function(require) {
 		},
 
 		initWing: function(wing) {
-			this.$('#accomodation-form').validate();
+			this.$('.wing-form').validate();
 			this.$('input.input-date')
 				.datepicker({
 					minDate: new Date(),
