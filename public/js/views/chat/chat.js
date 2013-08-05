@@ -79,7 +79,8 @@ define(function(require) {
 							.scrollTop(chatWindow.prop('scrollHeight'));
 					}
 				}
-				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000 && snapshot.val().senderId !== self.myProfile.get('id')){
+				//jshint eqeqeq:false
+				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000 && snapshot.val().senderId != self.myProfile.get('id')){
 					if (!document.hasFocus){
 						self.displayBlinkingTitle()();
 						self.tweet();
