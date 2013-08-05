@@ -79,9 +79,11 @@ define(function(require) {
 							.scrollTop(chatWindow.prop('scrollHeight'));
 					}
 				}
-				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000){
-					self.displayBlinkingTitle()();
-					self.tweet();
+				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000 && snapshot.val().senderId !== self.myProfile.get('id')){
+					if (!document.hasFocus){
+						self.displayBlinkingTitle()();
+						self.tweet();
+					}
 				}
 			});
 
@@ -152,9 +154,7 @@ define(function(require) {
 		},
 
 		tweet: function(){
-			if (window.onmousemove != null){
-				$('#chat-sound').get(0).play();
-			}
+			$('#chat-sound').get(0).play();
 		},
 	});
 
