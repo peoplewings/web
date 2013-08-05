@@ -13,7 +13,6 @@ define(function(require) {
 	var accomodationTpl = require('tmpl!templates/home/search.accomodation.html');
 	var ResultsView = require('views/home/results');
 	var Promise = require('promise');
-	var UserProfile = require('models/ProfileModel');
 
 	function cleanFormDataHelper(defaults, value, key, formData) {
 		var def = defaults[key];
