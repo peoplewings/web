@@ -12,10 +12,10 @@ define(function() {
 		},
 
 		'notification-state': {
-			P: 'pending',
-			M: 'maybe',
-			A: 'accepted',
-			D: 'denied',
+			p: 'pending',
+			m: 'maybe',
+			a: 'accepted',
+			d: 'denied',
 		},
 
 		'wing-type': {
