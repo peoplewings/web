@@ -26,13 +26,17 @@
 			<dl>
 				<dt>From</dt>
 				<dd {{#if_contains parameters.modified "startDate" }}class="modified"{{/if_contains}}>
-					{{date startDate}}
+					{{#if startDate}}
+						{{date startDate}}
+					{{/if}}
 				</dd>
 			</dl>
 			<dl>
 				<dt>To</dt>
 				<dd {{#if_contains parameters.modified "endDate" }}class="modified"{{/if_contains}}>
-					{{date endDate}}
+					{{#if endDate}}
+						{{date endDate}}
+					{{/if}}
 				</dd>
 			</dl>
 			<dl>
