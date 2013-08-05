@@ -25,7 +25,8 @@ define(function(require) {
 		accommodation: function(data) {
 			var extraFields = _.pick(data, 'wheelchair', 'about', 'whereSleepingType',
 				'additionalInformation', 'liveCenter', 'preferredGender', 'petsAllowed',
-				'address', 'postalCode', 'smoking', 'iHavePet', 'blankets', 'number');
+				'address', 'postalCode', 'smoking', 'iHavePet', 'blankets', 'number',
+				'capacity');
 
 			extraFields.publicTransport = data.transport;
 			return extraFields;
@@ -87,8 +88,7 @@ define(function(require) {
 			var globalData = _.pick(data, 'id', 'type', 'author', 'dateStart',
 				'dateEnd', 'name', 'status', 'bestDays', 'city', 'sharingOnce');
 
-			var extraFields = dataToWing[data.type.toLowerCase()](data);
-			globalData.extraFields = new Backbone.Model(extraFields);
+			globalData.extraFields = dataToWing[data.type.toLowerCase()](data);
 			wing.set(globalData);
 		},
 
@@ -102,7 +102,6 @@ define(function(require) {
 
 			var data = this.parseForm(form);
 
-			console.log(data.sharingOnce, data.dateEnd, data.dateStart, data.dateEnd > data.dateStart);
 			if (data.sharingOnce) {
 				if (!data.dateStart || !data.dateEnd) {
 					error = true;
@@ -167,7 +166,13 @@ define(function(require) {
 
 		parseForm: function(form) {
 			var data = utils.serializeForm(form);
-			data.city = this.cityHolder.city;
+
+			if (this.cityHolder.city) {
+				data.city = this.cityHolder.city;
+				this.cityHolder.city = null;
+			} else {
+				data = _.omit(data, 'city');
+			}
 
 			if (!data.sharingOnce)
 				data = _.omit(data, ['dateStart', 'dateEnd']);

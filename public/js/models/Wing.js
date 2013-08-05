@@ -13,7 +13,7 @@ define(function(require) {
 		},
 
 		parse: function(response) {
-			return response.success ? response.data : response;
+			return response.id ? response : response.data;
 		}
 	});
 
