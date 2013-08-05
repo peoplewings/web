@@ -20,6 +20,7 @@ define(function(require) {
 		},
 
 		initialize: function(privateRoom, conectionRoom, otherId){
+			var self = this;
 			this.myId = api.getUserId();
 
 			this.otherProfile = new UserProfile({
@@ -33,7 +34,10 @@ define(function(require) {
 			this.conectionRoom = conectionRoom;
 			//Create presence conection with the otherId
 			Promise.parallel(this.otherProfile.fetch(), this.myProfile.fetch()).then(this.render.bind(this)).then(this.addOnlineRef.bind(this));
-
+			var offsetRef = new Firebase(firebase + "/.info/serverTimeOffset");
+			offsetRef.on("value", function(snap) {
+				self.timeOffset = snap.val();
+			});
 		},
 
 		addOnlineRef: function (){
@@ -75,6 +79,10 @@ define(function(require) {
 							.scrollTop(chatWindow.prop('scrollHeight'));
 					}
 				}
+				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000){
+					self.displayBlinkingTitle()();
+					self.tweet();
+				}
 			});
 
 			//TODO get the name of the target
@@ -89,7 +97,7 @@ define(function(require) {
 				var val = ta.val();
 				val = val.replace(/(\r\n|\n|\r)/gm,"");
 				this.checkWindowOpened();
-				this.privateRoom.push({'message' : val, 'senderId': this.myId});
+				this.privateRoom.push({'message' : val, 'senderId': this.myId, 'time': Firebase.ServerValue.TIMESTAMP});
 				ta.val('');
 				ta.prop('rows', 1);
 			}
@@ -114,9 +122,40 @@ define(function(require) {
 			trg.closest('.chat').remove();
 			this.conectionRoom.child(this.otherId).remove();
 			this.privateRoom.off();
-			//FALTARIA CERRAR LA ROOM
 		},
 
+		displayBlinkingTitle: function(){
+			var oldTitle = document.title;
+			var msg = "New message!";
+			var timeoutId;
+			var blink = function() {
+				document.title = document.title === msg ? oldTitle : msg;
+			};
+			var clear = function() {
+				clearInterval(timeoutId);
+				document.title = oldTitle;
+				window.onmousemove = null;
+				timeoutId = null;
+			};
+			if (window.onmousemove == null){
+				return function (){
+					if (!timeoutId){
+						timeoutId = setInterval(blink, 1000);
+						window.onmousemove = clear;
+					}
+				};
+			} else {
+				return function(){
+
+				};
+			}
+		},
+
+		tweet: function(){
+			if (window.onmousemove != null){
+				$('#chat-sound').get(0).play();
+			}
+		},
 	});
 
 return ChatView;
