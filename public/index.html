@@ -38,7 +38,7 @@
 
 	<link rel="stylesheet" href="css/foundation.css">
 	<link href='//fonts.googleapis.com/css?family=Exo:800italic,500italic' rel='stylesheet' type='text/css'>
-	
+
 	<script src='https://cdn.firebase.com/v0/firebase.js'></script>
 </head>
 
@@ -137,17 +137,22 @@
 		</header>
 
 		<div id="alerts-container"></div>
-		<div id="main" class="wrap"></div>	
+		<div id="main" class="wrap"></div>
 		<div id="chat-manager">
 			<div id="chat-wrapper"></div>
-		</div>	
+			<audio id="chat-sound">
+				<source src="sounds/notification-chat.mp3" type="audio/mpeg" />
+				<source src="sounds/notification-chat.wav" type="audio/wav" />
+				Your browser does not accept audio tags...
+			</audio>
+		</div>
 		<div class="push"></div>
 	</div>
 	<div id="feedback-btn">
 		<div>
 			<a id="feedback-btn-submit" href="#/feedback" role="button" class="btn" >Send feedback</a>
 		</div>
-	</div>	
+	</div>
 
 	<footer class="footer navbar navbar-fixed-bottom">
 		<div class="wrap">
