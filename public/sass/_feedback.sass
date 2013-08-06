@@ -12,10 +12,13 @@
 	@include box-shadow(0, 0, 4px, #DDD)
 	padding: 7px 20px
 	position: fixed
-	bottom: 0
-	right: 20%
+	top: 200px
+	right: -50px
 	z-index: 1000000
 	border-bottom: none
+	-webkit-transform: rotate(-90deg)
+	-ms-transform: rotate(-90deg)
+	transform: rotate(-90deg)
 
 form#feedback-form
 	font-size: 12px
@@ -43,11 +46,11 @@ form#feedback-form
 			left: 10px
 			top: 1px
 		float: left
-	
+
 	label.control-label
 		float: left
 		margin: 4px 0
-	
+
 	div.control-group
 		margin-bottom: 20px
 
