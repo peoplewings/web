@@ -60,7 +60,7 @@ define(function(require) {
 			api.post(api.getApiVersion() + '/auth/', formData)
 				.prop('data')
 				.then(function(data){
-					self.loginSuccess(data, formData.remember === 'on');
+					self.loginSuccess(data, formData.remember);
 				})
 				.fin(function(){
 					self.$inputPassword.val('');
