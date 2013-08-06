@@ -81,7 +81,7 @@ define(function(require) {
 				}
 				//jshint eqeqeq:false
 				if (snapshot.val().time && snapshot.val().time > new Date().getTime() + self.timeOffset - 2000 && snapshot.val().senderId != self.myProfile.get('id')){
-					if (!document.hasFocus){
+					if (document.hasFocus && document.hasFocus()){
 						self.displayBlinkingTitle()();
 						self.tweet();
 					}
