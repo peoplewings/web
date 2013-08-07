@@ -4,6 +4,7 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api');
 
+	var facebook = require('tools/facebook');
 	var homeView = require('views/home/main');
 	var registerView = require('views/home/register');
 	var loginView = require('views/home/login');
@@ -22,6 +23,7 @@ define(function(require) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			'register': 'register',
+			'register?auth=:auth': 'register',
 			'login': 'login',
 			'help': 'help',
 			'help#:tab': 'help',
@@ -48,12 +50,15 @@ define(function(require) {
 		},
 
 		//Anonymous User hashs
-		register: function(){
+		register: function(auth){
 			this.showHeaderSearch(false);
 			this.showBackgroundImage(true);
 			if (api.userIsLoggedIn())
 				return this.defaultAction();
 			registerView.render();
+
+			if (auth === 'facebook')
+				facebook.connect();
 		},
 		login: function(){
 			this.showHeaderSearch(false);
