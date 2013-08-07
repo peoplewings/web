@@ -5,22 +5,18 @@ define(function(require) {
 	var api = require('api');
 	var mainView = require('views/home/main');
 	var FeedView = require('views/app/feedback');
-	var ChatManagerView = require('views/chat/chat');
 
 	var HomeView = Backbone.View.extend({
-		initialize: function(){
-			this.eventBinds();
-			this.chatMngView = new ChatManagerView();
-		},
-		eventBinds: function(){
-			$('#feedback-btn-submit').live('click', this.showFeedback.bind(this));
+		el: document.body,
+
+		events: {
+			'click #feedback-btn-submit': 'showFeedback',
 		},
 		render: function(){
 			mainView.render();
 			$('#feedback-btn').show();
 		},
 		showFeedback: function(evt){
-			evt.preventDefault();
 			if (!this.feedbackView)
 				this.feedbackView = new FeedView(api.getUserId());
 

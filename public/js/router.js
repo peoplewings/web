@@ -4,6 +4,7 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var api = require('api');
 
+	require('views/app/home');
 	var homeView = require('views/home/main');
 	var registerView = require('views/home/register');
 	var loginView = require('views/home/login');
