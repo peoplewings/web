@@ -97,7 +97,7 @@ define(function(require) {
 				type: type,
 			});
 
-			this.resultsView.render(results, myWings.length);
+			this.resultsView.render(results, myWings ? myWings.length : true);
 
 			if (window.router.firstExecution) {
 				window.router.firstExecution = false;
@@ -153,7 +153,7 @@ define(function(require) {
 
 			return Promise.parallel(
 				api.get(api.getApiVersion() + '/profiles', filters).prop('data'),
-				api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
+				myId && api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
 			).spread(this.renderResults.bind(this, type, filters));
 
 		},
