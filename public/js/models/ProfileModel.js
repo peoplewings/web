@@ -4,7 +4,7 @@ define(function(require) {
 	var api = require('api');
 	var Promise = require('promise');
 	var factory = require('core/factory');
-	var Wing = require('models/Wing');
+	var Wing = require('models/wing');
 	var Wings = require('collections/wings');
 
 	function getId(item) {
