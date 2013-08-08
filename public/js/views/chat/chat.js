@@ -120,9 +120,8 @@ define(function(require) {
 			otherRoom.set({'visible': true});
 		},
 
-		closeRoom: function(e){
-			var trg = $(e.target);
-			trg.closest('.chat').remove();
+		closeRoom: function(){
+			this.$el.remove();
 			this.conectionRoom.child(this.otherId).remove();
 			this.privateRoom.off();
 		},

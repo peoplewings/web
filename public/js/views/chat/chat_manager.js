@@ -35,6 +35,8 @@ define(function(require){
 					onlineRef.set(true);
 				}
 			});
+
+			var rooms = {};
 			var publicRoom = new Firebase(firebase + '/rooms/' + userId);
 			publicRoom.on('child_added', function(snapshot) {
 				var otherId = snapshot.name();
@@ -43,9 +45,16 @@ define(function(require){
 					var chatRoom = new Chat(privateRoom, publicRoom, otherId);
 					//var contents = chatRoom.render();
 					this.$('#chat-wrapper').append(chatRoom.$el);
+					rooms[otherId] = chatRoom;
 				}
 			});
 
+			publicRoom.on('child_removed', function(snapshot) {
+				var otherId = snapshot.name();
+				var room = rooms[otherId];
+				if (room)
+					room.closeRoom();
+			});
 		},
 
 		loadProfileData: function(){
