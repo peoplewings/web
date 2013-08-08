@@ -2,6 +2,7 @@ define(function(require) {
 
 	var api = require('api');
 	var chatMng = require('views/chat/chat_manager');
+	var Header = require('views/app/header');
 
 	function onSuccess(data, remember) {
 		api.saveAuthToken({
