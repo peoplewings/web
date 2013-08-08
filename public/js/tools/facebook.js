@@ -9,9 +9,11 @@ define(function(require) {
 	function askFbLogin() {
 		var prom = new Promise();
 
+		console.log('FB_LOGIN');
 		FB.login(function(response) {
+			console.log('RESPONSE', response);
 			if (!response.authResponse) prom.reject();
-			else prom.resolve(response.authResponse);
+			else console.log('FB',response.authResponse), prom.resolve(response.authResponse);
 		}, { scope: 'email,user_about_me,user_birthday,user_hometown,user_location' });
 
 		return prom.future;
