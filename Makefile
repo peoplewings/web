@@ -34,7 +34,10 @@ add-repos:
 
 build.js:
 	node public/js/build/r -o public/js/build/app.build.js
-	sed -i '' 's@lib/require.js@build/out.js@' public/index.html
+	-test ! -f BUILD && echo 1 > BUILD
+	mv public/js/build/out{,-`cat BUILD`}.js
+	sed -i '' "s@lib/require.js@build/out-`cat BUILD`.js@" public/index.html
+	echo $$((`cat BUILD` + 1)) > BUILD
 
 build.css:
 	sass --update public/sass/:public/css/ --style compressed
@@ -46,7 +49,7 @@ build: build.js build.css
 
 build.commit: build
 	git add public/index.html
-	git add public/js/build/out.js
+	git add -f public/js/build/out-*.js
 	git add -f public/css/home.css public/css/landing.css public/css/profile.css
 	git commit -m "[BUILD] Added JS & CSS compiled files"
 
