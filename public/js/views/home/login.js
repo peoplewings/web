@@ -5,25 +5,12 @@ define(function(require) {
 	var utils = require('utils');
 	var api = require('api');
 	var facebook = require('tools/facebook');
+	var loginHelper = require('tools/login');
 	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
 	var chatMng = require('views/chat/chat_manager');
 
 	var spinner = require('views/lib/spinner');
-
-	function loginCompleted(data, remember) {
-		api.saveAuthToken({
-			auth: data.xAuthToken,
-			uid: data.idAccount,
-			remember: remember
-		});
-
-		router.firstExecution = data.tutorial;
-		router.header = new Header;
-		router.navigate('#/search');
-		chatMng.cleanOldChats().then(chatMng.startup.bind(chatMng));
-	}
-
 
 	var LoginView = Backbone.View.extend({
 
@@ -44,7 +31,7 @@ define(function(require) {
 		},
 
 		facebookLogin: function() {
-			facebook.connect(loginCompleted);
+			facebook.connect();
 		},
 
 		submitLogin: function(e) {
@@ -71,7 +58,7 @@ define(function(require) {
 		loginSuccess: function(data, remember) {
 			this.$inputPassword.val('');
 			this.$inputEmail.val('');
-			loginCompleted(data, remember);
+			loginHelper.onSuccess(data, remember);
 		}
 	});
 

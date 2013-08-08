@@ -62,27 +62,16 @@ define(function(require) {
 		},
 
 		facebookConnect: function() {
-			facebook.connect(function loginCompleted(data) {
-				api.saveAuthToken({
-					auth: data.xAuthToken,
-					uid: data.idAccount
-				});
-
-				router.header = new Header;
-				router.navigate('#/search');
-			});
+			facebook.connect();
 		},
 
 		render: function() {
-
 			$(this.el).html(registerTpl({
 				month: texts.months,
 			}));
 
 			this.$('#register-form').validate(this.validation);
-
 			$('#feedback-btn').hide();
-
 		},
 
 		submitRegister: function(e) {

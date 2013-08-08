@@ -29,6 +29,28 @@
 </head>
 
 <body>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+		// Additional JS functions here
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '582389231792268', // App ID
+				channelUrl : '//www.peoplewings.com/channel.html', // Channel File
+				status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : false // parse XFBML
+			});
+		};
+
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		}(document));
+	</script>
+
 	<div class="wrapper">
 		<div class="background-roller background-9"></div>
 		<header>
@@ -38,14 +60,12 @@
 					<div class="nav-menu">
 						<ul class="nav pull-right">
 							<li class="facebook-menu">
-								<a href="/#/register?auth=facebook">
-									<div class="controls facebook-bright fb-login">
-										<span class="icon-facebook-login">Icon facebook login</span>
-										<div class="button-facebook">
-											<strong>Sing Up</strong> with <strong>Facebook</strong>
-										</div>
+								<div class="controls facebook-bright fb-login">
+									<span class="icon-facebook-login">Icon facebook login</span>
+									<div class="button-facebook">
+										<strong>Sing Up</strong> with <strong>Facebook</strong>
 									</div>
-								</a>
+								</div>
 							</li>
 							<li class="register-menu"><a href="/#/register">SIGN UP</a></li>
 							<li class="login-menu"><a href="/#/login">LOG IN</a></li>
@@ -130,6 +150,15 @@
 	<script type="text/javascript" src="js/lib/jquery.js"></script>
 	<script type="text/javascript">
 	$(function() {
+
+		$('.facebook-menu').on('click', function() {
+			console.log('click captured');
+			FB.login(function(response) {
+				console.log('response', response);
+				if (response.authResponse)
+					document.location = '/#/register?fbid=100005871761549';
+			}, { scope: 'email,user_about_me,user_birthday,user_hometown,user_location' });
+		});
 
 		$('#accomodation-search-form').on('submit', function() {
 			var city = parsedCity ||$('#accomodation-search-form [name=location]').val().split(',')[0]
