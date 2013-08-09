@@ -98,8 +98,37 @@ define(function(require) {
 			});
 
 			this.fixBoxes();
+			this.refreshMap();
+		},
+
+		refreshMap: function() {
 			this.map.render();
 			this.initMarkers();
+
+			var center = this.model.get('current') ||
+				this.model.get('hometown') ||
+				this.model.get('otherLocations')[0];
+
+			if (center)
+				this.map.setCenter(center.lat, center.lon);
+		},
+
+		initMarkers: function() {
+			this.map.clearMarkers();
+			this._handleMarker('current', this.model.get('current'));
+			this._handleMarker('hometown', this.model.get('hometown'));
+
+			var others = this.model.get('otherLocations');
+			others.forEach(this._handleMarker.bind(this, 'other'));
+		},
+
+		_handleMarker: function(type, city) {
+			this.map.addMarker({
+				id: type + '-' + Math.random(),
+				location: new google.maps.LatLng(city.lat, city.lon),
+				title: city.name + ', ' + city.country,
+				icon: 'img/places-' + type + '-marker.png'
+			});
 		},
 
 		fixBoxes: function() {
@@ -175,27 +204,7 @@ define(function(require) {
 				el: '#user-map',
 				id: 'mapcanvas'
 			});
-
-			this.map.render();
-			this.initMarkers();
-		},
-
-		initMarkers: function() {
-			this.map.clearMarkers();
-			this._handleMarker('current', this.model.get('current'));
-			this._handleMarker('hometown', this.model.get('hometown'));
-
-			var others = this.model.get('otherLocations');
-			others.forEach(this._handleMarker.bind(this, 'other'));
-		},
-
-		_handleMarker: function(type, city) {
-			this.map.addMarker({
-				id: type + '-' + Math.random(),
-				location: new google.maps.LatLng(city.lat, city.lon),
-				title: city.name + ', ' + city.country,
-				icon: 'img/places-' + type + '-marker.png'
-			});
+			this.refreshMap();
 		},
 
 		selectTab: function(tabId) {

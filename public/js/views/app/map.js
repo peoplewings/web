@@ -42,8 +42,8 @@ define(function(require){
 			this.renderMarkers();
 		},
 
-		setCenter: function (location) {
-			this.map.setCenter(location);
+		setCenter: function(lat, lng) {
+			this.map.setCenter(new google.maps.LatLng(lat, lng));
 		},
 
 		addMarker: function(options) {
