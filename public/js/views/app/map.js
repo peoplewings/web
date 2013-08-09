@@ -13,12 +13,12 @@ define(function(require){
 			this.el = options.el;
 			this.id = options.id;
 			this.css = options.css;
-			this.styles = _.extend(options.styles || {}, {height: '300px'});
+			this.styles = _.extend(options.styles || {}, {height: '357px'});
 			this.mapOptions = options.mapOptions ||
 			{
-				zoom: 1,
+				zoom: 3,
 				scrollwheel: false,
-				center: new google.maps.LatLng(0, 0),
+				center: new google.maps.LatLng(48.6908333333, 9.14055555556),
 				mapTypeControl: false,
 				streetViewControl: false,
 				navigationControlOptions: {

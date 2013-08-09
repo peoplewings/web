@@ -340,7 +340,7 @@ define(function(require) {
 				return target;
 			}
 
-			function getProps(source, type) {
+			function getProps(type) {
 				return {
 					name: type + '-city',
 					country: type + '-country',
@@ -360,28 +360,26 @@ define(function(require) {
 				});
 			}
 
-			if (data['current']) {
-				var currentProps = getProps('current');
-				data.current = extract(currentProps, data);
-				data = _.omit(data, _.values(currentProps));
-			}
+			//debugger;
+			var currentProps = getProps('current');
+			var hometownProps = getProps('hometown');
+			var otherProps = getProps('other');
 
-			if (data['hometown']) {
-				var hometownProps = getProps('hometown');
-				data.hometown = extract(hometownProps, data);
-				data = _.omit(data, _.values(hometownProps));
-			}
+			data.current = data.current ? extract(currentProps, data) : {};
+			data.hometown = data.hometown ? extract(hometownProps, data) : {};
 
 			if (data['other-city']) {
-				var otherProps = getProps('other');
-				var values = _.values(otherProps);
-				var others = _.pick(data, 'other-city', values);
-				data = _.omit(data, values);
+				var others = _.pick(data, 'other-city', _.values(otherProps));
 				data.otherLocations = switchIndexes(others)
 					.map(extract.bind(null, otherProps));
+			} else {
+				data.otherLocations = [];
 			}
 
-			return data;
+			return _.omit(data,
+				_.values(currentProps),
+				_.values(hometownProps),
+				_.values(otherProps));
 		},
 
 		gradientBoxVisiblity: function(event) {
