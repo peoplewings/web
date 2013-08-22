@@ -35,7 +35,7 @@ define(function() {
 			case "localhost":
 			case "0.0.0.0":
 			case "127.0.0.1":
-				return 'local';
+				return 'development';
 
 			case "peoplewings":
 			case "development":
