@@ -32,9 +32,8 @@ define(function(require) {
 		setQuery: function(query) {
 			this.query = query;
 		},
-		render: function(results, hasWings) {
+		render: function(results, hasWings, myId) {
 			var self = this;
-
 			this.$el.html(resultsTpl({
 				notlogged: !self.logged,
 				isPeople: this.type === 'people',
@@ -46,6 +45,7 @@ define(function(require) {
 				iHaveWings: hasWings,
 				results: results.profiles.map(function(result) {
 					result.id = result.profileId;
+					result.isNotMine = result.profileId !== myId;
 					self.namesById[result.id]  = result.firstName + ' ' + result.lastName;
 					return result;
 				})
@@ -77,20 +77,26 @@ define(function(require) {
 		},
 		nextPage: function() {
 			var scope = this;
+			var myId = api.getUserId();
 			if (+this.query.page === this.lastPage) return false;
 			this.query.page++;
-			api.get(api.getApiVersion() + '/profiles', this.query).then(function(results) {
-				scope.render(results.data);
-			});
+
+			Promise.parallel(
+				api.get(api.getApiVersion() + '/profiles', this.query).prop('data'),
+				myId && api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
+			).spread(scope.render.bind(this));
 			return false;
 		},
 		previousPage: function() {
 			var scope = this;
+			var myId = api.getUserId();
 			if (+this.query.page === 1) return false;
 			this.query.page--;
-			api.get(api.getApiVersion() + '/profiles', this.query).then(function(results) {
-				scope.render(results.data);
-			});
+
+			Promise.parallel(
+				api.get(api.getApiVersion() + '/profiles', this.query).prop('data'),
+				myId && api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
+			).spread(scope.render.bind(this));
 			return false;
 		},
 		close: function() {

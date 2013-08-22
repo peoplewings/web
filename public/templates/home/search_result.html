@@ -112,20 +112,22 @@
 					{{/if}}
 					>
 					<ul>
-						{{#if online}}
-							<li><button class="button send-chat-btn">CHAT</button></li>
-						{{else}}
-							<li><button class="button send-message-btn">MESSAGE</button></li>
-						{{/if}}
-						{{#if ../isPeople }}
-							{{#if wings.length }}
+						{{#if isNotMine}}
+							{{#if online}}
+								<li><button class="button send-chat-btn">CHAT</button></li>
+							{{else}}
+								<li><button class="button send-message-btn">MESSAGE</button></li>
+							{{/if}}
+							{{#if ../isPeople }}
+								{{#if wings.length }}
+									<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
+								{{/if}}
+							{{else}}
 								<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
 							{{/if}}
-						{{else}}
-							<li><button class="button-highlight send-request-btn selected">REQUEST</button></li>
-						{{/if}}
-						{{#if ../iHaveWings}}
-							<li><button class="button send-invitation-btn">INVITE</button></li>
+							{{#if ../iHaveWings}}
+								<li><button class="button send-invitation-btn">INVITE</button></li>
+							{{/if}}
 						{{/if}}
 					</ul>
 				</div><!-- EOF button-bar -->
