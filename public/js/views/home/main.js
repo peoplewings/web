@@ -87,7 +87,7 @@ define(function(require) {
 			});
 		},
 
-		renderResults: function(type, query, results, myWings) {
+		renderResults: function(type, query, myId, results, myWings) {
 			if (this.resultsView)
 				this.resultsView.close();
 
@@ -97,7 +97,7 @@ define(function(require) {
 				type: type,
 			});
 
-			this.resultsView.render(results, myWings ? myWings.length : true);
+			this.resultsView.render(results, myWings ? myWings.length : true, myId);
 
 			if (window.router.firstExecution) {
 				window.router.firstExecution = false;
@@ -150,11 +150,10 @@ define(function(require) {
 			var myId = api.getUserId();
 			var filters = _.defaults(params, this._defaults[type]);
 			this.render(type, filters);
-
 			return Promise.parallel(
 				api.get(api.getApiVersion() + '/profiles', filters).prop('data'),
 				myId && api.get(api.getApiVersion() + '/wings?author=' + myId).prop('data')
-			).spread(this.renderResults.bind(this, type, filters));
+			).spread(this.renderResults.bind(this, type, filters, myId ? myId : false));
 
 		},
 
