@@ -1,3 +1,6 @@
+// W003 Function 'send' was used before it was defined.
+//jshint -W003
+
 define(function(require) {
 
 	var $ = require('jquery');
@@ -45,7 +48,7 @@ define(function(require) {
 				prom.resolve(false);
 		});
 
-		var $form = modal.find('form')
+		var $form = modal.find('form');
 		$form.validate(validation);
 
 		function send() {

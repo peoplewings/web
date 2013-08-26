@@ -16,7 +16,7 @@ define(function(require) {
 			mainView.render();
 			$('#feedback-btn').show();
 		},
-		showFeedback: function(evt){
+		showFeedback: function(){
 			if (!this.feedbackView)
 				this.feedbackView = new FeedView(api.getUserId());
 

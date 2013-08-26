@@ -9,7 +9,6 @@ define(function(require) {
 	var texts = require('tools/texts');
 	var spinner = require('views/lib/spinner');
 	var facebook = require('tools/facebook');
-	var Header = require('views/app/header');
 
 	var responseView = require('views/lib/balloon.response');
 

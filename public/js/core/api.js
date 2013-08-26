@@ -129,7 +129,7 @@ define(function(require) {
 							break;
 
 						case 'DUPLICATED_REFERENCE':
-							alerts.error('You\'ve already sent a referece to this user. You can only send one per user', errorOptions)
+							alerts.error('You\'ve already sent a referece to this user. You can only send one per user', errorOptions);
 							break;
 
 						case 'EMAIL_IN_USE':

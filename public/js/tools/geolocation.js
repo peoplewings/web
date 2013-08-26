@@ -1,3 +1,5 @@
+//jshint camelcase:false
+
 define(function(require) {
 
 	var _ = require('underscore');
@@ -19,7 +21,7 @@ define(function(require) {
 
 		var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
 		geocoder.geocode({ latLng: latLng }, function(results, status) {
-			if (status != google.maps.GeocoderStatus.OK)
+			if (status !== google.maps.GeocoderStatus.OK)
 				return prom.reject(status);
 			prom.resolve(getCityFromGcoder(results));
 		});

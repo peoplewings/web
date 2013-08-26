@@ -2,6 +2,7 @@ define(function(require) {
 
 	var $ = require('jquery');
 	var Backbone = require('backbone');
+	var Promise = require('promise');
 	var api = require('api');
 	var notifications = require('views/lib/notifications');
 	var resultsTpl = require('tmpl!templates/home/search_result.html');

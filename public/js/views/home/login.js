@@ -6,9 +6,7 @@ define(function(require) {
 	var api = require('api');
 	var facebook = require('tools/facebook');
 	var loginHelper = require('tools/login');
-	var Header = require('views/app/header');
 	var loginTpl = require('text!templates/home/forms/login.html');
-	var chatMng = require('views/chat/chat_manager');
 
 	var spinner = require('views/lib/spinner');
 
