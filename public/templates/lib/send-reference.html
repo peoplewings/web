@@ -1,0 +1,28 @@
+<div>
+	<div class="control-group">
+		<label class="control-label" for="reciver-name">For</label>
+		<div class="controls">
+			<input type="text" id="reciver-name" value="{{to.fullname}}" readonly="readonly">
+		</div>
+	</div>
+	<div class="control-group avatar-message">
+		<label class="control-label" for="message-content">
+			<img src="{{avatar}}">
+		</label>
+		<form>
+			<input type="hidden" name="receiver" value="{{to.id}}">
+			<div class="controls">
+				<div id="new-invitation-content" class="request-options">
+					<div id="wing-data">
+						<input type="range" name="rating" min="0" max="2" step="1" class="faces-background">
+						<input type="checkbox" name="metInPerson"> Have you meet in person?
+					</div>
+				</div><!-- EOF new-invitation-content -->
+
+				<textarea name="text" maxlength="1000" class="required" placeholder="How is your experience with this person?"></textarea>
+				<span class="help-block"></span>
+				<span class="warning">Keep in mind you cannot delete or modify this reference once it has been sent</span>
+			</div><!-- EOF controls -->
+		</form>
+	</div>
+</div>

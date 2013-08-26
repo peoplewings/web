@@ -33,17 +33,17 @@ define(function(require) {
 	};
 
 	var validation = {
-			rules: {
-				publicMessage: {
-					maxlength: 1500,
-				},
-				privateMessage: {
-					maxlength: 1500,
-				},
+		rules: {
+			publicMessage: {
+				maxlength: 1500,
 			},
-			errorPlacement: function(error, element) {
-				error.appendTo(element.next('span.help-block'));
+			privateMessage: {
+				maxlength: 1500,
 			},
+		},
+		errorPlacement: function(error, element) {
+			error.appendTo(element.next('span.help-block'));
+		},
 	};
 
 	function selectedWingType(container) {

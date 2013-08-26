@@ -128,6 +128,10 @@ define(function(require) {
 							alerts.error('This key is already activated.', errorOptions);
 							break;
 
+						case 'DUPLICATED_REFERENCE':
+							alerts.error('You\'ve already sent a referece to this user. You can only send one per user', errorOptions)
+							break;
+
 						case 'EMAIL_IN_USE':
 							alerts.error('The gicen email is already in use', errorOptions);
 							break;
