@@ -69,7 +69,20 @@ select
 		+box-shadow(0, 0, 8px, 3px, $yellow_corp)
 		outline: 0
 
-input,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
 select
 	font-size: 1em
 	padding: 0.7em
@@ -162,6 +175,9 @@ input[type="radio"]
 	padding: 0px
 	padding-left: 15px
 	margin-top: 5px
+
+.warning
+	color: #D34836
 
 .form-errors
 	min-height: 20px
@@ -273,6 +289,6 @@ div#alerts-container
 	font-size: 12px
 	padding: 5px 10px
 	overflow: hidden
-	
+
 	&:hover
 		background-color: #FFFFB0

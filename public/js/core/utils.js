@@ -42,7 +42,8 @@ define(function(require) {
 		var dom = typeof form === 'string' ? $('#' + form) : $(form);
 		var selectsAndFields = dom.find('select,textarea,' +
 			'input[type=text],input[type=email],' +
-			'input[type=password],input[type=hidden]');
+			'input[type=password],input[type=hidden],' +
+			'input[type=range]');
 		var checkboxes = dom.find('input[type=checkbox]');
 		var found = selectsAndFields.length + checkboxes.length;
 		var result = {};
