@@ -20,7 +20,7 @@ define(function(require) {
 			'click #previous': 'previous',
 			'click #next': 'next',
 
-			'click #delete-thread': 'remove',
+			'click #delete-thread': 'confirmRemoval',
 			'click #open-request': 'request',
 			'click #open-invite': 'invite',
 			'click #open-message': 'reply',
@@ -127,6 +127,13 @@ define(function(require) {
 			}));
 
 			this.$('li .messages-content').hide().slice(-2).show();
+		},
+
+		confirmRemoval: function() {
+			var result = window.confirm("Are you sure you want to delete this thread?");
+			if (result){
+				this.remove();
+			}
 		},
 
 		remove: function() {
