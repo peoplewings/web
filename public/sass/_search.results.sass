@@ -89,6 +89,7 @@ div.profile
 
 			div.first-info
 				min-height: 54px
+				margin-top: -8px
 
 				h1.name
 					font:
@@ -114,31 +115,39 @@ div.profile
 						size: 13px
 
 				h2.home-town
+					color: #000
 					font-size: 16px
+
+				h3.last-connection
+					color: #808080
+					font-size: 11px
 
 				h3.current-location
 					color: #808080
 					font-size: 14px
 					margin-bottom: 0.8em
 
-			dl
+			div.second-info
+				margin-top: 6px
 
-				dt.wings-tag, dt.languages-tag
-					float: left
-					font-size: 13px
-					color: #808080
-					margin-right: 10px
+				dl
 
-				dd
-					font-size: 13px
-					white-space: nowrap
-					text-overflow: ellipsis
-					overflow: hidden
-					line-height: 20px
+					dt.wings-tag, dt.languages-tag
+						float: left
+						font-size: 13px
+						color: #808080
+						margin-right: 10px
 
-				dd.wings, dd.languages
-					color: #000
-					text-transform: capitalize
+					dd
+						font-size: 13px
+						white-space: nowrap
+						text-overflow: ellipsis
+						overflow: hidden
+						line-height: 20px
+
+					dd.wings, dd.languages
+						color: #000
+						text-transform: capitalize
 
 		div.main-bar
 			font-size: 11px

@@ -6,11 +6,11 @@ define(function(require) {
 	var Promise = require('promise');
 
 
-	function getCityFromGcoder(results) {
+	function getCityFromGcoder(results, lat, lng) {
 		return results.reduce(function(result, item) {
 			if (result) return result;
 			if (item.types.join(',') === 'locality,political')
-				return item.formatted_address;
+				return {city: item.formatted_address, lat: lat, lng: lng};
 		}, null);
 	}
 
@@ -23,7 +23,7 @@ define(function(require) {
 		geocoder.geocode({ latLng: latLng }, function(results, status) {
 			if (status !== google.maps.GeocoderStatus.OK)
 				return prom.reject(status);
-			prom.resolve(getCityFromGcoder(results));
+			prom.resolve(getCityFromGcoder(results, coords.latitude, coords.longitude));
 		});
 
 		return prom.future;

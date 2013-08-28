@@ -35,6 +35,7 @@ define(function(require) {
 		},
 		render: function(results, hasWings, myId) {
 			var self = this;
+
 			this.$el.html(resultsTpl({
 				notlogged: !self.logged,
 				isPeople: this.type === 'people',
