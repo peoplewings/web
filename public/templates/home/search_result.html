@@ -71,32 +71,41 @@
 								<p><b>Last in:</b> {{ lastLogin }}</p>
 						{{/if}}
 					-->
-					{{#if current.name }}
-					<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
-					<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
-					{{/if}}
-				</div>
-				{{#if wings.length }}
-				<dl>
-					<dt class="wings-tag">Wings</dt>
-					<dd class="wings">
-						{{#each wings }}
-							{{ self }}{{#unless last}},{{/unless}}
-						{{/each}}
-					</dd>
-				</dl>
-				{{/if}}
-				{{#if languages.length }}
-				<dl>
-					<dt class="languages-tag">Languages</dt>
-					<dd class="languages">
-						{{#each languages }}
-							{{ name }} ({{ level }}){{#unless last}},{{/unless}}
-						{{/each}}
-					</dd>
-				</dl>
-				{{/if}}
-			</div>
+							{{#if current.name }}
+							<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
+							{{/if}}
+							{{#if lastLogin.name}}
+								{{#if online}}
+									<h3 class="last-connection">Last connection:  {{ lastLogin.name }}, {{ lastLogin.country }}</h2>
+								{{else}}
+									<h3 class="last-connection">Last connection:  {{ lastLogin.name }}, {{ lastLogin.country }} on {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+								{{/if}}
+							<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
+							{{/if}}
+						</div>
+						<div class="second-info">
+						{{#if wings.length }}
+						<dl>
+							<dt class="wings-tag">Wings</dt>
+							<dd class="wings">
+								{{#each wings }}
+									{{ self }}{{#unless last}},{{/unless}}
+								{{/each}}
+							</dd>
+						</dl>
+						{{/if}}
+						{{#if languages.length }}
+						<dl>
+							<dt class="languages-tag">Languages</dt>
+							<dd class="languages">
+								{{#each languages }}
+									{{ name }} ({{ level }}){{#unless last}},{{/unless}}
+								{{/each}}
+							</dd>
+						</dl>
+						{{/if}}
+					</div>
+					</div>
 			<div class="main-bar">
 				<div class="info-bar">
 					<span class="">Reply time</span>

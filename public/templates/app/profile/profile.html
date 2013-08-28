@@ -36,11 +36,8 @@
 				<h1 id="user-name-label" class="name">{{firstName}} {{lastName}}</h1>
 				<span class="age">[{{age}}]</span>
 				<span class="online">
-					{{#equals lastLoginDate 'ON' }}
+					{{#equals online 'ON' }}
 						Online
-					{{else}}
-						Last connection
-						{{date lastLoginDate 'YYYY-MM-DD' }}
 					{{/equals}}
 				</span>
 				<h2 class="home-town">
@@ -48,6 +45,11 @@
 						{{current.name}}, {{current.country}}
 					{{/if}}
 				</h2>
+				{{#equals online 'ON' }}
+					<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }}</h2>
+				{{else}}
+					<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }} on {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+				{{/equals}}
 			</div>
 			{{#unless myProfile}}
 			<div class="button-bar">
