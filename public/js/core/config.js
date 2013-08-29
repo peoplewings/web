@@ -32,8 +32,10 @@ define(function() {
 			return 'local';
 
 		switch (document.location.hostname) {
-			case "localhost":
 			case "0.0.0.0":
+				return 'local';
+
+			case "localhost":
 			case "127.0.0.1":
 				return 'development';
 
