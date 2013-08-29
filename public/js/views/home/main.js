@@ -30,6 +30,8 @@ define(function(require) {
 		events: {
 			'submit form#people-search-form': 'searchPeople',
 			'submit form#accomodation-search-form': 'searchAccommodation',
+			'click span.advanced-search': '_onClickAdvancedSearchButton',
+			'click span.basic-search': '_onClickBasicSearchButton',
 		},
 
 		initialize: function() {
@@ -64,6 +66,8 @@ define(function(require) {
 
 			if (!api.userIsLoggedIn())
 				$('#feedback-btn').hide();
+
+			if (params.hero) this.showAdvancedSearch();
 
 		},
 
@@ -175,6 +179,9 @@ define(function(require) {
 
 			formData.page = 1;
 			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.people));
+			if (!this.advanced){
+				delete formData.hero;
+			};
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/people/' + api.urlEncode(formData), {trigger: false});
 
@@ -206,6 +213,30 @@ define(function(require) {
 			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.accommodation));
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/accommodation/' + api.urlEncode(formData), {trigger: false});
+		},
+
+		_onClickAdvancedSearchButton: function(e) {
+			e.preventDefault();
+			this.showAdvancedSearch()
+		},
+
+		showAdvancedSearch: function() {
+			this.$('#inputName').css('display', 'block');
+			this.$('.advanced-search').css('display', 'none');
+			this.$('.basic-search').css('display', 'block');
+			this.advanced = true;
+		},
+
+		_onClickBasicSearchButton: function(e) {
+			e.preventDefault();
+			this.showBasicSearch()
+		},
+
+		showBasicSearch: function() {
+			this.$('#inputName').css('display', 'none');
+			this.$('.advanced-search').css('display', 'block');
+			this.$('.basic-search').css('display', 'none');
+			this.advanced = false;
 		},
 
 	});

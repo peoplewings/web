@@ -3,7 +3,7 @@
 		<div class="tab-content" data-step="7" data-intro="Thank you for taking this tour. We hope you've learned the basics of your superpowers!">
 			<ul class="nav nav-tabs">
 				<li class="{{#equals selected 'people' }}active{{/equals}}">
-					<a href="#/search/people/" class="people">Poeple</a>
+					<a href="#/search/people/" class="people">People</a>
 				</li>
 				<li class="{{#equals selected 'accommodation' }}active{{/equals}}">
 					<a href="#/search/accommodation/" class="accommodation">Accommodation</a>
@@ -11,6 +11,10 @@
 			</ul>
 			<div class="tab-pane {{#equals selected 'people' }}active{{/equals}}" id="people">People</div>
 			<div class="tab-pane {{#equals selected 'accommodation' }}active{{/equals}}" id="accommodation">Accommodation</div>
+			<div class="accordion-search collapsed" data-toggle="collapse" href="#collapse-search">
+				<span class="advanced-search">Advanced search</span>
+				<span class="basic-search">Basic search</span>
+			</div>
 		</div><!-- EOF tab-content -->
 	</div><!-- EOF span8 -->
 </div><!-- EOF row -->

@@ -50,9 +50,8 @@ define(function(require) {
 
 		selectsAndFields.each(function() {
 			var name = this.name;
-
 			if (!(name in result)) {
-				result[name] = this.value;
+				result[name] = escape(this.value);
 				return;
 			}
 
