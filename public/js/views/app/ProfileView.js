@@ -9,6 +9,7 @@ define(function(require) {
 	var ProfileModel = require('models/ProfileModel');
 	var MapView = require('views/app/map');
 	var notifications = require('views/lib/notifications');
+	var references = require('views/lib/reference');
 	var MyProfile = require('views/app/MyProfile');
 	var MyWings = require('views/app/MyWings');
 	var PhotosView = require('views/app/photos');
@@ -25,8 +26,9 @@ define(function(require) {
 		'basic': require('tmpl!templates/app/profile/view.basic.html'),
 		'about': require('tmpl!templates/app/profile/view.about.html'),
 		'likes': require('tmpl!templates/app/profile/view.likes.html'),
-		'contact': require('tmpl!templates/app/profile/view.contact.html'),
 		'places': require('tmpl!templates/app/profile/view.places.html'),
+		'contact': require('tmpl!templates/app/profile/view.contact.html'),
+		'references': require('tmpl!templates/app/profile/view.references.html'),
 	};
 
 	var ProfileView = Backbone.View.extend({
@@ -37,6 +39,7 @@ define(function(require) {
 			'click .personal-info button.send-message-btn': 'sendMessage',
 			'click .personal-info button.send-request-btn': 'sendRequest',
 			'click .personal-info button.send-invitation-btn': 'sendInvitation',
+			'click #add-reference-btn': 'sendReference',
 			'click .see-more': 'gradientBoxVisiblity',
 			'click .see-less': 'gradientBoxVisiblity',
 		},
@@ -88,6 +91,11 @@ define(function(require) {
 		refreshProfile: function() {
 			var data = _.extend(this.model.toJSON(), {
 				myProfile: this.model.isMyProfile()
+			});
+
+			// We cant display {{text}} at the template because its a Handlebar's helper
+			data.references.forEach(function(reference) {
+				reference.message = reference.text;
 			});
 
 			$(this.el).html(profileTpl(data));
@@ -225,15 +233,29 @@ define(function(require) {
 		},
 
 		sendMessage: function() {
-			notifications.message(this.model.get('id'), this.model.get('firstName') + ' ' + this.model.get('lastName'));
+			var id = this.model.get('id');
+			var fullname = this.model.get('firstName') + ' ' + this.model.get('lastName');
+			notifications.message(id, fullname);
 		},
 
 		sendRequest: function() {
-			notifications.request(this.model.get('id'), this.model.get('firstName') + ' ' + this.model.get('lastName'));
+			var id = this.model.get('id');
+			var fullname = this.model.get('firstName') + ' ' + this.model.get('lastName');
+			notifications.request(id, fullname);
 		},
 
 		sendInvitation: function() {
-			notifications.invitation(this.model.get('id'), this.model.get('firstName') + ' ' + this.model.get('lastName'));
+			var id = this.model.get('id');
+			var fullname = this.model.get('firstName') + ' ' + this.model.get('lastName');
+			notifications.invitation(id, fullname);
+		},
+
+		sendReference: function() {
+			var id = this.model.get('id');
+			var fullname = this.model.get('firstName') + ' ' + this.model.get('lastName');
+			references.openModal(id, fullname)
+				.then(this.model.fetch.bind(this.model))
+				.then(this.refreshProfile.bind(this));
 		}
 	});
 

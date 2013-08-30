@@ -1,0 +1,49 @@
+<div class="box-standard">
+	<div class="box-header">
+		<i class="icon-references">References icon</i>
+		<h2>References</h2>
+		{{#unless myProfile}}
+			<a id="add-reference-btn" class="button-edit-info">Send reference</a>
+		{{/unless}}
+	</div>
+	<div class="accordion">
+		<div class="accordion-group">
+			<div id="collapse-references" minCollapse="450" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="box-content references-box">
+						{{#each references }}
+							<div class="reference">
+								<div class="avatar">
+									<img src="{{avatar}}">
+								</div>
+								<div class="sender">
+									<h1 class="messages-name">
+										<a href="#/profiles/{{senderId}}/about">{{firstName}} {{lastName}},</a>
+										<span class="messages-age">[{{age}}]</span>
+									</h1>
+									<h2>{{city}}</h2>
+									<span class="reference-rating-{{rating}}"></span>
+									{{#if meetInPerson }}
+										<span class="reference-meetinperson"></span>
+									{{/if}}
+									<span class="reference-date">{{date date }}</span>
+								</div>
+								<div class="reference-message">{{message}}</div>
+								{{#if ../myProfile }}
+									{{#unless referenced }}
+										<button class="leave-reference button">Leave a reference</button>
+									{{/unless}}
+								{{/if}}
+							</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			<div class="gradient-box"></div>
+			<div class="accordion-heading collapsed" data-toggle="collapse" href="#collapse-references">
+				<span class="see-more">See more</span>
+				<span class="see-less">See less</span>
+			</div>
+		</div>
+	</div><!-- EOF accordion -->
+</div><!-- box-standard maps -->
