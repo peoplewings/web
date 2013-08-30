@@ -40,6 +40,7 @@ define(function(require) {
 			'click .personal-info button.send-request-btn': 'sendRequest',
 			'click .personal-info button.send-invitation-btn': 'sendInvitation',
 			'click #add-reference-btn': 'sendReference',
+			'click .leave-reference': 'returnReference',
 			'click .see-more': 'gradientBoxVisiblity',
 			'click .see-less': 'gradientBoxVisiblity',
 		},
@@ -256,7 +257,14 @@ define(function(require) {
 			references.openModal(id, fullname)
 				.then(this.model.fetch.bind(this.model))
 				.then(this.refreshProfile.bind(this));
-		}
+		},
+
+		returnReference: function(event) {
+			var button = $(event.target);
+			var id = button.attr('data-id');
+			var name = button.attr('data-name');
+			references.openModal(id, name);
+		},
 	});
 
 	return ProfileView;
