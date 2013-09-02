@@ -51,7 +51,7 @@ define(function(require) {
 		selectsAndFields.each(function() {
 			var name = this.name;
 			if (!(name in result)) {
-				result[name] = escape(this.value);
+				result[name] = this.value;
 				return;
 			}
 

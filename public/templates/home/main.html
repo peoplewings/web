@@ -11,10 +11,12 @@
 			</ul>
 			<div class="tab-pane {{#equals selected 'people' }}active{{/equals}}" id="people">People</div>
 			<div class="tab-pane {{#equals selected 'accommodation' }}active{{/equals}}" id="accommodation">Accommodation</div>
+			{{#if logged}}
 			<div class="accordion-search collapsed" data-toggle="collapse" href="#collapse-search">
 				<span class="advanced-search">Advanced search</span>
 				<span class="basic-search">Basic search</span>
 			</div>
+			{{/if}}
 		</div><!-- EOF tab-content -->
 	</div><!-- EOF span8 -->
 </div><!-- EOF row -->

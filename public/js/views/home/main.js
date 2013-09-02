@@ -26,6 +26,7 @@ define(function(require) {
 	var MainHomeView = Backbone.View.extend({
 
 		el: '#main',
+		type: null,
 
 		events: {
 			'submit form#people-search-form': 'searchPeople',
@@ -39,7 +40,12 @@ define(function(require) {
 		},
 
 		render: function(type, params) {
-			$(this.el).html(mainTpl({ selected: type }));
+			this.type = type;
+			$(this.el).html(mainTpl(
+				{
+					selected: type,
+					logged: api.getUserId() ? true : false,
+				}));
 
 			this.$('#people').html(peopleTpl(params));
 			this.$('#accommodation').html(accomodationTpl(params));
@@ -67,7 +73,8 @@ define(function(require) {
 			if (!api.userIsLoggedIn())
 				$('#feedback-btn').hide();
 
-			if (params.hero) this.showAdvancedSearch();
+			if (this.advanced && type === 'people') this.showAdvancedSearch();
+			if (this.advanced && type === 'accommodation') this.showAdvancedSearchAcc();
 
 		},
 
@@ -211,13 +218,16 @@ define(function(require) {
 
 			formData.page = 1;
 			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.accommodation));
+			if (!this.advanced){
+				delete formData.hero;
+			};
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/accommodation/' + api.urlEncode(formData), {trigger: false});
 		},
 
 		_onClickAdvancedSearchButton: function(e) {
 			e.preventDefault();
-			this.showAdvancedSearch()
+			this.type && this.type === 'people' ? this.showAdvancedSearch() : this.showAdvancedSearchAcc()
 		},
 
 		showAdvancedSearch: function() {
@@ -227,13 +237,27 @@ define(function(require) {
 			this.advanced = true;
 		},
 
+		showAdvancedSearchAcc: function() {
+			this.$('#inputNameAcc').css('display', 'block');
+			this.$('.advanced-search').css('display', 'none');
+			this.$('.basic-search').css('display', 'block');
+			this.advanced = true;
+		},
+
 		_onClickBasicSearchButton: function(e) {
 			e.preventDefault();
-			this.showBasicSearch()
+			this.type && this.type === 'people' ? this.showBasicSearch() : this.showBasicSearchAcc()
 		},
 
 		showBasicSearch: function() {
 			this.$('#inputName').css('display', 'none');
+			this.$('.advanced-search').css('display', 'block');
+			this.$('.basic-search').css('display', 'none');
+			this.advanced = false;
+		},
+
+		showBasicSearchAcc: function() {
+			this.$('#inputNameAcc').css('display', 'none');
 			this.$('.advanced-search').css('display', 'block');
 			this.$('.basic-search').css('display', 'none');
 			this.advanced = false;
