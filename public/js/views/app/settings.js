@@ -76,6 +76,9 @@ define(function(require) {
 			e.preventDefault();
 			this.$('#save-settings-btn').button('loading');
 			var data = utils.serializeForm('settings-form');
+			if (!data.email) delete data.email;
+			if (!data.createPassword) delete data.createPassword;
+			if (!data.password) delete data.password;
 			var values = _.omit(data, 'repeatPassword', 'repeatEmail', 'current_password', 'repeatCreatePassword');
 			var self = this;
 
