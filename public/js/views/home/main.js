@@ -132,8 +132,15 @@ define(function(require) {
 			var self = this;
 
 			errors.map(function(error){
-				self.$('.form-errors.' + error.css)
-				.html('<label class="error">' + error.text + '</label>');
+				if (error.css === 'age-error-acc') {
+					self.$('.form-errors.' + error.css)
+						.html('<label class="error" id="age-error-acc">' + error.text + '</label>');
+					self.$('.form-errors.' + error.css).css('display', 'block');
+				} else {
+					self.$('.form-errors.' + error.css)
+						.html('<label class="error">' + error.text + '</label>');
+				}
+
 			});
 		},
 
@@ -175,6 +182,9 @@ define(function(require) {
 			var crc = this.$('#inputLocation').val();
 			this.$('#inputLocation').val(crc.split(',')[0]);
 
+			if (+$('#endAgePeople').val() < +$('#startAgePeople').val())
+				errors.push({css: 'age-error', text: 'Invalid age range'});
+
 			if (errors.length)
 				return this.displayErrors(errors);
 
@@ -188,7 +198,7 @@ define(function(require) {
 			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.people));
 			if (!this.advanced){
 				delete formData.hero;
-			};
+			}
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/people/' + api.urlEncode(formData), {trigger: false});
 
@@ -204,8 +214,8 @@ define(function(require) {
 			if (new Date($('input[name=endDate]').val()) < new Date($('input[name=startDate]').val()))
 				errors.push({css: 'date-error', text: 'Invalid dates'});
 
-			if (+$('select[name=endAge]').val() < +$('select[name=startAge]').val())
-				errors.push({css: 'age-error', text: 'Invalid age'});
+			if (+$('#endAgeAcc').val() < +$('#startAgeAcc').val())
+				errors.push({css: 'age-error-acc', text: 'Invalid age range'});
 
 			if (errors.length)
 				return this.displayErrors(errors);
@@ -220,20 +230,21 @@ define(function(require) {
 			_.each(formData, cleanFormDataHelper.bind(null, this._defaults.accommodation));
 			if (!this.advanced){
 				delete formData.hero;
-			};
+			}
 			//Trigger false isn't working here due to BacboneJS bug I guess
 			router.navigate('#/search/accommodation/' + api.urlEncode(formData), {trigger: false});
 		},
 
 		_onClickAdvancedSearchButton: function(e) {
 			e.preventDefault();
-			this.type && this.type === 'people' ? this.showAdvancedSearch() : this.showAdvancedSearchAcc()
+			this.type && this.type === 'people' ? this.showAdvancedSearch() : this.showAdvancedSearchAcc();
 		},
 
 		showAdvancedSearch: function() {
 			this.$('#inputName').css('display', 'block');
 			this.$('.advanced-search').css('display', 'none');
 			this.$('.basic-search').css('display', 'block');
+			this.$('.age-error').css('margin-left', 0);
 			this.advanced = true;
 		},
 
@@ -246,13 +257,14 @@ define(function(require) {
 
 		_onClickBasicSearchButton: function(e) {
 			e.preventDefault();
-			this.type && this.type === 'people' ? this.showBasicSearch() : this.showBasicSearchAcc()
+			this.type && this.type === 'people' ? this.showBasicSearch() : this.showBasicSearchAcc();
 		},
 
 		showBasicSearch: function() {
 			this.$('#inputName').css('display', 'none');
 			this.$('.advanced-search').css('display', 'block');
 			this.$('.basic-search').css('display', 'none');
+			this.$('.age-error').css('margin-left', 252);
 			this.advanced = false;
 		},
 

@@ -7,13 +7,13 @@
 		</div>
 		<div class="control-group">
 			<label>Age</label>
-			<select name="startAge" class="input-age1">
+			<select name="startAge" class="input-age1" id="startAgePeople">
 				<option value="18">Age 18</option>
 				{{#range 20 98 2}}
 				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
-			<select name="endAge" class="input-age2">
+			<select name="endAge" class="input-age2" id="endAgePeople">
 				{{#range 98 18 '-2'}}
 				<option value="{{self}}">{{self}}</option>
 				{{/range}}

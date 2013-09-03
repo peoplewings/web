@@ -32,13 +32,13 @@
 		<label class="people_text">People</label>
 		<div class="control-group">
 			<label>Age</label>
-			<select name="startAge" class="input-age1">
+			<select name="startAge" class="input-age1" id="startAgeAcc">
 				<option value="18">Age 18</option>
 				{{#range 20 98 2}}
 				<option value="{{self}}">{{self}}</option>
 				{{/range}}
 			</select>
-			<select name="endAge" class="input-age2">
+			<select name="endAge" class="input-age2" id="endAgeAcc">
 				{{#range 98 18 '-2'}}
 				<option value="{{self}}">{{self}}</option>
 				{{/range}}
@@ -429,13 +429,13 @@
 				<option value="Applicant">Applicant</option>
 			</select>
 		</div>
+		<div class="form-errors age-error-acc"></div>
 		<div class="control-group">
 			<label>People</label>
 			<input type="text" id="inputNameAcc" name="hero" class="input-large" placeholder="Name of the user">
 		</div>
 	</div><!-- EOF form-block -->
 
-	<div class="form-errors age-error"></div>
 	<div class="form-actions">
 		<button type="reset" class="btn" style="display: none;">Clear</button>
 		<button type="submit" class="button-peoplewings">SEARCH PEOPLEWINGS</button>
