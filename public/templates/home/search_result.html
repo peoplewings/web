@@ -74,11 +74,15 @@
 							{{#if current.name }}
 							<h2 class="home-town">{{ current.name }}, {{ current.country }}</h2>
 							{{/if}}
-							{{#if lastLogin.name}}
-								{{#if online}}
+							{{#if online}}
+								{{#if lastLogin.name}}
 									<h3 class="last-connection">Last connection:  {{ lastLogin.name }}, {{ lastLogin.country }}</h2>
-								{{else}}
+								{{/if}}
+							{{else}}
+								{{#if lastLogin.name}}
 									<h3 class="last-connection">Last connection:  {{ lastLogin.name }}, {{ lastLogin.country }} on {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+								{{else}}
+									<h3 class="last-connection">Last connection:  {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
 								{{/if}}
 							<!--<h3 class="current-location">Now in {{ current.name }}, {{ current.country }}</h3>-->
 							{{/if}}

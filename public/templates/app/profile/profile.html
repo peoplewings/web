@@ -46,9 +46,15 @@
 					{{/if}}
 				</h2>
 				{{#equals online 'ON' }}
-					<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }}</h2>
+					{{#if lastLogin.name}}
+						<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }}</h2>
+					{{/if}}
 				{{else}}
-					<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }} on {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+					{{#if lastLogin.name}}
+						<h3 class="last-connection">Last connection: {{ lastLogin.name }}, {{ lastLogin.country }} on {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+					{{else}}
+						<h3 class="last-connection">Last connection: {{ date lastLoginDate 'YYYY-MM-DD' }}</h2>
+					{{/if}}
 				{{/equals}}
 			</div>
 			{{#unless myProfile}}
