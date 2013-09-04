@@ -116,10 +116,11 @@ define(function(require) {
 
 			var center = this.model.get('current') ||
 				this.model.get('hometown') ||
-				this.model.get('otherLocations')[0];
+				this.model.get('otherLocations')[0] ||
+				{};
 
-			if (center)
-				this.map.setCenter(center.lat, center.lon);
+			_.defaults(center, { lat: 48.6908333333, lon: 9.14055555556 });
+			this.map.setCenter(center.lat, center.lon);
 		},
 
 		initMarkers: function() {
