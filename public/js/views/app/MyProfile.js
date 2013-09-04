@@ -13,6 +13,7 @@ define(function(require) {
 	var alerts = require('views/lib/alerts');
 	var List = require('views/app/list');
 	var AvatarView = require('views/app/Avatar');
+	var LandscapeView = require('views/app/Landscape');
 
 	var formsTpl = {
 		'basic': require('tmpl!templates/app/profile/form.basic.html'),
@@ -133,6 +134,7 @@ define(function(require) {
 
 		refresh: function() {
 			this.avatar = new AvatarView();
+			this.landscape = new LandscapeView();
 			this.refresh = function() { };
 		},
 

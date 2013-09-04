@@ -98,7 +98,6 @@ button.close
 .container
 	max-width: 960px
 	margin: 0 auto
-	overflow: hidden
 	margin-bottom: 4em
 
 	h2, label
@@ -107,10 +106,41 @@ button.close
 
 	.landscape
 		min-height: 270px
-		padding: 27px
-		background: url(../img/landscape-photo.jpg) no-repeat
 		position: relative
 		margin-bottom: 8px
+
+		.landscape-photo
+			min-height: 270px
+			position: relative
+			margin-bottom: 8px
+
+			.edit-click
+				position: absolute
+				top: 10px
+				background: white
+				transition: opacity 0.25s
+				-moz-transition: opacity 0.25s
+				-webkit-transition: opacity 0.25s
+				-o-transition: opacity 0.25s
+				opacity: 0
+				filter: alpha(opacity=0)
+				text-transform: uppercase
+				font-size: 12px
+				font-style: italic
+				font-weight: bold
+				text-transform: uppercase
+				text-shadow: 1px 1px white
+				text-align: center
+				box-sizing: border-box
+				width: 933px
+				border: 1px
+				padding-top: 163px
+				padding-bottom: 121px
+				margin-left: 13px
+				padding-right: 17px
+
+				&:hover
+					opacity: 0.9
 
 		.tabs
 			position: absolute
