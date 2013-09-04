@@ -135,11 +135,11 @@ define(function(require) {
 				if (error.css === 'age-error-acc') {
 					self.$('.form-errors.' + error.css)
 						.html('<label class="error" id="age-error-acc">' + error.text + '</label>');
-					self.$('.form-errors.' + error.css).css('display', 'block');
 				} else {
 					self.$('.form-errors.' + error.css)
 						.html('<label class="error">' + error.text + '</label>');
 				}
+				self.$('.form-errors.' + error.css).css('display', 'block');
 
 			});
 		},

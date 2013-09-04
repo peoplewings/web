@@ -22,11 +22,11 @@
 										<span class="messages-age">[{{age}}]</span>
 									</h1>
 									<h2>{{city}}</h2>
-									<span class="reference-rating-{{rating}}"></span>
+									<span class="reference-rating-{{rating}}" title="{{rating}} reference!"></span>
 									{{#if meetInPerson }}
-										<span class="reference-meetinperson"></span>
+										<span class="reference-meetinperson" title="Met in person"></span>
 									{{/if}}
-									<span class="reference-date">{{date date }}</span>
+									<span class="reference-date" title="Reference date">{{date date }} </span>
 								</div>
 								<div class="reference-message">{{message}}</div>
 								{{#if ../myProfile }}
