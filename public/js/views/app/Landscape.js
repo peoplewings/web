@@ -94,10 +94,10 @@ define(function(require) {
 				var scale_y = self.size.height / $("#cropbox").height();
 				self.params = {
 					img: images[0].s3_url,
-					x: Math.floor(coords.x * scale_x),
-					y: Math.floor(coords.y * scale_y),
-					w: Math.floor(coords.w * scale_x),
-					h: Math.floor(coords.h * scale_y),
+					x: coords.x,
+					y: coords.y,
+					w: coords.w,
+					h: coords.h,
 				};
 			}
 
