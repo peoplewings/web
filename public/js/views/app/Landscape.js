@@ -162,6 +162,7 @@ define(function(require) {
 			var jobs = [{
 				"application_id": "7XqmahVqL8tvhEIjzBm6-jg",
 				"src": this.params.img,
+				'content_type_json': true,
 
 				"functions": [{
 					"name": "crop",

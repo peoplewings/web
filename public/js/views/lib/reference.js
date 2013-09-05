@@ -43,11 +43,21 @@ define(function(require) {
 			callback: send,
 		});
 
+		var faces = modal.find('.faces');
+
 		modal.on('hidden', function() {
 			if (!prom.future.isCompleted())
 				prom.resolve(false);
 		});
-
+		modal.find('input[name=rating]').change(function(){
+			if (this.value === '0'){
+				faces.css('background-position', '-1034px -162px');
+			} else if (this.value === '1'){
+				faces.css('background-position', '-1141px -162px');
+			} else {
+				faces.css('background-position', '-1245px -162px');
+			}
+		});
 		var $form = modal.find('form');
 		$form.validate(validation);
 
