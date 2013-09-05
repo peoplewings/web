@@ -180,7 +180,7 @@ define(function(require) {
 								'name':'peoplewings-test-media',
 								'location':'eu-west-1'
 							},
-							'key':'/photoalbums/landscape_' + id
+							'key':'photoalbums/landscape_' + id
 						}
 					}
 				}],
