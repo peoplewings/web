@@ -36,7 +36,7 @@ build.js:
 	node public/js/build/r -o public/js/build/app.build.js
 	-test ! -f BUILD && echo 1 > BUILD
 	mv public/js/build/out{,-`cat BUILD`}.js
-	#sed -i '' "s@lib/require.js@build/out-`cat BUILD`.js@" public/index.html
+	sed -i '' "s@lib/require.js@build/out-`cat BUILD`.js@" public/index.html
 	echo $$((`cat BUILD` + 1)) > BUILD
 
 build.css:
