@@ -169,8 +169,8 @@ define(function(require) {
 					"params": {
 						"x": this.params.x,
 						"y": this.params.y,
-						"w": this.params.w,
-						"h": this.params.h,
+						"width": this.params.w,
+						"height": this.params.h,
 					},
 					'save': {
 						'image_identifier': 'landscape',
