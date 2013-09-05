@@ -25,7 +25,7 @@ define(function(require) {
 				e.preventDefault();
 				$('#upload').trigger('click');
 			},
-			"click #submit-avatar": function(e) {
+			"click .avatar-modal #submit-avatar": function(e) {
 				e.preventDefault();
 				this.submitAvatar();
 			}
@@ -130,7 +130,9 @@ define(function(require) {
 				$('#crop-modal .modal-body img').css({width: self.size.width, height: self.size.height});
 				$('#crop-modal').width(650);
 
-				$('#crop-modal').modal('show');
+				$('#crop-modal')
+					.addClass('avatar-modal')
+					.modal('show');
 
 				// HACK: Jcrop does not set the size at second execution
 				$('#cropbox')
